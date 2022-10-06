@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        to[R, name=R0, i>_=$I_0$, v^<=$U_0$, !vi]
+    (3,0) coordinate (Itl)
+        node {\color{ForestGreen}$\bullet$}
+        node [above] {\color{ForestGreen}1}
+        node [above left=0.4] (M) {}
+        to[R, name=R1, i^>=$I_1$, v^<=$U_1$, !vi]
+    (6,0) coordinate (Itr)
+        node {\color{ForestGreen}$\bullet$}
+        node [above] {\color{ForestGreen}2}
+        to[R, name=R2, i_>=$I_2$, v^<=$U_2$, !vi]
+    (9,0)
+        to[R, name=R3, i_>=$I_3$, v^<=$U_3$, !vi]
+    (9,-3)
+        node [below right=0.4] (N) {}
+        to[short]
+    (6,-3) coordinate (Ibr)
+        node {\color{ForestGreen}$\bullet$}
+        node [below] {\color{ForestGreen}3}
+        to[R, name=R4, i>_=$I_4$, v^<=$U_4$, !vi]
+    (3,-3) coordinate (Ibl)
+        node {\color{ForestGreen!40}$\bullet$}
+        to[short]
+    (0,-3);
+    \draw[]
+    (Itl)
+    to[R, name=R5, i>_=$I_5$, v^<=$U_5$, !vi]
+    (Ibl);
+    \draw[]
+    (Itr)
+    to[R, name=R6, i>_=$I_6$, v^<=$U_6$, !vi]
+    (Ibr);
+    \foreach \n in {0, ..., 6}{
+        \iarronly{R\n} \varronly{R\n}
+    ;}
+    \node[black] (LM1) at (4.5,-1.5) {1};
+    \circledarrow{black}{(LM1)}{0.3}
+    \node[black] (LM2) at (7.7,-1.5) {2};
+    \circledarrow{black}{(LM2)}{0.3}
+    \draw[dashed, black]
+    ([shift={(0,.4)}]M) rectangle
+    ([shift={(0,-.4)}]N);
+    \node[black] (LM3) at ([shift={(0.5,0.3)}]N) {3};
+    \circledarrow{black}{(LM3)}{0.3}
+\end{circuitikz}
+\end{document}

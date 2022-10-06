@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \def\h{3}
+    \def\dh{0.2}
+    \def\L{2}
+    \def\l{.5}
+    \def\ll{.3}
+    \draw
+    (0,0)
+        to[I, name=I, I=$I_{0}$, !vi]
+    (0,\h) --
+    (\L,\h) --
+    (\L,\h-\dh) coordinate (A) --
+    (\L-\l,\h-\dh)
+        to[R, name=r, !vi]
+    (\L-\l,\dh) --
+    (\L,\dh) coordinate (B) |-
+    (0,0)
+    ;
+    \draw
+    (A) --
+    (\L+\l,\h-\dh) --
+    (\L+\l,\h-2*\dh) coordinate (C) --
+    (\L+\l-\ll,\h-2*\dh)
+        to[R, name=r1, i>^=$I$, !vi]
+    (\L+\l-\ll,2*\dh) --
+    (\L+\l,2*\dh) coordinate (D) |-
+    (B);
+    \draw
+    (C) --
+    (\L+\l+\ll,\h-2*\dh)
+        to[R, name=r2, !vi]
+    (\L+\l+\ll,2*\dh) --
+    (D);
+    \iarronly{I} \iarronly{r1}
+    \node[] at (r.center) {$r$};
+    \node[] at (r1.center) {$r$};
+    \node[] at (r2.center) {$2r$};
+\end{circuitikz}
+\end{document}

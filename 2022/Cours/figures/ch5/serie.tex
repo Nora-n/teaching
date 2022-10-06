@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw (0,0) node {$\bullet$} to[R, name=R1, i^>=$i$, !vi]
+    (2,0) node {$\bullet$} coordinate (A) to[R, name=R2, i^>=$i$, !vi]
+    (4,0) node {$\bullet$};
+    \iarronly{R1} \iarronly{R2}
+    \draw[dashed, gray] (A) to[R, color=gray, name=R3] ++ (0,2);
+    \node[below=.5] at (A.south) {Dip\^oles en s\'erie};
+    \node[right, gray] at (R3.south) {Pas en s\'erie};
+\end{circuitikz}
+\end{document}

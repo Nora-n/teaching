@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        to[R, name=r1, i>_=$I$, v^<=$U(r_1)$, !vi]
+    (3,0)
+        coordinate (It)
+        node {\color{ForestGreen}$\bullet$}
+        node [above] {\color{ForestGreen}1}
+        to[R, name=R, i_>=$I_2$, v^<=$U(R)$, !vi]
+    (6,0)
+        to[R, name=R2,
+            v^<={{{{\rotatebox{90}{$U(R_2)$}}}}}, !vi]
+    (6,-3)
+        to[short]
+    (3,-3)
+        coordinate (Ib)
+        node {\color{ForestGreen!70}$\bullet$}
+        to[short]
+    (0,-3)
+        to[V, name=E1, V^>=$E_{1}$, !vi]
+    (0,0);
+    \draw[]
+    (It)
+    to[R, name=R1, i>_=$I_1$,
+            v^<={{{{\rotatebox{90}{$U(R_1)$}}}}}, !vi]
+    (Ib);
+    \varronly{E1} \varronly{R} \varronly{R1} \varronly{R2}
+    \varronly{r1}
+    \iarronly{R} \iarronly{R1} \iarronly{r1}
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (R.center) {$R$};
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \node[Orchid] (LM1) at (1.5,-1.5) {1};
+    \circledarrow{Orchid}{(LM1)}{0.3}
+    \node[Orchid] (LM2) at (4.5,-1.5) {2};
+    \circledarrow{Orchid}{(LM2)}{0.3}
+\end{circuitikz}
+
+\end{document}

@@ -1,0 +1,122 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        node {\color{Purple}$\bullet$}
+        node [above left] {\color{Purple}A}
+    to[R, name=R1l, !vi]
+    (2,0) coordinate (N1)
+        node {\color{brandeisblue}$\bullet$}
+        node [above] {\color{brandeisblue}C}
+    to[R, name=R1m, !vi]
+    (4,0) coordinate (N2)
+        node {\color{Rhodamine}$\bullet$}
+        node [above] {\color{Rhodamine}A}
+    to[R, name=R1r, !vi]
+    (6,0)
+        node {\color{red}$\bullet$}
+        node [above right] {\color{red}B}
+    to[R, name=R2r, !vi]
+    (6,-2)
+        node {\color{Rhodamine}$\bullet$}
+        node [below] {\color{Rhodamine}A}
+    to[short, name=Sbr, i<=$i$, !vi]
+    (4,-2) coordinate (N3)
+        node {\color{orange}$\bullet$}
+        node [below] {\color{orange}A}
+    to[short, name=Sbm, i<=$i$, !vi]
+    (2,-2) coordinate (N4)
+        node {\color{ForestGreen}$\bullet$}
+        node [below] {\color{ForestGreen}A}
+    to[short, name=Sbl, i<=$i$, !vi]
+    (0,-2)
+        node {$\bullet$}
+        node [below left] {A}
+    to[short, name=Sl, i<=$i$, !vi]
+    (0,0);
+    \iarronly{Sl}\iarronly{Sbl}\iarronly{Sbm}\iarronly{Sbr}
+    \draw
+    (N1)
+    to[R, name=R2l, !vi]
+    (N4);
+    \draw[]
+    (N2)
+    to[short, name=Sr, i<=$i$, !vi]
+    (N3);
+    \iarronly{Sr}
+    \foreach \n in {l,m,r}{
+        \node[] at (R1\n.center) {$R_1$};}
+    \foreach \n in {l,r}{
+        \node[] at (R2\n.center) {$R_2$};}
+    \node[right=1em] (E) at (R2r.center) {$\equiv$};
+    \draw[shift={($(E)+(2em,-0.5)$)}]
+    (0,0)
+        node {$\bullet$}
+        node [above left] {A} --
+    (0.5,0) --
+    (0.5,1)
+        node {$\bullet$}
+        node [above left] {A} --
+    (1,1) --
+    (1,1.5)
+        node {\color{Purple}$\bullet$}
+        node [above left] {\color{Purple}A}
+    to[R, name=R1l]
+    (3,1.5) --
+    (3,1)
+        node {\color{brandeisblue}$\bullet$}
+        node [left] {\color{brandeisblue}C}
+    to[R, name=R1m]
+    (5,1)
+        node {\color{Rhodamine}$\bullet$}
+        node [above right] {\color{Rhodamine}A} --
+    (5,0)
+    to[short, name=Sm, i>=$i$]
+    (6,0) --
+    (6,0.5)
+        node {\color{Rhodamine}$\bullet$}
+        node [above left] {\color{Rhodamine}A}
+    to[R, name=R1r]
+    (8,0.5) --
+    (8,0) --
+    (8.5,0)
+        node {\color{red}$\bullet$}
+        node [right] {\color{red}B};
+    \draw[shift={($(E)+(2em,-0.5)$)}]
+    (0.5,0)
+    to[short, name=Sl, i>=$i$]
+    (0.5,-0.5)
+        node {\color{ForestGreen}$\bullet$}
+        node [below left] {\color{ForestGreen}A}
+    to[short, name=Sb, i>=$i$]
+    (5,-0.5)
+        node {\color{orange}$\bullet$}
+        node [below right] {\color{orange}A} --
+    (5,0);
+    \draw[shift={($(E)+(2em,-0.5)$)}]
+    (1,1) --
+    (1,0.5)
+        node {\color{ForestGreen}$\bullet$}
+        node [below left] {\color{ForestGreen}A}
+    to[R, name=R2l]
+    (3,0.5) --
+    (3,1);
+    \draw[shift={($(E)+(2em,-0.5)$)}]
+    (6,0) --
+    (6,-0.5)
+        node {\color{Rhodamine}$\bullet$}
+        node [below left] {\color{Rhodamine}A}
+    to[R, name=R2r]
+    (8,-0.5) --
+    (8,0);
+    \iarronly{Sb} \iarronly{Sm} \iarronly{Sl}
+    \foreach \n in {l,m,r}{
+        \node[] at (R1\n.center) {$R_1$};}
+    \foreach \n in {l,r}{
+        \node[] at (R2\n.center) {$R_2$};}
+\end{circuitikz}
+
+\end{document}

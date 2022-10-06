@@ -1,0 +1,102 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    % Sens de comptage
+    \node[] (Cp) at (-2.5,2) {$\oplus$};
+    \draw[<->] (Cp.north west) |- (Cp.south east);
+    % Sens de comptage
+    \node[] (Cp) at (2.5,2) {$\oplus$};
+    \circledarrow{black}{(Cp)}{0.3}
+    % Axe optique
+    \draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+    % Lentille 2
+    \coordinate (O2) at (0,0);
+    \def \fa{1.5}
+    \def \lsiz{2}
+    \coordinate (F2) at ($(O2)+(-\fa,0)$);
+    \coordinate (F2p) at ($(O2)+(\fa,0)$);
+
+    \foreach \x/\z in {O2/\fa}{
+        \node[] at (\x) {$\times$};
+        \node[below right] at (\x) {$O_2$};
+        % \node[] at ([shift={(\z,0)}]\x) {$\times$};
+        % \node[above right] at ([shift={(\z,0)}]\x) {$F'_2$};
+        \node[] at ([shift={(-\z,0)}]\x) {$\times$};
+        \node[below] at ([shift={(-\z,0)}]\x) {$F_2$};
+    }
+
+    \draw[shift={(O2)}, thick, <->, >=latex, name path=L1]
+        (0,-\lsiz) coordinate (Lb) --
+        (0,\lsiz) coordinate (Lt) node[above]{$\Lc_{2}$};
+
+    % Lentille 1
+    \coordinate (O1) at (-1,0);
+    \def \fb{-.5}
+    \def \lsiz{2}
+    \coordinate (F1) at ($(O1)+(-\fb,0)$);
+    \coordinate (F1p) at ($(O1)+(\fb,0)$);
+
+    \foreach \x/\z in {O1/\fb}{
+        \node[] at (\x) {$\times$};
+        \node[below right] at (\x) {$O_1$};
+        \node[] at ([shift={(\z,0)}]\x) {$\times$};
+        \node[above] at ([shift={(\z,0)}]\x) {$F'_1$};
+        % \node[] at ([shift={(-\z,0)}]\x) {$\times$};
+        % \node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+    }
+    \draw[shift={(O1)}, thick, >-<, >=latex, name path=L2]
+        (0,-\lsiz) coordinate (L2b) --
+        (0,\lsiz) coordinate (L2t) node[above]{$\Lc_{1}$};
+        
+    % Écran
+    % \def\ecsiz{4}
+    % \coordinate (E) at (1.7,0)
+    %     node [below left] at (E) {E}
+    %     node at (E) {$\times$};
+    % \draw[thin]
+    %     ([shift={(0,-\ecsiz/2)}]E)
+    %     --++ (0,\ecsiz);
+    % Points infini
+    \coordinate (At) at (-2.5,0.5);
+    \coordinate (Ab) at (-2.5,-0.5);
+    % Intersections lentille
+    \draw[brandeisblue, simple]
+        (At) --
+        ($(L2b)!(At)!(L2t)$)
+        coordinate (It)
+        node [midway, above] {$-\infty$};
+    \draw[brandeisblue, double]
+        (Ab) --
+        ($(L2b)!(Ab)!(L2t)$)
+        coordinate (Ib);
+    % Path to L2
+    \path[name path=Rt] (It) --++ ($2*(It)-2*(F1p)$);
+    \path[name path=Rb] (Ib) --++ ($2*(Ib)-2*(F1p)$);
+    % Define intersection
+    \path[name intersections={of=Rt and L1, by=Jt}];
+    \path[name intersections={of=Rb and L1, by=Jb}];
+    % Draw
+    \draw[orange!70, simple] (It) -- (Jt);
+    \draw[orange!70, double] (Ib) -- (Jb);
+    \draw[orange!70, dashed] (It) -- (F1p);
+    \draw[orange!70, dashed] (Ib) -- (F1p);
+    % Draw last
+    \draw[Red!70, simple] (Jt) --++ (1.5,0) coordinate (Ht);
+    \draw[Red!70, double] (Jb) --++ (1.5,0) coordinate (Hb);
+    % Grandeurs
+    \node[inner sep=0] (Atg) at (At) {};
+    \node[inner sep=0] (Abg) at (Ab) {};
+    \draw[|<->|, ForestGreen] (Atg) --
+    node[left, pos=0.25]
+    {$d$} (Abg);
+    % Grandeurs
+    \node[inner sep=0] (Htg) at (Ht) {};
+    \node[inner sep=0] (Hbg) at (Hb) {};
+    \draw[|<->|, ForestGreen] (Htg) --
+    node[right, pos=0.25]
+    {$D$} (Hbg);
+    
+\end{tikzpicture}
+\end{document}

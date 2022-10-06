@@ -1,0 +1,23 @@
+\documentclass[]{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+    % Dioptre
+    \def\na{1.0}
+    \def\nb{1.33}
+    \node[screen,
+        object height=3cm, rotate=-90,
+        name path=Dpath] (dioptre) at (0,0) {};
+    % Milieu n1
+    \node[above right] at (dioptre.south) {$n_\mathrm{air}$};
+    % Milieu n2
+    \def\dh{1}
+    \coordinate (D1) at ($(dioptre.north)!\dh cm!90:(dioptre.south)$);
+    \fill[brandeisblue!30]
+    (dioptre.south) -- (dioptre.north) --
+    (D1) -- (D1-|dioptre.south) -- cycle;
+    \node[below right] at (dioptre.south) {$n_\mathrm{eau}$};
+    \node[draw, fill=gray!10, opacity=10, left] at (dioptre.north) {dioptre};
+\end{tikzpicture}
+\end{document}

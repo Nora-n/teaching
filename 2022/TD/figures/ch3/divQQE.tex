@@ -1,0 +1,76 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+    \begin{tikzpicture}[]
+        % Axe optique
+        \draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+        % ---------------------------------------------------------------------
+        % Lentille 
+        \coordinate (O) at (0,0);
+        \def \fa{-1.3}
+        \def \lsiz{2}
+        \coordinate (F) at ($(O)+(-\fa,0)$);
+        \coordinate (Fp) at ($(O)+(\fa,0)$);
+
+        \foreach \x/\z in {O/\fa}{
+            \draw[shift={(\x)}] (0,0)
+                node[below right] {O$_{}$};
+            \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+                node[below left] {F$'_{}$};
+            \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+                node[below right] {F$_{}$};
+        }
+
+        \draw[shift={(O)}, thick,
+            >-<, >=latex, name path=L] (0,-\lsiz)--(0,\lsiz)
+            node[above]{$\Lc_{}$};
+        % ---------------------------------------------------------------------
+        % Objet
+        \def \pos{-2}
+        \def \siz{1.5}
+        \coordinate (A) at ($(O)+(\pos,0)$);
+        \coordinate (B) at ($(A)+(0,\siz)$);
+        \coordinate (I) at ($(O)+(0,1)$);
+        % Rayon 1
+        \draw[brandeisblue, simple] (B) -- (I);
+        \draw[brandeisblue, simple,
+            dashed, name path=B] (I) --++ ($1.2*(I)-1.2*(B)$);
+        % Plan focal
+        \def\pfsiz{3}
+        \draw[shift={(F)}, dashed,
+            gray!70, name path=PF] ($(F)+(0,-\pfsiz/2)$)
+            --++ (0,\pfsiz) node[above right] {$\F$};
+        \path[name intersections={of=B and PF, by=BF}];
+        \draw[] (BF) node {+};
+        % Rayon aide 1
+        \def \pos{-2}
+        \def \siz{0.5}
+        \coordinate (Aa) at ($(O)+(\pos,0)$);
+        \coordinate (Bb) at ($(Aa)+(0,\siz)$);
+        \draw[ForestGreen, double, name path=G] (Bb) -- (O);
+        \draw[ForestGreen, double] (O) --++ ($1.2*(O)-1.2*(Bb)$);
+        % Plan focal
+        \def\pfsiz{3}
+        \draw[shift={(Fp)}, dashed,
+            gray!70, name path=PFp] ($(Fp)+(0,-\pfsiz/2)$)
+            --++ (0,\pfsiz) node[above right] {$\F'$};
+        \path[name intersections={of=G and PFp, by=GFp}];
+        \draw[] (GFp) node {+};
+        % Rayon 1 émergent
+        \draw[orange!70, simple, dashed] (GFp) -- (I);
+        \def\mut{1.2}
+        \draw[orange!70, simple] (I) --++ ($\mut*(I)-\mut*(GFp)$);
+        % Rayon aide 2
+        \len{(BF)}{(F)}{\BFF}
+        % Objet
+        \def \pos{-2}
+        \def \siz{\BFF}
+        \coordinate (AA) at ($(O)+(\pos,0)$);
+        \coordinate (BB) at ($(AA)+(0,\siz)$);
+        \draw[ForestGreen, triple] (BB) --++ (-\pos,0) coordinate (E);
+        \draw[ForestGreen, triple, dashed] (E) --++ (-1.5*\fa,0);
+        \draw[ForestGreen, triple] (E) --++ ($1.2*(E)-1.2*(Fp)$);
+    \end{tikzpicture}
+
+\end{document}

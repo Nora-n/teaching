@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        node [above left] {A}
+    to[R, name=R1l, !vi]
+    (2,0) coordinate (N1)
+    to[R, name=R1m, !vi]
+    (4,0) coordinate (N2)
+    to[R, name=R1r, !vi]
+    (6,0)
+        node [above right] {B}
+    to[R, name=R2r, !vi]
+    (6,-2)
+    to[short, name=Sbr, !vi]
+    (4,-2) coordinate (N3)
+    to[short, name=Sbm, !vi]
+    (2,-2) coordinate (N4)
+    to[short, name=Sbl, !vi]
+    (0,-2)
+    to[short, name=Sl, !vi]
+    (0,0);
+    \draw
+    (N1)
+    to[R, name=R2l, !vi]
+    (N4);
+    \draw[]
+    (N2)
+    to[short, name=Sr, !vi]
+    (N3);
+    \foreach \n in {l,m,r}{
+        \node[] at (R1\n.center) {$R_1$};}
+    \foreach \n in {l,r}{
+        \node[] at (R2\n.center) {$R_2$};}
+\end{circuitikz}
+\end{document}

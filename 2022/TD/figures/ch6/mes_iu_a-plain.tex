@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E, V^>=$E_{}$, !vi]
+    (0,2)
+    to[R, name=r1, !vi]
+    (2,2) coordinate (N1)
+    to[R, name=R, !vi]
+    (4,2)
+    to[rmeter, name=V]
+    (4,0)
+    to[rmeter, name=A]
+    (2,0) coordinate (N2)
+    to[rmeter, name=Ap]
+    (0,0);
+    \draw[]
+    (N1)
+    to[R, name=R1, !vi]
+    (N2);
+    \varronly{E}
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R.center) {$R$};
+    \node[] at (V.center) {V};
+    \node[] at (A.center) {A};
+    \node[] at (Ap.center) {A'};
+\end{circuitikz}
+
+\end{document}

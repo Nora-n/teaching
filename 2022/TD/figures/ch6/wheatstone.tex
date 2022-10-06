@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E, V^>=$E_{}$, i^>=$I_{}$, !vi]
+    (0,4) --
+    (1,4) coordinate (Ilt)
+        node {\color{ForestGreen}$\bullet$}
+        node [above] {\color{ForestGreen}A}
+    to[vR, name=R, i>^=$I_1$, v^<=$U_{AB}$, !vi]
+    (1,2) coordinate (Ilm)
+        node {\color{ForestGreen}$\bullet$}
+        node [left] {\color{ForestGreen}B}
+        to[R, name=R1, v^<=$U_{BC}$, !vi]
+    (1,0) coordinate (Ilb)
+        node {\color{ForestGreen}$\bullet$}
+        node [below] {C} --
+    (0,0);
+    \draw[]
+    (Ilt) --
+    (3,4)
+        node {\color{ForestGreen}$\bullet$}
+        node [above] {\color{ForestGreen}A}
+        to[R, name=R2, i>^=$I_2$, v^<=$U_{AD}$, !vi]
+    (3,2) coordinate (Irm)
+        node {\color{ForestGreen}$\bullet$}
+        node [right] {\color{ForestGreen}D}
+        to[R, name=Ri, v^<=$U_{DC}$, !vi]
+    (3,0) coordinate (Irb)
+        node {\color{ForestGreen}$\bullet$}
+        node [below] {\color{ForestGreen}C};
+    \draw[]
+    (Ilm)
+    to[rmeter, name=V]
+    (Irm);
+    \draw[] 
+    (Irb) --
+    (Ilb);
+    \iarronly{E} \iarronly{R} \iarronly{R2}
+    \varronly{E} \varronly{R} \varronly{R2} \varronly{Ri}
+    \varronly{R2} \varronly{R1}
+    \node[] at (V.center) {V};
+    \node[] at (R.center) {$R$};
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \node[] at (Ri.center) {$R_i$};
+\end{circuitikz}
+
+\end{document}

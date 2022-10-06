@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw[]
+    (1,0) --
+    (2,0) node {$\bullet$} coordinate (N1) --
+    node [above, midway] {Dip\^oles en parall\`ele}
+    (4,0) node {$\bullet$}
+    to[R, name=R2, v^<=$u$, !vi]
+    (4,-2) node {$\bullet$} coordinate (Nbr) --
+    (2,-2) node {$\bullet$} coordinate (N2) -- %node [below] {N2}
+    (1,-2);
+    \draw[] 
+    (N1)
+    to[R, name=R1, v^<=$u$, !vi]
+    (N2);
+    \draw[dashed, fill=white]
+    (N2)
+    to[R, name=R3, color=gray]
+    (Nbr);
+    \varronly{R1} \varronly{R2}
+    \node[below, gray] at (R3.south) {Pas en parall\`ele};
+\end{circuitikz}
+\end{document}

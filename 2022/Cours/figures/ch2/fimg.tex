@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.85]
+    \node[draw,rounded corners=3pt,minimum width=3cm,minimum 
+          height=3cm,fill=SkyBlue!20] (SO){};
+    \node[above] at (SO.south) {\small Syst\`eme optique};
+ 
+    \draw[thin, dashed, -latex](-3.5,0)--(6,0) node [below] {Axe
+    optique};
+
+    \foreach \y in {1.4,0.7, ...,-1.4} {
+        \draw [simple,brandeisblue,thick] (-4,\y) -- (-1.75,\y) ;
+        \draw [simple,orange!70,thick] (1.75,\y) --
+            (4,0) --++($-0.3*(1.75,\y)+0.3*(4,0)$) ;
+     }
+\node at (4,0) [below=0.15cm] {$F'$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,35 @@
+\documentclass[]{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.25,
+    x={(-0.353cm,-0.353cm)},
+    y={(1cm,0cm)},
+    z={(0cm,1cm)},
+    >=stealth]   
+    \coordinate (O) at (0, 0, 0);
+    \coordinate (A) at (2,2,0);
+    \coordinate (M) at (3,4,0);
+    \coordinate (B) at (2,2,-2);
+    \draw[verre] (O) -- ++(4, 0, 0) ;
+    \draw[verre] (O) -- +(0, 4, 0) ;
+    \draw[verre](O) --++(4,0,0)--++(0,4,0)--++(-4,0,0)--cycle;
+    \draw[verre](0,4,0) --++(0,0,-2)--++(4,0,0)--++(0,0,2)--cycle;
+    \draw[verre](4,0,0) --++(0,0,-2)--++(0,4,0)--++(0,0,2)--cycle;
+    \draw[](4,2,-2)--++(0,0,4)--++(-4,0,0)--++(0,0,-4)--cycle;
+    \draw[] (4,2,-2) node[rotate=45,below right]{plan d'incidence};
+    \draw[dashed] (A) ++(2,0,0)--++(-4, 0, 0) ;
+    \draw[thick,simple,red] (4,2,1.5)--(A);
+    \draw[thick,postaction={decorate,decoration={markings,
+        mark=at position .65 with
+        {\arrow[scale=1,draw=red,>=stealth]{>}}}},red] (A)--(0.4,2,-2);
+    \draw[dashed] (B)--++(0,0,4)node[rotate=90,below left]{normale};
+    \draw [->, -latex](2,2,0.5) to[bend right] (2.65,2,0.5);
+    \draw (2.55,2,0.8) node{$i_{1}$};
+    \draw [->, -latex] (2,2,-0.6) to[bend right] (1.5,2,-0.7);
+    \draw (1.55,2,-1) node{$i_{2}$};
+    \draw (2,0,1) node{indice $n_{1}$};
+    \draw (2,0,-2) node{indice $n_{2}$};
+\end{tikzpicture}
+
+\end{document}

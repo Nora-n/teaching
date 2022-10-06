@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[] 
+    %\draw [ultra thin, gray!20] (-6,-6) grid[step=0.5] (6,6);
+    %\draw [thin,gray!50] (-6,-6) grid[step=1] (6,6);
+    \def \taillehaut{2}; %taille de la lentille
+    \def \taillebas{2};%taille de la lentille
+    \def \xA{-2};%position de l'objet
+    \def \yB{1};%hauteur de l'objet
+    %\def \xAA {(\xA*\f)/(\xA+\f)};%position de l'image
+    %\def \yBB {(\xAA*\yB)/(\xA)};%hauteur de l'image
+    \coordinate (O1) at (0,0);%centre optique de la première lentille
+    \coordinate (A) at (\xA,0);%position de l'objet
+    \coordinate (B) at (\xA,\yB);%sommet de l'objet
+    \def \f{2};%focale de la première lentille
+    \coordinate (F') at (\f,0);
+    %\coordinate (A') at ({\xAA},0);%position de l'objet
+    %\coordinate (B') at ({\xAA},{\yBB});%sommet de l'objet
+    
+    \draw[thin](-4,0)--++(7,0);
+    \draw[|->, thick, Purple!70] (A)node[below left]{A}--(B)node[above]{ B};
+    %\draw[|->,dashed, thick] (A')node[below]{ A'}--(B')node[above]{ B'};
+    \draw[shift={(O1)},ultra thick,<->,>=latex] (0,-\taillebas)--(0,\taillehaut) node[above]{ $\mathcal{L}$};%lentille convergente
+    \draw[thick,brandeisblue,simple] (B)--(0,\yB);
+    \draw[thick,orange!70,simple] (0,\yB)--(F');
+    \draw[thick,orange!70,dashed] (0,\yB)--++($1*(B)-1*(O1)$);
+    \draw[thick,brandeisblue,double] (B)--(O1);
+    \draw[thick,orange!70,double] (O1)--++($1*(O1)-1*(B)$);
+    \draw[thick,orange!70,dashed] (B)--++($1*(B)-1*(O1)$);
+    %\draw[blue,thick,double] (B)--(0,{\yBB});
+    %\draw[blue,thick,double] (0,{\yBB})--++(2,0);
+    %\draw[blue,thick,dashed] (0,{\yBB})--(B');
+    
+    \draw[->] (1.2,0) to [bend left] (1.2,0.4) ;
+     \node at (0.75,0.2) [] {$\theta'$};
+     
+     \draw[->] (-0.8,0) to [bend left] (-0.8,0.4) ;
+     \node at (-1.25,0.2) [] {$\theta'$};
+    
+    \draw [thick,->,-latex] (-2.75,2) --++ (-0.5,0.30);
+     \node at (-2.5,2.2)  {\tiny Image};
+     
+     \draw[ultra thin,gray,|<->|](-2,-0.5)--(-0.05,-0.5) node [midway,below] {$\text{f'}$};
+     
+    \oeil[shift={(2.8,0)},rotate=180];
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+    \begin{tikzpicture}[scale=1]
+        % Axe optique
+        \draw[thin,->](-3.5,0)--(3.5,0)node[below]{A.O.};
+        % Lentille
+        \coordinate (O) at (0,0);
+        \def \fa{1.5};
+        \def \lsiz{2};
+        \coordinate (F) at ($(O)+(-\fa,0)$);
+        \coordinate (Fp) at ($(O)+(\fa,0)$);
+        
+        \foreach \x/\z in {O/\fa}{
+            \draw[shift={(\x)}] (0,0)
+                node[below left] {O$_{}$};
+            \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+                node[below right] {F$'_{}$};
+            \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+                node[below right] {F$_{}$};}
+        
+        \draw[shift={(O)}, thick, <->, >=latex] (0,-\lsiz)--(0,\lsiz)
+            node[above]{$\Lc_{}$};
+        % Objet
+        \def \pos{-3}
+        \def \siz{1}
+        \coordinate (A) at ($(O)+(\pos,0)$);
+        \coordinate (B) at ($(A)+(0,\siz)$);
+        \draw[->, Purple!70] (A) 
+            node[below] {A}
+            -- (B)
+            node[above, left] {B};
+
+        % Rayons pour objet avant foyer d'une lentille convergente
+        \len{(A)}{(O)}{\posi}
+        \len{(A)}{(B)}{\size}
+        \len{(O)}{(F)}{\foc}
+        \draw[brandeisblue, simple] (B) -- (O);
+        \draw[orange!70, simple, name path=OBp] (O) --++ ($(O)-(B)$);
+        \draw[brandeisblue, double] (B) --++ (\posi,0) coordinate (I);
+        \def \mut{2}
+        \draw[orange!70, double, name path=IBp] (I) --++ ($\mut*(Fp)-\mut*(I)$);
+        \def \intsiz{\size*\foc/(\posi-\foc)}
+        \draw[brandeisblue, triple] (B) -- (F)
+            --++ (\foc,-{\intsiz}) coordinate (E);
+        \def \mut{2}
+        \draw[orange!70, triple, name path=EBp] (E) --++ (\mut*\foc,0);
+        \path[name intersections={of=OBp and IBp, by=B\bp}];
+        \coordinate (A\bp) at ($(B\bp)+(0,{\intsiz})$);
+        \draw[->, Red!70] (A\bp) 
+        node[above] {A\bp}
+        -- (B\bp)
+        node[below, right] {B\bp};
+    \end{tikzpicture}
+\end{document}

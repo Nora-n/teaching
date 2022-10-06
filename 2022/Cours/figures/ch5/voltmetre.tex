@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0) node {$\bullet$} node [below] (A) {A} to[R, name=R1, v^<, !vi]
+    (4,0) node {$\bullet$} node [below] (B) {B} ;
+    \varronly{R1}
+    \node[above=12pt, Red] (Utext) at (R1) {$U_{AB} = V_A - V_B$};
+    \draw
+    (1,0) node {$\bullet$} --++
+    (0,-1)
+    to[rmeter, name=V] ++
+    (2,0) --++
+    (0, 1) node {$\bullet$};
+    \node[] at (V.center) {V};
+    \node[below right=.2] at (V.center) {COM};
+\end{circuitikz}
+\end{document}

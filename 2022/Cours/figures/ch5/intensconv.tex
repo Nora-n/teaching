@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0) coordinate (O) to[short, name=S1, i>^=$i$] (1,0) coordinate (A)
+    ;
+    \node[right=1em] (E) at (A) {$\equiv$};
+    \draw[shift={($(E)+(2em,0)$)}]
+    (0,0) coordinate (B) to[short, name=S2, i<^=$-i$] (1,0)
+    ;
+    \iarronly{S1}\iarronly{S2}
+    \begin{scope}[yshift=-24pt]
+        \draw[] (0,0) to[short, name=S3, i>^=$i>0$] (1,0);
+        \draw[] ([shift={(0,-24pt)}]B) to[short, name=S4, i>^=$i<0$] ++(1,0);
+        \node[below] at (S3.center)
+            {\fontsize{6pt}{12pt}\selectfont Sens conventionnel};
+        \node[below] at (S4.center)
+            {\fontsize{6pt}{12pt}\selectfont Sens r\'eel};
+        \iarronly{S3}\iarronly{S4}
+    \end{scope}
+\end{circuitikz}
+\end{document}

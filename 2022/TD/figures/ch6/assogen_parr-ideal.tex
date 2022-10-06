@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        node {$\bullet$}
+        node [below left] {B}
+    to[V, name=E1, V^>=$E_{1}$, i^>=$i_{1}$, !vi]
+    (0,2)
+        node {$\bullet$}
+        node [above left] {A} --
+    (2,2) coordinate (N1)
+        node {$\bullet$}
+        node [above] {A}
+    to[V, name=E2, V^<=$E_{2}$, i<_=$i_{2}$, !vi]
+    (2,0) coordinate (N2)
+        node {$\bullet$}
+        node [below] {B} --
+    (0,0);
+    \draw[]
+    (N1) --
+    (4,2)
+        node {$\bullet$}
+        node [above right] {A}
+    to[R, name=R4, i>^=$i$, v^<=$U_{R_4}$, !vi]
+    (4,0)
+        node {$\bullet$}
+        node [below right] {B} --
+    (N2);
+    \varronly{E1} \varronly{E2}
+    \varronly{R4}
+    \iarronly{E1} \iarronly{E2}
+    \iarronly{R4}
+    \node[] at (R4.center) {$R_4$};
+\end{circuitikz} 
+
+\end{document}

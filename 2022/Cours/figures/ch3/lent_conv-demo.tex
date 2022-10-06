@@ -1,0 +1,107 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+    \begin{tikzpicture}[]
+        % Sens de comptage
+        \node[] (Cp) at (-2.5,2.5) {$\oplus$};
+        \draw[<->] (Cp.north west) |- (Cp.south east);
+        % Sens de comptage
+        \node[] (Cp) at (2.5,2.5) {$\oplus$};
+        \circledarrowcw{black}{(Cp)}{0.3}
+        % Axe optique
+        \draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+        % Lentille 
+        \coordinate (O) at (0,0);
+        \def \fa{1.5}
+        \def \lsiz{2}
+        \coordinate (F) at ($(O)+(-\fa,0)$);
+        \coordinate (Fp) at ($(O)+(\fa,0)$);
+
+        \foreach \x/\z in {O/\fa}{
+            \draw[shift={(\x)}] (0,0)
+                node[below right] {O$_{}$};
+            \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+                node[above] {F$'_{}$};
+            \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+                node[below left] {F$_{}$};
+        }
+
+        \draw[shift={(O)}, thick,
+            <->, >=latex, name path=L] (0,-\lsiz)--(0,\lsiz)
+            node[above]{$\Lc_{}$};
+        % Objet
+        \def \pos{-3}
+        \def \siz{1}
+        \coordinate (A) at ($(O)+(\pos,0)$);
+        \coordinate (B) at ($(A)+(0,\siz)$);
+        \draw[->, Purple!70] (A) 
+            node[below] {A}
+            -- (B)
+            node[above left] {B};
+        % Rayons pour objet avant foyer d'une lentille convergente
+        % Lengths
+        \len{(A)}{(O)}{\posi}
+        \len{(A)}{(B)}{\size}
+        \len{(O)}{(F)}{\foc}
+        % Rayon 1
+        \draw[brandeisblue, simple, name path=B] (B) -- (O);
+        \def\mut{1.2}
+        \draw[orange!70, simple, name path=OBp] (O)
+            --++ ($\mut*(O)-\mut*(B)$);
+        % Rayon 2
+        \draw[brandeisblue, double] (B) --++ (\posi,0) coordinate (I);
+        \def \mut{2}
+        \draw[orange!70, double, name path=IBp] (I)
+            --++ ($\mut*(Fp)-\mut*(I)$);
+        \node[above right] (Bpp) at (I) {H};
+        % Rayon 3
+        \def \intsiz{\size*\foc/(\posi-\foc)}
+        \draw[brandeisblue, triple] (B) -- (F)
+            --++ (\foc,-{\intsiz}) coordinate (E);
+        \def \mut{2}
+        \draw[orange!70, triple, name path=EBp] (E) --++ (\mut*\foc,0);
+        \node[above right] (Bppp) at (E) {H'};
+        %
+        % Image
+        \path[name intersections={of=OBp and IBp, by=B\bp}];
+        \coordinate (A\bp) at ($(B\bp)+(0,{\intsiz})$);
+        \draw[->, Red!70] (A\bp) 
+        node[above] {A\bp}
+        -- (B\bp)
+        node[below right] {B\bp};
+        % Intersection avec verticale
+        \def\vertsiz{5}
+        \path[name path=V] (-.75,-\vertsiz/2)
+            --++ (0,\vertsiz);
+        % Define intersection
+        \path[name intersections={of=B and V, by=BV}];
+        % Angle
+        \draw[ForestGreen, ->] (-.75,0) to [bend left] node[midway, left]{$\a$} (BV);
+        % Intersection avec verticale
+        \def\vertsiz{5}
+        \path[name path=Vb] (.75,-\vertsiz/2)
+        --++ (0,\vertsiz);
+        % Define intersection
+        \path[name intersections={of=OBp and Vb, by=OV}];
+        % Angle
+        \draw[ForestGreen, ->] (.75,0) to[bend left] node[midway, right]{$\a$} (OV);
+        % Intersection avec verticale
+        \def\vertsiz{5}
+        \path[name path=Vdb] (.85,-\vertsiz/2)
+        --++ (0,\vertsiz);
+        % Define intersection
+        \path[name intersections={of=IBp and Vdb, by=beta}];
+        % Angle
+        \draw[ForestGreen, ->] (.85,0) to[bend left] node[midway, left]{$\b$} (beta);
+        % Intersection avec verticale
+        \def\vertsiz{5}
+        \path[name path=Vdbb] (2.15,-\vertsiz/2)
+        --++ (0,\vertsiz);
+        % Define intersection
+        \path[name intersections={of=Vdbb and IBp, by=betab}];
+        % Angle
+        \draw[ForestGreen, ->] (2.15, 0) to[bend left] node[midway, right]{$\b$} (betab);
+    \end{tikzpicture}
+
+\end{document}

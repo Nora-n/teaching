@@ -1,0 +1,81 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+\begin{tikzpicture}[] 
+    \def \indicevi {2.1};%indice du verre
+    \def \indiceb {2};%indice du verre
+    \def \indicebs {1.9};%indice du verre
+    \def \indicev {1.8};%indice du verre
+    \def \indicej {1.7};%indice du verre
+    \def \indicer {1.6};%indice du verre
+    
+    \def \y {2};%demi hauteur de la lentille
+    \def \Rb {5};%rayon de la face de sortie
+    \def \angleb {asin(\y/\Rb)};
+    \coordinate (B) at (0,\y);
+    \coordinate (A) at (0,-\y);
+    \coordinate (F'vi) at ({\Rb/(\indicevi-1)},0);
+    \coordinate (F'b) at ({\Rb/(\indiceb-1)},0);
+    \coordinate (F'bs) at ({\Rb/(\indicebs-1)},0);
+    \coordinate (F'v) at ({\Rb/(\indicev-1)},0);
+    \coordinate (F'j) at ({\Rb/(\indicej-1)},0);
+    \coordinate (F'r) at ({\Rb/(\indicer-1)},0);
+    
+    \draw[verre] (A) --(B) arc({\angleb}:{-\angleb}:\Rb);
+    \draw[thin] (-2,0)--++(12,0);
+    \foreach \k in {1}{
+    
+    \draw[simple,thick] (-3,\k) -- ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)
+    node[midway,fill=white]{\tiny Lumi\`ere blanche};
+    \draw[purple,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indicevi*\k/\Rb)}:5);
+    \draw[simple,thick] (-3,-\k) -- ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)
+    node[midway,fill=white]{\tiny Lumi\`ere blanche};
+    \draw[purple,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indicevi*\k/\Rb)-asin(\k/\Rb)}:5);
+    
+    
+    
+    \draw[blue,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indiceb*\k/\Rb)}:6);
+    
+    \draw[blue,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indiceb*\k/\Rb)-asin(\k/\Rb)}:6);
+    
+    
+    
+    \draw[skyblue,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indicebs*\k/\Rb)}:7);
+    
+    \draw[skyblue,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indicebs*\k/\Rb)-asin(\k/\Rb)}:7);
+    
+    
+    \draw[green,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indicev*\k/\Rb)}:8);
+    
+    \draw[green,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indicev*\k/\Rb)-asin(\k/\Rb)}:8);
+    
+    
+    \draw[yellow,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indicej*\k/\Rb)}:9);
+    
+    \draw[yellow,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indicej*\k/\Rb)-asin(\k/\Rb)}:9);
+    
+    
+    
+    \draw[red,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},\k)--++
+    ({asin(\k/\Rb)-asin(\indicer*\k/\Rb)}:10);
+    
+    \draw[red,thick,simple] ({-sqrt(\Rb*\Rb-\y*\y)+sqrt(\Rb^2-\k^2)},-\k)--++
+    ({asin(\indicer*\k/\Rb)-asin(\k/\Rb)}:10);
+    }
+    %\foreach \x in {F'b,F'r,F'vi,F'j,F'v,F'bs}
+    %\draw[shift={(\x)}] (0pt,2pt) -- (0pt,-2pt) node[below] {\x};
+\end{tikzpicture}
+
+\end{document}

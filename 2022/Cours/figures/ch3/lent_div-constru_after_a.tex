@@ -1,0 +1,84 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+    \begin{tikzpicture}[scale=1]
+        % Sens de comptage
+        \node[] (Cp) at (-2.5,2.5) {$\oplus$};
+        \draw[<->] (Cp.north west) |- (Cp.south east);
+        % Sens de comptage
+        \node[] (Cp) at (2.5,2.5) {$\oplus$};
+        \circledarrow{black}{(Cp)}{0.3}
+        % grid
+        \draw[lightgray!10, ultra thin, help lines]
+            (-4,-3) grid (4,3);
+        \draw[lightgray!10, ultra thin, help lines, dotted, step=.5cm]
+            (-4,-3) grid (4,3);
+        % Axe optique
+        \draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+        % Lentille 
+        \coordinate (O) at (0,0);
+        \def \fa{-2}
+        \def \lsiz{2}
+        \coordinate (F) at ($(O)+(-\fa,0)$);
+        \coordinate (Fp) at ($(O)+(\fa,0)$);
+        \node[] at (F) {$\times$};
+        \node[] at (Fp) {$\times$};
+
+        \foreach \x/\z in {O/\fa}{
+            \draw[shift={(\x)}] (0,0)
+                node[below right] {O$_{}$};
+            \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+                node[below left] {F$'_{}$};
+            \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+                node[below right] {F$_{}$};
+        }
+
+        \draw[shift={(O)}, thick,
+            >-<, >=latex, name path=L] (0,-\lsiz)--(0,\lsiz)
+            node[above]{$\Lc_{}$};
+        % Objet
+        \def \pos{0.8}
+        \def \siz{0.7}
+        \coordinate (A) at ($(O)+(\pos,0)$);
+        \coordinate (B) at ($(A)+(0,\siz)$);
+        \draw[->, Purple!70] (A) 
+            node[below] {A}
+            -- (B)
+            node[above, left] {B};
+        % Rayons pour objet virtuel d'une lentille divergente
+        % Lengths
+        \len{(A)}{(O)}{\posi}
+        \len{(A)}{(B)}{\size}
+        \len{(O)}{(F)}{\foc}
+        % Rayon 1
+        \draw[brandeisblue, simple] ($2*(O)-(B)$) -- (O);
+        \draw[orange!70, simple, name path=OBp] (O) --++ ($2*(B)-2*(O)$);
+        % Rayon 2
+        \def \mut{3}
+        \draw[brandeisblue, double] ($(B)-(\mut*\posi,0)$)
+            --++ (\mut*\posi-\posi,0) coordinate (I);
+        \draw[brandeisblue, dashed, double] (I) --++ (2*\posi,0);
+        \def \mut{1.2}
+        \draw[orange!70, doublerev, dashed] (I)
+            --++ ($\mut*(Fp)-\mut*(I)$);
+        \draw[orange!70, double, name path=IBp] (I)
+            --++ ($-\mut*(Fp)+\mut*(I)$);
+            % Rayon 3
+            \path[name path=tripleB] (F) --++ ($3*(B)-3*(F)$);
+            \path[name intersections={of=L and tripleB, by=E}];
+            \def \mut{1.5}
+            \draw[brandeisblue, triplerev] (E) --++ ($\mut*(B)-\mut*(F)$);
+            \draw[brandeisblue, dashed, triple] (E) --++ ($\mut*(F)-\mut*(E)$);
+            \draw[orange!70, triple, name path=EBp] (E) --++ (\mut*\foc,0);
+            % Image
+            \path[name intersections={of=OBp and IBp, by=B\bp}];
+            \len{(O)}{(E)}{\intsiz}
+            \coordinate (A\bp) at ($(B\bp)+(0,-{\intsiz})$);
+            \draw[->, Red!70] (A\bp) 
+            node[below] {A\bp}
+            -- (B\bp)
+            node[below, right] {B\bp};
+    \end{tikzpicture}
+
+\end{document}

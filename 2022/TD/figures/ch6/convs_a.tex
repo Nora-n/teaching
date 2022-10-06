@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E, V^>=$E_{}$, i^<=$I_{}$, !vi]
+    (0,2)
+    to[R, name=r, i^<=$I$, v^>=$U_r$, !vi]
+    (2,2)
+    to[R, name=R, i^<=$I$, v^>=$U_R$, !vi]
+    (2,0) --
+    (0,0);
+    \varronly{E} \varronly{r} \varronly{R}
+    \iarronly{E} \iarronly{r} \iarronly{R}
+    \node[] at (r.center) {$r$};
+    \node[] at (R.center) {$R$};
+\end{circuitikz}
+
+\end{document}

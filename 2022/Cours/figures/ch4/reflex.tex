@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[decoration={markings,mark=at position 25mm with {\arrow[red]{stealth};},mark=at position 55mm with {\arrow[red]{stealth};}}]
+	\draw [thick,fill=lightgray!70!white,opacity=0.5]
+	(0,2)--++(0.2,0)--++(0.05,0.07)--++(0.8,0)--++(0.05,-0.1)--++(0.5,0)--++(0.05,0.07)--++(0.3,0)--++(0,1)--++(0.5,1)--++(2,-0.5)--++(0,-3.7)--++(-2.5,0)
+	--++(0,0.15)--++(-0.3,0)--++(-0.05,0.07)--++(-0.5,0)--++(-0.05,-0.1)--++(-0.8,0)--++(-0.05,0.07)--++(-0.2,0)-- cycle;
+	\draw[scale=0.45,verre,shift={(0.5,2.22)}] (0,-2) to[bend left] (0,2) to [bend left] (0,-2);%biconvexe1
+	\draw[scale=0.5,verre,shift={(1.25,2)},rotate=180] (0,-2) to[bend left=10] (0,2) --++(0.7,0) to[bend right=35] (0.7,-2)--cycle;%concave-convexe
+	\draw[scale=0.5,verre,shift={(2,2)}] (0,-2) to[bend left=10] (0,2) to [bend left=5] (0,-2);%biconvexe2
+	\draw[scale=0.5,verre,shift={(3.5,2)}] (0,-2) to[bend left=15] (0,2) to [bend left=8] (0,-2);%biconvexe3
+	\draw[shift={(1.5,1)},thick,|-,>=latex] (-5pt,0.45)--++(0,0.5);%diaphragme
+	\draw[shift={(1.5,1)},thick,|-,>=latex] (-5pt,-0.5)--++(0,-0.45);%diaphragme
+	\draw[shift={(4.5,1)},ultra thick] (-5pt,1)--++(0,-2);%capteur
+	\draw[shift={(3.5,1)},ultra thick,rotate=-45,gray] (-5pt,1)--++(0,-2);%miroir
+	\draw[shift={(2.15,3.2)},verre,scale=0.7] (0,0)--++(0.5,1)--++(2,-0.5)--++(0,-1.5)--++(-2,0)-- cycle;%pentaprisme
+	\draw[shift={(4.5,3)},draw=gray,fill=white,rounded corners=2pt](-5pt,0)--++(5pt,0)--++(0,-15pt)--++(-5pt,0)-- cycle;%viseur
+	\draw[red, postaction={decorate},->] (-1,1)--++(4.2,0)--++(0,2.7)--++(-0.85,-0.9)--++(3,0);%rayon
+	\oeil[shift={(6.5,2.8)},scale=1,rotate=180];
+	%legende
+	\draw[thin,*-] (0.4,2)--++(0,3) node[fill=white,draw,circle]{\small $\,1\,$};
+	\draw[thin,*-] (1.5,2)++(-5pt,0)--++(0,3) node[fill=white,draw,circle]{\small $\,2\,$};
+	\draw[thin,*-] (3,3.7)--++(0,1.3) node[fill=white,draw,circle]{\small $\,3\,$};
+		\draw[thin,*-] (4.5,3)++(-5pt,0)-|++(0.5,2) node[fill=white,draw,circle]{\small $\,4\,$};
+	\draw[thin,*-] (4.5,0)++(-6pt,0)-|++(0.5,-2) node[fill=white,draw,circle]{\small $\,5\,$};
+	\draw[thin,*-] (4,1.7)++(-5pt,0)--++(0,-3.7) node[fill=white,draw,circle]{\small $\,6\,$};
+	\draw[thin,*-] (-0.5,1)++(0,2pt)--++(0,-3) node[fill=white,draw,circle]{\small $\,7\,$};
+	\draw[gray] (-1,5.5) node{};
+	\node[text width=5cm, minimum width=5.2cm,minimum height=4cm] at (10,2) {
+	\begin{enumerate}
+			\item Objectif
+			\item Diaphragme
+			\item Penta-prisme
+			\item Viseur
+			\item Capteur
+			\item Miroir pivotant
+			\item Trajet de la lumi\'ere
+	\end{enumerate}
+	\medskip
+	\textcolor{gray}{\scriptsize{\copyright J. Roussel -- Sept.2012}}
+	};	
+\end{tikzpicture}
+
+\end{document}

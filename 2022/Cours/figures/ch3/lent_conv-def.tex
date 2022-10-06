@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[] 
+\draw[verre] (0,-2) to[bend left] (0,2) to [bend left] (0,-2);
+\draw[verre,shift={(2,0)}] (0,-2) to[bend left] (0,2) --cycle;
+\draw[verre,shift={(3.5,0)}] (0,-2) to[bend left] (0,2) to [bend right=15] (0,-2);
+%\draw[ultra thick,<->,>=latex,shift={(5,0)}] (0,-2) -- (0,2);
+\draw (2,-2) node[below,text width=4cm]{\small Lentilles convergentes};
+\draw (5,-2) node[below]{\small Symbole};
+\begin{scope}[shift={(5,0)}]
+% Axe optique
+\draw[thin, ->](-1,0)--(1,0)node[right]{A.O.};
+% Lentille 
+\coordinate (O) at (0,0);
+\def \fa{0.7}
+\def \lsiz{2}
+\coordinate (F) at ($(O)+(-\fa,0)$);
+\coordinate (Fp) at ($(O)+(\fa,0)$);
+
+\foreach \x/\z in {O/\fa}{
+    \draw[shift={(\x)}] (0,0)
+    node[below right] {O$_{}$}
+    node {$\times$};
+    \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+    node[below] {F$'_{}$};
+    \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+    node[below] {F$_{}$};}
+
+\draw[shift={(O)}, thick, <->, >=latex, name path=L]
+(0,-\lsiz) coordinate (Lb) --
+(0,\lsiz) coordinate (Lt)
+node[above]{$\Lc_{}$};
+
+
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

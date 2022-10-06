@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[short, name=Sl, i^<=$I$, !vi]
+    (0,2)
+    to[short, name=St, i^<=$I$, !vi]
+    (1,2) coordinate (Ntl)
+    to[R, name=R, v^<=$U_R$, !vi]
+    (3,2) coordinate (Ntm)
+    to[R, name=r1, !vi, color=gray!30]
+    (5,2) coordinate (Ntr) --
+    (6,2)
+    to[short, name=Sr]
+    (6,0) --
+    (5,0) coordinate (Nbr)
+    to[nos, name=O]
+    (3,0) coordinate (Nbm)
+    to[short, name=Sb, i^<=$I$, !vi]
+    (1,0) coordinate (Nbl) --
+    (0,0);
+    \draw[]
+    (Ntl)
+    to[R, name=R2, !vi, color=gray!30]
+    (Nbl);
+    \draw[]
+    (Nbm)
+    to[V, name=E, V^>=$E_{}$, i^>=$I$, !vi]
+    (Ntm);
+    \draw[]
+    (Ntr)
+    to[R, name=R1, !vi, color=gray!30]
+    (Nbr);
+    \node[] at (R.center) {$R$};
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \node[ocirc] at (O.east) {}~;
+    \node[ocirc] at (O.west) {}~;
+    \varronly{E} \varronly{R}
+    \iarronly{E} \iarronly{Sl} \iarronly{Sb} \iarronly{St}
+\end{circuitikz}
+
+\end{document}

@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[
+    decoration={markings,mark=at position 1cm with {\arrow{stealth};}}]
+    \coordinate (A) at (-3,0);%source ponctuelle
+    \coordinate (AA) at (-1,0);%image ponctuelle
+    \foreach \incidence in {-30,-20,...,30}{
+    \draw[thick,brandeisblue,postaction={decorate}](A)--(-1,{2*tan(\incidence)});
+    \draw[thick,orange](AA)--++({\incidence}:4);
+    }
+    \node[draw,rounded corners=3pt,text width=2cm,text centered,minimum width=3cm,minimum height=3cm,fill=SkyBlue!20] (SO) at (0,0){};
+    \draw (-3,1)node{\small \textcolor{Purple!70}{Objet r\'eel}}
+        ++(3,0)node{\small \textcolor{Red!70}{Image virtuelle}};
+    \foreach \incidence in {-30,-20,...,30}{
+    \draw[dashed,orange,postaction={decorate}](AA)--++({\incidence}:3);
+    }
+    \draw (0,-1.5) node[above] {\small Syst\`eme Optique};
+    \draw[Purple!70](A)node{$\bullet$} node[above=2pt]{A};
+    \draw[Red!70](AA) node{$\bullet$} node[above=2pt]{A'};
+    \draw[thin, dashed, -latex](-3.5,0)--(4,0) node [below] {Axe optique};
+\end{tikzpicture}
+\end{document}

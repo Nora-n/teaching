@@ -168,7 +168,7 @@
     \begin{demo}[label=demo:Ec]{énergie stockée}
 
         \textbf{En convention récepteur}, la puissance \textbf{reçue} est
-        $\DS P_{\text{reçue}} = u_Li = L \dv{i}{t} \triangleq \dv{E_L}{t}$. Or,
+        $\DS P_{\text{reçue}} = u_Li = L \dv{i}{t}i \triangleq \dv{E_L}{t}$. Or,
         $\forall f$ fonction dérivable, \fbox{$f\times f' = \left(
         \frac{1}{2}f^2 \right)'$}
 
@@ -201,13 +201,14 @@
         ordre}. On étudie ici leur réponse à un échelon de tension.
     \end{defi}
     \begin{defi}[label=def:echelon, sidebyside]{échelon de tension}
-        Un échelon de tension montant est un signal électrique de la forme
+        Un échelon de tension est montant s'il est de la forme
         \[ \left\{
                 \begin{array}{rcl}
                     u(t<0)    & = & 0 \\
                     u(t\geq0) & = & E
                 \end{array}
         \right.\]
+        et descendant si $E$ avant et 0 après.
         \tcblower
         \begin{center}
             \includegraphics[width=\linewidth]{echelon}
@@ -324,8 +325,9 @@
                 \begin{enumerate}
                     \item $u_C(\tau) = E \left( 1-e^{-1} \right) \approx
                         \num{0.632}\times E$~;
-                    \item La tangente à la courbe en 0 coupe l'asymptote en
-                        $t = \tau$.
+                    \item La tangente à la courbe en 0, de pente
+                        $\dv{u}{t} (0) = \frac{E}{\tau}$, coupe l'asymptote en $t
+                        = \tau$.
                 \end{enumerate}
                 De plus, avec $t_{99}$ tel que $u_C(t_{99}) = \num{0.99}E$, on
                 trouve $t_{99} = \tau\ln(100)$~; ainsi \fbox{le temps de réponse
@@ -409,7 +411,9 @@
 
     Le montage est représenté ci-contre. Il est constitué de l'association en
     série avec une résistance et un condensateur idéal. \textbf{On suppose le
-    condensateur initialement chargé, $u_C(0^-) = E$}
+    condensateur initialement chargé}~: $u_C(0^-) = E$. On dit que le système
+    est \textbf{en régime libre} et soumis à un \textbf{échelon de tension
+    descendant}
 
     \tcblower
     \begin{center}
@@ -469,8 +473,8 @@
         Avec la courbe $u_C(t)$, on remarque que~:
         \begin{enumerate}
             \item $u_C(\tau) = E e^{-1} \approx \num{0.368}\times E$~;
-            \item La tangente à la courbe en 0 coupe l'asymptote en
-                $t = \tau$.
+            \item La tangente à la courbe en 0, de pente $- \frac{E}{\tau}$,
+                coupe l'asymptote en $t = \tau$.
         \end{enumerate}
         Comme précédemment, avec $t_{99}$ tel que $u_C(t_{99}) = \num{0.01}$, on
         trouve $t_{99} = \num{4.6}\tau$.
@@ -503,12 +507,13 @@
     \end{demo}
 \end{tcbraster}
 
-\section{Circuit RL série}
+\section{Circuit RL série~: échelon montant}
 \subsection{Présentation}
 \begin{defi}[label=def:echelonL, sidebyside]{situation initiale}
     Le montage est représenté ci-contre. Il est constitué d'un générateur idéal
     de tension en série avec une résistance et une bobine idéale. À $t=0$, on
-    ferme l'interrupteur.
+    ferme l'interrupteur et le circuit est donc soumis à un échelon de tension
+    montant.
     \tcblower
     \begin{center}
         \includegraphics[width=.7\linewidth]{circ_rl-start}
@@ -578,8 +583,8 @@
                 \begin{enumerate}
                     \item $i(\tau) = \frac{E}{R} \left( 1-e^{-1} \right) \approx
                         \num{0.632}\times \frac{E}{R}$~;
-                    \item La tangente à la courbe en 0 coupe l'asymptote en
-                        $t = \tau$.
+                    \item La tangente à la courbe en 0, de pente $
+                        \frac{E}{R\tau}$ coupe l'asymptote en $t = \tau$.
                 \end{enumerate}
                 De plus, avec $t_{99}$ tel que $i(t_{99}) =
                 \num{0.99}\frac{E}{R}$, on trouve $t_{99} = \tau\ln(100)$~;
@@ -634,4 +639,106 @@
 \end{tcbraster}
 \textbf{Ici la puissance en régime permanent n'est pas nulle~: un courant circule
 toujours dans la résistance qui dissipe $RI^2$. On ne peut intégrer à l'infini.}
+
+\section{Circuit RL série~: décharge}
+\subsection{Présentation}
+\begin{defi}[label=def:dechL, sidebyside, righthand width=.3\linewidth]
+    {situation initiale}
+
+    Le montage est représenté ci-contre. Il est constitué de l'association en
+    série avec une résistance et une bobine idéale. À $t = 0$ on coupe la
+    tension $E$ présente initialement, et le circuit est donc soumis à un
+    échelon de tension descendant, et donc en régime libre.
+
+    \tcblower
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{circ_rl-decharge}
+    \end{center}
+\end{defi}
+
+\subsection{Équation différentielle du circuit}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{prop}[label=prop:eqdiffrldech]{équation diff. RL libre}
+        L'équation différentielle de l'intensité $i(t)$ traversant une bobine
+        dans un circuit RL en décharge est
+        \[ \boxed{\dv{i}{t} + \frac{1}{\tau}i = 0}\]
+        avec \fbox{$\tau = L/R$} la constante de temps.
+        \tcblower
+        C'est une équation différentielle linéaire du premier ordre à
+        coefficients constants sans second membre, de condition initiale
+        \[ \boxed{i(0^-) = i(0^+) = \frac{E}{R}}\]
+    \end{prop}
+    \begin{demo}[label=demo:eqdiffrc]{équation diff. RC}
+        Avec la loi des mailles,
+        $$u_L + u_R = 0$$
+        On utilise la loi d'Ohm et la caractéristique de la bobine~:
+        $\DS u_R = Ri$ et $\DS u_L = L \dv{i}{t}$
+        \begin{align*}
+            \Leftrightarrow L\dv{i}{t} + Ri             & = 0\\
+            \Leftrightarrow \dv{i}{t} + \frac{1}{\tau}i & = 0
+        \end{align*}
+    \end{demo}
+\end{tcbraster}
+
+\subsection{Résolution de l'équation différentielle}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{prop}[label=prop:ulsoludech]{solution de l'équation
+        différentielle RL}
+        La solution de l'équation différentielle de la tension $i(t)$
+        d'un circuit RL en décharge avec $i(0) = \frac{E}{R}$ est
+        \[\boxed{i(t) = \frac{E}{R}\exp\left(-\frac{t}{\tau}\right)}\]
+    \end{prop}
+    \begin{demo}[label=demo:rcsolu]{solution RC série}
+        L'équation étant déjà homogène, on écrit la forme générale~:
+        \[i(t) = K\exp\left( -\frac{t}{\tau} \right)\]
+        et on trouve $K$ avec la condition initiale~: $i(t=0) = \frac{E}{R}$.
+        Or, $i(0) = K$, donc $K= \frac{E}{R}$, d'où la réponse demandée.
+    \end{demo}
+\end{tcbraster}
+
+\subsection{Représentation graphique et constante de temps}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{impl}[label=impl:tauRC]{constante de temps}
+        \begin{center}
+            \includegraphics[width=\linewidth]{carac_rl-tau_decharge}
+        \end{center}
+    \end{impl}
+    \begin{exem}[label=impl:déterm]{détermination $\tau$}
+        Avec la courbe $i(t)$, on remarque que~:
+        \begin{enumerate}
+            \item $i(\tau) = \frac{E}{R} e^{-1} \approx \num{0.368}\times
+                \frac{E}{R}$~;
+            \item La tangente à la courbe en 0, de pente $-\frac{E}{R\tau}$,
+                coupe l'asymptote en $t = \tau$.
+        \end{enumerate}
+        Comme précédemment, avec $t_{99}$ tel que $i(t_{99}) = \num{0.01}$, on
+        trouve $t_{99} = \num{4.6}\tau$.
+    \end{exem}
+\end{tcbraster}
+
+\subsection{Évolution de la tension}
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{prop}[label=prop:irc-charge, sidebyside,
+        righthand width=.15\linewidth]{tension RL libre}
+        La tension dans un circuit RL libre s'exprime par
+        \[\boxed{u_L(t) = -E\exp \left(-\frac{t}{\tau} \right)}\]
+        \tcblower
+        \hspace*{-12pt}\includegraphics[width=1.3\linewidth]{carac_rlU_decharge}
+    \end{prop}
+    \begin{demo}[label=demo:url-decharge]{tension RL libre}
+        2 méthodes~:
+        \begin{enumerate}
+            \item Avec la caractéristique de L
+                \begin{align*}
+                                u_L(t) &= L\DS \dv{i}{t}\\
+                    \Rightarrow u_L(t) &= - \frac{LE}{R\tau} \exp \left(-
+                    \frac{t}{\tau} \right)
+                \end{align*}
+                et $\tau = L/R$.
+            \item Avec la loi des mailles $u_L = -Ri$.
+        \end{enumerate}
+    \end{demo}
+\end{tcbraster}
+
 \end{document}

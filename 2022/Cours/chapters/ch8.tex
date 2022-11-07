@@ -83,7 +83,7 @@ fonctions sinusoïdales. Regardons un exemple.
         manière équivalente
         \begin{empheq}[box=\fbox]{gather*}
             x(t) = A'\cos(\w_0 t + \f) + x_{\rm eq}\\
-            x(t) = A\cos(\w_0 t) + B\cos(\w_0 t) + x_{\rm eq}
+            x(t) = A\cos(\w_0 t) + B\sin(\w_0 t) + x_{\rm eq}
         \end{empheq}
         avec $A'$, $A$, $B$ des \textit{constantes d'intégration}.
     \end{prop}
@@ -199,15 +199,15 @@ libre}\label{sec:lclibre}
     temps. Pour ça, deux manières~:
 
     \begin{remaside}
-        \textbf{Par analyse dimensionnelle directe}. Sachant que $LC$ et $L/R$
+        \textbf{Par analyse dimensionnelle directe}. Sachant que $RC$ et $L/R$
         sont des temps (cf.\ chapitre précédent)~:
         \begin{align*}
             w_0{}^2 = \frac{1}{LC} =
                 \frac{\textcolor{cornflowerblue}{R}}
-                {\textcolor{cornflowerblue}{L}\textcolor{orange}{LC}}
+                {\textcolor{cornflowerblue}{L}\textcolor{orange}{RC}}
                 = \underbrace{\left[ \frac{L}{R}
                 \right]^{-1}}_{\si{s^{-1}}}\times
-                \underbrace{\left[ LC \right]^{-1}}_{\si{s^{-1}}}
+                \underbrace{\left[ RC \right]^{-1}}_{\si{s^{-1}}}
         \end{align*}
 
         Et on a bien $\w_0{}^2$ en \si{s^{-2}}, et donc $\w_0$ en \si{s^{-1}},
@@ -255,7 +255,7 @@ libre}\label{sec:lclibre}
     \end{tcolorbox}
     \begin{demo}[label=demo:rcsolu]{solution LC série}
         L'équation étant déjà homogène, on écrit la forme générale~:
-        \[u_C(t) = A\cos(\w_0 t) + B\cos(\w_0 t)\]
+        \[u_C(t) = A\cos(\w_0 t) + B\sin(\w_0 t)\]
 
         Celle-ci est souvent plus pratique pour trouver les constantes
         d'intégration. On trouve $A$ avec la première condition initiale~:
@@ -294,7 +294,7 @@ libre}\label{sec:lclibre}
     \end{demo}
     \begin{impl}[label=impl]{vérification}
         On vérifie avec les expressions analytiques trouvées, sachant que
-        $\w_0{}^2 = (LC)^{-2}$~:
+        $\w_0{}^2 = (LC)^{-1}$~:
         \begin{gather*}
             \frac{1}{2}Cu_C{}^2 = \frac{1}{2}CE^2\cos^2(\w_0t)\\
             \frac{1}{2}Li^2 =
@@ -507,7 +507,7 @@ libre}\label{sec:lclibre}
 
 \vspace*{-20pt}
 \subsection{Analyse correspondance}
-\begin{NCexem}[width=\linewidth, sidebyside, righthand ratio=.4]{Visualisation}
+\begin{NCexem}[width=\linewidth, sidebyside, righthand ratio=.4, hand]{Visualisation}
 
     Il est utile d'observer la physique des systèmes oscillants non pas dans
     un espace (grandeur, temps) mais dans un espace \textbf{(grandeur,
@@ -596,7 +596,7 @@ libre}\label{sec:lclibre}
             \begin{prop}[label=prop:ucsolu]{solution de l'équation
                 différentielle LC}
                 La solution de l'équation différentielle de la tension $u_C(t)$
-                d'un circuit LC en décharge avec $u_C(0) = E$ et l'intensité en
+                d'un circuit LC en charge avec $u_C(0) = 0$ et l'intensité en
                 découlant sont
                 \begin{empheq}[box=\fbox]{gather*}
                     u_C(t) = E(1 - \cos(\w_0t))\\
@@ -613,7 +613,7 @@ libre}\label{sec:lclibre}
     \begin{demo}[label=demo:rcsolu]{solution LC série}
         D'après la propriété \ref{prop:chvar}, on sait que $u_C - E$ est
         solution de l'équation homogène associée, donc on a
-        \[u_C(t) - E = A\cos(\w_0 t) + B\cos(\w_0 t)\]
+        \[u_C(t) - E = A\cos(\w_0 t) + B\sin(\w_0 t)\]
 
         On trouve alors $A$ avec la première condition initiale~:
         $u_C(0^+) = 0$. En effet,
@@ -635,7 +635,7 @@ libre}\label{sec:lclibre}
         réalité ceci est tout à fait normal puisque $u_L = L\dv{i}{t}$ prend des
         valeurs négatives quand $i$ diminue~: la somme des deux fait bien $E$.
         On peut réaliser un bilan d'énergie pour vérifier que $\Ec_g =
-        CE^2(1-\cos(\w_0t)) = \Ec_C + \Ec_L$, voir graphique ci-contre
+        CE^2(1-\cos(\w_0t)) = \Ec_C + \Ec_L$, voir graphique ci-contre.
     \end{rema}
     \begin{NCexem}[width=\linewidth]{Bilan d'énergie}
         \begin{center}
@@ -794,7 +794,7 @@ temporel. Ce principe est utilisé~:
     $\mp$, c'est l'opposé~: $r_+$ correspond à l'expression avec $-$.
 \end{nota}
 
-\begin{prop}[label=prop:solureg, tabularx={Y|Y|Y}]{solutions}
+\begin{prop}[label=prop:solureg, tabularx={Y|Y|Y}, hand]{solutions}
     \textbf{Pseudo-périodique} & \textbf{Critique} & \textbf{Apériodique}\\\hline
     $\D < 0 \Leftrightarrow Q > 1/2$ & $\D = 0 \Leftrightarrow Q = 1/2$ & $\D >
     0 \Leftrightarrow Q < 1/2$\\\hline
@@ -875,7 +875,7 @@ temporel. Ce principe est utilisé~:
 
 \subsection{Équation différentielle du circuit}
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
-    \begin{prop}[label=prop:eqdiffrc]{équation diff. LC}
+    \begin{prop}[label=prop:eqdiffrc]{équation diff. RLC}
         L'équation différentielle de la tension $u_C(t)$ aux bornes d'un
         condensateur dans un circuit RLC en décharge est
         \[ \boxed{\dv[2]{u_C}{t} + \frac{\w_0}{Q} \dv{u_C}{t} + \w_0{}^2u_C = 0}\]
@@ -892,7 +892,7 @@ temporel. Ce principe est utilisé~:
             i(0^-) = i(0^+) = 0
         \end{empheq}
     \end{prop}
-    \begin{demo}[label=demo:eqdiffrc]{équation diff. LC}
+    \begin{demo}[label=demo:eqdiffrc]{équation diff. RLC}
         Avec la loi des mailles,
         $$u_L + u_R + u_C = 0$$
         Ensuite, \textbf{en convention récepteur} on a~:
@@ -1009,7 +1009,7 @@ temporel. Ce principe est utilisé~:
     On retrouve toutes les caractéristiques de la situation harmonique.
 \end{impo}
 
-\begin{NCexem}[width=\linewidth, sidebyside]{Visualisation dans l'espace des phases}
+\begin{NCexem}[width=\linewidth, sidebyside, hand]{Visualisation dans l'espace des phases}
     Contrairement à la situation harmonique, le tracé de la solution dans
     l'espace $(u_C,i)$ n'est \textbf{pas symétrique par inversion du temps}~: la
     dissipation par effet \textsc{Joule} diminue l'énergie du système, et la
@@ -1309,7 +1309,8 @@ temporel. Ce principe est utilisé~:
     \end{demo}
 \end{tcbraster}
 
-\begin{rema}[label=rema:ressortlibre, sidebyside, righthand ratio=.6]{analogie LC-ressort}
+\begin{rema}[label=rema:ressortlibre, sidebyside, righthand ratio=.6]{analogie
+    RLC-ressort amorti}
     Comme pour le système sans frottements, alors qu'on partait d'un système
     \textit{a priori} totalement différent, on remarque que la physique des deux
     systèmes sont rigoureusement équivalentes puisque \textbf{régies par la même
@@ -1339,6 +1340,31 @@ temporel. Ce principe est utilisé~:
     \]
     \end{minipage}
 \end{rema}
+
+\subsection{Bilan énergétique}
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{prop}[label=prop:emecacons]{conservation énergie}
+
+        Dans le système masse-ressort horizontal avec frottements fluides,
+        l'énergie mécanique diminue progressivement proportionellement au
+        coefficient de friction $\alpha$~:
+        \begin{equation*}
+            \boxed{\dv{\Ec_{m}}{t} = -\alpha v^2}
+        \end{equation*}
+
+    \end{prop}
+    \begin{demo}[label=demo:emecacons]{conservation énergie}
+        À partir de l'équation différentielle on multiplie par $\dv{x}{t}$ et on
+        utilise que $ff' = (\frac{1}{2}f^2)'$ pour $f$ une fonction~:
+        \begin{gather*}
+            m \dv[2]{x}{t} \dv{x}{t} + \alpha \dv{x}{t} \dv{x}{t} + kx \dv{x}{t} = 0\\
+            \Leftrightarrow \dv{}{t} \left( \frac{1}{2}m \left( \dv{x}{t} \right)^2 +
+            \frac{1}{2}kx^2 \right) = - \alpha v^2
+        \end{gather*}
+        On a bien $ \frac{1}{2}mv^2 + \frac{1}{2}kx^2 = \Ec_m$ qui diminue.
+    \end{demo}
+\end{tcbraster}
 
 \subsection{Solutions}
 \begin{center}

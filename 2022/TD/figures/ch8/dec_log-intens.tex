@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        to[V, name=E, V^>=$e(t)$, !vi]
+    (0,2)
+        to[L,l^=$L$, name=L]
+    (2,2)
+        to[R, name=R1, i^>=$i$, !vi]
+    (4,2) coordinate (A)
+        to[R, name=R2, i>^=$i_2$, v_<=$u(t)$, !vi]
+    (4,0) coordinate (B)--
+    (0,0)
+    ;
+    \draw[]
+    (A) --
+    (5.5,2)
+        to[C,l_=$C$, name=C, i>^=$i_1$, v^<=$u(t)$, !vi]
+    (5.5,0) --
+    (B)
+    ;
+    \varronly{E} \varronly{R2} \varronly{C}
+    \iarronly{R1} \iarronly{R2} \iarronly{C}
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+\end{circuitikz}
+\end{document}

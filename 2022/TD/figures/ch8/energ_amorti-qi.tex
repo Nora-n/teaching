@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\usepackage{xfp}
+
+\def\E{3}
+\def\R{25}
+\def\L{0.43}
+\def\g{\R/(2*\L)}
+\def\C{0.00000002}
+\def\Q{(1/\R)*sqrt(\L/\C)}
+\def\wo{sqrt(1/(\L*\C))}
+\def\w{sqrt(\wo^2 - \g^2)}
+\def\xmax{2.2e-3}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        % xmin=-1e-4, xmax=2.2e-3,
+        ymin=-1, ymax=5.2,
+        xlabel=$t$, ylabel=$q$,
+        axis lines=center,
+        xtick=\empty, ytick=\empty,
+        clip=false]
+        \addplot[thick,
+        domain=0:0.2,
+        samples=500,
+        Red!70]
+        {\E*(1-exp(-\g*\x)*(cos(\w*\x) + (\g/\w)*sin(\w*\x)))};
+        \draw[dashed]
+        (axis cs:0,\E) node [left] {$CE$} -- (axis cs:0.2,\E);
+    \end{axis}
+\end{tikzpicture}
+\hspace{20pt}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        % xmin=-1e-4, xmax=2.2e-3,
+        ymin=-1, ymax=5.2,
+        xlabel=$t$, ylabel=$i$,
+        axis lines=center,
+        xtick=\empty, ytick=\empty,
+        clip=false]
+        \addplot[thick,
+        domain=0:0.2,
+        samples=500,
+        cornflowerblue]
+        {0.7*\E*exp(-\g*\x)*sin(\w*\x)};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

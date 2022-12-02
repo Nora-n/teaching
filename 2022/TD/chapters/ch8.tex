@@ -25,7 +25,7 @@
 
 \newcommand{\e}[1]{{}_{\text{#1}}}
 
-% \toggletrue{corrige}  % décommenter pour passer en mode corrigé
+\toggletrue{corrige}  % décommenter pour passer en mode corrigé
 
 \resetQ
 \chapter{\sujetUniquement{TD~: oscillateurs harmonique et amorti}\siCorrige{Correction du TD}}
@@ -125,7 +125,7 @@ donc dans sa vitesse.}
 
 Un mobile supposé ponctuel de masse $m$ est astreint à glisser le long d'une
 tige horizontale de direction $(Ox)$. Ce mobile est relié par deux ressort
-linéaires à deux points fixes $A$ et $B$. On le repère par sa position $x$.
+linéaires à deux points fixes $A$ et $B$. On le repère par sa position $OM = x$.
 
 \begin{center}
     \includegraphics[width=.5\linewidth]{ressort_double}
@@ -155,12 +155,18 @@ vitesse initiale d'une position $x_0 \neq 0$
             \[ \begin{array}{ll}
                 \textbf{Poids} & \Pf = -mg\uy\\
                 \textbf{Support} & \Rf = R\uy\\
-                \textbf{Ressort 1} & \Ff_1 = -k(AM - \ell_0)\ux = -k (\ell_{\rm
+                \textbf{Ressort 1} & \Ff_1 = -k(\ell_1 - \ell_0)\ux = -k (\ell_{\rm
                 eq} + x - \ell_0)\ux\\
-                \textbf{Ressort 2} & \Ff_2 = +k(BM - \ell_0)\ux = +k (\ell_{\rm
+                    \textbf{Ressort 2} & \Ff_2 = +k(\ell_2 - \ell_0)\ux = +k (\ell_{\rm
                 eq} - x - \ell_0)\ux
             \end{array}\]
-            et le PFD donne
+            On a en effet $\ell_1$ la longueur du ressort 1 qui s'exprime
+            $\ell_1 = \obar{AM}$. Or, d'après l'énoncé $\ell_{\rm eq} = AO =
+            OB$~: en décomposant, on a donc $\obar{AM} = \obar{AO} + \obar{OM} =
+            \ell_{\rm eq} + x$. Le ressort 2 a comme longueur $\ell_2 =
+            \obar{MB} = \obar{MO} + \obar{OB}$ soit $\ell_2 = \ell_{\rm eq} -
+            x$.\smallbreak
+            Ainsi, le PFD donne
             \begin{gather*}
                 m\af = \Pf + \Rf + \Ff_1 + \Ff_2\\
                 \Leftrightarrow m\left(
@@ -242,7 +248,7 @@ vitesse initiale d'une position $x_0 \neq 0$
             \dv{x}{t} (0) = 0 = - \frac{h}{2}x_0 + \w E$, d'où $E =
             \frac{h}{2\w}x_0$. Ainsi,
             \begin{equation*}
-                \boxed{x(t) = \exr^{-ht/2} \left[ \cos(\wt) +
+                \boxed{x(t) = x_0\exr^{-ht/2} \left[ \cos(\wt) +
                 \frac{h}{2\w}\sin(\wt) \right]}
             \end{equation*}
             On a donc une pseudo-période \fbox{$T = \dfrac{2\pi}{\w} =
@@ -307,7 +313,7 @@ série alimentées par la tension $e(t)$, et on a donc
             \w_0{}^2u_\infty}\\
             \text{avec} \quad \boxed{\w_0 = \sqrt{\frac{1}{LC} \left( \frac{R_1 +
         R_2}{R_2} \right)}} \qet \boxed{\lambda = \frac{1}{2} \left(
-\frac{1}{R_2C} + \frac{R_1}{C} \right)}
+\frac{1}{R_2C} + \frac{R_1}{L} \right)}
     \end{gather*}
 }
 
@@ -481,7 +487,7 @@ fonction des données du problème.
         \qavec
         \boxed{\w_0 = \sqrt{\frac{k}{m}}}
         \qet
-        \boxed{Q = \frac{km}{\alpha}}
+        \boxed{Q = \frac{\sqrt{km}}{\alpha}}
     \end{equation*}
 }
 
@@ -958,19 +964,25 @@ $C$, $E$, $\w_0$ et $\gamma$.
 
 \QR{Donner l'allure du graphe correspondant à $v(t)$. 
 }{
-    Le condensateur est initialement chargé. Soit $E$ sa tension initiale. On
-    utilise l'équation~\ref{eq:wieni} pour trouver que $\dv{v}{t} (0) = \frac{i'
-    (0)}{C}$, sachant qu'à $t = 0$ le circuit est équivalent à un circuit $RC$
-    en décharge et qu'on a donc $i'(0) = E/R$. On trouve ainsi
-    \fbox{$\dv{v}{t} (0) = \frac{E}{\tau}$}
-    \begin{center}
-        \includegraphics[width=.5\linewidth]{wien_carac}
-    \end{center}
-    En finissant la détermination des constantes d'intégration, on trouve
-    \begin{equation*}
-        \boxed{v(t) = \frac{E}{\tau(r_+ - r_-)}
-                      \left[ \exr^{r_+t} - \exr^{r_-t} \right]}
-    \end{equation*}
+    \begin{minipage}{0.49\linewidth}
+
+        Le condensateur est initialement chargé. Soit $E$ sa tension initiale.
+        On utilise l'équation~\ref{eq:wieni} pour trouver que $\dv{v}{t} (0) =
+        \frac{i' (0)}{C}$, sachant qu'à $t = 0$ le circuit est équivalent à un
+        circuit $RC$ en décharge et qu'on a donc $i'(0) = E/R$. On trouve ainsi
+        \[\boxed{\dv{v}{t} (0) = \frac{E}{\tau}}\]
+        En finissant la détermination des constantes d'intégration, on trouve
+        \begin{equation*}
+            \boxed{v(t) = \frac{E}{\tau(r_+ - r_-)}
+                          \left[ \exr^{r_+t} - \exr^{r_-t} \right]}
+        \end{equation*}
+        \hfill
+    \end{minipage}
+    \begin{minipage}{0.49\linewidth}
+        \begin{center}
+            \includegraphics[width=\linewidth]{wien_carac}
+        \end{center}
+    \end{minipage}
 }
 
 \end{document}

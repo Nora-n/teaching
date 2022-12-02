@@ -1,0 +1,431 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+  DIV=18]{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmonofont[Scale = MatchLowercase]{DejaVu Sans Mono}
+  \setmathfont[]{latinmodern-math.otf}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{french}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={TD C7 - Oscillateurs linéaires en régime sinusoïdal forcé},
+  pdflang={fr-FR},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{TD C7 - Oscillateurs linéaires en régime sinusoïdal forcé}
+\author{false}
+\date{2022-2023}
+
+\begin{document}
+\maketitle
+
+\hypertarget{capacituxe9s-exigibles}{%
+\subsection*{Capacités exigibles}\label{capacituxe9s-exigibles}}
+\addcontentsline{toc}{subsection}{Capacités exigibles}
+
+\begin{itemize}
+\item
+  \emph{Manipuler des signaux complexes en régime sinusoïdal forcé:}
+  tous les exercices!
+\item
+  \emph{Exploiter des courbes d'amplitude et de phase en fonction de la
+  fréquence d'excitation:}
+  {[}@sec:wien;@sec:haut-parleur;@sec:bouchon{]}.
+\item
+  \emph{Déterminer l'impédance équivalente d'un circuit en régime
+  sinusoïdal forcé:} {[}@sec:bouchon;@sec:antenne{]}.
+\item
+  \emph{Relier l'acuité d'une résonance au facteur de qualité:}
+  {[}@sec:bouchon;@sec:antenne{]}.
+\end{itemize}
+
+\hypertarget{sec:notation}{%
+\section{Notation complexe}\label{sec:notation}}
+
+Écrire, sous forme complexe, les équations différentielles suivantes :
+\[\tau \derive{u}{t} + u(t) = E_0\sin\omega t \qquad \qquad \ddot{x} +  2\lambda \dot x + \omega_0^2 x(t) =F_0\cos\omega t\]
+
+\hypertarget{sec:wien}{%
+\section{Filtre de Wien}\label{sec:wien}}
+
+\begin{multicols}{2}
+
+On considère le circuit ci-contre avec \(e(t) = E_m \cos(\omega t)\). On
+note \(u(t) = U_m \cos(\omega t + \varphi)\) et on pose
+\(H_m = U_m / E_m\) .
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Déterminer les valeurs limites de \(u(t)\) à basse et haute
+  fréquences.
+\end{enumerate}
+
+Les courbes représentatives de \(H_m (\omega)\) et \(\varphi(\omega)\)
+sont fournies par les figures ci-dessous.
+
+\begin{center}
+
+\includegraphics[width=7cm,height=\textheight]{images-C7/exo-wien-1.png}
+
+\end{center}
+
+\end{multicols}
+
+\begin{center}
+
+\includegraphics[width=9.5cm,height=\textheight]{images-C7/exo-wien-2.png}
+\includegraphics[width=9.5cm,height=\textheight]{images-C7/exo-wien-3.png}
+
+\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Observe-t-on un phénomène de résonance en tension ? Justifier.
+\item
+  Déterminer graphiquement la pulsation de résonance, les pulsations de
+  coupure et la bande passante du filtre.
+\item
+  Après avoir associé certaines impédances entre elles, établir
+  l'expression de \(\underline{H} = \underline{u} / \underline{e}\). La
+  mettre sous la forme :
+  \[\underline{H} = \dfrac{H_0}{1 + jQ\left(x - \dfrac{1}{x}\right)} \qquad \text{avec } x = \dfrac{\omega}{\omega_0}\]
+  avec \(H_0,\omega_0\) et \(Q\) des constantes à exprimer en fonction
+  (éventuellement) de \(R\) et \(C\).
+\item
+  Déterminer graphiquement la valeur du produit \(RC\).
+\end{enumerate}
+
+\hypertarget{sec:haut-parleur}{%
+\section{Modélisation d'un haut-parleur}\label{sec:haut-parleur}}
+
+\begin{multicols}{2}
+
+On modélise la partie mécanique d'un haut-parleur comme une masse \(m\),
+se déplaçant horizontalement le long d'un axe \((Ox)\). Cette masse est
+reliée à un ressort de longueur à vide \(\ell_0\) et de raideur \(k\) et
+subit une force de frottement fluide : \(\vec{f} = -\alpha \vec{v}\).
+Elle est par ailleurs soumise à une force \(\vec{F}(t)\), imposée par le
+courant \(i(t)\) entrant dans le haut-parleur, qui vaut :
+\(\vec{F}(t) = K i(t) \vec{u}_x\) où \(K\) est une constante. On
+travaille dans le référentiel du laboratoire
+\((O, \vec{u}_x , \vec{u}_y)\). On suppose que le courant est de la
+forme \(i(t) = I_m \cos(\omega t)\).
+
+\begin{center}
+
+\includegraphics[width=9cm,height=\textheight]{images-C7/exo-HP-1.png}
+
+\end{center}
+
+\end{multicols}
+
+\emph{Données:} \(m = 10\ \mathrm{g}\), \(K = 200\ \mathrm{N.A^{-1}}\)
+et \(I_m = 1,0\ \mathrm{A}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Écrire l'équation différentielle vérifiée par \(x(t)\), la position de
+  la masse \(m\).
+\item
+  La mettre sous forme canonique et identifier les expressions de la
+  pulsation propre \(\omega_0\) et du facteur de qualité \(Q\).
+\item
+  Justifier qu'en régime permanent: \(x(t) = X_m \cos(\omega t + \phi)\)
+\item
+  On pose \(\underline{x}(t) = \underline{X}e^{i\omega t}\). Déterminer
+  l'expression de l'amplitude complexe \(\underline{X}\).
+\item
+  Exprimer \(X_m(\omega)\). Existe-t-il toujours une résonance?
+\end{enumerate}
+
+On a tracé ci-dessous les courbes de \(X_m (\omega)\) et de
+\(\phi(\omega)\). L'axe des abscisses est en échelle logarithmique.
+
+\begin{center}
+
+\includegraphics[width=17cm,height=\textheight]{images-C7/exo-HP-2.png}
+
+\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Pour quelle pulsation le déplacement est-il en quadrature de phase
+  avec la force excitatrice ? Déterminer alors graphiquement la
+  pulsation propre \(\omega_0\).
+\end{enumerate}
+
+\hypertarget{sec:bouchon}{%
+\section{Résonance d'un circuit bouchon}\label{sec:bouchon}}
+
+\begin{multicols}{2}
+
+On considère le circuit \(RLC\) représenté ci-contre, composé d'un
+résistor, de résistance \(R\), d'une bobine idéale d'inductance \(L\),
+d'un condensateur idéal, de capacité \(C\), alimenté par une source
+idéale de tension, de f.e.m. \(e(t)=E_0\cos(\omega t)\). On se place en
+régime sinusoïdal forcé.
+
+\begin{center}
+\begin{circuitikz}
+\draw (0,0) to[V=$e(t)$] (0,2) to[R=$R$] (2,2) to[C=$C$] (2,0) to[short] (0,0);
+\draw (2,0) to[short] (4,0) to[L,l=$L$,v=$u(t)$] (4,2) to[short] (2,2);
+\end{circuitikz}
+\end{center}
+
+\end{multicols}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Exprimer l'amplitude complexe \(\underline{U}\) de \(u(t)\) en
+  fonction de \(E_0,R,L,C\) et \(\omega\).
+\item
+  Établir qu'il existe un phénomène de résonance pour la tension
+  \(u(t)\). Préciser la pulsation \(\omega_0\) à laquelle ce phénomène
+  se produit et la valeur de l'amplitude réelle de \(u(t)\) à cette
+  pulsation.
+\item
+  Mettre l'amplitude réelle \(U\) de \(u(t)\) sous la forme:
+  \[U = \dfrac{E_0}{\sqrt{1 + Q^2\left(\dfrac{\omega}{\omega_0} - \dfrac{\omega_0}{\omega}\right)^2}}\]
+  avec \(Q\) un facteur sans dimension à exprimer en fonction de \(R,L\)
+  et \(C\).
+\item
+  Exprimer la bande passante \(\Delta\omega\) de cette résonance en
+  fonction de \(Q\) et \(\omega_0\).
+\item
+  En déduire les valeurs numériques de \(C\) et \(E_0\) à l'aide du
+  graphe ci-dessous représentant l'amplitude réelle de \(u(t)\) en
+  fonction de la fréquence \(f=\omega/2\pi\), sachant que \(L=1\) mH et
+  \(R=1\) k\(\Omega\).
+\end{enumerate}
+
+\begin{center}
+
+\includegraphics{images-C7/exo-bouchon-figure.pdf}
+
+\end{center}
+
+\hypertarget{sec:2-ressorts}{%
+\section{Système à deux ressorts}\label{sec:2-ressorts}}
+
+\begin{multicols}{2}
+
+Un point matériel \(M\), de masse \(m\), peut se déplacer sur une tige
+\emph{horizontale} parallèle à l'axe \(Ox\) au sein d'un fluide visqueux
+qui exerce sur lui la force de frottement \(\vec{f} = - h\vec{v}\) avec
+\(\vec{v}\) le vecteur vitesse de \(M\) dans le référentiel galiléen
+\(\mathcal{R}\) du laboratoire. Les frottements entre \(M\) et l'axe
+horizontal sont négligeables. On repère \(M\) par son abscisse \(x(t)\).
+
+\begin{center}
+
+\includegraphics[width=5.5cm,height=\textheight]{images-C7/exo-2ressorts.pdf}
+
+\end{center}
+
+\end{multicols}
+
+\(M\) est relié à deux parois verticales par deux ressorts de raideurs
+\(k_1\) et \(k_2\), de longueurs à vide \(l_{10}\) et \(l_{20}\). Celle
+de droite est immobile en \(x = L\), celle de gauche, d'abscisse
+\(x_0 (t)\), est animée d'un mouvement d'équation horaire
+\(x_0 (t) = X_{0m} \cos(\omega t)\). On supposera que
+\(L = l_{10} + l_{20}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Identifier les différentes forces s'exerçant sur \(M\).
+\item
+  Déterminer la position d'équilibre \(x_\text{eq}\) de \(M\) lorsque la
+  paroi de gauche est immobile en \(x = 0\).
+\item
+  On introduit \(X = x - x_\text{eq}\). Établir l'équation
+  différentielle vérifiée par \(X\) lorsque la paroi bouge. Pour étudier
+  le régime sinusoïdal forcé, on introduit les grandeurs complexes
+  \(\underline{x}_0(t) = X_{0m} \exp(j\omega t)\),
+  \(X(t) = X_m \exp(j(\omega t + \varphi))\) et
+  \(v(t) = V_m \exp(j(\omega t + \phi))\) associées à \(x_0(t)\),
+  \(X(t)\) et \(v(t) = \dot X(t)\).
+\item
+  Déﬁnir les amplitudes complexes \(\underline{X}_0\) ,
+  \(\underline{X}\) et \(\underline{V}\) de \(x_0(t)\), \(X(t)\) et
+  \(v(t)\).
+\item
+  En exprimant \(\omega_0\), \(Q\) et \(\alpha\) en fonction des données
+  du problème, établir la relation :
+  \[\underline{V} = \dfrac{\alpha}{1 + jQ\left(\dfrac{\omega}{\omega_0} - \dfrac{\omega_0}{\omega}\right)} \underline{X}_0\]
+\item
+  Mettre en évidence l'existence d'une résonance de vitesse.
+\end{enumerate}
+
+\hypertarget{sec:antenne}{%
+\section{Résonance d'intensité dans un circuit RLC
+parallèle}\label{sec:antenne}}
+
+\begin{multicols}{2}
+
+L'antenne d'un émetteur radio peut être modélisée par un circuit
+électrique équivalent composé de l'association en parallèle d'une
+résistance \(R\), d'une bobine d'inductance \(L\) et d'un condensateur
+de capacité \(C\).
+
+L'antenne est alimentée par une source idéale de courant dont
+l'intensité caractéristique varie de manière sinusoïdale dans le temps:
+\(i(t) = I_0 \cos(\omega t)\).
+
+\begin{center}
+\begin{circuitikz}
+\draw (0,0) to[I=$i(t)$] (0,2) to[short] (4.5,2);
+\draw (1.5,2) to[C=$C$,i=$i_C$] (1.5,0);
+\draw (3,2) to[L=$L$,i=$i_L$] (3,0);
+\draw (4.5,2) to[R,l_=$R$,i=$i_R$,v^<=$u$] (4.5,0);
+\draw (4.5,0) to[short] (0,0);
+\end{circuitikz}
+\end{center}
+
+\end{multicols}
+
+On s'intéresse à la manière dont l'amplitude de la tension \(u(t)\) aux
+bornes de l'antenne, qui correspond au signal envoyé, dépend de
+\(\omega\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Déterminer l'impédance complexe de l'association des dipôles \(R,L\)
+  et \(C\).
+\item
+  En déduire l'amplitude complexe \(\underline{U}\) de la tension \(u\)
+  en fonction de \(\omega,I_0,R,L\) et \(C\).
+\item
+  Pour quelle pulsation l'amplitude réelle \(U\) de \(u\) prend-elle sa
+  valeur maximale notée \(U_\text{max}\)? Conclure sur la fréquence à
+  utiliser.
+\item
+  Représenter le graphe donnant \(U\) en fonction de la pulsation
+  réduite \(x=\omega/\omega_0\) avec \(\omega_0=1/\sqrt{LC}\).
+\item
+  Exprimer la largeur de la bande passante \(\Delta\omega\).
+\item
+  On se place dans le cas \(R = 37\ \Omega\),
+  \(L = 1,2 \times 10^{-8}\ \mathrm{H}\) et
+  \(C = 2,3 \times 10^{-10}\ \mathrm{F}\). Calculer la valeur de
+  l'acuité \(A_c = \omega_0/\Delta\omega\) de la résonance. Interpréter
+  sa dépendance en \(R\).
+\end{enumerate}
+
+\hypertarget{Sec:conditions}{%
+\section{Condition de résonance}\label{Sec:conditions}}
+
+\begin{multicols}{2}
+
+Le circuit ci-contre est alimenté par une source de tension sinusoïdale
+de f.é.m. \(e(t) = E_0 \cos( \omega t)\). On s'intéresse à la tension
+\(u(t)\) aux bornes du résistor et de la capacité montés en parallèle.
+
+On pose : \(\omega_0 =\dfrac{1}{\sqrt{LC}}\),
+\(\xi = \dfrac{R}{2}\sqrt{\dfrac{C}{L}}\) et
+\(x = \dfrac{\omega}{\omega_0}\).
+
+\begin{center}
+
+\includegraphics[width=4.5cm,height=\textheight]{images-C7/exo-conditions.pdf}
+
+\end{center}
+
+\end{multicols}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Établir l'expression du signal complexe \(\underline{u}\) associé à
+  \(u(t)\) en régime sinusoïdal forcé, en fonction de \(E_0\), \(x\) et
+  \(\xi\).
+\item
+  Étudier l'existence éventuelle d'une résonance pour la tension
+  \(u(t)\).
+\end{enumerate}
+
+\end{document}

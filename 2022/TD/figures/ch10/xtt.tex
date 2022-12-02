@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        xmin=0, xmax=10,
+        ymin=0, ymax=1.1,
+        xlabel=$t$, ylabel=$x$,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+        every axis y label/.style={at={(current axis.north west)},anchor=south},
+        xtick=\empty, ytick=\empty,
+        axis lines=left,
+        legend pos=north west,
+        clip=false]
+        \addplot[
+        domain=0:10,
+        smooth,
+        cornflowerblue]
+        {1-exp(-\x/2.5)}
+        node[pos=.05] (Na) {$\bullet$}
+        node[pos=.1] (N0) {$\bullet$}
+        node[pos=.2] (N1) {$\bullet$}
+        node[pos=.4] (N2) {$\bullet$}
+        node[pos=.6] (N3) {$\bullet$}
+        node[pos=.8] (N4) {$\bullet$}
+        node[pos=01] (N5) {$\bullet$};
+        \addlegendentry{$x(t)$}
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (Na);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N0);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N1);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N2);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N3);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N4);
+        \draw[firebrick, shorten >= -1cm]
+        (axis cs:0,0) -- (N5)
+        node [below, midway, sloped] {pente $x(t)/t$};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

@@ -17,7 +17,6 @@ et leurs transformations~?
 
 \section{Vocabulaire général}
 \subsection{Atomes et molécules}
-Ce sont les briques de ce qui constitue la matière à l'échelle nanoscopique.
 
 \subsubsection{Les atomes}
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
@@ -128,19 +127,39 @@ Ce sont les briques de ce qui constitue la matière à l'échelle nanoscopique.
     \end{exem}
 \end{tcbraster}
 
+\subsection{Classification par composition}
+
+\begin{center}
+    \includegraphics[width=.75\linewidth]{compo}
+\end{center}
+
 \subsection{États de la matière}
-\begin{defi}[label=def:etat]{états ou phases de la matière}
-    La matière est naturellement présente sous 3 formes, que l'on
-    appelle \textbf{états} ou \textbf{phases}~:
+\begin{defi}[label=def:etat, sidebyside, righthand ratio=.6]
+    {états ou phases de la matière}
+    \tcbsubtitle[before skip=\baselineskip,
+    colback=green!50!black,
+    colframe=green!50!black]{Définition d'une phase}
+    Zone de l'espace où les grandeurs physiques locales (masse volumique,
+    pression, température, …) varient de manière continue.
+    Lorsque le corps évolue d’une phase à l'autre, on parle de
+    \textbf{transition de phase}.\bigbreak
+    Une phase est \textbf{désordonnée} quand les entités la composant peuvent
+    bouger les unes par rapport aux autres, et \textbf{ordonnée} sinon.
+    \tcblower
+    \tcbsubtitle[before skip=\baselineskip,
+    colback=green!50!black,
+    colframe=green!50!black]{Différentes phases}
     \begin{itemize}
         \item \textbf{Solide}~: un solide a une forme propre, un volume
             propre, et peut être ordonné (cristal) ou non (verre)~;
-        \item \textbf{Liquide}~: un liquide est dense mais désordonné
-            (entités chimiques déplaçables les unes par rapport aux autres),
+        \item \textbf{Liquide}~: un liquide est dense mais désordonné,
             et prend la forme de son contenant~;
         \item \textbf{Gazeux}~: un gaz est très peu dense et désordonné, et
             occupe \textit{tout le volume accessible}~;
     \end{itemize}
+    \begin{center}
+        \includegraphics[width=.7\linewidth]{trans_phase}
+    \end{center}
 \end{defi}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
@@ -192,8 +211,18 @@ Ce sont les briques de ce qui constitue la matière à l'échelle nanoscopique.
     \end{exem}
 \end{tcbraster}
 
-% \subsection{Systèmes physico-chimiques}
-% 
+\subsection{Systèmes physico-chimiques}
+\begin{defi}[label=def:système, tabularx={Y|Y|Y}]{Systèmes}
+    \textbf{Système} & \textbf{Fermé} & \textbf{Isolé}\\\hline
+
+    Ensemble de substances incluses dans une zone de l'espace \textbf{délimitée
+    par une surface fermée} (réelle ou fictive), appelée surface frontière.
+                     &
+    N'échange pas de \textbf{matière} avec le milieu extérieur. Dans la suite du
+    cours, on ne considérera que des systèmes fermés.
+                     &
+    N'échange ni \textbf{matière} ni \textbf{énergie} avec l'extérieur.
+\end{defi}
 
 \subsection{Transformations de la matière}
 
@@ -201,7 +230,7 @@ La matière peut subir des transformations de différentes natures, qui sont
 traduites par des \textbf{équations-bilan}.
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
-    \begin{defi}[label=def:eqbil]{équation bilan}
+    \begin{defi}[label=def:eqbil, heart]{équation bilan}
         L'équation-bilan d'une réaction indique les éléments de
         départ (\textbf{réactifs}) et les éléments de fin (\textbf{produits}),
         leur état physique si nécessaire ainsi que les proportions dans
@@ -210,7 +239,7 @@ traduites par des \textbf{équations-bilan}.
         les deux flèches ensemble ou un signe égal, selon les propriétés de la
         réaction.
     \end{defi}
-    \begin{rema}[label=rema:eqbil]{équation bilan}
+    \begin{ror}[label=rema:eqbil]{équation bilan}
         \begin{itemize}
             \item L'équation-bilan ne fait apparaître que les espèces qui se
                 transforment, pas les espèces nécessaires à la réaction
@@ -220,7 +249,7 @@ traduites par des \textbf{équations-bilan}.
                 vérifier qu'elle est équilibrée, tant en \textbf{nombre d'atome}
                 qu'en \textbf{nombre de charges}
         \end{itemize}
-    \end{rema}
+    \end{ror}
 \end{tcbraster}
 
 \subsubsection{Transformations nucléaires}
@@ -252,9 +281,6 @@ traduites par des \textbf{équations-bilan}.
         atomes}.
     \end{defi}
     \begin{exem}[label=exem:transnuc]{transformation physique}
-        \begin{center}
-            \includegraphics[width=\linewidth]{trans_phase}
-        \end{center}
         Sublimation du dioxyde de carbone solide
         \[ \mathrm{CO}_2{}\sol
             \longrightarrow
@@ -282,19 +308,19 @@ traduites par des \textbf{équations-bilan}.
     \end{exem}
 \end{tcbraster}
 
-\section{Quantité de matière}
+\section{Quantification des systèmes}
 \subsection{La mole}
 
-Les molécules réagissent dans des proportions bien précises, notamment pour
-conserver le nombre d'atome. Il serait donc utile de déterminer le nombre de
-molécules ou d'atomes qui peuvent réagir au sein d'un échantillon. On se rend
-vite compte que les nombres sont très grands et difficiles d'appréhension,
-amenant à définir une grandeur plus utilisable.
+% Les molécules réagissent dans des proportions bien précises, notamment pour
+% conserver le nombre d'atome. Il serait donc utile de déterminer le nombre de
+% molécules ou d'atomes qui peuvent réagir au sein d'un échantillon. On se rend
+% vite compte que les nombres sont très grands et difficiles d'appréhension,
+% amenant à définir une grandeur plus utilisable.
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
     \begin{defi}[label=def:mole]{Mole}
-        La quantité de matière d'un système est notée $n$ et se définie par
-        \[ n = \frac{N}{\Nc_A}\]
+        La quantité de matière d'un système est notée $n$ et se définit par
+        \[\boxed{n = \frac{N}{\Nc_A}}\]
         avec $N$ le nombre d'entités dans l'échantillon, et $\Nc_A$ est une
         constante nommée \textbf{nombre d'Avogadro}.
         \tcbsubtitle[before skip=\baselineskip,
@@ -327,7 +353,7 @@ amenant à définir une grandeur plus utilisable.
     \begin{impl}[label=imple:massemol]{masse molaire}
         La quantité de matière $n$ d'une entité de masse molaire $M$ dans un
         échantillon de masse $m$ est donc
-        \[ n = \frac{m}{M}\]
+        \[\boxed{n = \frac{m}{M}}\]
     \end{impl}
     \begin{prop}[label=prop:massemol]{masse molaire}
         La masse molaire d'une molécule est l'addition des masses molaires
@@ -337,17 +363,39 @@ amenant à définir une grandeur plus utilisable.
         L'eau est de masse molaire
         \[M({\rm H}_2{\rm O}) = 2\times M({\rm H}) + M({\rm O}) =
         \SI{17.98}{g.mol^{-1}}\]
-        Dans un kilogramme d'eau il y a donc
-        \[n = \frac{m}{M({\rm H}_2{\rm O}} = \SI{55.6}{mol}\]
+        % Quelle est la quantité de matière dans \SI{1}{kg} d'eau?
+        % \tcblower
+        % \[n = \frac{m}{M({\rm H}_2{\rm O})} = \SI{55.6}{mol}\]
     \end{exem}
 \end{tcbraster}
 
-\subsection{Quantité de matière et volume}
+\subsection{Fractions molaire et massique}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{defi}[label=def:fractionsmolmass]{fractions molaire et massique}
+        Pour un mélange homogène avec des espèces $\mathrm{X}_i$ de quantités de matières
+        $n_i$, on définit la fraction molaire $x_i$ et la fraction molaire $w_i$
+        telles que
+        \begin{gather*}
+            \boxed{x_i = \frac{n_i}{\sum n_i} = \frac{n_i}{n_{\rm tot}}}\\
+            \boxed{w_i = \frac{m_i}{\sum m_i} = \frac{m_i}{m_{\rm tot}}}
+        \end{gather*}
+    \end{defi}
+    \begin{NCexem}[width=\linewidth]{Exercice}
+        L'air est constitué, en quantité de matière, à 80\% de diazote N$_2$ et
+        à 20\% de dioxygène O$_2$. On a $M({\rm N_2}) = \SI{28.0}{g.mol^{-1}}$
+        et $M({\rm O_2}) = \SI{32.0}{g.mol^{-1}}$. En déduire les fractions
+        molaires puis les fractions massiques.
+        \tcblower
+    \end{NCexem}
+\end{tcbraster}
+
+\vspace{-15pt}
+\subsection{Masse volumique}
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
     \begin{defi}[label=defi:massevol]{masse volumique}
         La \textbf{masse volumique} notée $\rho$ d'un échantillon est le rapport
         de la masse $m$ sur le volume qu'elle occupe $V$~:
-        \[ \rho = \frac{m}{V}\]
+        \[\boxed{\rho = \frac{m}{V}}\]
         \tcbsubtitle[before skip=\baselineskip,
         colback=green!50!black,
         colframe=green!50!black]{Unités}
@@ -355,15 +403,19 @@ amenant à définir une grandeur plus utilisable.
         \si{g.cm^{-3}}.
     \end{defi}
     \begin{exem}[label=exem:massvol]{masse volumique}
-        Soit un volume $V = \SI{0.5}{L}$ d'acétone de masse volumique
+        Calculer la masse d'un volume $V = \SI{0.5}{L}$ d'acétone de masse volumique
         \[\rho = \SI{0.79}{g.cm^{-3}}\]
+        \tcblower
+        {\color{lightgray!10}
         Exprimé en \si{cm^3} on a
         \[V = \SI{0.5}{L} = \num{0.5}\times \SI{1000}{cm^3} = \SI{500}{cm^3}\]
         soit
         \[\boxed{m = \rho V = \SI{395}{g}}\]
+        \vspace{-12pt}}
     \end{exem}
 \end{tcbraster}
 
+\vspace{-15pt}
 \subsection{Espèces en solution}
 \subsubsection{Concentration molaire}
 
@@ -371,8 +423,8 @@ amenant à définir une grandeur plus utilisable.
     \begin{defi}[label=def:cmol]{concentration molaire}
         On appelle \textbf{concentration molaire} d'une solution le
         rapport entre la quantité de matière de soluté $n$ et le volume $V$ de
-        la solution. Elle se note $c$ ou $[X]$ avec $X$ une espèce~:
-        \[c = \frac{n}{V}\]
+        la solution. Elle se note $c$ ou $[\mathrm{X}]$ avec $\mathrm{X}$ une espèce~:
+        \[\boxed{c = \frac{n}{V}}\]
         \tcbsubtitle[before skip=\baselineskip,
         colback=green!50!black,
         colframe=green!50!black]{Unités}
@@ -380,18 +432,21 @@ amenant à définir une grandeur plus utilisable.
     \end{defi}
     \begin{exem}[label=exem:cmol]{concentration molaire}
         On dissout une masse $m = \SI{2.00}{g}$ de sel NaCl$\sol$ dans $V =
-        \SI{100}{mL}$ d'eau. On souhaite déterminer la concentration en
-        Na$\plus{}$ et Cl$\moin{}$ dans la solution. Or, la dissolution s'écrit
+        \SI{100}{mL}$ d'eau. \textbf{Déterminer la concentration en
+        Na$\plus{}$ dans la solution}. ($M(\ce{NaCl}) = \SI{58.44}{g.mol^{-1}}$)
+        \tcblower
+        {\color{lightgray!10}
         \[{\rm NaCl}\sol = {\rm Na}\plus{} + {\rm Cl}\moin{}\]
         Donc une mole de sel donne une mole de cation sodium \textbf{et} une
         mole d'anion chlorure~: $n_{\rm NaCl} = n_{\rm Na\plus{}} = n_{\rm
-        Cl\moin{}}$. Or la quantité de matière est
-        \[n_{\rm NaCl} = \frac{m}{M({\rm NaCl})} = \SI{3.42e-2}{mol}\]
-        On a donc
-        \begin{equation*}
+        Cl\moin{}}$. Or,
+        \begin{gather*}
+           n_{\rm NaCl} = \frac{m}{M({\rm NaCl})} = \SI{3.42e-2}{mol} \\
+           \Rightarrow
             \boxed{ \left[ {\rm Na}\plus{} \right] = \frac{n_{\rm Na\plus{}}}{V} =
-            \SI{0.342}{mol.L^{-1}} = \left[ {\rm Cl}\moin{} \right]}
-        \end{equation*}
+                \SI{0.342}{mol.L^{-1}} = \left[ {\rm Cl}\moin{} \right]}
+        \end{gather*}\vspace{-12pt}
+        }
     \end{exem}
 \end{tcbraster}
 
@@ -404,7 +459,7 @@ amenant à définir une grandeur plus utilisable.
                 On appelle \textbf{concentration massique} d'une solution le
                 rapport entre la masse de soluté $m$ et le volume $V$ de
                 la solution. Elle se note $c_m$ et on a~:
-                \[c_m = \frac{m}{V}\]
+                \[\boxed{c_m = \frac{m}{V}}\]
                 \tcbsubtitle[before skip=\baselineskip,
                 colback=green!50!black,
                 colframe=green!50!black]{Unités}
@@ -419,26 +474,26 @@ amenant à définir une grandeur plus utilisable.
         \end{tcbraster}
     \end{tcolorbox}
     \begin{exem}[label=exem:cmol]{concentration molaire}
-
-        On dissout une masse $m = \SI{2.00}{g}$ de sel NaCl$\sol$ dans $V =
-        \SI{100}{mL}$ d'eau. On souhaite déterminer la concentration massique en
-        Na$\plus{}$ dans la solution. On a vu qu'une mole de sel
-        donne une mole de chaque, mais on n'a \textbf{pas} qu'un gramme de sel donne un
-        gramme de chaque. En effet, la masse de chaque élément est
-        \[m_X = n_XM_x\]
+        On dissout une masse $m = \SI{2.00}{g}$ de sel NaCl$\sol$ ($M(\ce{NaCl})
+        = \SI{58.44}{g.mol^{-1}}$) dans $V = \SI{100}{mL}$ d'eau.
+        \textbf{Déterminer la concentration massique en Na$\plus{}$ dans la
+        solution} ($M(\ce{Na}) = \SI{22.99}{g.mol^{-1}}$)
+        \tcblower
+        {\color{lightgray!10}On a vu qu'une mole de sel donne une mole de chaque, mais
+        \[m_\mathrm{X} = n_\mathrm{X}M_\mathrm{X}\]
         Or la quantité de matière est
         \[n_{\rm NaCl} = \frac{m}{M({\rm NaCl})} = \SI{3.42e-2}{mol}\]
-        et la masse molaire est
-        \[M({\rm Na}) = \SI{22.99}{g.mol^{-1}}\]
         On a donc
         \begin{equation*}
             \boxed{ c_{m,\rm Na\plus{}} = \frac{m_{\rm Na\plus{}}}{V} =
             c_{\rm Na\plus{}}\times M_{\rm Na\plus{}} = 
             \SI{7.86}{g.L^{-1}}}
         \end{equation*}
+        }
     \end{exem}
 \end{tcbraster}
 
+\vspace{-20pt}
 \subsubsection{Dilution d'une solution}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
@@ -459,21 +514,20 @@ amenant à définir une grandeur plus utilisable.
     \end{demo}
 \end{tcbraster}
 
-\subsection{Quantité de matière d'un gaz}
+\vspace{-20pt}
+\subsection{Espèces gazeuses}
 \subsubsection{Pression d'un gaz}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
     \begin{defi}[label=def:pression]{pression d'un gaz}
-        Un gaz peut être vu comme un ensemble de molécules éloignées qui se
-        déplacent sans cesse de façon aléatoire. Ce mouvement exerce une
-        \textbf{pression} sur son environnement~: c'est le rapport de la force
-        $F$ du choc des particules de gaz à la surface $S$ sur laquelle elle
-        s'exerce
-        \[ p = \frac{F}{S}\]
+
+        Un gaz est un ensemble de molécules en mouvement, qui exerce une
+        \textbf{pression} $p$~:
+        \[\boxed{p = \frac{F}{S}}\]
         \tcbsubtitle[before skip=\baselineskip,
         colback=green!50!black,
         colframe=green!50!black]{Unités}
-        La pression s'exprime en Pascal (Pa), équivalents à des \si{N.m^{-2}},
+        La pression s'exprime en Pascal (Pa), ou \si{N.m^{-2}} en SI,
         ou en bars~: $\SI{1}{bar} = \SI{1e5}{Pa}$.
     \end{defi}
     \begin{exem}[label=exem:pression]{pressions}
@@ -481,8 +535,8 @@ amenant à définir une grandeur plus utilisable.
         est plus forte au sol qu'en hauteur~: le choc des particules au niveau
         de la mer est plus fort qu'en haut d'une montagne. Pour de faibles
         altitudes, elle est de $\approx \SI{1}{bar}$, soit \SI{e5}{N.m^{-2}}.
-        C'est une très grande force qui cause notamment les phénomènes d'adhésion en cas
-        de vide autre part.
+        C'est une très grande force qui cause notamment les phénomènes
+        d'adhésion en cas de vide autre part.
     \end{exem}
 \end{tcbraster}
 
@@ -564,20 +618,77 @@ amenant à définir une grandeur plus utilisable.
 \subsubsection{Pression partielle}
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
     \begin{defi}[label=def:ppartielle]{pression partielle}
-        La \textbf{pression partielle} $P_i$ d'une espèce gazeuse $X_i$ au sein d'un
+        La \textbf{pression partielle} $P_i$ d'une espèce gazeuse $\mathrm{X}_i$ au sein d'un
         mélange de gaz parfaits de volume $V$ et de température $T$ est égale à
-        la \textbf{pression qu'aurait le système si l'espèce $X_i$ était la
+        la \textbf{pression qu'aurait le système si l'espèce $\mathrm{X}_i$ était la
         seule à occuper tout le volume}~:
         \[\boxed{P_iV = n_i RT}\]
     \end{defi}
-
+    \begin{NCexem}[width=\linewidth]{Exercice}
+        On note $P$ la pression totale d'un mélange de gaz parfaits, et $P_i$ la
+        pression partielle d'un constituant $\mathrm{X}_i$. Montrer que $\sum_i P_i = P$.
+        \tcblower
+    \end{NCexem}
 \end{tcbraster}
 
 \subsubsection{Loi de \textsc{Dalton}}
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
-    \begin{loi}[label=loi:dalton]{\textsc{Dalton}}
-        
+    \begin{loi}[label=loi:dalton]{Loi de \textsc{Dalton}}
+        Soit un mélange de gaz parfaits de pression $P$. Les pressions
+        partielles $P_i$ de chaque constituant $\mathrm{X}_i$ s'exprime
+        \[\boxed{P_i = x_iP}\]
     \end{loi}
-\end{tcbraster}<`0`>
+    \begin{demo}[label=demo:dalton]{Loi de \textsc{Dalton}}
+        
+    \end{demo}
+\end{tcbraster}
+
+\begin{NCexem}[width=\linewidth]{Exercice}
+    Soit un mélange de gaz nobles contenu dans une enceinte de \SI{100}{L} à la
+    température $T = \SI{298.3}{K}$, avec \SI{2}{mol} d'hélium He, \SI{5}{mol}
+    d'argon Ar et \SI{10}{mol} de néon Ne. Calculer la pression partielle de chacun
+    des gaz ainsi que la pression totale $P$ dans l'enceinte. On donne la
+    constante du gaz parfait $R = \SI{8.31}{J.K.mol^{-1}}$.
+    \tcblower
+    \vspace{3cm}
+\end{NCexem}
+
+\subsection{Intensivité, extensivité}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{defi}[label=def:intext]{grandeurs intensives et extensives}
+        
+        Une grandeur est \textbf{intensive} si sa valeur ne dépend pas de la
+        taille du système.\smallbreak
+        Une grandeur est \textbf{extensive} si elle est proportionnelle à une
+        quantité caractéristique du système.
+
+    \end{defi}
+    \begin{exem}[label=exem:intext]{grandeurs intensives et extensives}
+        La \textbf{pression} ou la \textbf{température} sont
+        \textbf{intensives}~: deux gaz à la même température qui sont mélangés
+        restent à la même température.\smallbreak
+        La \textbf{masse} ou le \textbf{volume} sont \textbf{extensives}.
+    \end{exem}
+\end{tcbraster}
+
+\subsection{Activité}
+Enfin, pour suivre l'évolution d'un système qui subit une transformation
+chimique, on utilise l'\textbf{activité} chimique des espèces, notée $a(\mathrm{X})$ pour
+l'espèce $\mathrm{X}$. Elle quantifie l'écart des propriétés de l'espèce en question par
+rapport à un état standard~: on définit
+\begin{itemize}
+    \item $c\degree = \SI{1}{mol.L^{-1}}$ la concentration standard~;
+    \item $P\degree = \SI{1}{bar} = \SI{e5}{Pa}$ la pression standard.
+\end{itemize}
+
+\begin{ror}[label=ror:activité,
+        tabularx*={\renewcommand{\arraystretch}{2}}{Y|Y},
+        heart]{Activité chimique}
+    \textbf{État physique}  & \textbf{Activité}\\\hline
+    Gaz (pur ou mélange)    & $a(\mathrm{X}\gaz) = \dfrac{P_\mathrm{X}}{P\degree}$\\\hline
+    Liquide ou solide (PUR) & $a(\mathrm{X}\liq) = a(\mathrm{X}\sol) = 1$\\\hline
+    Soluté (assez dilué)    & $a(\mathrm{X}\aqu) = \dfrac{[\mathrm{X}]}{c\degree}$\\\hline
+    Solvant                 & $a_{\rm solvant} = 1$
+\end{ror}
 
 \end{document}

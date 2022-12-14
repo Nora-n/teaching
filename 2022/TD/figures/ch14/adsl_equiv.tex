@@ -1,0 +1,74 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        coordinate (A)
+        node (Anode) {}
+        to[R, name=Rl, !vi]
+    (2,0)
+        coordinate (top)
+        node {$\bullet$}
+        node [above] {A}
+        to[L,l_=$L$, name=Lg, v^<=$u_{AB}$, !vi]
+    (2,-2)
+        coordinate (bot)
+        node {$\bullet$}
+        node [below] {B}
+        --
+    (0,-2)
+        coordinate (B)
+        node (Bnode) {}
+    ;
+    \draw[]
+    (top)
+        to[R, name=Rr, !vi]
+    (4,0)
+        to[L, l_=$L_$, name=Lr, v^<=$u_s$, !vi]
+    (4,-2) 
+        coordinate (C)--
+    (bot);
+    \node[] at (Rl.center) {$R$};
+    \node[] at (Rr.center) {$R$};
+    \varronly{Lg} \varronly{Lr}
+    \draw[color=red!70]
+    (Bnode) --
+        node [left] {$u_e$}
+    (Anode)
+        node [red!70, currarrow, sloped, anchor=tip, pos=1, allow upside down]{};
+    \draw[dashed, ForestGreen]
+    ([shift={(-0.40,0.5)}]top)
+        rectangle
+    ([shift={(0.25,-0.5)}]C);
+    \node[right=2em] (E) at (Lr.north) {$\equiv$};
+    \draw[shift={($(E)+(2em,1)$)}]
+    (0,0)
+        coordinate (A)
+        node (Anode) {}
+        to[R, name=Rl, !vi]
+    (2,0)
+        coordinate (top)
+        node {$\bullet$}
+        node [above] {A}
+        to[R, name=Z, v^<=$u_{AB}$, !vi, color=ForestGreen]
+    (2,-2)
+        coordinate (bot)
+        node {$\bullet$}
+        node [below] {B}
+        --
+    (0,-2)
+        coordinate (B)
+        node (Bnode) {}
+    ;
+    \node[] at (Rl.center) {$R$};
+    \node[rotate=90, color=ForestGreen] at (Z.center) {$\ul{Z}_{\eq}$};
+    \varronly{Z}
+    \draw[color=red!70]
+    (Bnode) --
+        node [left] {$u_e$}
+    (Anode)
+        node [red!70, currarrow, sloped, anchor=tip, pos=1, allow upside down]{};
+\end{circuitikz}
+\end{document}

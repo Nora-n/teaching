@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\def\A{0.25}
+\def\Q{10}
+\def\wo{1e3}
+\def\fo{\wo/2*pi}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{semilogxaxis}[
+        xmin=1e2, xmax=1e4,
+        xticklabels={\num{e2}, \num{e3}, \num{e4}},
+        extra x ticks={5e2, 5e3},
+        extra x tick labels={\num{5e2}, \num{5e3}},
+        extra x tick style={grid=minor, grid style={gray!25}, font=\tiny},
+        ymin=-100, ymax=100,
+        ytick={-100, -80, ..., 100},
+        xlabel=Fr\'equence (Hz), ylabel=Phase (\degree),
+        axis lines=left,
+        grid=both,
+        minor grid style={gray!25},
+        major grid style={black!50},
+        width=10cm,
+        height=7cm,
+        clip=true]
+        \addplot[
+        domain=1e2:1e4,
+        smooth,
+        samples=500,
+        black]
+        {-atan(\Q*(\x/\fo - \fo/\x))};
+    \end{semilogxaxis}
+\end{tikzpicture}
+\end{document}

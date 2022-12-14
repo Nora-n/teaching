@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        coordinate (A)
+        node (Anode) {}
+        to[R, name=Rl, !vi]
+    (2,0)
+        coordinate (top)
+        to[nos, name=Lg, !vi]
+    (2,-2)
+        coordinate (bot)
+        --
+    (0,-2)
+        coordinate (B)
+        node (Bnode) {}
+    ;
+    \draw[]
+    (top)
+        to[R, name=Rr, !vi]
+    (4,0)
+        to[nos, name=Lr, v^<={$u_s = u_e$}, !vi]
+    (4,-2) --
+    (bot);
+    \node[] at (Rl.center) {$R$};
+    \node[] at (Rr.center) {$R$};
+    \varronly{Lr}
+    \draw[color=red!70]
+    (Bnode) --
+        node [left] {$u_e$}
+    (Anode)
+        node [red!70, currarrow, sloped, anchor=tip, pos=1, allow upside down]{};
+\end{circuitikz}
+\end{document}

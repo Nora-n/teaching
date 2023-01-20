@@ -1,0 +1,170 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=0.8]
+    {\footnotesize
+    \startscope[shift={(4.25,0)}]
+    % Les légendes
+    \node at (0,2.75) [above] {Fr\'equence \SI{100}{Hz}~: att\'enuation BF};
+    \node at (-1.5,2.25) [above] {$U_r=\SI{0.36}{V}$};
+    \node at (1.5,2.25) [above] {$\f \approx\pi/2\si{rad}$};
+    \node at (3,1.7) [right] {$e(t)$};
+    \node at (3,0) [right, cornflowerblue] {$u_R(t)$};
+    \node at (-3,-2.25) [below right] {CH1: \SI{3}{V}/div};
+    \node at (3,-2.25) [below left] {CH2: \SI{1.5}{V}/div};
+    \node at (0,-2.25) [below=12pt] {Time: \SI{2}{ms}/division};
+    % L'écran
+    \draw [very thick,rounded corners=10pt, fill=gray!25] (-3,-2.25) rectangle (3,2.25);
+    \clip [rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \draw [help lines] (-3,-3) grid [xstep=0.5,ystep=0.5] (3,2);
+    \foreach \x in {-2.9,-2.8,...,2.9} \draw [help lines] (\x,-0.05) -- +(0,0.1);
+    \foreach \y in {-2.2,-2.1,...,2.2} \draw [help lines] (-0.05,\y) -- +(0.1,0);
+    % Les courbes (5 kHz)
+    \draw [very thick, yellow] plot [domain=-3:3,samples=500] (\x,{2*sin(360/2.5*\x)});
+    \draw [very thick, cornflowerblue] plot [domain=-3:3,samples=500]
+    (\x,{2*0.03*2*sin(360/2.5*\x+88.07)});
+    \draw[dashed, ultra thin, yellow]
+        ({1.25*1*0.5},-2.25) --
+        ({1.25*1*0.5},2.25)
+        (0.05,-2.25) --
+        (0.05, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        ({-1.25*1*0.5},-2.25) --
+        ({-1.25*1*0.5},2.25)
+        (0,-2.25) --
+        (0, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        (-3, 2*0.03*2) --
+        (3,  2*0.03*2)
+        (-3,-2*0.03*2) --
+        (3, -2*0.03*2)
+        ;
+    % Les curseurs
+    \stopscope
+    
+    \startscope[shift={(12.75,0)}]
+    % Les légendes
+    \node at (0,2.75) [above] {Fr\'equence \SI{500}{Hz}~: att\'enuation $<f_0$};
+    \node at (-1.5,2.25) [above] {$U_r=\SI{2.29}{V}$};
+    \node at (1.5,2.25) [above] {$\f \approx\SI{1.35}{rad}$};
+    \node at (-3,0) [left] {$e(t)$};
+    \node at (-3,-0.5) [left, cornflowerblue] {$u_R(t)$};
+    \node at (-3,-2.25) [below right] {CH1: \SI{3}{V}/div};
+    \node at (3,-2.25) [below left] {CH2: \SI{3}{V}/div};
+    \node at (0,-2.25) [below=12pt] {Time: \SI{500}{\micro s}/division};
+    % L'écran
+    \draw [very thick,rounded corners=10pt, fill=gray!25] (-3,-2.25) rectangle (3,2.25);
+    \clip [rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \draw [help lines] (-3,-3) grid [xstep=0.5,ystep=0.5] (3,2);
+    \foreach \x in {-2.9,-2.8,...,2.9} \draw [help lines] (\x,-0.05) -- +(0,0.1);
+    \foreach \y in {-2.2,-2.1,...,2.2} \draw [help lines] (-0.05,\y) -- +(0.1,0);
+    % Les courbes (10 kHz)
+    \draw [very thick, yellow] plot [domain=-3:3,samples=500]
+        (\x,{2*sin(360/2*\x)});
+    \draw [very thick, cornflowerblue] plot [domain=-3:3,samples=500]
+        (\x,{0.19*2*sin(360/2*\x+77.47)});
+    \draw[dashed, ultra thin, yellow]
+        (0.5,-2.25) --
+        (0.5, 2.25)
+        (0.05,-2.25) --
+        (0.05, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        ({0.05-0.5},-2.25) --
+        ({0.05-0.5},2.25)
+        (0,  -2.25) --
+        (0,   2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        (-3, 0.19*2) --
+        (3,  0.19*2)
+        (-3,-0.19*2) --
+        (3, -0.19*2)
+        ;
+    \stopscope
+    
+    \startscope[shift={(4.25,-7.)}]
+    % Les légendes
+    \node at (0,2.75) [above] {Fr\'equence \SI{1}{kHz}~: r\'esonance};
+    \node at (-1.5,2.25) [above] {$U_r=\SI{12}{V}$};
+    \node at (1.5,2.25) [above] {$\f = \SI{0}{rad}$};
+    \node at (3,0.5) [right] {$e(t)$};
+    \node at (3,-0.7) [right, cornflowerblue] {$u_R(t)$};
+    \node at (-3,-2.25) [below right] {CH1: \SI{3}{V}/div};
+    \node at (3,-2.25) [below left] {CH2: \SI{3}{V}/div};
+    \node at (0,-2.25) [below=12pt] {Time: \SI{250}{\micro s}/division};
+    % L'écran
+    \draw [very thick,rounded corners=10pt, fill=gray!25] (-3,-2.25) rectangle (3,2.25);
+    \clip [rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \draw [help lines] (-3,-3) grid [xstep=0.5,ystep=0.5] (3,2);
+    \foreach \x in {-2.9,-2.8,...,2.9} \draw [help lines] (\x,-0.05) -- +(0,0.1);
+    \foreach \y in {-2.2,-2.1,...,2.2} \draw [help lines] (-0.05,\y) -- +(0.1,0);
+    % Les courbes (100 Hz)
+    \draw [very thick, yellow] plot [domain=-3:3,samples=500] (\x,{2*sin(360/2*\x)});
+    \draw [very thick, cornflowerblue] plot [domain=-3:3,samples=500]
+    (\x,{2*sin(360/2*(\x+0.1))});
+    \draw[dashed, ultra thin, yellow]
+        (0.5,-2.25) --
+        (0.5, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        (0,  -2.25) --
+        (0,   2.25)
+        ({-0.1},-2.25) --
+        ({-0.1}, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        (-3, 2) --
+        (3,  2)
+        (-3,-2) --
+        (3, -2)
+        ;
+    \stopscope
+    
+    \startscope[shift={(12.75,-7.)}]
+    % Les légendes
+    \node at (0,2.75) [above] {Fr\'equence \SI{1.2}{kHz}~: att\'enuation $>f_0$};
+    \node at (-1.5,2.25) [above] {$U_r=\SI{7.47}{V}$};
+    \node at (1.5,2.25) [above] {$\f \approx-\SI{0.83}{rad}$};
+    \node at (-3,1.7) [left] {$e(t)$};
+    \node at (-3,1) [left, cornflowerblue] {$u_R(t)$};
+    \node at (-3,-2.25) [below right] {CH1: \SI{3}{V}/div};
+    \node at (3,-2.25) [below left] {CH2: \SI{3}{V}/div};
+    \node at (0,-2.25) [below=12pt] {Time: \SI{250}{\micro s}/division};
+    % L'écran
+    \draw [very thick,rounded corners=10pt, fill=gray!25] (-3,-2.25) rectangle (3,2.25);
+    \clip [rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \draw [help lines] (-3,-3) grid [xstep=0.5,ystep=0.5] (3,2);
+    \foreach \x in {-2.9,-2.8,...,2.9} \draw [help lines] (\x,-0.05) -- +(0,0.1);
+    \foreach \y in {-2.2,-2.1,...,2.2} \draw [help lines] (-0.05,\y) -- +(0.1,0);
+    % Les courbes (5 kHz)
+    \draw [very thick, yellow] plot [domain=-3:3,samples=500]
+    (\x,{2*sin(360/1.66*\x)});
+    \draw [very thick, cornflowerblue] plot [domain=-3:3,samples=500]
+    (\x,{0.62*2*sin(360/1.66*\x-47.72)});
+    \draw[dashed, ultra thin, yellow]
+        ({1/6*2.5},-2.25) --
+        ({1/6*2.5}, 2.25)
+        (0,  -2.25) --
+        (0,   2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        ({0.22},-2.25) --
+        ({0.22},2.25)
+        ({1/6*2.5+0.22},-2.25) --
+        ({1/6*2.5+0.22}, 2.25)
+        ;
+    \draw[dashed, ultra thin, blue]
+        (-3, 0.62*2) --
+        (3,  0.62*2)
+        (-3,-0.62*2) --
+        (3, -0.62*2)
+        ;
+    \stopscope}
+    
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.8]
+    {\footnotesize
+    \startscope[shift={(4.25,0)}]
+    % Les légendes
+    \node at (0,2.25) [above] {Fr\'equence \SI{1}{kHz}~: r\'esonance};
+    \node at (-3,0) [left] {$U=0$};
+    \node at (3,0.5) [below right] {$e(t)$};
+    \node at (3,0.75) [above right,gray] {$u_R(t)$};
+    \node at (-3,-2.25) [below right] {CH1: 3 V/div};
+    \node at (3,-2.25) [below left] {CH2: 3 V/div};
+    \node at (0,-2.25) [below=12pt] {Time: 2 ms/division};
+    % L'écran
+    \draw [very thick,rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \clip [rounded corners=10pt] (-3,-2.25) rectangle (3,2.25);
+    \draw [help lines] (-3,-3) grid [xstep=0.5,ystep=0.5] (3,2);
+    \foreach \x in {-2.9,-2.8,...,2.9} \draw [help lines] (\x,-0.05) -- +(0,0.1);
+    \foreach \y in {-2.2,-2.1,...,2.2} \draw [help lines] (-0.05,\y) -- +(0.1,0);
+    % Les courbes (100 Hz)
+    \draw [very thick,gray] plot [domain=-3:3,samples=100] (\x,{0.75*sin(360/2.5*\x)});
+    \draw [very thick] plot [domain=-3:3,samples=100] (\x,{0.5*sin(360/2.5*\x)});
+    \stopscope
+    
+\end{tikzpicture}
+
+\end{document}

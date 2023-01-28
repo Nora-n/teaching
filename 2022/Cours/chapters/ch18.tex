@@ -206,7 +206,7 @@ manière rigoureuse. Établissons ce comportement.
 \begin{tdefi}{Définition}
     Le \textbf{centre d'inertie} ou \textbf{centre de gravité} G d'un ensemble
     de points matériels M$_i$ de masses $m_i$ est défini par~:
-    \[\boxed{\vv{\rm OG} = \frac{1}{\sum_i \Mr_i} \sum_i m_i \vv{{\OMr}_i}}\]
+    \[\boxed{\vv{\rm OG} = \frac{1}{\sum_i m_i} \sum_i m_i \vv{{\OMr}_i}}\]
     Il s'agit du barycentre des points du système, pondéré par leur masse.
 \end{tdefi}
 
@@ -224,7 +224,7 @@ Il existe une autre formulation à cette définition. En effet,
 \end{align*}
 Or, comme $\vv{\OMr_i} - \vv{\rm OG} = \vv{\rm GO} + \vv{\OMr_i} = \vv{\rm
 GM_i}$, on pourra également retenir~:
-\[\boxed{\sum_i \vv{{\rm GM}_i} = \of}\]
+\[\boxed{\sum_i m_i\vv{{\rm GM}_i} = \of}\]
 
 \begin{rexem}{Exemple}
     Soient 2 masses $m$ placées en A et en B.
@@ -402,7 +402,7 @@ Ainsi, avec la définition de la quantité de mouvement d'un ensemble de points,
 \begin{minipage}{0.65\linewidth}
     \begin{enumerate}[label=\sqenumi]
         \litem{De quoi parle-t-on~?} Le mouvement d'une balle lancée avec un
-            vecteur vitesse initiale $\vf_0$ dans le référentiel du laboratoire.
+            vecteur vitesse initiale $\vfo$ dans le référentiel du laboratoire.
         \litem{Schéma}. \bigbreak
     \end{enumerate}
 \end{minipage}
@@ -423,7 +423,7 @@ Ainsi, avec la définition de la quantité de mouvement d'un ensemble de points,
             \item Instant initial~: moment où la balle est lancée.
             \item Origine spatiale~: position de la balle à l'instant initial
                 ($\OM(0) = \of$).
-            \item On note $\alpha$ l'angle du vecteur $\vf_0$ avec l'axe
+            \item On note $\alpha$ l'angle du vecteur $\vfo$ avec l'axe
                 horizontal et $v_0$ sa norme, tel que
                 \[\vf(0) = v_0\cos\alpha\ux + v_0\sin\alpha\uy\]
         \end{itemize}
@@ -717,7 +717,7 @@ Le maximum se trouve en $\a = \pi/2$.
                 \item On note $m$ sa masse, $\alpha$ le coefficient de frottement et
                     $\gf$ l’accélération de la pesanteur.
             \end{itemize}
-    \item{Bilan des forces.}
+    \litem{Bilan des forces.}
         \[
             \begin{array}{ll}
                 \textbf{Poids} & \Pf = m\gf = -mg\uy\\
@@ -725,7 +725,7 @@ Le maximum se trouve en $\a = \pi/2$.
             \end{array}
         \]
     \item \leftcenters{\textbf{PFD.}}{$m\af = \Pf + \Ff$}
-    \item{Équations scalaires}.
+    \litem{Équations scalaires}.
         \[
             \left\{
                 \begin{array}{rcl}
@@ -735,21 +735,24 @@ Le maximum se trouve en $\a = \pi/2$.
                 \end{array}
             \right.
         \]
-    \item{Répondre aux questions.} On obtient ici trois équations
+    \litem{Répondre aux questions.} On obtient ici trois équations
         différentielles sur la vitesse ($v_x = \xp$, $v_y = \yp$ et $v_z =
         \zp$), mais en absence de vitesse initiale sur $v_x$ et $v_z$, il n'y
         aura pas de mouvement sur ces coordonnées~: on s'intéresse donc à
-        l'équation différentielle sur $v_y$ que l'on appelle simplement $v$~:
-        \[\boxed{\dv{v}{t} + \frac{\alpha}{m}v = -g}\]
+        l'équation différentielle sur $v_y$ que l'on appelle simplement $v$,
+        avec $\tau = m/\a$~:
+        \[\boxed{\dv{v}{t} + \frac{\alpha}{m}v = -g}
+        \Lra
+        \dv{v}{t} + \frac{v}{\tau} = -g\]
 \end{enumerate}
 
 Une résolution complète demande de discerner solution homogène et particulière
 puis d'utiliser les conditions initiales, pour trouver
-\[v(t) = \frac{gm}{\alpha}\left(1-\exr^{-\a t/mg}\right)\]
-où on nommerait $\tau = m/\alpha$. On peut développer une autre approche
-générique pour obtenir des grandeurs typiques d'un système à partir de
-l'équation différentielle qui régit son fonctionnement~:
-l'\textbf{adimensionnement}. \bigbreak
+\[v(t) = g\tau\left(\exr^{-t/\tau}-1\right)\]
+
+On peut développer une autre approche générique pour obtenir des grandeurs
+typiques d'un système à partir de l'équation différentielle qui régit son
+fonctionnement~: l'\textbf{adimensionnement}. \bigbreak
 
 On définit $v^* = v/V$, $t^* = t/T$ avec $V$ et $T$ des constantes à définir. On
 peut donc réécrire
@@ -840,6 +843,7 @@ $\beta \approx \SI{0.25}{kg.m^{-1}}$, soit
     \begin{center}
         \includegraphics[width=0.5\linewidth]{reaction}
     \end{center}
+    La \textbf{condition de support} est $\norm{\Nf} > 0$.
 \end{tdefi}
 
 \subsection{Lois de \textsc{Coulomb}}
@@ -849,17 +853,22 @@ Les relations entre les \textbf{normes} des forces $\Nf$ et $\Tf$ sont appelées
 \begin{tprop}{Lois du frottement de \textsc{Coulomb}, heart}
     \begin{itemize}
         \item Un solide \textbf{glissant} sur une surface donne
-            \[\norm{\Tf} = f_d\norm{\Nf}\]
+            % \[\norm{\Tf} = f_d\norm{\Nf}\]
+            \[\norm{\Tf} = f\norm{\Nf}\]
         \item Un solide \textbf{ne glissant pas} sur une surface donne
-            \[\norm{\Tf} < f_s\norm{\Nf}\]
+            % \[\norm{\Tf} < f_s\norm{\Nf}\]
+            \[\norm{\Tf} < f\norm{\Nf}\]
     \end{itemize}
-    avec $f_e$ le coefficient de frottement solides \textbf{dynamique} et $f_s$
-    le \textbf{statique}. Ce sont des nombres sans
+    % avec $f_s$ le coefficient de frottement solides \textbf{dynamique} et $f_s$
+    % le \textbf{statique}. Ce sont des nombres sans
+    avec $f$ le coefficient de frottements solides. C'est un nombre sans
     dimension, souvent inférieur à 1 et qui dépend de l'\textbf{état} de la
-    surface (humide, graissée) mais \textbf{pas de son aire}, et on a
-    \[f_d < f_s\]
-    On définit généralement \textbf{un seul} coefficient de frottements solides,
-    $\boxed{f_d = f}$.
+    surface (humide, graissée) mais \textbf{pas de son aire}. \bigbreak
+    De manière plus particulière, on définit $f_d$ le coefficient de frottements
+    dynamiques (glissement) et $f_s$ le coefficient de frottement statique (pas
+    glissement), avec $f_d < f_s$~; dans ce cas, $f = f_d$.
+    % On définit généralement \textbf{un seul} coefficient de frottements solides,
+    % $\boxed{f_d = f}$.
 \end{tprop}
 
 \begin{rexem}{Remarque}

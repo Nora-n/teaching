@@ -1,0 +1,832 @@
+\documentclass[../main/main.tex]{subfiles}
+
+\raggedbottom
+
+\makeatletter
+\renewcommand{\@chapapp}{M\'ecanique -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+
+\begin{document}
+\setcounter{chapter}{4}
+
+\chapter{Mouvement de particules charg\'ees}
+
+\section{Champs électrique et magnétique}
+\subsection{Champ électrique}
+\begin{tdefi}{Définition, sidebyside, righthand ratio=.3}
+    Un champ électrique $\Ef(\Mr,t)$ est un champ de vecteurs créé par des
+    charges électriques et par des variations temporelles du champ magnétique.
+    \bigbreak
+    \tcblower
+    \begin{center}
+        \color{deficol}
+        \bfseries
+        \fatbox{Unités}
+    \end{center}
+    \[
+        \norm{\Ef(\Mr,t)} \qMath{en} \si{V.m^{-1}}
+    \]
+\end{tdefi}
+
+\begin{minipage}{0.65\linewidth}
+    La manière la plus simple pour créer un champ électrique est de constituer un
+    condensateur avec deux armatures métalliques de surface $S$. On a alors
+    \[\Ef = \frac{1}{\epo} \frac{q}{S}\uz\]
+    avec la $\epo$ permittivité diélectrique du vide. \bigbreak
+    $\Ef$ va des charges positives aux négatives. On le verra, il indique le
+    \textbf{sens de la force subie par une charge positive}.
+\end{minipage}
+\hfill
+\begin{minipage}{0.33\linewidth}
+    \begin{center}
+        \includegraphics[width=.5\linewidth]{condo_base}
+        \captionsetup{justification=centering}
+        \captionof{figure}{Condensateur et champ électrique}
+        \label{fig:condo}
+    \end{center}
+\end{minipage}
+
+\begin{rexem}{Ordres de grandeur}
+    \begin{itemize}[label=$\diamond$]
+        \item À l'intérieur d'un condensateur en TP, on a environ
+            \SI{10}{V.mm^{-1}}, soit \SI{10}{kV.m^{-1}}
+        \item À la surface de la Terre, le champ électrique est d'environ
+            \SI{e2}{V.m^{-1}}
+        \item Le champ électrique créé lors d'un orage est d'environ
+            \SI{e4}{V.m^{-1}}
+        \item Le champ électrique pour la téléphonie mobile est d'environ
+            \SI{50}{V.m^{-1}}
+    \end{itemize}
+\end{rexem}
+
+\subsection{Champ magnétique}
+\begin{tdefi}{Définition, sidebyside, righthand ratio=.3}
+    Un champ magnétique $\Bf(\Mr,t)$ est un champ de vecteurs créé par des
+    courants électriques et par des variations temporelles du champ électrique.
+    \tcblower
+    \begin{center}
+        \bfseries\color{deficol}
+        \fatbox{Unités}
+    \end{center}
+    \[\norm{\Bf(\Mr,t)} \qMath{en} \mathrm{Tesla} \,(\si{T})\]
+\end{tdefi}
+
+\begin{minipage}{0.65\linewidth}
+    La manière la plus simple pour créer un champ magnétique est de constituer
+    une bobine, par enroulement de $N$ spires d'un fil métallique sur une
+    longueur $L$. On a alors
+    \[\Bf = \muo i\frac{N}{L}\,\uz\]
+    avec la $\muo$ perméabilité magnétique du vide. \bigbreak
+\end{minipage}
+\hfill
+\begin{minipage}{0.33\linewidth}
+    \begin{center}
+        \includegraphics[width=\linewidth]{bobine_base}
+        \captionsetup{justification=centering}
+        \captionof{figure}{Bobine et champ magnétique}
+        \label{fig:bobine}
+    \end{center}
+\end{minipage}
+On le verra en électromagnétisme, le champ magnétique est \textbf{orienté
+par le courant}.
+
+\begin{rexem}{Ordres de grandeur}
+    Le Tesla est une «~grande unité»~: il est très difficile de dépasser les
+    \SI{10}{T}.
+    \begin{itemize}[label=$\diamond$]
+        \item À l'intérieur d'une bobine en TP, on a environ
+            \SI{e-4}{T}
+        \item Une bobine avec $N = \num{1000}$, $L = \SI{10}{cm}$ et $i =
+            \SI{1}{A}$ donne \SI{e-2}{T}
+        \item À la surface de la Terre, le champ magnétique est d'environ
+            \SI{5e-5}{T}
+        \item Le champ magnétique au centre d'un IRM est d'environ
+            \SI{1}{T}
+        \item Le champ magnétique d'un aimant permanent est d'environ
+            \SIrange{e-2}{e-1}{T}
+    \end{itemize}
+\end{rexem}
+
+\vspace{-12pt}
+\section{La force de \textsc{Lorentz}}
+On considèrera dans toute la suite des champs \textbf{uniformes}\footnote{Est
+uniforme une grandeur constante dans l'espace.} et
+\textbf{stationnaires}\footnote{Est stationnaire une grandeur constante dans le
+temps.}
+\vspace{-12pt}
+
+\subsection{Définition}
+\begin{tdefi}{Définition~: Force de \textsc{Lorentz}, heart}
+    La force subie par une charge $q$ plongée dans un champ électrique $\Ef$ et
+    un champ magnétique $\Bf$ est appelée \textbf{force de \textsc{Lorentz}},
+    telle que
+    \[\boxed{\Ff = q\left(\Ef + \vf \wedge \Bf\right)}\]
+    On appelle $\Ff_e = q\Ef$ la \textbf{force électrique} et $\Ff_m =
+    q\vf\wedge\Bf$ la \textbf{force magnétique}
+\end{tdefi}
+
+\subsection{Comparaison au poids}
+
+Les particules chargées sont généralement très légères et rapides~: pour un
+électron, on a $m \approx SI{e-30}{kg}$ et $\norm{\vf} \approx
+\SI{e6}{m.s^{-1}}$. Seulement, leur charge est également faible, avec $\abs{e}
+\approx \SI{e-19}{C}$ pour un électron ou un proton. Il est donc intéressant de
+connaître la différence de force entre le poids qu'elle subit et la force de
+\textsc{Lorentz}, ce qui nous permettrait de négliger le poids dans le PFD.
+Avec $g \approx \SI{10}{m.s^{-2}}$, on trouve
+\[\norm{\Pf} \approx \SI{e-29}{N}\]
+Regardons ce qu'il en est pour les parties électrique et magnétique de la force
+de \textsc{Lorentz}.
+\bigbreak
+
+\begin{itemize}[label=$\diamond$]
+    \litem{Partie électrique~:} $\norm{\Ff_e} = eE$, avec $E \approx
+        \SI{e4}{V.m^{-1}}$~:
+        \[\norm{\Ff_e} \approx \SI{e-15}{N}\]
+    \litem{Partie magnétique~:} $\norm{\Ff_m} = evB$, avec $B \approx
+        \SI{e-2}{T}$~:
+        \[\norm{\Ff_m} \approx \SI{e-15}{N}\]
+\end{itemize}
+
+Ainsi, dans les deux cas, on trouve
+\[\frac{\norm{\Ff_e}}{\norm{\Pf}} = \frac{\norm{\Ff_m}}{\norm{\Pf}} \approx
+\num{e14}\]
+
+\begin{tror}{Impact du poids vs. \textsc{Lorentz}}
+    Pour des particules chargées dans des conditions générales, le poids est
+    négligeable devant la force de \textsc{Lorentz}
+\end{tror}
+
+\subsection{Produit vectoriel}
+Pour calculer la force magnétique, il va falloir manipuler les produits
+vectoriels. Quelques rappels~: \bigbreak
+
+\begin{timpo}{Produit vectoriel, heart}
+    Le produit vectoriel de deux vecteurs $\uf$ et $\vf$ s'écrit $\uf\wedge\vf$,
+    et se lit «~u vectoriel v~». C'est un \textbf{vecteur}~:
+
+    \begin{minipage}{0.70\linewidth}
+        \begin{itemize}[label=$\diamond$]
+            \item de direction \textbf{perpendiculaire} à $\uf$ \textbf{et} à
+                $\vf$~:
+                \[
+                    \uf\wedge\vf \perp \uf
+                    \qet
+                    \uf\wedge\vf \perp \vf
+                \]
+            \item de sens donné par la règle de la \textbf{main droite}~;
+            \item de norme
+                \[\norm{\uf\wedge\vf} = \norm{\uf}\norm{\vf}\abs{\sin(\tt)}\]
+                avec $\tt$ l'angle entre les deux vecteurs.
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.25\linewidth}
+        \begin{center}
+            \includegraphics[width=.7\linewidth]{righthand_lorentz}
+            \captionsetup{justification=centering}
+            \captionof{figure}{Règle de la main droite}
+            \label{fig:rhlorentz}
+        \end{center}
+    \end{minipage}
+
+    L'ordre des vecteurs est \textbf{primordial} dans un produit vectoriel~:
+    c'est en effet un opérateur \textbf{antisymétrique}, c'est-à-dire qu'il
+    respecte
+    \[\uf\wedge\vf = -\vf\wedge\uf\]
+    Pour une base orthonormée \textbf{directe} (BOND), qu'elle soit cartésienne,
+    cylindrique ou sphérique, le produit vectoriel de deux vecteurs de base
+    donne le troisième avec un signe $+$ s'ils se suivent dans une permutation
+    circulaire ($x\ra y\ra z \ra x$ ou $r\ra\tt\ra z\ra r$), et un signe $-$
+    sinon. Par exemple~:
+    \begin{gather*}
+        \begin{aligned}
+            \ux\wedge\uy &= \uz\\
+            \uy\wedge\ux &= -\uz
+        \end{aligned}
+        \qquad
+        \begin{aligned}
+            \uy\wedge\uz &= \ux\\
+            \uz\wedge\uy &= -\ux
+        \end{aligned}
+        \qquad
+        \begin{aligned}
+            \uz\wedge\ux &= \uy\\
+            \ux\wedge\uz &= -\uy
+        \end{aligned}
+    \end{gather*}
+    Ces données permettent de calculer n'importe quel produit vectoriel exprimé
+    dans une BOND. En termes de composantes des vecteurs, on pourra déterminer
+    le produit vectoriel avec la «~règle du gamma~»~; par exemple~:
+    \begin{tikzpicture}
+        \node[below=4pt, gray, transform canvas={xshift=-5.5pt}]
+            (uxx) at (pic cs:uz) {$u_x$};
+        \tikzmark{uxx}{(uxx)}
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \node[below=4pt, gray, transform canvas={xshift=-5.5pt}]
+            (vxx) at (pic cs:vz) {$v_x$};
+        \tikzmark{vxx}{(vxx)}
+    \end{tikzpicture}
+    % \tikz[remember picture, overlay]
+    % \node[below=4pt, gray, transform canvas={xshift=-5.5pt}]
+    %     (vxx) at (pic cs:vz) {$v_x$};
+    \tikz[remember picture, overlay]
+    \draw[->, orange!90!black, transform canvas={xshift=-5.5pt}]
+        (pic cs:ux) .. controls
+        (pic cs:vy) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
+        ($(pic cs:vy)!0.5!(pic cs:uy)$) .. controls
+        (pic cs:uy) .. node[pos=0.15, above left=-4pt and -1.5pt] {$\ominus$}
+        (pic cs:vx)
+        ;
+    \tikz[remember picture, overlay]
+    \draw[->, BlueViolet!70!black, transform canvas={xshift=-5.5pt}]
+        (pic cs:uy) .. controls
+        (pic cs:vz) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
+        ($(pic cs:vz)!0.5!(pic cs:uz)$) .. controls
+        (pic cs:uz) .. node[pos=0.15, above left=-4pt and -1.5pt] {$\ominus$}
+        (pic cs:vy)
+        ;
+    \tikz[remember picture, overlay]
+    \draw[->, deficol, transform canvas={xshift=-5.5pt}]
+        (pic cs:uz) .. controls
+        (pic cs:vxx) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
+        ($(pic cs:vxx)!0.5!(pic cs:uxx)$) .. controls
+        (pic cs:uxx) .. node[pos=0.15, above left=-4pt and -1.5pt] {$\ominus$}
+        (pic cs:vz)
+        ;
+    \[\uf\wedge\vf 
+        = \mqty(u_x\tikzmark{ux}\\u_y\tikzmark{uy}\\u_z\tikzmark{uz})
+            \wedge
+            \mqty(v_x\tikzmark{vx}\\v_y\tikzmark{vy}\\v_z\tikzmark{vz})
+        = \mqty(\color{BlueViolet!70!black}u_yv_z - v_yu_z\\\color{deficol}u_zv_x -
+            u_xv_z\\\color{orange!90!black}u_xv_y - u_yv_x)
+    \]
+    \vspace{12pt}
+\end{timpo}
+
+\subsection{Puissance de la force de \textsc{Lorentz}}
+\begin{tprop}{Propriété~: puissance force magnétique, hand}
+    La puissance de la force de \textsc{Lorentz} est
+    \[\Pc(\Ff) = q\Ef\cdot\vf\]
+    La puissance de la force magnétique est nulle, et un champ magnétique ne
+    peut pas accélérer ou ralentir une particule chargée mais ne peut que la
+    dévier.
+\end{tprop}
+\begin{rdemo}{Démonstration}
+    La puissance de la force de \textsc{Lorentz} est~:
+    \begin{align*}
+        \Pc(\Ff) &= \left(q\left(\Ef + \vf\wedge\Bf\right)\right)\cdot\vf
+        \\\Lra
+        \Pc(\Ff) &= q\Ef\cdot\vf +
+        q\underbracket[1pt]{\underbracket[1pt]{\vf\wedge\Bf}_{\perp\vf}\cdot\vf}_{=0}
+        \\\Lra
+        \Aboxed{\Pc(\Ff) &= q\Ef\cdot\vf}
+        \qed
+    \end{align*}
+    En effet, $\vf\wedge\Bf \perp \vf$, et le produit scalaire de deux vecteurs
+    orthogonaux est nul. Ainsi, la partie magnétique de la force de \textsc{Lorentz}
+    ne travaille pas~; le TPC donne alors
+    \[\dv{\Ec_c}{t} = q\Ef\cdot\vf\]
+    c'est-à-dire que seule la partie électrique peut faire varier l'énergie
+    cinétique, et donc la vitesse, d'une particule chargée.
+\end{rdemo}
+
+\subsection{Potentiel électrostatique}
+\begin{tprop}{Propriété~: force conservative et énergie potentielle, heart}
+    La force de \textsc{Lorentz} est \textbf{conservative}, et dérive d'une
+    d'une énergie potentielle $\Ec_{p,e}$ telle que
+    \[\Ec_{p,e} = -qEz\]
+    avec $E$ la norme du champ électrique subit et $z$ la position dans ce
+    champ.
+\end{tprop}
+\begin{rdemo}{Démonstration}
+    Le champ magnétique ne travaillant pas, on s'intéresse au travail
+    élémentaire de la force électrique. Supposons un champ électrique $\Ef =
+    E\uz$~:
+    \begin{align*}
+        \de W_{\ABr}(\Ff) &= \Ff_e\cdot\dd\OM
+        \\\Lra
+        \de W_{\ABr}(\Ff) &= qE\uz\cdot(\dd{x}\ux + \dd{y}\uy + \dd{z}\uz)
+        \\\Lra
+        \Aboxed{\de W_{\ABr}(\Ff) &= qE\dd{z}}
+    \end{align*}
+    On a donc bien $\de W_{\ABr}(\Ff)$ qui ne \textbf{dépend pas du chemin
+    suivi}~; elle est donc \textbf{conservative}, et on identifie $\Ec_{p,e}$ à
+    partir de $\de W_{\ABr}(\Ff) = -\dd{\Ec_{p,e}}$, soit $\Ec_{p,e} = -qEz$.
+    \hqed
+\end{rdemo}
+
+\begin{rexem}{Remarque}
+    La situation avec un champ $\Ef$ est en essence tout à fait similaire à
+    celle du poids, provenant d'un champ gravitationnel~: on obtient la même
+    énergie potentielle à un signe près. En effet, la masse ne peut qu'être
+    positive, alors qu'une charge peut être négative~; mais l'effet d'un champ
+    $\Ef$ sur une particule chargée est en tous points similaire à celle de
+    l'action de la gravité sur une masse $m$.
+\end{rexem}
+
+Ainsi, puisque $\Ff_e$ est conservative, on a
+\[\Ff_e = -\gd\Ec{p,e}\]
+Il est souvent utile de déterminer $\Ef$ plutôt que $\Ff$~; on introduit donc
+une autre grandeur~:
+
+\begin{tdefi}{Définition~: potentiel électrostatique}
+    Le \textbf{potentiel électrostatique} est la grandeur scalaire qui permet de
+    calculer le champ $\Ef$ associé, tel que
+    \[\boxed{V = \frac{\Ec_{p,e}}{q}}
+    \quad\Ra\quad
+    \Ef = -\gd V\]
+\end{tdefi}
+
+On retrouve alors les notions du début d'année en électrocinétique~:
+
+\begin{tdefi}{Définition~: tension}
+    La \textbf{tension} entre deux points A et B est la \textbf{différence de
+    potentiel} entre ces deux points~:
+    \[\boxed{U_{\ABr} = V(\Ar) - V(\Br)}\]
+\end{tdefi}
+
+On trouve finalement le lien entre champ électrique et tension entre deux
+plaques chargées~: en utilisant
+\[
+    \Ec_{p,e} = -qEz
+    \quad,\quad
+    V = \Ec_{p,e}/q
+    \qet
+    U_{\ABr} = V(\Ar) - V(\Br)
+\]
+on a
+\[U_{\ABr} = -Ez_\Ar + Ez_\Br = E(z_\Br - z_\Ar) = Ed\]
+\begin{tror}{}
+    En appliquant une tension $U$ entre deux grilles planes parallèles et
+    distantes de $d$, on obtient un champ électrique \textbf{perpendiculaire}
+    aux grilles, dirigé vers les potentiels \textbf{décroissants} (borne
+    $\ominus$) de norme
+    \[\norm{\Ef} = \frac{U}{d}\]
+\end{tror}
+
+Voilà donc comment faire un condensateur~! Mais alors, à quoi ça sert~?
+
+\section{Mouvement dans un champ électrique}
+\subsection{Situation générale}\label{ssec:egen}
+\begin{enumerate}[label=\sqenumi]
+    \begin{minipage}[t]{0.70\linewidth}
+        \litem{Système~:} \{particule\} de masse $m$ de charge $q$ dans un champ
+            $\Ef$.
+        \litem{Schéma~:} ci-contre.
+        \litem{Modélisation~:}
+            \begin{itemize}[label=$\diamond$, leftmargin=10pt]
+                \item Repère~: cartésien, $\uz$ $\perp$ grilles,
+                    soit $\Ef = E\uz$ avec $E = U/d$
+                \item Instant initial~: la particule part de $z=0$, $\OM(0) = \of$
+            \end{itemize}
+        \litem{BDF~:}
+            \[
+                \begin{array}{ll}
+                    \textbf{Poids} & \text{négligeable \textbf{devant }}\Ff\\
+                    \textbf{Force électrique} & \Ff = q\Ef = qE\uz
+                \end{array}
+            \]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.28\linewidth}
+        ~
+        \begin{center}
+            \includegraphics[width=.8\linewidth]{chp_E-base}
+            \captionof{figure}{Situation générale}
+            \label{fig:chp_E_base}
+        \end{center}
+    \end{minipage}
+\end{enumerate}
+\begin{enumerate}[label=\sqenumi, resume]
+    \litem{PFD~:}
+        \[m\af = \Ff\]
+    \litem{Équations scalaires~:}
+        \begin{empheq}[left=\empheqlbrace]{align*}
+            m\xpp &= 0\\
+            m\ypp &= 0\\
+            m\zpp &= qE
+        \end{empheq}
+    \litem{Réponse aux questions.} Il est possible d'intégrer ces équations pour
+        obtenir les équations horaires, $E$ étant uniforme et stationnaire~; on
+        va distinguer deux cas selon la vitesse initiale de la particule.
+\end{enumerate}
+
+\subsection{Accélération d'une particule chargée}
+On suppose ici une particule chargée positivement ($q > 0$), arrivant en $z = 0$
+avec une vitesse $\vfo = v_0\uz$, c'est-à-dire \textbf{dans le sens du champ}.
+On s'intéresse à sa vitesse en sortie, en $z=d$. Comme le système est
+\textbf{conservatif} et qu'on s'intéresse à un instant précis du mouvement, il
+est plus astucieux d'utiliser le \textbf{TEM} plutôt que le PFD~: \bigbreak
+\begin{itemize}[label=$\diamond$]
+    \litem{En $z=0$~:} la norme de la vitesse est $v_0$, et l'énergie potentielle
+        est $qV(0)$, d'où l'énergie mécanique
+        \[\Ec_m(0) = \frac{1}{2}mv_0{}^2 + qV(0)\]
+    \litem{En $z=d$~:} la norme de la vitesse est $v_f$, et l'énergie potentielle
+        est $qV(d)$, d'où l'énergie mécanique
+        \[\Ec_m(d) = \frac{1}{2}mv_f{}^2 + qV(d)\]
+\end{itemize}
+Ainsi
+\begin{align*}
+    \frac{1}{2}mv_0{}^2 + qV(0) &= \frac{1}{2}mv_f{}^2 + qV(d)
+    \\\Lra
+    v_f{}^2 &= v_0{}^2 + \frac{2q}{m}\left(V(0) - V(d)\right)
+    \\\Lra
+    \Aboxed{v_f &= \sqrt{v_0{}^2 + \frac{2qU}{m}}}
+\end{align*}
+\begin{tror}{Conclusion, hand}
+    Une particule chargée positivement et lancée dans le sens d'un champ
+    magnétique est accélérée, sa vitesse finale augmentant en $\sqrt{U}$.
+\end{tror}
+
+En faisant l'application numérique pour un proton de charge $e =
+\SI{1.602e-19}{C}$, de masse $m = \SI{1.673e-27}{kg}$ partant de $v_0 =
+\SI{0}{m.s^{-1}}$ et accéléré par $U = \SI{1}{kV}$, on trouve
+\[v_f = \SI{4.4e5}{m.s^{-1}} = \SI{440}{km.s^{-1}}\]
+
+\begin{rexem}{Remarque}
+    \begin{itemize}
+        \item L'électro-volt est une unité d'énergie, telle que
+            \[\SI{1.602e-19}{J} = \SI{1.602e-19}{C}\times\SI{1}{V} =
+            e\times\SI{1}{V}\]
+            C'est l'énergie cinétique que gagne un électron (ou un proton)
+            lorsqu'il est accéléré par une tension de \SI{1}{V}. Dans les
+            accélérateurs de particules modernes, on touche au \si{TeV}
+            (tera-électron-volt)
+        \item Si $U<0$ ou $q<0$, on peut ralentir la particule chargée. Elle
+            peut même faire demi-tour si l'énergie potentielle acquise est
+            supérieure à son énergie cinétique initiale~; elle ressortira alors
+            avec la même énergie cinétique qu'au départ (puisque
+            $\Ec_{p,e}(z=0)$ ne change pas), donc la même vitesse en norme, mais
+            bien sûr de sens opposé.
+    \end{itemize}
+\end{rexem}
+
+\subsection{Déviation d'une particule chargée}
+On considère cette fois une particule chargée arrivant
+\textbf{perpendiculairement} à un champ $\Ef$. Prenons $\vfo = v_0\ux$ et $\Ef =
+E\uz$, avec $E=U/d$. \smallbreak
+On reprend le résultat obtenu dans la situation générale (\ref{ssec:egen})~:
+\begin{empheq}[left=\empheqlbrace]{align*}
+    m\xpp &= 0\\
+    m\ypp &= 0\\
+    m\zpp &= qE
+\end{empheq}
+On intègre, avec $\xp(0) = v_0$ et $\zp(0) = 0$~; on ignore le mouvement en
+$y$~:
+\begin{empheq}[left=\empheqlbrace]{align*}
+    \xp &= v_0\\
+    \zp &= \frac{qE}{m}t
+\end{empheq}
+On intègre une seconde fois, avec $x(0) = 0 = z(0)$~:
+\begin{empheq}[left=\empheqlbrace]{align*}
+    x(t) &= v_0t\\
+    z(t) &= \frac{qE}{2m}t^2
+\end{empheq}
+On trouve alors l'équation de la trajectoire~:
+\[\boxed{z(x) = \frac{qE}{2mv_0{}^2}}\]
+C'est une trajectoire parabolique, en tout point \textbf{similaire à la
+chute libre}.
+
+\begin{center}
+    \includegraphics[width=.4\linewidth]{chp_E-dev}
+    \captionof{figure}{Situation de déviation}
+    \label{fig:edev}
+\end{center}
+
+\begin{rexem}{Remarque}
+    On peut déterminer l'angle de déviation $\a_f$ entre la trajectoire de la
+    particule au départ de son mouvement, et une fois qu'elle a quitté le champ
+    $\Ef$. On trouve le temps de sortie $t_f$ tel que $x(t_f) = L$, soit $t_f =
+    L/v_0$. \bigbreak
+    On trouve l'angle de sortie en prenant
+    \[\tan\a_f = \dv{z}{x} = \frac{\zp(t_f)}{\xp(t_f)}\]
+    Or,
+    \begin{empheq}[left=\empheqlbrace]{align*}
+        \xp(t_f) &= v_0\\
+        \zp(t_f) &= \frac{qEL}{mv_0}
+    \end{empheq}
+    Avec $E = U/d$, et si l'angle est petit, on a donc
+    \[\tan\a_f \approx \boxed{\a_f = \frac{qUL}{mdv_0{}^2}}\]
+    Ainsi, l'angle de déviation \textbf{est proportionnel à $U$}.
+\end{rexem}
+
+\subsection{Applications}
+On utilise rarement le champ $\Ef$ seul, il est souvent utilisé avec $\Bf$. On
+peut néanmoins citer quelques applications~:
+\begin{itemize}[label=$\diamond$]
+    \litem{Accélérateur linéaire.} On peut accélérer une particule chargée grâce
+        à un champ électrique.
+    \litem{Oscilloscope analogique.} Un faisceau d'électrons de vitesse initiale
+        fixée (grâce à un accélérateur linéaire) est dévié par la tension de
+        mesure. Cette déviation est proportionnelle à la tension mesurée. En
+        utilisant un écran fluorescent, on visualise l'impact des électrons et
+        ainsi la tension mesurée en balayant l'écran à une vitesse déterminée
+        par le calibre temporel.
+\end{itemize}
+
+\section{Mouvement dans un champ magnétique}
+\subsection{Mise en équation}
+\begin{enumerate}[label=\sqenumi]
+    \litem{Système~:} \{particule\} de masse $m$ de charge $q$ dans un champ
+        $\Bf$.
+    \litem{Schéma~:}
+        \begin{center}
+            \includegraphics[scale=1]{chp_B-base}
+            \captionof{figure}{Situation initiale}
+            \label{fig:chp_B_base}
+        \end{center}
+    \litem{Modélisation~:}
+        \begin{itemize}[label=$\diamond$, leftmargin=10pt]
+            \item Repère~: cartésien, $\uz$ direction de $\Bf$
+                soit $\Bf = B\uz$
+            \item Instant initial~: la particule part de l'origine, $\OM(0) =
+                \of$
+        \end{itemize}
+    \litem{BDF~:}
+        \[
+            \begin{array}{ll}
+                \textbf{Poids} & \text{négligeable \textbf{devant }}\Ff\\
+                \textbf{Force magnétique} & \Ff = q\vf\wedge\Bf =
+                    \mqty(q\xp\\q\yp\\q\zp)\wedge\mqty(0\\0\\B)\\
+                                     \Lra & \Ff = -q\xp B\uy + q\yp B\ux
+            \end{array}
+        \]
+    \litem{PFD~:}
+        \[m\af = \Ff\]
+    \litem{Équations scalaires~:}
+        \begin{empheq}[left=\empheqlbrace]{align*}
+            m\xpp &= q\yp(t)B\\
+            m\ypp &= -q\xp(t)B\\
+            m\zpp &= 0
+        \end{empheq}
+    \litem{Réponse aux questions.} Ici aussi, on va distinguer deux cas selon la
+        colinéarité de la vitesse initiale avec le champ.
+\end{enumerate}
+
+On remarque cependant, avant toute évolution due aux conditions initiales, que
+le TPC nous donne une information sur le futur du système. En effet, la force
+magnétique ne travaillant pas ($\vf\wedge\Bf \perp \vf$), on a
+\[\dv{\Ec_c}{t} = 0\]
+donc la vitesse est constante en norme, notamment
+\[v_x(t)^2 + v_y(t)^2 + v_z(t)^2 = \cte\]
+Or, avec la projection du PFD on a $\zpp = 0 \Ra \zp = \cte$, donc on sait déjà
+que
+\begin{tror}{Analyse du mouvement en champ $\Bf$, halign=center}
+    Le mouvement dans un champ $\Bf$ dirigé selon $\uz$ se fait tel que
+    \[\boxed{v_x(t)^2 + v_y(t)^2 = \cte}\]
+\end{tror}
+Étudions les deux cas intéressants.
+
+\subsection{Vitesse initiale colinéaire au champ}
+Prenons $\vf(0) = v_0\uz$. Comme $v_x(t)^2 + v_y(t)^2$ et qu'on part avec une
+vitesse nulle sur $\ux$ et $\uy$, alors $v_x(t)$ et $v_y(t)$ sont nulles à tout
+instant. La composante de $v_z(t)$ est quant à elle également constante, et
+égale à $v_0$. Ainsi,
+\begin{tror}{, hand, halign=center}
+    \bfseries
+    Une particule chargée de vitesse initiale colinéaire au champ magnétique a
+    un mouvement rectiligne uniforme.
+\end{tror}
+
+Regardons l'autre situation.
+\subsection{Vitesse initiale perpendiculaire au champ}
+Prenons
+\[\vf(0) = v_0\ux\]
+$v_z(t)$ étant constant et $v_z(0)$ étant nulle, il n'y a pas de mouvement en
+$z$.
+
+\subsubsection{Trajectoire}
+Avec le PFD précédent~:
+\begin{empheq}[left=\empheqlbrace]{align*}
+    \xpp(t) &= \frac{qB}{m}\yp(t)\\
+    \ypp(t) &= -\frac{qB}{m}\xp(t)\\
+\end{empheq}
+d'où en intégrant
+\begin{empheq}[left=\empheqlbrace]{align*}
+    \xp(t) &= \frac{qB}{m}y(t) + K\\
+    \yp(t) &= -\frac{qB}{m}x(t) + K'\\
+\end{empheq}
+et avec les conditions initiales~:
+\begin{gather*}
+    \xp(0) = v_0
+    \qor
+    \xp(0) = \frac{qB}{m}\underbracket[1pt]{y(0)}_{=0} + K = K
+    \qdonc
+    K = v_0\\
+    \yp(0) = v_0
+    \qor
+    \yp(0) = -\frac{qB}{m}\underbracket[1pt]{x(0)}_{=0} + K' = K'
+    \qdonc
+    K' = 0
+\end{gather*}
+Soit
+\begin{empheq}[left=\empheqlbrace]{align*}
+    \xp(t) &= \frac{qB}{m}y(t) + v_0\\
+    \yp(t) &= -\frac{qB}{m}x(t)\\
+\end{empheq}
+Étant donné que $v_x(t)^2 + v_y(t)^2 = \cte = v_0{}^2$, on a
+\[\left(\frac{qB}{m}y(t) + v_0\right)^2 + \left(-\frac{qB}{m}x(t)\right)^2 =
+v_0{}^2\]
+soit, en notant $\w_c = \abs{q}B/m$~:
+\[\left(y + \frac{mv_0}{qB}\right)^2 + (x)^2 = \left( \frac{v_0}{\w_c}
+\right)^2\]
+On reconnaît l'équation d'un cercle en coordonnées cartésiennes~:
+\begin{timpo}{Rappel, hand}
+    L'équation cartésienne d'un cercle de centre $(x_0,y_0)$ et de rayon $R$
+    est~:
+    \[(x-x_0)^2 + (y-y_0)^2 = R^2\]
+\end{timpo}
+Dans notre cas, le centre est $\DS\left(0,-\frac{mv_0}{qB}\right)$ et le rayon
+est $\DS R_c = \frac{v_0}{\w_c} = \frac{v_0m}{\abs{q}B}$
+\begin{itemize}[label=$\diamond$]
+    \item Si $q>0$, alors $q = \abs{q}$ et le centre est en
+        $\DS\left(0,-\frac{v_0}{\w_c}\right) = (0,-R_c)$~;
+    \item Si $q>0$, alors $q = -\abs{q}$ et le centre est en
+        $\DS\left(0,\frac{v_0}{\w_c}\right) = (0,R_c)$~;
+\end{itemize}
+On introduit alors le vocabulaire suivant~:
+\begin{tdefi}{Définition}
+    Les constantes $R_c$ et $\w_c$ sont appelées \textbf{rayon cyclotron} et
+    \textbf{pulsation cyclotron}, et sont telles que
+    \[
+        R_c = \frac{v_0}{\w_c}
+        \qet
+        \w_c = \frac{\abs{q}B}{m}
+    \]
+\end{tdefi}
+
+\begin{minipage}{0.45\linewidth}
+    \begin{center}
+        \includegraphics[width=5cm]{chp_B-cercleqpos}
+        % \captionof{figure}{}
+        % \label{}
+    \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+    \begin{center}
+        \includegraphics[width=5cm]{chp_B-cercleqneg}
+        % \captionof{figure}{}
+        % \label{}
+    \end{center}
+\end{minipage}
+
+\subsubsection{Équations horaires}
+\begin{itemize}[label=$\diamond$]
+    \litem{Sur $x$~:} On part de $\yp = -qBx/m$ que l'on injecte dans la
+        projection sur $\ux$ du PFD~:
+        \begin{gather*}
+            \xpp(t) = \frac{qB}{m}\yp(t) = - \left( \frac{qB}{m} \right)^2x(t)
+            \\\Lra
+            \boxed{\xpp(t) + \w_c{}^2x(t) = 0}
+        \end{gather*}
+        On a donc la solution générale
+        \begin{gather*}
+            x(t) = A\cos(\w_ct) + B\sin(\w_ct)
+        \end{gather*}
+        Et avec les conditions initiales
+        \begin{gather*}
+            x(0) = A
+            \qor
+            x(0) = 0
+            \qdonc
+            A = 0
+            \\
+            \xp(0) = \w_cB
+            \qor
+            \xp(0) = v_0
+            \qdonc
+            B = \frac{v_0}{\w_c}
+            \\\Ra
+            \boxed{x(t) = \frac{v_0}{\w_c}\sin(\w_ct)}
+        \end{gather*}
+    \litem{Sur $y$~:} On part de $\xp = qBy/m + v_0$ que l'on injecte dans la
+        projection sur $\uy$ du PFD~:
+        \begin{gather*}
+            \ypp(t) = -\frac{qB}{m}\xp(t) = - \left( \frac{qB}{m} \right)^2y(t)
+            - \frac{qB}{mv_0}
+            \\\Lra
+            \boxed{\xpp(t) + \w_c{}^2x(t) = -\w_c{}^2\frac{mv_0}{qB}}
+        \end{gather*}
+        On a donc la solution générale
+        \begin{gather*}
+            y(t) = A\cos(\w_ct) + B\sin(\w_ct) - \frac{mv_0}{qB}
+        \end{gather*}
+        Et avec les conditions initiales
+        \begin{gather*}
+            y(0) = A - \frac{mv_0}{qB}
+            \qor
+            y(0) = 0
+            \qdonc
+            A = \frac{mv_0}{qB}
+            \\
+            \yp(0) = \w_cB
+            \qor
+            \yp(0) = 0
+            \qdonc
+            B = 0
+            \\\Ra
+            \boxed{y(t) = \frac{mv_0}{qB}(\cos(\w_ct)-1)}
+        \end{gather*}
+\end{itemize}
+
+Ainsi,
+\begin{tror}{Conclusion, hand, halign=center}
+    \bfseries
+    Lors du mouvement d'une particule chargée dans un champ $\Bf$
+    perpendiculaire à sa vitesse initiale $v_0$, la particule décrit un cercle de
+    rayon $R_c$, de centre $(0,\pm R_c)$ à la vitesse angulaire $\w_c$.
+\end{tror}
+
+\subsection{Cas général}
+Supposons $\vf0 = v_{0,x}\ux + v_{0,z}\uz$. Les équations du mouvement
+découplent le mouvement dans le plan $xy$ et selon $z$~:
+\begin{itemize}
+    \item Sur $z$ on garde une vitesse constante~: $v_z(t) = v_{0,z}$~;
+    \item Pour les composantes sur $x$ et $y$, on a $v_x(t)^2 + v_y(t)^2 =
+        v_{0,x}{}^2$ et les mêmes équations différentielles~: le mouvement est
+        un cercle de rayon $R = \frac{v_{0,x}}{\w_c}$.
+\end{itemize}
+Ainsi, la trajectoire est la superposition d'une rotation circulaire uniforme
+autour de $(\Or z)$ et d'une translation le long de cet axe~: c'est un
+\textbf{mouvement hélicoïdal}. Une animation est disponible en
+ligne\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Meca/Charges/general.php}}.
+
+\subsection{Applications}
+\begin{itemize}[label=$\diamond$]
+    \litem{Spectromètre de masse.} Un spectromètre de masse permet de
+        \textbf{mesurer la masse d'atomes}, et éventuellement de déterminer les
+        abondances isotopiques (utilisable par exemple pour la datation). Le
+        principe est le suivant~:
+        \begin{itemize}
+            \item Des atomes sont ionisés dans une chambre d'ionisation~;
+            \item Une ouverture fait sortir un flux de particules qui son
+                accélérées par un champ électrique, pour les amener à une
+                vitesse $v_f = \DS \sqrt{\frac{2qU}{m}}$~;
+            \item Un champ magnétique courbe ensuite leur trajectoire, avec un
+                rayon
+                \[R_c = \frac{mv_f}{qB} = \sqrt{\frac{2qU}{m}}\frac{m}{qB} =
+                \frac{1}{B} \sqrt{\frac{2U}{q}}\sqrt{m}\]
+        \end{itemize}
+        Ainsi, la donnée de la distance d'impact permet de retrouver la masse
+        des particules~! \bigbreak
+        \begin{center}
+            \includegraphics[width=.5\linewidth]{spectrometre}
+            \captionof{figure}{Fonctionnement d'un spectromètre}
+            \label{fig:spectrometre}
+        \end{center}
+    \litem{Le cyclotron.} Il est constitué de deux demi-cylindres dans lequel
+        règne un champ magnétique. Entre les deux demi-cylindres, deux
+        électrodes imposent un champ électrique.
+        \begin{itemize}
+            \item La particule chargée est accélérée dans l'espace entre les
+                cylindres~;
+            \item Elle fait demi-tour grâce à un champ magnétique qui la fait
+                revenir dans la zone entre-deux~;
+            \item Avec un courant alternatif bien réglé, la tension accélère de
+                nouveau la particule~;
+            \item Le champ magnétique la fait revenir, et ainsi de suite.
+        \end{itemize}
+        À chaque demi-tour, l'énergie cinétique croît de $eU$. La vitesse croît
+        donc comme la racine carré du nombre de passages dans l'espace entre les
+        cylindres.
+        \begin{center}
+            \includegraphics[scale=1]{cyclotron}
+            \captionof{figure}{Fonctionnement d'un cyclotron}
+            \label{fig:cyclotron}
+        \end{center}
+        Le rayon de courbure est proportionnel à la vitesse de la particule~: la
+        sélection de ce rayon permet la sélection de l'énergie cinétique
+        voulue. Voir l'animation en
+        ligne\footnote{\url{http://www.sciences.univ-nantes.fr/sites/genevieve_tulloue/Meca/Charges/cyclotron.php}}.
+        \bigbreak
+    \litem{L'effet \textsc{Hall}.} On considère un fil parcouru par une intensité
+        $i$ vers la droite. Les électrons se déplacent en sens inverse, soit
+        $\vf = -v\ux$. Si un champ magnétique est imposé selon $\uz$, ils sont
+        déviés selon $-\uy$ ($q < 0$), et s'accumulent sur une paroi du fil. Un
+        déséquilibre de charge s'installe, créant alors un champ appelé champ de
+        \textsc{Hall}.
+        \begin{center}
+            \includegraphics[scale=1]{effet_hall}
+            \captionof{figure}{Effet \textsc{Hall} dans un fil}
+            \label{fig:hall}
+        \end{center}
+        En régime permanent, la force résultant de ce champ de \textsc{Hall}
+        compense la force magnétique~:
+        \[
+            -e\Ef_H -evB\uy = \of
+            \qdonc
+            \Ef_ = -vB\uz
+        \]
+        On mesure la tension entre la partie supérieure du conducteur et sa
+        partie inférieure~:
+        \[U = V(x=D) - V(x=0) = vBd\]
+        Ainsi, la mesure de $U$ permet la mesure du champ $B$~! C'est le
+        principe des teslamètres à effet \textsc{Hall}.
+\end{itemize}
+
+\end{document}

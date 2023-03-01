@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams['text.usetex'] = True
+# UNE ACTIVITÉ CAPYTALE EST DISPONIBLE EN LIGNE POUR LES RENDUS DE SCRIPTS~:
+# https://capytale2.ac-paris.fr/web/c/d3aa-1325055
 
 # =========================================================================== #
 #                                                                             #
@@ -90,7 +91,8 @@ plt.plot(xfit, a*xfit+b,
          'r', label='Régression linéaire')
 plt.errorbar(x, y,
              xerr=Delta_x, yerr=Delta_y,
-             fmt='bo', label='Mesures')
+             linestyle='None', capsize=3,
+             color='b', label='Mesures')
 
 plt.title('Titre efficace et descriptif', fontsize=20)
 plt.legend(fontsize=15)

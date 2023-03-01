@@ -114,7 +114,7 @@ par le courant}.
 On considèrera dans toute la suite des champs \textbf{uniformes}\footnote{Est
 uniforme une grandeur constante dans l'espace.} et
 \textbf{stationnaires}\footnote{Est stationnaire une grandeur constante dans le
-temps.}
+temps.}.
 \vspace{-12pt}
 
 \subsection{Définition}
@@ -130,7 +130,7 @@ temps.}
 \subsection{Comparaison au poids}
 
 Les particules chargées sont généralement très légères et rapides~: pour un
-électron, on a $m \approx SI{e-30}{kg}$ et $\norm{\vf} \approx
+électron, on a $m \approx \SI{e-30}{kg}$ et $\norm{\vf} \approx
 \SI{e6}{m.s^{-1}}$. Seulement, leur charge est également faible, avec $\abs{e}
 \approx \SI{e-19}{C}$ pour un électron ou un proton. Il est donc intéressant de
 connaître la différence de force entre le poids qu'elle subit et la force de
@@ -154,7 +154,8 @@ Ainsi, dans les deux cas, on trouve
 \[\frac{\norm{\Ff_e}}{\norm{\Pf}} = \frac{\norm{\Ff_m}}{\norm{\Pf}} \approx
 \num{e14}\]
 
-\begin{tror}{Impact du poids vs. \textsc{Lorentz}}
+\begin{tror}{Impact du poids vs. \textsc{Lorentz}, halign=center, heart}
+    \bfseries
     Pour des particules chargées dans des conditions générales, le poids est
     négligeable devant la force de \textsc{Lorentz}
 \end{tror}
@@ -230,11 +231,8 @@ vectoriels. Quelques rappels~: \bigbreak
             (vxx) at (pic cs:vz) {$v_x$};
         \tikzmark{vxx}{(vxx)}
     \end{tikzpicture}
-    % \tikz[remember picture, overlay]
-    % \node[below=4pt, gray, transform canvas={xshift=-5.5pt}]
-    %     (vxx) at (pic cs:vz) {$v_x$};
     \tikz[remember picture, overlay]
-    \draw[->, orange!90!black, transform canvas={xshift=-5.5pt}]
+    \draw[-{Latex[length=2mm]}, orange!90!black, transform canvas={xshift=-5.5pt}]
         (pic cs:ux) .. controls
         (pic cs:vy) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
         ($(pic cs:vy)!0.5!(pic cs:uy)$) .. controls
@@ -242,7 +240,7 @@ vectoriels. Quelques rappels~: \bigbreak
         (pic cs:vx)
         ;
     \tikz[remember picture, overlay]
-    \draw[->, BlueViolet!70!black, transform canvas={xshift=-5.5pt}]
+    \draw[-{Latex[length=2mm]}, BlueViolet!70!black, transform canvas={xshift=-5.5pt}]
         (pic cs:uy) .. controls
         (pic cs:vz) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
         ($(pic cs:vz)!0.5!(pic cs:uz)$) .. controls
@@ -250,7 +248,7 @@ vectoriels. Quelques rappels~: \bigbreak
         (pic cs:vy)
         ;
     \tikz[remember picture, overlay]
-    \draw[->, deficol, transform canvas={xshift=-5.5pt}]
+    \draw[-{Latex[length=2mm]}, deficol, transform canvas={xshift=-5.5pt}]
         (pic cs:uz) .. controls
         (pic cs:vxx) .. node[pos=.85, above right=-4pt and -1.5pt] {$\oplus$}
         ($(pic cs:vxx)!0.5!(pic cs:uxx)$) .. controls
@@ -261,7 +259,7 @@ vectoriels. Quelques rappels~: \bigbreak
         = \mqty(u_x\tikzmark{ux}\\u_y\tikzmark{uy}\\u_z\tikzmark{uz})
             \wedge
             \mqty(v_x\tikzmark{vx}\\v_y\tikzmark{vy}\\v_z\tikzmark{vz})
-        = \mqty(\color{BlueViolet!70!black}u_yv_z - v_yu_z\\\color{deficol}u_zv_x -
+        = \mqty(\color{BlueViolet!70!black}u_yv_z - u_zv_y\\\color{deficol}u_zv_x -
             u_xv_z\\\color{orange!90!black}u_xv_y - u_yv_x)
     \]
     \vspace{12pt}
@@ -487,7 +485,7 @@ On intègre une seconde fois, avec $x(0) = 0 = z(0)$~:
     z(t) &= \frac{qE}{2m}t^2
 \end{empheq}
 On trouve alors l'équation de la trajectoire~:
-\[\boxed{z(x) = \frac{qE}{2mv_0{}^2}}\]
+\[\boxed{z(x) = \frac{qE}{2mv_0{}^2}x^2}\]
 C'est une trajectoire parabolique, en tout point \textbf{similaire à la
 chute libre}.
 
@@ -552,7 +550,7 @@ peut néanmoins citer quelques applications~:
                 \textbf{Poids} & \text{négligeable \textbf{devant }}\Ff\\
                 \textbf{Force magnétique} & \Ff = q\vf\wedge\Bf =
                     \mqty(q\xp\\q\yp\\q\zp)\wedge\mqty(0\\0\\B)\\
-                                     \Lra & \Ff = -q\xp B\uy + q\yp B\ux
+                                     \Lra & \Ff = q\yp B\ux -q\xp B\uy 
             \end{array}
         \]
     \litem{PFD~:}
@@ -571,12 +569,14 @@ On remarque cependant, avant toute évolution due aux conditions initiales, que
 le TPC nous donne une information sur le futur du système. En effet, la force
 magnétique ne travaillant pas ($\vf\wedge\Bf \perp \vf$), on a
 \[\dv{\Ec_c}{t} = 0\]
-donc la vitesse est constante en norme, notamment
+donc la vitesse est constante en norme, c'est-à-dire que le mouvement est
+uniforme, et notamment
 \[v_x(t)^2 + v_y(t)^2 + v_z(t)^2 = \cte\]
 Or, avec la projection du PFD on a $\zpp = 0 \Ra \zp = \cte$, donc on sait déjà
 que
-\begin{tror}{Analyse du mouvement en champ $\Bf$, halign=center}
-    Le mouvement dans un champ $\Bf$ dirigé selon $\uz$ se fait tel que
+\begin{tror}{Analyse du mouvement en champ $\Bf$, halign=center, hand}
+    Le mouvement dans un champ $\Bf$ dirigé selon $\uz$ est \textbf{uniforme},
+    et tel que
     \[\boxed{v_x(t)^2 + v_y(t)^2 = \cte}\]
 \end{tror}
 Étudions les deux cas intéressants.
@@ -586,8 +586,7 @@ Prenons $\vf(0) = v_0\uz$. Comme $v_x(t)^2 + v_y(t)^2$ et qu'on part avec une
 vitesse nulle sur $\ux$ et $\uy$, alors $v_x(t)$ et $v_y(t)$ sont nulles à tout
 instant. La composante de $v_z(t)$ est quant à elle également constante, et
 égale à $v_0$. Ainsi,
-\begin{tror}{, hand, halign=center}
-    \bfseries
+\begin{tror}{, halign=center}
     Une particule chargée de vitesse initiale colinéaire au champ magnétique a
     un mouvement rectiligne uniforme.
 \end{tror}
@@ -597,18 +596,18 @@ Regardons l'autre situation.
 Prenons
 \[\vf(0) = v_0\ux\]
 $v_z(t)$ étant constant et $v_z(0)$ étant nulle, il n'y a pas de mouvement en
-$z$.
+$z$~: le mouvement est donc \textbf{plan}.
 
 \subsubsection{Trajectoire}
 Avec le PFD précédent~:
 \begin{empheq}[left=\empheqlbrace]{align*}
     \xpp(t) &= \frac{qB}{m}\yp(t)\\
-    \ypp(t) &= -\frac{qB}{m}\xp(t)\\
+    \ypp(t) &= -\frac{qB}{m}\xp(t)
 \end{empheq}
 d'où en intégrant
 \begin{empheq}[left=\empheqlbrace]{align*}
     \xp(t) &= \frac{qB}{m}y(t) + K\\
-    \yp(t) &= -\frac{qB}{m}x(t) + K'\\
+    \yp(t) &= -\frac{qB}{m}x(t) + K'
 \end{empheq}
 et avec les conditions initiales~:
 \begin{gather*}
@@ -617,7 +616,7 @@ et avec les conditions initiales~:
     \xp(0) = \frac{qB}{m}\underbracket[1pt]{y(0)}_{=0} + K = K
     \qdonc
     K = v_0\\
-    \yp(0) = v_0
+    \yp(0) = 0
     \qor
     \yp(0) = -\frac{qB}{m}\underbracket[1pt]{x(0)}_{=0} + K' = K'
     \qdonc
@@ -626,7 +625,7 @@ et avec les conditions initiales~:
 Soit
 \begin{empheq}[left=\empheqlbrace]{align*}
     \xp(t) &= \frac{qB}{m}y(t) + v_0\\
-    \yp(t) &= -\frac{qB}{m}x(t)\\
+    \yp(t) &= -\frac{qB}{m}x(t)
 \end{empheq}
 Étant donné que $v_x(t)^2 + v_y(t)^2 = \cte = v_0{}^2$, on a
 \[\left(\frac{qB}{m}y(t) + v_0\right)^2 + \left(-\frac{qB}{m}x(t)\right)^2 =
@@ -710,7 +709,7 @@ On introduit alors le vocabulaire suivant~:
             \ypp(t) = -\frac{qB}{m}\xp(t) = - \left( \frac{qB}{m} \right)^2y(t)
             - \frac{qB}{mv_0}
             \\\Lra
-            \boxed{\xpp(t) + \w_c{}^2x(t) = -\w_c{}^2\frac{mv_0}{qB}}
+            \boxed{\ypp(t) + \w_c{}^2y(t) = -\w_c{}^2\frac{mv_0}{qB}}
         \end{gather*}
         On a donc la solution générale
         \begin{gather*}
@@ -743,7 +742,7 @@ Ainsi,
 \end{tror}
 
 \subsection{Cas général}
-Supposons $\vf0 = v_{0,x}\ux + v_{0,z}\uz$. Les équations du mouvement
+Supposons $\vfo = v_{0,x}\ux + v_{0,z}\uz$. Les équations du mouvement
 découplent le mouvement dans le plan $xy$ et selon $z$~:
 \begin{itemize}
     \item Sur $z$ on garde une vitesse constante~: $v_z(t) = v_{0,z}$~;
@@ -791,7 +790,7 @@ ligne\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Meca/Charges/general
                 nouveau la particule~;
             \item Le champ magnétique la fait revenir, et ainsi de suite.
         \end{itemize}
-        À chaque demi-tour, l'énergie cinétique croît de $eU$. La vitesse croît
+        À chaque demi-tour, l'énergie cinétique croît de $\abs{qU}$. La vitesse croît
         donc comme la racine carré du nombre de passages dans l'espace entre les
         cylindres.
         \begin{center}
@@ -820,11 +819,11 @@ ligne\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Meca/Charges/general
         \[
             -e\Ef_H -evB\uy = \of
             \qdonc
-            \Ef_ = -vB\uz
+            \Ef_H = -vB\uz
         \]
         On mesure la tension entre la partie supérieure du conducteur et sa
         partie inférieure~:
-        \[U = V(x=D) - V(x=0) = vBd\]
+        \[U = V(y=D) - V(y=0) = vBd\]
         Ainsi, la mesure de $U$ permet la mesure du champ $B$~! C'est le
         principe des teslamètres à effet \textsc{Hall}.
 \end{itemize}

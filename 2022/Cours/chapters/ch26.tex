@@ -1,0 +1,372 @@
+\documentclass[../main/main.tex]{subfiles}
+
+\raggedbottom
+
+\makeatletter
+\renewcommand{\@chapapp}{M\'ecanique -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+
+\begin{document}
+\setcounter{chapter}{7}
+
+\chapter{M\'ecanique du solide}
+On veut généraliser les lois des la mécanique du point matériel à des systèmes
+constitués de plusieurs points matériels, ici pour des solides indéformables.
+
+\section{Système de points matériels}
+\subsection{Systèmes discret et continu}
+Un solide peut être vu comme un ensemble de points matériels auquel on peut
+appliquer le PFD. On en distingue deux types~:
+\begin{tdefi}{Définition, sidebyside}
+    \begin{center}
+        \fbox{Système discret}
+    \end{center}
+    Un ensemble de $n$ points matériels M$_i$ de masses $m_i$
+    FIGURE
+    \tcblower
+    \begin{center}
+        \fbox{Système continu}
+    \end{center}
+    Un ensemble d'éléments de volumes $\dd{V}$ de masse $\dd{m}$, de position
+    $\Mr$.
+    FIGURE
+\end{tdefi}
+
+Sauf cas particuliers, on considèrera des systèmes \textbf{discrets} et
+\ul{fermés} (tous les points restent dans le système).
+
+\subsection{Centre d'inertie}
+\begin{tdefi}{Définition}
+    Le \textbf{centre d'inertie} ou \textbf{centre de gravité} G d'un ensemble
+    de points matériels M$_i$ de masses $m_i$ telles que $m\ind{tot} = \sum_i
+    m_i$ est défini par~:
+    \[
+        \boxed{m\ind{tot}\vv{\rm OG} = \sum_i m_i \vv{{\OMr}_i}}
+        \Lra
+        \boxed{\sum_i m_i\vv{{\rm GM}_i} = \of}
+    \]
+    Il s'agit du barycentre des points du système, pondéré par leur masse.
+\end{tdefi}
+
+% Le centre d'inertie correspond au centre d'équilibre gravitationnel d'un
+% ensemble de point. Ainsi, pour mettre une règle en équilibre horizontalement il
+% faut la reposer en son milieu. Un marteau, en revanche, a son centre d'inertie
+% bien plus proche de la masse que du milieu.
+% 
+% Il existe une autre formulation à cette définition. En effet,
+% \begin{align*}
+%     \sum_i m_i\vv{\rm OG} &= \sum_i m_i\vv{\OMr_i}
+%     \\
+%     \Leftrightarrow
+%     \of &= \sum_i m_i \left( \vv{\OMr_i} - \vv{\rm OG} \right)
+% \end{align*}
+% Or, comme $\vv{\OMr_i} - \vv{\rm OG} = \vv{\rm GO} + \vv{\OMr_i} = \vv{\rm
+% GM_i}$, on pourra également retenir~:
+% \[\boxed{\sum_i m_i\vv{{\rm GM}_i} = \of}\]
+% 
+% \begin{rexem}{Exemple}
+%     Soient 2 masses $m$ placées en A et en B.
+%     \begin{center}
+%         \begin{tikzpicture}[]
+%             \coordinate (A) at (-2,0);
+%             \coordinate (B) at (2,0);
+%             \coordinate (G) at (0,0);
+%             \node[] at (A) {$\bullet$};
+%             \node[below] at (A) {$m$};
+%             \node[above] at (A) {A};
+%             \node[] at (B) {$\bullet$};
+%             \node[below] at (B) {$m$};
+%             \node[above] at (B) {B};
+%             \node[] at (G) {$\times$};
+%             \node[above] at (G) {G};
+%         \end{tikzpicture}
+%     \end{center}
+%     \leftcentersright{On a~:}{$m\vv{\rm GA} + m\vv{\rm GB} = \of
+%     \Lra \vv{\rm GA} + \vv{\rm GB} = \of$}{car $m\neq0$}
+% 
+%     Or, $\vv{\rm GA} + \vv{\rm GB} = \vv{\rm GA} + \vv{\rm GA} + \vv{\rm AB}$,
+%     donc
+%     \begin{align*}
+%         2\vv{\rm GA} + \vv{\rm AB} &= \of
+%         \\
+%         \Lra
+%         2\vv{\rm AG} &= \vv{\AB}
+%         \\
+%         \Lra
+%         \Aboxed{\vv{\rm AG} &= \frac{1}{2}\vv{\rm AB}}
+%     \end{align*}
+%     Avec $3m$ en A et $m$ en B~:
+%     \begin{center}
+%         \begin{tikzpicture}[]
+%             \coordinate (A) at (-2,0);
+%             \coordinate (B) at (2,0);
+%             \coordinate (G) at (-1,0);
+%             \node[] at (A) {$\bullet$};
+%             \node[below] at (A) {$m$};
+%             \node[above] at (A) {A};
+%             \node[] at (B) {$\bullet$};
+%             \node[below] at (B) {$m$};
+%             \node[above] at (B) {B};
+%             \node[] at (G) {$\times$};
+%             \node[above] at (G) {G};
+%         \end{tikzpicture}
+%     \end{center}
+%     \leftcentersright{Cette fois,}{$3m\vv{\rm GA} + m\vv{\rm GB} = \of
+%     \Lra 3\vv{\rm GA} + \vv{\rm GB} = \of$}{car $m\neq0$}
+% 
+%     Or, $3\vv{\rm GA} + \vv{\rm GB} = 3\vv{\rm GA} + \vv{\rm GA} + \vv{\rm AB}$,
+%     donc
+%     \begin{align*}
+%         4\vv{\rm GA} + \vv{\AB} &= \of
+%         \\
+%         \Lra
+%         4\vv{\rm AG} &= \vv{\AB}
+%         \\
+%         \Lra
+%         \Aboxed{\vv{\rm AG} &= \frac{1}{4}\vv{\rm AB}}
+%     \end{align*}
+% \end{rexem}
+% 
+% Cette définition peut être étendue aux solides qui peuvent être vus comme un
+% ensemble infini de points infiniment proches. Dans ce cas, la somme discrète
+% devient une intégrale.
+
+\subsection{Mouvements d'un solide indéformable}
+
+\begin{tdefi}{Définition}
+    Un solide \textbf{indéformable} est un ensemble de points tels que la
+    distance entre deux points quelconques soit constante~:
+    \[\forall (\Mr_1,\Mr_2) \in ({\rm solide}), \quad {\rm M_1M_2} = \cte\]
+\end{tdefi} 
+
+Un solide peut avoir un mouvement complexe. Dans le cadre du programme, on se
+limite à deux situations.
+\begin{itemize}
+    \item la translation : tous les points ont le même vecteur vitesse. Dans ce
+        cas, la connaissance du mouvement d’un des points permet de connaître le
+        mouvement du solide. On a déjà vu le cas de la translation rectiligne
+        (véhiculé en mouvement sur une route rectiligne), de la translation
+        circulaire (cas de la grande roue), de la translation parabolique (cas
+        d’un objet en chute libre sans mouvement de rotation initial).
+    \item la rotation : tous les points ont un mouvement circulaire autour d’un
+        axe z. C’est le cas d’un rotor de moteur. Attention, dans le cas d’une
+        roue de voiture, l’axe de rotation n’est fixe que dans le référentiel de
+        la voiture. Dans ce cas, la vitesse de chaque point est 
+        \[\vf = r\tp\ut\]
+        où r désigne la distance à l’axe de rotation, $\tp$ la vitesse angulaire.
+\end{itemize}
+
+\subsubsection{Translation}
+\begin{tdefi}{Définition~: translation}
+    Un solide en mouvement est en \textbf{translation} si son
+    \textbf{orientation est fixe} au cours du mouvement. Ainsi, de manière
+    équivalente~:
+    \begin{enumerate}
+        \item $\forall (\Mr_1,\Mr_2) \in ({\rm solide}), \quad \vv{\rm M_1M_2} =
+            \vcte$~;
+        \item $\forall t$ et $\forall (\Mr_1,\Mr_2) \in ({\rm solide}), \quad
+            \vf(\Mr_1) = \vf(\Mr_2)$.
+    \end{enumerate}
+    Alors, la connaissance du mouvement d'un point du solide en translation
+    permet de connaître le mouvement de tout point du solide~; on prendra
+    habituellement le centre d'inertie.
+\end{tdefi}
+
+\begin{rexem}{Exemples}
+    \begin{enumerate}
+        \item Translation quelconque~:
+        \item Translation rectiligne~: chaque point décrit une droite.
+        \item Translation circulaire~: chaque point décrit un arc de cercle.
+    \end{enumerate}
+\end{rexem}
+
+\subsubsection{Rotation}
+\begin{tdefi}{Définition~: rotation}
+    Un solide est dit en \textbf{mouvement de rotation} autour d'un \textbf{axe
+    fixe} $\D$ lorsque tous ses points possèdent un \textbf{mouvement
+    circulaire} autour de cet axe.
+\end{tdefi}
+\begin{tcoro}{Conséquence}
+    Tous les points du solide $\Sc$ parcourent un cercle à la \textbf{même
+    vitesse angulaire} $\w(t) = \tp(t)$~; ils sont donc animés avec les vitesses
+    de rotations~:
+    \[\vf_{\Mr/\Rc}(t) = r_{\Mr}\tp(t)\ut = r_{\Mr}\w(t)\ut\]
+    Ce mouvement est décrit complètement par le \textbf{vecteur rotation}
+    \[\Of_{\Sc/\Rc} = \w(t)\vv{u_\D}\]
+\end{tcoro}
+
+\begin{rexem}{Exemple}
+    Rotation autour de l'axe $\D$ fixe~:
+\end{rexem}
+
+\subsubsection{Translation circulaire ou rotation~?}
+\begin{table}[!h]
+    \centering
+    \begin{tabularx}{.8\linewidth}{YY}
+        \toprule
+        Translation circulaire & Rotation autour d'un axe fixe
+        \\\midrule
+        Tous les points suivent une trajectoire circulaire de même rayon mais de
+        centre différent & Tous les points suivent une trajectoire circulaire de
+        même centre mais de rayon différent.
+        \\\bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Rappel~: TRC}
+\subsection{Quantité de mouvement d'un ensemble de points}
+
+On souhaiterait pouvoir étudier un ensemble de points comme le mouvement d'un
+point unique, comme le centre d'inertie. Pour cela, il faut étudier la quantité
+de mouvement d'un ensemble de points.
+
+\begin{tdefi}{Définition}
+    Le vecteur quantité de mouvement d'un ensemble $\Sc$ de points matériels
+    M$_i$ de masses $m_i$ est défini par~:
+    \[\boxed{\pf(\Sc) = \sum_i\pf(\Mr_i) = \sum_i m_i \vf(\Mr_i)}\]
+\end{tdefi}
+
+Pour que les choses soient simples, il faudrait donc que $\pf(\Sc)$ soit relié
+au centre d'inertie. Ça tombe bien~:
+
+\begin{tprop}{Propriété~: quantité de mouvement d'un système}
+    \centering\bfseries
+    La quantité de mouvement d'un ensemble de points est la quantité de
+    mouvement d'un point matériel placé en $G$ et de masse $m_{\tot}$~:
+    \[\boxed{\pf(\Sc) = m_{\tot}\vf(\Gr)}\]
+    Tout se passe comme si la masse était concentrée en G.
+\end{tprop}
+
+\begin{tdemo}{Démonstration}
+    \begin{gather*}
+        m_{\tot}\vf(\Gr) = m_{\tot}\dv{\vv{\rm OG}}{t} =
+            \underbrace{\sum_i m_i \dv{\vv{\OMr_i}}{t}}_{\pf(\Sc)}
+        \Lra
+        \boxed{\pf(\Sc) = m_{\tot}\vf(\Gr)}
+        \qed
+    \end{gather*}
+\end{tdemo}
+
+\subsection{Forces intérieures et extérieures}
+Si on peut étudier la cinématique d'un corps par l'étude de son centre de
+gravité, comment les forces interviennent-elles sur cet ensemble de points~?
+Les forces s'appliquant aux points M$_i$ de $\Sc$ se rangent en deux
+catégories~:
+\begin{enumerate}
+    \item Les forces intérieures $\Ff_{\rint\ra\Mr_i}$ exercées par les autres
+        points M$_j$ du système, avec $j\neq i$~;
+    \item Les forces extérieures $Ff_{\ext\ra\Mr_i}$ exercées par une origine
+        externe au système.
+\end{enumerate}
+Les forces intérieures ont cependant une propriété remarquable~:
+\begin{tprop}{Propriété~: résultante des forces intérieures}
+    \centering\bfseries
+    La résultante $\Ff_{\rint}$ des forces intérieures d'un système est toujours
+    nulle.
+\end{tprop}
+\begin{tdemo}{Démonstration, breakable}
+    La résultante des forces intérieures exercées sur M$_i$ s'écrit
+    \[\Ff_{\rint\ra i} = \sum_{j\neq i}\Ff_{j\ra i}\]
+    Ainsi la résultante des forces intérieures au système s'écrit
+    \[\Ff_{\rint} = \sum_i \Ff_{\rint\to i} = \sum_i\sum_{j\neq i}\Ff_{j\to i}\]
+    Or, d'après la troisième loi de \textsc{Newton}, $\forall i\neq j, \quad
+    \Ff_{j\to i} = -\Ff{i\to j}$~; ainsi, les termes de la somme précédente
+    s'annulent deux à deux, et on a bien
+    \begin{gather*}
+        \boxed{\Ff_{\rint} = \sum_i\Ff_{\rint\to i} = \of}
+        \qed
+    \end{gather*}
+\end{tdemo}
+Rien de remarquable ne se produit pour les forces extérieures, et on aura
+simplement
+\[\boxed{\Ff_{\ext} = \sum_i \Ff_{\ext\to i}}\]
+
+\subsection{Théorème de la résultante cinétique}
+% Considérons pour simplifier un système de deux points M$_1$ et M$_2$ de masses
+% $m_1$ et $m_2$ en mouvement dans un référentiel galiléen. On peut appliquer le
+% principe fondamental de la dynamique à chacun d'entre eux~:
+% \[\dv{\pf(\Mr_1)}{t} = \Ff_{\Mr_2\ra\Mr_1} + \Ff_{\ext\ra\Mr_1}\]
+% avec deux types de forces~: les forces intérieures du système, ici celles
+% exercées par M$_2$ sur M$_1$, et les forces extérieures, c'est-à-dire toutes les
+% autres. En faisant de même pour M$_2$~:
+% \[\dv{\pf(\Mr_2)}{t} = \Ff_{\Mr_1\ra\Mr_2} + \Ff_{\ext\ra\Mr_2}\]
+% Ainsi, avec la définition de la quantité de mouvement d'un ensemble de points,
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows, raster
+    valign=top]%
+    \begin{tprop}{Théorème de la résultante cinétique, heart}
+        Le principe fondamental de la dynamique pour un point matériel
+        s'applique à un ensemble de point en prenant pour point matériel le
+        centre d'inertie G affecté de la masse totale $m_{\tot}$ du système, en
+        ne considérant que les forces extérieurs s'appliquant à l'ensemble~:
+        \[\boxed{\dv{\pf\Rg(\Sc)}{t} = m_{\tot}\dv{\vf(\Gr)}{t} = \Ff_{\ext}}\]
+    \end{tprop}%
+    \begin{tdemo}{Démonstration}
+        \begin{align*}
+            \dv{\pf\Rg(\Sc)}{t} &= \sum_i \dv{\pf\Rg(\Mr_i)}{t}
+            \\
+                                &= \underbracket[1pt]{
+                                       \sum_i \Ff_{\rint\to i}
+                                   }_{=\of\text{ par 3\ieme\ loi}} +
+                                   \underbracket[1pt]{
+                                       \sum_i \Ff_{\ext\to i}
+                                   }_{=\Ff_{\ext}\text{ par déf.}}
+            \\\Lra
+            \Aboxed{\dv{\pf\Rg(\Sc)}{t} &= m_{\tot}\dv{\vf(\Gr)}{t} = \Ff_{\ext}}
+            \qed
+        \end{align*}
+    \end{tdemo}
+\end{tcbraster}
+\begin{tror}{, hand}
+    Le mouvement du centre de gravité n’est affecté que par les forces
+    extérieures au système. Ainsi, dans la suite, on étudiera le mouvement du
+    centre de gravité, de masse $m_{\tot}$, soumis aux forces extérieures au
+    système.
+\end{tror}
+
+\section{Énergétique des systèmes de points}
+On l'a vu dans les chapitres précédents, différentes approches sont possibles en
+mécanique selon le résultat désiré. Si le PFD permet d'avoir l'information
+dynamique sur le centre d'inertie, on cherche à établir les résultats de
+l'approche énergétique aux solides. Commençons par le plus simple~:
+\subsection{Cinétique}
+\begin{tdefi}{Définition}
+    Comme pour la masse ou la quantité de mouvement, l'énergie cinétique d'un
+    solide est la \textbf{somme des énergies cinétiques de chaque point le
+    constituant}~:
+    \[
+        \boxed{\Ec_{c/\Rc}(\Sc) = \sum_i\Ec_{c/\Rc}(\Mr_i) = \sum_i
+        \frac{1}{2}m_iv_{i/\Rc}{}^2}
+    \]
+\end{tdefi}
+
+\subsection{Puissance intérieure}
+Pour pouvoir appliquer les théorèmes énergétiques, il faut détailler les
+puissances des forces s'appliquant au solide, et notamment les forces
+intérieures. TBD.
+
+\subsection{Théorèmes}
+
+\section{Moments pour un système de points}
+\subsection{Moment cinétique et moment d'inertie}
+Mélange Olivier/Schweitzer
+
+\subsection{Moments intérieurs}
+Olivier
+
+\subsection{TMC}
+Olivier
+
+Analogie Schweitzer
+
+\subsection{Énergie cinétique de rotation}
+Schweitzer
+
+\section{Cas particuliers et application}
+Schweitzer~: couple, pivot~; aucun moment = pas de frottements
+
+Schweitzer pendule pesant
+
+\end{document}

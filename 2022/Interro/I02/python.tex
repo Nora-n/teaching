@@ -1,0 +1,132 @@
+\documentclass[a4paper, 12pt, final, garamond]{book}
+\usepackage{cours-preambule}
+
+\raggedbottom
+
+\makeatletter
+\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\makeatother
+
+\HideSolutionstrue
+
+\begin{document}
+\setcounter{chapter}{1}
+
+\chapter{R\'egressions lin\'eaires en \texttt{Python}}
+
+Dans tout cet exercice, on suppose les importations suivantes~:
+\begin{python}
+import numpy as np
+import matplotlib.pyplot as plt
+\end{python}
+Pour chaque question ci-après, écrire les commandes \texttt{python} demandées~:
+
+\begin{enumerate}[label=\sqenumi]
+    \item Donnez 2 manières de créer \texttt{X} le tableau \texttt{numpy}
+        comportant les données \texttt{[1, 2, 3]}. \hfill (3 lignes) \smallbreak
+        \begin{solution}
+            \begin{python}
+X = np.array([1, 2, 3])
+# ou
+X = [1, 2, 3]
+X = np.asarray(X)
+            \end{python}
+\end{solution}
+    \item Calculer \texttt{a}, \texttt{b} le coefficient directeur et l'ordonnée
+        à l'origine de la régression linéaire entre \texttt{X} et \texttt{Y}.
+        \hfill (1 ligne)
+        \begin{solution}
+            \begin{python}
+a, b = np.polyfit(X, Y, 1)
+            \end{python}
+\end{solution}
+
+    \item Créer la \textbf{fonction} \texttt{yfunc} permettant de tracer les valeurs
+        d'une régression. \hfill (2 lignes)
+        \begin{solution}
+            \begin{python}
+def yfunc(x, a, b):
+    return a*x+b
+            \end{python}
+\end{solution}
+
+    \item Créer la liste \texttt{xliste} découpant l'intervalle entre la plus petite
+        valeur de \texttt{X} et la plus grande valeur de \texttt{X} en 1000
+        points. \hfill (1 ligne)
+        \begin{solution}
+            \begin{python}
+xliste = np.linspace(min(X), max(X), 1000)
+            \end{python}
+\end{solution}
+
+    \item Créer la liste \texttt{yliste} des valeurs de la régression calculées sur
+        \texttt{xliste}. \hfill (1 ligne)
+        \begin{solution}
+            \begin{python}
+yliste = yfunc(xliste, a, b)
+            \end{python}
+\end{solution}
+
+    \item Tracer le nuage de points de \texttt{X} et \texttt{Y}. \hfill (1
+        ligne)
+        \begin{solution}
+            \begin{python}
+plt.scatter(X, Y)
+            \end{python}
+\end{solution}
+
+    \item Tracer le nuage de points avec barres d'erreurs, avec \texttt{uX}
+        l'incertitude sur \texttt{X}, \texttt{uY} l'incertitude sur \texttt{Y}.
+        (1 ligne ou 2)
+        \begin{solution}
+            \begin{python}
+plt.errorbar(X, Y, xerr=uX, yerr=uY,
+             linestyle='None') # bonus
+            \end{python}
+\end{solution}
+
+    \item Tracer la régression linéaire entre \texttt{X} et \texttt{Y}. \hfill
+        (1 ligne)
+        \begin{solution}
+            \begin{python}
+plt.plot(xliste, yliste)
+            \end{python}
+\end{solution}
+
+    \item Comment valider une régression~? \hfill (2 éléments)
+        \begin{solution}
+            \begin{enumerate}
+                \item Pour être valide, un régression doit passer par les points
+                    et les barres d'erreurs. 
+                \item Pour s'assurer de sa qualité, on peut ensuite regarder la
+                    valeur du coefficient de corrélation $r^2$~: on doit avoir
+                    $r^2 > \num{0.99}$. $r^2 = \num{0.98}$ n'est pas
+                    satisfaisant.
+            \end{enumerate}
+\end{solution}
+
+    \item Citer les 4 étapes pour obtenir la meilleure estimation de $a$ et $b$
+        ainsi que leurs incertitudes grâce à une méthode \textsc{Monte-Carlo}.
+        \begin{solution}
+            Pour obtenir des incertitudes sur $a$ et $b$, nous allons~:
+            \begin{enumerate}[label=\arabic*)]
+                \item faire varier aléatoirement les $n$ couples de valeurs
+                    mesurées $(x_i, y_i)$ selon des **lois de probabilité
+                    uniformes rectangulaires** de demi-largeur la précision
+                    $\Delta(x_i) = \sqrt{3}u(x_i)$, simulée grâce à la
+                    fonction \texttt{np.random.uniform()} (même chose pour $y_i$)~;
+                \item Pour chaque série de mesures simulée, faire la régression 
+                    linéaire, et obtenir des valeurs de pente $a_k$ et
+                    d'ordonnée à l'origine $b_k$~;
+                \item La meilleur estimation de $a$ et $b$ sera la moyenne des
+                    valeurs calculées~;
+                \item Les incertitude $u(a)$ et $u(b)$ sur ces moyennes seront
+                    l'écart-type expérimental des valeurs calculées.
+            \end{enumerate}
+\end{solution}
+\end{enumerate}
+
+\newpage
+~
+
+\end{document}

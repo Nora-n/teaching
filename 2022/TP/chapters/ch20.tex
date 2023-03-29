@@ -62,12 +62,12 @@ ressorts ont une longueur à vide $\ell_0$ et sont de raideur $k$.
 
 \subsection{À excitation nulle}
 
-À excitation nulle, on suppose que $z(t) = z_0$, une constante. 
+À excitation nulle, on suppose que $Z(t) = h$, une constante. 
 
 \begin{enumerate}[label=\clenumi]
     \item Montrer que la longueur du ressort $(1)$ à l'équilibre est~: 
         \[
-            \ell\ind{eq1} = z\ind{eq} = \frac{z_0}{2} - \frac{mg}{2k}
+            \ell\ind{eq1} = z\ind{eq} = \frac{h}{2} - \frac{mg}{2k}
         \]
     \item On pose $u = z-z\ind{eq}$. Montrer que l'équation différentielle du
         mouvement de la masse $m$ peut se mettre sous la forme canonique~: 
@@ -82,17 +82,21 @@ ressorts ont une longueur à vide $\ell_0$ et sont de raideur $k$.
 
 On se place en régime sinusoïdal forcé et on suppose que le point d'attache haut
 du ressort (2) suit un mouvement sinusoïdal autour de sa position d'équilibre
-$z_0$~: 
+$h$~: 
 \[
-    z(t) = z_0 + \alpha \cos(\w t)
+    Z(t) = h + \alpha \cos(\w t)
 \]
+Ainsi, le mouvement de la masse est lui aussi sinusoïdal, de même fréquence que
+le forçage~:
+\[u = U\cos(\wt+\f)\]
 
 \begin{enumerate}[label=\clenumi, resume]
-    \item Rappeler l'allure des courbes de résonance (amplitude en fonction de
-        la fréquence) en position et en vitesse pour un tel système mécanique. À
-        quel type de filtre cette fonction de transfert est-elle associée~?
-    \item Quel lien existe-t-il entre l'amplitude du signal de position et du
-        signal de vitesse~? 
+    \item Rappeler l'allure des courbes de résonance (amplitude des oscillations
+        en fonction de la fréquence) en position ($u(t)$) et en vitesse ($v_z =
+        \dot{u}(t)$) pour un tel système mécanique. À quel type de filtre
+        correspond chaque courbe~?
+    \item Exprimer $v_z = \dot{u}(t)$ et $a_z = \ddot{u}(t)$, puis les
+        amplitudes $V$ et $A$ de leurs oscillations en fonction de $U$ et $\w$.
     \item Quelle relation relie la bande passante et le facteur de qualité lors
         de la résonance en vitesse~?
 \end{enumerate}
@@ -115,7 +119,7 @@ la fonction \texttt{freq\_finder} dans un script \texttt{Python}.
         le haut parleur mais ne modifie pas le signal de tension. 
     \item Relier le \texttt{geneboost} au haut parleur par une liaison bifilaire. 
     \item Régler le GBF sur une fréquence de $f = \SI{4}{Hz}$ et une tension
-        crête à crête de $\SI{20}{Vpp}$.
+        crête à crête de $\SI{6}{Vpp}$.
     \item Attendre environ $\SI{30}{s}$ que le système atteigne le régime
         permanent avant de commencer toute mesure. Assurez vous que les
         oscillations soient bien verticales et qu'il n'y ait pas de rotation de
@@ -127,16 +131,22 @@ la fonction \texttt{freq\_finder} dans un script \texttt{Python}.
     \item Faire une acquisition de l'accélération sur $\texttt{t\_acquisition} =
         \SI{5}{s}$. Une acquisition relativement longue est importante afin de
         traiter les données par la suite.
-    \item Si le script s'interrompt, c'est une erreur dans la liaison série
-        Arduino. Relancez simplement une nouvelle fois votre script. Ça devrait
-        fonctionner correctement.
-    \item Par ailleurs, entre deux acquisitions successives, appuyer sur
-        \texttt{Ctrl + k} afin de réinitialiser le shell.
-    \item En fin d'acquisition, déterminer l'amplitude du signal en accélération
-        en calculant
-        \[
-            a = \frac{a\ind{max}-a\ind{min}}{2}
-        \]
+\end{enumerate}
+\begin{timpo}{, hand}
+    \begin{itemize}
+        \item Si le script s'interrompt, c'est une erreur dans la liaison série
+            Arduino. Relancez simplement une nouvelle fois votre script. Ça devrait
+            fonctionner correctement.
+        \item Par ailleurs, entre deux acquisitions successives, appuyer sur
+            \texttt{Ctrl + k} afin de réinitialiser le shell.
+    \end{itemize}
+\end{timpo}
+\begin{enumerate}[resume]
+    \item En fin d'acquisition, le script détermine la fréquence de forçage $f$
+        et l'amplitude $A$ de l'accélération $a_z(t)$ grâce au script et à la
+        fonction \texttt{freqfinder}. Vérifier que la fréquence renvoyée par le
+        script correspond à peu près à celle du GBF~; on utilisera cependant
+        \textbf{celle du GBF}.
 \end{enumerate}
 
 \subsection{Acquisition et enregistrement}
@@ -144,21 +154,15 @@ la fonction \texttt{freq\_finder} dans un script \texttt{Python}.
 \begin{enumerate}
     \item Ouvrir \texttt{Capytale} avec ce lien~:
         \url{https://capytale2.ac-paris.fr/web/c/3b87-1426775}
-    \item Dans la cellule «~Données expérimentales~», créez trois listes avec~:
+    \item Dans la cellule «~Données expérimentales~», créez deux listes avec~:
         \begin{enumerate}
-            \item La tension d'alimentation (en \si{Vpp})
-            \item La fréquence (en \si{Hz})
-            \item L'amplitude de la réponse en accélération déterminée avec le
+            \item La fréquence $f$ (en \si{Hz})
+            \item L'amplitude $A$ de la réponse en accélération déterminée avec le
                 script sur \texttt{Pyzo}.
         \end{enumerate}
     \item Faire une quinzaine d'acquisition entre $f\ind{min} = \SI{4}{Hz}$ et
         $f\ind{max} = \SI{15}{Hz}$. Vous resserrerez vos mesures autour de
         la résonance.
-    \item Lorsque vous approchez de la résonance, l'amplitude $z(t)$ augmente
-        significativement. Pour éviter d'endommager le système ou de saturer la
-        mesure de l'accélération, on diminue l'amplitude de l'oscillation 
-        en diminuant la tension crête à crête au niveau du GBF. C'est la raison
-        pour laquelle vous devez \textbf{noter cette tension à chaque mesure}.  
 \end{enumerate}
 
 \section{Valider et conclure}
@@ -169,24 +173,60 @@ vous expliquerez sur votre copie} (d'où les $\fbox{1}$)~:
 
 \begin{enumerate}[label=\sqenumi, start=7]
     \item Calculer la pulsation $\w$ de chaque enregistrement.
-    \item L'amplitude de l'excitation en accélération est supposée
-        proportionnelle à l'amplitude de la tension au GBF. Calculez alors
-        l'amplitude en accélération que vous auriez si toutes les mesures
-        avaient été effectuées pour une tension de $\SI{20}{Vpp}$. On notera
-        cette grandeur $a_{20}$.
-    \item Déterminer l'amplitude en vitesse puis en position à partir de
-        $a_{20}$. Vous créerez pour cela deux nouvelles listes sur
-        \texttt{Capytale}~: $v$ et $z$.
-    \item Tracer la position et la vitesse de l'oscillateur en fonction de la
-        pulsation $\w$.
-    \item Ces deux courbes ont-elles l'allure attendue (vous vérifierez en
-        particulier que les régimes asymptotiques soient approximativement
-        cohérents)~? Les résonances se font-elles à la même pulsation~?
+    \item Déterminer l'amplitude en vitesse puis en position à partir de $A$.
+        Vous créerez pour cela deux nouvelles listes sur \texttt{Capytale}~: $V$
+        et $U$.
+\end{enumerate}
+\begin{itemize}
+    \item Tracer les graphes de ces valeurs expérimentales avec
+        \texttt{plt.scatter}.
+    \item Tracer leurs lissages grâce à \texttt{pchip}.
+\end{itemize}
+\begin{enumerate}[label=\sqenumi, resume]
     \item Déterminer graphiquement la pulsation de résonance de l'oscillateur
         $\w_0$.
     \item Déterminer la bande passante de l'oscillateur, en déduire le facteur
         de qualité $Q$.
-    \item Conclure. 
+    \item Ces deux courbes ont-elles l'allure attendue (vous vérifierez en
+        particulier que les régimes asymptotiques soient approximativement
+        cohérents)~? Les résonances se font-elles à la même pulsation~?
+    \item Conclure.
+\end{enumerate}
+
+\subsection{Ajustement des données}
+L'utilisation d'un lissage n'est pas une approche scientifiquement approuvée
+pour déterminer des valeurs expérimentales. En effet, l'ordre de réflexion dans
+la recherche scientifique est de d'abord établir la théorie, puis de faire
+l'expérimentation et comparer la courbe obtenue aux solutions analytiques
+déterminées. Dans notre cas, les amplitudes réelles de la vitesse et de
+l'élongation s'expriment~:
+\begin{center}
+    $\DS
+    \hfill
+    V(\w)
+        = \frac{K_v}{\sqrt{1 + Q^2\left( \dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}
+        \right)^2}}
+    \hfill
+    U(\w)
+        = \frac{K_u}{
+            \sqrt{\left( 1 - \left(\dfrac{\w}{\w_0}\right)^2 \right)^2
+        + \left(\dfrac{\w}{Q\w_0}\right)^2}}
+    \hfill
+    $
+\end{center}
+\begin{enumerate}
+    \item Compléter les fonctions \texttt{V\_func} et \texttt{U\_func} à partir
+        du squelette donné sur \texttt{Capytale}.
+    \item Remplir les entrées de \texttt{curve\_fit} afin d'obtenir les valeurs
+        ajustées.
+    \item Tracer sur le même graphique les données expérimentales, les lissages et
+        les fonctions ajustées.
+\end{enumerate} \bigbreak
+\begin{enumerate}[label=\sqenumi, start=13]
+    \item Relever vos observations~: est-ce qu'on obtient les mêmes réponses~?
+        Quelle approche vous paraît plus précise dans ce cas~? Quelles sont les
+        avantages et limites au fait d'ajuster un modèle théorique à des
+        données~?
 \end{enumerate}
 
 \begin{center}
@@ -196,9 +236,9 @@ vous expliquerez sur votre copie} (d'où les $\fbox{1}$)~:
     \end{framed}
 \end{center}
 
-\subsection{Comparaison à la théorie} 
-\begin{enumerate}
-    \item À l'aide d'une balance, déterminer la masse $m$.
+\subsection{Comparaison à la réalité} 
+La masse pèse \SI{40}{g}.
+\begin{enumerate}[resume, label=\sqenumi]
     \item Proposer un protocole (que vous réaliserez) afin de déterminer la
         raideur $k$ des ressorts utilisés dans l'expérience. 
     \item En déduire la valeur de la pulsation théorique $\w\ind{0théo}$.

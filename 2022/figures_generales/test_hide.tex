@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{comment}
+% \usepackage{lipsum}
+\usepackage{tikz}
+% Make ourselves a new conditional
+% Use \HideSolutionstrue to "activate" it
+\newif\ifHideSolutions
+% Make a solution environment
+\generalcomment{solution}{%
+  \begingroup
+  \ifHideSolutions%
+  % if \HideSolutionstrue is not called, then we remove the contents
+  \def\ProcessCutFile{}\fi%
+}{%
+  \ifHideSolutions%
+    % aand,now (also when it's not called), we make a box
+    % and then we \input the \CommentCutFile.
+    \setbox1=\vbox{\input{\CommentCutFile}}%
+    % Get the height from \ht1 and use \vskip to make appropriate space
+    \vskip\ht1
+  \fi
+\endgroup%
+}
+
+%Uncomment below to hide solutions
+%\HideSolutionstrue
+
+\begin{document}
+  Some problem text goes here
+
+  \begin{solution}
+    \textbf{SOLUTION 1}
+    \[ \forall\varepsilon>0\exists\delta>0:\dots \]
+    \tikz{\draw(0,0)--(3,2);}
+\end{solution}
+%^ \end{solution} has to be ALONE on line without any prior spaces
+
+  BETWEEN
+
+\begin{solution}
+    \textbf{SOLUTION 2}
+    \[ \forall\varepsilon>0\exists\delta>0:\dots \]
+\end{solution}
+%^ has to be ALONE on line without any prior spaces
+  Some text after solution.
+
+\end{document}

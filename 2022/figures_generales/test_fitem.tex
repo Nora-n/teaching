@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+
+% Circled
+% from https://tex.stackexchange.com/a/7045
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+% Resume enumerate and set list
+\usepackage{enumitem}
+% Définition des puces des listes en général
+\setlist[enumerate,1]{label = \arabic*)}
+\setlist[enumerate,2]{label = \alph* --}
+\setlist[enumerate,3]{label = \roman*.}
+
+% Setup clitem et sqitem
+% transforms \fitem{command} into \command{item}
+% and removes the ), -- and . of previous general labels
+% Inspired from https://tex.stackexchange.com/a/74389
+\newif\iffitem
+\newcommand{\setupmodenumerate}{%
+  \global\fitemfalse
+  \let\origmakelabel\makelabel
+  \def\fitem##1{\global\fitemtrue\def\toapply{##1}\item}%
+  \def\makelabel##1{%
+    \origmakelabel{%
+      \iffitem{%
+        \renewcommand{\labelenumi}{\arabic{enumi}}%
+        \renewcommand{\labelenumii}{\alph{enumii}}%
+        \renewcommand{\labelenumiii}{\roman{enumiii}}%
+        \toapply{##1}%
+      }%
+    \else##1\fi}%
+    \global\fitemfalse
+  }%
+}
+
+% Calls setupmodenumerate for each enumerate
+\setlist[enumerate]{before=\setupmodenumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Number in squares
+% shorthand for squared item
+\newcommand{\sqitem}{\fitem{\fbox}}
+% to make a whole enumerate with squares
+\newcommand{\sqenumi}{\protect\fbox{\arabic*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Number in circles
+% shorthand for circled item
+\newcommand{\clitem}{\fitem{\circled}}
+% to make a whole enumerate with circles
+\newcommand{\clenumi}{\protect\circled{\arabic*}}
+
+\begin{document}
+
+Liste avec items spécifiquement encadrés ou non~:
+\begin{enumerate}
+  \item facile
+  \clitem moyen
+  \sqitem difficile
+  \item facile
+  \begin{enumerate}
+    \item facile
+    \sqitem difficile
+    \item facile
+    \clitem[123] moyen
+  \end{enumerate}
+  \item facile
+\end{enumerate}
+
+Liste avec tous les items encadrés~:
+\begin{enumerate}[label=\sqenumi]
+  \item difficile
+  \item difficile
+  \item difficile…
+\end{enumerate}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

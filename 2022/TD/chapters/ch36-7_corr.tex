@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, final, garamond]{book}
+\documentclass[a4paper, 11pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \usepackage[french]{babel}
 
@@ -101,116 +101,202 @@ Voir Figure~\ref{fig:excchpcorr}.
 \section{Équilibre d'un aimant}
 \label{sec:exeqaim}
 \noindent
-\begin{minipage}[t]{.7\linewidth}
-  Un aimant très fin, de moment magnétique $\vv{\mu}$ et de masse $m$, repose en
-  équilibre sur une pointe en O. Il est soumis à l'action d'un champ magnétique
-  uniforme $\vv{B}$ et au champ de pesanteur terrestre $\vv{g}$. On appelle G le
-  centre d'inertie de l'aimant.
-  \smallbreak
-  Exprimer la distance $d = \rm OG$ pour que l'aimant reste en équilibre
-  horizontal.
+\begin{minipage}[t]{.6\linewidth}
+  \begin{itemize}[label=$\diamond$, leftmargin=10pt]
+  \litem{Système~:} \{aimant\} de masse $m$ de moment magnétique $\vv{\mu}$ dans
+  un champ $\Bf$.
+  \litem{Schéma~:}
+  \litem{Modélisation~:}
+    \begin{itemize}[label=$\triangleright$, leftmargin=10pt]
+      \item Repère~: cartésien, $\uy$ direction de $\Bf$
+          soit $\Bf = B\uy$, $\ux$ direction de $\vv{\mu}$ soit $\vv{\mu}
+          = \mu \ux$.
+      \item Instant initial~: l'aimant est parallèle au sol.
+    \end{itemize}
+  \litem{BdF~:}
+    \[
+      \begin{array}{ll}
+        \textbf{Poids} & \vv{P} = -mg \uy
+        \\
+        \textbf{Réaction du support} & \text{passe par O}
+      \end{array}
+    \]
+  \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{.3\linewidth}
+\begin{minipage}[t]{.39\linewidth}
   ~
-  \vspace*{-20pt}
+  \vspace*{-10pt}
   \begin{center}
-    \includegraphics[scale=1]{exeqaim}
-    \label{fig:exeqaim}
+    \includegraphics[width=\linewidth]{exeqaim_corr}
+    \captionof{figure}{Forces et moments s'appliquant sur l'aimant.}
+    \label{fig:exeqaimcorr}
   \end{center}
 \end{minipage}
+\smallbreak
+\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+\litem{BdM~:}
+  On s'intéresse au moment des forces s'appliquant sur le système. On obtient
+  directement le couple magnétique avec la formule démontrée dans le cours
+  entre un moment magnétique $\vv{\mu}$ et un champ magnétique $\vv{B}$. Pour
+  le poids, on utilise le bras de levier~:
+  \begin{itemize}
+    \item On prolonge la droite d'action, c'est-à-dire la flèche représentant
+      le poids~;
+    \item On cherche le projeté orthogonal de l'axe de rotation sur cette
+      droite d'action, en prenant une droite perpendiculaire à la droite
+      d'action et en trouvant quand elle passe par l'axe~;
+    \item La distance obtenue correspond au \textbf{bras de levier}, qu'on
+      appelle $d$ ici.
+  \end{itemize}
+  On a alors
+  \[
+    \Mc_z(\vv{P}) = \pm d \times mg
+  \]
+  avec $\pm $ selon que le poids fasse tourner le système dans le sens direct
+  (+) ou horaire (-). Ici, le poids a tendance à faire tourner le système dans
+  le sens horaire.
+  \smallbreak
+  Pour le couple magnétique, \textbf{un moment magnétique tend à s'aligner sur
+  le champ magnétique}, donc ici tend à faire tourner l'aimant dans le sens
+  direct pour s'aligner sur $\vv{B}$.
+  \smallbreak
+  Pour la réaction du support, elle passe par O donc son moment est nul (pour
+  rappel, mathématiquement $\vv{\Mc(\vv{F})} = \vv{\rm OM}\wedge \vv{F}$, donc
+  si la force passe par l'axe de rotation on a un moment nul. Équivalent à
+  avoir un bras de levier nul). Ainsi,
+  \[
+    \begin{array}{ll}
+      \textbf{Moment du poids} & \Mc(\vv{P}) = -d\times mg
+      \\
+      \textbf{Moment de la réaction} & \vv{\Mc(\vv{R})} = \vv{0}
+      \\
+      \textbf{Couple magnétique} &
+      \Gamma_{z, \rm Lap} = (\vv{\mu} \wedge \vv{B})\cdot \uz
+      \\
+      \Lra & \Gamma_{z, \rm Lap} = +\mu B
+    \end{array}
+  \]
+\litem{TMC à l'équilibre~:}
+  \begin{align*}
+    \dv{\Lc_z}{t} = 0 &= \sum_{i} \Mc_i
+    \\\Lra 
+    0 &= \Gamma_{z, \rm Lap} + \Mc_{z}(\vv{P})
+    \\\Lra 
+    0 &= \mu B - dmg
+    \\\Lra 
+    \Aboxed{d &= \frac{\mu B}{mg}}
+  \end{align*}
+\end{itemize}
 
 \section{Rails de \textsc{Laplace} inclinés}
 \label{sec:railpl}
-On reprend les rails de \textsc{Laplace}, mais en les inclinant~: au lieu d'être
-horizontaux, ils forment un angle $\alpha = \ang{30;;}$ avec la verticale. Le
-champ magnétique est supposé stationnaire, uniforme, vertical dirigé vers le
-haut, de norme \SI{150}{mT}. Le barreau mobile des rails de \textsc{Laplace}
-pèse \SI{8.0}{kg} et est long de $\ell = \SI{12}{cm}$. Les frottements sont
-négligés, de même que tout phénomène d'induction.
 \begin{enumerate}
-  \item Faire un schéma du dispositif en représentant les différentes forces
-    agissant sur le barreau mobile. Quel doit être le sens du courant dans le
-    circuit pour que la force de \textsc{Laplace} retienne le barreau~?
-  \item Déterminer l'intensité du courant permettant l'équilibre du barreau.
-  \item Partant de cette situation, on communique au barreau une vitesse
-    initiale $v_0$ dirigée vers le haut. Déterminer son mouvement ultérieur.
-  \item En raisonnant à partir de la loi de \textsc{Lenz} (chapitre suivant),
-    indiquer qualitativement comment est modifiée la réponse à la question
-    précédente lorsque l'on tient compte de l'induction.
+  \item Le dispositif est représenté vu de côté et vu de dessus
+    Figures~\ref{fig:rlplincl_a} et \ref{fig:rlplincl_b}. On prend les axes
+    $x$ et $y$ dans le plan des rails, $z$ perpendiculaire. Outre son poids et
+    la force de \textsc{Laplace}, le barreau est également soumis à la réaction
+    des rails, perpendiculaire aux rails car les frottements sont négligés.
+    \smallbreak
+    \noindent
+    \begin{minipage}[c]{.45\linewidth}
+      ~
+      \begin{center}
+        \includegraphics[scale=1]{lplinc_a}
+        \label{fig:rlplincl_a}
+        \captionof{figure}{Vue de côté.}
+      \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{.45\linewidth}
+      ~
+      \begin{center}
+        \includegraphics[scale=1]{lplinc_b}
+        \label{fig:rlplincl_b}
+        \captionof{figure}{Vue de dessus.}
+      \end{center}
+    \end{minipage}
+    \smallbreak
+    Pour que la force de \textsc{Laplace} puisse retenir le barreau mobile, il
+    faut avoir vectoriellement $\vv{F_L} + \vv{P} + \vv{N} = \vv{0}$. Sur $\uz$
+    on va trouver que la réaction compense $\vv{P_z}$ et $\vv{F_{L,z}}$ les
+    composantes sur $\uz$ du poids et de la force de \textsc{Laplace}, et sur
+    $\ux$ on veut que $\vv{F_{L,x}}$ compense $\vv{P_x}$.
+    \smallbreak
+    On cherche donc le sens de $i$ qui va donner la force de \textsc{Laplace}
+    avec une composante positive sur $\ux$. Avec le sens indiqué sur le schéma,
+    la force exercée sur le barreau $\rm MM'$ est
+    \[
+      \vv{F_L} = i \vv{\rm MM'} \wedge \vv{B}
+    \]
+    et avec la règle de la main droite version 3 doigts, on trouve bien une
+    force de \textsc{Laplace} vers la droite. Le courant doit donc effectivement
+    être \textbf{dirigé de M à M'} pour retenir le barreau.
+  \item Le poids du barreau mobile à pour norme $mg$, et la force de
+    \textsc{Laplace} $i \ell B$. En projection sur $\ux$, on trouve
+    \[
+      i \ell B \cos{\alpha} = mg \sin{\alpha}
+      \qso
+      \boxed{i = \frac{mg \tan{\alpha}}{\ell B} = \SI{2.5}{A}}
+    \]
+  \item Si les frottements et l'induction sont négligés, alors le bilan des
+    forces est exactement le même que précédemment~: leur résultante est nulle.
+    On garde donc le PFD à l'équilibre
+    \[
+      \dv{\vv{p}}{t} = \vv{0}
+    \]
+    mais cette fois $\vv{v_0} \neq \vv{0}$. On garde donc cette vitesse
+    constante, et \textbf{le barreau aura un mouvement rectiligne uniforme vers
+    le haut à la vitesse $v_0$}.
+  \item D'après la loi de \textsc{Lenz}, l'induction modère, par ses
+    conséquences, les causes qui lui ont donné naissance.
+    \smallbreak
+    Ici, c'est le mouvement du barreau parcouru par $i$ et dans un champ
+    $\vv{B}$ qui causera l'induction, par modification de la surface du circuit
+    (la surface qu'entoure l'intensité augmente). On aura donc \textit{in fine}
+    une force de \textsc{Laplace} induite qui s'opposera au mouvement du
+    barreau, donc \textbf{le barreau va freiner jusqu'à son arrêt}, puisqu'alors
+    la surface ne variera plus.
 \end{enumerate}
 
 \section{Mesure du champ magnétique terrestre}
 \label{sec:meschpterre}
-Dans un laboratoire situé à Paris, on souhaite déterminer la norme
-$\norm{\vv{B}_h}$ de la composante horizontale locale $\vv{B}_h$ (dont le sens
-et la direction sont donnés sur la Figure~\ref{fig:magTsens}) grâce à un
-dispositif d'\textsc{Œrsted} (Figure~\ref{fig:orsted}). Ce dernier est constitué
-d'une aiguille aimantée libre de pivoter sans frottement sur son axe, fixé à un
-socle transparent et un fil de cuivre relié à deux bornes de sécurité fixées au
-même socle transparent, de courant admissible \SI{5}{A}.
-\noindent
-\begin{minipage}[t]{.5\linewidth}
-  \begin{center}
-    \includegraphics[scale=1]{magTsens}
-    \captionof{figure}{Sens de la composante horizontale locale du champ
-    magnétique terrestre à Taris.}
-    \label{fig:magTsens}
-  \end{center}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.5\linewidth}
-  \begin{center}
-    \includegraphics[scale=1]{orsted}
-    \captionof{figure}{Dispositif d'\textsc{Œrsted}}
-    \label{fig:orsted}
-  \end{center}
-\end{minipage}
-\begin{rexem}{Matériel}
-  \noindent
-  \begin{minipage}[t]{.5\linewidth}
-    \begin{itemize}[label=$\diamond$, leftmargin=10pt]
-      \item un rapporteur~;
-      \item des files électriques~;
-      \item un interrupteur~;
-    \end{itemize}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{.5\linewidth}
-    \begin{itemize}[label=$\diamond$, leftmargin=10pt]
-      \item une alimentation électrique stabilisée \SIrange{0}{30}{V}/\SI{5}{A}~;
-      \item un ampèremètre~;
-      \item un teslamètre permettant la mesure d'intensité de champs
-        magnétiques entre \SIrange{0.1}{100}{mT}.
-    \end{itemize}
-  \end{minipage}
-\end{rexem}
-\begin{tdefi}{Donnée}
-  Le champ magnétique créé par un fil infini parcouru par un courant $I$
-  s'exprime, dans un système de coordonnées cylindriques d'axe $z$ orienté par
-  le sens réel du courant, par~:
-  \[
-    \vv{B} = \frac{\mu_0 I}{2\pi r}\ut
-  \]
-  avec $\mu_0 = 4\pi \cdot \SI{e-7}{H.m^{-1}}$. On admet que le champ créé par
-  le fil du dispositif d'\textsc{Œrsted} est convenablement décrit par cette
-  expression.
-\end{tdefi}
-On souhaite établir un protocole permettant de mesurer la composante horizontale
-locale du champ magnétique terrestre à Paris en exploitant le principe de
-superposition des champs magnétiques.
 \begin{enumerate}
-  \item Pour quelle raison ne peut-on pas se servir directement du teslamètre
-    pour effectuer la mesure~?
-  \item On suppose que le fil est parcouru par un courant d'intensité $I =
-    \SI{1}{A}$. Calculer la valeur du champ magnétique à $r = \SI{2}{cm}$ du
-    fil.
-  \item Décrire et schématiser l'expérience à réaliser en vous servant du
-    matériel mis à votre disposition, exception faite du teslamètre.
-  \item Préciser les mesures à réaliser, et la technique numérique à employer
-    pour trouver la valeur.
-  \item Donner un ordre de grandeur des grandeurs physiques à employer pour
-    réaliser l'expérience.
+  \item Le champ magnétique terrestre est de l'ordre de \SI{5e-5}{T}. Or, le
+    teslamètre ne permet pas de mesurer des champs inférieurs à \SI{1e-4}{T}.
+  \item À partir de l'expression données, on trouve $B = \SI{1e-5}{T}$.
+  \item Placer le dispositif d'\textsc{Œrsted} selon une direction Nord-Sud, de
+    telle sorte que l'aiguille soit parallèle au fil lorsqu'il n'est parcouru
+    par aucun courant. Relier le fil d'\textsc{Œrsted} à l'interrupteur et à
+    l'alimentation stabilisée, de telle sorte qu'il puisse être alimenté par un
+    courant constant. Placer le rapporteur de sorte à pouvoir mesurer la
+    déviation de l'aiguille lorsque l'interrupteur est fermé, et inclure
+    l'ampèremètre dans le circuit pour pouvoir mesurer l'intensité du courant.
+    \begin{figure}[h]
+      \centering
+      \includegraphics[scale=1]{magTorst}
+      \caption{Schéma de principe de l'expérience. Le sens de
+      $\protect\vv{B_{\rm fil}}$ est obtenu à partir de la règle de la main
+    droite, en raisonnant en vue de dessus avec l'aiguille aimantée placée
+  en-dessous du fil.}
+      \label{fig:orstedcorr}
+    \end{figure}
+    L'aiguille étant à une distance fixe du fil, on suppose que le champ créé
+    est homogène. Le moment magnétique de l'aiguille va donc s'orienter sur ce
+    champ, entrant en compétition avec le champ magnétique terrestre.
+  \item L'aiguille s'aligne sur le champ total, superposition du champ du fil et
+    du champ terrestre. Le dispositif est monté de telle sorte que les deux
+    champs soient orthogonaux, si bien qu'on peut relier directement
+    \[
+      \tan{\alpha} = \frac{B_{\rm fil}}{B_{\rm h}}
+    \]
+    En mesurant $\alpha$ pour différentes valeurs de $I$ à partir desquelles on
+    en déduit $B_{\rm fil}$, on peut alors obtenir $B_{\rm h}$ par une
+    régression linéaire. On peut par exemple représenter $B_{\rm fil}$ en
+    fonction de $\tan{\alpha}$.
+  \item Compte-tenu de l'expression donnée et pour une aiguille située
+    \SI{2}{cm} sous le fil, il faudrait avoir $I = \SI{5}{A}$ pour que $B_{\rm
+    fil} = B_{\rm h}$.
 \end{enumerate}
 
 \end{document}

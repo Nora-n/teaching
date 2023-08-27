@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[I, name=I, i^>=$I_{}$, !vi]
+    (0,2) --
+    (1,2) coordinate (Itl)
+    to[R, name=R1, !vi]
+    (1,0) coordinate (Ibl) --
+    (0,0);
+    \draw[]
+    (Itl) --
+    (2,2) coordinate (Itr) --
+    (3,2) node [right] (A) {A};
+    \draw[]
+    (Ibl) --
+    (2,0) coordinate (Ibr) --
+    (3,0) node [right] (B) {B};
+    \draw[]
+    (Itr)
+    to[R, name=R2, !vi]
+    (Ibr);
+    \iarronly{I}
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+\end{circuitikz} 
+
+\end{document}

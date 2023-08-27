@@ -1,0 +1,117 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \def\h{.7}
+    \def\l{1.5}
+    \draw
+    (0,0) --
+    (0,\h)
+        to[R, name=R1, !vi]
+    (1*\l,\h)
+        coordinate (A)
+        node [below] {A}
+        node {$\bullet$}
+        to[R, name=R2, !vi]
+    (4*\l,\h)
+        coordinate (B)
+        node [below] {B}
+        node {$\bullet$}
+        to[R, name=R3, !vi]
+    (5*\l,\h)
+        to[short, name=S]
+    (5*\l,0)
+        to[V, name=E, V^>=$E_{}$, !vi]
+    (0,0)
+    ;
+    \draw[]
+    (A) --
+    (1*\l,2*\h)
+        to[R, name=R4, !vi]
+    (2*\l,2*\h)
+        to[R, name=R5, v^>=$U$, !vi]
+    (3*\l,2*\h)
+        to[R, name=R6, !vi]
+    (4*\l,2*\h) --
+    (B);
+    \varronly{E} \varronly{R5}
+    \foreach \n in {1, ...,6}{
+        \node[] at (R\n.center) {$R$};
+    ;}
+    % equiv
+    \node[right=1em] (Eq) at (S) {$\equiv$};
+    \draw[shift={($(Eq)+(2em,-.5*\h)$)}]
+    (0,0) --
+    (0,\h)
+        to[R, name=R1, !vi]
+    (1*\l,\h)
+        coordinate (A)
+        node [below] {A}
+        node {$\bullet$}
+        to[R, name=R2, !vi]
+    (2*\l,\h)
+        coordinate (B)
+        node [below] {B}
+        node {$\bullet$}
+        to[R, name=R3, !vi]
+    (3*\l,\h) --
+    (3*\l,0)
+        to[V, name=E, V^>=$E_{}$, !vi]
+    (0,0);
+    \draw[shift={($(Eq)+(2em,-.5*\h)$)}]
+    (A) --
+    (1*\l,2*\h)
+        to[R, name=Req1, !vi]
+    (2*\l,2*\h) --
+    (B)
+    ;
+    \varronly{E}
+    \foreach \n in {1, ...,3}{
+        \node[] at (R\n.center) {$R$};
+    };
+    \node[] at (Req1.center) {$3R$};
+    \begin{scope}[xshift=1.5cm, yshift=-2.5cm]
+        \draw
+        (0,0)
+            to[short, name=Sg]
+        (0,\h)
+            to[R, name=R1, !vi]
+        (1*\l,\h)
+            coordinate (A)
+            node [below] {A}
+            node {$\bullet$}
+            to[R, name=Req2, !vi]
+        (2*\l,\h)
+            coordinate (B)
+            node [below] {B}
+            node {$\bullet$}
+            to[R, name=R3, !vi]
+        (3*\l,\h)
+            to[short, name=Sd]
+        (3*\l,0)
+            to[V, name=E, V^>=$E_{}$, !vi]
+        (0,0);
+        \node[left] at (Sg) {$\equiv$};
+        \varronly{E}
+        \foreach \n in {1, 3}{
+            \node[] at (R\n.center) {$R$};
+        };
+        \node[] at (Req2.center) {$\frac{3}{4}R$};
+        % equiv
+        \node[right=5.3em] (Eq) at (Sd) {$\equiv$};
+        \draw[shift={($(Eq)+(6em,-0.5*\h)$)}]
+        (0,0)
+            to[short, name=Sg]
+        (0,\h)
+            to[R, name=R1, !vi]
+        (1*\l,\h) --
+        (1*\l,0)
+            to[V, name=E, V^>=$E_{}$, !vi]
+        (0,0);
+        \varronly{E}
+        \node[] at (R1.center) {$\frac{11}{4}R$};
+        ;
+    \end{scope}
+\end{circuitikz}
+\end{document}

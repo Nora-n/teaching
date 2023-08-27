@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]  
+     %\helpgrid{3}{3}  
+\draw [->,-latex] (0,0) --++ (0.75,0) node [below] {$\vv{u}_x$}	;
+\draw [->,-latex] (0,0) --++ (0,0.75) node [left] {$\vv{u}_y$}	;
+\draw [->] (0,0) --++ (3,0) node [below] {$x$}	;
+\draw [->] (0,0) --++ (0,3) node [left] {$y$}	; 
+\node at (0,0) [left]{O};
+
+\begin{scope}[shift={(-.5,-.8)}]
+    \coordinate (M) at (1.325,2);
+    \coordinate (M1) at (1.75,2.5);   
+    \coordinate (O) at (0,0);	
+
+    \draw (M) --++(0.1,0) (M) --++(-0.1,0) (M) --++(0,0.1) (M) --++(0,-0.1);
+    \draw (M1) --++(0.1,0) (M1) --++(-0.1,0) (M1) --++(0,0.1) (M1) --++(0,-0.1);
+
+    \node at (M) [shift=({0.5,-0.2})] {\scriptsize $\mathrm{M}(t)$}; 
+    \node at (M1) [shift=({0.75,-0.2})] {\scriptsize $\mathrm{M}(t+\Dt)$};
+
+    \draw [line width=1pt,-stealth] (M) --(M1) node [midway, above left] {\scriptsize $\mathrm{d}\OM$};
+
+    \draw [line width=0.5pt,-latex] (M)  --++ ($2.5*(M1)-2.5*(M)$) node [above] {
+    \scriptsize $\vf(M)$};
+
+    \draw (1,1) .. controls (1,2) and (2,3) .. (3,3);                        
+\end{scope}
+\end{tikzpicture}	
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+    % Sens de comptage
+    \node[] (Cp) at (1,0.7) {$\oplus$};
+    \circledarrow{black}{(Cp)}{0.3}
+    % Sens de comptage
+    \node[] (Cp) at (-1,0.7) {$\oplus$};
+    \draw[<->] (Cp.north west) |- (Cp.south east);
+    % Miroir
+    \node[mirror, rotate=-90, name path=Mpath] (M) at (0,-1) {};
+    \node[right] at (M.north) {M};
+    % Point
+    \coordinate (A) at (0,-2);
+    \node[below, Purple!70] at (A) {A};
+    \node[Purple!70] at (A) {$\times$};
+    % Symétrique
+    \coordinate (H) at ($(M.north)!(A)!(M.south)$);
+    \node[above right, gray!70] at (H) {H};
+    \node[gray!70] at (H) {$\times$};
+    \draw[dashed, gray!70] (A) -- (H) --++ ($(H)-(A)$) coordinate (Ap);
+    \node[above, Red!70] at (Ap) {A$'$};
+    \node[Red!70] at (Ap) {$\times$};
+    % Rayons
+    \coordinate (O1) at (-1.5,0);
+    \coordinate (O2) at (-0.75,0);
+    % Define intersection
+    \path[name path=1A] (O1) -- (A);
+    \path[name path=2A] (O2) -- (A);
+    \path[name intersections={of=1A and Mpath, by=Ig}];
+    \path[name intersections={of=2A and Mpath, by=Id}];
+    % Draw
+    \draw[brandeisblue, simple] (O1) -- (Ig);
+    \draw[brandeisblue, simple, dashed] (Ig) -- (A);
+    \draw[brandeisblue, double] (O2) -- (Id);
+    \draw[brandeisblue, double, dashed] (Id) -- (A);
+    % Émergents
+    \draw[orange!70, simple] (Ig) -- (Ap);
+    \draw[orange!70, double] (Id) -- (Ap);
+\end{tikzpicture}
+\end{document}
+

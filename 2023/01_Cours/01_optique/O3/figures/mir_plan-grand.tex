@@ -1,0 +1,78 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.7]
+%\draw [very thin, gray] (-4,-4) grid[step=1] (4,4);
+% Sens de comptage
+\node[] (Cp) at (-2.5,2.5) {$\oplus$};
+\draw[<->] (Cp.north west) |- (Cp.south east);
+% Sens de comptage
+\node[] (Cp) at (2.5,2.5) {$\oplus$};
+\circledarrow{black}{(Cp)}{0.3}
+%miroir
+\begin{scope}[rotate=0]
+\draw[thick] (0,-2.1)--(0,2.1);
+\foreach \z in {-1.9,-1.7, ...,2.1}%masse
+{
+\draw (0,\z)--++(0.25,-0.15);
+}
+%fin miroir
+\end{scope}
+
+\draw [dashed, gray] (-4,-1.5) --++ (8,0) node [midway] (H) {$\times$};
+\draw [dashed, gray] (-4,-0.5) --++ (8,0) node [midway] (Hp) {$\times$};
+\node[below left, gray] at (H) {H};
+\node[below left, gray] at (Hp) {H'};
+
+%objet
+\coordinate (A) at (-3,-1.5);
+\coordinate (B) at (-3,-0.5);
+
+%-----------------
+%rayon
+\draw (-3,-1.45) -- (-3,-1.55);
+\draw[thick,simple,brandeisblue] (-3,-1.5)--(0,0);
+\draw[thick,simple,orange!70] (0,0)--(-3,1.5);
+%prolongement
+\draw (3,-1.45) -- (3,-1.55);
+\draw [dashed,orange,thick] (0,0) -- (3,-1.5);
+
+%rayon
+\draw (-3,-1.45) -- (-3,-1.55);
+\draw[thick,double,brandeisblue] (-3,-1.5)--(0,1);
+\draw[thick,double,orange!70] (0,1)--(-3,3.5);
+%prolongement
+\draw (3,-1.45) -- (3,-1.55);
+\draw [dashed,orange!70,thick] (0,1) -- (3,-1.5);
+
+%--------------
+
+\begin{scope}[shift={(0,1)}]
+%rayon
+\draw (-3,-1.45) -- (-3,-1.55);
+\draw[thick,double,Red!70] (0,1)--(-3,3.5);
+\draw[thick,double,Purple!70] (-3,-1.5)--(0,1);
+%prolongement
+\draw (3,-1.45) -- (3,-1.55);
+\draw [dashed,Red!70,thick] (0,1) -- (3,-1.5);
+
+
+%rayon
+\draw (-3,-1.45) -- (-3,-1.55);
+\draw[thick,simple,Purple!70] (-3,-1.5)--(0,0);
+\draw[thick,simple,Red!70] (0,0)--(-3,1.5);
+%prolongement
+\draw (3,-1.45) -- (3,-1.55);
+\draw [dashed,Red!70,thick] (0,0) -- (3,-1.5);
+\end{scope}
+
+\draw [->,thick, Purple!70] (A) node [below left] {A} --(B)node [above left] {B};
+
+\draw [->,thick, Red!70] (3,-1.5) node [below right] {A'}-- (3,-0.5) node [above
+right] {B'}; %A'B'
+
+
+\end{tikzpicture}
+
+\end{document}

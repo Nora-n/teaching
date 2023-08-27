@@ -1,0 +1,529 @@
+\documentclass[a4paper, 12pt, final, garamond]{book}
+\usepackage{cours-preambule}
+
+\raggedbottom
+
+\makeatletter
+\renewcommand{\@chapapp}{M\'ecanique -- chapitre}
+\makeatother
+
+\begin{document}
+\setcounter{chapter}{3}
+
+\chapter{Correction TD entra\^inement}
+\section{Chute sur corde en escalade}
+\begin{enumerate}
+    \item Pendant la chute libre, la grimpeuse ne subit que l'action du poids,
+        qui est conservatif. On peut donc utiliser le TEM, avec~:
+        \begin{itemize}[label=$\diamond$]
+            \litem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
+                $\Ec_c = 0$
+            \litem{À la fin de la chute libre~:} $z = 0$, $v=v \Ra \Ec_{p,p} = 0$ et
+                $\Ec_c = mv^2/2$.
+        \end{itemize}
+        D'où
+        \begin{gather*}
+            \frac{1}{2}mv^2 = mgh
+            \Lra
+            \boxed{v = \sqrt{2gh}}
+            \qavec
+            \left\{
+                \begin{array}{rcl}
+                    g & = & \SI{10}{m.s^{-2}}\\
+                    h & = & \SI{5}{m}
+                \end{array}
+            \right.\\
+            \AN
+            \boxed{v = \SI{10}{m.s^{-1}}}
+        \end{gather*}
+    \item On peut utiliser le TEM entre le point tout en haut et le point le
+        plus bas, ou entre le point O et le point le plus bas. Faisons le
+        premier cas~:
+        \begin{itemize}[label=$\diamond$]
+            \litem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
+                $\Ec_c = 0$
+            \litem{À la fin de la chute amortie~:} $z = -\D l$, $v=0 \Ra \Ec_{p,p}
+                = -mg\D l$, \fbox{$\Ec_{p,el} = k\D l^2/2$} et $\Ec_c = 0$.
+        \end{itemize}
+        Ainsi,
+        \begin{gather*}
+            mgh = \frac{1}{2}k\D l^2 + mg(-\D l)
+            \Lra
+            mg(h+\underbracket[1pt]{\cancel{\D l}}_{\ll h}) = \frac{1}{2}k\D l^2
+            \Lra
+            \boxed{\D l = \sqrt{\frac{2mgh}{k}}}
+            \qed
+        \end{gather*}
+        La solution trouvée est plausible~: homogène, augmente avec $m$, $h$ et
+        $g$ mais diminue avec $k$.
+    \item En norme, une force de rappel s'exprime $F = k(\ell -\ell_0)$, soit
+        ici
+        \begin{gather*}
+            F_{\max} = k\D l = \sqrt{2mgh\,k} = \sqrt{2mgh\frac{\a}{L_0}}
+            \\\Lra
+            \boxed{F_{\max} = \sqrt{2mg\a f}}
+            \qed
+        \end{gather*}
+    \item On fait l'application numérique~:
+        \begin{gather*}
+            \qavec
+            \left\{
+                \begin{array}{rcl}
+                    m & = & \SI{50}{kg}\\
+                    g & = & \SI{10}{m.s^{-2}}\\
+                    \a & = & \SI{5.0e4}{N}\\
+                    f & = & \num{1}
+                \end{array}
+            \right.\\
+            \AN
+            \boxed{F_{\max} = \SI{10}{kN}}
+        \end{gather*}
+        Il n'y a donc pas de risque aggravé pour la grimpeuse avec cette chute.
+    \item Dans le premier cas, $f_1 = 2$~; dans le second, $f_2 = \num{0.5}$. Or,
+        $F_{\max}$ évolue en $\sqrt{f}$, donc plus $f$ augmente plus la force
+        subie augmente~: le premier cas est donc 2 fois plus dangereux que le
+        premier~!
+\end{enumerate}
+
+\section{Pendule électrique}
+\begin{enumerate}
+    \item Pour exprimer la distance AM, on la décompose par des vecteurs connus
+        et on pourra prendre la norme du vecteur $\vv{\rm AM}$ avec
+        $\sqrt{x_{\rm AM}{}^2 + y_{\rm AM}{}^2}$, ou $\sqrt{\vv{\rm
+        AM}\cdot\vv{\rm AM}}$. Notamment, $\vv{\rm AM} = \vv{\rm AO} + \OM$.
+        \begin{minipage}[t]{0.33\linewidth}
+            ~%\vspace{-24pt}
+            \begin{center}
+                \includegraphics[width=\linewidth]{pendule_elec_am}
+                \captionsetup{justification=centering}
+                \captionof{figure}{Détermination de AM}
+                \label{fig:pendule_am}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.65\linewidth}
+            Il faut donc décomposer $\vv{\rm AO}$ et $\OM$ sur la même base,
+            comme on le fait pour le poids sur un plan incliné. En effet,
+            \begin{align*}
+                \vv{\rm AO} &= 2R\uz\\
+                \OM &= R\ur
+            \end{align*}
+            mais on ne peut pas sommer les deux dans des bases différentes.
+            Décomposons $\ur$ sur $(\ux, \uz)$~: on trouve
+            \[\ur = \sin\tt\ux -\cos\tt\uz\]
+            Ainsi,\vspace{-24pt}
+            \begin{align*}
+                \vv{\rm AM} &= \vv{\rm AO} + \OM
+                \\\Lra
+                \vv{\rm AM} &= \mqty(R\sin\tt\\2R-R\cos\tt)
+                \\\Ra
+                \norm{\vv{\rm AM}} &= \sqrt{R^2\sin^2\tt + (2R-R\cos\tt)^2}
+                \\\Lra
+                {\rm AM} &= \sqrt{R^2\sin^2\tt + 4R^2 -2R^2\cos\tt +R^2\cos^2\tt}
+                \\\Lra
+                {\rm AM} &= \sqrt{5R^2 -2R^2\cos\tt}
+                \qavec
+                \cos^2\tt + \sin^2\tt = 1
+                \\\Lra
+                \Aboxed{{\rm AM} &= R\sqrt{5-2\cos\tt}}
+                \qed
+            \end{align*}
+        \end{minipage} \bigbreak
+    \item Une force est conservative si son travail élémentaire s'exprime sous
+        la forme $-\dd\Ec_p$. Calculons son travail élémentaire~:
+        \begin{align*}
+            \de W(\Ff_e) &= \Ff_e\cdot\dd{\vv{\rm AM}}
+            \\\Lra
+            \de W(\Ff_e) &= \frac{k}{\rm AM^3}{\vv{\rm AM}}\cdot\dd{\vv{\rm AM}}
+            \\\Lra
+            \de W(\Ff_e) &= \frac{k}{\rm AM^3} \underbracket[1pt]{\norm{\vv{\rm
+                AM}}}_{=\rm AM} \norm{\dd{\vv{\rm AM}}}
+                \underbracket[1pt]{\cos(\vv{\rm AM}, \dd{\vv{\rm AM}})}_{=1}
+            \\\Lra
+            \de W(\Ff_e) &= \frac{k}{\rm AM^2} \cancel{\underbracket[1pt]{\frac{\rm
+                AM}{\rm AM}}_{=1}} \dd{\rm AM}
+            \\\Lra
+            \de W(\Ff_e) &= -k\dd(\frac{1}{\rm AM})
+            \\\Lra
+            \Aboxed{\de W(\Ff_e) &= -\dd{\Ec_{p,e}}}
+            \\\qavec
+            \Aboxed{\Ec_{p,e} &= \frac{k}{\rm AM} = \frac{k}{R\sqrt{5-4\cos\tt}}}
+            \qed
+        \end{align*}
+    \item La boule M a également une énergie potentielle de pesanteur. En
+        prenant O comme origine de l'altitude, l'altitude de la boule M $z(\tt)$
+        s'exprime
+        \[z(\tt) = -R\cos\tt\]
+        Ainsi,
+        \begin{align*}
+            \Ec_p(\tt) &= \Ec_{p,p}(\tt) + \Ec_{p,e}(\tt)
+            \\\Lra
+            \Aboxed{\Ec_p(\tt) &= \frac{k}{R\sqrt{5-4\cos\tt}} - mgR\cos\tt}
+            \qed
+        \end{align*}
+    \item On observe en tout 5 positions d'équilibres~: deux stables dans les
+        puits de potentiel vers $\pm\SI{1}{rad}$, et trois instables (maxima
+        locaux d'énergie potentielle) en $-\pi$, $0$ et $\pi$.
+    \item Le mouvement du pendule ne se fait que dans les zones du graphique où
+        $\Ec_p < \Ec_m$. On distingue donc 4 cas~:
+        \[
+            \begin{array}{lrcll}
+                \textbf{Cas 1} &\quad \SI{0}{J} &< \Ec_m &< \SI{3.5e-2}{J} & \Ra
+                \text{pas de mouvement}
+                \\
+                \textbf{Cas 2} &\quad \SI{3.5e-2}{J} &< \Ec_m &< \SI{4.4e-2}{J} & \Ra
+                \text{oscillations $\approx$ position stable}
+                \\
+                \textbf{Cas 3} &\quad \SI{4.4e-2}{J} &< \Ec_m &< \SI{5.4e-2}{J} & \Ra
+                \text{mouvement périodique entre $\Ec_{p,\max}$}
+                \\
+                \textbf{Cas 4} &\quad \SI{5.4e-2}{J} &< \Ec_m &< +\infty & \Ra
+                \text{mouvement révolutif~: tours à l'infini}
+            \end{array}
+        \]
+        \begin{center}
+            \includegraphics[width=.7\linewidth]{pendule_elec_ep_corr}
+            \captionof{figure}{Mouvement selon $\Ec_m$}
+            \label{fig:pend_elec_em}
+        \end{center}
+\end{enumerate}
+
+\section{Recul d'un canon}
+\begin{enumerate}
+    \item Au repos, la tension du ressort est nulle, donc $\ell = L_0$.
+    \item 
+        \begin{itemize}[label=$\diamond$, leftmargin=10pt]
+            \litem{Système~:} \{canon\}, repéré par G de masse $M$
+            \litem{Référentiel~:} $\Rc\ind{sol}$, supposé galiléen
+            \litem{Repère~:} mouvement horizontal donc cartésien, $(\Or,\ux,\uz)$
+                avec $\uz$ vertical ascendant
+            \litem{Repérage~:}
+                \begin{align*}
+                    \OG &= x\ux\\
+                    \vf &= \xp\ux\\
+                    \af &= \xpp\ux
+                \end{align*}
+            \litem{BDF~:}
+                \[
+                    \begin{array}{ll}
+                        \textbf{Poids} & \Pf = -mg\uz\\
+                        \textbf{Réaction} & \Nf = N\uz\\
+                        \textbf{Ressort} & \Ff = -k_1(x-L_0)\ux
+                    \end{array}
+                \]
+                Le poids et la tension du ressort sont conservatives, et la
+                réaction du sol ne travaille pas~: on a donc un système
+                conservatif, et on applique simplement le TEM~:
+            \litem{Au moment du tir~:} $v=v_c$, $x=L_0 \Ra \Ec_{c,0} =
+                Mv_c{}^2/2$ et $\Ec_{p,el} = k_1(L_0-L_0)^2/2 = 0$
+            \litem{Après le recul~:} $v=0$, $x=L_0-d \Ra \Ec_{c,f} = 0$ et
+                $\Ec_{p, el} = k_1d^2/2$
+            \litem{TEM~:}
+                \begin{align*}
+                    \frac{1}{2}k_1d^2 &=
+                    \frac{1}{2}M\underbracket[1pt]{v_c}_{\mathclap{=mv_0/M}}{}^2
+                    \\\Lra
+                    d^2 &= \frac{m^2}{k_1M}v_0{}^2
+                    \\\Lra\,
+                    \Aboxed{d &= \frac{m}{\sqrt{k_1M}}v_0}
+                    \qed
+                    \\\Lra\,
+                    \Aboxed{k_1 &= \frac{m^2v_0{}^2}{d^2M}}
+                    \qed
+                    \qavec
+                    \left\{
+                        \begin{array}{rcl}
+                            m & = & \SI{2.0}{kg}\\
+                            M & = & \SI{800}{kg}\\
+                            v_0 & = & \SI{600}{m.s^{-1}}\\
+                            d & = & \SI{1.0}{m}
+                        \end{array}
+                    \right.\\
+                    \AN
+                    \Aboxed{k_1 &= \SI{1800}{N.m^{-1}}}
+                \end{align*}
+        \end{itemize}
+    \item Avec le \textbf{PFD} et en projetant sur $\ux$ (on a $N = mg$ sur 
+        $\uz$)~:
+        \begin{align*}
+            M\xpp &= -k_1(x-L_0)
+            \\\Lra
+            \xpp + \w_0{}^2x &= \w_0{}^2L_0
+            \qavec
+            \w_0 = \sqrt{\frac{k_1}{M}}
+            \\\Ra
+            x(t) &= A\cos(\w_0t+\f) + L_0
+            \shortintertext{Or,}
+            x(t=0) = L_0 &\Ra A\cos\f = 0
+            \shortintertext{On choisit $\f = -\pi/2$, et ainsi}
+            x(t) &= A\sin(\w_0t) + L_0
+            \\\Ra
+            \xp(t) &= A\w_0\cos(\w_0t)
+            \shortintertext{Or,}
+            \xp(t=0) &= -\frac{m}{M}v_0
+            \\\Ra
+            A &= -\frac{m}{M} \frac{v_0}{\w_0}
+            \\\Ra
+            \Aboxed{x(t) = -\frac{mv_0}{\sqrt{k_1M}}\sin(\w_0t)+L_0}
+            \qed
+        \end{align*}
+        On obtient alors $d$ comme étant l'amplitude du sinus, c'est-à-dire le
+        résultat précédent.
+    \item On vient donc de démontrer qu'avec un seul ressort, le canon va
+        osciller et donc après le recul, il va repartir vers l'avant.
+        L'amplitude va diminuer petit à petit à cause des frottements
+        inéluctables, mais le temps avant immobilisation sera important~: on a
+        donc intérêt à ajouter une force de frottements visqueux.
+    \item Le système n'est plus conservatif, et la variation d'énergie mécanique
+        est maintenant égale à l'énergie absorbée par le dispositif de freinage,
+        c'est-à-dire
+        \[\D\Ec_m = \Ec_{m,f} - \Ec{m,i} = -\Ec_a\]
+        puisque l'énergie cinétique doit décroître et que $\Ec_a$ est positive.
+        Or, initialement et finalement,
+        \[
+            \Ec_{m,i} = \Ec_c = \frac{1}{2}Mv_c{}^2
+            \qet
+            \Ec_{m,f} = \Ec_p = \frac{1}{2}k_2d^2
+        \]
+        Soit
+        \begin{align*}
+            \frac{1}{2}k_2d^2 - \frac{1}{2}Mv_c{}^2 &= -\Ec_a
+            \\\Lra
+            k_2 &= \frac{1}{d^2}\left(Mv_c{}^2 -2\Ec_a\right)
+            \\\Lra
+            \Aboxed{k_2 &= \frac{1}{d^2}\left(\frac{m^2}{M}v_0{}^2
+            -2\Ec_a\right)}
+            \qed
+            \qavec
+            \left\{
+                \begin{array}{rcl}
+                    m     & = & \SI{2.0}{kg}\\
+                    M     & = & \SI{800}{kg}\\
+                    v_0   & = & \SI{600}{m.s^{-1}}\\
+                    \Ec_a & = & \SI{778}{J}
+                \end{array}
+            \right.\\
+            \AN
+            \Aboxed{k_2 &= \SI{244}{N.m^{-1}}}\\
+            \text{De plus, }
+            \Aboxed{\w_0 &= \sqrt{\frac{k_2}{M}}}
+            \qavec
+            \left\{
+                \begin{array}{rcl}
+                    k_2 & = & \SI{244}{N.m^{-1}}\\
+                    M   & = & \SI{800}{kg}
+                \end{array}
+            \right.\\
+            \AN
+            \Aboxed{\w_0 &= \SI{0.55}{rad.s^{-1}}}
+        \end{align*}
+    \item On reprend la question 3) mais avec la force de frottements, pour
+        obtenir l'équation d'un oscillateur amorti~:
+        \[\xpp + \frac{\lb}{M}\xp + \w_0{}^2x = \w_0{}^2L_0\]
+        Le discriminant de l'équation caractéristique associée est
+        \[\D = \left( \frac{\lb}{M} \right)^2 - 4\w_0{}^2\]
+        et on a un régime critique quand ce discriminant est nul~; soit
+        \begin{align*}
+            \Aboxed{\lb &= 2M\w_0}
+            \qed
+            \qavec
+            \left\{
+                \begin{array}{rcl}
+                    M    & = & \SI{800}{kg}\\
+                    \w_0 & = & \SI{0.55}{rad.s^{-1}}
+                \end{array}
+            \right.\\
+            \AN
+            \Aboxed{\lb &= \SI{884}{kg.s^{-1}}}
+        \end{align*}
+    \item Avec le régime critique, on a
+        \begin{align*}
+            x(t) &= (At+B)\exp(-\frac{\lb t}{2M}) + L_0
+            \shortintertext{Or,}
+            x(0) = 0 &\Ra \boxed{B=0}
+            \\\Ra
+            \xp(t) &= A\exp(-\frac{\lb t}{2M})\left(1-\frac{\lb}{2M}t\right)
+            \shortintertext{Or,}
+            \xp(0) = v_c &\Ra \boxed{A = v_c}
+            \\\Ra\quad
+            \Aboxed{\xp(t) &= -\frac{m}{M}\exp(-\frac{\lb t}{2M})
+            \left(1-\frac{\lb}{2M}t\right)}
+            \\\text{et}\quad
+            \Aboxed{x(t) &= -\frac{m}{M}v_0t\exp(-\frac{\lb t}{2M}) + L_0}
+            \qed
+        \end{align*}
+        Le recul est maximal quand la vitesse s'annule, soit
+        \begin{gather*}
+            t_m = \frac{2M}{\lb} = \SI{1.8}{s}
+        \end{gather*}
+        On calcule $x(t_m)$, sachant qu'on a par définition $x(t_m) = L_0 - d$~:
+        \begin{align*}
+            x(t_m) &= -\frac{m}{M}v_0\frac{2M}{\lb}\exr^{-1} + L_0
+            \\\Lra
+            L_0 - d &= L_0 - \frac{2mv_0}{\lb \exr}
+            \\\Lra
+            \Aboxed{d &= \frac{2mv_0}{\lb\exr}}
+            \qed
+        \end{align*}
+        et l'application numérique donne
+        \[\boxed{d = \SI{1.0}{m}}\]
+        On retrouve bien la distance de recul précédente, mais cette fois il n'y
+        a pas d'oscillation~! Cahier des charges rempli.
+\end{enumerate}
+
+\section{Positions d'équilibre d'un anneau sur un cercle}
+\begin{enumerate}
+    \item
+        \begin{minipage}[t]{0.25\linewidth}
+            ~
+            \begin{center}
+                \includegraphics[width=\linewidth]{anneau_cercle_ressort-proj}
+                \captionsetup{justification=centering}
+                \captionof{figure}{Détermination de $\ell$}
+                \label{fig:anncercproj}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.70\linewidth}
+            On peut réutiliser la relation de \textsc{Chasles} pour écrire
+            $\vv{\rm AM} = \vv{\rm AO} + \OM$ et déterminer la distance en prenant
+            la norme, mais ici une simple utilisation du théorème de
+            \textsc{Pythagore} suffit. On projette M sur l'axe $x$ pour avoir
+            \begin{align*}
+                \ell^2 &= (R+R\cos\tt)^2 + (R\sin\tt)^2
+                \\\Lra
+                \ell^2 &= R^2 + 2R^2\cos\tt + R^2(\cos^2\tt + \sin^2\tt)
+                \\\Lra
+                \ell^2 &= 2R^2(1+\cos\tt)
+                \\\Lra
+                \Aboxed{\ell &= R\sqrt{2(1+\cos\tt)}}
+                \qed
+            \end{align*}
+        \end{minipage} \bigbreak
+    \item L'énergie potentielle totale $\Ec_p$ est constituée de l'énergie
+        potentielle de pesanteur de l'anneau et de l'énergie potentielle
+        élastique du ressort. Pour $\Ec_{p,p}$ avec origine en O, on a une
+        altitude $R\sin\tt$~; pour $\Ec_{p,el}$ on a la différence de longueur à
+        a vide $\ell -\ell_0$ avec $\ell_0 = 0$, d'où
+        \begin{align*}
+            \Ec_p &= \Ec_{p,p} + \Ec_{p,el}
+            \\\Lra
+            \Ec_p &= mgR\sin\tt + \frac{k}{2}\ell^2
+            \\\Lra
+            \Aboxed{\Ec_p &= mgR\sin\tt + kR^2(1+\cos\tt)}
+            \qed
+        \end{align*}
+    \item On trouve les positions d'équilibre de l'anneau en trouvant les angles
+        $\tt_{\eq}$ tels que la dérivée de $\Ec_p$ s'annule, soit
+        \begin{align*}
+            \eval{\dv{\Ec_p}{\tt}}_{\tt_{\eq}} &= -kR^2\sin\tt_{\eq} +
+            mgR\cos\tt_{\eq} = 0
+            \\\Lra
+            \sin\tt_{\eq} &= \frac{mg\cancel{R}}{kR^{\cancel{2}}}\cos\tt_{\eq}
+            \\\Lra
+            \tan\tt_{\eq} &= \frac{mg}{kR}
+            \\\Lra
+            \boxed{\tt_{\eq,1} = \arctan(\frac{mg}{kR})}
+            \quad&\text{et}\quad
+            \boxed{\tt_{\eq,2} = \pi + \arctan(\frac{mg}{kR})}
+            \qed
+        \end{align*}
+        avec $\tt_{\eq,1}$ compris entre 0 et \ang{90}, et $\tt_{\eq,2}$ compris
+        entre 180 et \ang{270}.
+    \item On étudie la stabilité des positions en évaluant la dérivée seconde de
+        $\Ec_p$ en ce point et en vérifiant son signe. On obtient
+        \begin{align*}
+            \eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq}} &= -kR^2\cos\tt_{\eq}
+            -mgR\sin\tt_{\eq}
+            \\\Lra
+            \eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq}} &= -\left(kR^2 +
+                \frac{m^2g^2}{k}\right)\cos\tt_{\eq}
+        \end{align*}
+        en utilisant les résultats précédents sur la dérivée première de
+        $\Ec_p$. L'intérieur de la parenthèse étant positif, le signe de cette
+        dérivée seconde est opposé à celui du cosinus de la position
+        d'équilibre. Or,
+        $\cos\tt_{\eq,1} > 0$ et $\cos\tt_{\eq,2} < 0$, donc
+        \begin{gather*}
+            \boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq,1}} < 0}
+            \qet
+            \boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq,2}} > 0}
+            \qed
+        \end{gather*}
+        La première position est donc instable, et la seconde stable.
+\end{enumerate}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.5\linewidth]{anneau_cercle_ressort-corr_eq}
+    \captionsetup{justification=centering}
+    \caption{Positions d'équilibre du système}
+    \label{fig:anncerccorr}
+\end{figure}
+
+\section{Oscillateur de \textsc{Landau}}
+\begin{enumerate}
+    \item Comme l'anneau est contraint de se déplacer sur une ligne horizontale,
+        son énergie potentielle de pesanteur est constante. Ainsi, la seule
+        contribution à l'énergie potentielle est d'origine élastique,
+        \[\Ec_p(x) = \frac{1}{2}k({\rm AM} -\ell_0)^2\]
+        La longueur AM s'exprime à partir du théorème de \textsc{Pythagore},
+        \[
+            {\rm AM}^2 = a^2 + x^2
+            \quad\text{d'où}\quad
+            \boxed{\Ec_p(x) = \frac{1}{2}k\left(\sqrt{a^2+x^2} - \ell_0\right)^2}
+        \]
+    \item Qualitativement, il est assez simple de comprendre pourquoi certaines
+        courbes font apparaître deux minima et d'autre un seul. Si $a < \ell_0$,
+        alors deux positions de M, symétriques par rapport à O sont telles que
+        ${\rm AM} = \ell_0$. Dans ce cas, l'énergie potentielle élastique est
+        nulle. Au contraire, si $a > \ell_0$, le ressort est toujours étiré et
+        l'énergie potentielle élastique jamais nulle.
+        \begin{bexem}{}
+            \bfseries Ce raisonnement se retrouve tout à fait sur l'expression
+            mathématique de $\Ec_p$~!
+        \end{bexem}
+        Ainsi on peut identifier la courbe en \textbf{pointillés violets au cas
+        $\mathbf{a_4 = 3\ell_0}$}. La courbe en \textbf{points verts} ne fait
+        apparaître qu'un seul minimum, mais son énergie potentielle est nulle~:
+        elle correspond au cas $\mathbf{a_3 = \ell_0}$. Enfin, il reste à
+        identifier les deux dernières courbes, ce qui peut se faire à partir de
+        la valeur de l'énergie potentielle en $x = 0$. Elle est plus élevée sur
+        la courbe bleue que sur la courbe rouge, signe que le ressort est
+        davantage comprimé. On en déduit que la \textbf{courbe bleue} est celle
+        du cas $\mathbf{a_1 = \ell_0/10}$ alors que la courbe \textbf{rouge}
+        correspond à $\mathbf{a_2 = \ell_0/3}$. \bigbreak
+
+    \item Quelles que soient les conditions initiales, le mouvement est borné
+        car $\Ec_p$ diverge en $\pm\infty$, et il est donc périodique. Dans le
+        cas $a \leq \ell_0$, si les conditions initiales sont telles que $\Ec_m
+        < \Ec_p (x = 0)$, alors le mouvement est restreint à un côté $x < 0$ ou
+        $x > 0$ car l'anneau n'a pas assez d'énergie pour franchir la barrière
+        de potentiel en $x = 0$. Si les conditions initiales sont en revanche
+        telles que $\Ec_m > \Ec_p (x = 0)$, le mouvement a lieu de part et
+        d'autre de la barrière, et il est symétrique car le profil d'énergie
+        potentielle l'est. C'est également le cas si $a > \ell_0$, et ce quelles
+        que soient les conditions initiales. \bigbreak
+
+    \item La condition initiale est très simple à déterminer~: c'est le seul
+        point commun à toutes les trajectoires de phase. Compte tenu de la
+        symétrie des portraits de phase et des profils d'énergie potentielle,
+        seule la norme de la vitesse peut être déterminée. On trouve
+        \[
+            x_0 = \num{0.4}\ell_0
+            \qet
+            \xp_0 = \num{0.5}\ell_0 \sqrt{\frac{k}{m}}
+        \]
+        Seule la trajectoire de phase représentée en \textbf{bleu} n'est pas
+        symétrique par rapport à $x = 0$. Elle correspond donc au cas où la
+        barrière de potentiel centrale est la plus élevée, donc \textbf{le cas}
+        $\mathbf{a_1 = \ell_0/10}$. La trajectoire de phase représentée en
+        \textbf{rouge} montre une réduction de vitesse en $x = 0$~: elle
+        correspond donc au cas où il y a une barrière de potentiel, mais moins
+        élevée, c'est-à-dire le cas $\mathbf{a_2 = \ell_0/3}$. Enfin, la
+        trajectoire de phase \textbf{verte} est plus aplatie que la trajectoire
+        de phase violette. Cet aplatissement se retrouve dans les courbes
+        d'énergie potentielle~: la courbe verte correspond au cas $\mathbf{a_3 =
+        \ell_0}$ et la courbe \textbf{violette} au cas $\mathbf{a_4 = 3\ell_0}$.
+\end{enumerate}
+
+\end{document}

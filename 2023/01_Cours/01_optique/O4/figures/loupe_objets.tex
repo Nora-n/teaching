@@ -1,0 +1,91 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+               
+% \draw [ultra thin, gray!20] (-6,-6) grid[step=0.1] (6,6);
+% \draw [ultra thin, gray!20] (-6,-6) grid[step=0.5] (6,6);
+% \draw [thin,gray!50] (-6,-6) grid[step=1] (6,6);           
+
+\def \taillehaut{2}; %taille de la lentille
+\def \taillebas{2};%taille de la lentille
+\def \xA{-1.25};%position de l'objet
+\def \yB{1};%hauteur de l'objet
+\def \xAA {(\xA*\f)/(\xA+\f)};%position de l'image
+\def \yBB {(\xAA*\yB)/(\xA)};%hauteur de l'image
+\coordinate (O1) at (0,0);%centre optique de la première lentille
+\coordinate (A) at (\xA,0);%position de l'objet
+\coordinate (B) at (\xA,\yB);%sommet de l'objet
+\def \f{2};%focale de la première lentille
+\coordinate (F') at (\f,0);
+\coordinate (A') at ({\xAA},0);%position de l'objet
+\coordinate (B') at ({\xAA},{\yBB});%sommet de l'objet
+
+%deuxième couple objet image
+\def \xAp{-0.65};%position de l'objet
+\def \yBp{1};%hauteur de l'objet
+\def \xAAp {(\xAp*\f)/(\xAp+\f)};%position de l'image
+\def \yBBp {(\xAAp*\yBp)/(\xAp)};%hauteur de l'image
+\coordinate (Ap) at (\xAp,0);%position de l'objet
+\coordinate (Bp) at (\xAp,\yBp);%sommet de l'objet
+\coordinate (A'p) at ({\xAAp},0);%position de l'objet
+\coordinate (B'p) at ({\xAAp},{\yBBp});%sommet de l'objet
+
+
+%troisième couple objet image
+\def \xApp{-1.5};%position de l'objet
+\def \yBpp{1};%hauteur de l'objet
+\def \xAApp {(\xApp*\f)/(\xApp+\f)};%position de l'image
+\def \yBBpp {(\xAApp*\yBpp)/(\xApp)};%hauteur de l'image
+\coordinate (App) at (\xApp,0);%position de l'objet
+\coordinate (Bpp) at (\xApp,\yBpp);%sommet de l'objet
+\coordinate (A'pp) at ({\xAApp},0);%position de l'objet
+\coordinate (B'pp) at ({\xAApp},{\yBBpp});%sommet de l'objet
+
+
+
+\draw[thin,->](-6.5,0)--++(9.5,0)node[below]{A.O.};
+
+\draw[shift={(O1)},ultra thick,<->,>=latex] (0,-\taillebas)--(0,\taillehaut) node[above]{ $\mathcal{L}$};%lentille convergente
+\draw[thick,brandeisblue,simple] (B)--(0,\yB);
+\draw[thick,orange!70,simple] (0,\yB)--(F');
+\draw[thick,orange!70,dashed] (0,\yB)--(B')--(B'pp);
+\draw[thick,brandeisblue,double] (B)--(O1);
+\draw[thick,orange!70,double] (O1)--++($1*(O1)-1*(B)$);
+\draw[thick,orange!70,dashed] (B)--(B');
+%\draw[blue,thick,double] (B)--(0,{\yBB});
+%\draw[blue,thick,double] (0,{\yBB})--++(2,0);
+%\draw[blue,thick,dashed] (0,{\yBB})--(B');
+\foreach \x/\z in {O1/\f}{
+\draw[shift={(\x)}] (0,0) node[below left] { O};
+\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt) node[below left] { F'};
+\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt) node[below] { F};
+
+\draw[|->, thick, Purple!70]  (A)node[below]{A}--(B)node[above]{B}; 
+\filldraw [fill=white,draw=none] ($(A)!0.5!(B)$) node {1} ellipse (0.10cm and 0.15cm); 
+ 
+\draw[|->,thick, Red!70] (A')node[below]{ A'}--(B')node[above]{ B'} node [midway,fill=white] {1};
+\filldraw [fill=white,draw=none] ($(A')!0.5!(B')$) node {1} ellipse (0.10cm and 0.15cm); 
+
+\draw[|->, thick, Purple!70] (Ap)--(Bp); 
+\filldraw [fill=white,draw=none] ($(Ap)!0.5!(Bp)$) node {3} ellipse (0.10cm and 0.15cm); 
+
+\draw[|->,thick,Red!70] (A'p)--(B'p); 
+\filldraw [fill=white,draw=none] ($(A'p)!0.5!(B'p)$) node {3} ellipse (0.10cm and 0.15cm); 
+
+
+\draw[|->, thick,Purple!80] (App)--(Bpp);
+\filldraw [fill=white,draw=none] ($(App)!0.5!(Bpp)$) node [gray] {2} ellipse (0.10cm and 0.15cm); 
+
+\draw[|->,thick,Red!70] (A'pp)--(B'pp);
+\filldraw [fill=white,draw=none] ($(A'pp)!0.5!(B'pp)$) node {2} ellipse (0.10cm and 0.15cm); 
+
+
+\draw (1.1,0) to [bend left] (1.1,0.45) ;
+ \node at (0.75,0.25) [] {$\theta'$};
+\oeil[shift={(2.8,0)},rotate=180];
+}
+\end{tikzpicture}
+
+\end{document}

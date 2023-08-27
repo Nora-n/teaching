@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E1, V^>=$E_{1}$, i^>=$i_{1}$, !vi]
+    (0,2)
+    to[R, name=r1, i_>=$i_1$, v^<=$U_{r_1}$, !vi]
+    (0,4)
+    to[V, name=E2, V^>=$E_{2}$, i_>=$i_2$, !vi]
+    (2,4)
+    to[R, name=r2, v^<=$U_{r_2}$, !vi]
+    (4,4) --
+    (4,3)
+    to[R, name=R3, i>^=$i$, v^<=$U_{R_3}$, !vi]
+    (4,1) --
+    (4,0) --
+    (0,0);
+    \varronly{E1} \varronly{r1} \varronly{r2} \varronly{E2}
+    \varronly{R3}
+    \iarronly{E1} \iarronly{r1} \iarronly{E2} \iarronly{R3}
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (r2.center) {$r_2$};
+    \node[] at (R3.center) {$R_3$};
+    \node[Orchid, scale=2] (LM1) at (2,2) {1};
+    \circledarrow{Orchid, thick}{(LM1)}{0.5};
+\end{circuitikz}    
+
+\end{document}

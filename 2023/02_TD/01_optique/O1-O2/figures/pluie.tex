@@ -1,0 +1,115 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    % Bottom line
+    \draw[name path=ED] (-2,0) -- (4,0)
+        node [pos=0.125] (Ep) {$\bullet$}
+        node [pos=0.50] (Dp) {$\bullet$};
+    % Points
+    \node[below] at (Ep) {$E$};
+    \coordinate (E) at (Ep);
+    \node[below] at (Dp) {$D$};
+    \coordinate (D) at (Dp);
+    % Top line
+    \draw[yshift=2cm, name path=TL] (-2,0) -- (4,0) node [pos=0.3125] (Ip) {$\bullet$};
+    \node[above left] at (Ip) {$I$};
+    \coordinate (I) at (Ip);
+    % Milieux
+    \begin{scope}[on background layer]
+        \filldraw[fill=SkyBlue!30] (-2,0) -- (-2,2) -- (4,2) -- (4,0) -- cycle;
+    \end{scope}
+    % Norm at I
+    \draw[dashed, name path=normI]
+        (Ip) --++ (0,.5cm) coordinate (Itop) --++ (0,-2.5) coordinate (Idown);
+    % Define intersection
+    \path[name intersections={of=ED and normI, by=H}];
+    \node[] at (H) {$\times$};
+    \node[above right] at (H) {H};
+    \node[left=.7cm] (nverre) at ($(I)!0.5!(H)$) {$n_{\rm verre}$};
+    % Eau
+    \draw[name path=JJ, yshift=2.5cm] (-2,0) -- (2,0);
+    \begin{scope}[on background layer]
+        \filldraw[fill=brandeisblue!30, yshift=2cm]
+        (-2,0) -- (-2,.5) -- (4,.5) -- (4,0) -- cycle;
+    \end{scope}
+    \node[above=1cm] (neau) at (nverre) {$n_{\rm eau}$};
+    \node[above=.3cm] (nair) at (neau) {$n_{\rm air}$};
+    % RL incident
+    \draw[brandeisblue, simple] (E) -- (I);
+    % Draw angles
+    \pic[angle radius=1.2cm, angle eccentricity=1.3,
+    draw, <-, brandeisblue,
+    "$i$" alias=i]
+    {angle=E--I--H};
+    % Réflexion question 1
+    \draw[ForestGreen, simple, dashed] (I) -- (D);
+    % Draw angles
+    \pic[angle radius=1cm, angle eccentricity=1.3,
+    draw, ->, ForestGreen,
+    "$r$" alias=r]
+    {angle=Idown--I--D};
+    % Réfraction 1
+    \path[name path=JP] (I) --++ ({90-60}:2cm);
+    % Define intersection
+    \path[name intersections={of=JJ and JP, by=J}];
+    \draw[dashed] (J) --++ (0,0.5cm) --++ (0,-1cm) coordinate (Jdown);
+    \draw[ForestGreen, simple] (I) -- (J);
+    \node[above left] (Jtext) at (J) {$J$};
+    \node[] at (J) {$\bullet$};
+    % Draw angles
+    \pic[angle radius=.4cm, angle eccentricity=1.4,
+    draw, <-, ForestGreen,
+    "$i_2$" alias=i2]
+    {angle=J--I--Itop};
+    % Draw angles
+    \pic[angle radius=.4cm, angle eccentricity=1.3,
+    draw, <-, ForestGreen,
+    "$i_2$" alias=i2b]
+    {angle=I--J--Jdown};
+    % Réflexion 2
+    \path[name path=KP] (J) --++ ({-90+60}:2cm);
+    % Define intersection
+    \path[name intersections={of=KP and TL, by=K}];
+    \draw[dashed] (K) --++ (0,0.5cm) coordinate (Ktop)
+        --++ (0,-2.5cm) coordinate (Kdown);
+    \draw[orange!70, simple] (J) -- (K);
+    \node[above right] (Ktext) at (K) {$K$};
+    \node[] at (K) {$\bullet$};
+    % Draw angles
+    \pic[angle radius=.4cm, angle eccentricity=1.4,
+    draw, ->, orange!70,
+    "$r$" alias=r]
+    {angle=Jdown--J--K};
+    % Draw angles
+    \pic[angle radius=.4cm, angle eccentricity=1.4,
+    draw, ->, orange!70,
+    "$r$" alias=rb]
+    {angle=Ktop--K--J};
+    % Réfraction last
+    \len{(H)}{(D)}{\HD}
+    \len{(H)}{(I)}{\HI}
+    \path[name path=LP] (K) --++ ({-90+atan(\HD/\HI)}:2.5cm);
+    % Define intersection
+    \path[name intersections={of=LP and ED, by=L}];
+    \draw[Red!70, simple] (K) -- (L);
+    \node[above right] (Ltext) at (L) {$L$};
+    \node[] at (L) {$\bullet$};
+    % Draw angles
+    \pic[angle radius=1cm, angle eccentricity=1.3,
+    draw, ->, Red!70,
+    "$i_3$" alias=i3]
+    {angle=Kdown--K--L};
+    % Grandeurs
+    \node[inner sep=0pt, left=.25cm] (BLg) at (-2,0) {};
+    \node[inner sep=0pt, left=.25cm] (MLg) at (-2,2) {};
+    \draw[|<->|] (BLg) --
+    node[above, midway, sloped]
+    {$e$} (MLg);
+    \node[inner sep=0pt, left=.25cm] (TLg) at (-2,2.5) {};
+    \draw[|<->|] (MLg) --
+    node[above, midway, sloped]
+    {$e'$} (TLg);
+\end{tikzpicture}
+\end{document}

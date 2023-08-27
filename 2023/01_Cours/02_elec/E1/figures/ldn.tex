@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0) node {$\bullet$} coordinate (A) node [below left] {A}
+    to[short, name=S1, i^>=$i_1$, !vi]
+    (20:1.5);
+    \draw
+    (A)
+    to[short, name=S2, i^>=$i_2$, !vi]
+    (100:1.5);
+    \draw
+    (A)
+    to[short, name=S3, i^<=$i_3$, !vi]
+    (180:1.5);
+    \draw
+    (A)
+    to[short, name=S4, i^<=$i_4$, !vi]
+    (260:1.5);
+    \draw
+    (A)
+    to[short, name=S5, i^>=$i_5$, !vi]
+    (310:1.5);
+    \foreach \n in {1, ..., 5}{
+        \iarronly{S\n}
+    }
+    \node[right=2em] (E) at ($(A)+(1,0)$) {$\Rightarrow$};
+    \node[shift={($(E)+(1em,0)$)}, anchor=west]
+    {$\left\{\begin{aligned}
+                                & i_1 + i_2 + i_5 = i_3 + i_4\\
+            \Longleftrightarrow~ & i_1 + i_2 - i_3 - i_4 + i_5 = 0
+    \end{aligned}\right.$};
+\end{circuitikz}
+\end{document}

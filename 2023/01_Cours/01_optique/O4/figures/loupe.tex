@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[] 
+    %\draw [ultra thin, gray!20] (-6,-6) grid[step=0.5] (6,6);
+    %\draw [thin,gray!50] (-6,-6) grid[step=1] (6,6);
+    \def \taillehaut{2}; %taille de la lentille
+    \def \taillebas{2};%taille de la lentille
+    \def \xA{-1.25};%position de l'objet
+    \def \yB{1};%hauteur de l'objet
+    \def \xAA {(\xA*\f)/(\xA+\f)};%position de l'image
+    \def \yBB {(\xAA*\yB)/(\xA)};%hauteur de l'image
+    \coordinate (O1) at (0,0);%centre optique de la première lentille
+    \coordinate (A) at (\xA,0);%position de l'objet
+    \coordinate (B) at (\xA,\yB);%sommet de l'objet
+    \def \f{2};%focale de la première lentille
+    \coordinate (F') at (\f,0);
+    \coordinate (A') at ({\xAA},0);%position de l'objet
+    \coordinate (B') at ({\xAA},{\yBB});%sommet de l'objet
+    
+    \draw[thin,->](-4.5,0)--++(8,0)node[below]{A.O.};
+    \draw[|->,thick,Purple!70] (A)node[below]{A}--(B)node[above]{ B};
+    \draw[|->,thick,Red!70] (A')node[below]{ A'}--(B')node[above]{ B'};
+    \draw[shift={(O1)},ultra thick,<->,>=latex] (0,-\taillebas)--(0,\taillehaut) node[above]{ $\mathcal{L}$};%lentille convergente
+    \draw[thick,brandeisblue,simple] (B)--(0,\yB);
+    \draw[thick,orange!70,simple] (0,\yB)--(F');
+    \draw[thick,orange!70,dashed] (0,\yB)--(B');
+    \draw[thick,brandeisblue,double] (B)--(O1);
+    \draw[thick,orange!70,double] (O1)--++($1*(O1)-1*(B)$);
+    \draw[thick,orange!70, dashed] (B)--(B');
+    %\draw[blue,thick,double] (B)--(0,{\yBB});
+    %\draw[blue,thick,double] (0,{\yBB})--++(2,0);
+    %\draw[blue,thick,dashed] (0,{\yBB})--(B');
+    \foreach \x/\z in {O1/\f}{
+        \draw[shift={(\x)}] (0,0) node[below left] { O};
+        \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt) node[below left] { F'};
+        \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt) node[below] { F};
+        
+        \oeil[shift={(2.8,0)},rotate=180];
+    }
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    % Gaine
+    \draw[name path=gaine, fill=gray!30] (-4,-1.5) rectangle (6,1.5);
+    % nair
+    \node[left, anchor=north east] at (-4, -1) {$n_{\rm air}$};
+    % Cœur
+    \draw[name path=heart, fill=white] (-4,-1) rectangle (6,1);
+    % Axe optique
+    \draw[thin, ->, name path=ao] (-7,0) coordinate (aoleft) --
+        (7,0) node[below]{A.O.};
+    % Define intersection
+    \path[name intersections={of=heart and ao, by={left, right}}];
+    % Text
+    \node[above=1.25cm, anchor=center] (gtext) at ($0.5*(right)+0.5*(left)$)
+        {\large Gaine d'indice $n_2$};
+    \node[below=0.75cm, anchor=center] (ctext) at (gtext)
+        {\large C\oe{}ur d'indice $n_1$};
+    % Origine
+    \coordinate (O) at (left);
+    \node[] at (O) {$\times$};
+    \node[below right] at (O) {$O$};
+    % Start
+    \coordinate (A) at ([shift={(-3,-1)}]O.center);
+    % Draw incident
+    \draw[simple, brandeisblue] (A) -- (O);
+    % Draw angles
+    \pic[angle radius=1.5cm, angle eccentricity=1.3,
+    draw, ->, brandeisblue,
+    "$\theta$" alias=theta]
+    {angle=aoleft--O--A};
+    % Grandeurs
+    \coordinate (T) at ([shift={(0,1)}]O);
+    \node[left=0.5cm, inner sep=0pt] (Og) at (O) {};
+    \node[left=0.5cm, inner sep=0pt] (Tg) at (T) {};
+    \draw[|<->|, ForestGreen] (Og) --
+        node[left, midway]
+        {$a$} (Tg);
+    % Grandeurs
+    \coordinate (Tt) at ([shift={(0,1.5)}]O);
+    \node[left=1cm, inner sep=0pt] (Og) at (O) {};
+    \node[left=1cm, inner sep=0pt] (Ttg) at (Tt) {};
+    \draw[|<->|, ForestGreen] (Og) --
+        node[left, midway]
+        {$b$} (Ttg);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \def\TAU{2}
+    \def\TAUdraw{2.15}
+    \def\E{5}
+    \begin{axis}[
+        xmin=-2, xmax=11,
+        ymin=-0.5, ymax=6,
+        xlabel=$t$, ylabel=$u_C(t)$,
+        xtick=\empty, ytick=\empty,
+        axis lines=center,
+        extra y ticks={0},
+        y tick label style={yshift={(\tick==0)*-.5em},
+                            xshift={(\tick==0)*.25em}},
+        tangent/.style={
+            add node at x={#1}{5},
+        },
+        clip=false]
+        \addplot[
+            domain=0:10,
+            smooth, thick,
+            orange,
+            name path=uc]
+        {\E*(1-exp(-\x/\TAU)};
+        \addplot[
+            domain=-2:0,
+            smooth, thick,
+            Red!70]
+        {0};
+        \addplot[
+            domain=0:10,
+            smooth, thick,
+            Red!70]
+        {\E} node [pos=0, left] {$E$};
+        \path[name path=vert] (\TAUdraw,5) -- (\TAUdraw,0);
+        % Define intersection
+        \path[name intersections={of=vert and uc, by=A}];
+        \coordinate (O) at (0,0);
+        \draw[dashed] (A) -- (A-|O)
+            node [left, anchor=east] {\num{0.632}$E$};
+        \draw[dashed] (A) -- (\TAUdraw,0) node [below] {$\tau$};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

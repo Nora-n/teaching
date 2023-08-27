@@ -1,0 +1,85 @@
+% https://tex.stackexchange.com/a/593969
+\documentclass[border=2mm]{standalone}
+\usepackage    {tikz}
+\usetikzlibrary{3d}
+\usetikzlibrary{decorations.markings}
+
+% isometric perspective
+\pgfmathsetmacro\xx{1/sqrt(2)}
+\pgfmathsetmacro\xy{1/sqrt(6)}
+\pgfmathsetmacro\zz{sqrt(2/3)}
+\pgfmathsetmacro\lh{2}
+
+% layers
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers   {background,main,foreground}
+
+% coil
+\newcommand\mycoil[3] % position (center of the bottom coil), number of turns, terninals (-1/left, 1/right)
+{%
+  \begin{scope}[shift={#1},x={(-#3*\xx cm,-\xy cm)},y={(#3*\xx cm,-\xy cm)}]  
+    \foreach\i in {0,...,#2}
+    {%  
+      \begin{pgfonlayer}{background}
+        \draw plot[variable=\x,domain=0.5:1,samples=40,smooth]
+          ({0.5*sin(360*\x-45)},{0.5*cos(360*\x-45)},{0.2*(\x+\i)});
+      \end{pgfonlayer}
+      \begin{pgfonlayer}{foreground}
+        \draw[preaction={draw,white,line width=2pt}]
+          plot[variable=\x,domain=0:0.5,samples=40,smooth]
+          ({0.5*sin(360*\x-45)},{0.5*cos(360*\x-45)},{0.2*(\x+\i)});
+      \end{pgfonlayer}
+    }
+    \pgfmathtruncatemacro\h{#2+1} % coil height
+    \begin{pgfonlayer}{foreground}
+      \foreach\i in {0,\h}
+      {%
+        \draw[line cap=round] (0,0,0.2*\i) ++ (135:0.5) --++ (135:0.5);
+        \draw[fill=white]     (0,0,0.2*\i) ++ (135:1) circle (1pt);
+      }
+    \end{pgfonlayer}
+  \end{scope}
+}
+
+\tikzset
+{% styles for arrows and borders
+  darrow/.style={% direct arrow
+    decoration={markings,mark=at position 0.5 with {\arrow{latex}}},
+    postaction={decorate}
+    },
+  rarrow/.style={% reverse arrow
+    decoration={markings,mark=at position 0.5 with {\arrow{latex reversed}}},
+    postaction={decorate}
+    },
+  wborder/.style={% white border
+    preaction={draw,white,line width=2pt}
+  }
+}
+
+\begin{document}
+\begin{tikzpicture}[line cap=butt,
+  x={(-\xx cm,-\xy cm)},
+  y={(\xx cm,-\xy cm)},
+  z={(0cm,\zz cm)},
+  rotate=-90]
+  % coils
+  \mycoil{(0,0,0)}{2}{1}
+  \mycoil{(0,0,\lh)}{2}{1}
+  \foreach\j in {0.1,0.3}
+  {%
+    \begin{scope}[rotate around z=135,canvas is xz plane at y=0]
+      \draw[red,rarrow]         ( \j,0) arc  (180:225:0.5/\j-\j);
+      \draw[red,wborder]        ( \j,0) --++ (0,1.1*\lh);
+      \draw[red,wborder,darrow] ( \j,1.1*\lh) arc  (180:135:0.5/\j-\j);
+      \draw[red,rarrow]         (-\j,0) arc  (0:-45:0.5/\j-\j);
+      \draw[red,wborder]        (-\j,0) --++ (0,1.1*\lh);
+      \draw[red,wborder,darrow] (-\j,1.1*\lh) arc  (0:45:0.5/\j-\j);
+    \end{scope}
+  }
+  % labels
+  \node[red] at (-1cm,-2cm) {$\Phi$};
+  \node      at (-1cm, 0.25cm) {$N_1$};
+  \node      at (-1cm, 1.9cm) {$N_2$};
+\end{tikzpicture}
+\end{document}

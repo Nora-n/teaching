@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0) node {$\bullet$} node [left] (A) {A}
+    to[R, name=R1]
+    (2,0) coordinate (N1) %node [above] {N1}
+    to[R, name=R]
+    (4,0)
+    to[R, name=R2r]
+    (4,-2) coordinate (Nbr)
+    to[R, name=r, !vi]
+    (2,-2) coordinate (N2) -- %node [below] {N2}
+    (0,-2) node {$\bullet$} node [left] (B) {B};
+    \draw[] 
+    (N1)
+    to[R, name=R2l]
+    (N2);
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R.center) {$R$};
+    \node[] at (R2r.center) {$R_2$};
+    \node[] at (R2l.center) {$R_2$};
+    \node[] at (r.center) {$r$};
+\end{circuitikz}
+\end{document}

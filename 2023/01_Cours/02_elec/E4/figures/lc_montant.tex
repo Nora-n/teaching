@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E, V^>=$E_{}$, i^>=$i_{}$, !vi]
+    (0,2)
+    to[closing switch]
+    (0,4)
+    to[short, name=S, i>^=$i$, !vi]
+    (3,4)
+    to[L,l_$L$, name=L, i^>=$i$, v^<=$u_L$, !vi]
+    (3,2)
+    to[C,l_=$C$, name=C, v^<=$u_C$, !vi]
+    (3,0) --
+    (0,0);
+    \iarronly{E} \iarronly{S} \iarronly{L}
+    \varronly{E} \varronly{L} \varronly{C}
+\end{circuitikz}
+\end{document}

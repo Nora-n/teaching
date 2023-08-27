@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[R, name=R, i^<=$i$, v^>=$u$, !vi]
+    (2,0);
+    \varronly{R} \iarronly{R}
+    \node[below] at (R.south)
+        {convention r\'ecepteur};
+    \begin{scope}[yshift=-1.5cm]
+        \draw
+        (0,0)
+        to[R, name=R, i^>=$i$, v^>=$u$, !vi]
+        (2,0);
+        \varronly{R} \iarronly{R}
+        \node[below] at (R.south)
+            {convention g\'en\'erateur};
+    \end{scope}
+\end{circuitikz}
+\end{document}

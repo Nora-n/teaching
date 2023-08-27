@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.85]
+    \node[draw,rounded corners=3pt,minimum width=3cm,minimum 
+    height=3cm,fill=SkyBlue!20] (SO){};
+    \node[above] at (SO.south) {\small Syst\`eme optique};
+    \coordinate (O) at (SO.center);
+    \draw[thin, -latex](-3.5,0)--(4,0) node [below] {A.O.};
+    % Sens de comptage
+    \node[] (Cp) at (-3,2) {$\oplus$};
+    \draw[<->] (Cp.north west) |- (Cp.south east);
+    % Sens de comptage
+    \node[] (Cp) at (3,2) {$\oplus$};
+    \circledarrow{black}{(Cp)}{0.3}
+    % Objet
+    \def \pos{-3}
+    \def \siz{1}
+    \coordinate (A) at ($(O)+(\pos,0)$);
+    \coordinate (B) at ($(A)+(0,\siz)$);
+    \draw[->, Purple!70] (A) 
+    node[below] {A}
+    -- (B)
+    node[above] {B};
+    % Objet
+    \def \pos{+3}
+    \def \siz{-1.5}
+    \coordinate (Ap) at ($(O)+(\pos,0)$);
+    \coordinate (Bp) at ($(Ap)+(0,\siz)$);
+    \draw[->, Red!70] (Ap) 
+    node[above] {A'}
+    -- (Bp)
+    node[below] {B'};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+    \begin{tikzpicture}[]
+        % Axe optique
+        \draw[thin](-5,0)--(2,0);
+        \draw[thin, dashed] (2,0)--(4,0);
+        \draw[thin, ->] (4,0)--(5,0)node[right]{A.O.};
+        % Lentille 
+        \coordinate (O) at (0,0);
+        \def \fa{2}
+        \def \lsiz{2}
+        \coordinate (F) at ($(O)+(-\fa,0)$);
+        \coordinate (Fp) at ($(O)+(\fa,0)$);
+
+        \foreach \x/\z in {O/\fa}{
+            \draw[shift={(\x)}] (0,0)
+                node[below right] {O$_{}$};
+            \draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+                node[below right] {F$'_{}$};
+            \draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+                node[below left] {F$_{}$};
+        }
+
+        \draw[shift={(O)}, thick,
+            <->, >=latex, name path=L] (0,-\lsiz)--(0,\lsiz)
+            node[above]{$\Lc_{}$};
+        % Objet
+        \def \pos{-3.60}
+        \def \siz{1}
+        \coordinate (A) at ($(O)+(\pos,0)$);
+        \coordinate (B) at ($(A)+(0,\siz)$);
+        \draw[->, Purple!70] (A) 
+            node[below] {A}
+            -- (B)
+            node[above left] {B};
+        % Écran
+        \def\ecsiz{3}
+        \draw[dotted] ($(4.5,0)+(0,-\ecsiz/2)$)
+            --++ (0,\ecsiz);
+        \node[above right] at (4.5,0) {E};
+        % Rayons pour objet avant foyer d'une lentille convergente
+        % Lengths
+        \len{(A)}{(O)}{\posi}
+        \len{(A)}{(B)}{\size}
+        \len{(O)}{(F)}{\foc}
+        % Rayon 1
+        \draw[brandeisblue, simple] (B) -- (O);
+        \def\mut{1.5}
+        \draw[orange!70, simple, name path=OBp] (O)
+            --++ ($\mut*(O)-\mut*(B)$);
+        % Rayon 2
+        \draw[brandeisblue, double] (B) --++ (\posi,0) coordinate (I);
+        \def \mut{2.5}
+        \draw[orange!70, double, name path=IBp] (I)
+            --++ ($\mut*(Fp)-\mut*(I)$);
+        \def \intsiz{\size*\foc/(\posi-\foc)}
+        % Image
+        \path[name intersections={of=OBp and IBp, by=B\bp}];
+        \coordinate (A\bp) at ($(B\bp)+(0,{\intsiz})$);
+        \draw[->, Red!70] (A\bp) 
+        node[above left] {A\bp}
+        -- (B\bp)
+        node[below left] {B\bp};
+        % Grandeurs
+        \node[below] (O) at (O) {};
+        \node[below] (Fp) at (Fp) {};
+        \draw[<->, ForestGreen] (O) --
+        node[below, midway, sloped]{\scriptsize $\SI{5}{cm}$} (Fp);
+        % Grandeurs
+        \node[above] (O) at (0,0) {};
+        \node[above] (Ab) at (A\bp) {};
+        \draw[<->, ForestGreen] (O) --
+        node[above, midway, sloped]{\scriptsize $\SI{4}{m}$} (Ab);
+        % Grandeurs
+        \node[below] (Aa) at (A) {};
+        \node[below] (O) at (0,0) {};
+        \draw[<->, ForestGreen] (Aa) --
+        node[below, midway, sloped]{\scriptsize $\SI{-5}{cm}$} (O);
+        % Grandeurs
+        \node[left] (A) at (A) {};
+        \node[left] (B) at (B) {};
+        \draw[<->, ForestGreen] (A) --
+        node[above, midway, sloped]{\scriptsize $\SI{24}{mm}$} (B);
+        % Grandeurs
+        \node[left] (A\bp) at (A\bp) {};
+        \node[left] (B\bp) at (B\bp) {};
+        \draw[<->, ForestGreen] (B\bp) --
+        node[above, midway, sloped]{\scriptsize $\SI{-1.9}{m}$} (A\bp);
+    \end{tikzpicture}
+
+\end{document}

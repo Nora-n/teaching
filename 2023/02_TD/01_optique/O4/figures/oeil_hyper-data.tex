@@ -1,0 +1,72 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+    % Sens de comptage
+    \node[] (Cp) at (-2.5,2) {$\oplus$};
+    \draw[<->] (Cp.north west) |- (Cp.south east);
+    % Sens de comptage
+    \node[] (Cp) at (2.5,2) {$\oplus$};
+    \circledarrow{black}{(Cp)}{0.3}
+    % Axe optique
+    \draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+    % Lentille 
+    \coordinate (S) at (0,0);
+    \def \fa{1.85}
+    \def \lsiz{2}
+    \coordinate (F) at ($(S)+(-\fa,0)$);
+    \coordinate (Fp) at ($(S)+(\fa,0)$);
+
+    \foreach \x/\z in {S/\fa}{
+        \node[] at (\x) {$\times$};
+        \node[below left] at (\x) {$S$};
+        \node[] at ([shift={(\z,0)}]\x) {$\times$};
+        \node[above right] at ([shift={(\z,0)}]\x) {$F'_1$};
+        \node[] at ([shift={(-\z,0)}]\x) {$\times$};
+        \node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+    }
+
+    \draw[shift={(S)}, thick, <->, >=latex, name path=L]
+        (0,-\lsiz) coordinate (Lb) --
+        (0,\lsiz) coordinate (Lt) node[above]{$\Lc_{}$};
+    % Écran
+    \def\ecsiz{4}
+    \coordinate (E) at (1.7,0)
+        node [below left] at (E) {E}
+        node at (E) {$\times$};
+    \draw[thin]
+        ([shift={(0,-\ecsiz/2)}]E)
+        --++ (0,\ecsiz);
+    % Points infini
+    \coordinate (At) at (-2.5,1.5);
+    \coordinate (Ab) at (-2.5,-1.5);
+    % Intersections lentille
+    \draw[Purple!70, simple]
+        (At) --
+        ($(Lb)!(At)!(Lt)$)
+        coordinate (It)
+        node [midway, below] {$-\infty$};
+    \draw[Purple!70, double]
+        (Ab) --
+        ($(Lb)!(Ab)!(Lt)$)
+        coordinate (Ib);
+    % Émergents
+    \draw[orange!70, simple, shorten >=-0.5cm]
+        (It) -- (Fp);
+    \draw[orange!70, double, shorten >=-0.5cm]
+        (Ib) -- (Fp);
+    % Grandeurs
+    \node[below=0.1, inner sep=0] (Sg) at (S) {};
+    \node[below=0.1, inner sep=0] (Eg) at (E) {};
+    \draw[|<->|, ForestGreen] (Sg) --
+    node[below, midway, sloped]{\scriptsize $\SI{17}{mm}$} (Eg);
+    % Grandeurs
+    \node[above=0.1, inner sep=0] (Sg) at (S) {};
+    \node[above=0.1, inner sep=0] (Fpg) at (Fp) {};
+    \draw[|<->|, ForestGreen] (Sg) --
+    node[above, midway, sloped]{\scriptsize $\SI{18.5}{mm}$} (Fpg);
+\end{tikzpicture}
+
+\end{document}
+

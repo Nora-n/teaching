@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[scale=1]
+    \draw
+    (0.5,0) node {$\bullet$} node [left] (A) {A} --
+    (1,0) coordinate (Il) --
+    (1,0.7) to[R, name=R1]
+    (3,0.7) --
+    (3,0) coordinate (Ir) --
+    (3.5,0) node {$\bullet$} node [right] (B) {B};
+    \draw[]
+    (Il) --
+    (1,-0.7) to[R, name=R3]
+    (3,-0.7) -- (Ir);
+    \draw[] 
+    (Il) to[R, name=R2]
+    (Ir);
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \node[] at (R3.center) {$R_3$};
+    \node[right=0.7em] (E) at (B) {$\equiv$};
+    \draw[shift={($(E)+(2em,0)$)}]
+    (0,0) node[left] {A} node {$\bullet$}
+    to[R, name=Req]
+    (2,0) node {$\bullet$} node [right] {B};
+    \node[] at (Req.center) {$R_{\rm eq}$};
+\end{circuitikz}
+
+\end{document}

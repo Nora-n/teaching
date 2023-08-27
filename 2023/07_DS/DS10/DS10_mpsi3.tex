@@ -1,0 +1,702 @@
+\documentclass[11pt]{book}
+\usepackage{cours-preambule}
+
+\toggletrue{student}
+\HideSolutionstrue
+
+\makeatletter
+\renewcommand{\@chapapp}{MPSI3 -- \today\ -- Devoir surveillé}
+\makeatother
+
+\renewcommand{\thesection}{E\arabic{section}}
+\titleformat{\section}{\Large\bfseries}{
+    \begin{tikzpicture}[scale=0.55, overlay]
+        \draw[line width=1pt, color=darkgray, xshift=1em, yshift=0.6em]
+            (1,-0.4) -- (1,0.8) --(0.8,1) -- (-0.8,1) -- (-1,0.8) -- (-1,-0.8) --
+            (-0.8,-1) -- (33,-1);
+        \node[xshift=0.6em, yshift=0.35em] at (0,0)
+            {\rmfamily\textcolor{darkgray}{\thesection}};
+    \end{tikzpicture}}{0.4em}{\hspace{1.4em}}
+
+\setlist[enumerate,1]{leftmargin=10pt, label=\sqenumi}
+\setlist[enumerate,2]{leftmargin=20pt, label=\Alph*)}
+
+\newcommand{\figsvg}[1]{
+  \begin{center}
+    \subimport{figures/}{#1}
+  \end{center}
+}
+
+\begin{document}
+\setcounter{chapter}{9}
+\chapter{Cristallographie et induction \ifstudent{-- corrigé}}
+\label{ch:ds10}
+
+\ifprof{
+\begin{center}
+	\Large\bfseries
+	\ul{Tout moyen de communication est interdit}
+	\smallbreak
+	\ul{Les téléphones portables doivent être éteints et rangés dans les sacs}
+	\smallbreak
+	\ul{Les calculatrices sont \textit{interdites}}
+\end{center}
+Le devoir est composé des exercices \textit{indépendants} suivants~:
+{\Large
+\begin{itemize}[label=$\diamond$]
+	\litem{Exercice 1}~: Oxyde de zirconium solide
+	\litem{Exercice 2}~: Questions de cours
+	\litem{Exercice 3}~: Rails de \textsc{Laplace} inclinés
+\end{itemize}
+}
+
+Les différentes questions peuvent être traitées dans l'ordre désiré.
+\textbf{Cependant}, le numéro complet de la question doit être indiqué, et
+\textbf{vous indiquerez si vous traitez la question d'un exercice sur une page
+	complètement déconnectée}, sous peine de n'être ni vue ni corrigée.
+\bigbreak
+Une attention particulière sera portée à la \textbf{qualité de rédaction}. Les
+hypothèses doivent être clairement énoncées, les propositions reliées entre
+elles par des connecteurs logiques, les lois et théorèmes énoncés, sans pour
+autant devenir une composition de français.
+\bigbreak
+De plus, la \textbf{présentation} de la copie sera prise en compte. Outre la
+numérotation des questions, l'écriture, l'orthographe, les encadrements, la
+marge, le cadre laissé pour la note et le commentaire font partie des points à
+travailler. Il est notamment attendu que \textbf{les expressions littérales
+	soient encadrées}, que \textbf{les calculs n'apparaissent pas} mais que le
+détail des grandeurs avec leurs unités soit indiqué, et \textbf{les applications
+	numériques soulignées}.
+\bigbreak
+Ainsi, l'élève s'expose aux malus suivants concernant la forme et le fond~:
+\begin{tprop}{Malus, dngr}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}
+			\item A~: application numérique mal faite~;
+			\item N~: numéro de copie manquant~;
+			\item P~: prénom manquant~;
+			\item E~: manque d'encadrement des réponses~;
+			\item M~: marge non laissée ou trop grande~;
+			\item V~: confusion ou oubli de vecteurs~;
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}
+			\item Q~: question mal ou non indiquée (même passées)~;
+			\item C~: copie grand carreaux~;
+			\item U~: mauvaise unité (flagrante)~;
+			\item H~: homogénéité non respectée~;
+			\item S~: chiffres significatifs non cohérents~;
+			\item $\f$~: loi physique fondamentale brisée.
+		\end{itemize}
+	\end{minipage}
+\end{tprop}
+
+\begin{timpo}{Exemple application numérique, hand}
+	\vspace*{-10pt}
+	\begin{minipage}{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\ul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+\end{timpo}
+\newpage
+}
+
+\section{Oxyde de zirconium solide \hfill \textcolor{red}{/30}}
+\label{sec:oxzir}
+
+\switch{
+	\begin{center}
+		\begin{framed}
+			\Large\bfseries
+			Aucune impasse sur la cristallographie ne sera tolérée.
+		\end{framed}
+	\end{center}
+
+	Les piles à combustible à oxyde solide permettent d'avoir en contact deux phases
+	solide et gazeuse, ce qui supprime les problèmes liés à la gestion de trois
+	phases, notamment la corrosion. Les électrodes sont poreuses de façon à
+	permettre un transport rapide des gaz. Un matériau de choix pour l'électrolyte
+	est l'oxyde de zirconium, appelé zircone, stabilisé à l'yttrium.
+	\smallbreak
+	La zircone peut être assimilée à un cristal ionique formé de cations
+	\ce{Zr^{4+}} et d'anions \ce{O^{2-}} de rayons respectifs $r_+$ et $r_-$. Les
+	cations sont distribués aux nœuds d'un réseau cubique faces centrées (CFC).
+	\bigbreak
+	\begin{enumerate}
+		\item Rappeler ce qu'est le modèle des sphères dures.
+		\item Représenter la maille conventionnelle d'une structure CFC de cations.
+		      Indiquer le nombre de cations en propre par maille en détaillant le
+		      calcul.
+		\item Définir puis donner sans démonstration la compacité d'une telle
+		      structure dans le cas d'une maille métallique. Commenter.
+		\item Indiquer et représenter où se situent les sites tétraédriques de cette
+		      maille. Combien y en a-t-il~?
+		\item Exprimer le rayon maximal $r_-$ de la particule sphérique pouvant
+		      s'insérer dans ces sites sans induire de déformation en fonction du
+		      paramètre de maille $a$ et de $r_+$. La condition de contact sera
+		      énoncée en français et représentée schématiquement.
+	\end{enumerate}
+	\textbf{Les anions occupent tous les sites tétraédriques de la maille CFC formée
+		par les cations.}
+	\begin{enumerate}[resume]
+		\item Déterminer le nombre d'anions contenus dans cette maille.
+		\item En déduire la formule de la zircone.
+		\item Définir et donner, en justifiant, la coordinence des anions par rapport
+		      aux cations, et des cations par rapport aux anions.
+		\item Exprimer la masse volumique de la zircone en fonction de $a$, de
+		      $M_{\ce{Zr}}$ la masse molaire du zirconium, de $M_{\ce{O}}$ la masse
+		      molaire de l'oxygène et du nombre d'\textsc{Avogadro}.
+	\end{enumerate}
+	\textbf{La formule de l'oxyde d'yttrium est \ce{Y2O3}.}
+	\begin{enumerate}[resume]
+		\item En déduire la charge du cation yttrium.
+		\item Le dopage consiste à substituer dans la maille élémentaire de l'oxyde de
+		      zirconium une fraction molaire $x$ des cations \ce{Zr^{4+}} par des
+		      cations yttrium. Expliquer pourquoi l'électroneutralité de la structure
+		      n'est alors pas respectée.
+		\item Proposer une modification de la formule chimique impliquant le nombre
+		      $y$ d'anions \ce{O^{2-}} présents dans la zircone dopée à l'oxyde
+		      d'yttrium, au moyen de $x$, pour rétablir cette électroneutralité.
+	\end{enumerate}
+	\newpage
+}{
+	\begin{enumerate}
+		\nitem{1} Le modèle des sphères dures consiste à considérer les entités
+		monoatomiques (atomes ou ions) comme des sphères impénétrables et
+		indéformables.
+	\end{enumerate}
+	\vspace*{-10pt}
+	\noindent
+	\begin{minipage}[t]{.73\linewidth}
+		\begin{enumerate}[start=2]
+			\nitem{3} On a 8 atomes aux sommets, et 6 atomes au centre des faces (voir
+			Figure~\ref{fig:cfc}). Les premiers sont partagés entre huit mailles, les
+			seconds entre 2 mailles, d'où
+			\[
+				N = 6 \times \frac{1}{2} + 8 \times \frac{1}{8}
+				\Lra
+				\boxed{N = 4} \text{ cations par maille}
+			\]
+			\nitem{3} La compacité est le rapport du volume occupé par les entités sur
+			le volume d'une maille. Pour une CFC, elle est de \textbf{74\%}. C'est la
+			compacité maximale pour une structure de sphères dures identiques. Il reste
+			donc \textbf{26\% de vide} qui peut être occupé par d'autres entités plus
+			petites.
+			\nitem{3} Dans la CFC, les sites tétraédriques (sites T) sont \textbf{au
+				centre des huit cubes d'arête $a/2$}. Il y en a donc \textbf{8 par maille}
+			(voir Figure~\ref{fig:sitesT}).
+			\nitem{4} À la limite où l'anion occupe le site T sans déformer la structure
+			de cations, le contact anion-cation se fait sur la grande diagonale du petit
+			cube d'arête $a/2$ (voir Figure~\ref{fig:habsiteT}), soit
+			\[
+				r_+ + r_- \leq \frac{1}{2}\times \frac{a \sqrt{3}}{2}
+				\Lra
+				\boxed{r_- \leq \frac{a \sqrt{3}}{4} - r_+}
+			\]
+			\nitem{1} Les sites T appartiennent en propre à la maille, il y a donc autant
+			d'anions que de site, c'est-à-dire \textbf{8 anions par maille}.
+			\nitem{2} Il y a donc deux fois plus d'anions \ce{O^{2-}} que de cations
+			\ce{Zr^{4+}}. La formule avec les plus petits entiers naturels est donc
+			\ce{ZrO2}.
+			\nitem{3} La coordinence d'une entité est son nombre de plus proches voisins
+			(PPV). Ici, un anion est dans un site T, donc entouré de 4 cations PPV, donc
+			la coordinence des \textbf{anions par rapport aux cations est de 4}. Un cation
+			au centre d'une face, lui, est entouré de 8 petits cubes d'arête $a/2$, au
+			centre desquels se trouvent les anions~: la coordinence des \textbf{cations
+				par rapport aux anions est de 8}.
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.25\linewidth}
+		~
+		\begin{center}
+			\includegraphics[scale=.8]{cfc}
+			\captionof{figure}{Maille d'une CFC.}
+			\label{fig:cfc}
+		\end{center}
+		\begin{center}
+			\includegraphics[scale=1]{sitesT}
+			\captionof{figure}{Sites T de la structure CFC.}
+			\label{fig:sitesT}
+		\end{center}
+		\begin{center}
+			\includegraphics[scale=1]{habsiteT}
+			\captionof{figure}{Habitabilité d'un site T d'une CFC.}
+			\label{fig:habsiteT}
+		\end{center}
+	\end{minipage}
+	\begin{enumerate}[start=9]
+		\nitem{3} La masse volumique est le rapport de la masse des entités \textit{en
+			propre} sur le volume de la maille. Ainsi,
+		\[
+			\rho = \frac{N_{\ce{Zr}} m_{\ce{Zr}} + N_{\ce{O}} m_{\ce{O}}}{a^3}
+			\Lra
+			\boxed{\rho = \frac{4M_{\ce{Zr}} + 8M_{\ce{O}}}{\Nc_{\rm A}a^3}}
+		\]
+		\nitem{2} L'oxygène se trouve toujours sous la forme d'anions \ce{O^{2-}}. Par
+		neutralité de la structure, on a donc
+		\[
+			2z + 3 \times (-2) = 0
+			\Lra
+			z=3
+		\]
+		d'où la notation \ce{Y^{3+}}.
+		\nitem{2} Si la substitution se fait le plus simplement possible, un cation
+		\ce{Zr^{4+}} est remplacé par un cation \ce{Y^{3+}}~: tout se passe donc comme
+		si le cristal avait perdu une charge $+$, et donc qu'il s'est chargé
+		négativement.
+		\nitem{3} En fonction de $x$ et $y$, la formule chimique de la structure
+		s'écrit $\ce{Zr_{1-x}Y_{x}O_{y}}$. La neutralité impose
+		\[
+			4(1-x) + 3x -2y = 0
+			\Lra
+			\boxed{y = 2 - \frac{x}{2}}
+		\]
+		Ainsi, au cours du processus de substitution, certains sites tétraédriques de
+		l'alliage se vident de leurs ions \ce{O^{2-}} pour préserver la neutralité de
+		la structure. On vérifie par ailleurs qu'avec $x=0$, c'est-à-dire sans dopage,
+		on retrouve bien $y=2$.
+	\end{enumerate}
+}
+\vspace*{-10pt}
+\section{Questions de cours \hfill \textcolor{red}{/36}}
+\label{sec:cours}
+\switch{
+	\begin{center}
+		\begin{framed}
+			\large\bfseries
+			Chaque sous-exercice est indépendant des autres.
+		\end{framed}
+	\end{center}
+
+	\subsection{Couple sur un aimant}
+	\label{ssec:cplaimant}
+	Soit un aimant de moment magnétique $\vv{m}$ plongé dans un champ magnétique
+	$\vv{B}$ dans le plan de ce moment magnétique. On appelle $\tt$ l'angle orienté
+	de $\vv{B}$ à $\vv{m}$.
+	\begin{enumerate}
+		\item Faire un schéma de la situation, et établir entièrement le système
+		      d'étude.
+		\item Exprimer le couple de \textsc{Laplace} subi par $\vv{m}$ en fonction
+		      de $\tt$.
+		\item En déduire les positions d'équilibre de $\vv{m}$.
+		\item En étudiant dans quel sens le couple de \textsc{Laplace} tend à faire
+		      tourner $\vv{m}$ en cas de petites perturbations, déterminer laquelle des
+		      deux positions d'équilibre est stable, et laquelle est instable.
+	\end{enumerate}
+
+	\subsection{Modération de \textsc{Lenz}}
+	\label{ssec:lenz}
+	\noindent
+	\begin{minipage}[t]{.47\linewidth}
+		Dans chacun des circuits ci-contre, la spire circulaire et/ou l'aimant droit
+		sont déplacés dans le sens indiqué par la double flèche.
+		\begin{enumerate}[resume]
+			\item Énoncer la loi de \textsc{Lenz}.
+			\item Indiquer le signe du courant $i$ apparaissant dans la spire pendant le
+			      déplacement, en justifiant en français et par un schéma pour chaque
+			      situation particulière.
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.47\linewidth}
+		~
+		\begin{center}
+			\includegraphics[width=\linewidth]{inducsigne}
+			\label{fig:inducsigne}
+		\end{center}
+	\end{minipage}
+
+	\subsection{Loi de \textsc{Faraday}}
+	\label{ssec:faraday}
+	\noindent
+	\begin{minipage}[t]{.75\linewidth}
+		On considère un circuit carré de côté $a$ et de résistance totale $R$, situé
+		dans un plan orthogonal à un champ magnétique uniforme mais \textbf{variable}
+		$\vv{B}(t) = B_0\exr^{-t/\tau}\uz$ avec $B_0$ et $\tau$ strictement positifs.
+		\begin{enumerate}[start=7]
+			\item Expliquer pourquoi il y a induction.
+			\item Exprimer l'intensité $i$ du courant induit représenté sur le schéma.
+			\item Vérifier que son signe soit en accord avec la loi de \textsc{Lenz}.
+			\item Quel autre paramètre peut-on faire varier pour avoir induction~? Citer
+			      un exemple de système présentant de l'induction dans ce cas.
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.20\linewidth}
+		~
+		\vspace*{-20pt}
+		\begin{center}
+			\includegraphics[scale=1]{faraexo}
+			\label{fig:faraexo}
+		\end{center}
+	\end{minipage}
+
+	\subsection{Inductance propre}
+	\label{ssec:indprp}
+	\begin{enumerate}[start=11]
+		\item Définir ce qu'est le flux propre d'un circuit.
+		\item Comment se définit l'auto-inductance~?
+		\item Calculer l'inductance propre d'une bobine de TP, avec $N$ spires de
+		      rayon $a = \SI{3}{cm}$ et de longueur $\ell = \SI{10}{cm}$, avec $\mu_0 =
+			      4\pi \cdot \SI{e-7}{H.m^{-1}}$.
+	\end{enumerate}
+
+	\newpage
+}{
+	\small
+	\subsection{Couple sur un aimant \hfill \textcolor{red}{/10}}
+	\label{ssec:cplaimant}
+	\noindent
+	\begin{minipage}[t]{.7\linewidth}
+		\begin{enumerate}
+			\nitem{4} Voir Figure~\ref{fig:aim_cpl}. On étudie l'aimant, caractérisé
+			par un moment $\vv{m}$ uniquement, dans un champ magnétique uniforme et
+			stationnaire $\vv{B}$ dans le plan de l'aimant. On utilise le référentiel
+			du laboratoire supposé galiléen, avec une base cartésienne $(\ux,\uy,\uz)$
+			orthonormée directe. On appelle $\tt$ l'angle orienté de $\vv{B}$ à
+			$\vv{m}$, compté positivement dans le sens direct.
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.3\linewidth}
+		~
+		\vspace*{-15pt}
+		\begin{center}
+			\includegraphics[scale=1]{aim_cpl}
+			\captionof{figure}{Aimant dans $\protect \vv{B}$.}
+			\label{fig:aim_cpl}
+		\end{center}
+	\end{minipage}
+	\begin{enumerate}[start=2]
+		\nitem{2}\leftcenters{
+			\hspace{-12pt}
+			On a}{
+			$\vv{m} = m \left( \cos{\theta}\ux + \sin{\theta}\uy \right)$
+			et
+			$\vv{B} = B_0\ux$
+		}
+		\smallbreak
+		\vspace{-40pt}
+		\leftcenters{D'où}{$\DS \vv{\Gamma}_z = (\vv{m}\wedge \vv{B})\cdot \uz \Lra
+				\boxed{\vv{\Gamma}_z = -mB_0\sin{\theta}\uz}$}
+		\nitem{2} On est à l'équilibre si la somme des forces et la somme des moments
+		sont nulles. Avec uniquement le couple magnétique, on a bien une
+		résultante nulle~: on a donc équilibre si $\Mcf_z = \vv{0}$, soit
+		\begin{gather*}
+			\sin{\tt_{\rm eq}} = 0
+			\qquad \Lra \qquad
+			\tt_{\rm eq}       = 0
+			\qqou
+			\tt_{\rm eq}       = \pi
+		\end{gather*}
+		\nitem{2}
+		\vspace*{-32pt}
+		\begin{itemize}[leftmargin=10pt]
+			\item En $\tt_{\rm eq} = \pi$, une petite déviation vers le haut
+			      donne un mouvement de rotation dans le sens horaire, qui écarte
+			      donc l'aimant de sa position d'équilibre~: il est
+			      \textbf{instable}.
+			\item À l'inverse, en $\tt_{\rm eq} = 0$, une petite
+			      déviation vers le haut donne un mouvement de rotation dans
+			      le sens direct, le ramenant à sa position d'équilibre~: il
+			      est \textbf{stable}.
+		\end{itemize}
+	\end{enumerate}
+	\subsection{Modération de \textsc{Lenz} \hfill \textcolor{red}{/7}}
+	\label{ssec:lenz}
+	\begin{enumerate}[start=5]
+		\nitem{1} \textbf{L'induction modère, par ses conséquences, les causes qui
+			lui a donné naissance.}
+		\nitem{6} Les lignes de champ vont du Nord vers le Sud. On doit déterminer
+		le sens de variation du champ vu par la spire~: le champ induit atténue
+		cette variation. On en déduit le signe réel de $i$ par la règle de la main
+		droite.
+		\smallbreak
+		\begin{minipage}[t]{.45\linewidth}
+			\begin{enumerate}
+				\item $\vv{B}_{\rm aimant}$ augmente vers la gauche~: $\vv{B}_{\rm
+						      induit}$ est vers la droite, donc issu de $i_{\rm ind} > 0$.
+				      \begin{center}
+					      \includegraphics[width=\linewidth]{inducsigne_a}
+					      \captionof{figure}{Situation 1.}
+					      \label{fig:indsa}
+				      \end{center}
+				\item Même situation physique, convention opposée~: $i_{\rm ind} < 0$.
+				\item Cette fois $\vv{B}_{\rm aimant}$ augmente vers la droite~:
+				      $\vv{B}_{\rm ind}$ est vers la gauche. Sens réel du courant opposé~:
+				      $i_{\rm ind} < 0$. Voir Figure~\ref{fig:indsb}.
+			\end{enumerate}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{.45\linewidth}
+			\begin{center}
+				\includegraphics[width=\linewidth]{inducsigne_b}
+				\captionof{figure}{Situation 3.}
+				\label{fig:indsb}
+			\end{center}
+			\begin{enumerate}[start=4]
+				\item Pareil qu'à la question 2~: $i_{\rm ind} < 0$.
+				\item Pas de mouvement relatif donc pas de variation de champ donc pas
+				      d'induction~: $i_{\rm ind} = 0$.
+				\item Mouvement relatif amplifié. Ici, le champ \textbf{diminue} vers la
+				      gauche, donc le champ induit le \textbf{renforce}~; ainsi $i_{\rm
+							      ind} < 0$.
+				      \begin{center}
+					      \includegraphics[width=\linewidth]{inducsigne_c}
+					      \captionof{figure}{Situation 6.}
+					      \label{fig:indsc}
+				      \end{center}
+			\end{enumerate}
+		\end{minipage}
+	\end{enumerate}
+	\subsection{Loi de \textsc{Faraday} \hfill \textcolor{red}{/11}}
+	\label{ssec:faraday}
+	\begin{enumerate}[start=7]
+		\nitem{4} Le champ magnétique est variable, et la surface $S = a^2$ est fixe.
+		Ainsi, le flux est variable. D'après la loi de \textsc{Faraday}, une f.é.m.\
+		induite va apparaître dans le circuit~: il y a donc un phénomène
+		d'induction.
+		\nitem{4}
+		On a alors~:
+		\vspace{-10pt}
+		\begin{gather*}
+			\begin{aligned}{}
+				\F_S(\vv{B}) & = -Ba^2
+				\\
+				             & = -B_0a^2\exr^{-t/\tau}
+			\end{aligned}
+			\qqso
+			\begin{aligned}{}
+				e_{\rm ind}         & = -\dv{\F}{t}
+				\\\Lra
+				\Aboxed{e_{\rm ind} & = -\frac{B_0a^2}{\tau}\exr^{-t/\tau} < 0}
+			\end{aligned}
+		\end{gather*}
+		Or, comme le circuit est fermé, \textbf{et que $e$ est en convention
+			générateur},
+		\vspace{-10pt}
+		\begin{align*}
+			e_{\rm ind}         & = Ri_{\rm ind}
+			\\\Lra
+			\Aboxed{i_{\rm ind} & = -\frac{B_0a^2}{T\tau}\exr^{-t/\tau} < 0}
+		\end{align*}
+		donc l'intensité est \textbf{négative}.
+		\nitem{1} En effet, le champ magnétique induit
+		réel doit s'opposer à la diminution du champ extérieur $\vv{B}$, en créant un
+		champ magnétique positif selon $\uz$~: le sens réel du courant donné par la
+		main droite est l'opposé de celui représenté.
+		\nitem{2} On peut faire varier la surface. Les rails de \textsc{Laplace}
+		générateurs sont un exemple. L'expérience de TP avec le galvanomètre en est
+		un autre.
+	\end{enumerate}
+	\subsection{Inductance propre \hfill \textcolor{red}{/8}}
+	\label{ssec:indprp}
+	\begin{enumerate}[start=11]
+		\nitem{1} Le flux propre, noté $\F_P$ d'un circuit est le flux de son propre
+		champ magnétique à travers sa surface.
+		\nitem{1} L'auto-inductance est le facteur de proportionnalité entre le flux
+		propre et le courant à l'origine de son champ propre~:
+		\[
+			\F_p(t) = Li(t)
+		\]
+		\nitem{6} \noindent
+		\begin{minipage}[t]{.4\linewidth}
+			~
+			\begin{center}
+				\includegraphics[scale=1]{bobib}
+				\captionof{figure}{Champ propre d'un solénoïde.}
+				\label{fig:bobib}
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{.69\linewidth}
+			Le champ propre dans un solénoïde est
+			\[
+				\vv{B_p}(t) = \mu_0 \frac{N}{\ell }i(t)\,\uz
+			\]
+
+			$i$ et $\vv{B_p}$ respectent la règle de la main droite.
+		\end{minipage}
+		Pour $N$ spires~:
+		\[
+			\F_p = N\times \vv{B_p}\cdot \vv{S}
+		\]
+		Or, $\vv{B_p}$ et $\vv{S}$ sont tous deux orientés à partir de $i$ selon
+		la règle de la main droite, donc
+		\begin{gather*}
+			\vv{S} = S\uz
+			\qqet
+			\vv{B_p} = \mu_0 \frac{N}{\ell }i(t)\,\uz
+			\\\Lra
+			\boxed{\F_p = \mu_0 \frac{N^2}{\ell }Si(t)}
+		\end{gather*}
+		On a démontré que le flux magnétique propre et l'intensité étaient
+		proportionnels, et que la constante de proportionnalité était positive.
+		On identifie simplement~:
+		\[
+			\boxed{L = \mu_0 \frac{N^2}{\ell }S}
+		\]
+		D'où par application numérique
+		\[
+			\ul{L \approx \SI{35}{mH}}
+		\]
+
+	\end{enumerate}
+}
+
+\section{Rails de \textsc{Laplace} inclinés \hfill \textcolor{red}{/19}}
+\label{sec:rlplincl}
+
+\switch{
+	\begin{center}
+		\begin{framed}
+			\large\bfseries
+			Indiquer la ou les bonnes réponses, en justifiant tout votre raisonnement.
+			Une réponse sans justification ou avec une justification fausse ne
+			rapportera aucun point.
+		\end{framed}
+	\end{center}
+
+	Soient deux rails rigides, parallèles, distants de $a$, faisant un angle
+	$\alpha$ avec le plan horizontal, conducteurs, de résistance négligeable,
+	baignant dans un champ magnétique uniforme $\vv{B_0}$ vertical. Les rails sont
+	reliés à une source de courant délivrant une intensité $i(t)=I_0\cos(\wt)$. Une
+	barre conductrice de résistance négligeable, de masse $m$ peut glisser sans
+	frottement sur les rails en restant perpendiculaire aux rails. La barre est
+	lâchée sans vitesse initiale depuis la position $x(t=0)=x_0$.
+
+	\figsvg{fig.pdf_tex}
+
+	\begin{enumerate}
+		\item Quelle est la résultante des forces de \textsc{Laplace} $\vv{F_L}$
+		      s'exerçant sur la barre mobile~?
+		      \smallbreak
+		      \noindent
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}
+				      \item \figsvg{force1.pdf_tex}
+				      \item \figsvg{force2.pdf_tex}
+			      \end{enumerate}
+		      \end{minipage}
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}[start=3]
+				      \item \figsvg{force3.pdf_tex}
+				      \item \figsvg{force4.pdf_tex}
+			      \end{enumerate}
+		      \end{minipage}
+		\item Donner l'expression de la puissance $\Pc_L$ des actions de
+		      \textsc{Laplace}.
+		      \smallbreak
+		      \noindent
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}
+				      \item $P_L=B_0ia \xp$
+				      \item $P_L=-B_0ia\xp$
+			      \end{enumerate}
+		      \end{minipage}
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}[start=3]
+				      \item $P_L=-B_0ia\cos(\alpha)\xp$
+				      \item $P_L=0$
+			      \end{enumerate}
+		      \end{minipage}
+		\item Quelle est l'équation différentielle vérifiée par $x(t)$~?
+		      \smallbreak
+		      \noindent
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}
+				      \item $m\xpp=mg\sin(\alpha)-B_0ia\cos(\alpha)$
+				      \item $m\xpp=mg\cos(\alpha)-B_0ia\cos(\alpha)$
+			      \end{enumerate}
+		      \end{minipage}
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}[start=3]
+				      \item $m\xpp=mg\cos(\alpha)-B_0ia$
+				      \item $m\xpp=mg\sin(\alpha)-B_0ia$
+			      \end{enumerate}
+		      \end{minipage}
+		\item Exprimer $x(t)$.
+		      \smallbreak
+		      \noindent
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}
+				      \item $x(t)=\cfrac{1}{2}g\sin(\alpha)t^2+
+					            \cfrac{B_0a}{m\w^2}\cos(\alpha) I_0\cos(\wt)+x_0$
+				      \item $x(t)=\cfrac{1}{2}g\cos(\alpha)t^2+
+					            \cfrac{B_0a}{m}\cos(\alpha) I_0\cos(\wt)+x_0$
+			      \end{enumerate}
+		      \end{minipage}
+		      \begin{minipage}{0.5\linewidth}
+			      \begin{enumerate}[start=3]
+				      \item $x(t)=\cfrac{1}{2}g\sin(\alpha)t^2+
+					            \cfrac{B_0a}{m}\cos(\alpha) I_0(\cos(\wt)-1)+x_0$
+				      \item $x(t)=\cfrac{1}{2}g\sin(\alpha)t^2+
+					            \cfrac{B_0a}{m\w^2}\cos(\alpha) I_0(\cos(\wt)-1)+x_0$
+			      \end{enumerate}
+		      \end{minipage}
+	\end{enumerate}
+}{
+	\begin{enumerate}
+		\nitem{4} Par définition, ${\rm d}\vv{F_L}=i\vv{\dd{\ell}}\wedge \vv{B_0}$.
+		Cette force est orthogonale à la barre et à $\vv{B_0}$. Elle est donc
+		horizontale, orientée vers la gauche~: \fbox{\textbf{réponse C)}}
+		\figsvg{force3.pdf_tex}
+		\nitem{4} Par définition de la puissance d'une force $\Pc_L=\vv{F_L}\cdot\vv{v}$.
+		Or $\vv{v}=\xp\ex$.
+		\smallbreak
+		Donc $\Pc_L=(\vv{F_L}\cdot\ex)\xp$, avec $\vv{F_L}=-iB_0a\vv{n}$ et
+		$\vv{n}$ le vecteur unitaire associé à l'axe horizontal vers la droite.
+		\smallbreak
+		On en déduit $\boxed{\Pc_L=-B_0ia\cos(\alpha)\xp}$~: \fbox{\textbf{réponse
+				C)}}
+		\nitem{5} On étudie la barre en translation selon $\ex$, dans le référentiel
+		terrestre supposé galiléen.
+		\smallbreak
+		La barre est soumise au poids, à la résultante des forces de Laplace et
+		aux 2 réactions au niveau des rails (forces orthogonales à $\ex$ en
+		l'absence de frottement de glissement).
+		\figsvg{figcorr.pdf_tex}
+		On applique le PFD projeté selon $\ex$ pour obtenir la \fbox{\textbf{réponse
+				A)}}~:
+		\[
+			\boxed{m\xpp=mg\sin(\alpha)-B_0ia\cos(\alpha)}
+		\]
+		\nitem{6} On utilise l'expression de $i(t)=I_0\cos(\wt)$.
+		\smallbreak
+		Par intégration avec la CI $\xp(t=0)=0$~:
+		\[
+			\xp(t)=g\sin(\alpha)t-\cfrac{B_0I_0a\cos(\alpha)}{m\w}\sin(\wt)
+		\]
+		On intègre encore une fois avec la CI $x(t=0)=x_0$ pour obtenir la
+		\fbox{\textbf{réponse D)}}~:
+		\[
+			\boxed{x(t)=\cfrac{g\sin(\alpha)}{2}t^2+
+			\cfrac{B_0I_0a\cos(\alpha)}{m\w^2}(\cos(\wt)-1)+x_0}
+		\]
+	\end{enumerate}
+}
+
+\end{document}

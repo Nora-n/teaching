@@ -21,27 +21,54 @@
   \fi
 \endgroup%
 }
+\usepackage{varwidth}
+\newcommand\hide[1]{\phantom{\varwidth{\linewidth}#1\endvarwidth}}
+% \toggletrue{student} will hide the command
+\newcommand{\hswitch}[1]{
+	\iftoggle{student}{
+		\hide{#1}
+	}{
+		#1
+	}
+}
 
-%Uncomment below to hide solutions
-%\HideSolutionstrue
+\usepackage{etoolbox}
+
+\newtoggle{student}
+% \toggletrue{student}
+
+% Uncomment below to hide solutions
+% \HideSolutionstrue
+
+\usepackage{verbatim}
 
 \begin{document}
-  Some problem text goes here
+Some problem text goes here
 
-  \begin{solution}
-    \textbf{SOLUTION 1}
-    \[ \forall\varepsilon>0\exists\delta>0:\dots \]
-    \tikz{\draw(0,0)--(3,2);}
+\begin{solution}
+	\textbf{SOLUTION 1}
+	\[ \forall\varepsilon>0\exists\delta>0:\dots \]
+	\tikz{\draw(0,0)--(3,2);}
 \end{solution}
 %^ \end{solution} has to be ALONE on line without any prior spaces
 
-  BETWEEN
+BETWEEN
 
 \begin{solution}
-    \textbf{SOLUTION 2}
-    \[ \forall\varepsilon>0\exists\delta>0:\dots \]
+	\textbf{SOLUTION 2}
+	\[ \forall\varepsilon>0\exists\delta>0:\dots \]
 \end{solution}
 %^ has to be ALONE on line without any prior spaces
-  Some text after solution.
+Some text after solution.
+
+This is a text with a \hswitch{text} hidden.
+
+\hswitch{
+	\textbf{SOLUTION 2}
+	\[ \forall\varepsilon>0\exists\delta>0:\dots \]
+}
+
+AFTER moves when using \verb|\hide|, only good for single words. Keep
+environment then.
 
 \end{document}

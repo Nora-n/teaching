@@ -1,0 +1,68 @@
+% https://tex.stackexchange.com/a/599002
+
+\documentclass[border=2mm]{standalone}
+\usepackage    {tikz}
+\usetikzlibrary{3d}    % For "canvas is..." options
+\usetikzlibrary{babel} % There are conflicts between tikz and some babel packages
+
+% isometric axes
+\pgfmathsetmacro\yx{1/sqrt(2)}
+\pgfmathsetmacro\yy{1/sqrt(6)}
+\pgfmathsetmacro\xy{sqrt(2/3)}
+
+\newcommand{\rectangle}[6]% position (z), x,y,z dimensions, color, label 
+{%
+  \draw[canvas is xy plane at z=#1,fill=#5,fill opacity=0.8] (-#2,-#3)   rectangle (#2,#3);
+  \draw[canvas is xz plane at y=#3,fill=#5]                  (-#2,#1-#4) rectangle (#2,#1);
+  \draw[canvas is yz plane at x=#2,fill=#5]                  (-#3,#1-#4) rectangle (#3,#1);
+  \node at (#2,-#3,#1) [above left,rotate=30] {#6};
+}
+\begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,%
+		x={(0 cm,\xy cm)},y={(-\yx cm,-\yy cm)},z={(\yx cm,-\yy cm)}]
+	% Dimensions
+	\def\pr{0.2} % LASER, radius
+	\def\ph{2}   % LASER, height
+	\def\rz{5}   % Obstacle, position (z)
+	\def\ra{1.5} % Obstacle, semi-dimension x
+	\def\rb{1.7} % Obstacle, semi-dimension y
+	\def\rc{0.1} % Obstacle, dimension z
+	\def\pz{10}  % Écran, position (z)
+	\def\pa{\ra} % Écran, semi-dimension x
+	\def\pb{3}   % Écran, semi-dimension y
+	\def\pc{0.1} % Écran, dimension z
+	% LASER
+	\draw[top color=gray] (-45:\pr)     --++ (0,0,\ph)  node[sloped,midway,above]
+	{LASER}
+	arc (-45:135:\pr) --++ (0,0,-\ph) arc (135:-45:\pr);
+	\draw[canvas is xy plane at z=\ph,fill=white] (0,0) circle (\pr);
+	% Single ray
+	\draw[red,thick] (0,0,\ph) -- (0,0,\rz);
+	% Obstacle
+	\rectangle{\rz}{\ra}{\rb}{\rc}{brown!30}{Obstacle}
+	% Triple rays
+	\foreach\i in {-1,0,1}
+		{%
+			\draw[red,thick] (0,0,\rz) -- (0,0.5*\pb*\i,\pz);
+		}
+	% Écran
+	\rectangle{\pz}{\pa}{\pb}{\pc}{white}{Écran}
+	\begin{scope}[canvas is xy plane at z=\pz]
+		\foreach\i in {-1,0,1}
+			{%
+				\draw[dashed] (0,0.5*\pb*\i) --++   (-1.5*\pa,0);
+				\fill[red]    (0,0.5*\pb*\i) circle (2pt);
+				\ifnum \i < 1
+					\draw[<->] (-1.5*\pa,0.5*\pb*\i) --++ (0,0.5*\pb) node [midway,below] {$\frac{L}{2}$};
+				\fi
+			}
+	\end{scope}
+	\draw[dashed] (-\ra,\rb,\rz-0.5*\rc)   -- (-\ra,\pb+1,\rz-0.5*\rc);
+	\draw[dashed] (-\pa,\pb,\pz-0.5*\rc)   -- (-\pa,\pb+1,\pz-0.5*\pc);
+	\draw[<->]    (-\ra,\pb+1,\rz-0.5*\rc) -- (-\pa,\pb+1,\pz-0.5*\pc) node[midway,below] {$D$};
+	\node at (0,0,\pz) [above] {$O$};
+\end{tikzpicture}
+
+% TODO: add angle $\theta$ on yz canvas
+
+\end{document}

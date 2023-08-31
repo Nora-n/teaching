@@ -4,6 +4,7 @@
 \usepackage    {tikz}
 \usetikzlibrary{3d}    % For "canvas is..." options
 \usetikzlibrary{babel} % There are conflicts between tikz and some babel packages
+\usetikzlibrary{angles}
 
 % isometric axes
 \pgfmathsetmacro\yx{1/sqrt(2)}
@@ -37,14 +38,21 @@
 	arc (-45:135:\pr) --++ (0,0,-\ph) arc (135:-45:\pr);
 	\draw[canvas is xy plane at z=\ph,fill=white] (0,0) circle (\pr);
 	% Single ray
-	\draw[red,thick] (0,0,\ph) -- (0,0,\rz);
+	\draw[red,ultra thick] (0,0,\ph) -- (0,0,\rz);
 	% Obstacle
 	\rectangle{\rz}{\ra}{\rb}{\rc}{brown!30}{Obstacle}
 	% Triple rays
-	\foreach\i in {-1,0,1}
-		{%
-			\draw[red,thick] (0,0,\rz) -- (0,0.5*\pb*\i,\pz);
-		}
+	% \foreach\i in {-1,0,1}
+	% 	{%
+	% 		\draw[red,thick] (0,0,\rz) -- (0,0.5*\pb*\i,\pz);
+	% 	}
+	\draw[red,]
+	(0,0,\rz) coordinate (O) --
+	(0,0.5*\pb*-1,\pz) coordinate (T);
+	\draw[red,]
+	(0,0,\rz) --
+	(0,0.5*\pb*0,\pz) coordinate (M);
+	\draw[red,] (0,0,\rz) -- (0,0.5*\pb*1,\pz);
 	% Écran
 	\rectangle{\pz}{\pa}{\pb}{\pc}{white}{Écran}
 	\begin{scope}[canvas is xy plane at z=\pz]
@@ -61,8 +69,13 @@
 	\draw[dashed] (-\pa,\pb,\pz-0.5*\rc)   -- (-\pa,\pb+1,\pz-0.5*\pc);
 	\draw[<->]    (-\ra,\pb+1,\rz-0.5*\rc) -- (-\pa,\pb+1,\pz-0.5*\pc) node[midway,below] {$D$};
 	\node at (0,0,\pz) [above] {$O$};
-\end{tikzpicture}
 
-% TODO: add angle $\theta$ on yz canvas
+	\begin{scope}[canvas is yz plane at x=\ra]
+		\pic[draw, ->, pic text=\huge$\theta$, pic text options={rotate=110},
+			angle radius=2cm, angle eccentricity=1.2,
+			transform shape] {angle=M--O--T};
+	\end{scope}
+
+\end{tikzpicture}
 
 \end{document}

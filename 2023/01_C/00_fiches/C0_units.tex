@@ -1,31 +1,46 @@
 \documentclass[../main/main.tex]{subfiles}
 
-\raggedbottom
-
 \makeatletter
 \renewcommand{\@chapapp}{Introduction -- chapitre}
 \makeatother
+
+\toggletrue{student}
+\HideSolutionstrue
 
 \begin{document}
 \setcounter{chapter}{-1}
 
 \chapter{Unit\'es et analyse dimensionnelle}
 
+\begin{prgm}
+	\begin{tcb}*(ror)"how"{Savoir-faire}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Conduire une analyse dimensionnelle.
+		\end{itemize}
+	\end{tcb}
+\end{prgm}
+
 En sciences physiques, il faut opérer la distinction entre~:
 \begin{enumerate}
-    \item \textbf{Le phénomène}, du domaine de la sensation («~il fait chaud~»)
-        ou de l'observation («~une lumière blanche traversant un prisme sort en
-        arc-en-ciel~»)~;
-    \item \textbf{La grandeur physique}, quantité mesurable (directement ou
-        indirectement) et rendant compte du phénomène (par exemple, la
-        température). Elle est représentée par un \textbf{symbole} ($T$ dans le
-        même exemple) qui intervient dans les équations mathématiques
-        caractérisant le phénomène physique, et est caractérisée par sa
-        \textbf{dimension} traduisant sa nature~;
-    \item \textbf{La valeur} de la grandeur, résultant d'une mesure et associée
-        à une \textbf{unité} ($K$ ou $\degreeCelsius$)~; la valeur change selon
-        l'unité utilisée et contient un certain nombre de \textbf{chiffres
-        significatifs}.
+	\item \textbf{Le phénomène}~: \bsw{
+		      du domaine de la sensation («~il fait chaud~»)
+		      ou de l'observation («~une lumière blanche traversant un prisme sort en
+		      arc-en-ciel~»)~;
+	      }
+	\item \textbf{La grandeur physico-chimique}~: \bsw{
+		      quantité mesurable (directement ou
+		      indirectement) et rendant compte du phénomène (par exemple, la
+		      température). Elle est représentée par un \textbf{symbole} ($T$ dans le
+		      même exemple) qui intervient dans les équations mathématiques
+		      caractérisant le phénomène physique, et est caractérisée par sa
+		      \textbf{dimension} traduisant sa nature~;
+	      }
+	\item \textbf{La valeur} de la grandeur~: \bsw{
+		      résultant d'une mesure et associée
+		      à une \textbf{unité} ($K$ ou $\degreeCelsius$)~; la valeur change selon
+		      l'unité utilisée et contient un certain nombre de \textbf{chiffres
+			      significatifs}.
+	      }
 \end{enumerate}
 
 Ces notions sont la fondation de tout raisonnement scientifique qui repose sur
@@ -44,42 +59,117 @@ longueur, la masse et le temps. Ce choix n'est pas unique mais pratique.
 À partir de grandeurs de base choisies, nous leur associons donc des unités «~de
 base~». Le bureau international des poids et mesures
 (BIPM\footnote{\href{https://www.bipm.org/fr/measurement-units/}
-{https://www.bipm.org/fr/measurement-units/}}) a défini le \textbf{système
-international (SI)}, et se réuni tous les 4 ans pour discuter de leur définition
-et de leur choix.
+	{https://www.bipm.org/fr/measurement-units/}}) a défini le \textbf{système
+	international (SI)}, et se réunit tous les 4 ans pour discuter de leurs
+définitions et de leurs choix.
 
 \subsection{Définition du SI}
 
-\begin{defi}[label=def:si]{{Grandeurs, dimensions et unités de base du SI}}
-    \begin{center}
-        \begin{tabular}{lclc}
-            \toprule
-            Grandeur             & Dimension & Unité      & Symbole de l'unité\\
-            \midrule
-            Longueur             & L         & mètre      & m\\
-            Masse                & M         & kilogramme & kg\\
-            Temps                & T         & seconde    & s\\
-            Intensité électrique & I         & Ampère
-            \footnote{Du nom du physicien
-                André-Marie \textsc{Ampère} (XVIII-XIX\ieme), précurseur de la
-                mathématisation de la physique et créateur du vocabulaire tenant à
-                l'électricité.}
-                                                          & A\\
-            Température          & $\Theta$  & Kelvin
-            \footnote{Du nom du physicien William \textsc{Thomson} (XIX\ieme),
-        anobli en Lord \textsc{Kelvin}, à l'origine de la thermodynamique.}
-                                                          & K\\
-            Quantité de matière  & N         & mole       & mol\\
-            Intensité lumineuse  & J\footnote{Ne pas confondre avec l'unité des
-            énergies en joules…}
-                                             & candela    & cd\\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-\end{defi}
+\begin{tcb}[label=def:si](defi){Grandeurs, dimensions et unités de base du SI}
+	\begin{center}
+		\begin{tabular}{lclc}
+			\toprule
+			Grandeur             & Dimension      & Unité            & Symbole de l'unité \\
+			\midrule
+			Longueur             & \bsw{L}        & \bsw{mètre}      & \bsw{m}            \\
+			Masse                & \bsw{M}        & \bsw{kilogramme} & \bsw{kg}           \\
+			Temps                & \bsw{T}        & \bsw{seconde}    & \bsw{s}            \\
+			Intensité électrique & \bsw{I}        & \bsw{Ampère\fnm} & \bsw{A}            \\
+			Température          & \bsw{$\Theta$} & \bsw{Kelvin\fnm} & \bsw{K}            \\
+			Quantité de matière  & \bsw{N}        & \bsw{mole}       & \bsw{mol}          \\
+			Intensité lumineuse  & \bsw{J\fnm}    & \bsw{candela}    & \bsw{cd}           \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{tcb}
 
+\footnotetext[2]{Du nom du physicien André-Marie \textsc{Ampère}
+	(\textsc{xviii-xix}\ieme), précurseur de la mathématisation de la physique
+	et créateur du vocabulaire tenant à l'électricité.\label{fn:amp}}
+\footnotetext[3]{Du nom du physicien William
+	\textsc{Thomson} (\textsc{xix}\ieme), anobli en Lord \textsc{Kelvin}, à
+	l'origine de la thermodynamique.\label{fn:kel}}
+\footnotetext[4]{Ne pas confondre avec l'unité des énergies en joules…\label{fn:can}}
 On remarquera que les unités provenant d'un nom propre s'écrivent avec une
 majuscule, et leur symbole l'est également.
+
+\begin{tcb}(nota){Notation}
+	On utilisera $\dim{X}$ pour dénoter la dimension de $X$, et $[X]$ son unité.
+\end{tcb}
+
+\subsection{Opérations sur les grandeurs}
+D'une manière générale, vous étudierez les dimensions de vos équations
+directement \textit{via} les opérateurs qui la composent. Il faut donc savoir
+déduire les dimensions dans les cas suivants~:
+% \begin{enumerate}
+% 	\bitem{Somme et différence}~: \bsw{
+% 		tous les termes d'une somme ou d'une différence ont la même dimension, et le
+% 		résultat également
+% 	}
+% 	\bitem{Produit et quotient}~: \bsw{
+% 		on peut multiplier ou diviser des grandeurs de n'importe quelles dimensions.
+% 		La dimension d'un produit est le produit des dimensions, de même pour les
+% 		quotients et puissances.
+% 	}
+% 	\bitem{Dérivation}~: \bsw{
+% 		la dimension d'une dérivée est le rapport des dimensions de la grandeur
+% 		dérivée et de la grandeur dérivante.
+% 	}
+% 	\bitem{Intégration}~: \bsw{
+% 		la dimension d'une intégrale est le produit des dimensions de la grandeur
+% 		intégrée et de la grandeur intégrante.
+% 	}
+% 	\bitem{Fonction transcendantes}\ftn{Fonctions type exponentielle, logarithme,
+% 		cosinus.}~: \bsw{
+% 		une fonction transcendante est adimensionnée, donc son argument également
+% 	}
+% \end{enumerate}
+\begin{tcbraster}[raster equal height=rows]
+	\begin{tcb}(prop){Opérations}
+		\begin{enumerate}
+			\bitem{Dérivation}~: \bsw{
+				la dimension d'une dérivée est le rapport des dimensions de la grandeur
+				dérivée et de la grandeur dérivante.
+			}
+			\bitem{Intégration}~: \bsw{
+				la dimension d'une intégrale est le produit des dimensions de la grandeur
+				intégrée et de la grandeur intégrante.
+			}
+			\bitem{Fonction transcendantes}\ftn{Fonctions type exponentielle, logarithme,
+				cosinus.}~: \bsw{
+				une fonction transcendante est adimensionnée, donc son argument également
+			}
+		\end{enumerate}
+	\end{tcb}
+	\begin{tcb}(exem)'r'{Exemples}
+		\begin{enumerate}
+			\bitem{Dérivation}~:
+			\bsw{
+				\[
+					v_z =
+					\dv{z}{t} \Ra \dim{v_z} =
+					\frac{\dim{z}}{\dim{t}} =
+					\rm L \cdot T^{-1}
+				\]
+			}
+			\vspace*{-10pt}
+			\bitem{Intégration}~:
+			\bsw{
+				\[
+					\Ec = \int_{t_1}^{t_2} \Pc(t)\dd{t} \Ra \dim{\Ec} = \dim{\Pc} \times [t]
+				\]
+			}
+			\vspace*{-10pt}
+			\bitem{Fonctions transcendantes}~:
+			\bsw{
+			\[
+				[\exp(-t/\tau)] = 1 \Lra \dim{\tau} = [t]
+			\]
+			}
+			\vspace*{-10pt}
+		\end{enumerate}
+	\end{tcb}
+\end{tcbraster}
 
 \subsection{Grandeurs dérivées}
 
@@ -88,93 +178,151 @@ Les grandeurs exprimées à partir des grandeurs de bases \textit{via} des
 écrites sous la forme de produits de puissances des dimensions de base~: d'une
 manière générique, une grandeur $G$ a pour dimension
 
-\[\boxed{[G] = \rm L^\alpha M^\beta T^\gamma I^\delta \Theta^\epsilon N^\xi
-J^\eta}\]
-
+\bsw{
+	\[
+		\boxed{\dim{G} = \rm L^\alpha M^\beta T^\gamma I^\delta \Theta^\epsilon N^\xi
+			J^\eta}
+	\]
+}
 où les lettres grecques sont les \textbf{exposants dimensionnels}, qui peuvent
 être nuls. S'ils sont tous nuls, la grandeur et dite \textbf{adimensionnée}.
 
-\begin{exem}[label=exem:grandeurs]{Grandeurs dérivées}
-    \begin{center}
-        \begin{tabular}{lccc}
-            \toprule
-            Grandeurs dérivées & Symbole  & Équation aux dimensions  & Unités SI dérivées\\
-            \midrule
-            Surface            & S        & $\rm [S] = L^2$          & \si{m^2}\\
-            Volume             & V        & $\rm [V] = L^3$          & \si{m^3}\\
-            Angle              & $\alpha$ & $\rm [\alpha] = 1$       & \si{rad}\\
-            Vitesse            & $\vf$    & $\rm [v] = L⋅T^{-1}$     & \si{m.s^{-1}}\\
-            Accélération       & $\af$    & $\rm [a] = L⋅T^{-2}$     & \si{m.s^{-2}}\\
-            Masse volumique    & $\rho$   & $\rm [\rho] = M⋅L^{-3}$  & \si{kg.m^{-3}}\\
-            Force              & $\Ff$    & $\rm [F] = M⋅L⋅T^{-2}$   & \si{kg.m.s^{-2}}\\
-            Charge électrique  & $q$      & $\rm [q] = I⋅T$          & \si{A.s}\\
-            Énergie            & E        & $\rm [E] = M⋅L^2⋅T^{-2}$ & \si{kg.m^2.s^{-2}}\\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-    \tcbsubtitle[before skip=\baselineskip, colback=gray!50!black, colframe =
-    gray!50!black]{Remarque}
-    Certaines de ces unités dérivées portent des noms usuels~: le Newton N
-    (\SI{1}{N} = \SI{1}{kg.m.s^{-2}}) pour la force, le Coulomb C (\SI{1}{C} =
-    \SI{1}{A.s}) pour la charge électrique, ou l'énergie en Joules\footnote{Du
-    physicien James \textsc{Joule} (XIX\ieme), contemporain de \textsc{Kelvin}}
-    J (\SI{1}{J} = \SI{1}{kg.m^2.s^{-2}})
-\end{exem}
+\begin{tcb}[label=exem:grandeurs](exem){Grandeurs dérivées}
+	\begin{center}
+		\begin{tabular}{lccc}
+			\toprule
+			Grandeurs dérivées & Symbole  & Équation aux dimensions                           & Unités SI dérivées                              \\
+			\midrule
+			Surface            & S        & $\dim{S} \rm      = \bsw{L^2}$                    & $ [S] \rm      = \bsw{\si{m^2}}           $     \\
+			Volume             & V        & $\dim{V} \rm      = \bsw{L^3}$                    & $ [V] \rm      = \bsw{\si{m^3}}           $     \\
+			Angle              & $\alpha$ & $\dim{\alpha} \rm = \bsw{1}$                      & $ \dim{\alpha} \rm = \bsw{\si{rad}}           $ \\
+			Vitesse            & $\vf$    & $\dim{v} \rm      = \bsw{L\cdot T^{-1}}$          & $ [v] \rm      = \bsw{\si{m.s^{-1}}}      $     \\
+			Accélération       & $\af$    & $\dim{a} \rm      = \bsw{L\cdot T^{-2}}$          & $ [a] \rm      = \bsw{\si{m.s^{-2}}}      $     \\
+			Masse volumique    & $\rho$   & $\dim{\rho} \rm   = \bsw{M\cdot L^{-3}}$          & $ \dim{\rho} \rm   = \bsw{\si{kg.m^{-3}}}     $ \\
+			Force              & $\Ff$    & $\dim{F} \rm      = \bsw{M\cdot L\cdot T^{-2}}$   & $ [F] \rm      = \bsw{\si{kg.m.s^{-2}}}   $     \\
+			Charge électrique  & $q$      & $\dim{q} \rm      = \bsw{I\cdot T}$               & $ [q] \rm      = \bsw{\si{A.s}}           $     \\
+			Énergie            & E        & $\dim{E} \rm      = \bsw{M\cdot L^2\cdot T^{-2}}$ & $ [E] \rm      = \bsw{\si{kg.m^2.s^{-2}}} $     \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{tcb}
+\begin{tcb}(rema){Remarque}
+	Certaines de ces unités dérivées portent des noms usuels~: le Newton N
+	(\SI{1}{N} = \SI{1}{kg.m.s^{-2}}) pour la force, le Coulomb C (\SI{1}{C} =
+	\SI{1}{A.s}) pour la charge électrique, ou l'énergie en Joules\footnote{Du
+		physicien James \textsc{Joule} (XIX\ieme), contemporain de \textsc{Kelvin}.}
+	J (\SI{1}{J} = \SI{1}{kg.m^2.s^{-2}})
+\end{tcb}
 
-\subsection{Préfixes multiplicatifs}
-
-Suivant la valeur d'une grandeur, il est commode de l'exprimer \textit{via}
-l'ajout d'un préfixe à l'unité. Ils s'expriment en puissances de 10 et ont
-également un symbole et un nom~:
-\begin{center}
-    \begin{tabular}{lcclcc}
-        \toprule
-        \multicolumn{3}{c}{Sous-multiples} & \multicolumn{3}{c}{Multiples}\\
-        \cmidrule(lr){1-3} \cmidrule(lr){4-6}
-        Préfixe & Puissance  & Symbole     & Préfixe & Puissance & Symbole\\
-        \midrule
-        yocto   & \num{e-24} & y           & déca    & \num{e1}  & da\\
-        zepto   & \num{e-21} & z           & hecto   & \num{e2}  & h\\
-        atto    & \num{e-18} & a           & kilo    & \num{e3}  & k\\
-        femto   & \num{e-15} & f           & méga    & \num{e6}  & M\\
-        pico    & \num{e-12} & p           & giga    & \num{e9}  & G\\
-        nano    & \num{e-9}  & n           & téra    & \num{e12} & T\\
-        micro   & \num{e-6}  & \si{\micro} & péta    & \num{e15} & P\\
-        milli   & \num{e-3}  & m           & exa     & \num{e18} & E\\
-        centi   & \num{e-2}  & c           & zetta   & \num{e21} & Z\\
-        déci    & \num{e-1}  & d           & yotta   & \num{e24} & Y\\
-        \bottomrule
-    \end{tabular}
-\end{center}
+% \subsection{Préfixes multiplicatifs}
+%
+% Suivant la valeur d'une grandeur, il est commode de l'exprimer \textit{via}
+% l'ajout d'un préfixe à l'unité. Ils s'expriment en puissances de 10 et ont
+% également un symbole et un nom~:
+% \begin{center}
+% 	\begin{tabular}{lcclcc}
+% 		\toprule
+% 		\multicolumn{3}{c}{Sous-multiples} & \multicolumn{3}{c}{Multiples}                                               \\
+% 		\cmidrule(lr){1-3} \cmidrule(lr){4-6}
+% 		Préfixe                            & Puissance                     & Symbole     & Préfixe & Puissance & Symbole \\
+% 		\midrule
+% 		yocto                              & \num{e-24}                    & y           & déca    & \num{e1}  & da      \\
+% 		zepto                              & \num{e-21}                    & z           & hecto   & \num{e2}  & h       \\
+% 		atto                               & \num{e-18}                    & a           & kilo    & \num{e3}  & k       \\
+% 		femto                              & \num{e-15}                    & f           & méga    & \num{e6}  & M       \\
+% 		pico                               & \num{e-12}                    & p           & giga    & \num{e9}  & G       \\
+% 		nano                               & \num{e-9}                     & n           & téra    & \num{e12} & T       \\
+% 		micro                              & \num{e-6}                     & \si{\micro} & péta    & \num{e15} & P       \\
+% 		milli                              & \num{e-3}                     & m           & exa     & \num{e18} & E       \\
+% 		centi                              & \num{e-2}                     & c           & zetta   & \num{e21} & Z       \\
+% 		déci                               & \num{e-1}                     & d           & yotta   & \num{e24} & Y       \\
+% 		\bottomrule
+% 	\end{tabular}
+% \end{center}
 
 \section{Analyse dimensionnelle}
 
 À l'aide de ces outils, nous pouvons effectuer des actions sur les
 équations-mêmes pour en extraire les dimensions. Pour qu'une équation
 mathématique ait un sens physique, elle doit suivre un principe fondamental et
-naturel~: le principe d'homogénéité.
+naturel~: le \textbf{principe d'homogénéité}.
 
 \subsection{Homogénéité}
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-    \begin{prop}[label=prop:homo, hand]{homogénéité}
+\begin{tcb}(prop){Homogénéité}
+	Dans une équation ou dans l'expression d'une loi physique, les deux
+	membres de chaque côté du signe égal doivent être de \textbf{même
+		nature}\footnote{Scalaire, vecteur, matrice, tenseur…} et avoir la
+	\textbf{même dimension}, quel que soit le système d'unités. Une telle
+	formule est alors dite \textbf{homogène}.
+\end{tcb}
+\begin{tcb}[cnt](coro){Corollaire~: natures des équations}
+	\bfseries Il serait ainsi \textit{barbare} d'égaliser un vecteur d'un côté
+	avec un scalaire de l'autre, ou d'additionner ou soustraire
+	des mètres à des secondes, etc.
+\end{tcb}
 
-        Dans une équation ou dans l'expression d'une loi physique, les deux
-        membres de chaque côté du signe égal doivent être de même
-        nature\footnote{Scalaire, vecteur, matrice, tenseur…} et avoir la
-        \textbf{même dimension}, quel que soit le système d'unités. Une telle
-        formule est alors dite \textbf{homogène}.
+\subsection{Écrire un résultat}
 
-    \end{prop}
-    \begin{impl}[label=impl:homo]{dans la pratique}
+Un objectif récurrent des sujets de physique-chimie est d'obtenir la
+\textbf{valeur numérique} d'une grandeur physico-chimique. Elle découle alors
+d'une équation, forcément homogène, mais doit également être calculée avec les
+bonnes unités au sein des dimensions. Ainsi, \textbf{tout résultat numérique}
+devra être rédigé sous la forme suivante~:
+\begin{tcb}(impo){Règle d'application numérique}
+	\vspace*{-10pt}
+	\begin{minipage}{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\xul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+\end{tcb}
 
-        Nous ne pouvons donc égaliser un vecteur d'un côté avec un scalaire de
-        l'autre, et ne pouvons égaliser, additionner ou soustraire des mètres à
-        des secondes\footnote{Ou «~des patates avec des carottes~»…
-        l'appréciation de l'analogie est laissée à votre appréciation.}, etc.
+\begin{tcb}*(coro)"bulb"{Effectuer un changement d'unités}
+	Il est très commun de se tromper d'unité lors d'une conversion, et ce pour
+	deux raisons~: à cause d'une unité mise à une puissance, ou à cause d'un
+	rapport de deux grandeurs. Il suffit d'appliquer le processus suivant~:
+	\begin{enumerate}
+		\item Écrire la valeur numérique actuelle de la grandeur avec son unité sous
+		      forme de \textbf{fraction explicite}~;
+		\item Convertir les unités concernées \textbf{en y mettant des
+			      parenthèses}~;
+		\item Recondenser le calcul.
+	\end{enumerate}
+\end{tcb}
 
-    \end{impl}
-\end{tcbraster}
+\begin{tcb}(exem){Exemple}
+	\vspace*{-10pt}
+	\bsw{
+		\begin{gather*}
+			\SI{1}{m.s^{-1}} =
+			1 \frac{\si{m}}{\si{s}} =
+			1 \frac{\SI{e-3}{km}}{\SI[parse-numbers=false]{\frac{1}{3600}}{h}} =
+			\SI{3.6e-3}{km.h^{-1}}
+		\end{gather*}
+	}
+	\vspace*{-10pt}
+\end{tcb}
 
 \subsection{Application}
 
@@ -187,14 +335,36 @@ puissant à bien des égards, que nous voyons ci-après.
 En connaissant une expression que l'on sait vraie, nous pouvons déduire les
 unités d'autres grandeurs (cf.\ les unités usuelles comme le Newton).
 
-\begin{exem}[label=exem:homounit]{recherche d'unités}
-    La force de rappel élastique exercée par un ressort s'écrit
-    \[\Ff_{\rm el} = -k(l-l_0)\ux\]
-    avec $k$ la constante de raideur du ressort. Quelle est la dimension de $k$
-    ? Comment exprimer son unité ?
-    \tcblower
-    \vspace{3cm}
-\end{exem}
+\begin{tcb}(exem){Recherche d'unités}
+	La force de rappel élastique exercée par un ressort s'écrit
+	\[\Ff_{\rm el} = -k(\ell-\ell_0)\ux\]
+	avec $k$ la constante de raideur du ressort, et $\ux$ un vecteur adimensionné.
+	Quelle est la dimension de $k$~? Quelle serait une manière simple d'exprimer
+	son unité~?
+	\tcblower
+	\vspace*{-9pt}
+	\begin{isd}
+		\bsw{
+			\begin{gather*}
+				\dim{k} =
+				\frac{\dim{F}}{\dim(\ell-\ell_0)\dim{u_x}} =
+				\frac{\rm M\cancel{\rm L}T^{-2}}{\rm \cancel{L}}
+				\\ \Lra
+				\boxed{\dim{k} = \rm M \cdot T^{-2}}
+			\end{gather*}
+		}
+		\tcblower
+		\bsw{
+			Ainsi, on peut écrire
+			\begin{gather*}
+				[k] = \si{kg.s^{-2}}
+				\\\Lra
+				[k] = \si{N.m^{-1}}
+			\end{gather*}
+		}
+	\end{isd}
+	\vspace*{-20pt}
+\end{tcb}
 
 \subsubsection{Détecter des erreurs}
 
@@ -202,340 +372,96 @@ Par simple analyse dimensionnelle, il est aisé d'affirmer qu'un résultat est
 nécessairement faux~: si les deux parties mises en jeu n'ont pas la même
 dimension, elle ne peuvent être égales entre elles~!
 
-\begin{exem}[label=exem:homoerr]{détecter des erreurs}
-
-    En résolvant un exercice, vous trouvez l'expression suivante pour l'énergie
-    potentielle d'une masse $m$ accrochée à un ressort vertical de raideur $k$
-    et sous pesanteur $g$~:
-    \[E_{\rm p} (z) = \frac{1}{2}kz^2 + mgz^2\]
-    avec $z$ la hauteur de la masse. Cette expression est-elle homogène~?
-    \tcblower
-    \vspace{6cm}
-\end{exem}
+\begin{tcb}(exem){Détecter des erreurs}
+	En résolvant un exercice, vous trouvez l'expression suivante pour l'énergie
+	potentielle d'une masse $m$ accrochée à un ressort vertical de raideur $k$
+	et sous pesanteur $g$~:
+	\[\Ec_{\rm p} (z) = \frac{1}{2}kz^2 + mgz^2\]
+	avec $z$ la hauteur de la masse. Cette expression est-elle homogène~?
+	\tcblower
+	\vspace*{-9pt}
+	\begin{isd}[lefthand ratio=.4]
+		\bsw{
+			\begin{gather*}
+				[kz^2] = \si{N.m^{-1}.m^2} = \si{N.m}
+				\\
+				[mgz^2] = \si{N.m^2}
+			\end{gather*}
+		}
+		\tcblower
+		\bsw{
+			Cette expression n'est pas homogène~! Elle est forcément fausse. Ici,
+			c'est le terme d'énergie potentielle gravitationnelle, qui vaut $mgz$.
+		}
+	\end{isd}
+	\vspace*{-20pt}
+\end{tcb}
 
 \subsubsection{Rechercher des lois physiques}
 D'autre part, à partir de phénomènes que nous voudrions relier entre eux, il est
 possible d'établir des lois les reliant entre eux grâce au principe
 d'homogénéité.
 
-\begin{exem}[label=exem:homoloi]{recherche de loi}
+\begin{tcb}(exem){Recherche de loi}
+	Donnez, par analyse dimensionnelle, la période $T$ des oscillations d'un
+	pendule simple.
+	\tcblower
+	\bsw{
+		Il faut commencer par identifier les variables propices d'intervenir dans le
+		problème. Une pendule simple est constitué d'une masse plongée dans un champ
+		de pesanteur et reliée par un fil de longueur $\ell$ à un point pivot. En
+		négligeant les frottements, on en déduit que les variables possibles sont
+		$\ell$, $g$ et $m$~; ainsi, il nous faudrait avoir
+	}
+	\begin{isd}
+		\bsw{
+			\begin{gather*}
+				T = \ell^{\alpha}g^{\beta}m^{\gamma}
+				\\\Lra
+				[T] = [\ell]^{\alpha}[g]^{\beta}[m]^{\gamma}
+				\\\Lra
+				\si{s} = \si{m}^{\alpha} \cdot \si{m}^{\beta} \cdot \si{s}^{-2 \beta}
+				\cdot
+				\si{kg}^{\gamma}
+				\\\Lra
+				\left\{
+				\begin{array}{rcl}
+					\si{s} & = & \si{s}^{-2 \beta}
+					\\
+					1      & = & \si{m}^{\alpha+\beta}
+					\\
+					1      & = & \si{kg}^{\gamma}
+				\end{array}
+				\right.
+				\Lra
+				\left\{
+				\begin{array}{rcl}
+					\beta  & = & - \frac{1}{2}
+					\\
+					\alpha & = & \frac{1}{2}
+					\\
+					\gamma & = & 0
+				\end{array}
+				\right.
+			\end{gather*}
+		}
+		\tcblower
+		\bsw{
+			Autrement dit, on aurait tendance à écrire
+			\[
+				\boxed{T = \sqrt{\frac{\ell}{g}}}
+			\]
+			Ce qui serait effectivement homogène~! Mais pourtant faux… L'étude
+			complète du système donne un \textbf{facteur} $\mathbf{2\pi}$ avant la
+			racine.
+		}
+	\end{isd}
+\end{tcb}
 
-    Donnez, par analyse dimensionnelle, la période $T$ des oscillations d'un
-    pendule simple.
-    \tcblower
-    \vspace{6cm}
-\end{exem}
+\vspace*{-10pt}
+\begin{tcb}[cnt, bld](impo){Limites implicites}
+	Une loi trouvée par analyse dimensionnelle ne saurait permettre de donner les
+	bons termes multiplicatifs~!
+\end{tcb}
 
-\newpage
-\section{Exercices}
-\subsection{Vitesse du son}
-
-Donner l'expression de la célérité $c$ du son dans un fluide en fonction de la
-masse volumique du $\rho$ du fluide et du coefficient d'incompressibilité
-$\chi$, homogène à l'inverse d'une pression.
-
-\subsection{Faire cuire des pâtes}
-Sur une facture d'électricité, on peut lire sa consommation d'énergie électrique
-exprimée en \si{kWh} (kilowatt-heure).
-\begin{enumerate}
-    \item Quelle est l'unité SI associée~? Que vaut \SI{1}{kWh} dans cette unité
-        SI~?
-    \item Sachant que la capacité thermique massique\endnote{capacité thermique
-            massique~: énergie à apporter pour augmenter de
-        \SI{1}{\degreeCelsius} la température de l'unité de masse d'une
-    substance.} de l'eau est $c = \SI{4.18}{J.g^{-1}.K^{-1}}$ et que le prix du
-    kilowatt-heure est de \SI{0.16}{\EUR}, évaluer le coût du chauffage électrique
-    permettant de faire passer \SI{1}{L} d'eau de \SI{20}{\degreeCelsius} à
-    \SI{100}{\degreeCelsius}.
-\item Si la plaque chauffe avec une puissance de $P = \SI{1200}{W}$, combien de
-    temps faudra-t-il pour chauffer ce litre d'eau~?
-\end{enumerate}
-
-\subsection{\textsc{Taylor} mieux que James \textsc{Bond}~?}
-
-À l'aide d'un film sur bande magnétique et en utilisant l'analyse
-dimensionnelle, le physicien Geoffrey \textsc{Taylor} a réussi en 1950 à estimer
-l'énergie $E$ dégagée par une explosion nucléaire, valeur pourtant évidemment
-classifiée. Le film permet d'avoir accès à l'évolution du rayon $R(t)$ du
-«~nuage~» de l'explosion au cours du temps. Nous supposons que les grandeurs
-influant sur ce rayon sont le temps $t$, l'énergie $E$ de l'explosion et la
-masse volumique $\rho$ de l'air.
-\begin{enumerate}
-    \item Quelles sont les dimensions de ces grandeurs~?
-    \item Chercher une expression de $R$ sous la forme $R = k\times
-        E^{\alpha}t^\beta\rho^\gamma$, avec $k$ une constante adimensionnée.
-    \item L'analyse du film montre que le rayon augmente au cours du temps comme
-        $t^{2/5}$. Exprimer alors $E$ en fonction de $R$, $\rho$ et $t$.
-    \item En estimant que $R\approx \SI{70}{m}$ après $t = \SI{1}{ms}$, sachant
-        que la masse volumique de l'air vaut $\rho\approx \SI{1.0}{kg.m^{-3}}$
-        et en prenant $K\approx 1$, calculer la valeur de $E$ en joules puis en
-        kilotonnes de TNT (une tonne de TNT libère \SI{4.18e9}{J}).
-\end{enumerate}
-
-\newpage
-\section{Correction}
-\subsection{Vitesse du son}
-
-\begin{tcbraster}[raster columns=3, raster equal height=rows]
-    \begin{NCdefi}[]{Données}
-    
-        $c$ est une vitesse, $\rho$ une masse volumique et $\chi$ une grandeur
-        relative à la pression. On nous donne $[\chi] = [P]^{-1}$ avec $P$ une
-        pression.
-    
-    \end{NCdefi}
-    \begin{NCprop}[]{Résultat attendu}
-    
-        On cherche $c$ en fonction de $\rho$ et $\chi$, soit
-        \[\boxed{c = \rho^\alpha\chi^\beta}\]
-        avec $\alpha$ et $\beta$ à déterminer.
-    
-    \end{NCprop}
-    \begin{NCrapp}[]{Outil}
-
-        Une pression est une force surfacique, c'est-à-dire une force répartie
-        sur une surface. On a donc
-
-        \[[P] = \frac{[F]}{\rm L^2}\]
-
-        De plus, la force de pesanteur s'exprime $F = mg$, avec $g$
-        l'accélération de la pesanteur~: ainsi,
-
-        \[[F] = [m]⋅[g] = \rm M⋅L⋅T^{-2}\]
-    \end{NCrapp}
-\end{tcbraster}
-~
-\begin{NCexem}[sidebyside]{Application}
-    On commence par déterminer la dimension de $c$. En tant que vitesse, on a
-    \[[c] = \rm L⋅T^{-1}\]
-    On exprime ensuite les dimensions de $\rho$ et $\chi$. D'une part,
-    \[[\rho] = \rm M⋅L^{-3}\]
-    D'autre part,
-    \begin{align*}
-        [\chi] & = \DS\frac{\rm L^2}{[F]}\\
-        [\chi] & = \DS\frac{\rm L^{\cancel{2}}}{M⋅\cancel{L}⋅T^{-2}}\\
-        [\chi] & = \rm L⋅M^{-1}⋅T^2\\
-    \end{align*}
-    \tcblower
-    L'expression recherchée revient à résoudre
-    \[\rm L⋅T^{-1} = (M⋅L^{-1})^\alpha(L⋅M^{-1}⋅T^2)^\beta\]
-    En développant, on trouve un système de 3 équations à 2 inconnues~:
-    \[ \left\{
-            \begin{array}{rcl}
-                1  & = & -3\alpha + \beta\\
-                -1 & = & 2\beta\\
-                0  & = & \alpha - \beta\\
-            \end{array}
-        \right. \Longleftrightarrow \left\{
-            \begin{array}{rcl}
-                \beta  & = & - \frac{1}{2}\\
-                \alpha & = & - \frac{1}{2}
-            \end{array}
-    \right.\]
-    Ainsi, on peut exprimer $c$ tel que
-    \begin{empheq}[box=\fbox]{equation*}
-        c = \frac{1}{\sqrt{\rho\chi}}
-    \end{empheq}
-\end{NCexem}
-
-\newpage
-
-\subsection{Cuisson des pâtes}
-
-\begin{enumerate}
-    \item ~
-        \begin{tcbraster}[raster columns=3, raster equal height=rows]
-            \begin{tcolorbox}[blankest, space to=\myspace]
-                \begin{tcbraster}[raster columns=1]
-                    \begin{NCdefi}[]{Donnée}
-                        Consommation électrique en \si{kWh}.
-                    \end{NCdefi}
-                    \begin{NCprop}[add to natural height=\myspace]{Résultat attendu}
-                        Unité associée en unités SI et grandeurs usuelles.
-                    \end{NCprop}
-                \end{tcbraster}
-            \end{tcolorbox}
-        \begin{NCrapp}[raster multicolumn=1]{Outil}
-            Toute énergie s'exprime en joules (J), et les \textbf{puissances} sont des
-            \textbf{énergies par unité de temps}. Notamment pour les
-            watts on a $\SI{1}{W} = \SI{1}{J.s^{-1}}$.
-        \end{NCrapp}
-        \begin{NCexem}[raster multicolumn=1]{Application}
-            On a directement
-            \[ \SI{1}{kWh} = \SI{1e3}{J.s^{-1}.h}\]
-            Avec l'évidence que $ \SI{1}{h} = \SI{3600}{s}$, finalement
-            \[\boxed{\SI{1}{kWh} = \SI{3.6e6}{J}}\]
-        \end{NCexem}
-        \end{tcbraster}
-    \item ~
-        \begin{tcbraster}[raster columns=2, raster equal height=rows]
-            \begin{NCdefi}[]{Données}
-                Notre objet d'étude est l'eau. On a~:
-                \begin{itemize}
-                    \item $V_{\rm eau} = \SI{1}{L}$~;
-                    \item $T_{\rm i} = \SI{20}{\degreeCelsius}$~;
-                    \item $T_{\rm f} = \SI{100}{\degreeCelsius}$~;
-                    \item $c = \SI{4.18}{J.g^{-1}.K^{-1}}$
-                \end{itemize}
-                De plus, on nous donne
-                \begin{itemize}
-                    \item $ \SI{1}{kWh} = \SI{1}{\EUR}$.
-                \end{itemize}
-            \end{NCdefi}
-            \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
-                \begin{tcbraster}[raster columns=1]
-                    \begin{NCprop}[add to natural height=\myspace]{Résultat attendu}
-
-                        On cherche à monter \SI{1}{L} d'eau de 20 à
-                        \SI{100}{\degreeCelsius} et d'en calculer le coût en
-                        euros.
-
-                    \end{NCprop}
-                    \begin{NCrapp}[]{Outil}
-
-                        On doit donc trouver le coût en énergie et le convertir
-                        en euro. On cherche pour ça une loi reliant l'énergie
-                        consommée avec les données du problème, sachant que
-                        \textbf{pour l'eau}, \SI{1}{L} = \SI{1}{kg}.
-
-                    \end{NCrapp}
-                \end{tcbraster}
-            \end{tcolorbox}
-        \end{tcbraster}
-        \begin{NCexem}[]{Application}
-           L'énergie à apporter $Q$ se déduit de la dimension de la capacité
-           thermique massique~: $[c] = [Q]\rm⋅M^{-1}⋅\Theta^{-1}$. En appelant
-           $m$ la masse du volume d'eau, par cette analyse dimensionnelle on a
-           \[\boxed{Q = mc\Delta T}\]
-           On a donc
-           \[Q = \SI{3.3e5}{J}\quad\text{avec}\quad \left\{
-                   \begin{array}{rcl}
-                       m & = & \SI{1}{kg}\\
-                       c & = & \SI{4.18}{J.g^{-1}.K^{-1}}\\
-                       c & = & \SI{4.18e3}{J.kg^{-1}.K^{-1}}\\
-                       \Delta T & = & \SI{80}{K}
-                   \end{array}
-           \right.\]
-           et pour utiliser le coût en euros, on la converti en \si{kWh}~:
-           \[Q = \SI{9.3e-2}{kWh} = \SI{1.5e-2}{\EUR}\]
-        \end{NCexem}
-    \item ~
-        \begin{tcbraster}[raster columns=2, raster equal height=rows]
-            \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
-                \begin{tcbraster}[raster columns=1]
-                    \begin{NCdefi}[]{Données}
-
-                        On utilise une plaque chauffante de puissance $P =
-                        \SI{1200}{W}$.
-
-                    \end{NCdefi}
-                    \begin{NCprop}[]{Résultat attendu}
-
-                        On cherche la durée que cette plaque prendrait pour
-                        transférer l'énergie calculée précédemment.
-
-                    \end{NCprop}
-                    \begin{NCrapp}[]{Outil}
-
-                        Une puissance est une énergie par unité de temps, et
-                        \SI{1}{W} = \SI{1}{J.s^{-1}}.
-
-                    \end{NCrapp}
-                \end{tcbraster}
-            \end{tcolorbox}
-            \begin{NCexem}[raster multicolumn=1]{Application}
-                On en déduit
-                \[P = \frac{Q}{\Delta t}
-                    \quad\text{d'où}\quad
-                \boxed{\Delta t = \frac{Q}{P} = \SI{280}{s}}\]
-                avec
-                \[\left\{
-                    \begin{array}{rcl}
-                        Q & = & \SI{3.3e5}{J}\\
-                        P & = & \SI{1200}{J⋅s^{-1}}
-                    \end{array}
-                \right.\]
-            \end{NCexem}
-        \end{tcbraster}
-\end{enumerate}
-
-\subsection{\textsc{Taylor} meilleur que James \textsc{Bond}~?}
-
-\begin{enumerate}
-    \item On a directement \fbox{$[R] = \rm L$}, \fbox{$[t] = \rm T$},
-        \fbox{$[\rho] = \rm M⋅L^{-3}$} et \fbox{$[E] = \rm M⋅L^2⋅T^{-2}$}.
-    \item ~
-        \begin{tcbraster}[raster columns=2, raster equal height=rows]
-            \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
-                \begin{tcbraster}[raster columns=1]
-                    \begin{NCdefi}[]{Données}
-
-                        On nous donne la formule $R = k\times
-                        E^{\alpha}t^\beta\rho^\gamma$ et que $[k] = 1$.
-
-                    \end{NCdefi}
-                    \begin{NCprop}[]{Résultat attendu}
-
-                        On cherche $\alpha$, $\beta$ et $\gamma$ tels que $R =
-                        k\times E^{\alpha}t^\beta\rho^\gamma$
-
-                    \end{NCprop}
-                    \begin{NCrapp}[add to natural height=\myspace]{Outils}
-
-                        \begin{itemize}
-                            \item $[E] = \rm M⋅L^2⋅T^{-2}$~;
-                            \item $[t] = \rm T$~;
-                            \item $[\rho] = \rm M⋅L^{-3}$.
-                        \end{itemize}
-
-                    \end{NCrapp}
-                \end{tcbraster}
-            \end{tcolorbox}
-            \begin{NCexem}[]{Application}
-                $[R] = L$, donc on a 
-                \[ L = \left( M⋅L^2⋅T^{-2} \right)^\alpha T^\beta \left(
-                M⋅L^{-3} \right)^\gamma\]
-                Soit
-                \[\left\{
-                    \begin{array}{rcl}
-                        1 & = & 2\alpha - 3\gamma\\
-                        0 & = & -2\alpha + \beta\\
-                        0 & = & \alpha + \gamma
-                    \end{array}
-                \right.\Longleftrightarrow
-                \left\{
-                \begin{array}{rcl}
-                    \alpha & = & -\gamma\\
-                    \alpha & = & \beta/2\\
-                    \alpha & = & 1/5
-                \end{array}
-                \right.\]
-                Ainsi,
-                \[\left\{
-                    \begin{array}{rcl}
-                        \alpha & = & 1/5\\
-                        \gamma & = & -1/5\\
-                        \beta  & = & 2/5
-                    \end{array}
-                \right.\]
-                Soit
-                \[R = K\times E^{1/5}t^{2/5}\rho^{-1/5}\]
-            \end{NCexem}
-        \end{tcbraster}
-
-    \item On isole simplement en mettant la relation à la puissance 5~: \fbox{$E
-        = K^{-5}R^5 t^{-2}\rho$}.
-
-    \item On fait une simple application numérique~:
-        \[E = \SI{1.7e15}{J}\quad\text{avec}\quad \left\{
-                \begin{array}{rcl}
-                    K & = & 1\\
-                    R & = & \SI{70}{m}\\
-                    t & = & \SI{1e-3}{s}\\
-                    \rho & = & \SI{1.0}{kg.m^{-3}}
-                \end{array}
-        \right.\]
-        En équivalent tonne de TNT, on trouve~:
-        \[\boxed{E = \SI{40}{kT}\text{ de TNT}}\]
-\end{enumerate}
 \end{document}

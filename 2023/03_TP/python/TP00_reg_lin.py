@@ -1,3 +1,7 @@
+# =========================================================================== #
+#                                   Imports                                   #
+# =========================================================================== #
+
 import numpy as np
 import matplotlib.pyplot as plt
 # UNE ACTIVITÉ CAPYTALE EST DISPONIBLE EN LIGNE POUR LES RENDUS DE SCRIPTS~:
@@ -13,14 +17,14 @@ import matplotlib.pyplot as plt
 #                                   Mesures                                   #
 # =========================================================================== #
 
-x = np.array([0.01, 2.5, 5, 7.5, 10])
-y = np.array([2.2, 7.7, 12.4, 17.7, 21.1])
+X = np.array([0, 2, 4, 6, 8, 10])            # À modifier
+Y = np.array([0.5, 7.9, 11, 17.5, 26, 31.8]) # À modifier
 
 # =========================================================================== #
 #                                  Précision                                  #
 # =========================================================================== #
 
-Delta_x = 0.05 * x
+Delta_x = 0.05 * X
 Delta_y = 1
 
 # =========================================================================== #
@@ -30,7 +34,9 @@ Delta_y = 1
 # =========================================================================== #
 
 # Donne a le coefficient directeur et b l'ordonnée à l'origine
-a, b = np.polyfit(x, y, 1)
+a, b = np.polyfit(X, Y, 1)
+# Affiche a et b. .3f pour 3 valeurs après la virgule
+print(f"a = {a:.3f}, b = {b:.2f}")
 
 # =========================================================================== #
 #                                                                             #
@@ -50,11 +56,11 @@ N = 10000
 # créé les listes vides qui vont nous permettre de stocker les valeurs
 alist, blist = [], []
 for i in range(0, N):
-    nbpts = len(x)
+    nbpts = len(X)
     # On simule l'addition d'une erreur aux valeurs mesurées
     # en ajoutant une valeur aléatoire entre les bornes de l'incertitude
-    x_simu = x + Delta_x*np.random.uniform(-1, 1, nbpts)
-    y_simu = y + Delta_y*np.random.uniform(-1, 1, nbpts)
+    x_simu = X + Delta_x*np.random.uniform(-1, 1)
+    y_simu = Y + Delta_y*np.random.uniform(-1, 1)
     # On réalise une reg lin sur ce nouveau jeu de données
     p = np.polyfit(x_simu, y_simu, 1)
     # On stocke les valeurs de coefficient directeur et ordonnées à l'origine
@@ -70,9 +76,16 @@ for i in range(0, N):
 u_a = np.std(alist, ddof=1)
 u_b = np.std(blist, ddof=1)
 
-# Équation de la droite de régression (pour le tracé)
-yfit = a*x + b
-xfit = np.linspace(min(x), max(x), 2)
+# Liste fine des abscisses à tracer
+# découpe l'intervalle [min(X), max(X)] en 100 points
+xliste = np.linspace(min(X), max(X), 100)
+
+# Fonction qui à x, a, b associe y
+def yfunc(abscisse, coeff_dir, ord_ori):
+    return coeff_dir*abscisse + ord_ori
+
+# Liste des points y_i obtenus par régression
+yliste = yfunc(xliste, a, b)
 
 # =========================================================================== #
 #                                                                             #
@@ -87,9 +100,9 @@ plt.yticks(fontsize=20)
 plt.xlabel('$grandeur$ en UNITÉ', fontsize=20)
 plt.ylabel('$grandeur$ en UNITÉ', fontsize=20)
 
-plt.plot(xfit, a*xfit+b,
+plt.plot(xliste, a*xliste+b,
          'r', label='Régression linéaire')
-plt.errorbar(x, y,
+plt.errorbar(X, Y,
              xerr=Delta_x, yerr=Delta_y,
              linestyle='None', capsize=3,
              color='b', label='Mesures')

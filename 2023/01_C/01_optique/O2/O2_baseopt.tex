@@ -1,17 +1,22 @@
 \documentclass[../../main/main.tex]{subfiles}
 \graphicspath{{./figures/}}
 
+\dominitoc
+\faketableofcontents
+
 \makeatletter
 \renewcommand{\@chapapp}{Optique -- chapitre}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \HideSolutionstrue
 
 \begin{document}
 \setcounter{chapter}{1}
 
 \chapter{Base de l'optique g\'eom\'etrique}
+
+\vfill
 
 \begin{prgm}
 	\begin{tcb}*(ror)"know"{Savoirs}
@@ -24,26 +29,34 @@
 			      rayons lumineux joue un rôle dans certains phénomènes optiques.
 			\item Connaître le vocabulaire des systèmes optiques.
 			\item Énoncer les conditions de l'approximation de \textsc{Gauss} et ses
-			      conséquences
+			      conséquences.
 		\end{itemize}
-		% \tcblower
-		% \begin{itemize}[label=$\diamond$, leftmargin=10pt]
-		%   \item Indiquer les limites du modèle de l'optique géométrique.
-		% \end{itemize}
 	\end{tcb}
 
 	\begin{tcb}*(ror)"how"{Savoir-faire}
 		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
 			\item Établir les conditions de réflexion totale.
 			\item Utiliser les lois de \textsc{Snell-Descartes}.
+			\item Identifier la nature réelle ou virtuelle d'un objet ou d'une image.
 			\item Dessiner des rayons lumineux à travers un système optique de manière
 			      cohérente avec les indices optiques.
+			\item Établir les expressions du cône d'acceptance et de la dispersion
+			      intermodale d'une fibre à saut d'indice.
 		\end{itemize}
 	\end{tcb}
 \end{prgm}
 
+\vfill
+
+\vspace*{\fill}
+\minitoc
+\vspace*{\fill}
+
+\newpage
+
 \section{Propriétés générales}
 \subsection{Optique non géométrique~: diffraction de la lumière}
+\label{ssec:optdiff}
 \subsubsection{Principe}
 
 \noindent
@@ -88,6 +101,8 @@
 
 \subsection{Approximation de l'optique géométrique}
 
+\subsubsection{Définition}
+
 \begin{tcb}[label=def:optgeo](defi){Approximation de l'optique géométrique}
 	\psw{
 		L'approximation de l'optique géométrique consiste à \textbf{négliger tout
@@ -99,7 +114,7 @@
 	}
 \end{tcb}
 
-\subsection{Notion de rayon lumineux}
+\subsubsection{Notion de rayon lumineux}
 
 Dans le cadre de l'optique géométrique, on décrit donc la lumière par la
 trajectoire des photons.
@@ -107,7 +122,7 @@ trajectoire des photons.
 \begin{tcb}[cnt, bld, label=def:rl](defi){Rayon et faisceau lumineux}
 	\psw{
 		Un rayon lumineux est une courbe orientée donnant la direction et le sens de
-		propagation d’une onde lumineuse. Un faisceau est un ensemble de rayons.
+		propagation d'une onde lumineuse. Un faisceau est un ensemble de rayons.
 	}
 \end{tcb}
 \begin{tcb}(rema){Remarque}
@@ -115,42 +130,53 @@ trajectoire des photons.
 	en pratique à cause de la diffraction.
 \end{tcb}
 
-\subsection{Propagation rectiligne}
+\subsubsection{Propriétés d'un rayon lumineux}
 
-\begin{tcb}[bld, label=prop:prop_rect](prop){Propagation rectiligne}
-	\psw{
-		Dans un milieu TLHI, la lumière se propage en ligne droite.
-	}
-\end{tcb}
-\begin{tcb}(exem){Contre-exemple}
-	L'indice optique changeant avec la température, dans certaines
-	conditions l'atmosphère n'est pas homogène~: cela peut causer des
-	mirages (trajectoire courbée de la lumière).
+\begin{tcb}[label=prop:rl](prop){Propriétés d'un rayon lumineux}
+	\begin{enumerate}
+		\bitem{Propagation rectiligne}~: \psw{
+			Dans un milieu TLHI, la lumière se propage en ligne droite.
+		}
+		\bitem{Indépendance des rayons}~: \psw{
+			Les rayons lumineux n'interfèrent pas entre eux. Notamment, un rayon ne peut
+			pas en dévier un autre.
+		}
+		\bitem{Retour inverse}~: \psw{
+			Dans un milieu TLI, homogène ou non, si une source en A éclaire B, alors une
+			source placée en B éclaire A.
+		}
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{retour_inv}
+			}{
+				\includegraphics[width=\linewidth]{retour_inv}
+			}
+			\captionsetup{justification=centering}
+			\captionof{figure}{Schématisation du principe de retour inverse de la
+				lumière.}
+		\end{center}
+	\end{enumerate}
 \end{tcb}
 
-\subsection{Retour inverse de la lumière}
+\subsubsection{Limites du modèle}
 
-\begin{tcb}[label=prop:ret_inv](prop){Retour inverse}
-	\psw{
-		Dans un milieu TLI, homogène ou non, le trajet suivi par la lumière entre
-		deux points situés sur un même rayon lumineux est \textbf{indépendant du
-			sens de propagation}.
-	}
-\end{tcb}
-\begin{tcb}[label=impl:ret_inv](impl){Implication~: échange}
-	Si on connaît le trajet dans un sens, on le connaît l'autre sens. On
-	utilisera ce raisonnement à plusieurs reprises pour l'étude des systèmes
-	optiques.
-\end{tcb}
-
-\subsection{Indépendance des rayons lumineux}
-
-\begin{tcb}[label=prop:ind_lum](prop){Indépendance des rayons lumineux}
-	\psw{
-		Les rayons lumineux n'interfèrent pas entre eux. Notamment, un rayon ne peut
-		pas en dévier un autre.
-	}
-\end{tcb}
+\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+	\bitem{Diffraction}~: voir \ref{ssec:optdiff}~;
+	\bitem{Phénomènes ondulatoires}~: le modèle de rayon n'explique pas les
+	interférences (voir plus tard dans l'année)~;
+	\bitem{Polarisation}~: en tant qu'oscillations des champs électrique et
+	magnétique $\vv{E}$ et $\vv{B}$, elle est dotée d'une orientation et est à
+	l'origine de nombreux phénomènes optiques (cinéma 3D par exemple)~;
+	\bitem{Inhomogénéité}~: dans un milieu inhomogène, la lumière ne se propage
+	pas en ligne droite et donne lieux aux mirages.
+\end{itemize}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{mirages}
+	\caption{Représentation d'un mirage chaud, où la lumière vient du ciel en
+		regardant le sol, et d'un mirage froid, où c'est l'inverse.}
+	\label{fig:mirages}
+\end{figure}
 
 \section{Lois de Snell-Descartes}
 \subsection{Changement de milieu}
@@ -327,11 +353,40 @@ l'intérieur du milieu $n_2$, soit par définition $|i_2| <
 	\end{center}
 \end{tcb}
 
+% \subsection{Application~: fibre optique à saut d'indice}
+% Les câbles à fibres optiques permettent la transmission à haut débit de tous
+% 	types de signaux électromagnétiques, sur de longues distances avec très peu
+% 	d'atténuation~; ceux-ci se quesagent comme la lumière. Chaque câble comporte un
+% 	grand nombre de fibres très fines.
+%
+% 	Une fibre optique à saut d'indice peut être assimilée à un cylindre de
+% 	révolution d'axe O$z$, constitué d'un cœur de rayon $a$ (de l'ordre de 8 à
+% 	\SI{50}{\micro m}) et d'indice $n_1$, entouré d'une couche cylindrinque appelée
+% 	\textit{gaine}, d'épaisseur $b-a$ et d'indice $n_2 < n_1$.
+%
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width=.8\linewidth]{fibre_plain.pdf}
+% 		\captionsetup{justification=centering}
+% 		\caption{Schéma d'une fibre optique à saut d'indice.}
+% 		\label{fig:fibre_plain}
+% 	\end{figure}
+%
+%   \paragraph*{Principe}
+% 	Un rayon pénètre depuis l'air dans la fibre par sa base en O, en faisant un
+% 	angle $\theta$ avec l'axe optique confondu avec O$z$. Il subit une réfractoin
+%   de l'air d'indice $n\air$ vers le cœur d'indice $n_1$. S'il arrive assez
+%   rasant au niveau de l'interface cœur/gaine, comme $n_2 < n_1$ il peut subir
+%   une réflexion totale, et ainsi se propager le long de la fibre sans en sortir.
+%
+%   \paragraph*{Angle d'acceptance}
+%   Il s'agit de l'angle $\tt$ maximal tel que le rayon ne se propage que dans le
+%   cœur.
+
 \section{Généralités sur les systèmes optiques}
-\subsection{Définition}
+\subsection{Système, rayons, faisceaus.}
 
 \begin{tcbraster}[raster columns=3, raster equal height=rows]
-
 	\begin{tcb}[label=def:so, raster multicolumn=2](defi){Système optique}
 		\psw{
 			On appelle \textbf{système optique} un \xul{ensemble de composants} optiques
@@ -343,15 +398,13 @@ l'intérieur du milieu $n_2$, soit par définition $|i_2| <
 	\end{tcb}
 \end{tcbraster}
 
-\subsection{Système centré et axe optique}
 \begin{tcb}[label=def:vocso, sidebyside, righthand ratio=.4](defi){Système
 			centré, axe optique}
 	\psw{
 		C'est un système \textbf{invariant par rotation} autour d'un axe.
 		\bigbreak
 		On l'appelle \textit{axe optique}. \textbf{On l'oriente dans le sens de
-			propagation de la lumière incidente}. Les distances sont considérées
-		algébriquement (affectées d'un signe)~: $\obar{AB} = \SI{-2}{cm}$.
+			propagation de la lumière incidente}.
 	}
 	\tcblower
 	\begin{center}
@@ -365,9 +418,19 @@ l'intérieur du milieu $n_2$, soit par définition $|i_2| <
 		\captionof{figure}{Système optique centré.}
 	\end{center}
 \end{tcb}
-
-\subsection{Rayons incidents, rayons émergents}
-
+Les distances sont considérées \textbf{algébriquement} (affectées d'un signe)~:
+c'est une distance qui s'exprime en mètres, mais peut être négative selon
+l'orientation de l'axe optique et de la position relative des points.
+\begin{figure}[htbp]
+	\centering
+	\switch{
+		\includegraphics[scale=1, draft=true]{dist_alg}
+	}{
+		\includegraphics[scale=1]{dist_alg}
+	}
+	\caption{Distances algébriques.}
+	\label{fig:dist_alg}
+\end{figure}
 
 \begin{tcb}[label=def:rlie, sidebyside, righthand ratio=.4](defi){Rayons
 			incidents et émergents}
@@ -387,8 +450,6 @@ l'intérieur du milieu $n_2$, soit par définition $|i_2| <
 		\captionof{figure}{Rayons incidents, émergents.}
 	\end{center}
 \end{tcb}
-
-\subsection{Nature d'un faisceau}
 
 \begin{tcb}[label=def:faisceau, sidebyside,
 		lefthand ratio=.3](defi){Nature d'un faisceau}
@@ -412,7 +473,7 @@ l'intérieur du milieu $n_2$, soit par définition $|i_2| <
 	\end{center}
 \end{tcb}
 
-\subsection{Objets et images réelles ou virtuelles}
+\subsection{Objets et images}
 
 \begin{tcb}[label=def:objimg, sidebyside](defi){Objet et image}
 	\tcbsubtitle{\fatbox{Point objet}}
@@ -447,7 +508,7 @@ verbeuses).
 		face de sortie} du système, et \textbf{virtuel sinon}.
 \end{tcb}
 
-\begin{tcb}[label=exem:rellvirt](exem){Objets et images réelles}
+\begin{tcb}[label=exem:rellvirt](exem){Objets et images réelles ou virtuelles}
 	\begin{minipage}{0.45\linewidth}
 		\begin{center}
 			\includegraphics[width=\linewidth]{obj_r-img_r}
@@ -485,10 +546,10 @@ verbeuses).
 	virtuel-le.
 	\begin{center}
 		\switch{
-			\includegraphics[width=.6\linewidth, draft=true]{objimg_espace}
+			\includegraphics[width=.5\linewidth, draft=true]{objimg_espace}
 			\label{fig:objimg_espace}
 		}{
-			\includegraphics[width=.6\linewidth]{objimg_espace}
+			\includegraphics[width=.5\linewidth]{objimg_espace}
 			\label{fig:objimg_espace}
 		}
 		\captionof{figure}{Espaces objet et image.}
@@ -496,19 +557,16 @@ verbeuses).
 \end{tcb}
 
 \begin{tcb}[label=nota_opt](nota){Notation~: conjugaison de 2 points}
-	Lorsqu'un point objet $A$ passe par un système optique $S$ pour former
-	l'image $A'$, on dit que $A$ et $A'$ sont \textbf{conjugués par le système}.
-	Schématiquement, on note cette relation
+	Un objet A et son image A' par un système S sont dits \textbf{conjugés}.
+	On note~:
 	\psw{
 		\[
-			\boxed{A\opto{S}{}A'}
+			\boxed{\rm A\opto{S}{}A'}
 		\]
 	}
-	Dans cette notation, $A$ est un objet \textbf{pour $S$}, et $A'$ est une
-	image \textbf{pour $S$}.
+	avec A un objet \textbf{pour S}, et A' est une image \textbf{pour S}.
 \end{tcb}
 
-\subsection{Objet étendu, grandissement transversal}
 \begin{tcb}[label=def:objet](defi){Objet étendu et angle apparent}
 	\begin{itemize}[label=$\diamond$, leftmargin=10pt]
 		\bitem{Objet étendu}~: \psw{
@@ -524,8 +582,8 @@ verbeuses).
 \end{tcb}
 \begin{tcb}[label=def:grand, sidebyside](defi){Grandissement transversal}
 
-	Soit $\AB$ un objet étendu avec $A$ sur l'axe optique, passant par
-	un système $S$ donnant une image elle aussi étendue $\ABp$. On
+	Soit $\AB$ un objet étendu avec A sur l'axe optique, passant par
+	un système S donnant une image elle aussi étendue $\ABp$. On
 	appelle \textit{grandissement transversal} et on le note $\gamma$ le
 	rapport
 	\psw{
@@ -533,7 +591,7 @@ verbeuses).
 			\boxed{\gamma = \frac{\ABp}{\AB}}
 		\]
 	}
-	pour $\ABr \opto{S}{} \ABpr$
+	pour $\ABr \opto{\rm  S}{} \ABpr$
 	\tcblower
 	\begin{center}
 		\switch{
@@ -556,7 +614,7 @@ verbeuses).
 	avec des rayons parallèles à l'axe optique.
 	\smallbreak
 	Le plan perpendiculaire à l'axe optique et passant par $F$ est appelé
-	\textit{plan focal objet}, $\f$. On note
+	\textit{plan focal objet}, $\pi$. On note
 	\smallbreak
 	\psw{
 		\[
@@ -578,7 +636,7 @@ verbeuses).
 	avec des rayons parallèles à l'axe optique.
 	\smallbreak
 	Le plan perpendiculaire à l'axe optique
-	et passant par $F'$ est appelé \textit{plan focal image}, $\f'$. On note
+	et passant par $F'$ est appelé \textit{plan focal image}, $\pi'$. On note
 	\smallbreak
 	\psw{
 		\[
@@ -616,9 +674,9 @@ verbeuses).
 	\begin{tcb}[label=coro:foysec](coro)'r'{Foyers secondaires}
 		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
 			\item Rayons \textbf{incidents \parr\ entre eux} $\Ra$ \psw{
-				      émergent \textbf{croisés dans $\f'$}~;
+				      émergent \textbf{croisés en $\f' \in \pi'$}~;
 			      }
-			\item Rayons \textbf{incidents croisés en $\f$} $\Ra$ \psw{
+			\item Rayons \textbf{incidents croisés en $\f \in \pi$} $\Ra$ \psw{
 				      émergent \textbf{parallèles entre eux}.
 			      }
 		\end{itemize}
@@ -655,6 +713,14 @@ dans lesquelles le stigmatisme et l'aplanétisme sont approchés, par exemple si
 la tâche formée par le système est plus petite que l'élément récepteur (pixel
 pour une caméra).
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=1]{stig}
+	\caption{Exemple d'un système astigmatique à gauche, stigmatique approché à
+		droite.}
+	\label{fig:stig}
+\end{figure}
+
 \subsection{Conditions de \textsc{Gauss}}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
@@ -668,8 +734,8 @@ pour une caméra).
 	\end{tcb}
 	\begin{tcb}[label=prop:gaussprop](prop)'r'{Approximation de \textsc{Gauss}}
 		Dans les conditions de \textsc{Gauss}, un système centré respecte les
-		conditions de stigmatisme et d'aplanétisme \textit{approchés}. On les
-		\textbf{considérera} comme rigoureux tant dans les tracés que dans les
+		conditions de \textbf{stigmatisme et d'aplanétisme} \textit{approchés}. On
+		les \textbf{considérera} comme rigoureux tant dans les tracés que dans les
 		calculs.
 	\end{tcb}
 \end{tcbraster}

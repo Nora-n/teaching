@@ -3,22 +3,37 @@
 
 \begin{document}
 \begin{tikzpicture}[decoration={markings,mark=at position 1cm with {\arrow{stealth};}}]
-    \coordinate (A) at (1,0);%source ponctuelle
-    \coordinate (AA) at (-1,0);%image ponctuelle
-    \foreach \incidence in {-30,-20,-10,10,20,30}{
-    \draw[thick,brandeisblue,->,postaction={decorate}](-3,{3*tan(\incidence)})--(A);
-    \draw[thick,orange!70](AA)--++({\incidence}:4);}
-    \node[draw,rounded corners=3pt,minimum width=3cm,minimum height=3cm,fill=SkyBlue!20] (SO) at (0,0){};
-    \draw (-1,1)node{\small \textcolor{Red!70}{Image r\'eelle}}
-        ++(2.5,0)node{\small \textcolor{Purple!70}{Objet virtuel}};
-    \foreach \incidence in {-30,-20,-10,10,20,30}{
-    \draw[dashed,orange!70,postaction={decorate}](AA)--++({\incidence}:3);
-    \draw[dashed,brandeisblue](-3,{3*tan(\incidence)})--(A);
-    }
-    \draw (0,-1.5) node[above] {\small Syst\`eme Optique};
-    \draw[Purple!70](A)node{$\bullet$} node[above=2pt]{A};
-    \draw[Red!70](AA) node{$\bullet$} node[above=2pt]{A'};
-    \draw[thin, dashed, -latex](-3.5,0)--(4,0) node [below] {Axe optique};
+	\coordinate (A) at (1,0);%source ponctuelle
+	\coordinate (AA) at (-1,0);%image ponctuelle
+	\foreach \incidence in {-30,-20,-10,10,20,30}{
+			\draw[thick,brandeisblue,->,postaction={decorate}]
+			(-3,{3*tan(\incidence)}) --
+			(A);
+			\draw[thick,orange!70]
+			(AA) --++
+			({\incidence}:4);
+		}
+	\node[draw, fill=SkyBlue!20,
+		rounded corners=3pt,
+		minimum width=3cm,minimum height=3cm]
+	(SO) at (0,0) {};
+	\draw (-1,1)node{\small \textcolor{Red!70}{Image virtuelle}}
+	++(2.5,0)node{\small \textcolor{Purple!70}{Objet virtuel}};
+	\foreach \incidence in {-30,-20,-10,10,20,30}{
+			\draw[dashed,orange!70,postaction={decorate}]
+			(AA)--++
+			({\incidence}:3);
+			\draw[dashed,brandeisblue]
+			(-3,{3*tan(\incidence)}) --
+			(A);
+		}
+	\draw (0,-1.5) node[above] {\small Syst\`eme Optique};
+	\draw[Purple!70]
+	(A) node{$\bullet$} node[above=2pt]{A};
+	\draw[Red!70]
+	(AA) node{$\bullet$} node[above=2pt]{A'};
+	\draw[thin, dashed, -latex]
+	(-3.5,0)--(4,0) node [below] {Axe optique};
 \end{tikzpicture}
 
 \end{document}

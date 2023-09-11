@@ -58,8 +58,8 @@ alist, blist = [], []
 for i in range(0, N):
     # On simule l'addition d'une erreur aux valeurs mesurées
     # en ajoutant une valeur aléatoire entre les bornes de l'incertitude
-    x_simu = X + Delta_x*np.random.uniform(-1, 1)
-    y_simu = Y + Delta_y*np.random.uniform(-1, 1)
+    d_simu = d + Delta_d*np.random.uniform(-1, 1)
+    D_simu = D + Delta_D*np.random.uniform(-1, 1)
     # On réalise une reg lin sur ce nouveau jeu de données
     p = np.polyfit(x_simu, y_simu, 1)
     # On stocke les valeurs de coefficient directeur et ordonnées à l'origine

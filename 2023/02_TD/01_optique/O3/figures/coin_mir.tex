@@ -3,66 +3,72 @@
 
 \begin{document}
 \begin{tikzpicture}[use optics]
-    % Miroir
-    \node[mirror, rotate=-90,
-    name path=Mpath1]
-    (M1) at (0,0) {};
-    \node[below] at (M1.center) {$M_1$};
-    % Miroir
-    \def\angg{45}
-    \node[mirror, rotate=\angg,
-    name path=Mpath2, anchor=south]
-    (M2) at (M1.north) {};
-    \node[above right] at (M2.center) {$M_2$};
-    % Points
-    \node[below] at (M1.south) {$A$};
-    \coordinate (A) at (M1.south);
-    \node[below] at (M1.north) {$B$};
-    \coordinate (B) at (M1.north);
-    \node[above left] at (M2.north) {$C$};
-    \coordinate (C) at (M2.north);
-    % Rayon 1
-    \coordinate (O) at (-2,1);
-    \path[name path=AB] (O) --++ (3,0);
-    % Define intersection
-    \path[name intersections={of=AB and Mpath2, by=I}];
-    \node[] at (I) {$\times$};
-    \node[above] at (I) {I};
-    \draw[brandeisblue, simple] (O) -- (I);
-    % Perpendicular
-    \draw[dashed, gray] (I)
-        -- ($(I)!1cm!-90:(B)$)
-        coordinate (Idown);
-    \path[name path=Jpath] (I) --++ ({-90}:1.2cm);
-    % Define intersection
-    \path[name intersections={of=Jpath and Mpath1, by=J}];
-    \node[] at (J) {$\times$};
-    \node[above left] at (J) {J};
-    \draw[ForestGreen, simple] (I) -- (J);
-    % Perpendicular
-    \draw[dashed, gray] (J) --++ (0,1cm);
-    \draw[transform canvas={xshift=.5mm}, orange!70, simple] (J) -- (I);
-    \draw[transform canvas={yshift=.5mm}, Red!70, simple] (I) -- (O);
-    % Draw angles
-    \pic[angle radius=.5cm, angle eccentricity=1.3,
-    draw, <-, black,
-    "$\alpha$" alias=alpha]
-    {angle=C--B--A};
-    % Draw angles
-    \pic[angle radius=.5cm, angle eccentricity=1.3,
-    draw, <-, black,
-    "$\alpha$" alias=alpha]
-    {angle=C--I--O};
-    % Draw angles
-    \pic[angle radius=.5cm, angle eccentricity=1.3,
-    draw, <-, brandeisblue,
-    "$i_1$" alias=i1]
-    {angle=O--I--Idown};
-    % Draw angles
-    \pic[angle radius=.4cm, angle eccentricity=1.3,
-    draw, ->, ForestGreen,
-    "$i_2$" alias=i2]
-    {angle=Idown--I--J};
-    
+	% Sens de comptage
+	\node[] (Cp) at (-2,2) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (1.5,2) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.3}
+	% Miroir
+	\node[mirror, rotate=-90,
+		name path=Mpath1]
+	(M1) at (0,0) {};
+	\node[below] at (M1.center) {$M_1$};
+	% Miroir
+	\def\angg{45}
+	\node[mirror, rotate=\angg,
+		name path=Mpath2, anchor=south]
+	(M2) at (M1.north) {};
+	\node[above right] at (M2.center) {$M_2$};
+	% Points
+	\node[below] at (M1.south) {A};
+	\coordinate (A) at (M1.south);
+	\node[below] at (M1.north) {B};
+	\coordinate (B) at (M1.north);
+	\node[above left] at (M2.north) {C};
+	\coordinate (C) at (M2.north);
+	% Rayon 1
+	\coordinate (O) at (-2,1);
+	\path[name path=AB] (O) --++ (3,0);
+	% Define intersection
+	\path[name intersections={of=AB and Mpath2, by=I}];
+	\node[] at (I) {$\times$};
+	\node[above] at (I) {I};
+	\draw[brandeisblue, simple] (O) -- (I);
+	% Perpendicular
+	\draw[dashed, gray] (I)
+	-- ($(I)!1cm!-90:(B)$)
+	coordinate (Idown);
+	\path[name path=Jpath] (I) --++ ({-90}:1.2cm);
+	% Define intersection
+	\path[name intersections={of=Jpath and Mpath1, by=J}];
+	\node[] at (J) {$\times$};
+	\node[above left] at (J) {J};
+	\draw[ForestGreen, simple] (I) -- (J);
+	% Perpendicular
+	\draw[dashed, gray] (J) --++ (0,1cm);
+	\draw[transform canvas={xshift=.5mm}, orange!70, simple] (J) -- (I);
+	\draw[transform canvas={yshift=.5mm}, Red!70, simple] (I) -- (O);
+	% Draw angles
+	\pic[angle radius=.5cm, angle eccentricity=1.3,
+		draw, <-, black,
+		"$\alpha$" alias=alpha]
+	{angle=C--B--A};
+	% Draw angles
+	\pic[angle radius=.5cm, angle eccentricity=1.3,
+		draw, <-, black,
+		"$\alpha$" alias=alpha]
+	{angle=C--I--O};
+	% Draw angles
+	\pic[angle radius=.5cm, angle eccentricity=1.3,
+		draw, <-, brandeisblue,
+		"$i_1$" alias=i1]
+	{angle=O--I--Idown};
+	% Draw angles
+	\pic[angle radius=.4cm, angle eccentricity=1.3,
+		draw, ->, ForestGreen,
+		"$i_2$" alias=i2]
+	{angle=Idown--I--J};
+
 \end{tikzpicture}
 \end{document}

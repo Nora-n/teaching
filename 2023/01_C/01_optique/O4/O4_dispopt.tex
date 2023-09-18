@@ -8,8 +8,8 @@
 \renewcommand{\@chapapp}{Optique -- chapitre}
 \makeatother
 
-% \toggletrue{student}
-% \HideSolutionstrue
+\toggletrue{student}
+\HideSolutionstrue
 
 \begin{document}
 \setcounter{chapter}{3}
@@ -123,7 +123,35 @@ objets proches.
 	pour un œil emmétrope~? On rappelle que la distance cristallin-rétine est $d
 		\approx \SI{22.3}{mm}$.
 	\tcblower
-	\vspace{4cm}
+	\begin{isd}
+		\psw{
+			Pour le remotum on a directement que la focale doit être égale à la
+			distance cristallin-rétine, puisqu'un objet à l'infini se forme dans le plan
+			focal image. Pour le proximum, on utilise la relation de conjugaison avec A' =
+			E, $\OA = \SI{-25}{cm}$ et on trouve $f'$ :
+			\begin{gather*}
+				\xul{\OFp_\mathrm{repos} = \SI{22.3}{mm}}
+				\text{, }
+				\boxed{
+					\OFp_{\rm acco} = \frac{\obar{\rm OE}\OA}{\OA - \obar{\rm OE}}
+				}
+				\\
+				\mathrm{A.N.~:}\enskip
+				\xul{
+					\OFp_{\rm acco} = \SI{21}{mm}
+				}
+			\end{gather*}
+		}
+		\vspace*{-20pt}
+		\tcblower
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{oeil_plain}
+			}{
+				\includegraphics[width=\linewidth]{oeil_plain}
+			}
+		\end{center}
+	\end{isd}
 \end{tcb}
 
 \begin{tcb}[label=impl:instrument_opt](impl){Réglage instrument optique}
@@ -187,84 +215,75 @@ capacité par le pouvoir de résolution.
 Le point le plus proche permettant une vision nette étant fixé (PP), pour mieux
 voir un objet, il faut utiliser un instrument~: c'est ce que permet la loupe.
 
-\begin{tcb}[label=def:loupe, valign=center](defi){Effet loupe et accommodation}
-	\begin{isd}
-		Pour obtenir l'effet loupe, il faut que l'objet soit situé entre le
-		\textbf{centre optique} d'une lentille \textit{convergente} et son
-		\textbf{foyer objet}~: on obtient alors une image \textbf{virtuelle},
-		\textbf{droite} et \textbf{agrandie}.
-		\vfill
-		\tcblower
-		\begin{center}
-			\switch{
-				\includegraphics[width=\linewidth]{loupe-plain}
-			}{
-				\includegraphics[width=\linewidth]{loupe}
-			}
-			\captionof{figure}{Loupe avec accommodation}
-			\label{loupeavecacc}
-		\end{center}
-	\end{isd}
+\begin{tcb}[label=def:loupe, valign=center, sidebyside, sidebyside align=top](defi){Effet loupe et accommodation}
+	Pour obtenir l'effet loupe, il faut que l'objet soit situé entre le
+	\textbf{centre optique} d'une lentille \textit{convergente} et son
+	\textbf{foyer objet}~: on obtient alors une image \textbf{virtuelle},
+	\textbf{droite} et \textbf{agrandie}.
+	\vfill
+	\begin{center}
+		\switch{
+			\includegraphics[width=\linewidth]{loupe-plain}
+		}{
+			\includegraphics[width=\linewidth]{loupe}
+		}
+		\captionof{figure}{Loupe avec accommodation}
+		\label{loupeavecacc}
+	\end{center}
+	\tcblower
+	De plus, afin que l'œil puisse observer cette image sans accommodation,
+	celle-ci doit être \textbf{à l'infini}. La meilleure position de l'objet
+	est celle où il sera \textbf{sur le foyer principal objet}.
+	\vspace{22pt}
+	\begin{center}
+		\switch{
+			\includegraphics[width=\linewidth]{loupeparfaite-plain}
+		}{
+			\includegraphics[width=\linewidth]{loupeparfaite}
+		}
+		\captionof{figure}{Loupe sans accommodation}
+		\label{loupesansacc}
+	\end{center}
+\end{tcb}
+
+\begin{tcb}(appl){Exercice}
+	L'image obtenue avec une loupe peut-elle être plus ou moins grande~?
+	La distance objet-lentille joue-t-elle sur la taille de l'image
+	observée~?
 	\tcblower
 	\begin{isd}
-		De plus, afin que l'œil puisse observer cette image sans accommodation,
-		celle-ci doit être \textbf{à l'infini}. La meilleure position de l'objet
-		est celle où il sera \textbf{sur le foyer principal objet}.
+		\psw{
+			La réponse est non~:
+			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+				\item Si on approche l'objet de la lentille, l'image devient moins
+				      grande (voir figure \ref{loupeplusieursobjets}), mais elle est vue
+				      plus près ;
+				\item Si on éloigne l'objet de la lentille (en gardant $|\obar{\rm OA}| <
+					      |\obar{\rm OF}|$ , l'image devient plus grande (voir figure
+				      \ref{loupeplusieursobjets}), mais elle est vue plus loin !
+			\end{itemize}
+			\medskip
+			L'angle $\theta'$ défini sur cette figure est le même quel que soit le cas,
+			il ne dépend que de la lentille~: avec les dispositifs optiques, c'est cet
+			angle qui est notre grandeur d'intérêt, plutôt que le grandissement
+			transversal qui vaut pour une image sur un écran.
+		}
 		\tcblower
 		\begin{center}
 			\switch{
-				\includegraphics[width=\linewidth]{loupeparfaite-plain}
+				\includegraphics[width=\linewidth]{loupe_objets-plain}
 			}{
-				\includegraphics[width=\linewidth]{loupeparfaite}
+				\includegraphics[width=\linewidth]{loupe_objets}
 			}
-			\captionof{figure}{Loupe sans accommodation}
-			\label{loupesansacc}
+			\captionof{figure}{Image obtenue avec une loupe dans plusieurs cas de
+				distance objet-lentille}
+			\label{loupeplusieursobjets}
 		\end{center}
 	\end{isd}
 \end{tcb}
 
-\paragraph*{L'image obtenue avec une loupe peut-elle être plus ou moins grande~?
-	La distance objet-lentille joue-t-elle sur la taille de l'image
-	observée~?\newline\newline}
-
-\begin{minipage}[c]{0.45\linewidth}
-	La réponse est non~:
-	\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-		\item Si on approche l'objet de la lentille, l'image devient moins
-		      grande (voir figure \ref{loupeplusieursobjets}), mais elle est vue
-		      plus près ;
-		\item Si on éloigne l'objet de la lentille (en gardant $|\obar{\rm OA}| <
-			      |\obar{\rm OF}|$ , l'image devient plus grande (voir figure
-		      \ref{loupeplusieursobjets}), mais elle est vue plus loin !
-	\end{itemize}
-	\medskip
-	L'angle $\theta'$ défini sur cette figure est le même quel que soit le cas,
-	il ne dépend que de la lentille~: avec les dispositifs optiques, c'est cet
-	angle qui est notre grandeur d'intérêt, plutôt que le grandissement
-	transversal qui vaut pour une image sur un écran.
-
-	\bigskip
-
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.45\linewidth}
-	\begin{center}
-		\switch{
-			\includegraphics[width=\linewidth]{loupe_objets-plain}
-		}{
-			\includegraphics[width=\linewidth]{loupe_objets}
-		}
-		\captionof{figure}{Image obtenue avec une loupe dans plusieurs cas de
-			distance objet-lentille}
-		\label{loupeplusieursobjets}
-	\end{center}
-\end{minipage}
-
-\bigskip
-
 \begin{tcbraster}[raster columns=3, raster equal height=rows]
 	\begin{tcb}[label=def_gross, raster multicolumn=2, sidebyside](defi){Grossissement}
-
 		On définit alors le grossissement d'un dispositif optique par le rapport
 		\psw{
 			\begin{equation*}
@@ -375,7 +394,7 @@ illustrant chaque situation~:
 	\end{tabular}
 \end{center}
 
-\begin{tcb}(impo){Influence focale}
+\begin{tcb}[cnt](ror){Influence focale}
 	Plus la focale est grande, plus le champ est étroit, plus on capture un détail
 	de l'image.
 \end{tcb}
@@ -496,8 +515,8 @@ mise au point voulue.
 \subsection{La profondeur de champ}
 
 \begin{center}
-	\includegraphics[scale=0.095]{photo-pdc-faible.jpg} \qquad
-	\includegraphics[scale=0.095]{photo-pdc-eleve.jpg}
+	\includegraphics[scale=0.15]{photo-pdc-faible.jpg} \qquad
+	\includegraphics[scale=0.15]{photo-pdc-eleve.jpg}
 \end{center}
 
 Sur la première photo, nous voyons que le batracien est net, mais l'avant plan
@@ -529,9 +548,16 @@ pas situés sur le même plan : la profondeur de champ est grande.
 \end{tcb}
 
 \begin{center}
-	\includegraphics[scale=.90]{pfd_chp-foc}
+	\includegraphics[scale=.85]{pfd_chp-foc}
 	\captionof{figure}{}
 \end{center}
+
+% \begin{figure}[htbp]
+% 	\centering
+% 	\includegraphics[scale=.85]{pfd_chp-foc}
+% 	\caption{}
+% 	\label{fig:}
+% \end{figure}
 
 \subsubsection{Profondeur de champ et ouverture}
 
@@ -574,17 +600,17 @@ sera plus réduite.
 \begin{tcb}[label=ror:app_phot](ror){Résumé caractéristiques appareil photo}
 	\begin{minipage}{0.50\linewidth}
 		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Focale $\nearrow\quad\Rightarrow$ champ $\searrow$~;
+			\item Focale $\nearrow\quad\Rightarrow$ champ \psw{$\searrow$}~;
 			\item Position capteur $\nearrow\quad\Rightarrow$ mise au point
-			      $\searrow$~;
-			\item Taille capteur $\nearrow\quad\Rightarrow$ champ $\nearrow$~;
+			      \psw{$\searrow$}~;
+			\item Taille capteur $\nearrow\quad\Rightarrow$ champ \psw{$\nearrow$}~;
 		\end{itemize}
 	\end{minipage}
 	\begin{minipage}{0.50\linewidth}
 		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Focale $\nearrow\quad\Rightarrow$ PDC $\searrow$~;
-			\item Position capteur $\nearrow\quad\Rightarrow$ PDC $\searrow$~;
-			\item Ouverture $\nearrow\quad\Rightarrow$ PDC $\searrow$.
+			\item Focale $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}~;
+			\item Position capteur $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}~;
+			\item Ouverture $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}.
 		\end{itemize}
 	\end{minipage}
 \end{tcb}
@@ -608,9 +634,9 @@ toujours se repérer dans les constructions.
 
 \begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
 			convergentes}
-	Deux lentilles minces convergentes $\Lc_1$ de centre optique $O_1$ et
-	$\Lc_2$ de centre optique $O_2$ sont disposées selon le schéma ci-dessous.
-	Trouver la position de l'image finale $A'B'$ de l'objet $AB$ donnée par
+	Deux lentilles minces convergentes $\Lc_1$ de centre optique O$_1$ et
+	$\Lc_2$ de centre optique O$_2$ sont disposées selon le schéma ci-dessous.
+	Trouver la position de l'image finale A'B' de l'objet AB donnée par
 	l'association $\Lc_1 + \Lc_2$, et donner la nature de tous les objets et
 	images.
 	\tcblower
@@ -621,60 +647,24 @@ toujours se repérer dans les constructions.
 	\end{center}
 \end{tcb}
 \begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
-			mixées}
-
-	Une lentille mince convergente $\Lc_1$ de centre optique $O_1$ et une
-	divergente $\Lc_2$ de centre optique $O_2$ sont disposées selon le schéma
-	ci-dessous. Trouver la position de l'image finale $A'B'$ de l'objet $AB$
+			mixtes}
+	Une lentille mince convergente $\Lc_1$ de centre optique O$_1$ et une
+	divergente $\Lc_2$ de centre optique O$_2$ sont disposées selon le schéma
+	ci-dessous. Trouver la position de l'image finale A'B' de l'objet AB
 	donnée par l'association $\Lc_1 + \Lc_2$, et donner la nature de tous les
 	objets et images.
-
 	\tcblower
 	\begin{center}
 		\includegraphics[width=.85\linewidth]{asso_lent-b_plain.pdf}
-		\captionof{figure}{Association de lentilles mixées}
+		\captionof{figure}{Association de lentilles mixtes}
 		\label{fig:asso_lent-mix_plain}
 	\end{center}
 \end{tcb}
 
-\subsubsection{Corrigé}
-
-\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
-			convergentes}
-
-	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
-		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
-	\textbf{image réelle pour $\Lc_1$} mais \textbf{objet virtuel pour $\Lc_2$},
-	et finalement $\ABp$ image réelle.
-
-	\tcblower
-	\begin{center}
-		\includegraphics[width=.85\linewidth]{asso_lent-a.pdf}
-		\captionof{figure}{Association de lentilles convergentes}
-		\label{fig:asso_lent-conv}
-	\end{center}
-\end{tcb}
-\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
-			mixées}
-
-	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
-		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
-	\textbf{image virtuelle pour $\Lc_1$} mais \textbf{objet réel pour $\Lc_2$},
-	et finalement $\ABp$ image virtuelle.
-
-	\tcblower
-	\begin{center}
-		\includegraphics[width=.85\linewidth]{asso_lent-b.pdf}
-		\captionof{figure}{Association de lentilles mixées}
-		\label{fig:asso_lent-mix}
-	\end{center}
-\end{tcb}
-
-\begin{tcb}[label=ror:microscope, hand](ror){Microscope}
-
+\begin{tcb}[label=defi:microscope, cnt, bld](defi){Microscope}
 	Un microscope est une association de deux lentilles convergentes qui donne
-	une image à l'infini d'un objet à distance finie~: $\AB \opto{\Lc_1}{O_1}
-		\ABb \opto{\Lc_2}{O_2} +\infty$
+	une image à l'infini d'un objet à distance finie~: $\AB \opto{\Lc_1}{\rm O_1}
+		\ABb \opto{\Lc_2}{\rm O_2} +\infty$
 \end{tcb}
 
 \subsection{Lunettes astronomiques}
@@ -699,60 +689,54 @@ de \textbf{Kepler} si l'oculaire est \textbf{convergent}, et de
 
 \begin{tcbraster}[raster columns=4, raster equal height=rows]
 	\begin{tcb}[label=def:encombrement](defi){Encombrement}
-		On appelle \textit{encombrement} la distance $\obar{O_1O_2}$ entre
+		On appelle \textit{encombrement} la distance $\obar{\rm O_1O_2}$ entre
 		l'objectif et l'oculaire.
 	\end{tcb}
 	\begin{tcb}[label=exem:encombrement,
 			raster multicolumn=3](exem)'r'{Calcul d'encombrement}
-
-		Soit l'objectif $\Lc_1$ de centre $O_1$ et de vergence $V_1 =
-			\SI{3.125}{\delta}$, et l'oculaire $\Lc_2$ de centre $O_2$ et de
+		Soit l'objectif $\Lc_1$ de centre O$_1$ et de vergence $V_1 =
+			\SI{3.125}{\delta}$, et l'oculaire $\Lc_2$ de centre O$_2$ et de
 		vergence $V_2 = \SI{25}{\delta}$. Quel est l'encombrement du système~?
-
 		\tcblower
 		\begin{isd}
-			Le système étant afocal, on a\\
-			\begin{tikzpicture}[]
-				\node[] (AB) at (0,0) {$\AB$};
-				\node[] (A_1B_1) at (2,0) {$\ABb$};
-				\node[] (A'B') at (4,0) {$\ABp$};
-				\draw[->] (AB) -- (A_1B_1)
-				node [midway, above] {$\Lc_1$}
-				node [midway, below] {$O_1$};
-				\draw[->] (A_1B_1) -- (A'B')
-				node [midway, above] {$\Lc_2$}
-				node [midway, below] {$O_2$};
-				\node[below=0.3, Purple!70] (AB) at (AB) {$-\infty$};
-				\node[below=0.3, color=brandeisblue] (A1B1b) at (A_1B_1) {$A_1 = F'_1$};
-				\node[below=0.3, ForestGreen] (A1B1bb) at (A1B1b) {$A_1 = F_2$};
-				\node[below=0.3, orange!70] (A'B'b) at (A'B') {$A' = +\infty$};
-				\draw[->, Purple!70] (AB) to[bend right] (A1B1b.west);
-				\draw[->, orange!70] (A'B'b) to[bend left] (A1B1bb.east);
-			\end{tikzpicture}
+			\psw{
+				Le système étant afocal, on a\\
+			}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{afocal}
+			}{
+				\includegraphics[width=\linewidth]{afocal}
+			}
 			\tcblower
 			\vspace{-1cm}
-			\begin{align*}
-				\obar{O_1O_2} & = \obar{O_1F_1'} + \obar{F_2O_2} \\
-				              & = f'_1 + f'_2                    \\
-				              & = \frac{1}{V_1} + \frac{1}{V_2}  \\
-				\obar{O_1O_2} & = \SI{36}{cm}
-			\end{align*}
+			\psw{
+				\begin{align*}
+					\obar{\rm O_1O_2} & = \obar{\rm O_1F_1'} + \obar{\rm F_2O_2} \\
+					                  & = f'_1 + f'_2                            \\
+					                  & = \frac{1}{V_1} + \frac{1}{V_2}          \\
+					\obar{\rm O_1O_2} & = \SI{36}{cm}
+				\end{align*}
+			}
 		\end{isd}
 	\end{tcb}
 \end{tcbraster}
 \begin{tcbraster}[raster columns=4, raster equal height=rows]
 	\begin{tcb}[label=prop:gross_lunette](prop){Grossissement}
 		Pour les lunettes, on a $G$ tel que
-		\begin{empheq}[box=\fbox]{equation*}
-			G = \frac{f'_1}{-f'_2}
-		\end{empheq}
+		\psw{
+			\begin{empheq}[box=\fbox]{equation*}
+				G = \frac{f'_1}{-f'_2}
+			\end{empheq}
+		}
 	\end{tcb}
 	\begin{tcb}[label=demo:gross_lunette, raster multicolumn=3](demo)'r'{Grossissement}
-		À partir de la figure~\ref{fig:kepler} et en considérant des petits
-		angles, on a $\theta' = \dfrac{\ABb}{\obar{O_2F_2}}$, et $\theta =
-			\dfrac{\AB}{\obar{O_1F'_1}}$~; ainsi, comme $G =
-			\frac{\theta'}{\theta}$, et que $\obar{O_2F_2} = -f'_2$, on a
-		directement le résultat.
+		\psw{
+			À partir de la figure~\ref{fig:kepler} et en considérant des petits
+			angles, on a $\theta' = \dfrac{\ABb}{\obar{O_2F_2}}$, et $\theta =
+				\dfrac{\AB}{\obar{O_1F'_1}}$~; ainsi, comme $G =
+				\dfrac{\theta'}{\theta}$, et que $\obar{O_2F_2} = -f'_2$, on a
+			directement le résultat.
+		}
 	\end{tcb}
 \end{tcbraster}
 \begin{tcb}[label=rema:gross_lunette](rema){Grossissement}
@@ -786,4 +770,38 @@ de \textbf{Kepler} si l'oculaire est \textbf{convergent}, et de
 		% \label{fig:kepler_co}
 	\end{center}
 \end{tcb}
+
+\subsection*{Association quelconque de lentilles}
+\subsubsection*{Corrigé}
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			convergentes}
+
+	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
+		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
+	\textbf{image réelle pour $\Lc_1$} mais \textbf{objet virtuel pour $\Lc_2$},
+	et finalement $\ABp$ image réelle.
+
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-a.pdf}
+		\captionof{figure}{Association de lentilles convergentes}
+		\label{fig:asso_lent-conv}
+	\end{center}
+\end{tcb}
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			mixtes}
+
+	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
+		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
+	\textbf{image virtuelle pour $\Lc_1$} mais \textbf{objet réel pour $\Lc_2$},
+	et finalement $\ABp$ image virtuelle.
+
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-b.pdf}
+		\captionof{figure}{Association de lentilles mixtes}
+		\label{fig:asso_lent-mix}
+	\end{center}
+\end{tcb}
+
 \end{document}

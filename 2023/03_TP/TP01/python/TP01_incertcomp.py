@@ -16,7 +16,13 @@ uf_comp = 0.25*np.sqrt(
     )
 )
 
+uf_comp_2 = 0.25*np.sqrt(
+    uD**2*(1+d**4/D**4) +
+    2*(d**2/D**2)*ud**2
+)
+
 print(f'f = {f:.2f} ± {uf_comp:.2f}')
+print(f'f = {f:.2f} ± {uf_comp_2:.2f}')
 
 N = 100000
 liste_f = []

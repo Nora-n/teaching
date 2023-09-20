@@ -5,8 +5,8 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \HideSolutionstrue
 
 \begin{document}
 \setcounter{chapter}{0}
@@ -338,20 +338,32 @@
 		      et les résultats sur vos copies.
 		      \smallbreak
 	      }{
-		      On trouve~:
-		      \subsubsection{\textsc{Bessel}}
-		      \textit{En cours…}
-		      \subsubsection{\textsc{Silbermann}}
-		      \textit{En cours…}
-		      \subsubsection{\textsc{régression}}
-		      \textit{En cours…}
+		      On trouve\ftn{\url{https://capytale2.ac-paris.fr/web/c/2761-1874421}}~:
+            \begin{gather*}
+              f_{\rm bessel} = \SI{10.21 \pm 0.03}{cm}
+              \\
+              f_{\rm silb} = \SI{10.62 \pm 0.07}{cm}
+              \\
+              f_{\rm reg} = \SI{10.42 \pm 0.07}{cm}
+            \end{gather*}
 	      }
 	\item \switch{
 		      Comparer alors les résultats obtenus par les différentes méthodes.
 		      Vous calculerez dans chaque cas l'écart relatif par rapport à la
-		      valeur théorique.
+		      valeur théorique. Conclure.
 	      }{
-	      }
+          On trouve:
+          \begin{gather*}
+            e_{r, \rm bessel} = \num{0.02}
+            \\
+            e_{r, \rm silb} = \num{0.06}
+            \\
+            e_{r, \rm reg} = \num{0.04}
+          \end{gather*}
+          Ainsi, nous concluons qu'avec ces résultats, la détermination par
+        Bessel serait la meilleure. Seulement, cette conclusion repose sur les
+      écarts relatifs, et ne nous informe en rien sur la précision de chaque
+    mesure : il faut calculer les incertitudes pour conclure correctement. }
 \end{enumerate}
 
 \section{Valider et conclure}
@@ -359,16 +371,40 @@
 \switch{
 	\begin{enumerate}[label=\sqenumi, start=11]
 		\item Déterminer l'incertitude-type sur la détermination de la distance focale $f'$
-		      obtenue dans le cas de la méthode de \textsc{Bessel}. On évaluera dans un
-		      premier temps l'incertitude de type B sur la détermination de $D$ et $d$ (avec
-		      incertitude composée de type différence) puis on calculera l'incertitude-type
-		      sur $f'$ dont l'expression a été trouvée dans la partie Analyser.
+		      obtenue pour chaque méthode.
 		      \smallbreak
-		      Calculer alors l'écart normalisé. Conclure.
-		\item Faites de même par méthode de \textsc{Monte-Carlo}, sur l'activité
-		      \texttt{Capytale}.
+          Pour la méthode de \textsc{Bessel}, on évaluera dans un premier temps
+          l'incertitude de type B sur la détermination de $D$ et $d$ (avec
+          incertitude composée de type différence) puis on calculera
+          l'incertitude-type sur $f'$ dont l'expression a été trouvée dans la
+          partie Analyser. Faire de même avec une simulation
+          \textsc{Monte-Carlo}.
+          \smallbreak
+          Pour la méthode de \textsc{Silbermann}, on évalue l'incertitude sur
+          $f'$ directement par le calcul à partir de la mesure de $D$.
+          \smallbreak
+          Pour la régression linéaire, il faut estimer les incertitudes sur les
+          composantes $X$ et $Y$ de la régression par l'incertitude composée de
+          type inverse, effectuer une simulation de \textsc{Monte-Carlo} pour
+          avoir l'incertitude sur l'ordonnée à l'origine et trouver
+          l'incertitude sur $f'$ par la composition des incertitudes avec une
+          fonction inverse.
+		\item Calculer alors les écarts normalisés. Conclure.
 	\end{enumerate}
 }{
-}
-
+  On trouve~:
+  \begin{gather*}
+    E_{N, \rm bess} = \num{7.82}
+    \\
+    E_{N, \rm silb} = \num{8.66}
+    \\
+    E_{N, \rm reg}= \num{5.94}
+  \end{gather*}
+  Ainsi, nous concluons que la méthode la plus précise est la régression
+  linéaire. C'était attendu, étant donné que les incertitudes aléatoires se
+  compensent dans le calcul combiné sur $f'$. Seulement, aucune des expériences
+  n'est satisfaisante du point de vue de l'écart normalisé, toutes les
+  exépriences donnant un écart normalisé > 2. Ça n'est pas étonnant considérant
+la qualité des mesures, et le fait que la valeur théorique de la lentille soit
+connue mais sans précision. }
 \end{document}

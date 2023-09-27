@@ -1,0 +1,250 @@
+\documentclass[a4paper, 12pt, garamond]{book}
+\usepackage{cours-preambule}
+
+\dominitoc
+\faketableofcontents
+
+\makeatletter
+\renewcommand{\@chapapp}{Fiches -- numéro}
+\makeatother
+
+\begin{document}
+\setcounter{chapter}{9}
+
+\chapter{Opérateurs en physique}
+
+\section{Notation «~nabla~» en coordonnées cartésiennes}
+
+Il faut savoir calculer une divergence, un gradient ou un rotationnel, sans aide, en coordonnées cartésiennes. Pour cela, il suffit de voir que chacun de ces opérateurs ne sont qu'un seul et même «~vecteur~» qui agit différemment selon la nature du champ auquel il est appliqué.
+\smallbreak
+Une notation de ce fameux vecteur et le vecteur \ul{nabla}~:
+\begin{equation*}
+	\boxed{\nabf = \Vnabf}
+\end{equation*}
+\textbf{en coordonnées cartésiennes}. On peut le faire interagir avec un champ vectoriel, par exemple
+\begin{equation*}
+	\boxed{\Ef\xyz = \mqty(E_x\xyz\\E_y\xyz\\E_z\xyz)}
+\end{equation*}
+
+\section{Opérateur divergence}
+
+Lorsqu'on effectue un \textcolor{brandeisblue}{produit scalaire} entre ces deux vecteurs, on obtient un \textcolor{brandeisblue}{scalaire} (d'où le nom...). Cela s'écrit
+\textcolor{brandeisblue}{
+	\begin{equation*}
+		\boxed{\nabf\cdot\Ef\xyz =
+			\Vnabf\cdot\mqty(E_x\xyz\\E_y\xyz\\E_z\xyz) =
+			\pdv{E_x\xyz}{x} + \pdv{E_y\xyz}{y} + \pdv{E_z\xyz}{z}}
+	\end{equation*}
+}
+C'est ainsi que s'exprime l'opérateur \textcolor{red}{\ul{divergence}}~:
+\begin{equation*}
+	\textcolor{red}{\boxed{\div\Ef = \nabf\cdot\Ef}}
+\end{equation*}
+
+On note que l'absence de flèche sur $\div$ indique qu'il donne un \ul{scalaire}
+à partir d'un \ul{vecteur} ; il est donc aisé de se souvenir que c'est le
+résultat du produit scalaire entre le vecteur nabla et un autre
+vecteur.
+
+\section{Opérateur rotationnel}
+
+Lorsque l'on fait un \textcolor{brandeisblue}{produit vectoriel} entre ces deux
+vecteurs, on obtient un \textcolor{brandeisblue}{vecteur} (quelle surprise).
+Cela s'écrit
+
+\textcolor{brandeisblue}{
+	\begin{equation*}
+		\boxed{
+			\nabf\wedge\Ef\xyz =
+			\Vnabf\wedge\mqty(E_x\xyz\\E_y\xyz\\E_z\xyz) =
+			\mqty(
+			\DS \pdv{E_z\xyz}{y}-\pdv{E_y\xyz}{z}
+			\\
+			\DS \pdv{E_x\xyz}{z}-\pdv{E_z\xyz}{x}
+			\\
+			\DS \pdv{E_y\xyz}{x}-\pdv{E_x\xyz}{y}
+			)
+		}
+	\end{equation*}
+}
+
+C'est ainsi que s'exprime l'opérateur \textcolor{red}{\ul{rotationnel}}~:
+\begin{equation*}
+	\textcolor{red}{\boxed{\rot\Ef = \nabf\wedge\Ef}}
+\end{equation*}
+On note que la flèche sur l'opérateur $\rot$ indique qu'il donne un \ul{vecteur}
+à partir d'un \ul{vecteur} ; il est donc aisé de se souvenir que c'est le
+résultat du produit vectoriel entre les deux vecteurs.
+
+\section{Opérateur gradient}
+
+Lorsque le vecteur nabla est appliqué à un scalaire, on obtient un vecteur. Cela
+s'écrit
+\textcolor{brandeisblue}{
+	\begin{equation*}
+		\boxed{
+			\nabf U\xyz =
+			\Vnabf U\xyz =
+			\mqty(
+			\DS \pdv{U\xyz}{x}
+			\\
+			\DS \pdv{U\xyz}{y}
+			\\
+			\DS \pdv{U\xyz}{z}
+			)
+		}
+	\end{equation*}
+}
+C'est ainsi que s'écrit l'opérateur \textcolor{red}{\ul{gradient}}~:
+\begin{equation*}
+	\textcolor{red}{\boxed{\gd U = \nabf U}}
+\end{equation*}
+
+On note que la flèche sur l'opérateur $\gd$ indique qu'il donne un \ul{vecteur}
+à partir d'un \ul{scalaire} ; il est donc aisé de se souvenir que c'est le
+résultat d'un vecteur multiplié avec un scalaire. On ne met donc pas de point
+médian («~$\cdot$~») qui est plutôt réservé au produit scalaire.
+
+\section{Opérateur Laplacien \textit{scalaire}}
+
+L'opérateur $\div$ peut s'appliquer à un vecteur particulier~: celui d'un
+gradient. Cela s'écrit
+
+\textcolor{brandeisblue}{
+	\begin{equation*}
+		\boxed{
+			\nabf\cdot\left(\nabf U\xyz\right) =
+			\Vnabf\cdot\left(\Vnabf U\xyz\right) =
+			\lap U\xyz}
+	\end{equation*}
+}
+
+C'est ainsi que s'écrit l'opérateur \textcolor{red}{\ul{laplacien
+	}\textbf{scalaire}}~:
+\textcolor{red}{
+	\begin{equation*}
+		\boxed{
+			\Delta U =
+			\nabf\cdot\left(\nabf U\right) =
+			\nabf^2 U =
+			\lap{U} =
+			\div\left(\gd U\right)
+		}
+	\end{equation*}
+}
+
+\section{Opérateur Laplacien \textit{vectoriel}}
+\subsection{En cartésiennes}
+
+Si l'on applique cet opérateur \ul{scalaire} à un \ul{vecteur}, il en résulte simplement un \ul{vecteur} (c'est comme multiplier un vecteur par 2)~:
+\textcolor{brandeisblue}{
+	\begin{equation*}
+		\boxed{
+			\Delta \Ef\xyz =
+			\nabf^2\Ef\xyz =
+			\lap\mqty(E_x\xyz\\E_y\xyz\\E_z\xyz) =
+			\mqty(\lap E_x\\\lap E_y\\\lap E_z) =
+			\mqty(\Delta E_x\\\Delta E_y\\\Delta E_z)
+		}
+	\end{equation*}
+}
+
+\subsection{Autres systèmes}
+
+Cette écriture des opérateurs usuels en physique permet aussi, grâce à une
+identité vectorielle à connaître, de retrouver le lien entre
+$\rot\left(\rot\Ef\right)$, $\div$, $\gd$ et $\Delta Ef$. En effet, un double
+produit vectoriel se développe en produit scalaires de la manière suivante~:
+\begin{equation*}
+	\boxed{
+		\vv{a}\wedge\left(\vv{b}\wedge\vv{c}\right) =
+		\left(\vv{a}\cdot\vv{c}\right)\vv{b} -
+		\left(\vv{a}\cdot\vv{b}\right)\vv{c}
+	}
+\end{equation*}
+Un moyen mnémotechnique pour retenir ce développement est le suivant~:
+\begin{center}
+	\fbox{
+	\hspace*{10pt}
+	$\underbracket{\text{ABC}}_{\mathclap{
+			\vv{a}\wedge\left(\vv{b}\wedge\vv{c}\right)}}$,
+	c'est
+	$\underbracket{\text{assez bien}}_{\left(\vv{a}\cdot\vv{c}\right)\vv{b}}$,
+	$\underbracket{\text{mais}}_{-}$
+	$\underbracket{\text{abaissé}}_{\left(\vv{a}\cdot\vv{b}\right)\vv{c}}$
+	}
+\end{center}
+Et ainsi, on trouve
+\textcolor{red}{
+	\[
+		\boxed{
+			\begin{array}{rcl}
+				\nabf\wedge\left(\nabf\wedge\Ef\right)
+				 & = &
+				\left(\nabf\cdot\Ef\right)\nabf - \left(\nabf\cdot\nabf\right)\Ef
+				\\\Lra 
+				\rot\wedge\left(\rot\wedge\Ef\right)
+				 & = &
+				\gd\left(\div\Ef\right) - \Delta \Ef
+				\\
+			\end{array}}
+	\]
+}
+
+car $\nabf\cdot\Ef$ est un \ul{scalaire} qui est multiplié par le \ul{vecteur}
+nabla~: $\left(\nabf\cdot\Ef\right)\nabf$ peut très bien s'écrire
+$\nabf\left(\nabf\cdot\Ef\right)$, l'ordre d'un produit scalaire n'étant pas
+important.
+
+\begin{tcb}*(ror)"rema"{Conclusion}
+	Ainsi, il suffit de connaissances très basiques sur les scalaires et les
+	vecteurs pour savoir calculer une divergence, un gradient, un rotationnel ou
+	un laplacien. Il est donc \textbf{impératif} de savoir le faire.
+\end{tcb}
+
+\begin{tcb}*(prop)"bomb"{Attention}
+	Les correcteurices aux concours n'apprécient pas l'utilisation du vecteur
+	$\nabf$. Ces remarques ont pour simple but de vous permettre
+	d'\textit{effectuer} les calculs, mais vous devrez toujours écrire $\div$,
+	$\gd$ et $\rot$ sur vos feuilles.
+\end{tcb}
+
+\begin{tcb}(impo){Autres coordonnées}
+	On remarquera que les mêmes raisonnements s'appliquent en coordonnées
+	cylindriques et sphériques, à condition de changer la définition du vecteur
+	$\nabf$.
+\end{tcb}
+
+\section{Autres coordonnées}
+
+\begin{tcb}[tabularx={Y|Y|Y}](ror){$\nabf$ dans les différents systèmes}
+  \tcbsubtitle{\fatbox{Cartésiennes}}
+\[
+  \nabf_{\rm crt} = \Vnabf
+\]
+&
+  \tcbsubtitle{\fatbox{Cylindriques}}
+\[
+  \nabf_{\rm cyl} = \mqty(
+  \DS \pdv{r}
+  \\[1em]
+  \DS \frac{1}{r} \pdv{\tt}
+  \\[1em]
+  \DS \pdv{z}
+  )
+\]
+&
+  \tcbsubtitle{\fatbox{Sphériques}}
+\[
+  \nabf_{\rm sph} = \mqty(
+  \DS \pdv{r}
+  \\[1em]
+  \DS \frac{1}{r} \pdv{\tt}
+  \\[1em]
+  \DS \frac{1}{r\sin(\theta)}\pdv{\f}
+  )
+\]
+\end{tcb}
+
+
+\end{document}

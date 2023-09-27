@@ -1,0 +1,185 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=.5]
+	\def\xtr{12}
+	\def\ytr{6}
+	% Sens de comptage
+	\node[] (Cp) at (-\xtr+0.5,4.5) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (-\xtr+1.5,4.5) {$\oplus$};
+	\circledarrow{black}{(Cp)}{.3}
+	% grid
+	\draw[lightgray!10, ultra thin, help lines]
+	(-\xtr,-\ytr) grid (\xtr,\ytr);
+	\draw[lightgray!10, ultra thin, help lines, dotted, step=.5cm]
+	(-\xtr,-\ytr) grid (\xtr,\ytr);
+	% Axe optique
+	\draw[thin, ->](-\xtr,0)--(\xtr,0)node[below]{A.O.};
+	% Lentille 1
+	\coordinate (O1) at (-\xtr+3,0);
+	\def \fa{10}
+	\def \lsiz{5}
+	\coordinate (F1) at ($(O1)+(-\fa,0)$);
+	\coordinate (F1p) at ($(O1)+(\fa,0)$);
+
+	\foreach \x/\z in {O1/\fa}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {O$_1$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[below left] at ([shift={(\z,0)}]\x) {F$'_1$};
+			%\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			%\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+		}
+
+	\draw[shift={(O1)}, thick,
+		<->, >=latex, name path=L1] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{1}$};
+	% Lentille 2
+	\coordinate (O2) at ($(O1)+(7.69,0)$);
+	\def \fb{-3}
+	\def \lsiz{5}
+	\coordinate (F2) at ($(O2)+(-\fb,0)$);
+	\coordinate (F2p) at ($(O2)+(\fb,0)$);
+
+	\foreach \x/\z in {O2/\fb}{
+			\node[] at (\x) {$\times$};
+			\node[above right] at (\x) {O$_3$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[above] at ([shift={(\z,0)}]\x) {F$'_3$};
+			\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			\node[above right] at ([shift={(-\z,0)}]\x) {F$_3$};
+		}
+
+	\draw[shift={(O2)}, thick,
+		>-<, >=latex, name path=L2] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{2}$};
+	% écran
+	\coordinate (P) at ($(O2)+(10,0)$);
+	\def \lsiz{6.2}
+
+	\draw[shift={(P)}, thick, name path=P] (0,-\lsiz)--(0,\lsiz) node[above]{P};
+	% Pinceau entrée
+	\coordinate (It) at ([shift={(0,1.5)}]O1);
+	\coordinate (Ib) at ([shift={(0,-3)}]O1);
+	\coordinate (At) at ($(It)+(172:4)$);
+	\coordinate (Ab) at ($(Ib)+(172:4)$);
+	\draw[Purple!70, simple] (At) -- (It);
+	\draw[Purple!70, double] (Ab) -- (Ib);
+	% Rayon O1
+	\coordinate (A) at ($(O1)+(172:4)$);
+	\draw[Brown!50, simple] (A) -- (O1);
+	\draw[Brown!50, simple] (O1) --++ ($(O1)-(A)$);
+	% % Plan focal
+	% \def\pfsiz{4}
+	% \draw[shift={(F1p)}, dashed, ultra thick,
+	% 	gray!70, name path=PF1p] ($(F1p)+(0,-\pfsiz/2)$)
+	% --++ (0,\pfsiz) node[above] {$\pi_1'$};
+	% Sortie rayon O1
+	% \def\mut{4}
+	% \path[name path=B1path]
+	% (O1) --++ ($\mut*(O1)-\mut*(A)$) coordinate (B1e);
+	% Intersection plan focal
+	% \path[name intersections={of=B1path and PF1p, by=B1F1p}];
+	% \draw[] (B1F1p) node {+};
+	% % Intersection lentille 2
+	% \path[name intersections={of=B1path and L2, by=I2}];
+	% % Draw
+	% \draw[Brown!50, simple]
+	% (O1) -- (I2);
+	% \draw[Brown!50, simple, dashed]
+	% (I2) -- (B1e);
+	% % Sortie pinceau
+	% \def\mut{1.5}
+	% \path[name path=Atpath]
+	% (It) --++ ($\mut*(B1F1p)-\mut*(It)$) coordinate (Ite);
+	% \path[name path=Abpath]
+	% (Ib) --++ ($\mut*(B1F1p)-\mut*(Ib)$) coordinate (Ibe);
+	% % Define intersections
+	% \path[name intersections={of=Atpath and L2, by=It2}];
+	% \path[name intersections={of=Abpath and L2, by=Ib2}];
+	% % Draw
+	% \draw[brandeisblue, simple] (It) -- (It2);
+	% \draw[brandeisblue, double] (Ib) -- (Ib2);
+	% \draw[brandeisblue, fleche={.5}{>}, dashed] (It2) -- (Ite);
+	% \draw[brandeisblue, double, dashed] (Ib2) -- (Ibe);
+	% % Image intermédiaire
+	% \coordinate (A1) at (F1p);
+	% \coordinate (B1) at (B1F1p);
+	% \draw[brandeisblue, thick, ->, >=latex]
+	% (A1) node [above] {A$_1$} --
+	% (B1) node [below] {B$_1$};
+	% % Rayons pour objet virtuel sur F d'une lentille divergente
+	% % Lengths
+	% \len{(A1)}{(O2)}{\posi}
+	% \len{(A1)}{(B1)}{\size}
+	% \len{(O2)}{(F2)}{\foc}
+	% % Rayon 1
+	% \draw[ForestGreen, simple] ($4*(O2)-3*(B1)$) -- (O2);
+	% \def \mut{4.5}
+	% \path[name path=Otpath]
+	% (O2) --++ ($\mut*(B1)-\mut*(O2)$);
+	% \path[name intersections={of=P and Otpath, by=Ot}];
+	% \draw[orange!70, simple, name path=OBp] (O2) -- (Ot);
+	% % Rayon 2
+	% \def \mut{4}
+	% \draw[ForestGreen, double] ($(B1)-(\mut*\posi,0)$)
+	% --++ (\mut*\posi-\posi,0) coordinate (I);
+	% \draw[ForestGreen, dashed, double] (I) --++ (4*\posi,0);
+	% \def \mut{2}
+	% \draw[orange!70, doublerev, dashed] (I)
+	% --++ ($\mut*(F2p)-\mut*(I)$);
+	% \def \mut{4}
+	% \path[name path=Obpath]
+	% (I) --++ ($\mut*(F2p)-\mut*(I)$);
+	% \path[name intersections={of=P and Obpath, by=Ob}];
+	% \draw[orange!70, double, name path=IBp] (I) -- (Ob);
+	% % image finale
+	% \node[] at (P) {$\times$};
+	% \draw[Red!70, thick, ->, >=latex]
+	% (P) node [below right] {A\bp} --
+	% (Ob) node [right] {B\bp};
+	% % Sortie pinceau final
+	% % \def \mut{0.5}
+	% % \draw[Red!70, simple]
+	% % (It2) --++
+	% % ($\mut*(B1)-\mut*(O2)$) coordinate (Itf);
+	% % \draw[Red!70, double]
+	% % (Ib2) --++
+	% % ($\mut*(B1)-\mut*(O2)$) coordinate (Ibf);
+	% % % Actual pinceau
+	% % \pattern[pattern=north east hatch,
+	% %     hatch distance=0.3cm, hatch thickness=0.5pt,
+	% %     pattern color=Purple!70]
+	% %     (At) -- (It) -- (Ib) -- (Ab) -- cycle;
+	% % \pattern[pattern=north east hatch,
+	% %     hatch distance=0.31cm, hatch thickness=0.5pt,
+	% %     pattern color=brandeisblue]
+	% %     (It) -- (It2) -- (Ib2) -- (Ib) -- (It);
+	% % \pattern[pattern=north east hatch,
+	% %     hatch distance=0.1cm, hatch thickness=0.5pt,
+	% %     pattern color=Red!70]
+	% %     (It2) -- (Itf) -- (Ibf) -- (Ib2) -- cycle;
+	% % Angles
+	% % Draw angles
+	% % \pic[angle radius=0.5cm, angle eccentricity=1.5,
+	% % 	draw, "$\theta'$" alias=thetap1,
+	% % 	<-, color=Pink]
+	% % {angle=B1--O2--F2};
+	% % \pic[angle radius=0.5cm, angle eccentricity=1.5,
+	% % draw, "$\theta'$" alias=thetap2,
+	% % ->, color=Pink]
+	% % {angle=F2--O2--B1};
+	% % \pic[angle radius=1cm, angle eccentricity=1.2,
+	% % 	draw, "$\theta$" alias=theta1,
+	% % 	<-, color=Pink]
+	% % {angle=B1--O1--F2};
+	\coordinate (O1l) at ([shift={(-3,0)}]O1);
+	\pic[angle radius=1.45cm, angle eccentricity=1.2,
+		draw, "$\alpha$" alias=theta2,
+		<-, color=black]
+	{angle=A--O1--O1l};
+\end{tikzpicture}
+\end{document}

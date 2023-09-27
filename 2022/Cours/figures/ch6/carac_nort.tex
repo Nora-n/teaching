@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=.6]
+	\begin{axis}[
+			axis lines=center,
+			xmin=-.5, xmax=4,
+			ymin=-.5, ymax=4,
+			xlabel=$U$, ylabel=$I$,
+			clip=false]
+		\addplot[
+			domain=-.5:4,
+			smooth,
+			color=firebrick]
+		{3.5-\x/1} node [midway] (A) {};
+		% \addlegendentry{$U_R = RI$}
+		\draw[->] (A) --++ (70:1) node [anchor=west] {pente $-1/r_N$};
+	\end{axis}
+\end{tikzpicture}
+\end{document}

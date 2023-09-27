@@ -5,8 +5,8 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \HideSolutionstrue
 
 \begin{document}
 \setcounter{chapter}{1}
@@ -264,10 +264,11 @@
 		      On détermine $f'$ en trouvant une unique position telle qu'il y ait une
 		      image nette.
 		      \smallbreak
-		      Pour cela, on commence avec $D$ grand et on cherche 2 positions nettes, et
-		      on réduit progressivement $D$ jusqu'à n'en avoir plus qu'une. On relève la
-		      plage de validité de $D$, on prend la valeur centrale et l'incertitude-type
-		      sera la demi-largeur de l'intervalle divisé par $\sqrt{3}$.
+          Pour cela, on commence avec $D$ grand et on cherche 2 positions
+          nettes, et on réduit progressivement $D$ jusqu'à n'en avoir plus
+          qu'une. On relève la plage de validité de $D$, on prend la valeur
+          centrale et l'incertitude-type sera la demi-largeur de l'intervalle
+          divisée par $\sqrt{3}$.
 		      \smallbreak
 		      On calcule alors $f' = \frac{D}{4}$ et $u(f') = \frac{u(D)}{4}$.
 	      }
@@ -282,13 +283,44 @@ disponible\ftn{\url{https://capytale2.ac-paris.fr/web/c/8e2d-1856963}}.
 
 \begin{enumerate}[label=\sqenumi, start=3]
 	\item \switch{
-		      Suivre le protocole permettant de réaliser un pointé longitudinal et
-		      \textbf{valider} la méthode. Comparer pour ce faire la distance obtenue par
-		      pointé avec le viseur à la distance réelle entre les deux objets (lue
-		      directement sur le banc optique). Déterminer les incertitudes relatives, et
-		      en déduire l'écart normalisé.
+          Suivre le protocole permettant de réaliser un pointé longitudinal et
+          \textbf{valider} la méthode. Comparer pour ce faire la distance
+          obtenue par pointé avec le viseur à la distance réelle entre les deux
+          objets (lue directement sur le banc optique). Déterminer les
+          incertitudes relatives, et en déduire l'écart normalisé.
 	      }{
-		      En cours…
+		      On trouve avec le viseur~:
+          \begin{gather*}
+            x_v(A_1) = \SI{27.500 \pm 0.058}{cm}
+            \qet
+            x_v(A_2) = \SI{42.100 \pm 0.058}{cm}
+            \\
+            \text{soit} \qquad
+            \xul{d_v = \SI{14.600 \pm 0.082}{cm}}
+            \qav
+            u(d_v) = u(x_v) \sqrt{2}
+          \end{gather*}
+          et par lecture directe sur le banc~:
+          \begin{gather*}
+            x_b(A_1) = \SI{14.000 \pm 0.058}{cm}
+            \qet
+            x_b(A_2) = \SI{29.200 \pm 0.058}{cm}
+            \\
+            \text{soit} \qquad
+            \xul{d_b = \SI{15.200 \pm 0.082}{cm}}
+            \qav
+            u(d_b) = u(x_b) \sqrt{2}
+          \end{gather*}
+          Ainsi, on a un écart normalisé
+          \begin{gather*}
+            \boxed{E_N = \frac{\abs{d_b - d_v}}{\sqrt{u(d_b)^{2} + u(d_v)^{2}}}}
+            \\
+            \mathrm{A.N.~:}\enskip
+            \xul{E_N = \num{0.73} < 2
+            }
+            \\
+          \end{gather*}
+          Les deux mesures sont bien compatibles.
 	      }
 \end{enumerate}
 
@@ -296,9 +328,27 @@ disponible\ftn{\url{https://capytale2.ac-paris.fr/web/c/8e2d-1856963}}.
 
 \begin{enumerate}[label=\sqenumi, start=4]
 	\item \switch{
-		      Réaliser la mesure du grandissement du viseur.
+		      Réaliser la mesure du grandissement de l'objectif du viseur.
 	      }{
-		      En cours…
+
+          Le réticule vu au travers du viseur pointe sur l'abscisse \num{50} du
+          viseur, soit \SI{5}{mm}, avant l'opération sur la vis micrométrique.
+          \smallbreak
+          Après exactement deux tours, le réticule a physiquement été déplacé de
+          \SI{1}{mm}. En lisant au travers du viseur, le réticule pointe
+          maintenant sur l'abscisse \num{60}, soit \SI{6}{mm}. Ainsi, le
+          grandissement de l'oculaire du viseur est $\abs{\gamma} =
+          \frac{\ABp}{\AB} = 1$, avec $\ABp$ la taille de l'image vue au travers
+          du viseur (donc le micromètre de \SIrange{5}{6}{mm}) et $\AB$ la
+          distance réelle parcourue par le réticule (donc \SI{1}{mm}).
+          \smallbreak
+          Comme c'est une lentille convergente, l'image est forcément renversée
+          (objet réel avant le foyer objet), donc techniquement $\gamma = -1$.
+          \smallbreak
+          On en conclue que le déplacement appliqué sur le réticule par la vis
+          micrométrique est tout à fait le même au déplacement observé au
+          travers du viseur~: on peut ainsi mesurer une épaisseur par
+          visualisation au travers de celui-ci.
 	      }
 	\item \switch{
 		      Prendre comme objet un fil de cuivre, le viseur, positionner
@@ -306,7 +356,19 @@ disponible\ftn{\url{https://capytale2.ac-paris.fr/web/c/8e2d-1856963}}.
 		      grandissement de l'objectif du viseur, en déduire l'épaisseur de
 		      celui-ci.
 	      }{
-		      En cours…
+
+          On place le réticule à gauche du fil de cuivre. On lit la position du
+          réticule sur la vis micrométrique~: $x_{R,g} = \SI{4.5300 \pm
+          0.0058}{mm}$.
+          \smallbreak
+          On déplace le réticule du côté droit du fil de cuivre. On lit la
+          position du réticule sur la vis~: $x_{R,d} = \SI{5.5300 \pm
+          0.0058}{mm}$. On a donc une épaisseur~:
+          \[
+            \boxed{e = \abs{x_{R,d} = x_{R,g}}}
+            \Ra
+            \xul{e = \SI{1.0000 \pm 0.0081}{mm}}
+          \]
 	      }
 \end{enumerate}
 
@@ -381,7 +443,11 @@ disponible\ftn{\url{https://capytale2.ac-paris.fr/web/c/8e2d-1856963}}.
 		      \smallbreak
 		      On place une lentille de $V = -\SI{10}{\delta}$ devant l'objet.
 		      \smallbreak
-		      Pour avoir une image virtuelle, ???
+          Pour observer l'image virtuelle obtenue, il faut que l'image en
+          question soit visible avec le viseur dans l'espace image réelle de la
+          lentille. Comme le viseur doit être décalé d'environ \SI{15}{cm} pour
+          ça, l'image virtuelle doit être à moins de \SI{15}{cm} du centre de la
+          lentille.
 		      \smallbreak
 		      On place alors le viseur après la lentille, en observant au-travers de
 		      celle-ci.

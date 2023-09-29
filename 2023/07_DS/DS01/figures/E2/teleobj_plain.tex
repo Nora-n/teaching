@@ -34,7 +34,7 @@
 			%\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
 		}
 
-	\draw[shift={(O1)}, thick,
+	\draw[shift={(O1)}, ultra thick,
 		<->, >=latex, name path=L1] (0,-\lsiz)--(0,\lsiz)
 	node[above]{$\Lc_{1}$};
 	% Lentille 2
@@ -53,25 +53,29 @@
 			\node[above right] at ([shift={(-\z,0)}]\x) {F$_3$};
 		}
 
-	\draw[shift={(O2)}, thick,
+	\draw[shift={(O2)}, ultra thick,
 		>-<, >=latex, name path=L2] (0,-\lsiz)--(0,\lsiz)
 	node[above]{$\Lc_{2}$};
 	% écran
 	\coordinate (P) at ($(O2)+(10,0)$);
 	\def \lsiz{6.2}
 
-	\draw[shift={(P)}, thick, name path=P] (0,-\lsiz)--(0,\lsiz) node[above]{P};
+	\draw[shift={(P)}, ultra thick, name path=P]
+	(0,-\lsiz)--
+	node[midway, above right]{P} node[midway]{$\times$}
+	(0,\lsiz)
+	node[above]{(P)};
 	% Pinceau entrée
 	\coordinate (It) at ([shift={(0,1.5)}]O1);
 	\coordinate (Ib) at ([shift={(0,-3)}]O1);
 	\coordinate (At) at ($(It)+(172:4)$);
 	\coordinate (Ab) at ($(Ib)+(172:4)$);
-	\draw[Purple!70, simple] (At) -- (It);
-	\draw[Purple!70, double] (Ab) -- (Ib);
+	\draw[Purple!70, simple, thick] (At) -- (It);
+	\draw[Purple!70, double, thick] (Ab) -- (Ib);
 	% Rayon O1
 	\coordinate (A) at ($(O1)+(172:4)$);
-	\draw[Brown!50, simple] (A) -- (O1);
-	\draw[Brown!50, simple] (O1) --++ ($(O1)-(A)$);
+	\draw[Brown!50, simple, thick] (A) -- (O1);
+	\draw[Brown!50, simple, thick] (O1) --++ ($(O1)-(A)$);
 	% % Plan focal
 	% \def\pfsiz{4}
 	% \draw[shift={(F1p)}, dashed, ultra thick,

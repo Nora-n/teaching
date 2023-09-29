@@ -34,7 +34,7 @@
 			%\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
 		}
 
-	\draw[shift={(O1)}, thick,
+	\draw[shift={(O1)}, ultra thick,
 		<->, >=latex, name path=L1] (0,-\lsiz)--(0,\lsiz)
 	node[above]{$\Lc_{1}$};
 	% Lentille 2
@@ -53,24 +53,28 @@
 			\node[above right] at ([shift={(-\z,0)}]\x) {F$_3$};
 		}
 
-	\draw[shift={(O2)}, thick,
+	\draw[shift={(O2)}, ultra thick,
 		>-<, >=latex, name path=L2] (0,-\lsiz)--(0,\lsiz)
 	node[above]{$\Lc_{2}$};
 	% écran
 	\coordinate (P) at ($(O2)+(10,0)$);
 	\def \lsiz{6.2}
 
-	\draw[shift={(P)}, thick, name path=P] (0,-\lsiz)--(0,\lsiz) node[above]{P};
+	\draw[shift={(P)}, ultra thick, name path=P]
+    (0,-\lsiz)--
+    node[midway, above right]{P} node[midway]{$\times$}
+    (0,\lsiz)
+	  node[above]{(P)};
 	% Pinceau entrée
 	\coordinate (It) at ([shift={(0,1.5)}]O1);
 	\coordinate (Ib) at ([shift={(0,-3)}]O1);
 	\coordinate (At) at ($(It)+(172:4)$);
 	\coordinate (Ab) at ($(Ib)+(172:4)$);
-	\draw[Purple!70, simple] (At) -- (It);
-	\draw[Purple!70, double] (Ab) -- (Ib);
+	\draw[Purple!70, simple, thick] (At) -- (It);
+	\draw[Purple!70, double, thick] (Ab) -- (Ib);
 	% Rayon O1
 	\coordinate (A) at ($(O1)+(172:4)$);
-	\draw[Brown!50, simple] (A) -- (O1);
+	\draw[Brown!50, simple, thick] (A) -- (O1);
 	% \draw[Brown!50, simple] (O1) --++ ($(O1)-(A)$);
 	% Plan focal
 	\def\pfsiz{4}
@@ -87,9 +91,9 @@
 	% Intersection lentille 2
 	\path[name intersections={of=B1path and L2, by=I2}];
 	% Draw
-	\draw[Brown!50, simple]
+	\draw[Brown!50, simple, thick]
 	(O1) -- (I2);
-	\draw[Brown!50, simple, dashed]
+	\draw[Brown!50, simple, dashed, thick]
 	(I2) -- (B1e);
 	% Sortie pinceau
 	\def\mut{1.5}
@@ -101,10 +105,10 @@
 	\path[name intersections={of=Atpath and L2, by=It2}];
 	\path[name intersections={of=Abpath and L2, by=Ib2}];
 	% Draw
-	\draw[brandeisblue, simple] (It) -- (It2);
-	\draw[brandeisblue, double] (Ib) -- (Ib2);
-	\draw[brandeisblue, fleche={.5}{>}, dashed] (It2) -- (Ite);
-	\draw[brandeisblue, double, dashed] (Ib2) -- (Ibe);
+	\draw[brandeisblue, simple, thick] (It) -- (It2);
+	\draw[brandeisblue, double, thick] (Ib) -- (Ib2);
+	\draw[brandeisblue, fleche={.5}{>}, dashed, thick] (It2) -- (Ite);
+	\draw[brandeisblue, double, dashed, thick] (Ib2) -- (Ibe);
 	% Image intermédiaire
 	\coordinate (A1) at (F1p);
 	\coordinate (B1) at (B1F1p);
@@ -117,25 +121,25 @@
 	\len{(A1)}{(B1)}{\size}
 	\len{(O2)}{(F2)}{\foc}
 	% Rayon 1
-	\draw[ForestGreen, simple] ($4*(O2)-3*(B1)$) -- (O2);
+	\draw[ForestGreen, simple, thick] ($4*(O2)-3*(B1)$) -- (O2);
 	\def \mut{4.5}
 	\path[name path=Otpath]
 	(O2) --++ ($\mut*(B1)-\mut*(O2)$);
 	\path[name intersections={of=P and Otpath, by=Ot}];
-	\draw[orange!70, simple, name path=OBp] (O2) -- (Ot);
+	\draw[orange!70, simple, name path=OBp, thick] (O2) -- (Ot);
 	% Rayon 2
 	\def \mut{4}
-	\draw[ForestGreen, double] ($(B1)-(\mut*\posi,0)$)
+	\draw[ForestGreen, double, thick] ($(B1)-(\mut*\posi,0)$)
 	--++ (\mut*\posi-\posi,0) coordinate (I);
-	\draw[ForestGreen, dashed, double] (I) --++ (4*\posi,0);
+	\draw[ForestGreen, dashed, double, thick] (I) --++ (4*\posi,0);
 	\def \mut{2}
-	\draw[orange!70, doublerev, dashed] (I)
+	\draw[orange!70, doublerev, dashed, thick] (I)
 	--++ ($\mut*(F2p)-\mut*(I)$);
 	\def \mut{4}
 	\path[name path=Obpath]
 	(I) --++ ($\mut*(F2p)-\mut*(I)$);
 	\path[name intersections={of=P and Obpath, by=Ob}];
-	\draw[orange!70, double, name path=IBp] (I) -- (Ob);
+	\draw[orange!70, double, name path=IBp, thick] (I) -- (Ob);
 	% image finale
 	\node[] at (P) {$\times$};
 	\draw[Red!70, thick, ->, >=latex]

@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{adjustbox}% for \resizebox
+\usepackage{varwidth}
+\usepackage{transparent}
+
+\newsavebox{\confbox}
+\savebox{\confbox}{\color{red!50}Prof}
+\newenvironment{conf}{
+  \begin{lrbox}{0}%
+  \varwidth{.5\linewidth}%
+  }{%
+  \endvarwidth%
+  \end{lrbox}
+  \usebox0\llap{\resizebox{.25\wd0}{.25\ht0}{\usebox\confbox}}
+}
+
+\newsavebox{\draftbox}
+\savebox{\draftbox}{\color{red}\huge Draft}
+\newenvironment{draft}{%
+  \begin{lrbox}{0}%
+  \minipage[b]{\linewidth}%
+  }{%
+  \endminipage%
+  \end{lrbox}%
+  \leavevmode%
+  \rlap{\resizebox{.15\wd0}{.15\ht0}{\usebox\draftbox}}\usebox0
+}
+\begin{document}
+
+\begin{figure}
+	\begin{draft}
+		\centering
+		\includegraphics{example-image-duck}
+		\caption{Caption}
+		\label{fig:eg}
+	\end{draft}
+\end{figure}
+
+Some text
+
+\begin{table}
+	\centering
+	\begin{conf}
+		\begin{tabular}{ccc}
+			\hline          \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			\hline          \\
+		\end{tabular}
+		\caption{Caption}
+		\label{tab:eg}
+	\end{conf}
+\end{table}
+\end{document}
+
+% \documentclass{article}
+% \usepackage{xparse,graphicx,xcolor}% http://ctan.org/pkg/{graphicx,xcolor}
+% \newcommand{\confidential}{\color{red!80}\LARGE\bfseries CONFIDENTIAL}% Confidentiality notice
+% \newsavebox\IBox
+% \let\IncludeGraphics\includegraphics
+% \RenewDocumentCommand{\includegraphics}{s O{} m}{%
+%   \sbox\IBox{\IncludeGraphics[#2]{#3}}%
+%   \ooalign{\usebox\IBox% Print graphic
+%     \IfBooleanTF{#1}{}{% Confidential or not
+%       \cr\hss%
+%       \raisebox{.1\ht\IBox}{\resizebox{.8\wd\IBox}{.8\ht\IBox}{\confidential}}% Print confidentiality notice
+%       \hss}}}%
+% \begin{document}
+% \includegraphics[width=20pt]{example-image-a}
+% \includegraphics[height=30pt]{example-image-b}
+% \includegraphics[width=10em,height=10em]{example-image-c}
+% \includegraphics*[scale=.2]{example-image-a}
+% \renewcommand{\confidential}{\color{green!70}\rule{10pt}{10pt}}% Change confidentiality notice
+% \includegraphics[width=15ex]{example-image-b}
+% \end{document}

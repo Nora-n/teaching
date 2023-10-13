@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+	\draw
+	(0,0)
+	to[V, name=E, V^>=$E_{}$, i^>=$i_{}$, !vi]
+	(0,2)
+	to[L, l_=$L$, name=L, i^>=$i$, !vi]
+	(2,2)
+	to[R, name=R, !vi]
+	(4,2)
+	coordinate(top)
+	to[opening switch, l_=$K$, mirror]
+	(4,0)
+	coordinate(bot)
+	to[short]
+	(0,0)
+	(top)
+	to[short]
+	(5,2)
+	to[C,l_=$C$, name=C, v^<=$u_C$, !vi]
+	(5,0)
+	to[short]
+	(0,0);
+  \node at (R.center) {$R$};
+	\iarronly{E} \iarronly{L}
+	\varronly{E} \varronly{C}
+\end{circuitikz}
+\end{document}

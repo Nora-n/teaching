@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{adjustbox}% for \resizebox
+\usepackage{varwidth}
+\usepackage{transparent}
+
+\newsavebox{\confbox}
+\savebox{\confbox}{\color{red}\transparent{0.2}\huge Prof}% create image for overlay
+\newenvironment{conf}{
+  \begin{lrbox}{0}%
+  \varwidth[b]{.1\linewidth}%
+  }{%
+  \endvarwidth%
+  \end{lrbox}
+  \usebox0\llap{\resizebox{\wd0}{\ht0}{\usebox\confbox}}
+}
+\begin{document}
+
+\begin{figure}
+	\centering
+	\begin{conf}
+		\includegraphics{example-image-duck}
+		\caption{Caption}
+		\label{fig:eg}
+	\end{conf}
+\end{figure}
+
+Some text
+
+\begin{table}
+	\centering
+	\begin{conf}
+		\begin{tabular}{ccc}
+			\hline          \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			\hline          \\
+		\end{tabular}
+		\caption{Caption}
+		\label{tab:eg}
+	\end{conf}
+\end{table}
+\end{document}
+
+% \documentclass{article}
+% \usepackage{xparse,graphicx,xcolor}% http://ctan.org/pkg/{graphicx,xcolor}
+% \newcommand{\confidential}{\color{red!80}\LARGE\bfseries CONFIDENTIAL}% Confidentiality notice
+% \newsavebox\IBox
+% \let\IncludeGraphics\includegraphics
+% \RenewDocumentCommand{\includegraphics}{s O{} m}{%
+%   \sbox\IBox{\IncludeGraphics[#2]{#3}}%
+%   \ooalign{\usebox\IBox% Print graphic
+%     \IfBooleanTF{#1}{}{% Confidential or not
+%       \cr\hss%
+%       \raisebox{.1\ht\IBox}{\resizebox{.8\wd\IBox}{.8\ht\IBox}{\confidential}}% Print confidentiality notice
+%       \hss}}}%
+% \begin{document}
+% \includegraphics[width=20pt]{example-image-a}
+% \includegraphics[height=30pt]{example-image-b}
+% \includegraphics[width=10em,height=10em]{example-image-c}
+% \includegraphics*[scale=.2]{example-image-a}
+% \renewcommand{\confidential}{\color{green!70}\rule{10pt}{10pt}}% Change confidentiality notice
+% \includegraphics[width=15ex]{example-image-b}
+% \end{document}

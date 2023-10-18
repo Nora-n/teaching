@@ -1,0 +1,189 @@
+\documentclass[a4paper, 10pt, garamond, oneside]{book}
+\usepackage{cours-preambule}
+
+\toggletrue{student}
+\HideSolutionstrue
+
+\makeatletter
+\renewcommand{\@chapapp}{MPSI3 -- 29 septembre 2023 -- Devoir surveillé}
+\makeatother
+
+\graphicspath{{./figures/}{./figures/E1}{./figures/E2}{./figures/P1}{./figures/P2}}
+
+\setlist[enumerate]{resume}
+\setlist[enumerate,1]{leftmargin=10pt, label=\sqenumi}
+\setlist[enumerate,2]{leftmargin=20pt, label=\Alph*)}
+
+\newcommand{\figsvg}[1]{
+  \begin{center}
+    \subimport{figures/}{#1}
+  \end{center}
+}
+\newcommand{\figsvgCap}[2]{
+  \begin{center}
+    \subimport{figures/}{#1}
+    \captionof{figure}{#2}
+  \end{center}
+}
+
+\begin{document}
+\setcounter{chapter}{0}
+\chapter{Électrocinétique\ifprof{\!\!-- corrigé}}
+\label{ch:ds02}
+
+\ifstudent{
+\begin{center}
+	\Large\bfseries
+	\xul{Tout moyen de communication est interdit}
+	\smallbreak
+	\xul{Les téléphones portables doivent être éteints et rangés dans les sacs}
+	\smallbreak
+	\xul{Les calculatrices sont \textit{autorisées}}
+\end{center}
+\begin{prgm}
+	\vspace{6pt}
+	\begin{tcb}*[cnt, bld, fontupper=\large](ror){}
+		Toute l'optique géométrique de MPSI.
+	\end{tcb}
+	\vspace{-8pt}
+\end{prgm}
+Le devoir est composé des parties \textit{indépendantes} suivantes~:
+{\Large
+\begin{itemize}[label=$\diamond$]
+	\bitem{Exercice 1}~: Étude de quelques lentilles minces
+	\bitem{Exercice 2}~: Instruments d'optiques à l'infini -- deux parties
+	indépendantes
+	\bitem{Problème 1}~: Étude de pierres précieuses
+	\bitem{Problème 2}~: Image au fond d'un gobelet
+\end{itemize}
+}
+
+Les différentes questions peuvent être traitées dans l'ordre désiré.
+\textbf{Cependant}, le numéro complet de la question doit être indiqué, et
+\textbf{vous indiquerez si vous traitez la question d'un exercice sur une page
+	complètement déconnectée}, sous peine de n'être ni vue ni corrigée.
+\bigbreak
+Une attention particulière sera portée à la \textbf{qualité de rédaction}. Les
+hypothèses doivent être clairement énoncées, les propositions reliées entre
+elles par des connecteurs logiques, les lois et théorèmes énoncés, sans pour
+autant devenir une composition de français.
+\bigbreak
+De plus, la \textbf{présentation} de la copie sera prise en compte. Outre la
+numérotation des questions, l'écriture, l'orthographe, les encadrements, la
+marge, le cadre laissé pour la note et le commentaire font partie des points à
+travailler. Il est notamment attendu que \textbf{les expressions littérales
+	soient encadrées}, que \textbf{les calculs n'apparaissent pas} mais que le
+détail des grandeurs avec leurs unités soit indiqué, et \textbf{les applications
+	numériques soulignées}.
+\bigbreak
+Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le fond~:
+\begin{tcb}*(prop)"bomb"{Malus}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}
+			\item A~: application numérique mal faite~;
+			\item N~: numéro de copie manquant~;
+			\item P~: prénom manquant~;
+			\item E~: manque d'encadrement des réponses~;
+			\item M~: marge non laissée ou trop grande~;
+			\item V~: confusion ou oubli de vecteurs~;
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}
+			\item Q~: question mal ou non indiquée~;
+			\item C~: copie grand carreaux~;
+			\item U~: mauvaise unité (flagrante)~;
+			\item H~: homogénéité non respectée~;
+			\item S~: chiffres significatifs non cohérents~;
+			\item $\f$~: loi physique fondamentale brisée.
+		\end{itemize}
+	\end{minipage}
+\end{tcb}
+
+\begin{tcb}(impo){Exemple application numérique}
+	\vspace*{-10pt}
+	\begin{minipage}{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\xul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+\end{tcb}
+\newpage
+}
+
+\setcounter{section}{0}
+\exercice[30]{Modélisation d'un dipôle linéaire}
+\restartlist{enumerate}
+
+\newpage
+
+\setcounter{section}{0}
+\prblm[30]{Charge d'un condensateur}
+\restartlist{enumerate}
+\ifstudent{
+On réalise le circuit correspondant au schéma de la figure \ref{fig:elec1}.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=1]{elec_1}
+  \caption{Circuit 1.}
+  \label{fig:elec1}
+\end{figure}
+    Un dispositif d'acquisition de données relié à un ordinateur permet de
+    suivre l'évolution de la tension aux bornes du condensateur en fonction du
+    temps $t$.
+	
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[scale=1]{elec_2}
+      \caption{Charge du condensateur.}
+      \label{fig:elec2}
+    \end{figure}
+	
+  On déclenche les acquisitions à la fermeture de l'interrupteur $K$, le
+condensateur étant préalablement déchargé. L'ordinateur nous donne alors $u_c =
+f(t)$, courbe  de la figure \ref{fig:elec2}. On donne $R = 50\si{\ohm}$. }
+
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/balise_lumineuse/}{sujet.tex}
+%
+%
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/circuit_RL_transitoire/}{sujet.tex}
+%
+%
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/modelisation_dipole_lineaire/}{sujet.tex}
+%
+%
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/point_fonctionnement_diode/}{sujet.tex}
+%
+%
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/Station_TGV/}{sujet.tex}
+%
+
+
+
+\label{LastPage}
+\end{document}

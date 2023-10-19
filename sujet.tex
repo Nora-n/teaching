@@ -1,0 +1,298 @@
+% \titreExercice{Analogies électromécaniques}
+\chapter{Analogies électromécaniques\siCorrige{\!\!-- corrigé}}
+%##############################
+%### commandes  spécifiques ###
+%##############################
+%debutImport
+
+
+%finImport
+%##############################
+
+\partie{Oscillateur mécanique} \label{sec:om}
+\enonce{
+	Considérons un mobile supposé ponctuel $M$ de masse $m$ astreint à glisser le long d'une tige horizontale de direction $Ox$. Ce mobile est maintenu par deux ressorts à réponse linéaire dont les extrémités sont fixées en deux points $A$ et $B$ séparés d'une distance $L$.  \par
+
+	\switch{
+		\fig{0.9}{S11-003.jpg}
+	}{
+		\fig{0.9}{S11-003c.jpg}
+	}
+
+	Les deux ressorts sont identiques, ont même constante de raideur $k$ et même longueur au repos $l_0$. Dans la position d'équilibre du système, les longueurs des ressorts sont identiques et valent $l_{eq}$. Soit $O$ le point où se trouve le mobile lorsqu'il est à l'équilibre. $O$ constitue l'origine de l'axe des $x$.\\
+
+	\textbf{Dans un premier temps, on néglige tout frottement. }  \\
+
+	L'étude est menée dans le référentiel terrestre, considéré comme galiléen. A $t=0$, le mobile est abandonné sans vitesse initiale d'une position $x_0$ (avec $x_0\neq 0$).
+}
+
+
+\QR{
+Faire le bilan des forces appliquées au mobile lorsqu'il se trouve à un point d'abscisse $x$ quelconque. Montrer ensuite que $x(t)$ est solution de l'équation différentielle suivante :
+\eq{
+	\diff[2]{x}{t}+\frac{2k}{m}x=0
+}
+
+\textit{Indication : On fera un schéma sur lequel on placera les distances $l_{eq}$, $L$ et $x$ ainsi que les longueurs  $l_1$ et $l_2$ des 2 ressorts. On écrira de plus l'équation à l'équilibre. }
+}{
+Bilan des forces :
+
+\begin{itemize}
+	\item Le poids $\vec{P}=m\vec{g}=-mg\vec{u_z}$ où $\vec{u_z}$ est la verticale ascendante
+	\item La réaction du support $\vec{R}=R\vec{u_z}$ puisqu'il n'y a pas de frottements avec le support
+	\item La force de rappel élastique exercée par le ressort 1 : $\vec{F_1}=-k(l_1-l_0)\vec{u}_x$ \\
+	      et la force de rappel exercée par le second ressort : $\vec{F_2}=k(l_2-l_0)\vec{u}_{x}$ \\
+\end{itemize}
+Dans le référentiel du laboratoire supposé galiléen, le principe fondamental de la dynamique s'écrit
+\eq{m\vec{a}=\vec{P}+\vec{R}+\vec{F_1}+\vec{F_2}}
+
+Or, on a $\vec{OM}=x\vec{u_x}$, d'où $\vec{v}=\dot{x}\vec{u_x}$ et $\vec{a}=\ddot{x}\vec{u_x}$.
+
+Ainsi, en projection sur $\vec{u_x}$, il vient $m\ddot{x}=k(l_2-l_0)-k(l_1-l_0)$. Or, à l'équilibre, on a $0=k(l_{2_{eq}}-l_0)-k(l_{1_{eq}}-l_0)$ d'où en soustrayant ces 2 équations :
+
+\eq{m\ddot{x}=k(l_2-l_{2_{eq}})-k(l_1-l_{1_{eq}})}
+
+Or, on voit sur le schéma que $l_1-l_{1_{eq}}=x$ et $l_2-l_{2_{eq}}=-x$. On a donc finalement :
+\eq{m\ddot{x}=-2kx \Rightarrow \ddot{x}+\frac{2k}{m}x=0}
+\par
+Autre possibilité : Identifier sur le schéma que $L=2l_{eq}$ par symétrie et directement appliquer le PFD.
+}
+
+
+\QR{
+	Montrer que le système constitue un oscillateur harmonique dont on précisera la pulsation propre et la période propre $T_0$ en fonction de $k$ et $m$.% On posera $\omega_0^2=\frac{2k}{m}$.
+}{
+	On reconnaît l'équation d'un oscillateur harmonique de pulsation propre $\omega_0=\sqrt{\frac{2k}{m}}$ et donc de période propre $T_0=\frac{2\pi}{\omega_0}=\pi \sqrt{\frac{2m}{k} }$
+}
+
+\QR{
+	Donner l'expression de $x(t)$ en tenant compte des conditions initiales.
+}{
+	Les solutions de cette équation différentielles sans second membre sont $x(t)=A\cos(\omega_0 t)+B\sin(\omega_0 t)$\par
+	Or, à $t=0$, on a $x(0)=x_0$ d'un part et $x(0)=A$ d'autre part. On en déduit $A=x_0$. De plus, $\dot{x}(0)=-A\omega_0\sin (\omega_0 t)+B\omega_0\cos(\omega_0 t)$ d'où
+	$\dot{x}(0)=B\omega_0$ d'un part, et d'après la condition initiale, $\dot{x}(0)=0$. Il vient donc $B=0 $ et finalement :
+	\eq{
+		x(t)=x_0\cos(\omega_0 t)
+	}
+
+}
+
+\QR{
+Donner les expressions des énergies potentielles élastiques $E_{p1}(t)$ et $E_{p2}(t)$ de chacun des deux ressorts, de l'énergie cinétique $E_c(t)$ du mobile et de l'énergie mécanique totale $E(t)$ du système en fonction de $k$, $x_0$, $\omega_0$ et $t$, et éventuellement de $l_0$ et $l_{eq}$.
+}{
+
+On a $E_{p1} = \frac{1}{2}k (x+l_{eq}-l_0)^2$ et $E_{p2} = \frac{1}{2}k (L-l_{eq}-x-l_0)^2 $. \\
+De plus : $E_c = \frac{1}{2}m \dot{x}^2$.
+Il suffit ensuite de remplacer $x$ et $\dot{x}$ par leurs expressions respectives. On remarque au passage que l'énergie mécanique se conserve :
+\eq[align]{
+E_m = E_{p1} + E_{p2} + E_{c} =& \frac{1}{2}k [(x+\Delta)^2+ (x-\Delta)^2] + \frac{1}{2}m \dot{x}^2 \\
+=& \ub{\frac{1}{2}k \Delta^2}{constant} + \frac{1}{2}m \omega^2 \pa{ x^2 + \frac{\dot{x}^2}{\omega_0^2}} \\
+=& \frac{1}{2}k \Delta^2 + \frac{1}{2}m \omega^2 x_0^2 \pa{ \ub{ \cos^2(\omega_0 t)+ \sin^2(\omega_0 t)}{=1}} \\
+=& Cste
+}
+
+avec $\Delta=l_{eq}-l_0$, l'écart entre longueur à vide et longueur à l'équilibre pour les deux ressorts. On retrouve ainsi une énergie mécanique constante pour l'évolution de ce système, en accord avec l'absence de forces non conservatives.
+}
+
+\enonce{
+	\textbf{Les questions qui suivent prennent en compte l'existence de frottements lors du déplacement du mobile sur son support.}\\
+
+	En fait, il existe entre le mobile et la tige horizontale un frottement de type visqueux. La force de frottement est de la forme $\vec{f}=-\mu \vec{v}$ où $\mu$ est une constante positive et $\vec{v}$ le vecteur vitesse du mobile.
+	\par
+	\medskip
+	Les conditions initiales sont les mêmes que pour les questions précédentes.
+}
+
+\QR{
+	Établir la nouvelle équation différentielle dont $x(t)$ est solution. On posera $\omega_0^2=\frac{2k}{m}$ et $h=\mu /m$.
+}{
+	On ajoute au bilan la force $\vec{f}=-\mu \vec{v}=-\mu \dot{x}$. Ainsi, il vient :
+
+	\eq{m\ddot{x}=k(l_2-l_0)-k(l_1-l_0)-\mu\dot{x}}
+
+	Or, à l'équilibre, on a toujours $0=k(l_{2_{eq}}-l_0)-k(l_{1_{eq}}-l_0)$. Après soustraction et remise en forme, on a donc :
+
+	\eq[align]{
+		&m\ddot{x}=-2kx-\mu\dot{x}\Rightarrow \ddot{x}+\frac{\mu}{m}\dot{x}+\frac{2k}{m}x=0 \\
+		\Rightarrow ~~~&\ddot{x}+h\dot{x}+\omega_0^2x=0
+	}
+
+}
+
+\QR{
+Montrer que lorsque $\mu<2^{3/2}\sqrt{km}$ le mouvement est oscillatoire amorti.
+}{
+Pour que le mouvement soit oscillatoire amorti, il faut que l'on soit en régime pseudo-périodique, il faut donc que les racines du polynôme caractéristique associé à l'équation différentielle soient complexes. Or, ce polynôme s'écrit : $r^2+hr+\omega_0^2=0$
+
+On doit donc avoir : $\Delta =h^2-4\omega_0^2<0 \Rightarrow h^2<4\omega_0^2 \Rightarrow h<2\omega_0$
+
+En réinjectant les expressions de $h$ et $\omega_0$, cela donne :
+\eq{\frac{\mu}{m}<2\sqrt{\frac{2k}{m}} \Rightarrow \mu<2^{3/2}\sqrt{km}}
+
+}
+
+\QR{
+Donner l'expression générale de $x(t)$ dans ce cas, sans chercher à calculer les constantes d'intégration.
+}{
+On calcule les racines complexes :
+
+\eq{r=-\frac{h}{2}\pm j\frac{1}{2}\sqrt{4\omega_0^2-h^2}=-\frac{h}{2}\pm j\ \frac{1}{2}\ 2\omega_0\sqrt{1-\left(\frac{h}{2\omega_0}\right)^2}}
+
+On pose $\Omega=\omega_0\sqrt{1-\left(\frac{h}{2\omega_0}\right)^2}$, d'où $r=-2h\pm j\Omega$ et $x(t)$ s'écrit alors :
+
+\eq{x(t)=e^{-\frac{h}{2}t}[A\cos(\Omega t)+B\sin(\Omega t)]}
+}
+
+\QR{
+	Exprimer la pseudo-période associée à ce mouvement en fonction de $\omega_0$ et $h$.
+}{
+	La pseudo-période $T$ est :
+	\eq{T=\frac{2\pi}{\Omega}=\frac{2\pi}{\omega_0\sqrt{1-\left(\frac{h}{2\omega_0}\right)^2}}}
+}
+
+\QR{
+	Expliquer, qualitativement mais précisément, ce qu'il se passe au niveau énergétique lors de ce mouvement oscillatoire amorti. }{
+	Initialement, l'énergie mécanique de l'oscillateur est sous forme potentielle puisqu'il a été écarté de sa position d'équilibre.
+	\par
+	Au cours du mouvement, l'énergie mécanique est convertit sous forme cinétique et inversement, ce qui crée le mouvement oscillatoire, mais une partie de cette énergie est dissipée par frottement, ce qui fait que l'amplitude des oscillations diminue au cours du mouvement.
+}
+
+\partie{Oscillateur électrique}
+\label{sec:oe}
+
+\enonce{
+	\tcols{0.55}{0.44}{
+		Soit le circuit schématisé ci-dessous, constitué d'un condensateur parfait de capacité $C$, d'une
+		inductance $L$ de résistance interne $r$ et d'un générateur de tension continue $U_0$. \par
+		Le commutateur $K$ est initialement en position (1). Le condensateur est donc chargé sous la tension
+		$U_0$. A l'instant $t = 0$, le commutateur $K$ est basculé dans la position (2).
+	}{
+		\vspace{-5mm}
+		\fig{0.95}{S11-003_2.pdf}
+	}
+
+	On note $q(t)$ la charge portée par l'armature du condensateur pointée par $i(t)$ avec $i(t)$ l'intensité du courant dans le circuit.
+}
+
+\QR{
+	Exprimer l'énergie électromagnétique $E_m=E_c+E_L$ stockée par la bobine et le condensateur en fonction de $q(t)$, $i(t)$, $L$ et $C$. }{
+	On a $E_m=E_C+E_L= \frac{1}{2}Cu^2 + \frac{1}{2}Li^2 =\frac{q(t)^2}{2C}+\frac{Li(t)^2}{2}$ car $q=Cu$
+}
+
+\QR{
+	Justifier que $\diff{E_m}{t}=-ri^2$. \emph{Indice : il est beaucoup plus rapide pour cela d'effectuer un bilan de puissance !}
+}{
+	On peut démontrer la formule du bilan de puissance à partir de la loi des mailles (toutes les tensions sont prises en convention récepteur) :
+	$U_R + U_C + U_L = 0 \Rightarrow U_R i + U_C i + U_L i=0$
+	soit au final $P_R +P_L + P_C=0$ et donc :
+	\eq[align]{
+		P_L + P_C = -P_R &= -Ri^2 \\
+		\diff{E_m}{t}&= -Ri^2
+	}
+
+	D'où le résultat. L'énergie magnétique du circuit diminue à cause la la puissance dissipée par effet \bsc{Joule}.
+}
+
+\QR{
+	Déduire de la question précédente l'équation différentielle qui régit la charge $q(t)$ dans le circuit. On posera $\omega_0^2=\frac{1}{LC}$ et $Q_0=\frac{L\omega_0}{r}=\frac{1}{rC\omega_0}$ où $\omega_0$ est la pulsation propre du circuit oscillant et $Q_0$ est le facteur de qualité du circuit. \\
+	Ré-exprimer alors cette équation différentielle en utilisant les grandeurs $\omega_0$ et $Q_0$.
+}{
+	%
+	\eq{
+		\diff{E_m}{t}=\frac{1}{2C}2 \diff{q}{t} q + \frac{L}{2}2\diff{i}{t}i ~~\text{ or }~~ \diff{q}{t}=i ~~\text{ et }~~ \diff{i}{t}=\diff[2]{q}{t}
+		~~~\Rightarrow ~~~\diff{E_m}{t}=i\pa{\frac{1}{C}q+L\diff[2]{q}{t}}
+	}
+
+
+	En injectant dans l'équation précédente, il vient
+	\eq{\diff{E_m}{t}=-ri^2=i \pa{\frac{1}{C}q+L\diff[2]{q}{t}}}
+
+	On peut simplifier cette equation par le courant $i$ en supposant qu'il existe au moins au instant ou il est non nul :
+	\eq{ -r\diff{q}{t}=\frac{1}{C}q+L\diff[2]{q}{t} \Rightarrow \diff[2]{q}{t}+\frac{r}{L}\diff{q}{t}+\frac{q}{LC}=0 }
+
+	Avec $\omega_0^2=\frac{1}{LC}$ et $Q_0=\frac{L\omega_0}{r}=\frac{1}{rC\omega_0}$, il vient au final :
+
+	\eq{
+		\diff[2]{q}{t}+\frac{\omega_0}{Q_0}\diff{q}{t}+\omega_0^2q=0
+	}
+
+}
+
+\QR{
+	Retrouver la condition sur $Q_0$ pour que la solution de l'équation différentielle présente des oscillations amorties. (Démonstration attendue)
+}{
+	Pour qu'il y ait des oscillations amorties, il faut (cf partie précédente) :
+
+	\eq{
+		\Delta=\frac{\omega_0^2}{Q_0^2}-4\omega_0^2<0 ~~\Rightarrow~~ \omega_0^2\left(\frac{1}{Q_0^2}-4\right)<0 ~~\Rightarrow~~ \frac{1}{Q_0^2}<4 ~~\Rightarrow~~ Q_0>\frac{1}{2}
+	}
+
+}
+
+\QR{
+	Donner l'expression de la pseudo-période $T$ du circuit en fonction de $T_0$ et $Q_0$ dans le cas d'oscillations amorties (où $T_0$ est la période propre du circuit).  \\
+	Comparer $T$ à $T_0$ et commenter.
+}{
+	Les racines du polynôme caractéristique sont
+	$r=-\frac{\omega_0}{2Q_0}\pm j\frac{\sqrt{4\omega_0^2-\frac{\omega_0^2}{Q_0^2}}}{2}$ et on pose :
+	\eq{
+		\Omega=\frac{\sqrt{4\omega_0^2-\frac{\omega_0^2}{Q_0^2}}}{2}=\frac{2\omega_0}{2}\sqrt{1-\frac{1}{4Q_0^2}}=\omega_0\sqrt{1-\frac{1}{4Q_0^2}}
+	}
+
+
+	On a alors $T=\frac{2\pi}{\Omega}=\frac{2\pi}{\omega_0\sqrt{1-\frac{1}{4Q_0^2}}}$
+
+	Comme $1-\frac{1}{4Q_0^2}<1$, on a $T>T_0= \frac{2 \pi }{\omega_0}$
+
+	\medskip
+	\textbf{\emph{Remarque :}} \par
+	Vous êtes beaucoup à avoir oublié que $T = \frac{2\pi}{\Omega}$. Le facteur $2\pi$ doit être connu par cœur tandis que la présence de la fonction inverse peut se retrouver à partir des dimensions.
+	\par
+	De même, on a dans le cas des oscillations amorties $\Omega \neq \omega_0$ donc $T \neq T_0$.
+}
+
+
+\partie{Analogie électromécanique}
+
+\QR{
+	En comparant les équations différentielles obtenues dans les parties  \ref{sec:om} et \ref{sec:oe}, nous conduirons l'analogie électromécanique.
+	\par
+	Identifier les analogues électriques des grandeurs mécaniques suivantes :
+	\switch{
+		\begin{itemize}
+			\item coefficient de rappel élastique $k$,
+			\item masse du mobile $m$,
+			\item coefficient de frottement fluide $\mu$,
+			\item coordonnée de position $x$,
+			\item vitesse du mobile $v$,
+			\item énergie cinétique du mobile,
+			\item énergie potentielle élastique du ressort,
+			\item puissance dissipée par frottements.
+		\end{itemize}
+		On pourra présenter les résultats sous forme d'un tableau à deux colonnes.
+	}{}
+}{
+	On a :
+	\eq[align]{
+		&\diff[2]{q}{t}+\frac{r}{L}\diff{q}{t}+\frac{q}{LC}=0 \\
+		&\diff[2]{x}{t}+\frac{\mu}{m}\diff{x}{t}+\frac{2k}{m}x=0
+	}
+
+	on peut donc procéder par identification :
+
+	\begin{itemize}
+		\item coefficient de rappel élastique $k$ : inverse de la capacité $\frac{1}{C}$
+		\item masse du mobile $m$ : inductance $L$
+		\item coefficient de frottement fluide $\mu$ : résistance $r$
+		\item coordonnée de position $x$ : charge $q$
+		\item vitesse du mobile $v$ : intensité $i$
+	\end{itemize}
+	Pour les énergies, il suffit de combiner les résultats précédents :
+	\begin{itemize}
+
+		\item énergie cinétique du mobile $\frac{1}{2}mv^2$ : énergie magnétique $\frac{1}{2}Li^2$
+		\item énergie potentielle élastique du ressort : énergie électrostatique du condensateur
+		\item puissance dissipée par frottements : puissance dissipée par effet \bsc{Joule}
+
+	\end{itemize}
+}

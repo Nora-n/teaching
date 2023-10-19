@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\def\h{1}
+\def\w{1}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0) coordinate (A)
+	node {$\bullet$}
+	node[above] {A}
+	%%% R1
+	to[R, name=Rl]
+	(2*\w,0)
+	to[R, name=Rr, v^<=$v$, !vi]
+	(4*\w,0)
+	node {$\bullet$}
+	node[above] {B}
+	;
+	\foreach \n in {Rl, Rr}{
+			\node at (\n.center) {$3R/4$};
+		}
+	\varronly{Rr}
+\end{circuitikz}
+\end{document}

@@ -12,15 +12,24 @@
 	node[above] {A}
 	%%% R1
 	to[R, name=Rl]
-	(2*\w,0)
+	(3*\w,0)
 	to[R, name=Rr, v^<=$v$, !vi]
-	(4*\w,0)
+	(6*\w,0)
+  coordinate (B)
 	node {$\bullet$}
 	node[above] {B}
+	%%% go to E
+	(B)
+	to[short]
+	(6*\w,-1.25*\h)
+	to[V, name=E, V_>=$E$, !vi]
+	(0,-1.25*\h)
+	to[short]
+	(A)
 	;
 	\foreach \n in {Rl, Rr}{
 			\node at (\n.center) {$3R/4$};
 		}
-	\varronly{Rr}
+  \varronly{Rr} \varronly{E}
 \end{circuitikz}
 \end{document}

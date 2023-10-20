@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\def\h{2}
+\def\w{3}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0) coordinate (O)
+	to[V, name=E, V^>=$E$, !vi]
+	(0,\h)
+	to[ccsw, name=K]
+	(1,\h)
+	to[R, name=R, i>_=$i$, v^<=$u_R$, !vi]
+	(\w,\h)
+	coordinate (Tl)
+	to[C=$C$, name=C, v_<=$v(t)$, !vi]
+	(\w,0)
+	coordinate (Bl)
+	to[short]
+	(O);
+	% %%% tube
+	% (Tl)
+	% to[short]
+	% (1.5*\w,\h)
+	% to[lamp, name=L, l^=Tube]
+	% (1.5*\w,0)
+	% to[short]
+	% (Bl);
+	\node at (K.n) {$K$};
+	\node at (R.center) {$R$};
+	\varronly{E} \varronly{C} \varronly{R}
+	\iarronly{R}
+\end{circuitikz}
+
+\end{document}

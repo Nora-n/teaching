@@ -146,7 +146,7 @@ fonctions sinusoïdales. Regardons un exemple.
 				x(t) = A\cos(\w_0 t) + B\sin(\w_0 t) + x_{\rm eq}
 			\end{empheq}
 		}
-		avec $A'$, $A$, $B$ des \textit{constantes d'intégration}.
+		avec $A'$, $\f$, $A$, $B$ des \textit{constantes d'intégration}.
 	\end{tcb}
 \end{tcbraster}
 
@@ -693,8 +693,8 @@ C'est ce que nous allons maintenant démontrer analytiquement.
 		De plus c'est la \textbf{masse} qui impose l'inertie du mouvement, comme
 		l'\textbf{inductance} est l'inertie de l'intensité.
 		\smallbreak
-		Finalement, $\Ec_C = \frac{1}{2}Cu_C{}^{2} = \frac{1}{2}\frac{q^{2}}{C}$, et
-		$\Ec_{p, \rm el} = \frac{1}{2}kx^{2}$ donc on associe $k$ à $C^{-1}$.
+		Finalement, $\w_0 = 1/\sqrt{LC}$ en électrocinétique et $\w_0 =
+    \sqrt{k/m}$ en mécanique, donc on associe $k$ à $C^{-1}$.
 	\end{minipage}
 	\begin{minipage}[c]{.39\linewidth}
 		\captionof{table}{Correspondances}
@@ -855,13 +855,12 @@ C'est ce que nous allons maintenant démontrer analytiquement.
 \subsubsection{Présentation}
 \begin{minipage}[c]{.6\linewidth}
 	\begin{itemize}
-		\item Il est constitué de l'association en série d'une bobine et d'un
-		      condensateur idéaux.
+		\item Il est constitué de l'association en série d'un générateur idéal de
+          f.e.m. $E$, d'une bobine et d'un condensateur idéaux.
 		\item \textbf{On suppose le condensateur initialement déchargé}~:
 		      \fbox{$u_C(0^-) = 0$ \underline{et} $i(0^-) = 0$} (condensateur chargé
 		      $\equiv$ interrupteur ouvert).
-		\item À $t=0$, on allume le
-		      générateur\ftn{\url{https://tinyurl.com/ypagwnb6}}.
+		\item À $t=0$, on allume le générateur\ftn{\url{https://tinyurl.com/ypagwnb6}}.
 	\end{itemize}
 \end{minipage}
 \hfill
@@ -869,9 +868,9 @@ C'est ce que nous allons maintenant démontrer analytiquement.
 	~
 	\begin{center}
 		\switch{
-			\includegraphics[width=.9\linewidth, draft=true]{lc_descendant-intens}
+			\includegraphics[width=.9\linewidth, draft=true]{lc_montant}
 		}{
-			\includegraphics[width=.9\linewidth]{lc_descendant-intens}
+			\includegraphics[width=.9\linewidth]{lc_montant}
 		}
 		\captionof{figure}{}
 	\end{center}
@@ -1199,7 +1198,7 @@ temporel. Ce principe est utilisé~:
 		0 \Lra Q < 1/2$
 	\\\hline
 	\begin{equation*}
-		\boxed{r_\pm = - \frac{\w_0}{2Q} \pm \Ir\W}
+		\boxed{r_\pm = - \frac{\w_0}{2Q} \pm \jj\W}
 	\end{equation*}
 	\begin{equation*}
 		\boxed{\W = \frac{\w_0}{2Q}\sqrt{4Q^2 - 1}}
@@ -1210,7 +1209,7 @@ temporel. Ce principe est utilisé~:
 	\end{equation*}
 	&
 	\begin{equation*}
-		\boxed{r_\pm = - \frac{\w_0}{2Q}\left(1  \mp \sqrt{1 - 4Q^2}\right)}
+		\boxed{r_\pm = \frac{\w_0}{2Q}\left(-1 \pm \sqrt{1 - 4Q^2}\right)}
 	\end{equation*}
 	\\\hline
 	\begin{empheq}[box=\fbox]{gather*}
@@ -1225,14 +1224,13 @@ temporel. Ce principe est utilisé~:
 	\end{equation*}
 	&
 	\begin{empheq}[box=\fbox]{gather*}
-		x(t) = A\exp(r_+t) +\\
-		B\exp(r_-t)
+    x(t) = A\exp(r_+t) +\\
+		\hspace{26pt} B\exp(r_-t)
 	\end{empheq}
 	\\
 \end{tcb}
 
 \subsection{Oscillateur amorti électrique~: circuit RLC série libre}
-
 \subsubsection{Présentation}
 \begin{minipage}[c]{.6\linewidth}
 	\begin{itemize}
@@ -1270,8 +1268,8 @@ temporel. Ce principe est utilisé~:
 			\\\Lra
 			\dv{}{t}
 			\Big(
-			\underbracket{\frac{1}{2}m \left( \dv{x}{t} \right)^2}_{\Ec_c} +
-			\underbracket{\frac{1}{2}kx^2}_{\Ec_{p, \rm el}}
+      \underbracket[1pt]{\frac{1}{2}C  u_C{}^2}_{\Ec_C} +
+			\underbracket[1pt]{\frac{1}{2}Li^2}_{\Ec_L}
 			\Big) &= -\Pc_J
 		\end{DispWithArrows*}
 	}
@@ -1373,17 +1371,17 @@ temporel. Ce principe est utilisé~:
 	Ainsi,
 	\psw{
 		\begin{DispWithArrows*}
-			r_\pm & = \frac{-\frac{\w_0}{Q} \pm \Ir\sqrt{-\D}}{2}
+			r_\pm & = \frac{-\frac{\w_0}{Q} \pm \jj\sqrt{-\D}}{2}
 			\Arrow{On injecte $\Delta$}
 			\\\Lra
 			r_\pm &= -\frac{\w_0}{2Q} \pm
-			\frac{\Ir}{2} \sqrt{\frac{\w_0{}^{2}}{Q^{2}}\left( 4Q^{2}-1 \right)}
+			\frac{\jj}{2} \sqrt{\frac{\w_0{}^{2}}{Q^{2}}\left( 4Q^{2}-1 \right)}
 			\Arrow{On extrait $\frac{\w_0}{Q}$}
 			\\\Lra
-			r_\pm &= - \frac{\w_0}{2Q} \pm \Ir \frac{\w_0}{2Q} \sqrt{4Q^{2}-1}
+			r_\pm &= - \frac{\w_0}{2Q} \pm \jj \frac{\w_0}{2Q} \sqrt{4Q^{2}-1}
 			\Arrow{On définit $\W$}
 			\\\Lra
-			r_\pm &= - \frac{\w_0}{2Q} \pm \Ir\w
+			r_\pm &= - \frac{\w_0}{2Q} \pm \jj\W
 		\end{DispWithArrows*}
 	}
 	d'où la définition de $\W$~:
@@ -1531,8 +1529,10 @@ temporel. Ce principe est utilisé~:
 	\end{minipage}
 \end{tcb}
 
+\newpage
 \paragraph{Cas $\D = 0 \Lra Q = 1/2$~: régime critique}
 ~\smallbreak
+\vspace{-15pt}
 \begin{tcb}[label=demo:solupseudoper](demo)<lfnt>{Solution}
 	La seule racine de l'équation caractéristique est double, et vaut
 	\psw{
@@ -1569,6 +1569,7 @@ temporel. Ce principe est utilisé~:
 		      }
 		      \vspace{-15pt}
 	\end{itemize}
+  \vspace{-30pt}
 \end{tcb}
 \begin{tcb}[label=prop:solupseudoper, sidebyside](prop){Solution}
 	Pour un facteur de qualité $Q = 1/2$, $u_C$ s'exprime par
@@ -1626,7 +1627,7 @@ temporel. Ce principe est utilisé~:
 			\\\Lra
 			r_\pm = - \frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1 - 4Q^2}
 			\\\Lra
-			r_\pm = - \frac{\w_0}{2Q} \left( 1 \mp \sqrt{1 - 4Q^2} \right)
+			r_\pm = \frac{\w_0}{2Q} \left(-1 \pm \sqrt{1 - 4Q^2} \right)
 		\end{gather*}
 	}
 	Ensuite, avec la forme générale de la solution on a
@@ -1965,14 +1966,15 @@ temporel. Ce principe est utilisé~:
 \end{center}
 
 \subsubsection{Résumé oscillateurs amortis}
-\begin{tcb}[label=ror:resumeamorti, tabularx={Y|Y|Y}](ror){À retenir}
+\begin{tcb}[label=ror:resumeamorti, tabularx={Y|Y|Y}](ror){Résumé -- à ne pas
+  connaître par cœur~!}
 	\textbf{Pseudo-périodique} & \textbf{Critique} & \textbf{Apériodique}
 	\\\hline
 	$\D < 0 \Lra Q > 1/2$ & $\D = 0 \Lra Q = 1/2$ & $\D >
 		0 \Lra Q < 1/2$
 	\\\hline
 	\begin{equation*}
-		\boxed{r_\pm = - \frac{\w_0}{2Q} \pm \Ir\W}
+		\boxed{r_\pm = - \frac{\w_0}{2Q} \pm \jj\W}
 	\end{equation*}
 	\begin{equation*}
 		\boxed{\W = \frac{\w_0}{2Q}\sqrt{4Q^{2} - 1}}
@@ -1983,7 +1985,7 @@ temporel. Ce principe est utilisé~:
 	\end{equation*}
 	&
 	\begin{equation*}
-		\boxed{r_\pm = - \frac{\w_0}{2Q}\left(1  \mp \sqrt{1 - 4Q^2}\right)}
+		\boxed{r_\pm = \frac{\w_0}{2Q}\left(-1 \pm \sqrt{1 - 4Q^2}\right)}
 	\end{equation*}
 	\\\hline
 	\begin{empheq}[box=\fbox]{gather*}
@@ -1999,8 +2001,8 @@ temporel. Ce principe est utilisé~:
 	\end{empheq}
 	&
 	\begin{empheq}[box=\fbox]{gather*}
-		u_C(t) = \frac{E}{r_+-r_-} (r_+\exp(r_-t)\\
-		\hspace{83pt}- r_-\exp(r_+t) )
+    u_C(t) = \frac{E}{r_+-r_-}\times\\
+    \big(r_+\exp(r_-t) - r_-\exp(r_+t) \big)
 	\end{empheq}
 	\\\hline
 	$t_{95} \approx QT_0$ &

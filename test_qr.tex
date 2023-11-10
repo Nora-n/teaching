@@ -1,0 +1,196 @@
+\documentclass[a4paper, 12pt, final, garamond]{book}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{listings}
+
+% For centered and hrule before and after text
+\newcommand*\headline[1]{%
+	\par\noindent\raisebox{.8ex}{%
+		\makebox[1\linewidth]{%
+			\hrulefill%
+			\hspace{1ex}%
+			\raisebox{-.8ex}{\Large\bfseries#1}
+			\hspace{.15ex}%
+			\hrulefill%
+		}
+	}
+}
+\newcommand*\tailline[1]{%
+	\par\noindent\raisebox{.8ex}{%
+		\makebox[1\linewidth]{%
+			\hrulefill%
+			\hspace{1ex}%
+			\raisebox{-1.25ex}{$\scaleto{#1}{10pt}$}
+			\hspace{.15ex}%
+			\hrulefill%
+		}
+	}
+}
+% Create nice environnement to put emphasis on answ
+\newenvironment{answ}{
+	\headline{\small Réponse}
+	% \vspace*{-20pt}%
+}
+{
+	\tailline{\diamond}
+}
+
+% Setup special items
+\newif\iffitem
+	\newcommand{\setupmodenumerate}{%
+	\global\fitemfalse
+	\let\origmakelabel\makelabel
+	\def\fitem##1{\global\fitemtrue\def\toapply{##1}\item}%
+	\def\makelabel##1{%
+\origmakelabel{%
+	\iffitem{%
+		\renewcommand{\labelenumi}{\arabic{enumi}}%
+		\renewcommand{\labelenumii}{\alph{enumii}}%
+		\renewcommand{\labelenumiii}{\roman{enumiii}}%
+		\toapply{##1}%
+	}%
+\else##1\fi}%
+\global\fitemfalse
+}%
+}
+\setlist[enumerate]{before=\setupmodenumerate}
+% Setup points left of enumerate
+\usepackage{tabto}
+\newcommand\gpts[1]{\tabto*{-2\leftmargin}\textcolor{ForestGreen}{\llap{/#1~}\tabto{\TabPrevPos}}}
+\newcommand\rpts[1]{\tabto*{-2.5\leftmargin}\textcolor{Red}{\llap{/#1~}\tabto{\TabPrevPos}}}
+\newcommand{\nitem}[1]{\item\gpts{#1}\/}
+
+% Make toggle for teacher and student version of file
+\newtoggle{student}
+\togglefalse{student}
+\newcommand{\switch}[2]{
+	\iftoggle{student}{%
+		#1%
+	}{%
+		#2%
+	}%
+}
+\newcommand{\ifstudent}[1]{
+	\iftoggle{student}{%
+		#1%
+	}{}
+}
+\newcommand{\ifprof}[1]{
+	\iftoggle{student}{%
+	}{
+		#1%
+	}
+}
+% Same for correction
+\newtoggle{corrige}
+\togglefalse{corrige}
+\newcommand{\ifcorrige}[1]{
+	\iftoggle{corrige}{%
+		#1%
+	}{}
+}
+\newcommand{\ifenonce}[1]{
+	\iftoggle{corrige}{%
+	}{
+		#1%
+	}
+}
+\newcommand{\cswitch}[2]{
+	\iftoggle{corrige}{%
+		#1%
+	}{%
+		#2%
+	}%
+}
+
+% Make a fancy QR command
+\newcounter{qrIndex} % compteur pour les questions
+\newcounter{qrIndexSaved}
+\newcommand{\save}{\setcounter{qrIndexSaved}{\theqrIndex}}
+\newcommand{\retrieve}{\setcounter{qrIndex}{\theqrIndexSaved}}
+\newcommand{\resetQ}{\setcounter{qrIndex}{1}}
+
+\NewDocumentCommand{\QR}{omm}{%
+  \IfValueTF{#1}{
+    \begin{enumerate}[start=\theqrIndex]
+      \stepcounter{qrIndex}
+      \switch{%
+        \cswitch{\nitem{#1} #3}{\item #2}%
+      }{%
+        \cswitch{%
+          \nitem{#1}#2%
+            \begin{answ}%
+            #3%
+            \end{answ}%
+          }{
+            \item #2%
+        }
+      }
+    \end{enumerate}
+  }{
+    \begin{enumerate}[start=\theqrIndex]
+      \stepcounter{qrIndex}
+      \switch{%
+        \cswitch{\item #3}{\item #2}%
+      }{%
+        \cswitch{%
+          \item #2%
+            \begin{answ}
+            #3
+            \end{answ}
+          }{
+            \item #2%
+        }%
+      }%
+    \end{enumerate}%
+  }
+}
+
+
+\begin{document}
+
+\toggletrue{corrige}
+\toggletrue{student}
+
+Test switch normal~: \switch{student}{prof}
+\smallbreak
+Test switch corrig~: \cswitch{corrige}{enonce}
+
+\bigbreak
+
+Test switch imbriqués~:
+\switch{
+	\cswitch{student corrige}{student enonce}
+}{
+	\cswitch{prof corrige}{prof enonce}
+}
+
+\bigbreak
+
+Test QR~:
+
+\resetQ
+\QR{Ceci est l'énoncé}{Ceci est le corrigé}
+
+\QR{
+    This has no jumped line in the function.
+  }{
+    It works well.
+}
+
+\QR{
+    This \textbf{has} no jumped line in the function.
+}{
+  You'd think it works.
+
+    But error: 
+    \begin{verbatim}
+          Runaway argument? { You'd think it works. 
+        Paragraph ended before \QR was complete.
+        Too many }'s. }
+    \end{verbatim}
+}
+
+
+\end{document}

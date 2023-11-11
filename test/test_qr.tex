@@ -10,48 +10,73 @@
 Test QR~:
 
 \resetQ
-\QR{Q1}{A1}
+\QR<[start=3]>{Q1}{A1}
 
 
 \QR[16]{
-    Q2
-  }{%
-    This has no empty line in either the question or answer.
-    \smallbreak
-    It works well.
+	Q2
+}{%
+	This has no empty line in either the question or answer.
+	\smallbreak
+	It works well.
 }
 
 \QR[18]{
-    Q3
+	Q3
 }{%
-    This \textbf{has} an empty line.
-    You'd think it works.
-    But error:
-    It only shows the last part of answer, skipping anything before, and messes
-    up the enumerate etc, even without the !
+	This \textbf{has} an empty line.
+	You'd think it works.
+	But error:
+	It only shows the last part of answer, skipping anything before, and messes
+	up the enumerate etc, even without the !
 }
 
 Test blocQR~:
 
 \begin{blocQR}
-  \item 
-  \QR{
-    Qa
-  }{
-    Aa
-  }
-  \QR{
-    Qb
-  }{
-    Ab
-  }
+	\item
+	\QR{
+		Qa
+	}{
+		Aa
+	}
+	\QR{
+		Qb
+	}{
+		Ab
+	}
 \end{blocQR}
 
+\begin{blocQR}
+	\item
+	\QR{%
+		Qa
+	}{%
+		Aa
+	}
+	\QR{%
+		Qb
+	}{%
+		Ab
+	}
+\end{blocQR}
+
+
 \QR{
-  Q5
+	Q5
 }{
-  A5
+	A5
 }
+
+\begin{blocQR}[start=56]
+	\item
+	\QR{%
+		Qa
+	}{%
+		Aa
+	}
+\end{blocQR}
+
 
 % \resetQold
 % \QRold[][2]{Qold}{Aold}

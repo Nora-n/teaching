@@ -5,9 +5,9 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-\toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+% \toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
@@ -179,7 +179,10 @@ avec $n$ le nombre de périodes sélectionnées.
 	voie 1 et $u_{C}(t)$ sur la voie 2~: indiquer les connexions de
 	l'oscilloscope à réaliser et positionner la masse sur le circuit.
 }{%
-	solu
+	\begin{center}
+	  \includegraphics[scale=1]{circ_rlc-start}
+    \captionof{figure}{}
+	\end{center}
 }
 
 \enonce{%
@@ -228,6 +231,8 @@ avec $n$ le nombre de périodes sélectionnées.
 	(pic cs:bn) --++(10pt,-10pt)
 	node[anchor=north west] {$0$}
 	;
+  \noindent
+  \bigbreak
 	On a alors
 	\[
 		\boxed{a = \frac{\delta}{T}}
@@ -263,7 +268,40 @@ de $e(t)$, $C$ et $L$ que ci-dessus.
 	propre théorique en calculant l'écart normalisé entre les deux
 	grandeurs.
 }{%
-	solu
+	On mesure
+  \begin{gather*}
+    T_1 = \SI{0.50 \pm 0.05}{s}
+    \qet
+    T_4 = \SI{2.50 \pm 0.05}{s}
+    \\\Ra
+    \boxed{T_{\exp} = \frac{T_4 - T_1}{4}}
+    \qet
+    u(T_{\exp}) = \frac{u(T_{1})\sqrt{2}}{4}
+    \\\Ra
+    \xul{T_{\exp} = \SI{0.50 \pm 0.02}{s}}
+  \end{gather*}
+  Or,
+  \begin{gather*}
+    \boxed{T_{\rm theo} = 2\pi \sqrt{LC}}
+    \qav
+    \left\{
+    \begin{array}{rcl}
+      L & = & \SI{0.1}{H}
+      \\
+      C & = & \SI{0.01}{\micro F}
+    \end{array}
+    \right.\\
+    \AN
+    \xul{
+      T_{\rm theo} = \SI{2.0e-4}{s}
+    }
+    \\\Ra
+    \boxed{E_N = \frac{\abs{T_{\exp} - T_{\rm theo}}}{T_{\rm theo}}}
+    \\
+    \AN
+    \xul{E_N = \num{0.3}}
+  \end{gather*}
+  Ce qui est acceptable.
 }
 \QR{%
 	Imprimer la courbe obtenue en tenant compte des consignes indiquées
@@ -324,25 +362,17 @@ Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
 	\leftcenters{%
 		Ainsi,
 	}{%
-		$Q_{\exp} = \frac{\pi}{a_{\exp}T}$
-	}
-	\smallbreak
-	\leftcenters{%
-		Soit
-	}{%
-		$\xul{Q_{\exp} = \num{15}}$
+		$Q_{\exp} = \frac{\pi}{a_{\exp}T}
+    \qquad \Ra \qquad 
+		\xul{Q_{\exp} = \num{15}}$
 	}
 	\smallbreak
 	\leftcenters{%
 		Or,
 	}{%
-		$\DS Q_{\rm theo} = \frac{1}{R} \sqrt{\frac{L}{C}}$
-	}
-	\smallbreak
-	\leftcenters{%
-		Soit
-	}{%
-		$\xul{Q_{\rm theo} = \SI{0.314}{rad.s^{-1}}}$
+		$\DS Q_{\rm theo} = \frac{1}{R} \sqrt{\frac{L}{C}}
+    \qquad \Ra \qquad 
+		\xul{Q_{\rm theo} = \SI{0.314}{rad.s^{-1}}}$
 	}
 	\smallbreak
 	\leftcenters{%

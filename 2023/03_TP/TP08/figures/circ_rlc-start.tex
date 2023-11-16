@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+    \sVrot{0}
+    \draw
+    (0,0)
+        to[sV, name=e, v^>=$e(t)$, !vi]
+    (0,2)
+	      coordinate(Y1)
+        to[L,l_=$L$, name=L, v^<=$u_L$, i>^=$i$, !vi]
+    (2,2)
+        to[R, name=R, v^<=$u_R$, !vi]
+    (4,2)
+	      coordinate(Y2)
+        to[C,l_=$C$, name=C, v^<=$u_C$, !vi]
+    (4,0)
+        --
+    (0,0)
+        node [ground] {}
+    ;
+    \varronly{e} \varronly{R} \varronly{C} \varronly{L}
+    \iarronly{L}
+    \node[] at (R.center) {$R$};
+    % oscillo
+    \draw[-stealth]
+    (Y1) --++
+    (-.25,+.25)
+    node[at end, anchor=south east] {$Y_1$}
+    ;
+    \draw[-stealth]
+    (Y2) --++
+    (.25,+.25)
+    node[at end, anchor=south west] {$Y_2$}
+    ;
+\end{circuitikz}
+\end{document}

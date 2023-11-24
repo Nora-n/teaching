@@ -5,13 +5,17 @@
 
 \begin{document}
 \begin{tikzpicture}
-	\def\E{4}
+	\def\E{3}
 	\def\R{793}
 	\def\L{0.022639}
 	\def\C{0.000000001}
 	\def\Q{(1/\R)*sqrt(\L/\C)}
 	\def\wo{sqrt(1/(\L*\C))}
+	\def\vo{\wo}
 	\def\w{\wo*sqrt(1-1/(4*\Q^2))}
+	% \def\umaxbf{\E*exp(-(\wo*3e-6)/(2*\Q))*(cos(\w*3e-6 r)+(\wo/(2*\Q*\w))*sin(\w*3e-6 r))}
+	% \def\umaxaf{\E*exp(-(\wo*3e-6)/(2*\Q))*(cos(\w*3e-6 r)+(\vo/\w+\wo/(2*\Q*\w))*sin(\w*3e-6 r))}
+	% \def\rap{\fpeval{\umaxaf/\umaxbf}}
 	\def\T{2*3.1415/\w}
 	\def\xmax{260e-6}
 	\def\ymax{4.5}
@@ -24,10 +28,10 @@
 			xlabel=$t$, ylabel=$x(t)$,
 			axis lines=center,
 			axis line style=thick,
-			% xtick={0,60e-6,...,300e-6},
-			% ytick={-4,...,4},
-			xtick=\empty,
-			ytick=\empty,
+			xtick={0,10e-6,...,300e-6},
+			ytick={-4,...,4},
+			% xtick=\empty,
+			% ytick=\empty,
 			scaled x ticks=base 10:6,
 			/pgf/number format/sci subscript,
 			xtick scale label code/.code={},
@@ -41,42 +45,43 @@
 			clip=false]
 		% \draw[step=0.000001, color=gray!25] (-1e-4,-5) grid (\xmax,5);
 		\addplot[
-      forget plot,
-      thick,
+			forget plot,
+			thick,
 			domain=-1e-5:0,
 			samples=500,
 			Red!70]
 		{\E};
 		\addplot[
-      forget plot, thick,
+			forget plot, thick,
 			domain=0:\xmax,
-      add node at x={58e-6}{[name=Tl]{}},
-      add node at x={88e-6}{[name=Tr]{}},
+			add node at x={3e-6}{[name=T]{$\times$}},
+			add node at x={58e-6}{[name=Tl]{}},
+			add node at x={88e-6}{[name=Tr]{}},
 			samples=1000,
 			Red!70]
-		{\E*exp(-(\wo*\x)/(2*\Q))*(cos(\w*\x r)+(\wo/(2*\Q*\w))*sin(\w*\x r))};
+		{\E*exp(-(\wo*\x)/(2*\Q))*(cos(\w*\x r)+(\vo/\w+\wo/(2*\Q*\w))*sin(\w*\x r))};
 		\addplot[
 			domain=0.0:\xmax,
 			smooth, dashed,
 			black]
 		{\E*exp(-\wo*\x/(2*\Q))};
-    \addlegendentry{$\pm X_m\exr^{-\xi\omega_0t}$}
+		\addlegendentry{$\pm X_m\exr^{-\xi\omega_0t}$}
 		\addplot[
 			domain=0.0:\xmax,
 			smooth, dashed,
 			black]
 		{-\E*exp(-\wo*\x/(2*\Q))};
-  \draw[dashed, thick]
-    (Tl) --
-    (axis cs:59e-6,2.5) coordinate(TL)
-    (Tr) --
-    (axis cs:89e-6,2.5) coordinate(TR)
-    ;
-  \draw[latex-latex, thick]
-    (TL) --
-    node[above, midway]{$T$}
-    (TR)
-    ;
+		\draw[dashed, thick]
+		(Tl) --
+		(axis cs:59e-6,2.5) coordinate(TL)
+		(Tr) --
+		(axis cs:89e-6,2.5) coordinate(TR)
+		;
+		\draw[latex-latex, thick]
+		(TL) --
+		node[above, midway]{$T$}
+		(TR)
+		;
 		% \node[anchor=north east, align=right] (RQtext) at (axis cs: \xmax, \E.2) {
 		% 	$R = \R\,\Omega$\\
 		% 	$Q = \fpeval{round(\Q,2)}$\\

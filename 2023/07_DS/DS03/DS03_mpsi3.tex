@@ -6,13 +6,14 @@
 \setlength{\mtcindent}{5pt}
 \mtcsetoffset{minitoc}{-5pt}
 \addtolength{\cftsecnumwidth}{10pt}
+\setcounter{minitocdepth}{1}
 
 \dominitoc
 \faketableofcontents
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \HideSolutionstrue
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
@@ -54,8 +55,8 @@
 	\end{center}
 	\begin{tcb}*[cnt, bld](ror)<itc>{Au programme}
 		\large
-		Régimes transitoires d'ordre 2 (mécanique et électricité), transformation et
-		équilibre chimique.
+		Oscillateurs harmonique et amortis (mécanique et électricité),
+		transformation et équilibre chimique.
 	\end{tcb}
 	\vfill
 	\minitoc
@@ -101,39 +102,40 @@
 		\end{minipage}
 	\end{tcb}
 
-	\begin{tcb}(impo){Exemple application numérique}
-		\vspace*{-10pt}
-		\begin{minipage}[c]{0.45\linewidth}
-			\begin{gather*}
-				\boxed{n = \frac{PV}{RT}}
-				\qav
-				\left\{
-				\begin{array}{rcl}
-					p & = & \SI{1.0e5}{Pa}                \\
-					V & = & \SI{1.0e-3}{m^3}              \\
-					R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
-					T & = & \SI{300}{K}
-				\end{array}
-				\right.\\
-				\mathrm{A.N.~:}\quad
-				\xul{n = \SI{5.6e-4}{mol}}
-			\end{gather*}
-		\end{minipage}
-		\hfill
-		\cancel{\bcancel{
-				\begin{minipage}[c]{0.45\linewidth}
-					\begin{gather*}
-						n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
-						= 0.56
-					\end{gather*}
-				\end{minipage}
-			}}
-	\end{tcb}
+	% \begin{tcb}(impo){Exemple application numérique}
+	% 	\vspace*{-10pt}
+	% 	\begin{minipage}[c]{0.45\linewidth}
+	% 		\begin{gather*}
+	% 			\boxed{n = \frac{PV}{RT}}
+	% 			\qav
+	% 			\left\{
+	% 			\begin{array}{rcl}
+	% 				p & = & \SI{1.0e5}{Pa}                \\
+	% 				V & = & \SI{1.0e-3}{m^3}              \\
+	% 				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+	% 				T & = & \SI{300}{K}
+	% 			\end{array}
+	% 			\right.\\
+	% 			\mathrm{A.N.~:}\quad
+	% 			\xul{n = \SI{5.6e-4}{mol}}
+	% 		\end{gather*}
+	% 	\end{minipage}
+	% 	\hfill
+	% 	\cancel{\bcancel{
+	% 			\begin{minipage}[c]{0.45\linewidth}
+	% 				\begin{gather*}
+	% 					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+	% 					= 0.56
+	% 				\end{gather*}
+	% 			\end{minipage}
+	% 		}}
+	% \end{tcb}
+	\vfill
 	\newpage
 }
 
 \setcounter{section}{0}
-\exercice[30]{Pentachlorure de phosphore}
+\exercice[23]{Pentachlorure de phosphore}
 \resetQ
 \enonce{
 Le pentachlorure de phosphore \ce{PCl5} est un composé très toxique, servant
@@ -150,7 +152,7 @@ constante thermodynamique de l’équilibre précédemment cité vaut $K^\circ =
 On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 }
 
-\QR[1]{%
+\QR[3]{%
 	Exprimer puis calculer la pression initiale dans le réacteur $p_0$ en fonction
 	des données.
 }{%
@@ -176,7 +178,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\end{gather*}
 }
 
-\QR[1]{%
+\QR[5]{%
 	Écrire l’équation de réaction modélisant le processus dans le réacteur, et
 	dresser le tableau d'avancement correspondant.
 }{%
@@ -218,7 +220,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\end{center}
 }
 
-\QR[2]{%
+\QR[3]{%
 	Exprimer les pressions partielles des gaz en fonction de $n_0$, $\xi$ et de la
 	pression initiale $p_0$.
 }{%
@@ -233,7 +235,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\]
 }
 
-\QR[5]{%
+\QR[9]{%
 	Exprimer le coefficient de dissociation à l’équilibre $\alpha = \xi\ind{eq}
 		/n_0$ en fonction de $K^\circ $, $p^\circ $ et $p_0$. Faire l'application
 	numérique. Que représente-t-il physiquement~?
@@ -293,8 +295,8 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\end{minipage}
 }
 
-\QR[2]{%
-	Calculer la pression régnant dans le réacteur à l’équilibre.
+\QR[3]{%
+	Exprimer la pression à l'équilibre en fonction $p_0$ et $\alpha$. La calculer.
 }{%
 	À l'aide du tableau d'avancement, on a $n\ind{tot, gaz}$, d'où
 
@@ -311,11 +313,11 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 }
 
 \iftoggle{corrige}{}{%
-  \newpage
+	\newpage
 }
 
 \resetQ
-\exercice[30]{États finaux variés}
+\exercice[41]{États finaux variés}
 \enonce{
 	On s'intéresse dans un premier temps à une solution aqueuse obtenue à
 	\SI{298}{K} par un mélange d'acide éthanoïque \ce{CH3COOH} (concentration
@@ -338,9 +340,10 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\end{alignat}
 }
 
-\QR[1]{%
-	Calculer la constante d'équilibre $K^\circ_1$ relative à
-	l'équilibre~\eqref{eq:R1}.
+\QR[3]{%
+	Exprimer la constante $K_1^\circ$ relative à l'équilibre~\eqref{eq:R1} en
+	fonction d'autres constantes de réaction, puis la calculer. Donner le résultat
+	sous la forme d'une puissance de 10 uniquement.
 }{%
 	On constate que l'équilibre%
 	\sswitch{%
@@ -354,7 +357,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\]
 }
 
-\QR[4]{%
+\QR[10]{%
 	Déterminer l'état d'équilibre de la solution issue du mélange de l'acide
 	éthanoïque et des ions fluorure~: exprimer l'équation dont l'avancement est
 	solution, et l'expression littérale de la solution en fonction de $c_1$, $c_2$
@@ -461,7 +464,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\end{gather}
 }
 
-\QR[3]{%
+\QR[6]{%
 	On introduit en solution aqueuse un net excès d'hydroxyde de calcium. La phase
 	solide est alors présente en fin d'évolution. Calculer les concentrations de
 	chacun des ions présents à l'équilibre.
@@ -510,7 +513,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	On en déduit les concentrations indiquées dans le tableau.
 }
 
-\QR[1]{%
+\QR[3]{%
 	On donne la relation $[\ce{H_3O+}][\ce{HO^{-}}] = \num{e-14}$. Sachant que $\pH
 		= -\log([\ce{H_3O^{+}}])$, déterminer le $\pH$ de la solution. Le milieu
 	est-il acide, basique ou neutre~?
@@ -531,7 +534,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\ce{Ca(OH)_2(s)} avec la forme \ce{H2CO_3(aq)}.
 }
 
-\QR[2]{%
+\QR[3]{%
 	Écrire la réaction $(5)$ mise en jeu dans la carbonatation du béton et calculer
 	sa constante d'équilibre $K^\circ_5$ à \SI{298}{K}. On donne à \SI{298}{K} les
 	constantes d'équilibre des réactions suivantes~:
@@ -593,7 +596,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	on mesure la pression $p$ à l'intérieur de l'enceinte.
 }
 
-\QR[2]{%
+\QR[5]{%
 Lorsque l'équilibre est établi, calculer la quantité de matière en dioxyde de
 carbone $n(\ce{CO2})\ind{eq}$ dans l'enceinte. On supposera les gaz comme
 parfaits. On rappelle la constante des gaz parfaits
@@ -630,7 +633,7 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 \end{DispWithArrows*}
 }
 
-\QR[2]{%
+\QR[4]{%
 	On introduit une quantité de matière $n=\SI{1.0e-2}{mol}$ en carbonate de
 	calcium. Décrire l'état final. On précisera notamment si l'état final est un
 	état d'équilibre.
@@ -653,7 +656,7 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 	\]
 }
 
-\QR[2]{%
+\QR[4]{%
 	Reprendre la question précédente dans le cas où $n=\SI{5.0e-2}{mol}$.
 }{%
 	Comme $n>n(\ce{CO2})\ind{eq}$, le quotient réactionnel peut augmenter jusqu'à
@@ -666,7 +669,7 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 	\end{gather*}
 }
 
-\QR[1]{%
+\QR[3]{%
 	Montrer que la courbe $p=f(n)$, avec $p$ la pression à l'intérieur de
 	l'enceinte, est constituée de deux segments de droites dont on donnera les
 	équations pour $0\leq n\leq\SI{0.10}{mol}$.
@@ -682,10 +685,10 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 
 \setcounter{section}{0}
 \iftoggle{corrige}{}{%
-  \newpage
+	\newpage
 }
 \resetQ
-\prblm[49]{Amortissement et facteur de qualité d'un circuit RLC}
+\prblm[60]{Amortissement et facteur de qualité d'un circuit RLC}
 % \enonce{
 % 	\begin{figure}[htbp]
 % 	  \centering
@@ -695,411 +698,440 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 % 	\end{figure}
 % }
 \enonce{%
-  \noindent
-  \begin{minipage}[c]{.45\linewidth}
-      On considère le circuit RLC série représenté ci-contre.
-    L'interrupteur $K$ est fermé à un instant $t=0$ choisi comme origine des
-    temps. Le condensateur est initialement chargé~: $u(t=0)=u_0$.
-  \end{minipage}
-  \hfill
-  \begin{minipage}[c]{.45\linewidth}
-    ~
-    % \vspace{-15pt}
-    \begin{center}
-      \includegraphics[width=\linewidth]{rlc_descendant}
-      \captionof{figure}{Circuit.}
-	  \label{fig:P1base}
-    \end{center}
-  \end{minipage}
+	\noindent
+	\begin{minipage}[c]{.45\linewidth}
+		On considère le circuit RLC série représenté ci-contre.
+		L'interrupteur $K$ est fermé à un instant $t=0$ choisi comme origine des
+		temps. Le condensateur est initialement chargé~: $u(t=0)=u_0$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{.45\linewidth}
+		~
+		% \vspace{-15pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{rlc_descendant}
+			\captionof{figure}{Circuit.}
+			\label{fig:P1base}
+		\end{center}
+	\end{minipage}
 }
 
-\QR{%
-    Établir l'équation différentielle vérifiée par $u(t)$ pour $t\geq 0$. La
-    mettre sous la forme
-    \[
-      \dv[2]{u}{t} + \frac{\w_0}{Q}\dv{u}{t} + \w_0{}^{2}u = 0
-    \]
-    et donner les expressions de $\w_0$ et $Q$ en fonction de $R$, $L$ et $C$.
+\QR[8]{%
+	Établir l'équation différentielle vérifiée par $u(t)$ pour $t\geq 0$. La
+	mettre sous la forme
+	\[
+		\dv[2]{u}{t} + \frac{\w_0}{Q}\dv{u}{t} + \w_0{}^{2}u = 0
+	\]
+	et donner les expressions de $\w_0$ et $Q$ en fonction de $R$, $L$ et $C$.
 }{%
-  \begin{isd}
-      Avec la loi des mailles,
-      \begin{DispWithArrows}[fleqn, mathindent=2pt]
-        u_L + u_R + u_C &= 0
-        \notag
-        \Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
-        \\\Lra
-        L \dv{i}{t} + Ri + u_C &= 0
-        \notag
-        \Arrow{$i = C \dv{u_C}{t}$}
-        \\\Lra
-        LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C                   &= 0
-        \notag
-        \Arrow{forme\\canonique}
-        \\
-        \Lra \dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &= 0
-        \label{eq:rlsimple}
-      \end{DispWithArrows}
-    \tcblower
-    On détermine l'expression de $Q$ par identification~:
-      \begin{DispWithArrows*}[fleqn, mathindent=20pt]
-        \frac{\w_0}{Q} &= \frac{R}{L}
-        \Arrow{$\DS\w_0 = \frac{1}{\sqrt{LC}}$}
-        \\\Lra
-        \frac{1}{Q \sqrt{LC}} &= \frac{R}{L}
-        \Arrow{On isole $Q$}
-        \\\Lra
-        Q &= \frac{L}{R \sqrt{LC}}
-        \Arrow{$L = \sqrt{L}^{2}$}
-        \\\Lra
-        \Aboxed{Q &= \frac{1}{R}\sqrt{\frac{L}{C}}}
-      \end{DispWithArrows*}
-  \end{isd}
-  }
-\QR{%
-  Montrer que le système répond différemment selon la valeur de $Q$. Nommer
-  chaque régime possible, sans chercher à donner les formes de solutions
-  correspondantes.
+	~\\
+	\vspace{-15pt}
+	\begin{isd}
+		Avec la loi des mailles,\\
+		\begin{DispWithArrows}[fleqn, mathindent=2pt]
+			u_L + u_R + u_C &= 0
+			\notag
+			\Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
+			\\\Lra
+			L \dv{i}{t} + Ri + u_C &= 0
+			\notag
+			\Arrow{$i = C \dv{u_C}{t}$}
+			\\\Lra
+			LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C                   &= 0
+			\notag
+			\Arrow{forme\\canonique}
+			\\
+			\Lra \dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &= 0
+			\label{eq:rlsimple}
+		\end{DispWithArrows}
+		\tcblower
+		On détermine l'expression de $Q$ par identification~:
+		\begin{DispWithArrows*}[fleqn, mathindent=20pt]
+			\frac{\w_0}{Q} &= \frac{R}{L}
+			\Arrow{$\DS\w_0 = \frac{1}{\sqrt{LC}}$}
+			\\\Lra
+			\frac{1}{Q \sqrt{LC}} &= \frac{R}{L}
+			\Arrow{On isole $Q$}
+			\\\Lra
+			Q &= \frac{L}{R \sqrt{LC}}
+			\Arrow{$L = \sqrt{L}^{2}$}
+			\\\Lra
+			\Aboxed{Q &= \frac{1}{R}\sqrt{\frac{L}{C}}}
+		\end{DispWithArrows*}
+	\end{isd}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[5]{%
+	Montrer que le système répond différemment selon la valeur de $Q$. Nommer
+	chaque régime possible, sans chercher à donner les formes de solutions
+	correspondantes.
 }{%
-  \ifstudent{
-		\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}
-  }
-  \begin{isd}
-      Avec l'équation caractéristique~:
-      \begin{gather*}
-      r^2 + \frac{\w_0}{Q}r + \w_0{}^2 = 0
-      \\\Ra 
-      \Delta =
-      \left( \frac{\w_0}{Q} \right)^2 - 4\w_0{}^2 =
-      \frac{\w_0{}^{2}}{Q^{2}}\left( 1-4Q^{2} \right)
-    \end{gather*}
-    Selon la valeur du discriminant, on aura différentes valeurs de $r$,
-    doubles réelles, simple réelle ou doubles complexes. On a en effet, avec $Q >
-    0$,
-    \tcblower
-      \begin{gather*}
-        \Delta > 0
-        \Lra
-        \cancel{\frac{w_0{}^{2}}{Q^{2}}}\left( 1-4Q^{2} \right) >0
-        \Lra
-        4Q^2 < 1
-        \Lra
-        Q < \frac{1}{2}
-      \end{gather*}
-    \begin{description}
-      \item[$\mathbf{Q > 1/2}$]~: régime \textbf{pseudo-périodique},
-        racines complexes et oscillations décroissantes~;
-      \item[$\mathbf{Q = 1/2}$]~: régime \textbf{critique}, racine double
-        réelle~;
-      \item[$\mathbf{Q < 1/2}$]~: régime \textbf{apériodique}, racines
-        réelles et décroissance exponentielle sans oscillation.
-    \end{description}
-  \end{isd}
+	% \ifstudent{
+	% 	\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}
+	% }
+	~\\
+	\vspace{-15pt}
+	\begin{isd}
+		Avec l'équation caractéristique~:
+		\begin{gather*}
+			r^2 + \frac{\w_0}{Q}r + \w_0{}^2 = 0
+			\\\Ra
+			\Delta =
+			\left( \frac{\w_0}{Q} \right)^2 - 4\w_0{}^2 =
+			\frac{\w_0{}^{2}}{Q^{2}}\left( 1-4Q^{2} \right)
+		\end{gather*}
+		Selon la valeur du discriminant, on aura différentes valeurs de $r$,
+		doubles réelles, simple réelle ou doubles complexes. On a en effet, avec $Q >
+			0$,
+		\tcblower
+		\begin{gather*}
+			\Delta > 0
+			\Lra
+			\cancel{\frac{w_0{}^{2}}{Q^{2}}}\left( 1-4Q^{2} \right) >0
+			\Lra
+			4Q^2 < 1
+			\Lra
+			Q < \frac{1}{2}
+		\end{gather*}
+		\begin{description}
+			\item[$\mathbf{Q > 1/2}$]~: régime \textbf{pseudo-périodique},
+			racines complexes et oscillations décroissantes~;
+			\item[$\mathbf{Q = 1/2}$]~: régime \textbf{critique}, racine double
+			réelle~;
+			\item[$\mathbf{Q < 1/2}$]~: régime \textbf{apériodique}, racines
+			réelles et décroissance exponentielle sans oscillation.
+		\end{description}
+	\end{isd}
 }
 
 \enonce{
 	On suppose $Q >1/2$ dans la suite.
 }
-	\QR{%
-    Définir la pseudo-pulsation $\W$ des oscillations libres en fonction de
-    $\w_0$ et $Q$. Définir aussi le temps caractéristique $\tau$ d'amortissement
-    exponentiel des oscillations libres en fonction de $\w_0$ et $Q$.
-	}{%
-    \begin{isd}
-      \begin{DispWithArrows*}[fleqn, mathindent=10pt]
-          r_\pm & = \frac{-\frac{\w_0}{Q} \pm \jj\sqrt{-\D}}{2}
-          \Arrow{On injecte $\Delta$}
-          \\\Lra
-          r_\pm &= -\frac{\w_0}{2Q} \pm
-          \frac{\jj}{2} \sqrt{\frac{\w_0{}^{2}}{Q^{2}}\left( 4Q^{2}-1 \right)}
-          \Arrow{On extrait $\frac{\w_0}{Q}$}
-          \\\Lra
-          r_\pm &= - \frac{\w_0}{2Q} \pm \jj \frac{\w_0}{2Q} \sqrt{4Q^{2}-1}
-          \Arrow{On définit $\W$}
-          \\\Lra
-          r_\pm &= - \frac{\w_0}{2Q} \pm \jj\W
-        \end{DispWithArrows*}
-      \tcblower
-      d'où la définition de $\W$~:
-      \[
-        \boxed{\W = \frac{\w_0}{2Q}\sqrt{4Q^{2}-1}}
-      \]
-      Ensuite, avec la forme générale de la solution on a
-        \begin{equation*}
-          u(t) = \exp \left(-\frac{\w_0}{2Q}t\right)
-          \left[ A\cos(\Wt) + B\sin(\Wt) \right]
-        \end{equation*}
-        On remarque donc qu'on peut assimiler le terme à l'intérieur de
-        l'exponentielle comme l'inverse d'un temps, c'est-à-dire qu'on définit
-        $\tau$ comme la partie réelle des racines~:
-        \[
-          \boxed{\tau = \frac{2Q}{\w_0}}
-        \]
-    \end{isd}
-    % L'énoncé attend sans doute le temps de relaxation $\tau = \frac{Q}{\w_0}$
-    % mais la forme canonique en $\dv[2]{u}{t} + \dfrac{1}{\tau} \dv{u}{t} +
-    % \w_0^2 u = 0$ n'est pas à connaître. 
-	}
-	\QR{%
-    Établir l'expression de $u(t)$ pour $t\geq 0$ en fonction de $u_0$, $\w_0$,
-    $Q$ et $\Omega$, compte tenu des conditions initiales que vous expliciterez
-    et justifierez.
-	}{%
-    On a donc
-    \[
-      u(t) = \exr^{-t/\tau} \left[ A\cos(\Wt) + B\sin(\Wt) \right]
-    \]
+\QR[4]{%
+	Définir la pseudo-pulsation $\W$ des oscillations libres en fonction de
+	$\w_0$ et $Q$. Définir aussi le temps caractéristique $\tau$ d'amortissement
+	exponentiel des oscillations libres en fonction de $\w_0$ et $Q$.
+}{%
+	~\\
+	\vspace{-15pt}
+	\begin{isd}
+		\begin{DispWithArrows*}[fleqn, mathindent=10pt]
+			r_\pm & = \frac{-\frac{\w_0}{Q} \pm \jj\sqrt{-\D}}{2}
+			\Arrow{On injecte $\Delta$}
+			\\\Lra
+			r_\pm &= -\frac{\w_0}{2Q} \pm
+			\frac{\jj}{2} \sqrt{\frac{\w_0{}^{2}}{Q^{2}}\left( 4Q^{2}-1 \right)}
+			\Arrow{On extrait $\frac{\w_0}{Q}$}
+			\\\Lra
+			r_\pm &= - \frac{\w_0}{2Q} \pm \jj \frac{\w_0}{2Q} \sqrt{4Q^{2}-1}
+			\Arrow{On définit $\W$}
+			\\\Lra
+			r_\pm &= - \frac{\w_0}{2Q} \pm \jj\W
+		\end{DispWithArrows*}
+		\tcblower
+		d'où la définition de $\W$~:
+		\[
+			\boxed{\W = \frac{\w_0}{2Q}\sqrt{4Q^{2}-1}}
+		\]
+		Ensuite, avec la forme générale de la solution on a
+		\begin{equation*}
+			u(t) = \exp \left(-\frac{\w_0}{2Q}t\right)
+			\left[ A\cos(\Wt) + B\sin(\Wt) \right]
+		\end{equation*}
+		On remarque donc qu'on peut assimiler le terme à l'intérieur de
+		l'exponentielle comme l'inverse d'un temps, c'est-à-dire qu'on définit
+		$\tau$ comme la partie réelle des racines~:
+		\[
+			\boxed{\tau = \frac{2Q}{\w_0}}
+		\]
+	\end{isd}
+	% L'énoncé attend sans doute le temps de relaxation $\tau = \frac{Q}{\w_0}$
+	% mais la forme canonique en $\dv[2]{u}{t} + \dfrac{1}{\tau} \dv{u}{t} +
+	% \w_0^2 u = 0$ n'est pas à connaître. 
+}
+\QR[9]{%
+	Établir l'expression de $u(t)$ pour $t\geq 0$ en fonction de $u_0$, $\w_0$,
+	$Q$ et $\w$, compte tenu des conditions initiales que vous expliciterez
+	et justifierez.
+}{%
+	On a donc
+	\[
+		u(t) = \exr^{-t/\tau} \left[ A\cos(\Wt) + B\sin(\Wt) \right]
+	\]
 	\begin{itemize}
 		\item On trouve $A$ avec la première condition initiale (condensateur
-      initialement chargé et tension condensateur continue)~:
-			      \begin{gather*}
-				      u(0) = u_0 = 1 \left[ A \cdot 1 + B \cdot 0 \right] = A
-				      \quad \Ra \quad \boxed{A=u_0}
-			      \end{gather*}
+		      initialement chargé et tension condensateur continue)~:
+		      \begin{gather*}
+			      u(0) = u_0 = 1 \left[ A \cdot 1 + B \cdot 0 \right] = A
+			      \quad \Ra \quad \boxed{A=u_0}
+		      \end{gather*}
 		\item On trouve $B$ avec la seconde CI (il n'y a pas de courant avant la
-      fermeture de $K$ et courant continu dans la bobine)~:
-			      \begin{gather*}
-				      \dv{u}{t} =
-				      -\frac{\w_0}{2Q}\exp \left( -\frac{\w_0}{2Q}t \right)\times
-				      \left[ A\cos(\Wt) + B\sin(\Wt) \right] +
-				      \exp \left( -\frac{\w_0}{2Q}t \right)
-				      \left[ -A\W\sin(\Wt) + B\W\cos(\Wt) \right]
-				      \\\Ra
-				      \dv{u}{t}\/(0) = - \frac{\w_0}{2Q}A + \W B = 0
-				      \\\Lra
-				      \boxed{B = \frac{\w_0}{2Q\W}u_0}
-              \\
-              \beforetext{Ainsi,}
-              \boxed{
-                u(t) = u_0\exr^{-t/\tau}
-                \left[ \cos(\Wt) + \frac{\w_0}{2Q\W}\sin(\Wt) \right]
-              }
-			      \end{gather*}
+		      fermeture de $K$ et courant continu dans la bobine)~:
+		      \begin{gather*}
+			      \dv{u}{t} =
+			      -\frac{\w_0}{2Q}\exp \left( -\frac{\w_0}{2Q}t \right)\times
+			      \left[ A\cos(\Wt) + B\sin(\Wt) \right] +
+			      \exp \left( -\frac{\w_0}{2Q}t \right)
+			      \left[ -A\W\sin(\Wt) + B\W\cos(\Wt) \right]
+			      \\\Ra
+			      \dv{u}{t}\/(0) = - \frac{\w_0}{2Q}A + \W B = 0
+			      \\\Lra
+			      \boxed{B = \frac{\w_0}{2Q\W}u_0}
+			      \\
+			      \beforetext{Ainsi,}
+			      \boxed{
+				      u(t) = u_0\exr^{-t/\tau}
+				      \left[ \cos(\Wt) + \frac{\w_0}{2Q\W}\sin(\Wt) \right]
+			      }
+		      \end{gather*}
 	\end{itemize}
-	}
+}
 
 \enonce{
-  On souhaite visualiser la tension $u(t)$ sur l'écran d'un oscilloscope dont
-  l'entrée est modélisée par l'association en parallèle d'une résistance
-  $R_0=\SI{1,0}{M\ohm}$ et d'une capacité $C_0=\SI{11}{p\farad}$.
+	On souhaite visualiser la tension $u(t)$ sur l'écran d'un oscilloscope dont
+	l'entrée est modélisée par l'association en parallèle d'une résistance
+	$R_0=\SI{1,0}{M\ohm}$ et d'une capacité $C_0=\SI{11}{p\farad}$.
 }
-	\QR{%
-    Montrer que si l'on tient compte de l'oscilloscope, l'équation
-    différentielle vérifiée par $u(t)$ devient:
-    \[
-            L(C+C_0)\dv[2]{u}{t }+
-            \left(\frac{L}{R_0}+RC+RC_0\right)\dv{u}{t}+
-            \left(1+\frac{R}{R_0}\right)u=0
-    \]
-	}{%
-    \noindent
-\begin{minipage}[t]{.30\linewidth}
-    On commence par représenter le circuit en ajoutant en parallèle de $C$ la
-    résistance $R_0$ et la capacité $C_0$.
-  \begin{center}
-      \includegraphics[width=\linewidth]{rlc_oscillo}
-      \captionof{figure}{Circuit avec oscilloscope.}
-      \label{fig:P1osci}
-  \end{center}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.65\linewidth}
-    Loi des nœuds~:
-    \begin{DispWithArrows*}
-      i &= i_{R_0} + i_{C_0} + i_C
-      \Arrow{$i_C = C \dv{u}{t}$\\$i_{C_0} = C_0 \dv{u}{t}$\\$i_{R_0} =
-      \frac{u}{R_0}$}
-      \\\Lra
-      i &= \frac{u}{R_0} + (C+C_0)\dv{u}{t}
-    \end{DispWithArrows*}
-    Dans la loi des mailles,
-    \begin{DispWithArrows*}[fleqn, mathindent=-15pt]
-      u_L + u_R + u &= 0
-      \Arrow{$u_L = L \dv{i}{t}$\\$u_R = Ri$}
-      \\\Lra
-      L \dv{i}{t} + Ri + u &= 0
-      \Arrow{$i = \frac{u}{R_0}$\\$ + (C+C_0)\dv{u}{t}$}
-      \\\Lra
-      \frac{L}{R_0} \dv{u}{t} + L(C+C_0) \dv[2]{u}{t} +
-      \frac{R}{R_0}u + R(C+C_0) \dv{u}{t} + u &=0
-      \Arrow{On factorise}
-      \\\Lra
-      \Aboxed{
-        L(C+C_0)\dv[2]{u}{t} + 
-        \left(\frac{L}{R_0}+RC+RC_0\right)\dv{u}{t}+
-        \left(1+\frac{R}{R_0}\right)u
-        &= 0
-      }
-    \end{DispWithArrows*}
-\end{minipage}
-	}
-
-	\QR{%
-    Quelles relations qualitatives doivent vérifier $R$, $L$, $C$, $R_0$ et
-    $C_0$ pour que la mise en place de l'oscilloscope ait une influence
-    négligeable sur les oscillations étudiées~? Vérifier qu'avec les valeurs
-    usuelles de $R$, $L$ et $C$ utilisées en travaux pratiques ces relations
-    sont vérifiées.
-	}{%
-    Pour que l'oscilloscope ait le moins d'influence possible sur les
-    oscillations, il faut que les coefficients de l'équation différentielle
-    précédente diffèrent le moins possible de ceux de l'équation
-    différentielle~\eqref{eq:rlsimple}~:
-		\begin{itemize}
-      \item $C \gg C_0$; les capacités utilisées en T.P.\ sont de l'ordre du
-        $\si{nF}$ ou du $\si{\micro F}$. Comme $C_0=\SI{11}{pF}$, cette
-        condition est bien vérifiée~;
-      \item $R \ll R_0$; les résistances utilisées en T.P.\ sont de l'ordre du
-        $\si{k\ohm}$. Comme  $R_0=\SI{1,0}{M\ohm}$ , cette condition
-        est bien vérifiée~;
-      \item $\frac{L}{R_0} \ll RC$ soit $R_0 \gg \frac{L}{RC} \approx
-         \SI{e4}{\ohm}$~; cette condition est bien vérifiée.
-		\end{itemize}
-	}
-
-	\QR{%
-    On définit le décrément logarithmique comme étant la quantité
-    $d_m=\ln\dfrac{u(t)}{u(t+mT)}$ où $T=2\pi/\w$ et $m$ est un entier
-    strictement positif. Exprimer $d_m$ en fonction de $m$ et de $Q$.
-	}{%
-    En remarquant que $ \cos{(\W (t + T))} = \cos{(\W t + 2\pi)} = \cos{(\W
-    t)}$, on montre facilement que $d_m =\ln { \left( \exp{\frac{\W_0 m T}{2Q}}
-    \right) }$.
-    On obtient donc~: $d_m = \dfrac{\w_0 m T}{2Q}$. En remplaçant $T$ par
-    $\frac{2\pi}{\W}$ où $\W = \frac{\w_0}{Q} \sqrt{4Q^{2}-1}$, il vient~:
-			\[
-			  \boxed{d_m = \frac{2 \pi m}{\sqrt{4Q^2-1}}}
-			\]
-	}
-
-	\QR{%
-    On réalise un montage expérimental où le circuit RLC est excité par un
-    générateur basses fréquences délivrant une tension créneau. Comment faut-il
-    choisir le signal délivré par le générateur pour observer les oscillations
-    libres du circuit~? Justifier à l'aide d'un schéma.
-    \smallbreak
-	}{%
-		Pour observer les oscillations il faut que la demi-période du signal délivré par le G.B.F.\ soit égale à quelques $\tau$. \\
-}
-
-\QR{%
-    La tension aux bornes du condensateur est enregistrée grâce à un logiciel
-    d'acquisition. Le signal obtenu est représenté sur la
-    figure~\ref{fig:P1graph}.
-		\begin{figure}[htbp!]
-		  \centering
-		  \includegraphics[width=.8\linewidth]{carac-rlc-15}
-		  \caption{Signal obtenu.}
-		  \label{fig:P1graph}
-		\end{figure}
-		Estimer le facteur de qualité $Q$ du circuit.
+\QR[5]{%
+	Montrer que si l'on tient compte de l'oscilloscope, l'équation
+	différentielle vérifiée par $u(t)$ devient:
+	\[
+		L(C+C_0)\dv[2]{u}{t }+
+		\left(\frac{L}{R_0}+RC+RC_0\right)\dv{u}{t}+
+		\left(1+\frac{R}{R_0}\right)u=0
+	\]
 }{%
-    On lit graphiquement $u(0)=4,0$V et $u(2T)=1,4$V. On peut alors calculer
-    $d_2=\ln\dfrac{u(0)}{u(2T)}$.
+	\noindent
+	\begin{minipage}[t]{.30\linewidth}
+		On commence par représenter le circuit en ajoutant en parallèle de $C$ la
+		résistance $R_0$ et la capacité $C_0$.
+		\begin{center}
+			\includegraphics[width=\linewidth]{rlc_oscillo}
+			\captionof{figure}{Circuit avec oscilloscope.}
+			\label{fig:P1osci}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.65\linewidth}
+		Loi des nœuds~:
+		\begin{DispWithArrows*}
+			i &= i_{R_0} + i_{C_0} + i_C
+			\Arrow{$i_C = C \dv{u}{t}$\\$i_{C_0} = C_0 \dv{u}{t}$\\$i_{R_0} =
+					\frac{u}{R_0}$}
+			\\\Lra
+			i &= \frac{u}{R_0} + (C+C_0)\dv{u}{t}
+		\end{DispWithArrows*}
+		Dans la loi des mailles,
+		\begin{DispWithArrows*}[fleqn, mathindent=-15pt]
+			u_L + u_R + u &= 0
+			\Arrow{$u_L = L \dv{i}{t}$\\$u_R = Ri$}
+			\\\Lra
+			L \dv{i}{t} + Ri + u &= 0
+			\Arrow{$i = \frac{u}{R_0}$\\$ + (C+C_0)\dv{u}{t}$}
+			\\\Lra
+			\frac{L}{R_0} \dv{u}{t} + L(C+C_0) \dv[2]{u}{t} +
+			\frac{R}{R_0}u + R(C+C_0) \dv{u}{t} + u &=0
+			\Arrow{On factorise}
+			\\\Lra
+			\Aboxed{
+				L(C+C_0)\dv[2]{u}{t} +
+				\left(\frac{L}{R_0}+RC+RC_0\right)\dv{u}{t}+
+				\left(1+\frac{R}{R_0}\right)u
+				&= 0
+			}
+		\end{DispWithArrows*}
+	\end{minipage}
+}
 
-    Comme $d_2= \frac{4 \pi }{\sqrt{4Q^2-1}}$, on en déduit~: $\boxed{ Q =
-  \sqrt{ \frac{1}{4} + 4 \left( \frac{\pi}{d_2} \right) ^2} }$. Application
-numérique~: $ \underline{Q = 6,0}$ }
+\QR[7]{%
+	Quelles relations qualitatives doivent vérifier $R$, $L$, $C$, $R_0$ et
+	$C_0$ pour que la mise en place de l'oscilloscope ait une influence
+	négligeable sur les oscillations étudiées~? Vérifier qu'avec les valeurs
+	usuelles de $R$, $L$ et $C$ utilisées en travaux pratiques ces relations
+	sont vérifiées.
+}{%
+	Pour que l'oscilloscope ait le moins d'influence possible sur les
+	oscillations, il faut que les coefficients de l'équation différentielle
+	précédente diffèrent le moins possible de ceux de l'équation
+	différentielle~\eqref{eq:rlsimple}~:
+	\begin{itemize}
+		\item $C \gg C_0$; les capacités utilisées en T.P.\ sont de l'ordre du
+		      $\si{nF}$ ou du $\si{\micro F}$. Comme $C_0=\SI{11}{pF}$, cette
+		      condition est bien vérifiée~;
+		\item $R \ll R_0$; les résistances utilisées en T.P.\ sont de l'ordre du
+		      $\si{k\ohm}$. Comme  $R_0=\SI{1,0}{M\ohm}$ , cette condition
+		      est bien vérifiée~;
+		\item $\frac{L}{R_0} \ll RC$ soit $R_0 \gg \frac{L}{RC} \approx
+			      \SI{e4}{\ohm}$~; cette condition est bien vérifiée.
+	\end{itemize}
+}
 
+\QR[4]{%
+	On définit le décrément logarithmique comme étant la quantité
+	$d_m=\ln\dfrac{u(t)}{u(t+mT)}$ où $T=2\pi/\w$ et $m$ est un entier
+	strictement positif. Exprimer $d_m$ en fonction de $m$ et de $Q$.
+}{%
+	En remarquant que $ \cos{(\W (t + T))} = \cos{(\W t + 2\pi)} = \cos{(\W
+			t)}$, on montre facilement que $d_m =\ln { \left( \exp{\frac{\W_0 m T}{2Q}}
+			\right) }$.
+	On obtient donc~: $d_m = \dfrac{\w_0 m T}{2Q}$. En remplaçant $T$ par
+	$\frac{2\pi}{\W}$ où $\W = \frac{\w_0}{Q} \sqrt{4Q^{2}-1}$, il vient~:
+	\[
+		\boxed{d_m = \frac{2 \pi m}{\sqrt{4Q^2-1}}}
+	\]
+}
+
+\QR[2]{%
+	On réalise un montage expérimental où le circuit RLC est excité par un
+	générateur basses fréquences délivrant une tension créneau. Comment faut-il
+	choisir le signal délivré par le générateur pour observer les oscillations
+	libres du circuit~? Répondre en terme de la constante $\tau$ et à l'aide d'un
+	schéma.
+	\smallbreak
+}{%
+	\noindent
+	\begin{minipage}[\sswitch{t}{c}]{.6\linewidth}
+		Pour observer les oscillations il faut que la demi-période du signal délivré
+		par le G.B.F.\ soit égale à quelques $\tau$. En effet, le régime permanent est
+		atteint au bout d'approximativement $5\tau$. Une représentation avec le
+		circuit RC est proposée ci-contre.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[\sswitch{t}{c}]{.38\linewidth}
+		\ifstudent{
+			\vspace{-40pt}
+		}
+		\begin{center}
+			\includegraphics[width=\linewidth]{creneau_taugood}
+			% \captionof{figure}{Accord entrée/sortie pour RC.}
+			% \label{fig:taugoodRC}
+		\end{center}
+	\end{minipage}
+}
+
+\QR[3]{%
+	La tension aux bornes du condensateur est enregistrée grâce à un logiciel
+	d'acquisition. Le signal obtenu est représenté sur la
+	figure~\ref{fig:P1graph}.
+	\begin{figure}[htbp!]
+		\centering
+		\includegraphics[width=.8\linewidth]{carac-rlc-15}
+		\caption{Signal obtenu.}
+		\label{fig:P1graph}
+	\end{figure}
+	Estimer le facteur de qualité $Q$ du circuit.
+}{%
+	On lit graphiquement $u(0)=4,0$V et $u(2T)=1,4$V. On peut alors calculer
+	$d_2=\ln\dfrac{u(0)}{u(2T)}$.
+
+	Comme $d_2= \frac{4 \pi }{\sqrt{4Q^2-1}}$, on en déduit~:
+	$\boxed{ Q =
+			\sqrt{ \frac{1}{4} + 4 \left( \frac{\pi}{d_2} \right) ^2}
+		}
+	$.
+	Application numérique~: $\xul{Q = 6,0}$
+}
 
 \enonce{
-  On suppose $Q\gg 1$: la dissipation d'énergie par effet Joule est traitée
-  comme une perturbation par rapport au cas du circuit non dissipatif ($R=0$).
-  On prendra alors $\Omega \approx \w_0$. On rappelle par ailleurs le
-  développement limité de l'exponentielle en 0~:
-  \[
-    \exr^{x} \Sim_{x\to0} 1 + x
-  \]
+	On suppose $Q\gg 1$: la dissipation d'énergie par effet Joule est traitée
+	comme une perturbation par rapport au cas du circuit non dissipatif ($R=0$).
+	On prendra alors $\w \approx \w_0$. On rappelle par ailleurs le
+	développement limité de l'exponentielle en 0~:
+	\[
+		\exr^{x} \Sim_{x\to0} 1 + x
+	\]
 }
-	\QR{%
-    Dans le cas où $R=0$, établir l'expression de la valeur moyenne temporelle
-    $\moy{\Ec}$ de l'énergie électromagnétique stockée dans le circuit.
-	}{%
-    Dans le cas où $R = 0$, le circuit est non dissipatif donc l'énergie
-    emmagasinée dans le condensateur et la bobine reste constante. On l'évalue
-    facilement en $t=0$~:
-    \[
-      \Ec(t=0) = \frac{Cu_0^2}{2}
-      \Ra 
-      \boxed{\moy{\Ec} = \frac{Cu_0^{2}}{2}}
-    \]
-	}
+\QR[4]{%
+Dans le cas où $R=0$, établir l'expression de la valeur moyenne temporelle
+$\moy{\Ec}$ de l'énergie électromagnétique stockée dans le circuit.
+}{%
+Dans le cas où $R = 0$, le circuit est non dissipatif donc l'énergie
+emmagasinée dans le condensateur et la bobine reste constante. On l'évalue
+facilement en $t=0$~:
+\[
+	\Ec(t=0) = \frac{Cu_0^2}{2}
+	\Ra
+	\boxed{\moy{\Ec} = \frac{Cu_0^{2}}{2}}
+\]
+}
 
-	\QR{%
-  Dans le cas où $R\neq 0$, montrer qu'au premier ordre en $1/Q$, l'énergie
-  $\Ec_J$ dissipée par effet \textsc{Joule} dans le circuit RLC, pendant une
-  pseudo-période, vérifie la relation~:
-		\[
-		  \Ec_J = \frac{2\pi}{Q}\moy{\Ec}
-		\]
-	}{%
-  Il faut évaluer l'énergie emmagasinée par le condensateur et la bobine à
-  l'instant $t$~:
-  \[
-    \Ec(t) = \frac{Cu^2(t)}{2} + \frac{Li^2(t)}{2}
-  \]
+\QR[9]{%
+	Dans le cas où $R\neq 0$, montrer qu'au premier ordre en $1/Q$, l'énergie
+	$\Ec_J$ dissipée par effet \textsc{Joule} dans le circuit RLC, pendant une
+	pseudo-période, vérifie la relation~:
+	\[
+		\Ec_J = \frac{2\pi}{Q}\moy{\Ec}
+	\]
+}{%
+	Il faut évaluer l'énergie emmagasinée par le condensateur et la bobine à
+	l'instant $t$~:
+	\[
+		\Ec(t) = \frac{Cu^2(t)}{2} + \frac{Li^2(t)}{2}
+	\]
 	Pour $Q \gg 1$, on a $\W \approx \w_0$ , l'expression de $u(t)$ devient~:
-	
-  \begin{DispWithArrows*}[groups]
-        u(t) &= u_0 \exr^{-\frac{t}{\tau}}
-          \left( \cos{(\w t)} + \frac{\w_0}{2Q\w} \sin{(\w t)} \right)
-          \Arrow{$\W \approx \w_0$}
-          \\\Lra
-      u (t) &\approx u_0 \exr^{-\frac{t}{\tau}}
-      \left( \cos{(\w_0 t)} + \frac{1}{2Q} \sin{(\w_0 t)} \right)
-      \Arrow{$Q \gg 1 \Lra \frac{1}{Q} \approx 0$}
-      \\\Lra
-      \Aboxed{
-        u(t) &\approx u_0 \exr^{-\frac{t}{\tau}} \cos{(\w_0 t)}
-      }
-      \Arrow{$i(t) = C \dv{u}{t}$}
-      \\\Ra 
-      i(t) &= -Cu_0 \exr^{-\frac{t}{\tau}}
-      \left( \w_0 \sin{(\w_0 t)} + \frac{1}{\tau} \cos{(\w_0 t)} \right)
-      \Arrow{$\frac{1}{\tau} = \frac{\w_0}{2Q} \ll \w_0$}
-      \\\Ra 
-		  \Aboxed{i(t) &\approx -Cu_0 \w_0 \sin{(\w_0 t)} \exr^{-\frac{t}{\tau}}}
-      \\\text{or}\qquad 
-      \Ec(t) &= \frac{Cu^2(t)}{2} + \frac{Li^2(t)}{2}
-      \Arrow{On injecte}
-      \\\Lra
-      \Aboxed{\Ec(t) &= \frac{1}{2} C u_0^2 \exr^{ -\frac{2t}{\tau}}}
-  \end{DispWithArrows*}
+	\begin{DispWithArrows*}[groups]
+		u(t) &= u_0 \exr^{-\frac{t}{\tau}}
+		\left( \cos{(\w t)} + \frac{\w_0}{2Q\w} \sin{(\w t)} \right)
+		\Arrow{$\W \approx \w_0$}
+		\\\Lra
+		u (t) &\approx u_0 \exr^{-\frac{t}{\tau}}
+		\left( \cos{(\w_0 t)} + \frac{1}{2Q} \sin{(\w_0 t)} \right)
+		\Arrow{$Q \gg 1 \Lra \frac{1}{Q} \approx 0$}
+		\\\Lra
+		\Aboxed{
+			u(t) &\approx u_0 \exr^{-\frac{t}{\tau}} \cos{(\w_0 t)}
+		}
+		\Arrow{$i(t) = C \dv{u}{t}$}
+		\\\Ra
+		i(t) &= -Cu_0 \exr^{-\frac{t}{\tau}}
+		\left( \w_0 \sin{(\w_0 t)} + \frac{1}{\tau} \cos{(\w_0 t)} \right)
+		\Arrow{$\frac{1}{\tau} = \frac{\w_0}{2Q} \ll \w_0$}
+		\\\Ra
+		\Aboxed{i(t) &\approx -Cu_0 \w_0 \sin{(\w_0 t)} \exr^{-\frac{t}{\tau}}}
+		\\\text{or}\qquad
+		\Ec(t) &= \frac{Cu^2(t)}{2} + \frac{Li^2(t)}{2}
+		\Arrow{On injecte}
+		\\\Lra
+		\Aboxed{\Ec(t) &= \frac{1}{2} C u_0^2 \exr^{ -\frac{2t}{\tau}}}
+	\end{DispWithArrows*}
 	En une pseudo-période $T$, l'énergie décroît de la quantité~:
-  \begin{DispWithArrows*}
-    \Delta_T{\Ec} &=
-      \Ec(t) - \Ec(t+T)
-      \\\Lra
-    \Delta_T{\Ec} &=
-      \frac{1}{2}Cu_0^2\exr^{-\frac{2t}{\tau}}
-      \left( 1 - \exr^{ -\frac{2T}{\tau} } \right)
-      \Arrow{$\tau = \frac{2Q}{\w_0}$}
-      \\\Lra
-    \Delta_T{\Ec} &=
-      \frac{1}{2}Cu_0^2\exr^{-\frac{\w_0t}{Q}}
-      \left( 1 - \exr^{ -\frac{\w_0T}{Q} } \right)
-      \Arrow{$\W \approx \w_0$ et $\W T = 2\pi$}
-      \\\Lra
-    \Delta_T{\Ec} &=
-      \frac{1}{2}Cu_0^2\exr^{-\frac{\w_0t}{Q}}
-      \left( 1 - \exr^{ -\frac{2\pi}{Q} } \right)
-      \Arrow{$\exr^{-\frac{2\pi}{Q}} \Sim_{Q\to\infty} 1 - \frac{2\pi}{Q}$}
-      \\\Lra
-    \Delta_T{\Ec} &\Sim_{Q\to\infty} 
-    \frac{1}{2}Cu_0^2 \underbracket[1pt]{\exr^{-\frac{\w_0t}{Q}}}_{\approx 1}
-      \left( \cancel{1} - \left( \cancel{1} - \frac{2\pi}{Q} \right) \right)
-      \Arrow{On simplifie}
-      \\\Lra
-    \Delta_T{\Ec} &\Sim_{Q\to\infty} \frac{2\pi}{Q} \moy{\Ec}
-  \end{DispWithArrows*}
-  Or, l'énergie dissipée par effet \textsc{Joule} en une pseudo-période
-  correspond à l'énergie perdue par $L$ et $C$ pendant cette durée donc $\Ec_J =
-  \Ec(t) - \Ec(t+T)$. Ainsi,
-		\[
-		  \boxed{\Ec_J \approx \frac{2\pi}{Q}\moy{\Ec}}
-		\]
-	}
+	\begin{DispWithArrows*}
+		\Delta_T{\Ec} &=
+		\Ec(t) - \Ec(t+T)
+		\\\Lra
+		\Delta_T{\Ec} &=
+		\frac{1}{2}Cu_0^2\exr^{-\frac{2t}{\tau}}
+		\left( 1 - \exr^{ -\frac{2T}{\tau} } \right)
+		\Arrow{$\tau = \frac{2Q}{\w_0}$}
+		\\\Lra
+		\Delta_T{\Ec} &=
+		\frac{1}{2}Cu_0^2\exr^{-\frac{\w_0t}{Q}}
+		\left( 1 - \exr^{ -\frac{\w_0T}{Q} } \right)
+		\Arrow{$\W \approx \w_0$ et $\W T = 2\pi$}
+		\\\Lra
+		\Delta_T{\Ec} &=
+		\frac{1}{2}Cu_0^2\exr^{-\frac{\w_0t}{Q}}
+		\left( 1 - \exr^{ -\frac{2\pi}{Q} } \right)
+		\Arrow{$\exr^{-\frac{2\pi}{Q}} \Sim_{Q\to\infty} 1 - \frac{2\pi}{Q}$}
+		\\\Lra
+		\Delta_T{\Ec} &\Sim_{Q\to\infty}
+		\frac{1}{2}Cu_0^2 \underbracket[1pt]{\exr^{-\frac{\w_0t}{Q}}}_{\approx 1}
+		\left( \cancel{1} - \left( \cancel{1} - \frac{2\pi}{Q} \right) \right)
+		\Arrow{On simplifie}
+		\\\Lra
+		\Delta_T{\Ec} &\Sim_{Q\to\infty} \frac{2\pi}{Q} \moy{\Ec}
+	\end{DispWithArrows*}
+	Or, l'énergie dissipée par effet \textsc{Joule} en une pseudo-période
+	correspond à l'énergie perdue par $L$ et $C$ pendant cette durée donc $\Ec_J =
+		\Ec(t) - \Ec(t+T)$. Ainsi,
+	\[
+		\boxed{\Ec_J \approx \frac{2\pi}{Q}\moy{\Ec}}
+	\]
+}
 
-\resetQ
+% \resetQ
 % \iftoggle{corrige}{}{%
 %   \clearpage
 % }
@@ -1121,7 +1153,7 @@ numérique~: $ \underline{Q = 6,0}$ }
 % La force totale $\vv{F_{tot}}$ agissant sur la masse correspond à la réaction normale à la base horizontale $\vv{R_N}$, à la force de frottement $\vv{F_d}= - \gamma \vv{v}$  où $\gamma$ est la constante d’amortissement positive, permettant  de prendre en compte l’effet de l’eau environnante, à la force de rappel $\vv{F_k}$ du ressort et au poids $\vv{P}$ de la masse $m$.
 % }
 %
-% \QR
+% \QR[0]
 % {Etablir l’équation différentielle du mouvement de la masse $m$ et la mettre sous la forme~:
 %
 % \centersright{$\xpp+2\xi\w_0 \xp+{\w_0}^2 x=0$}{(équation 1)}
@@ -1169,7 +1201,7 @@ numérique~: $ \underline{Q = 6,0}$ }
 % \leftcenters{Soit} {$\xi=\frac{\gamma}{2m\w_0}=\frac{\gamma}{2m}\sqrt{\frac{m}{k}} = \frac{\gamma}{2}\sqrt{\frac{1}{mk}}$}
 % }
 %
-% \QR
+% \QR[0]
 % {Dans le cas où  $\xi < 1$, justifier que $x\left(t\right)$ peut prendre la forme suivante~:
 %
 % \centersright{$x\left(t\right)=\exr^{-\xi\w_0 t}[A \cos(\W t)+B \sin(\W t)]$}{(équation 2)}
@@ -1211,7 +1243,7 @@ numérique~: $ \underline{Q = 6,0}$ }
 % \leftcenters{ Soit }{$B=\frac{v_0-\alpha A}{\W}=\frac{v_0+\xi\w_0x_0}{\W}=\frac{v_0+\xi\w_0x_0}{\w_0\sqrt{1-\xi^2}}$}
 % }
 %
-% \QR
+% \QR[0]
 % {Montrer que l’on peut aussi obtenir une forme de la solution du type~:
 %
 % \centersright{$x\left(t\right)=X_m \exr^{-\xi\w_0t}\cos{(} \mathrm{\W t}+\varphi)$}{(équation 3)} 
@@ -1237,7 +1269,7 @@ numérique~: $ \underline{Q = 6,0}$ }
 % \leftcenters{D’où}{ $\varphi=-\arctan\left(\frac{B}{A}\right) \quad \text{et} \quad X_m=\sqrt{A^2+B^2}$}
 % }
 %
-% \QR
+% \QR[0]
 % {Représenter qualitativement $x\left(t\right)$ en fonction de $t$ et indiquer sur le tracé $X_m e^{-\xi\w_0t}$ , $x_0$ et $T={2\pi}/{\W}$ la pseudo-période.}
 % {
 % Allure du graphe ci-contre~: 
@@ -1251,13 +1283,13 @@ numérique~: $ \underline{Q = 6,0}$ }
 %
 % }
 %
-% \QR
+% \QR[0]
 % {Justifier qualitativement que l’énergie mécanique $E(t)$ est une fonction décroissante de $t$. À quoi cela est-il dû~?}
 % {
 % A cause des frottements, l’énergie mécanique $E(t)$ est une fonction décroissante de $t$.
 % }
 %
-% \QR
+% \QR[0]
 % {On envisage deux temps successifs $t_1$ et $t_2$ pour lesquels les déplacements sont $x_1$ et $x_2$, tels que $t_2 > t_1$ 
 % et $t_2-t_1=T$ , où $T$ est la période des oscillations amorties. 
 % En utilisant l’équation (3) et en considérant que $\xi \ll 1$, montrer que~:            
@@ -1282,7 +1314,7 @@ numérique~: $ \underline{Q = 6,0}$ }
 % \centers{ $\ln{\left(\frac{x_1}{x_2}\right)}\approx2\pi\xi$}
 % }
 %
-% \QR
+% \QR[0]
 % {Toujours dans le cas où $\xi\ll 1$, le relevé du déplacement horizontal de la plateforme en fonction du temps 
 % est représenté en figure 2 ci-dessous. En utilisant les deux points qui sont indiqués sur la figure 2, déterminer les valeurs numériques de $k$, $\xi$ et $\gamma$ (avec leurs unités). Comment ce tracé serait-il modifié si $\xi$ augmentait (un rapide graphique peut permettre d’être plus explicite)~? 
 %
@@ -1338,6 +1370,369 @@ numérique~: $ \underline{Q = 6,0}$ }
 % 					{cos}^2\left(\alpha\right)+{sin}^2\left(\alpha\right)=1$} 
 % }
 
-\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/assemblages_de_ressorts/}{sujet.tex}
+\iftoggle{corrige}{}{%
+	\clearpage
+}
+\resetQ
+\prblm[58]{Assemblages de ressorts}
+\enonce{
+	\noindent
+	\begin{minipage}[t]{.48\linewidth}
+		Pour un TIPE, un-e étudiant-e a besoin d'un ressort de raideur
+		$\SI{15}{\N\per\m}$. Malheureusement, le laboratoire du lycée ne possède que
+		des ressorts de raideur $k_1=\SI{10}{\N\per\m}$ et $k_2=\SI{20}{\N\per\m}$.
+		En revanche, tous les ressorts ont la même longueur à vide
+		$\ell_0=\SI{10}{\cm}$.
+		\bigbreak
+		L'étudiant-e décide alors d'assembler les ressorts pour obtenir la raideur
+		qu'iel souhaite. Iel hésite cependant entre un assemblage en série ou en
+		parallèle, voir Figures~\ref{fig:assem_serie} et~\ref{fig:assem_para}
+		ci-contre.
+		\bigbreak
+		Iel mène donc une étude des deux assemblages pour voir
+		comment ils se comportent. Iel dispose d'une masse $m=\SI{100}{g}$ repérée par
+		le point $M$, considéré comme un point matériel. On négle les masses des
+		ressorts.
+	\end{minipage}
+	\begin{minipage}[t]{.24\linewidth}
+		\vspace{-5pt}
+		\begin{center}
+			\includegraphics[height=5cm]{ressorts_verticaux_serie.pdf}
+			\captionof{figure}{Assemblages en série}
+			\label{fig:assem_serie}
+		\end{center}
+	\end{minipage}
+	\begin{minipage}[t]{.24\linewidth}
+		\vspace{-5pt}
+		\begin{center}
+			\includegraphics[height=5cm]{ressorts_verticaux_parallele.pdf}
+			\captionof{figure}{Assemblages en parallèle}
+			\label{fig:assem_para}
+		\end{center}
+	\end{minipage}
+}
+
+\partie{Assemblage en série}
+
+\enonce{%
+	Dans ce montage, le premier ressort est accroché au niveau du support fixe en un
+	point noté O. Le second ressort est accroché au premier en un point N. Pour
+	mener l'étude, on considèrera que le point N possède une masse $m'$. On note
+	O$z$ la verticale descendante, dirigée par le vecteur unitaire $\uz$,
+	orienté vers le bas (cf.\ Figure~\ref{fig:assem_serie}).
+}
+
+\ifcorrige{
+	\begin{center}
+		\includegraphics[height=7cm]{ressorts_verticaux_serie_corrige.pdf}
+		\captionof{figure}{Assemblages en série}
+		\label{fig:assem_serie-corr}
+	\end{center}
+}
+\QR[4]{%
+	Faire le bilan des forces s'exerçant sur le point M, les représenter sur un
+	schéma et les exprimer en fonction des paramètres du problème.
+}{%
+	\label{q:bdf_serie}
+	\begin{itemize}
+		\bitem{BDF~:}
+		\[
+			\begin{array}{ll}
+				\textbf{Poids}     & \Pf = mg\uz
+				\\
+				\textbf{Ressort 2} & \vv{F}\ind{2, el} = -k_2(\ell_2-\ell_0)\uz
+			\end{array}
+		\]
+	\end{itemize}
+	En effet, si on suppose que le ressort est étiré, il exerce sur la masse une
+	force vers le haut, donc selon $-\uz$. Or dans ce cas, $\Delta \ell_2 =
+		\ell_2-\ell_0>0$ et l'expression précédente avec le signe moins fournit bien
+	une force orientée selon $-\uz$. Voir Figure~\ref{fig:assem_serie-corr}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[3]{%
+	\label{q:leq_serie}
+	En déduire l'expression de la longueur à l'équilibre $\ell\ind{2,eq}$ du ressort
+	$2$ (celui placé en bas) en fonction des paramètres du problème. Faire
+	l'application numérique.
+}{%
+	À l'équilibre, la somme des forces extérieures appliquées à la masse est nulle~:
+	\begin{DispWithArrows*}[]
+		\vv{F}\ind{2,el} + \vv{P} &= \vv{0}
+		\Arrow{On remplace}
+		\\\Lra
+		-k_2(\ell_{2,eq}-\ell_0)\uz + mg\uz &= \vv{0}
+		\Arrow{On multiple par $\cdot \uz$}
+		\\\Lra
+		-k_2(\ell_{2,eq}-\ell_0) + mg &= 0
+		\Arrow{On isole}
+		\\\Lra
+		\Aboxed{\ell_{2,eq} &= \ell_0 + \dfrac{mg}{k_2}}
+		\Arrow{Calcul}
+		\\
+		\makebox[0pt][l]{$\phantom{\AN}\xul{\phantom{\ell\ind{2,eq} = \SI{15}{cm}}}$}
+		\AN
+		\ell\ind{2,eq} &= \SI{15}{cm}
+	\end{DispWithArrows*}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[6]{%
+	Faire le bilan des forces s'exerçant sur le point $N$, les représenter sur le
+	même schéma et les exprimer en fonction des paramètres du problème.
+}{ %%%%%%%%%%%%%
+	\begin{itemize}
+		\bitem{BDF~:}
+		\[
+			\begin{array}{ll}
+				\textbf{Poids}     & \Pf = m'g\uz
+				\\
+				\textbf{Ressort 2} & \vv{F'}\ind{2, el} = k_2(\ell_2-\ell_0)\uz
+				\\
+				\textbf{Ressort 1} & \vv{F'}\ind{1, el} = -k_1(\ell_1-\ell_0)\uz
+			\end{array}
+		\]
+	\end{itemize}
+	En effet, si on suppose que le ressort $2$ est étiré, il exerce sur la masse
+	une force vers le bas, donc selon $+\uz$. Or dans ce cas, $\Delta \ell_2
+		= \ell_2-\ell_0>0$ et l'expression précédente avec le signe plus fournit bien
+	une force orientée selon $+\uz$. La justification du signe de la force
+	$\vv{F}'\ind{1,el}$ est identique à celle de la question
+	\ref{q:bdf_serie}.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[4]{%
+	En déduire que la longueur à l'équilibre $\ell\ind{1,eq}$ du ressort $1$
+	(celui placé en haut) est donnée par~:
+	\[
+		\ell\ind{1,eq} = \ell_0 + \dfrac{(m+m')g}{k_1}
+	\]
+}{
+	%%%%%%%%%%%%%
+	À l'équilibre, la somme des forces extérieures appliquées à la masse est nulle~:
+	\begin{DispWithArrows*}[groups]
+		\vv{F}'\ind{1,el} + \vv{F}'\ind{2,el} + \vv{P}' = \vv{0} & \Lra -k_1(\ell_{1,eq}-\ell_0)\uz  + k_2(\ell_{2,eq}-\ell_0)\uz + m'g\uz = \vv{0} \\
+		& \Lra -k_1(\ell_{1,eq}-\ell_0)+k_2(\ell_{2,eq}-\ell_0) + m'g = 0                                 \\
+		& \Lra k_1(\ell_{1,eq}-\ell_0) =  k_2(\ell_{2,eq}-\ell_0) + m'g                                   \\
+		& \Lra \ell_{1,eq} = \ell_0 + \dfrac{k_2(\ell_{2,eq}-\ell_0) + m'g}{k_1}
+		\Arrow{\ref{q:leq_serie} $\Ra k_2(\ell_{2,eq}-\ell_0) = mg$} \\
+		& \Lra \boxed{\ell_{1,eq} = \ell_0 + \dfrac{(m+m')g}{k_1}}
+	\end{DispWithArrows*}
+}
+
+\QR[2]{%
+	Commenter la formule précédente.
+}{%
+	Du point de vue du ressort $1$, tout se passe comme si on avait accroché une
+	masse de valeur $m+m'$. En effet, pour le ressort, que cette masse soit d'un
+	seul tenant ou constituée de deux masses (et un ressort de masse nulle) ne
+	change rien.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\QR[0]{%
+%En utilisant le principe fondamental de la dynamique appliqué au ressort 2 supposé de masse nulle, trouver une relation entre la force appliquée par le ressort 2 sur le point N et la force appliquée par le ressort 2 sur le point M. Commenter.
+%}{%%%%%%%%%%%%%
+%Pas de corrigé.
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[4]{%
+	Déterminer l'expression de l'altitude $z\ind{eq}$ du point $M$. Simplifier la
+	formule dans le cas où le point $N$ possède une masse nulle ($m'=0$).
+}{%
+	Dans la configuration établie par l'énoncé, on a $z=\ell_1+\ell_2$. À
+	l'équilibre, on a alors~:
+	\[
+		z\ind{eq}=\ell_{1,eq}+\ell_{2,eq} =
+		\ell_0 + \dfrac{(m+m')g}{k_1} + \ell_0 + \dfrac{mg}{k_2}
+		\qso
+		\boxed{z\ind{eq} = 2\ell_0  + \dfrac{(m+m')g}{k_1} + \dfrac{mg}{k_2}}
+	\]
+	En tenant compte d'une masse nulle pour le point $N$, on obtient~:
+	\[
+		\boxed{z\ind{eq} = 2\ell_0  + \pa{\dfrac{1}{k_1} + \dfrac{1}{k_2}}mg}
+	\]
+}
+
+\QR[3]{%
+	Par analogie avec le résultat que vous obtiendriez si la masse $m$ n'était
+	accrochée qu'à un seul ressort de raideur $K$ et de longueur à vide $\ell_0$,
+	déterminer les caractéristiques ($K$ et $\ell_0$) de ce ressort équivalent aux
+	deux ressorts accrochés en série.
+}{%%%%%%%%%%%%%
+	Le cas d'un seul ressort vertical donne~:
+	\[
+		z\ind{eq} = \ell_0 + \dfrac{1}{K}mg
+	\]
+	En identifiant les deux formules terme à terme, on a~:
+	\[
+		\boxed{\ell_0 = 2\ell_0}
+		\qet
+		\dfrac{1}{K} = \dfrac{1}{k_1} + \dfrac{1}{k_2}
+		\qso
+		\boxed{K = \dfrac{k_1k_2}{k_1+k_2}}
+	\]
+}
+
+\QR[2]{%
+	Montrer que cet assemblage ne peut pas satisfaire l'étudiant-e pour son TIPE.
+}{%
+	On calcule $K$ avec les valeurs fournies~: $\xul{K = \SI{6,7}{\N\per\m}}$.
+	C'est trop faible.
+}
+
+\partie{Assemblage en parallèle}
+
+\enonce{%
+	Dans ce montage, les deux ressorts sont accrochés au même support fixe et à la
+	masse $m$. On note toujours O$z$ la verticale descendante, dirigée par le
+	vecteur unitaire $\uz$, orienté vers le bas (cf.\
+	Figure~\ref{fig:assem_para}).
+}
+
+\ifcorrige{
+	\begin{center}
+		\includegraphics[height=7cm]{ressorts_verticaux_parallele_corrige.pdf}
+		\captionof{figure}{Assemblages en parallèle}
+		\label{fig:assem_para-corr}
+	\end{center}
+}
+
+\QR[7]{%
+	Expliciter le lien entre $\ell_1$, $\ell_2$ et $z$, puis faire le bilan des
+	forces qui s'exercent sur le point $M$ et les représenter sur un schéma.
+}{%
+	\begin{itemize}
+		\bitem{BDF~:}
+		\[
+			\begin{array}{ll}
+				\textbf{Poids}     & \Pf = mg\uz
+				\\
+				\textbf{Ressort 1} & \vv{F}\ind{1, el} = -k_1(\ell-\ell_0)\uz
+				\\
+				\textbf{Ressort 2} & \vv{F}\ind{2, el} = -k_2(\ell-\ell_0)\uz
+			\end{array}
+		\]
+	\end{itemize}
+	On a tenu compte du fait qu'ici $\ell_2=\ell_1 = \ell$ et on a mis le signe
+	des forces en accord avec ce qui a déjà été établi précédemment.
+}
+
+\QR[10]{%
+	Établir l'équation du mouvement du point $M$ et la mettre sous forme
+	canonique. Vous prendrez soin de détailler extensivement le cadre mécanique
+	nécessaire à cette étude.
+}{%
+	\ifstudent{
+		~\\
+		\vspace{-15pt}
+	}
+	\begin{isd}[lefthand ratio=.35]
+		\begin{itemize}
+			\bitem{Système~:} \{point M\} de masse $m$
+			\bitem{Référentiel~:} $\Rc\ind{lab}$ supposé galiléen
+			\bitem{Repère~:} $(\Or,\uz)$ avec $\uz$ vers le bas
+			\bitem{Repérage~:}
+			\begin{align*}
+				\OM(t) & = z\uz
+				\\
+				\vf(t) & = \zp\uz
+				\\
+				\af(t) & = \zpp\uz
+			\end{align*}
+		\end{itemize}
+		\tcblower
+		\begin{itemize}
+			\bitem{PFD~:}
+			\begin{DispWithArrows*}[fleqn, mathindent=0pt]
+				m\af &= \Pf + \Ff\ind{1,el} + \Ff\ind{2,el}
+				\Arrow{$\cdot \uz$ et $\ell = z$}
+				\\\Lra
+				m\zpp &= -k_1(z-\ell_0) -k_2(z-\ell_0) + mg
+				\Arrow{On simplifie}
+				\\\Lra
+				m\zpp + (k_1+k_2)z &= (k_1+k_2)\ell_0 + mg
+				\Arrow{Forme canonique}
+				\\\Lra
+				\Aboxed{
+					\zpp + \dfrac{k_1+k_2}{m} z &=
+					\dfrac{k_1+k_2}{m}\left(\ell_0 + \dfrac{mg}{k_1+k_2}\right)
+				}
+			\end{DispWithArrows*}
+		\end{itemize}
+	\end{isd}
+	\bigbreak
+	On pose $\boxed{\w_0 = \sqrt{\dfrac{k_1+k_2}{m}}}$ et $\boxed{z\ind{eq}=\ell_0
+			+ \dfrac{mg}{k_1+k_2}}$~:
+	\[
+		\boxed{\zpp + \w_0^2 z = \w_0^2 z\ind{eq}}
+		\label{eq:P2_harmo}
+	\]
+}
+
+\QR[2]{%
+	Déterminer les caractéristiques $K$ et $\ell_0$ du ressort équivalent aux
+	deux ressorts accrochés en parallèle.
+}{%
+	On a déjà traité le cas d'un seul ressort dans la première partie du sujet. On
+	constate qu'on a ici exactement la même équation que pour un seul ressort avec
+	$\boxed{\ell_0 = \ell_0}$ et $\boxed{K = k_1+k_2}$.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[2]{%
+	Montrer que cet assemblage ne peut pas satisfaire l'étudiant-e pour son TIPE.
+}{%
+	Avec cet assemblage, l'étudiant-e obtient un système équivalent à un ressort
+	de raideur $\xul{K = \SI{30}{\N\per\m}}$, soit une raideur deux fois trop
+	élevée.
+}
+
+\partie{Assemblage complexe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\QR[9]{%
+	Déterminer un assemblage équivalent à un ressort ayant la raideur souhaité par
+	l'étudiant-e. Faire un schéma de la situation proposée.
+}{%
+	\noindent
+	\begin{minipage}[t]{.75\linewidth}
+		\begin{itemize}
+			\item l'assemblage en série donne ici une raideur deux fois trop élevée~;
+			\item l'assemblage en parallèle peut permettre de diviser par deux la raideur.
+		\end{itemize}
+		En effet, dans la formule obtenue pour l'assemblage en série, on avait
+		$K=\frac{k_1k_2}{k_1+k_2}$. Avec $k_1 = k_2$, cette formule devient $K =
+			\frac{k_1^2}{2k_1} = \frac{k_1}{2}$. Un assemblage série de deux ressorts
+		identiques permet bien de diviser par deux la raideur.
+		\bigbreak
+		On peut donc envisager le montage suivant~: on fabrique deux assemblages en
+		parallèle identiques, chacun avec un ressort de raideur
+		$k_1=\SI{10}{\N\per\m}$ et un ressort de raideur $k_2=\SI{20}{\N\per\m}$. Ces
+		assemblages sont chacun équivalent à un ressort de raideur $k_3
+			=\SI{30}{\N\per\m}$ d'après les résultats précédents.
+		\bigbreak
+		On assemble ces deux ressorts équivalents identiques en série et on divise
+		alors par deux la raideur $k_3$. La raideur équivalente totale $k_4$ est alors
+		bien de la valeur recherchée ($\SI{15}{\N\per\m}$).
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.20\linewidth}
+		\vspace{0pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{assemblage_complexe}
+			\captionof{figure}{Assemblage complexe.}
+			\label{fig:assem_cplx}
+		\end{center}
+	\end{minipage}
+}
 
 \end{document}

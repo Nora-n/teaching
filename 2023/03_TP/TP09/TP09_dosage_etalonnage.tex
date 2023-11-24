@@ -6,8 +6,8 @@
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+\HideSolutionstrue
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
@@ -232,34 +232,49 @@ d'où le résultat.
 
 \QR{%
 	Compléter le tableau ci-dessous~:
-
 	\begin{center}
-		\begin{tabularx}{\linewidth}{|Y*{4}{|Y}|}\hline
-			Solution aqueuse $S_i$                           &
-			$S_2$                                            & $S_3$                 & $S_4$                 & $S_5$
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabularx}{\linewidth}{|Y|*{4}{|Y}|}\hline
+			$S_i$                     &
+			$S_2$                     &
+			$S_3$                     &
+			$S_4$                     &
+			$S_5$
 			\\\hline
-			Concentration molaire $c_i$ en $\si{mol.L^{-1}}$ &
-			$c_2 = \num{2.00e-4}$                            & $c_3 = \num{4.00e-4}$ & $c_4 = \num{6.00e-4}$ & $c_5
-				= \num{8.00e-4}$
+			$c_i$ ($\si{mol.L^{-1}}$) &
+			$c_2 = \num{2.00e-4}$     &
+			$c_3 = \num{4.00e-4}$     &
+			$c_4 = \num{6.00e-4}$     &
+			$c_5 = \num{8.00e-4}$
 			\\\hline
-			Volume de solution $S_1$ à prélever en \si{mL}   &
-			                                                 &                       &                       &
+			$V_i (\si{mL})$           &
+			                          &
+			                          &
+			                          &
 			\\\hline
 		\end{tabularx}
 	\end{center}
 }{%
 	\begin{center}
-		\begin{tabularx}{\linewidth}{|Y*{4}{|Y}|}\hline
-			Solution aqueuse $S_i$                           &
-			$S_2$                                            & $S_3$                 & $S_4$                 & $S_5$
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabularx}{\linewidth}{|Y|*{4}{|Y}|}\hline
+			$S_i$                     &
+			$S_2$                     &
+			$S_3$                     &
+			$S_4$                     &
+			$S_5$
 			\\\hline
-			Concentration molaire $c_i$ en $\si{mol.L^{-1}}$ &
-			$c_2 = \num{2.00e-4}$                            & $c_3 = \num{4.00e-4}$ & $c_4 = \num{6.00e-4}$ & $c_5
-				= \num{8.00e-4}$
+			$c_i$ ($\si{mol.L^{-1}}$) &
+			$c_2 = \num{2.00e-4}$     &
+			$c_3 = \num{4.00e-4}$     &
+			$c_4 = \num{6.00e-4}$     &
+			$c_5 = \num{8.00e-4}$
 			\\\hline
-			Volume de solution $S_1$ à prélever en \si{mL}   &
-			                                                 &                       &                       &
-			\\\hline
+			$V_i (\si{mL})$           &
+			\num{10}                  &
+			\num{20}                  &
+			\num{30}                  &
+			\num{40}                    \\\hline
 		\end{tabularx}
 	\end{center}
 }
@@ -269,9 +284,26 @@ d'où le résultat.
 	$S_2$ sans oublier d'expliciter le calcul du volume prélevé de solution
 	aqueuse $S_1$ nécessaire à cette préparation.
 }{%
-	TODO
+	On conserve la quantité de matière pendant la dilution, mais le volume change.
+	Pour avoir $V_1$ et $c_2$ à partir de $c_1$, on aura
+	\[
+		c_1v_1 = c_2V
+		\Lra
+		\boxed{V_1 = \frac{C_2V}{C_1}}
+		\Ra
+		\xul{V_1 = \SI{20}{mL}}
+	\]
+	\begin{enumerate}
+		\item Verser le contenu du grand récipient de solution $S_1$ dans le bécher
+		      devant.
+		\item En verser une \textbf{petite quantité} dans un bécher personnel,
+		      labellé $S_1$.
+		\item Revenir à la paillasse, et prélever \SI{10}{mL} de cette solution avec
+		      une pipette jaugée.
+		\item Insérer les \SI{10}{mL} dans la fiole jaugée de \SI{50}{mL}.
+		\item Remplir d'eau distillée jusqu'au trait de jauge, puis mélanger.
+	\end{enumerate}
 }
-
 
 \section{Réaliser et valider}
 
@@ -285,7 +317,7 @@ d'où le résultat.
 
 	\begin{tcb}(expe){}
 		En suivant le protocole que vous avez établi dans la partie Analyser, préparer
-		la solution fille $S_2$.
+		la solution fille $S_2$, \textit{et uniquement la solution $S_2$}.
 	\end{tcb}
 
 	\subsection{Dosage par spectrophotométrie}
@@ -307,7 +339,7 @@ d'où le résultat.
 			\bitem{Redémarrer le spectrophotomètre sous contrôle de l'ordinateur}~:
 			\begin{enumerate}
 				\item Ouvrir Regressi
-				\item Dans Fichier / nouveau choisir S250
+				\item Dans Fichier $\ra$ nouveau choisir S250
 				\item Choisir dans le menu du spectro le protocole de communication~:
 				      \textbf{S 250 I/PC}.
 				\item Cliquer sur le bouton correspondant au spectro éteint. Le spectro se
@@ -328,7 +360,7 @@ d'où le résultat.
 		\end{itemize}
 	\end{tcb}
 
-	\begin{tcb}[cnt](impo){Manipulation des cuves}
+	\begin{tcb}[cnt, bld](impo){Manipulation des cuves}
 		Vous prendrez soin de placer les cuves dans le bon sens (face transparente
 		dans le passage du faisceau lumineux), en évitant de poser vos doigts sur les
 		faces par lesquelles le faisceau passe.
@@ -336,8 +368,8 @@ d'où le résultat.
 
 	\begin{tcb}(expe)<itc>{Exploitation du graphe}
 		\begin{enumerate}
-			\item Basculer dans Regressi~: clic sur \boxed{.R} (menu Sauver du logiciel
-			      du spectro) et remplir ou non les renseignements demandés.
+			\item Basculer dans Regressi~: clic sur \texttt{Sauver} du logiciel
+			      du spectro, et remplir le nom de la grandeur ($A$).
 			\item Grâce au réticule, pointer la longueur d'onde de la valeur maximale.
 		\end{enumerate}
 	\end{tcb}
@@ -347,9 +379,15 @@ d'où le résultat.
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR{%
 	Imprimer la courbe après avoir retiré le zéro en $x$ et relié les points
-	grâce à un lissage d'ordre 3 (dans le menu Coordonnées).
+	grâce à un lissage d'ordre 3 (dans le menu Coordonnées, décocher «~zéro
+	inclus~»).
 }{%
-	solu
+	\begin{figure}[htbp!]
+		\centering
+		\includegraphics[width=.8\linewidth]{absorbance}
+		\caption{Résultat de Regressi.}
+		\label{fig:absorbance}
+	\end{figure}
 }
 \QR{%
 	À quelle longueur d'onde doit-on travailler ensuite pour avoir un
@@ -372,8 +410,8 @@ d'où le résultat.
 
 	\begin{tcb}(expe)<itc>{Tracé de la courbe d'étalonnage}
 		\begin{enumerate}
-			\item Déconnecter le spectrophotomètre de l'ordinateur en l'éteignant, puis
-			      le rallumer manuellement.
+			\item Déconnecter le spectrophotomètre de l'ordinateur en le débranchant
+			      salement (mais proprement), puis le rallumer manuellement.
 			\item Le spectro va de nouveau se calibrer.
 			\item Choisir la longueur d'onde de travail~: $\lambda = ………\si{nm}$.
 			\item Pour une solution d'eau distillée (ou «~blanc~»), fixer $A = 0$.
@@ -386,24 +424,46 @@ d'où le résultat.
 	le tableau suivant~:
 	\begin{center}
 		\renewcommand{\arraystretch}{1.3}
-		\begin{tabularx}{\linewidth}{|Y*{5}{|Y}|}\hline
+		\begin{tabularx}{\linewidth}{|Y*{6}{|Y}|}\hline
+			Solution               & $S_2$     & $S_3$     & $S_4$     & $S_5$     & $S_1$ & $S_0$
+			\\\hline
 			$c (\si{mmol.L^{-1}})$ &
-			\num{0.2}              & \num{0.4} & \num{0.6} & \num{0.8} & \num{1.0}
+			\num{0.2}              & \num{0.4} & \num{0.6} & \num{0.8} & \num{1.0} &
 			\\\hline
 			A                      &
-			                       &           &           &           &
+			                       &           &           &           &           &
 			\\\hline
 		\end{tabularx}
 	\end{center}
 }{%
+	On relève $\lambda\ind{\max} \approx \SI{526}{nm}$. On rentre cette valeur sur
+	le spectrophotomètre.
 	\begin{center}
 		\renewcommand{\arraystretch}{1.3}
-		\begin{tabularx}{\linewidth}{|Y*{5}{|Y}|}\hline
+		\begin{tabularx}{\linewidth}{|Y*{6}{|Y}|}\hline
+			Solution               &
+			$S_2$                  &
+			$S_3$                  &
+			$S_4$                  &
+			$S_5$                  &
+			$S_1$                  &
+			$S_0$
+			\\\hline
 			$c (\si{mmol.L^{-1}})$ &
-			\num{0.2}              & \num{0.4} & \num{0.6} & \num{0.8} & \num{1.0}
+			\num{0.2}              &
+			\num{0.4}              &
+			\num{0.6}              &
+			\num{0.8}              &
+			\num{1.0}              &
+			\num{0.60}
 			\\\hline
 			A                      &
-			                       &           &           &           &
+			\num{0.492}            &
+			\num{0.903}            &
+			\num{1.313}            &
+			\num{1.729}            &
+			\num{2.2}              &
+			\num{1.410}
 			\\\hline
 		\end{tabularx}
 	\end{center}
@@ -414,7 +474,13 @@ d'où le résultat.
 	courbe $A = f(c)$. La modéliser par une fonction linéaire. Cette droite
 	est aussi appelée «~échelle de teinte~». L'imprimer.
 }{%
-	solu
+	% \begin{figure}[htbp]
+	%   \centering
+	%   \includegraphics[width=.5\linewidth]{}
+	%
+	%   \caption{}
+	%   \label{fig:}
+	% \end{figure}
 }
 
 \QR{%

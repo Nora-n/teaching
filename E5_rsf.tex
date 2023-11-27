@@ -11,7 +11,7 @@
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
 \makeatother
 
-\toggletrue{student}
+% \toggletrue{student}
 \HideSolutionstrue
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
@@ -117,7 +117,7 @@ solution de
 \begin{gather*}
 	\dv{u_{C,h}}{t} + \frac{1}{\tau}u_{C,h} = 0
 	\Ra
-	u_{C,h}(t) = A\exp \left( - \frac{t}{\tau} \right)
+	u_{C,h}(t) = K\exp \left( - \frac{t}{\tau} \right)
 \end{gather*}
 Pour la solution particulière, \textbf{on admet} qu'elle est de la forme
 \begin{gather*}
@@ -127,7 +127,7 @@ Pour la solution particulière, \textbf{on admet} qu'elle est de la forme
 \end{gather*}
 ce qui donne une solution générale
 \psw{
-	\[\boxed{u_C(t) = A\exp \left( - \frac{t}{\tau} \right) + U\cos(\wt + \f)}\]
+	\[\boxed{u_C(t) = K\exp \left( - \frac{t}{\tau} \right) + U\cos(\wt + \f)}\]
 }
 \vspace{-15pt}
 \begin{tcb}[label=ror:CIounon](impo){Important}
@@ -418,11 +418,7 @@ $L$ alimenté par une source sinusoïdale de fréquence $f$, on doit avoir
 	~
 	\vspace{-40pt}
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{ldm_rsf}
-		}{
-			\includegraphics[width=\linewidth]{ldm_rsf}
-		}
+		\includegraphics[width=\linewidth]{ldm_rsf}
 		\captionof{figure}{Loi des mailles.}
 	\end{center}
 \end{minipage}
@@ -865,7 +861,6 @@ des résistances.
 			\boxed{\D\f_{2/1} = \f_2 - \f_1}
 		\]
 	}
-	\vspace{-15pt}
 \end{tcb}
 % \begin{tcb}(rapp){}
 % 	Étant donné que les sorties en RSF ont la même pulsation que l'entrée, on ne
@@ -874,102 +869,82 @@ des résistances.
 
 \subsection{Lecture d'un déphasage}
 
-\noindent
 \begin{minipage}{0.65\linewidth}
 	Le déphasage $\D\f_{2/1} = \f_2 - \f_1$ est lié au \textbf{retard temporel}
-	$\D{t}_{2/1} = t_2 - t_1$ du signal $s_2$ par rapport au signal $s_1$~: on a
+	$\D{t}_{2/1}$ du signal $s_2$ par rapport au signal $s_1$~: on a
 	\psw{
 		\[\boxed{\D\f_{2/1} = -\w\D{t}_{2/1}}\]
 	}
-	Dans ce cas, le déphasage obtenu est entre $-\pi$ et $+\pi$. On définit~:
-	\begin{itemize}
-		\item \psw{
-			      $\D\f_{2/1} > 0 \Rightarrow s_2$ est en avance sur $s_1$~;
-		      }
-		\item \psw{
-			      $\D\f_{2/1} < 0 \Rightarrow s_2$ est en retard sur $s_1$.
-		      }
-	\end{itemize}
 \end{minipage}
 \hfill
 \begin{minipage}{0.30\linewidth}
-	\vspace{-15pt}
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{dfretard}
-		}{
-			\includegraphics[width=\linewidth]{dfretard}
-		}
-		\captionof{figure}{Déphasage}
+		\includegraphics[width=\linewidth]{dfretard}
+	\end{center}
+\end{minipage}
+Dans ce cas, le déphasage obtenu est entre $-\pi$ et $+\pi$. On définit alors~:
+\begin{itemize}
+	\item $\D\f_{2/1} > 0 \Rightarrow s_2$ est en avance sur $s_1$~;
+	\item $\D\f_{2/1} < 0 \Rightarrow s_2$ est en retard sur $s_1$.
+\end{itemize}
+Le principe est de mesurer la différence de temps entre les deux moments les
+plus proches tels que les deux signaux s'annulent \textbf{avec la même pente}.
+Par construction, la pulsation représente une vitesse angulaire, c'est pourquoi
+on a $\w = 2\pi/T$ comme $v = d/t$ en mécanique. On trouve donc naturellement la
+relation entre $\D\f_{2/1}$ et $\D{t}_{2/1}$.
+
+\subsection{Valeurs particulières}
+\subsubsection{Signaux en phase}
+\begin{minipage}{0.70\linewidth}
+	\begin{tcb}(defi){\small Définition}
+		Deux signaux sont en phase si leur déphasage est nul (modulo $2\pi$)~:
+		\[\boxed{\D\f \equiv 0\quad[2\pi]}\]
+		Les signaux passent par leurs valeurs maximales et minimales aux mêmes
+		instants, et s'annulent simultanément.
+	\end{tcb}
+\end{minipage}
+\hfill
+\begin{minipage}{0.30\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{dfeq0.pdf}
 	\end{center}
 \end{minipage}
 
-Le principe est de mesurer la différence de temps entre les deux moments les
-plus proches tels que les deux signaux s'annulent \textbf{avec la même pente}.
-% Par construction, la pulsation représente une vitesse angulaire, c'est pourquoi
-% on a $\w = 2\pi/T$ comme $v = d/t$ en mécanique. On trouve donc naturellement la
-% relation entre $\D\f_{2/1}$ et $\D{t}_{2/1}$.
+\vspace{-20pt}
+\subsubsection{Signaux en quadrature de phase}
 
-\subsection{Valeurs particulières}
-\begin{tcb}[sidebyside, righthand ratio=.3](defi){Signaux en phase}
-	Deux signaux sont \textbf{en phase} si leur \textbf{déphasage est nul}
-	(modulo $2\pi$)~:
-	\psw{
-		\[\boxed{\D\f \equiv 0\quad[2\pi]}\]
-	}
-	Les signaux passent par leurs valeurs maximales et minimales aux mêmes
-	instants, et s'annulent simultanément.
-	\tcblower
-	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{dfeq0.pdf}
-		}{
-			\includegraphics[width=\linewidth]{dfeq0.pdf}
-		}
-		\vspace{-15pt}
-		\captionof{figure}{En phase.}
-	\end{center}
-\end{tcb}
-
-\begin{tcb}[sidebyside, righthand ratio=.3](defi){Signaux en quadrature de phase}
-	Deux signaux sont en \textbf{quadrature phase} si leur déphasage est de
-	$\mathbf{\pm\pi/2}$ (modulo $2\pi$)~:
-	\psw{
+\begin{minipage}{0.70\linewidth}
+	\begin{tcb}(defi){\small Définition}
+		Deux signaux sont en quadrature phase si leur déphasage est de
+		$\pm\pi/2$ (modulo $2\pi$)~:
 		\[\boxed{\D\f \equiv \pm\frac{\pi}{2} \quad[2\pi]}\]
-	}
-	Quand un signal s'annule, l'autre est à son maximum où à son minimum~:
-	c'est la relation entre un cosinus et un sinus.
-	\tcblower
+		Quand un signal s'annule, l'autre est à son maximum où à son minimum~:
+		c'est la relation entre un cosinus et un sinus.
+	\end{tcb}
+\end{minipage}
+\hfill
+\begin{minipage}{0.30\linewidth}
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{dfeqpi2.pdf}
-		}{
-			\includegraphics[width=\linewidth]{dfeqpi2.pdf}
-		}
-		\vspace{-15pt}
-		\captionof{figure}{En quadrature.}
+		\includegraphics[width=\linewidth]{dfeqpi2.pdf}
 	\end{center}
-\end{tcb}
+\end{minipage}
 
-\begin{tcb}[sidebyside, righthand ratio=.3](defi){Signaux en opposition de phase}
-	Deux signaux sont en \textbf{opposition de phase} si leur déphasage est de
-	$\mathbf{\pm\pi}$ (modulo $2\pi$)~:
-	\psw{
+\subsubsection{Signaux en opposition de phase}
+
+\begin{minipage}{0.70\linewidth}
+	\begin{tcb}(defi){\small Définition}
+		Deux signaux sont en phase si leur déphasage est de $\pm\pi$ (modulo $2\pi$)~:
 		\[\boxed{\D\f \equiv \pm\pi \quad[2\pi]}\]
-	}
-	Lorsqu'un signal passe par sa valeur maximale, l'autre est à la valeur
-	minimale, mais ils s'annulent simultanément.
-	\tcblower
+		Lorsqu'un signal passe par sa valeur maximale, l'autre est à la valeur
+		minimale, mais ils s'annulent simultanément.
+	\end{tcb}
+\end{minipage}
+\hfill
+\begin{minipage}{0.30\linewidth}
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{dfeqpi.pdf}
-		}{
-			\includegraphics[width=\linewidth]{dfeqpi.pdf}
-		}
-		\vspace{-15pt}
-		\captionof{figure}{En opposition.}
+		\includegraphics[width=\linewidth]{dfeqpi.pdf}
 	\end{center}
-\end{tcb}
+\end{minipage}
 
 \subsection{Déphasage des impédances}
 Pour un dipôle de tension $\xul{U}$ traversé par une intensité $\xul{I}$, on
@@ -978,18 +953,11 @@ définit $\xul{Z} = \frac{\xul{U}}{\xul{I}}$, et on a donc $\arg(\xul{Z}) =
 déphasage entre la tension et le courant. Pour les différents dipôles
 classiques, on trouve~:
 \begin{itemize}
-	\item \psw{
-		      $\arg(\xul{Z}_R) = 0 \Rightarrow$ signaux en phase~;
-	      }
-	\item \psw{
-		      $\arg(\xul{Z}_L) = \arg(\jj L\w) = \pi/2 \Rightarrow$ signaux en
-		      quadrature de phase, avec $\xul{u}$ en avance sur $\xul{i}$~;
-	      }
-	\item \psw{
-		      $\arg(\xul{Z}_C) = \arg(1/\jj C\w) = -\pi/2 \Rightarrow$ signaux en
-		      quadrature de phase, avec $\xul{u}$ en retard sur $\xul{i}$.
-	      }
-	      \vspace{-15pt}
+	\item $\arg(\xul{Z}_R) = 0 \Rightarrow$ signaux en phase~;
+	\item $\arg(\xul{Z}_L) = \arg(\jj L\w) = \pi/2 \Rightarrow$ signaux en
+	      quadrature de phase, avec $\xul{u}$ en avance sur $\xul{i}$~;
+	\item $\arg(\xul{Z}_C) = \arg(1/\jj C\w) = -\pi/2 \Rightarrow$ signaux en
+	      quadrature de phase, avec $\xul{u}$ en retard sur $\xul{i}$~;
 \end{itemize}
 
 \end{document}

@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw[]
+	(0,0)
+	to[short]
+	(.5,0) coordinate(Ln)
+	to[short]
+	(.5,-.5)
+	% R
+	to[R, name=R, !vi]
+	(2,-.5)
+	to[short]
+	(2,0) coordinate(Rn)
+	% L
+	to[L,l^=$L$, name=L, !vi]
+	(4,0)
+	;
+	% up
+	\draw[]
+	(Ln)
+	to[short]
+	(.5,.5)
+	to[C, name=C, !vi]
+	(2,.5)
+	to[short]
+	(Rn)
+	;
+	\node[] at (R.center) {$R$};
+	\node[above right] at (C.right) {$C$};
+\end{circuitikz}
+\end{document}

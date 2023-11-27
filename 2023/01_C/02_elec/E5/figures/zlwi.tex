@@ -2,19 +2,17 @@
 \usepackage{mintikz}
 
 \begin{document}
-\begin{circuitikz}
-    \draw
-    (0,0)
-    to[L, l^=$\jj L\w$, name=L, i^<=$\ul{i}(t)$, v_>=$\ul{u}(t)$, !vi]
-    (3,0) coordinate (right);
-    \varronly{L} \iarronly{L}
-    \node[right=1em] (E) at (right) {$\equiv$};
-    \node[below] at (E) {$\w \rightarrow +\infty$};
-    \draw[shift={($(E)+(2em,0)$)}]
-    (0,0) --
-    (1,0)
-        to[nos, o-o]
-    (2,0) --
-    (3,0);
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[L, l^=$\jj L\w$, name=L, i^<=$\xul{i}(t)$, v_>=$\xul{u}(t)$, !vi]
+	(3,0) coordinate (right);
+	\varronly{L} \iarronly{L}
+	\node[right=1em] (E) at (right) {$\equiv$};
+	\node[below] at (E) {$\w \rightarrow +\infty$};
+	\draw[shift={($(E)+(2em,0)$)}]
+	(0,0)
+	to[cosw]
+	(3,0);
 \end{circuitikz}
 \end{document}

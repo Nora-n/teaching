@@ -105,7 +105,7 @@
 		\right.\\
 		\AN
 		\xul{
-			T_0 = \SI{0.100}{s}
+			T_0 = \SI{8.9e-1}{s}
 		}
 	\end{gather*}
 	On ne peut pas déterminer $T$ car il dépend de $Q$ qui dépend de $\lambda$,
@@ -197,7 +197,41 @@ avec $n$ le nombre de périodes sélectionnées.
 		u_{C}(t)$ et calculer la valeur $R_{c}$ à donner à $R$ pour visualiser le
 	régime critique.
 }{%
-	solu
+	\begin{DispWithArrows*}
+		u_L + u_R + u_C &= E
+		\Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
+		\\\Lra
+		L \dv{i}{t} + Ri + u_C &= E
+		\Arrow{$i = C \dv{u_C}{t}$}
+		\\\Lra
+		LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C                   &= E
+		\Arrow{forme\\canonique}
+		\\\Lra
+		\dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &= \frac{E}{LC}
+		\\\Lra
+		\dv[2]{u_C}{t} + \frac{\w_0}{Q} \dv{u_C}{t} + \w_0{}^2 u_C &= \w_0{}^2E
+		\Arrow{$q = Cu_C$}
+		\\\Lra
+		\dv[2]{q}{t} + \frac{\w_0}{Q} \dv{q}{t} + \w_0{}^2 q &= \w_0{}^2CE
+	\end{DispWithArrows*}
+	Régime critique pour $Q = 1/2$~:
+	\begin{gather*}
+		Q = \frac{1}{2} \Lra \frac{1}{R}\sqrt{\frac{L}{C}} = \frac{1}{2}
+		\Lra
+		R_c = 2 \sqrt{\frac{L}{C}}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			L & = & \SI{0.1}{H}
+			\\
+			C & = & \SI{0.01e-6}{F}
+		\end{array}
+		\right.\\
+		\AN
+		\xul{
+			R_c = \SI{6.3e3}{\ohm}
+		}
+	\end{gather*}
 }
 \QR{%
 	\label{q:reglin}

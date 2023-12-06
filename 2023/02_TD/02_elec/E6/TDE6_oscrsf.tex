@@ -7,257 +7,996 @@
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
 \makeatother
 
+\toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
+
 \begin{document}
 \setcounter{chapter}{5}
 
-\chapter{TD~: oscillateurs en RSF}
+\chapter{\cswitch{Correction du TD}{TD~: oscillateurs en RSF}}
 
 \section{Notation complexe}
 
-Écrire, sous forme complexe, les équations différentielles suivantes~:
-\[\tau \dv{u}{t} + u(t) = E_0\sin\wt
-\qquad \qquad
-\ddot{x} +  2\lambda \dot x + \w_0^2 x(t) =F_0\cos\wt\]
+\enonce{%
+	Écrire, sous forme complexe, les équations différentielles suivantes~:
+}
 
+\QR{%
+	\[\tau \dv{u}{t} + u(t) = E_0\sin\wt\]
+}{%
+	Pour passer aux formes complexes, il faut s'assurer que \textbf{les
+		grandeurs soient toutes exprimées en cosinus}, puisque c'est bien le
+	cosinus la partie réelle d'une exponentielle complexe. Or, $\sin\theta =
+		\cos(\pi/2-\theta) = \cos(\theta-\pi/2)$, donc on a~:
+	\begin{align*}
+		\tau \dv{u}{t} + u(t)     & = E_0\cos(\wt - \pi/2)                           \\
+		\Leftrightarrow
+		\tau \dv{\uu}{t} + \uu(t) & = E_0\exr^{-\jj\pi/2}\exr^{\jwt}                 \\
+		\Leftrightarrow
+		(1+\jwt)\uu               & = E_0\exr^{-\jj\pi/2}\exr^{\jwt}                 \\
+		\Leftrightarrow
+		\Aboxed{\uu               & = \frac{E_0\exr^{-\jj\pi/2}\exr^{\jwt}}{1+\jwt}}
+	\end{align*}
+	grâce au fait qu'en complexes, dériver revient à multiplier par $\jw$.
+}
+\QR{%
+	\[\ddot{x} +  2\lambda \dot x + \w_0^2 x(t) =F_0\cos\wt\]
+}{%
+	Ici, rien de particulier~: on souligne $x$ d'abord, puis on dérive en
+	multipliant par $\jw$.
+	\begin{align*}
+		\ddot{x} +  2\lambda \dot x + \w_0^2 x(t)               & = KI_m\cos\wt                              \\
+		\Leftrightarrow
+		(\jw)^2\xul{x} + 2\lambda\jw \xul{x} + \w_0{}^2 \xul{x} & =
+		KI_m\exr^{\jwt}                                                                                      \\
+		\Leftrightarrow
+		\Aboxed{\xul{x}                                         & = \frac{KI_m\exr^{\jwt}}{\w_0{}^2 - \w^2 +
+				2\lambda\jw}}
+	\end{align*}
+}
+
+\resetQ
 \section{Filtre de \textsc{Wien}}
 
-\begin{minipage}{0.45\linewidth}
-    On considère le circuit ci-contre avec $e(t) = E_m \cos(\wt)$. On note
-    $u(t) = U_m \cos(\wt + \f)$ et on pose $H_m = U_m / E_m$ .
-    \begin{enumerate}
-        \item Déterminer les valeurs limites de $u(t)$ à basse et haute
-            fréquences.
-    \end{enumerate}
-    Les courbes représentatives de $H_m (\w)$ et $\f(\w)$ sont
-    fournies par les figures ci-dessous.
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{wien_1}
-    \end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.45\linewidth}
+		On considère le circuit ci-contre avec $e(t) = E_m \cos(\wt)$. On note
+		$u(t) = U_m \cos(\wt + \f)$ et on pose $H_m = U_m / E_m$ .
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{wien_1}
+		\end{center}
+	\end{minipage}
+}
+\QR{%
+	Déterminer les valeurs limites de $u(t)$ à basse et haute
+	fréquences.
+}{%
+	Dans la limite très hautes fréquences, les condensateurs sont
+	équivalents à des fils, donc $\uu = 0$. Dans la limite très basses
+	fréquences, les condensateurs sont cette fois équivalents à des
+	interrupteurs ouverts. Aucun courant ne circule dans les résistances, et
+	on a donc également $\uu = 0$. Selon toute vraisemblance, c'est donc
+	un filtre \textbf{passe-bande}.
+}
 
-\begin{minipage}{0.45\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{wien_3}
-    \end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{wien_2}
-    \end{center}
-\end{minipage}
+\enonce{%
+	Les courbes représentatives de $H_m (\w)$ et $\f(\w)$ sont
+	fournies par les figures ci-dessous.
+	\smallbreak
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{wien_3}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{wien_2}
+		\end{center}
+	\end{minipage}
+}
 
-\begin{enumerate}[start=2]
-    \item Observe-t-on un phénomène de résonance en tension~? Justifier.
-    \item Déterminer graphiquement la pulsation de résonance, les pulsations de
-        coupure et la bande passante du filtre.
-    \item Après avoir associé certaines impédances entre elles, établir
-        l'expression de $\ul{H} = \ul{u} / \ul{e}$. La
-        mettre sous la forme~:
-        \[
-            \ul{H}
-                = \dfrac{H_0}{1 + \jj Q\left(x - \dfrac{1}{x}\right)}
-            \qavec
-            x = \dfrac{\w}{\w_0}
-        \]
-        avec $H_0$, $\w_0$ et $Q$ des constantes à exprimer en fonction
-        (éventuellement) de $R$ et $C$.
-    \item Déterminer graphiquement la valeur du produit $RC$.
-\end{enumerate}
+\QR{%
+	Observe-t-on un phénomène de résonance en tension~? Justifier.
+}{%
+	On observe bien une résonance en tension, étant donné qu'on trouve un
+	\textbf{maximum de l'amplitude pour $\w \neq 0$ et $\w \neq \infty$}.
+}
+\QR{%
+	Déterminer graphiquement la pulsation de résonance, les pulsations de
+	coupure et la bande passante du filtre.
+}{%
+	On lit \fbox{$\w_r = \SI{10}{rad.s^{-1}}$}, et on trouve les
+	pulsations de coupure en traçant une droite horizontale à $H_{m,
+				\max}/\sqrt{2} = \num{0.23}$ (avec $H_{m, \max} = \num{0.33}$) et en
+	prenant les abscisses des intersections. On trouve alors
+	\begin{gather*}
+		\boxed{\w_1 = \SI{2}{rad.s^{-1}}}
+		\qet
+		\boxed{\w_2 = \SI{20}{rad.s^{-1}}}
+		\qdonc
+		\boxed{\D\w = \SI{18}{rad.s^{-1}}}
+	\end{gather*}
+	En effet, l'axe des abscisses est en échelle logarithmique, il faut donc
+	faire attention à la lecture.
+}
 
+\QR{%
+	Après avoir associé certaines impédances entre elles, établir
+	l'expression de $\xul{H} = \xul{u} / \xul{e}$. La
+	mettre sous la forme~:
+	\[
+		\xul{H}
+		= \dfrac{H_0}{1 + \jj Q\left(x - \dfrac{1}{x}\right)}
+		\qavec
+		x = \dfrac{\w}{\w_0}
+	\]
+	avec $H_0$, $\w_0$ et $Q$ des constantes à exprimer en fonction
+	(éventuellement) de $R$ et $C$.
+}{%
+	Notons $\Zu_{R\parr C}$ l'impédance et $\Yu_{R\parr C}$ l'admittance
+	de l'association RC parallèle. En utilisant cette impédance, on
+	reconnaît un pont diviseur de tension~:
+	\begin{gather*}
+		\Hu
+		= \frac{\uu}{\xul{e}}
+		= \frac{\Zu_{R\parr C}}{\Zu_{R\parr C} + \Zu_R + \Zu_C}
+		\Leftrightarrow
+		\Hu = \frac{1}{1 + \left(\Zu_R + \Zu_C\right)\Yu_{R\parr C}}\\
+		\Leftrightarrow
+		\xul{H}
+		= \frac{1}{1 + \left(R + \dfrac{1}{\jcw}\right)\Yu_{R\parr C}}
+		= \frac{1}{1 + \left(R + \dfrac{1}{\jcw}\right)\left(
+			\dfrac{1}{R} + \jcw\right)}\\
+		\Leftrightarrow
+		\boxed{\xul{H} = \frac{1}{3+\jj\left(RC\w - \dfrac{1}{RC\w}\right)}}
+	\end{gather*}
+	En factorisant par 3 et en utilisant les notations introduites dans
+	l'énoncé, on trouve
+	\begin{gather*}
+		\xul{H}
+		= \frac{1/3}{1 + \dfrac{\jj}{3} \left( x - \dfrac{1}{x} \right)}
+		\Leftrightarrow
+		\boxed{
+			\xul{H} = \frac{H_0}{1 + \jj Q \left( x - \dfrac{1}{x} \right)}}
+		\qavec
+		\boxed{
+			\left\{
+			\begin{array}{rcl}
+				H_0  & = & 1/3           \\
+				\w_0 & = & \dfrac{1}{RC} \\
+				Q    & = & 1/3
+			\end{array}
+			\right.
+		}
+	\end{gather*}
+	Ce qui est remarquable avec ce montage, c'est que \textbf{le facteur de
+		qualité est de 1/3 peu importe les valeurs de $R$ et $C$}, tant que ce
+	sont les mêmes $R$ et $C$ en série et en dérivation.
+}
+
+\QR{%
+	Déterminer graphiquement la valeur du produit $RC$.
+}{%
+	Par cette étude, on trouve que $\w_r = \w_0 = \frac{1}{RC}$~; ainsi,
+	on a simplement \[\boxed{RC = \SI{0.10}{Hz}}\]
+}
+
+\resetQ
 \section{Modélisation d'un haut-parleur}
 
-\begin{minipage}{0.55\linewidth}
-    On modélise la partie mécanique d'un haut-parleur comme une masse $m$, se
-    déplaçant horizontalement le long d'un axe $(Ox)$. Cette masse est reliée
-    à un ressort de longueur à vide $\ell_0$ et de raideur $k$ et subit une
-    force de frottement fluide~: $\vec{f} = -\alpha \vec{v}$. Elle est par
-    ailleurs soumise à une force $\vec{F}(t)$, imposée par le courant $i(t)$
-    entrant dans le haut-parleur, qui vaut~: $\vec{F}(t) = K i(t) \vec{u}_x$
-    où $K$ est une constante. On travaille dans le référentiel du laboratoire
-    $(O, \vec{u}_x , \vec{u}_y)$. On suppose que le courant est de la forme
-    $i(t) = I_m \cos(\wt)$.
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\linewidth}
-    \begin{center}
-        \includegraphics[width=.9\linewidth]{hp_1}
-    \end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.55\linewidth}
+		On modélise la partie mécanique d'un haut-parleur comme une masse $m$, se
+		déplaçant horizontalement le long d'un axe $(Ox)$. Cette masse est reliée
+		à un ressort de longueur à vide $\ell_0$ et de raideur $k$ et subit une
+		force de frottement fluide~: $\vec{f} = -\alpha \vec{v}$. Elle est par
+		ailleurs soumise à une force $\vec{F}(t)$, imposée par le courant $i(t)$
+		entrant dans le haut-parleur, qui vaut~: $\vec{F}(t) = K i(t) \vec{u}_x$
+		où $K$ est une constante. On travaille dans le référentiel du laboratoire
+		$(O, \vec{u}_x , \vec{u}_y)$. On suppose que le courant est de la forme
+		$i(t) = I_m \cos(\wt)$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[width=.9\linewidth]{hp_1}
+		\end{center}
+	\end{minipage}
 
-\begin{rdefi}{Données}
-    $m = \SI{10}{g}$, $K = \SI{200}{N.A^{-1}}$ et $I_m = \SI{1.0}{A}$.
-\end{rdefi}
+	\begin{tcb}(data)<lfnt>{Données}
+		$m = \SI{10}{g}$, $K = \SI{200}{N.A^{-1}}$ et $I_m = \SI{1.0}{A}$.
+	\end{tcb}
+}
 
-\begin{enumerate}
-    \item Écrire l'équation différentielle vérifiée par $x(t)$, la position de
-        la masse $m$.
-    \item La mettre sous forme canonique et identifier les expressions de la
-        pulsation propre $\w_0$ et du facteur de qualité $Q$.
-    \item Justifier qu'en régime permanent: $x(t) = X_m \cos(\wt + \phi)$
-    \item On pose $\ul{x}(t) = \ul{X}e^{\jwt}$. Déterminer
-        l'expression de l'amplitude complexe $\ul{X}$.
-    \item Exprimer $X_m(\w)$. Existe-t-il toujours une résonance?
-\end{enumerate}
+\QR{%
+	Écrire l'équation différentielle vérifiée par $x(t)$, la position de
+	la masse $m$.
+}{%
+	~
 
-On a tracé ci-dessous les courbes de $X_m (\w)$ et de
-$\phi(\w)$. L'axe des abscisses est en échelle logarithmique.
+	\vspace{-18pt}
+	\begin{minipage}{0.43\linewidth}
+		\begin{description}
+			\item[Système] : masse~;
+			\item[Référentiel] : $\Rc_{\rm sol} (O,x,y,t)$~;
+			\item[Position de la masse] : $\OM = x\ux$~;
+			\item[Longueur ressort] : $\vv{MA} = \ell\ux$~;
+			\item[Longueur à vide] : $\vv{OA} = \ell_0\ux$~;
+			\item[Longueur relative] :\\
+				$(\ell - \ell_0)\ux = \vv{MO} = -x\ux$.
+		\end{description}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.57\linewidth}
+		\textbf{Bilan des forces}~:
+		\begin{enumerate}
+			\item Poids $\Pf = -mg\uy$~;
+			\item Réaction du support $\vv{R} = R\uy$~;
+			\item Force de rappel du ressort\\
+			      $\vv*{F}{\rm ressort} = k(\ell - \ell_0)\ux =
+				      k\vv{MO} = -kx\ux$~;
+			\item Force de frottement fluide $\vv{f} = -\alpha\vf =
+				      -\alpha\dot{x}\ux$~;
+			\item \textbf{Force excitatrice} $\Ff = KI_m\cos(\wt)\ux$.
+		\end{enumerate}
+	\end{minipage}
 
-\begin{center}
-    \includegraphics[width=.8\linewidth]{hp_2}
-\end{center}
+	Avec le PFD~:
+	\begin{gather*}
+		m\af = \Pf + \vv{R} + \Ff_{\rm ressort} + \vv{f} +\Ff\\
+		\Leftrightarrow m\left(
+		\begin{array}{c}
+				\DS\dv[2]{x}{t} \\
+				0
+			\end{array}
+		\right)
+		=
+		\left(
+		\begin{array}{c}
+				-kx -\alpha v + KI_m\cos(\wt) \\
+				-mg + R
+			\end{array}
+		\right)
+	\end{gather*}
+	La projection sur $\uy$ montre que la réaction du support compense le poids.
+	Sur l'axe $\ux$ on trouve
+	\begin{gather*}
+		\boxed{m \dv[2]{x}{t} + \alpha \dv{x}{t} + kx = KI_m\cos(\wt)}
+	\end{gather*}
+}
 
-\begin{enumerate}[start=6]
-    \item Pour quelle pulsation le déplacement est-il en quadrature de phase
-        avec la force excitatrice~? Déterminer alors graphiquement la pulsation
-        propre $\w_0$.
-\end{enumerate}
+\QR{%
+	La mettre sous forme canonique et identifier les expressions de la
+	pulsation propre $\w_0$ et du facteur de qualité $Q$.
+}{%
+	Sous forme canonique, cela devient
+	\begin{gather*}
+		\Leftrightarrow
+		\boxed{\ddot{x} + \frac{\w_0}{Q}\dot{x} + \w_0{}^2x =
+			\frac{KI_m}{m}\cos(\wt)}\\
+		\qavec
+		\boxed{\w_0 = \sqrt{\frac{k}{m}}}
+		\qet
+		\boxed{Q = \frac{\sqrt{km}}{\alpha}}
+	\end{gather*}
+}
 
+\QR{%
+	Justifier qu'en régime permanent: $x(t) = X_m \cos(\wt + \phi)$
+}{%
+	On sait que pour une entrée sinusoïdale, un système aura une solution
+	homogène donnant un régime transitoire et une solution particulière de
+	la forme de l'entrée~: en RSF, on étudie le régime permanent où seule la
+	solution particulière est conservée, et on pourra donc écrire $x(t) =
+		X_m\cos(\wt+\F)$.
+}
+
+\QR{%
+On pose $\xul{x}(t) = \xul{X}e^{\jwt}$. Déterminer
+l'expression de l'amplitude complexe $\xul{X}$.
+}{%
+
+En passant en complexes,
+\begin{gather*}
+	(\jw)^2\Xu + \jw\frac{\w_0}{Q}\Xu + \w_0{}^2\Xu = \frac{KI_m}{m}\\
+	\Leftrightarrow
+	\xul{X} =
+	\frac{KI_m}{m}\times
+	\frac{1}{\w_0{}^2 - \w^2 + \dfrac{\jj}{Q}\w\w_0}
+	\Leftrightarrow
+	\boxed{
+		\xul{X} = \frac{KI_m}{m\w_0{}^2}\frac{1}{1 -
+			\left( \dfrac{\w}{\w_0} \right)^2 +
+			\jj\dfrac{\w}{Q\w_0}}
+	}
+\end{gather*}
+}
+
+\QR{%
+	Exprimer $X_m(\w)$. Existe-t-il toujours une résonance?
+}{%
+	En réels, on trouve
+	\begin{gather*}
+		\boxed{
+			X(\w)
+			= \abs{\xul{X}}
+			= \frac{KI_m}{m\w_0{}^2}\frac{1}{
+				\sqrt{\left( 1 - \left(\dfrac{\w}{\w_0}\right)^2 \right)^2
+					+ \left(\dfrac{\w}{Q\w_0}\right)^2}}
+		}
+	\end{gather*}
+	Elle est maximale quand le dénominateur est minimal. Après calcul,
+	on trouve
+	\begin{itemize}[leftmargin=60pt]
+		\item[$\mathbf{Q \leq 1/\sqrt{2}}$] : l'amplitude est maximale pour
+			\[\boxed{\w = 0 \qet X(0) = \frac{KI_m}{m\w_0{}^2}}\]
+		\item[$\mathbf{Q > 1/\sqrt{2}}$] : l'amplitude est maximale pour
+			\[\boxed{\w_r = \w_0 \sqrt{1 - \frac{1}{2Q^2}} < \w_0}
+				\qet
+				\boxed{X(\w_r) = \frac{KI_m}{m\w_0{}^2}
+					\frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}}
+			\]
+	\end{itemize}
+	De ce résultat, nous observons qu'il \textbf{n'y a pas toujours
+		résonance en élongation}, et que \textbf{la résonance est d'autant
+		aiguë que $\mathbf{Q}$ est élevé}.
+}
+
+\enonce{%
+	On a tracé ci-dessous les courbes de $X_m (\w)$ et de
+	$\phi(\w)$. L'axe des abscisses est en échelle logarithmique.
+
+	\begin{center}
+		\includegraphics[width=.8\linewidth]{hp_2}
+	\end{center}
+}
+
+\QR{%
+	Pour quelle pulsation le déplacement est-il en quadrature de phase
+	avec la force excitatrice~? Déterminer alors graphiquement la pulsation
+	propre $\w_0$.
+}{%
+	Le déplacement est en quadrature de phase si la différence de phase
+	est de $\pm\pi/2$. Sur le graphique de droite, on le trouve à $\w =
+		\SI{1100}{rad.s^{-1}}$. Or, c'est à $\w = \w_0$ qu'on trouve une
+	quadrature de phase, puisqu'alors $\Xu$ est un imaginaire pur. Ainsi,
+	\[\w_0 = \SI{1100}{rad.s^{-1}}\]
+	On pourrait déterminer le facteur de qualité en trouvant que le maximum
+	d'amplitude se trouve à $\w_r = \SI{900}{rad.s^{-1}}$.
+}
+
+\resetQ
 \section{Résonance d'un circuit bouchon}
 
-\begin{minipage}{0.55\linewidth}
-    
-On considère le circuit $RLC$ représenté ci-contre, composé d'un
-résistor, de résistance $R$, d'une bobine idéale d'inductance $L$,
-d'un condensateur idéal, de capacité $C$, alimenté par une source
-idéale de tension, de f.e.m. $e(t)=E_0\cos(\wt)$. On se place en
-régime sinusoïdal forcé.
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{bouchon_plain}
-    \end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.55\linewidth}
+		On considère le circuit $RLC$ représenté ci-contre, composé d'un
+		résistor, de résistance $R$, d'une bobine idéale d'inductance $L$,
+		d'un condensateur idéal, de capacité $C$, alimenté par une source
+		idéale de tension, de f.e.m. $e(t)=E_0\cos(\wt)$. On se place en
+		régime sinusoïdal forcé.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{bouchon_plain}
+		\end{center}
+	\end{minipage}
+}
 
-\begin{enumerate}
-    \item Exprimer l'amplitude complexe $\ul{U}$ de $u(t)$ en
-        fonction de $E_0$, $R$, $L$, $C$ et $\w$.
-    \item Établir qu'il existe un phénomène de résonance pour la tension
-        $u(t)$. Préciser la pulsation $\w_0$ à laquelle ce phénomène se
-        produit et la valeur de l'amplitude réelle de $u(t)$ à cette
-        pulsation.
-    \item Mettre l'amplitude réelle $U$ de $u(t)$ sous la forme: \[U =
-            \dfrac{E_0}{\sqrt{1 + Q^2\left(\dfrac{\w}{\w_0} -
-        \dfrac{\w_0}{\w}\right)^2}}\] avec $Q$ un facteur sans
-        dimension à exprimer en fonction de $R,L$ et $C$.
-    \item Exprimer la bande passante $\Delta\w$ de cette résonance en
-        fonction de $Q$ et $\w_0$.
-    \item En déduire les valeurs numériques de $C$ et $E_0$ à l'aide du
-        graphe ci-dessous représentant l'amplitude réelle de $u(t)$ en
-        fonction de la fréquence $f=\w/2\pi$, sachant que $L= \SI{1}{mH}$ et
-        $R= \SI{1}{k\Omega}$.
-\end{enumerate}
+\QR{%
+	Exprimer l'amplitude complexe $\xul{U}$ de $u(t)$ en
+	fonction de $E_0$, $R$, $L$, $C$ et $\w$.
+}{%
+	On effectue un pont diviseur de tension aux bornes de l'impédance
+	équivalente de $L$ et $C$, avec $\Yu\ind{eq} = \jcw + 1/\jlw$~:
+	\begin{gather*}
+		\Uu
+		= \frac{\Zu\ind{eq}}{\Zu\ind{eq} + R}E_0
+		= \frac{1}{1+R\Yu\ind{eq}}E_0
+		= \frac{E_0}{1+\jj \left( RC\w - \dfrac{R}{L\w} \right)}
+	\end{gather*}
+	en utilisant que $1/\jj = -\jj$.
+}
 
-\begin{center}
-    \includegraphics[width=.8\linewidth]{bouchon_2}
-\end{center}
+\QR{%
+	Établir qu'il existe un phénomène de résonance pour la tension
+	$u(t)$. Préciser la pulsation $\w_0$ à laquelle ce phénomène se
+	produit et la valeur de l'amplitude réelle de $u(t)$ à cette
+	pulsation.
+}{%
+	L'amplitude réelle est
+	\begin{gather*}
+		U = \abs{\Uu} = \frac{E_0}{\sqrt{1 + \left( RC\w - \dfrac{R}{L\w}
+				\right)^2}}
+	\end{gather*}
+	Cette tension réelle est maximale si le dénominateur est minimal, donc
+	si $\DS \left( RC\w - \frac{R}{L\w} \right) = 0$~: cela implique qu'il y
+	a résonance si $\boxed{\w = \w_0 = 1/\sqrt{LC}}$. On trouve alors
+	\begin{gather*}
+		\boxed{U(\w_0) = U_{\max} = E_0}
+	\end{gather*}
+}
 
+\QR{%
+	Mettre l'amplitude réelle $U$ de $u(t)$ sous la forme: \[U =
+		\dfrac{E_0}{\sqrt{1 + Q^2\left(\dfrac{\w}{\w_0} -
+				\dfrac{\w_0}{\w}\right)^2}}\] avec $Q$ un facteur sans
+	dimension à exprimer en fonction de $R,L$ et $C$.
+}{%
+	On cherche $Q\w_0 = \frac{R}{L}$ et $\DS\frac{Q}{\w_0} = RC$~; on
+	trouve donc
+	\[\boxed{Q = R \sqrt{\frac{C}{L}}}\]
+}
+
+\QR{%
+	Exprimer la bande passante $\Delta\w$ de cette résonance en
+	fonction de $Q$ et $\w_0$.
+}{%
+	On cherche donc les pulsations de coupure telles que $U(\w) =
+		\frac{U_{\max}}{\sqrt{2}}$, soit
+	\begin{gather*}
+		U(\w) = \frac{U_{\max}}{\sqrt{2}}
+		\Leftrightarrow
+		\frac{E_0}{\sqrt{1 + Q^2\left( \frac{\w}{\w_0} - \frac{\w_0}{\w}
+				\right)^2}}
+		=
+		\frac{E_0}{\sqrt{2}}
+		\Leftrightarrow
+		\boxed{Q^2\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)^2 = 1}
+	\end{gather*}
+	On prend la racine carrée de cette équation, \textbf{en prenant les deux
+		solutions possibles}~:
+	\begin{align*}
+		Q\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right) = -1
+		         & \qet
+		Q\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right) = 1          \\
+		\Leftrightarrow
+		\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)\times \w\w_0 =
+		- \frac{\w\w_0}{Q}
+		         & \qet
+		\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)\times \w\w_0 =
+		\frac{\w\w_0}{Q}                                               \\
+		\Leftrightarrow
+		\w^2 - \w_0{}^2 = -\frac{\w\w_0}{Q}
+		         & \qet
+		\w^2 - \w_0{}^2 = \frac{\w\w_0}{Q}                             \\
+		\Leftrightarrow
+		\boxed{
+			\w^2 + \frac{\w_0}{Q}\w - \w_0{}^2 = 0}
+		         & \qet
+		\boxed{
+		\w^2 - \frac{\w_0}{Q}\w - \w_0{}^2 = 0}                        \\
+		\Rightarrow
+		\Delta = & \frac{\w_0{}^2}{Q} + 4\w_0{}^2                      \\
+		\Leftrightarrow
+		\Delta = & \frac{\w_0{}^2}{Q^2} \left( 1 + 4Q^2 \right)        \\
+		\Rightarrow
+		\w_{1,\pm} = -\frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1+4Q^2}
+		         & \qet
+		\w_{2,\pm} = \frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1+4Q^2} \\
+		\Leftrightarrow
+		\w_{1,\pm} = \frac{\w_0}{2Q} \left(-1 \pm \sqrt{1+4Q^2}\right)
+		         & \qet
+		\w_{2,\pm} = \frac{\w_0}{2Q} \left(1 \pm \sqrt{1+4Q^2}\right)
+	\end{align*}
+	De ces quatre racines, seules deux sont positives~: la solution avec $-1 -
+		\sqrt{1+4Q^2}$ est évidemment négative, et celle avec $1 - \sqrt{1+4Q^2}$
+	également. Ainsi, il ne nous reste que
+	\begin{gather*}
+		\w_1 = \frac{\w_0}{2Q} \left( \sqrt{1+4Q^2}-1 \right)
+		\qet
+		\w_1 = \frac{\w_0}{2Q} \left( \sqrt{1+4Q^2}+1 \right)
+	\end{gather*}
+	Il ne reste qu'à calculer la différence pour avoir la bande passante~:
+	\begin{gather*}
+		\boxed{\D\w = \w_2 - \w_1 = \frac{\w_0}{Q}}
+	\end{gather*}
+}
+
+\QR{%
+	En déduire les valeurs numériques de $C$ et $E_0$ à l'aide du
+	graphe ci-dessous représentant l'amplitude réelle de $u(t)$ en
+	fonction de la fréquence $f=\w/2\pi$, sachant que $L= \SI{1}{mH}$ et
+	$R= \SI{1}{k\Omega}$.
+	\begin{center}
+		\includegraphics[width=.8\linewidth]{bouchon_2}
+	\end{center}
+}{%
+	Sur le graphique, on trouve $U_{\max} = \SI{5}{V} = E_0$. On a de plus
+	$f_0 = \SI{22.5}{kHz}$ et $\D f \approx \SI{3}{kHz}$, d'où $\boxed{Q =
+			\frac{f_0}{\D f} \approx \num{7.5}}$. Avec l'expression de $Q$, on isole
+	$C$~:
+	\begin{gather*}
+		Q = R \sqrt{\frac{C}{L}}
+		\Leftrightarrow
+		\boxed{C = \frac{Q^2L}{R}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			Q & = & \num{7.5}       \\
+			L & = & \SI{1}{mH}      \\
+			R & = & \SI{1}{k\Omega}
+		\end{array}
+		\right.\\
+		\mathrm{A.N.~:}\quad
+		\boxed{C = \SI{5.6e-8}{F}}
+	\end{gather*}
+}
+
+\resetQ
 \section{Système à deux ressorts}
-\begin{minipage}{0.60\linewidth}
-    Un point matériel $M$, de masse $m$, peut se déplacer sur une tige
-    \emph{horizontale} parallèle à l'axe $Ox$ au sein d'un fluide visqueux qui
-    exerce sur lui la force de frottement $\vec{f} = - h\vec{v}$ avec
-    $\vec{v}$ le vecteur vitesse de $M$ dans le référentiel galiléen
-    $\mathcal{R}$ du laboratoire. Les frottements entre $M$ et l'axe
-    horizontal sont négligeables. On repère $M$ par son abscisse $x(t)$.
-\end{minipage}
-\hfill
-\begin{minipage}{0.35\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{ressort-double_1}
-    \end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.60\linewidth}
+		Un point matériel $M$, de masse $m$, peut se déplacer sur une tige
+		\emph{horizontale} parallèle à l'axe $Ox$ au sein d'un fluide visqueux qui
+		exerce sur lui la force de frottement $\vec{f} = - h\vec{v}$ avec
+		$\vec{v}$ le vecteur vitesse de $M$ dans le référentiel galiléen
+		$\mathcal{R}$ du laboratoire. Les frottements entre $M$ et l'axe
+		horizontal sont négligeables. On repère $M$ par son abscisse $x(t)$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{ressort-double_1}
+		\end{center}
+	\end{minipage}
 
-$M$ est relié à deux parois verticales par deux ressorts de raideurs $k_1$
-et $k_2$, de longueurs à vide $\ell_{10}$ et $\ell_{20}$. Celle de droite est
-immobile en $x = L$, celle de gauche, d'abscisse $x_0 (t)$, est animée d'un
-mouvement d'équation horaire $x_0 (t) = X_{0m} \cos(\wt)$. On supposera
-que $L = \ell_{10} + \ell_{20}$.
+	$M$ est relié à deux parois verticales par deux ressorts de raideurs $k_1$
+	et $k_2$, de longueurs à vide $\ell_{10}$ et $\ell_{20}$. Celle de droite est
+	immobile en $x = L$, celle de gauche, d'abscisse $x_0 (t)$, est animée d'un
+	mouvement d'équation horaire $x_0 (t) = X_{0m} \cos(\wt)$. On supposera
+	que $L = \ell_{10} + \ell_{20}$.
+}
 
-\begin{enumerate}
-    \item Identifier les différentes forces s'exerçant sur $M$.
-    \item Déterminer la position d'équilibre $x_{\eq}$ de $M$ lorsque la paroi
-        de gauche est immobile en $x = 0$.
-    \item On introduit $X = x - x_{\eq}$. Établir l'équation différentielle
-        vérifiée par $X$ lorsque la paroi bouge.
-\end{enumerate}
-    Pour étudier le régime sinusoïdal forcé, on introduit les grandeurs
-    complexes $\ul{x}_0(t) = X_{0m} \exp(\jj\wt)$, $X(t) = X_m \exp(\jj(\wt +
-    \f))$ et $v(t) = V_m \exp(\jj(\wt + \phi))$ associées à $x_0(t)$, $X(t)$ et
-    $v(t) = \dot X(t)$.
-\begin{enumerate}[resume]
-    \item Définir les amplitudes complexes $\ul{X}_0$, $\ul{X}$ et $\ul{V}$ de
-        $x_0(t)$, $X(t)$ et $v(t)$.
-    \item En exprimant $\w_0$, $Q$ et $\alpha$ en fonction des données du
-        problème, établir la relation~: \[\ul{V} = \dfrac{\alpha}{1 +
-        \jj Q\left(\dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}\right)} \ul{X}_0\]
-    \item Mettre en évidence l'existence d'une résonance de vitesse.
-\end{enumerate}
+\QR{%
+	Identifier les différentes forces s'exerçant sur $M$.
+}{%
+	~
 
+	\vspace{-18pt}
+	\begin{minipage}{0.43\linewidth}
+		\begin{description}
+			\item[Système] : masse~;
+			\item[Référentiel] : $\Rc_{\rm sol} (O,x,y,t)$~;
+			\item[Position de la masse] : $\OM = x\ux$~;
+			\item[Longueur ressort 1] : $x(t) - x_0(t)$~;
+			\item[Longueur ressort 2] : $L-x(t)$.
+		\end{description}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.57\linewidth}
+		\textbf{Bilan des forces}~:
+		\begin{enumerate}
+			\item Poids $\Pf = -mg\uy$~;
+			\item Réaction du support $\vv{R} = R\uy$~;
+			\item Rappel du ressort 1
+			      $\vv*{F}{1} = -k_1(\ell_1 - \ell_{10})\ux$~;
+			\item Rappel du ressort 2
+			      $\vv*{F}{2} = k_2(\ell_2 - \ell_{20})\ux$~;
+			\item Force de frottement fluide $\vv{f} = -h\vf =
+				      -h\dot{x}\ux$.
+		\end{enumerate}
+	\end{minipage}
+}
+
+\QR{%
+	Déterminer la position d'équilibre $x\ind{eq}$ de $M$ lorsque la paroi
+	de gauche est immobile en $x = 0$.
+}{%
+	Avec le PFD, on trouve
+	\begin{gather*}
+		m\af = \Pf + \vv{R} + \Ff_{1} + \Ff_{2} + \vv{f}\\
+		\Leftrightarrow m\left(
+		\begin{array}{c}
+				\DS\dv[2]{x}{t} \\
+				0
+			\end{array}
+		\right)
+		=
+		\left(
+		\begin{array}{c}
+				-k_1(\ell_1 - \ell_{10}) +k_2(\ell_2 - \ell_{20}) -h v \\
+				-mg + R
+			\end{array}
+		\right)
+	\end{gather*}
+	La projection sur $\uy$ montre que la réaction du support compense le poids.
+	Sur l'axe $\ux$ on trouve
+	\begin{gather*}
+		\boxed{m \dv[2]{x}{t} + h \dv{x}{t}
+			= -k_1(\ell_1 - \ell_{10}) +k_2(\ell_2 - \ell_{20})}
+	\end{gather*}
+	En développant les longueurs comme indiqué question 1, on a
+	\begin{gather*}
+		\boxed{m \dv[2]{x}{t} + h \dv{x}{t} =
+			-k_1(x(t) -x_0(t) -\ell_{10}) + k_2(L - x(t) - \ell_{20})}
+	\end{gather*}
+	À l'équilibre les dérivées de $x$ sont nulles, d'où
+	\begin{gather*}
+		0 = -k_1(x(t) - x_0(t) - \ell_{10}) + k_2(L-x(t) -\ell_{20})
+	\end{gather*}
+	Ainsi, avec $x_{0, \equ}(t) = 0$ et $L = \ell_{10}+\ell_{20}$ (d'après
+	l'énoncé) puis $x(t) = x\ind{eq}$ (par définition), on a
+	\begin{gather*}
+		0 = -k_1(x\ind{eq} -0 - \ell_{10}) + k_2(\ell_{10} +
+		\cancel{\ell_{20}} -x\ind{eq} -\cancel{\ell_{20}})\\
+		\Leftrightarrow
+		(k_1+k_2)(\ell_{10} - x\ind{eq}) = 0
+	\end{gather*}
+	Comme $k_1+k_2 > 0$, on trouve
+	\[\boxed{x\ind{eq} = \ell_{10}}\]
+}
+
+\QR{%
+	On introduit $X = x - x\ind{eq}$. Établir l'équation différentielle
+	vérifiée par $X$ lorsque la paroi bouge.
+}{%
+	Cette fois-ci, on garde $x_0(t)$ dans l'équation. Il vient alors
+	\begin{gather*}
+		m\ddot{x} + h\dot{x} + (k_1+k_2)(x-x\ind{eq})  = k_1x_0(t)
+	\end{gather*}
+	et en effectuant le changement de variable $X = x-x\ind{eq}$, on trouve
+	l'équation habituelle
+	\begin{gather*}
+		\boxed{m \ddot{X} + h \dot{X} + kX = KX_{0m}\cos(\wt)}
+	\end{gather*}
+	avec $k = k_1+k_2$.
+}
+
+\enonce{%
+	Pour étudier le régime sinusoïdal forcé, on introduit les grandeurs
+	complexes $\xul{x}_0(t) = X_{0m} \exp(\jwt)$, $X(t) = X_m \exp(\jj(\wt +
+			\f))$ et $v(t) = V_m \exp(\jj(\wt + \phi))$ associées à $x_0(t)$, $X(t)$ et
+	$v(t) = \dot X(t)$.
+}
+
+\QR{%
+	Définir les amplitudes complexes $\xul{X}_0$, $\xul{X}$ et $\xul{V}$ de
+	$x_0(t)$, $X(t)$ et $v(t)$.
+}{%
+	On a simplement $\Xu_0 = X_{0m}$, $\Xu = X_m\exr^{\jj\F}$ et $\Vu =
+		V_m\exr^{\jj\F}$.
+}
+
+\QR{%
+	En exprimant $\w_0$, $Q$ et $\alpha$ en fonction des données du
+	problème, établir la relation~: \[\xul{V} = \dfrac{\alpha}{1 +
+			\jj Q\left(\dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}\right)} \xul{X}_0\]
+}{%
+	En utilisant l'équation différentielle mais en complexes et sous forme
+	canonique, on trouve
+	\begin{gather*}
+		(\jw)^2\Xu + \jw \frac{h}{m}\Xu + \frac{k}{m}\Xu = \frac{k_1}{m}X_{0m}
+		\Leftrightarrow
+		\Xu =
+		\frac{k_1X_{0m}}{m}\times
+		\frac{1}{\dfrac{k}{m} - \w^2 + \jw \dfrac{h}{m}}
+	\end{gather*}
+	Étant donné que $V = \dv{X}{t}$, $\Vu = \jw\Xu$, soit
+	\begin{align*}
+		\Vu & =
+		\frac{k_1X_{0m}}{m}\times
+		\frac{\jw}{\dfrac{k}{m} - \w^2+\jw\dfrac{h}{m}}
+		\\
+		\Leftrightarrow
+		\Vu & =
+		\frac{k_1X_{0m}}{m}\times
+		\frac{1}{\dfrac{h}{m} -\jj \dfrac{k}{m\w} + \jw}
+		\\
+		\Leftrightarrow
+		\Vu & =
+		\frac{k_1}{h - \jj \dfrac{k}{\w} + \jj m\w}X_{0m}
+		\\
+		\Leftrightarrow
+		\Vu & =
+		\frac{k_1/h}{1 + \jj \left( \dfrac{m\w}{h} - \dfrac{k}{h\w}
+			\right)}\Xu_0
+	\end{align*}
+	Avec $Q\w_0 = \frac{k}{h}$ et $\frac{Q}{\w_0} = \frac{m}{h}$, on trouve
+	bien
+	\begin{gather*}
+		\boxed{
+			\Vu = \frac{\alpha}{1+\jj Q \left( \dfrac{\w}{\w_0} -
+				\dfrac{\w_0}{\w} \right)}\Xu_0
+		}
+		\qavec
+		\boxed{
+			\left\{
+			\begin{array}{rcl}
+				\alpha & = & \dfrac{k_1}{h}       \\
+				\w_0   & = & \sqrt{\dfrac{k}{m}}  \\
+				Q      & = & \dfrac{\sqrt{km}}{h}
+			\end{array}
+			\right.
+		}
+	\end{gather*}
+}
+
+\QR{%
+	Mettre en évidence l'existence d'une résonance de vitesse.
+}{%
+	L'amplitude réelle de la vitesse donne
+	\begin{gather*}
+		V_m(\w) = \frac{\alpha}{\sqrt{1 + Q^2 \left( \dfrac{\w}{\w_0} -
+				\dfrac{\w_0}{\w} \right)^2}}X_{0m}
+	\end{gather*}
+	qui est maximale pour $\w = \w_0$. On observe donc bien une résonance en
+	vitesse pour cette pulsation, avec $V_{\max} = \alpha X_{0m}$.
+}
+
+\resetQ
 \section{Résonance d'intensité dans un circuit RLC parallèle}
 
-\begin{minipage}{0.60\linewidth}
-    L'antenne d'un émetteur radio peut être modélisée par un circuit électrique
-    équivalent composé de l'association en parallèle d'une résistance $R$,
-    d'une bobine d'inductance $L$ et d'un condensateur de capacité $C$.
-    \smallbreak
-    L'antenne est alimentée par une source idéale de courant dont l'intensité
-    caractéristique varie de manière sinusoïdale dans le temps: $i(t) = I_0
-    \cos(\wt)$.
-\end{minipage}
-\hfill
-\begin{minipage}{0.35\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{rlc_parr}
-    \end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.60\linewidth}
+		L'antenne d'un émetteur radio peut être modélisée par un circuit électrique
+		équivalent composé de l'association en parallèle d'une résistance $R$,
+		d'une bobine d'inductance $L$ et d'un condensateur de capacité $C$.
+		\smallbreak
+		L'antenne est alimentée par une source idéale de courant dont l'intensité
+		caractéristique varie de manière sinusoïdale dans le temps: $i(t) = I_0
+			\cos(\wt)$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{rlc_parr}
+		\end{center}
+	\end{minipage}
 
-On s'intéresse à la manière dont l'amplitude de la tension $u(t)$ aux
-bornes de l'antenne, qui correspond au signal envoyé, dépend de
-$\w$.
+	On s'intéresse à la manière dont l'amplitude de la tension $u(t)$ aux
+	bornes de l'antenne, qui correspond au signal envoyé, dépend de
+	$\w$.
+}
 
-\begin{enumerate}
-    \item Déterminer l'impédance complexe de l'association des dipôles $R,L$ et
-        $C$.
-    \item En déduire l'amplitude complexe $\ul{U}$ de la tension $u$ en fonction
-        de $\w$, $I_0$, $R$, $L$ et $C$.
-    \item Pour quelle pulsation l'amplitude réelle $U$ de $u$ prend-elle sa
-        valeur maximale notée $U_\text{max}$~? Conclure sur la fréquence à
-        utiliser.
-    \item Représenter le graphe donnant $U$ en fonction de la pulsation réduite
-        $x=\w/\w_0$ avec $\w_0=1/\sqrt{LC}$.
-    \item Exprimer la largeur de la bande passante $\Delta\w$.
-    \item On se place dans le cas $R = \SI{7}{\Omega}$, $L = \SI{1.2e-8}{H}$ et $C =
-        \SI{2.3e-10}{F}$. Calculer la valeur de l'acuité $A_c = \w_0/\Delta\w$
-        de la résonance. Interpréter sa dépendance en $R$.
-\end{enumerate}
+\QR{%
+	Déterminer l'impédance complexe de l'association des dipôles $R,L$ et
+	$C$.
+}{%
+	Soit $\Zu$ l'impédance équivalente à cette association, et $\Yu$ son
+	admittance. On a
+	\begin{gather*}
+		\Yu = \frac{1}{R} + \frac{1}{\jlw} + \jcw
+		= \frac{\jlw + R + (\jcw)R(\jlw)}{\jj RL\w}\\
+		\Leftrightarrow
+		\boxed{\Zu = \frac{\jj RL\w}{\jlw + R - RLC\w^2}}
+	\end{gather*}
+}
 
+\QR{%
+	En déduire l'amplitude complexe $\xul{U}$ de la tension $u$ en fonction
+	de $\w$, $I_0$, $R$, $L$ et $C$.
+}{%
+	On a $\DS \frac{\Uu_0}{\Iu_0} = \Zu$ par définition de l'impédance,
+	soit $\Uu_0 = \Zu\Iu_0 = \Zu I_0$ (étant donné que l'intensité n'a pas
+	de phase à l'origine). Ainsi
+	\begin{gather*}
+		\Uu_0 = \frac{I_0\jj RL\w}{\jlw + R - RLC\w^2}
+	\end{gather*}
+	On rend cette équation plus lisible en mettant le dénominateur sous une
+	forme adimensionnée en divisant par $\jlw$, ce qui donne
+	\begin{gather*}
+		\Uu_0 = \frac{RI_0}{1 + \dfrac{R}{\jlw} + \jj RC\w}
+		\Leftrightarrow
+		\boxed{\Uu_0 = \frac{RI_0}{1 + \jj \left( RC\w - \frac{R}{L\w} \right)}}
+	\end{gather*}
+}
+
+\QR{%
+	Pour quelle pulsation l'amplitude réelle $U$ de $u$ prend-elle sa
+	valeur maximale notée $U_\text{max}$~? Conclure sur la fréquence à
+	utiliser.
+}{%
+	L'amplitude réelle est
+	\begin{gather*}
+		U = \abs{\Uu_0} = \frac{RI_0}{\sqrt{1 + \left( RC\w - \dfrac{R}{L\w}
+				\right)^2}}
+	\end{gather*}
+	Cette tension réelle est maximale si le dénominateur est minimal, donc
+	si $\DS \left( RC\w - \frac{R}{L\w} \right) = 0$~: cela implique qu'il y
+	a résonance si $\boxed{\w = \w_0 = 1/\sqrt{LC}}$. On trouve alors
+	\begin{gather*}
+		\boxed{U(\w_0) = U_{\max} = E_0}
+	\end{gather*}
+}
+
+\QR{%
+	Représenter le graphe donnant $U$ en fonction de la pulsation réduite
+	$x=\w/\w_0$ avec $\w_0=1/\sqrt{LC}$.
+}{%
+	On cherche à faire apparaître $\w_0$ dans l'écriture de $U$~:
+	\begin{align*}
+		RC\w - \frac{R}{L\w}
+		 & = R\w \frac{C\sqrt{L}}{\sqrt{L}} -
+		\frac{R}{\w}\frac{\sqrt{C}}{\sqrt{C}L}
+		 & = R\w \sqrt{\frac{C}{L}} \frac{1}{\w_0} -
+		\frac{R}{\w} \sqrt{\frac{C}{L}} \w_0
+		 & = R \sqrt{\frac{C}{L}} \left( x - \frac{1}{x} \right)
+	\end{align*}
+	En nommant $Q = \DS R \sqrt{\frac{C}{L}}$, on obtient finalement
+	\begin{gather*}
+		\boxed{\Uu_0 = \frac{RI_0}{1+\jj Q \left( x - \dfrac{1}{x} \right)}}
+		\qsoit
+		\boxed{U = \frac{RI_0}{\sqrt{1 + Q^2\left( x - \dfrac{1}{x}
+					\right)^2}}}
+	\end{gather*}
+	On trace pour différentes valeurs de $Q$, et on obtient~:
+	\begin{center}
+		\includegraphics[width=.8\linewidth]{rlc_parr-gain}
+	\end{center}
+}
+
+\QR{%
+	Exprimer la largeur de la bande passante $\Delta\w$.
+}{%
+	On cherche donc les pulsations de coupure telles que $U(\w) =
+		\frac{U_{\max}}{\sqrt{2}}$, soit
+	\begin{gather*}
+		U(\w) = \frac{U_{\max}}{\sqrt{2}}
+		\Leftrightarrow
+		\frac{RI_0}{\sqrt{1 + Q^2\left( \dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}
+				\right)^2}}
+		=
+		\frac{RI_0}{\sqrt{2}}
+		\Leftrightarrow
+		\boxed{Q^2\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)^2 = 1}
+	\end{gather*}
+	On prend la racine carrée de cette équation, \textbf{en prenant les deux
+		solutions possibles}~:
+	\begin{align*}
+		Q\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right) = -1
+		         & \qet
+		Q\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right) = 1          \\
+		\Leftrightarrow
+		\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)\times \w\w_0 =
+		- \frac{\w\w_0}{Q}
+		         & \qet
+		\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)\times \w\w_0 =
+		\frac{\w\w_0}{Q}                                               \\
+		\Leftrightarrow
+		\w^2 - \w_0{}^2 = -\frac{\w\w_0}{Q}
+		         & \qet
+		\w^2 - \w_0{}^2 = \frac{\w\w_0}{Q}                             \\
+		\Leftrightarrow
+		\boxed{
+			\w^2 + \frac{\w_0}{Q}\w - \w_0{}^2 = 0}
+		         & \qet
+		\boxed{
+		\w^2 - \frac{\w_0}{Q}\w - \w_0{}^2 = 0}                        \\
+		\Rightarrow
+		\Delta = & \frac{\w_0{}^2}{Q} + 4\w_0{}^2                      \\
+		\Leftrightarrow
+		\Delta = & \frac{\w_0{}^2}{Q^2} \left( 1 + 4Q^2 \right)        \\
+		\Rightarrow
+		\w_{1,\pm} = -\frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1+4Q^2}
+		         & \qet
+		\w_{2,\pm} = \frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1+4Q^2} \\
+		\Leftrightarrow
+		\w_{1,\pm} = \frac{\w_0}{2Q} \left(-1 \pm \sqrt{1+4Q^2}\right)
+		         & \qet
+		\w_{2,\pm} = \frac{\w_0}{2Q} \left(1 \pm \sqrt{1+4Q^2}\right)
+	\end{align*}
+	De ces quatre racines, seules deux sont positives~: la solution avec $-1 -
+		\sqrt{1+4Q^2}$ est évidemment négative, et celle avec $1 - \sqrt{1+4Q^2}$
+	également. Ainsi, il ne nous reste que
+	\begin{gather*}
+		\w_1 = \frac{\w_0}{2Q} \left( \sqrt{1+4Q^2}-1 \right)
+		\qet
+		\w_1 = \frac{\w_0}{2Q} \left( \sqrt{1+4Q^2}+1 \right)
+	\end{gather*}
+	Il ne reste qu'à calculer la différence pour avoir la bande passante~:
+	\begin{gather*}
+		\boxed{\D\w = \w_2 - \w_1 = \frac{\w_0}{Q}}
+	\end{gather*}
+}
+
+\QR{%
+	On se place dans le cas $R = \SI{7}{\Omega}$, $L = \SI{1.2e-8}{H}$ et $C =
+		\SI{2.3e-10}{F}$. Calculer la valeur de l'acuité $A_c = \w_0/\Delta\w$
+	de la résonance. Interpréter sa dépendance en $R$.
+}{%
+	$\w_0/\D\w$ est directement $Q$, donc on a
+	\begin{gather*}
+		A_c = Q = R \sqrt{\frac{C}{L}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			R & = & \SI{7}{\Omega}  \\
+			L & = & \SI{1.2e-8}{H}  \\
+			C & = & \SI{2.3e-10}{F}
+		\end{array}
+		\right.\\
+		\mathrm{A.N.~:}\quad
+		\boxed{A_c = \num{5.2}}
+	\end{gather*}
+	L'acuité augmente avec la résistance~: c'est normal puisque la
+	résistance est en parallèle du circuit, donc une absence de résistance
+	signifie ici $R$ infinie (pour qu'aucun courant ne la traverse).
+}
+
+\resetQ
 \section{Condition de résonance}
-\begin{minipage}{0.60\linewidth}
-    Le circuit ci-contre est alimenté par une source de tension sinusoïdale de
-    f.é.m. $e(t) = E_0 \cos( \wt)$. On s'intéresse à la tension $u(t)$
-    aux bornes du résistor et de la capacité montés en parallèle.
+\enonce{%
+	\begin{minipage}{0.60\linewidth}
+		Le circuit ci-contre est alimenté par une source de tension sinusoïdale de
+		f.é.m. $e(t) = E_0 \cos( \wt)$. On s'intéresse à la tension $u(t)$
+		aux bornes du résistor et de la capacité montés en parallèle.
 
-    On pose~: $\w_0 =\dfrac{1}{\sqrt{LC}}$, $\xi =
-    \dfrac{R}{2}\sqrt{\dfrac{C}{L}}$ et $x = \dfrac{\w}{\w_0}$.
-\end{minipage}
-\hfill
-\begin{minipage}{0.35\linewidth}
-    \begin{center}
-        \includegraphics[width=\linewidth]{cond_res}
-    \end{center}
-\end{minipage}
+		On pose~: $\w_0 =\dfrac{1}{\sqrt{LC}}$, $\xi =
+			\dfrac{R}{2}\sqrt{\dfrac{C}{L}}$ et $x = \dfrac{\w}{\w_0}$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{cond_res}
+		\end{center}
+	\end{minipage}
+}
 
-\begin{enumerate}
-    \item Établir l'expression du signal complexe $\ul{u}$ associé à
-        $u(t)$ en régime sinusoïdal forcé, en fonction de $E_0$, $x$ et
-        $\xi$.
-    \item Étudier l'existence éventuelle d'une résonance pour la tension
-        $u(t)$.
-\end{enumerate}
+\QR{%
+	Établir l'expression du signal complexe $\xul{u}$ associé à
+	$u(t)$ en régime sinusoïdal forcé, en fonction de $E_0$, $x$ et
+	$\xi$.
+}{%
+	Soit $\Zu$ l'impédance équivalent à l'association en parallèle de $R$
+	et $C$. On a
+	\begin{gather*}
+		\Zu = \frac{R/\jcw}{R + 1/\jcw} = \frac{R}{1+\jj RC\w}
+	\end{gather*}
+	En utilisant un pont diviseur de tension, on trouve
+	\begin{gather*}
+		\uu = \frac{\Zu}{\Zu + \jlw}\eu
+		= \frac{1}{1+\jlw/\Zu}\eu\\
+		\Leftrightarrow
+		\uu = \frac{\eu}{1+ \jj \frac{L\w}{R} - LC\w^2}
+		= \frac{\eu}{1+ 2\jj\xi x - x^2}
+	\end{gather*}
+}
+
+\QR{%
+	Étudier l'existence éventuelle d'une résonance pour la tension
+	$u(t)$.
+}{%
+	L'amplitude réelle est
+	\begin{gather*}
+		U = \abs{\uu} = \frac{E_0}{\sqrt{(1-x)^2 + (2\xi x)^2}}
+	\end{gather*}
+	On trouve le maximum de cette amplitude quand le dénominateur est
+	\textbf{non nul} et minimal, c'est-à-dire
+	\begin{gather*}
+		U(\w_r) = U_{\max}
+		\Leftrightarrow
+		\left( 1 - x^2 \right)^2 + \left(2\xi x\right)^2 \text{minimal}
+	\end{gather*}
+	Soit $X = x^2$, et $f(X) = \left(1 - X\right)^2 + 4\xi^2X$, la fonction que
+	l'on cherche à minimiser~: on cherche donc quand est-ce que sa dérivée est
+	nulle, c'est-à-dire
+	\begin{gather*}
+		f'(X_r) = 0
+		\Leftrightarrow
+		-2 \left( 1-X_r \right) + 4\xi^2 = 0
+		\Leftrightarrow
+		X_r-1 = - 2\xi^2
+		\Leftrightarrow
+		X_r = 1 - 2\xi^2\\
+		\Leftrightarrow
+		\boxed{
+			\w_r = \w_0 \sqrt{1 - 2\xi^2}}
+	\end{gather*}
+	ce qui n'est défini \textbf{que si} $\xi < \frac{1}{\sqrt{2}}$. Ainsi,
+	\begin{itemize}[leftmargin=60pt]
+		\item[$\mathbf{\xi \geq 1/\sqrt{2}}$] : \textbf{pas de résonance},
+			l'amplitude est maximale pour
+			\[\boxed{\w = 0 \qet U(0) = E_0}\]
+		\item[$\mathbf{\xi < 1/\sqrt{2}}$] : l'amplitude est maximale pour
+			\[\boxed{\w_r = \w_0 \sqrt{1 - 2\xi^2} < \w_0}\]
+	\end{itemize}
+}
 
 \end{document}

@@ -1,12 +1,14 @@
 \documentclass[a4paper, 10pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \graphicspath{{./figures/}}
+% \newcommand{\splus}{\raisebox{.2\height}{\scalebox{.8}{+}}}
+% \newcommand{\sminu}{\raisebox{.4\height}{\scalebox{.8}{-}}}
 
 \makeatletter
 \renewcommand{\@chapapp}{Contr\^ole de connaissances}
 \makeatother
 
-\toggletrue{student}
+% \toggletrue{student}
 % \HideSolutionstrue
 % \toggletrue{corrige}
 \renewcommand{\mycol}{black}
@@ -50,8 +52,8 @@
 	\end{DispWithArrows*}
 	\nitem{2}%
 	Donner et démontrer la relation du pont diviseur de tension pour
-	deux impédances $\Zu_1$ et $\Zu_2$ en série d'une part, et en parallèle
-	d'autre part.\\
+	deux impédances $\Zu_1$ et $\Zu_2$ en série d'une part, et la relation du pont
+	diviseur de courant pour deux impédances en parallèle d'autre part.\\
 	\begin{isd}[]
 		\begin{center}
 			\sswitch{
@@ -138,7 +140,7 @@
 			\boxed{
 				\f_C = -\arctan(RC\w)
 			}
-			\quad \text{car} \Re(\arg(1 + \jj RC\w)) > 0
+			\quad \text{car} \Re(1 + \jj RC\w) > 0
 		\end{gather*}
 	}
 	\nitem{4}%
@@ -150,10 +152,11 @@
 	\smallbreak
 	\begin{isd}[righthand ratio=.3]
 		\wsw{
-			La résonance correspond au fait d'apporter de l'énergie à un système
-			oscillant à une fréquence qui permet l'addition de ces deux énergies.
-			Exemple~: instrument à vent. Avec $X(\w)$ l'amplitude réel du signal
-			excité, on a
+			La résonance survient lorsqu'un système extérieur apporte de l'énergie
+			à un système oscillant à sa fréquence «~naturelle~», dite «~de
+			résonance~». Le système oscillant a alors une amplitude de variation
+			maximale. Exemple~: instrument à vent. Avec $X(\w)$ l'amplitude réel du
+			signal excité, on a
 			\begin{align*}
 				\text{résonance}
 				\quad & \Lra \quad
@@ -161,7 +164,7 @@
 				\\
 				\text{bande passante}
 				\quad & \triangleq \quad
-				\{\w ~|~ X(\w) > X_{\max}/\sqrt{2}\}
+				\{\w ~|~ X(\w) \geq X_{\max}/\sqrt{2}\}
 			\end{align*}
 			\begin{itemize}
 				\item $\w_1$ et $\w_2$ les \textbf{pulsations de coupure}~;

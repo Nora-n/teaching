@@ -11,7 +11,7 @@
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
 \makeatother
 
-\toggletrue{student}
+% \toggletrue{student}
 \HideSolutionstrue
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
@@ -325,7 +325,6 @@ informatique basé sur ce théorème, je vous recommande la vidéo de
 		\centering
 		\includegraphics[width=.85\linewidth]{fft_50_[1,5,10]_[1,0.5,0.2]}
 		\captionof{figure}{Signal somme de 50, 250 et \SI{500}{Hz}}
-		\label{fig:3some}
 	\end{minipage}
 
 	\begin{minipage}{\linewidth}
@@ -726,21 +725,23 @@ s'appelle une \textbf{décade}.
 				\Lra
 				\frac{1}{\sqrt{1+x^{2}}} \geq \frac{1}{\sqrt{2}}
 				\\\Lra
-				\boxed{x \leq 1 \Lra \w \leq \w_0}
+				\Aboxed{x \leq 1 \Lra \w \leq \w_0}
 			\end{gather*}
 		}
-		\vspace*{-15pt}
+		\vspace{-15pt}
 		\item
 		      \psw{
-			      \begin{gather*}
+			      \[
 				      \f(x) = \arg(\Hu(x)) = -\arg \left( 1+\jx \right)
 				      \Lra
 				      \boxed{\f(x) = -\arctan(x)}
-				      \\\Ra
+			      \]
+			      On a alors
+			      \[
 				      \f(x) \opto{}{x\to 0} 0
 				      \qet
 				      \f(x) \opto{}{x\to\infty} -\frac{\pi}{2}
-			      \end{gather*}
+			      \]
 		      }
 	\end{enumerate}
 \end{tcb*}
@@ -751,124 +752,18 @@ s'appelle une \textbf{décade}.
 \begin{tcb*}(defi){Diagramme de \textsc{Bode}}
 	Le(s) diagramme(s) de \textsc{Bode} est un outil permettant de visualiser
 	\textit{et quantifier} l'effet d'un filtre sur une fréquence d'entrée. On
-	représente pour cela~:
-	\begin{itemize}
-		\item \textbf{gain en décibels} $G\ind{dB}(x) = 20 \log \abs{\Hu(x)}$~;
-		\item et sa \textbf{phase} $\f(x) = \arg({\Hu(x)})$.
-	\end{itemize}
+	représente pour cela son \textbf{gain en décibels} $G\ind{dB}(x) = 20 \log
+		\abs{\Hu(x)}$ et sa
+	\textbf{phase} $\f(x) = \arg({\Hu(x)})$.
 	\smallbreak
 	On les trace en fonction de la pulsation (réduite ou non) ou de la fréquence,
 	et \textbf{en échelle logarithmique}.
 \end{tcb*}
-Par exemple, pour le RC sur C~:
-\begin{figure}[htbp!]
-	\centering
-	\subcaptionbox{Gain\label{fig:rccbodegain}}[.48\linewidth]
-	{\includegraphics[width=\linewidth]{RCC_bode-gain}}
-	\subcaptionbox{Phase\label{fig:rccbodephase}}[.48\linewidth]
-	{\includegraphics[width=\linewidth]{RCC_bode-phase}}
-	\caption{Diagramme de \textsc{Bode} du filtre RC sur C.}
-	\label{fig:rccbode}
-\end{figure}
-C'est donc un \textbf{passe-bas}~!
-% \begin{center}
-% 	\includegraphics[width=0.48\linewidth]{RCC_bode-gain}
-% 	\includegraphics[width=0.48\linewidth]{RCC_bode-phase}
-% \end{center}
 
 \subsubsection{Asymptotes}
-\begin{tcb*}(defi){Diagramme asymptotique}
-	Le diagramme de Bode asymptotique d’un filtre correspond au diagramme de Bode
-	où seules les droites asymptotes affines sont tracées.
-\end{tcb*}
-\begin{tcb*}(tool){Obtention des asymptotes}
-	Pour trouver les asymptotes~:
-	\begin{enumerate}
-		\item On simplifie $\Hu(x)$ pour $x\to 0$ et $x\to \infty$, en ne gardant
-		      \textbf{que le terme prépondérant} au numérateur et au dénominateur~;
-		\item On calcule $G\ind{dB}$ et $\f$ avec ces limites asymptotiques~;
-		\item On trace les droites obtenues en les faisant se rejoindre.
-	\end{enumerate}
-\end{tcb*}
-\begin{tcb*}(appl){Diagramme asymptotique RC sur C}
-	Déterminer les droites asymptotes du diagramme de Bode de RC sur C. Vérifier
-	la cohérence avec les asymptotique de la Figure~\ref{fig:rccbode}.
-	\tcblower
-	\vspace{12pt}
-	\begin{enumerate}
-		\mitem
-		\psw{
-			\[
-				\boxed{
-					\Hu(x) \opto{}{x\to 0} \frac{1}{1 + 0} = 1
-					\qet
-					\Hu(x) \opto{}{x\to \infty} \frac{1}{\jx}
-				}
-			\]
-		}
-		\vspace{-15pt}
-		\item
-		      \begin{itemize}
-			      \item Pour le gain~:
-			            \psw{
-				            \[
-					            G\ind{dB}(x) \opto{}{x\to 0} 20 \log (1) = 0
-					            \qet
-					            G\ind{dB}(x) \opto{}{x\to\infty} 20 \log \abs{\frac{1}{\jx}} = -20 \log
-					            x
-				            \]
-			            }%
-			            Ainsi, à hautes fréquences, \textbf{le gain diminue de
-				            \SI{20}{dB} par décade}~: si $\w$ est multiplié par 10, le
-			            gain en décibel baisse de \SI{20}{dB} (i.e.\ l'amplitude est
-			            divisée par 10).
-			      \item Pour la phase~:
-			            \psw{
-				            \[
-					            \f(x) \opto{}{x\to 0} \arg(1) = 0
-					            \qet
-					            \f(x) \opto{}{x\to \infty} \arg\left(\frac{1}{\jx}\right) = -\frac{\pi}{2}
-				            \]
-			            }
-			            \vspace{-15pt}
-		      \end{itemize}
-	\end{enumerate}
-\end{tcb*}
-
 % Corot p.7
 
 \subsubsection{Lecture}
-Pour lire le signal de sortie d'un filtre, il suffit de repérer le \textbf{gain}
-et la \textbf{phase} de la fonction de transfert \textbf{pour chaque fréquence}
-de la décomposition. Si $e(t) = E \cos(\wt)$, la sortie sera
-\psw{
-	\[
-		s(t) = \abs{\Hu(\w)} \times E \cos(\wt + \f(\w))
-	\]
-}
-On trouve le gain à partir du gain en décibel en inversant la formule~:
-\psw{
-	\[
-		G\ind{dB}(\w) = 20 \log \abs{\Hu(\w)}
-		\Lra
-		\abs{\Hu(\w)} = 10^{G\ind{dB}(\w)/20}
-	\]
-}
-\vspace{-15pt}
-\begin{tcb*}(exem){Filtrage par RC sur C}
-	En reprenant la Figure~\ref{fig:3some}, on ajoute le filtre RC en passe-bas.
-	Pour garder les basses fréquences, on choisit une fréquence de coupure $f_0$ à
-	\SI{10}{Hz}. Avec $R = \SI{1000}{\ohm}$ cela impose $C = \SI{1.6e-5}{F}$
-	($\w_0 = \frac{1}{RC}$). On obtient la figure suivante~:
-	\smallbreak
-	\noindent
-	\begin{minipage}{\linewidth}
-		\centering
-		\includegraphics[width=.90\linewidth]{fft_50_[1,5,10]_[1,0.5,0.2]_fc=10}
-		\captionof{figure}{Signal somme de 50, 250 et \SI{500}{Hz}}
-		\label{fig:3some_fltrd}
-	\end{minipage}
-\end{tcb*}
 
 \subsection{Filtres moyenneurs, dérivateurs et intégrateurs}
 % Corot p.20, Schwei p.7

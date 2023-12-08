@@ -2,38 +2,38 @@
 \usepackage{mintikz}
 
 \begin{document}
-\begin{circuitikz}
-    \sVrot{0}
-    \ctikzset{current/distance=.3}
-    \draw
-    (0,0)
-        to[sV, name=e, v^>=$e(t)$, !vi]
-    (0,2)
-        coordinate (V1)
-        to[L,l^=$L$, name=L, !vi]
-    (2,2)
-        coordinate (V2)
-        to[R, name=R, i>^=$i$, v^<=$u_R$, !vi]
-    (4,2)
-        coordinate (G2)
-        node[rotate=135, eground]
-        to[C,l^=$C$, name=C, !vi]
-    (4,0)
-        --
-    (0,0)
-        coordinate (G1)
-        node [eground] {}
-    ;
-    \varronly{e} \varronly{R}
-    \iarronly{R}
-    \node[] at (R.center) {$R$};
-    \draw[thick, ->]
-    (V1) --++ (130:1)
-    node [above left] {Voie 1};
-    \draw[thick, ->]
-    (V2) --++ (90:1)
-    node [above] {Voie 2};
-    \draw[thick]
-    (G1) to[bend right] (G2);
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\ctikzset{current/distance=.3}
+	\draw
+	(0,0)
+	to[sV, name=e, v^>=$e(t)$, !vi]
+	(0,2)
+	coordinate (V1)
+	to[L,l^=$L$, name=L, !vi]
+	(2,2)
+	coordinate (V2)
+	to[R, name=R, i>^=$i$, v^<=$u_R$, !vi]
+	(4,2)
+	coordinate (G2)
+	node[rotate=135, ground] {}
+	to[C,l^=$C$, name=C, !vi]
+	(4,0)
+	--
+	(0,0)
+	coordinate (G1)
+	node [ground] {}
+	;
+	\varronly{e} \varronly{R}
+	\iarronly{R}
+	\node[] at (R.center) {$R$};
+	\draw[thick, ->]
+	(V1) --++ (130:1)
+	node [above left] {Voie 1};
+	\draw[thick, ->]
+	(V2) --++ (90:1)
+	node [above] {Voie 2};
+	\draw[thick]
+	(G1) to[bend right] (G2);
 \end{circuitikz}
 \end{document}

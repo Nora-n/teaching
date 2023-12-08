@@ -182,7 +182,7 @@ permet de réduire drastiquement cette difficulté.
 		\begin{gather*}
 			U_C = \abs{\xul{U_C}}
 			\qet
-			\f = \arg(\xul{U_C})
+			\f = \arg*{\xul{U_C}}
 		\end{gather*}
 	}
 \end{tcb}
@@ -254,13 +254,13 @@ temps.
 \end{tcb}
 On fait de même pour la phase, avec pour rappel~:
 \begin{tcb}[sidebyside](rapp)<lftt>{Rappel~: pour $\xul{z} \in \Cb$}
-	\[\tan(\arg(\xul{z})) = \frac{\Im(\xul{z})}{\Re(\xul{z})}
+	\[\tan(\arg*{\xul{z}}) = \frac{\Im(\xul{z})}{\Re(\xul{z})}
 		\qquad
-		\cos(\arg(\xul{z})) = \frac{\Re(\xul{z})}{\abs{\xul{z}}}
+		\cos(\arg*{\xul{z}}) = \frac{\Re(\xul{z})}{\abs{\xul{z}}}
 	\]
 	\[
 		\qquad
-		\sin(\arg(\xul{z})) = \frac{\Im(\xul{z})}{\abs{\xul{z}}}
+		\sin(\arg*{\xul{z}}) = \frac{\Im(\xul{z})}{\abs{\xul{z}}}
 		\qquad
 	\]
 	On rappelle également que $\tan(-x) = -\tan(x)$.
@@ -270,8 +270,8 @@ On fait de même pour la phase, avec pour rappel~:
 	$\forall (\xul{z_1}, \xul{z_2}) \in \Cb^2$,
 	\[
 		\boxed{
-			\arg\left( \frac{\xul{z_1}}{\xul{z_2}} \right) =
-			\arg(\xul{z_1}) - \arg(\xul{z_2})
+			\arg*{ \frac{\xul{z_1}}{\xul{z_2}} } =
+			\arg*{\xul{z_1}} - \arg*{\xul{z_2}}
 		}
 	\]
 \end{tcb}
@@ -284,11 +284,11 @@ On fait de même pour la phase, avec pour rappel~:
 		Ainsi,
 		\begin{gather*}
 			\f
-			= \arg \left( \frac{E_0}{1+\jj RC\w} \right)
-			= \underbrace{\arg(E_0)}_{=0} - \arg (1+\jj RC\w)
+			= \arg*{ \frac{E_0}{1+\jj RC\w} }
+			= \underbrace{\arg*{E_0}}_{=0} - \arg (1+\jj RC\w)
 			\\\Ra
 			\tan(\f)
-			= - \tan(\arg(1+\jj RC\w))
+			= - \tan(\arg*{1+\jj RC\w})
 			= - \frac{RC\w}{1}
 		\end{gather*}
 		En appliquant $\arctan()$, on obtient
@@ -312,14 +312,15 @@ tangente.
 		cosinus~: s'il est positif, alors on a en effet $\theta \in \left] -
 	\frac{\pi}{2}\,; \frac{\pi}{2} \right[$. Ici,
 		\begin{gather*}
-			\cos(\arg(\f))
-			= \frac{\Re(\arg(\f))}{\abs{\xul{z}}}
+			\cos(\arg*{\f})
+			= \frac{\Re(\arg*{\f})}{\abs{\xul{z}}}
 			= \frac{1}{\sqrt{1 + (RC\w)^2}} > 0
 		\end{gather*}
 		donc on peut bien dire que $\arctan\tan(\f) = \f$.
 		\smallbreak
 		Si ça n'est pas le cas, il faut ajouter ou soustraire $\pi$ à l'argument.
 \end{tcb}
+% TODO: graphiques pour expliquer si on ajoute ou soustrait \pi.
 
 \begin{tcb}(prop){Résultat}
 	La solution particulière est
@@ -516,13 +517,13 @@ En tant que complexe, on peut prendre son module et son argument~:
 			      }
 		      \]
 	      }
-	\item Son argument $\arg(\xul{Z})$ est égal à la différence de phase entre
+	\item Son argument $\arg*{\xul{Z}}$ est égal à la différence de phase entre
 	      $\xul{u}$ et $\xul{i}$ (aussi appelée \textbf{déphasage}, voir Section
 	      ultérieure)~:
 	      \psw{
 		      \[
-			      \boxed{\arg(\xul{Z})
-				      = \arg \left( \frac{\xul{u}}{\xul{i}} \right)
+			      \boxed{\arg*{\xul{Z}}
+				      = \arg*{ \frac{\xul{u}}{\xul{i}} }
 				      = \f_u - \f_i}
 		      \]
 	      }
@@ -843,7 +844,7 @@ des résistances.
 				            \[
 					            \boxed{X = \abs{\xul{X}}}
 					            \qet
-					            \boxed{\f_X = \arg(\xul{X})}
+					            \boxed{\f_X = \arg*{\xul{X}}}
 				            \]
 			            }
 			            \vspace{-15pt}
@@ -973,20 +974,20 @@ plus proches tels que les deux signaux s'annulent \textbf{avec la même pente}.
 
 \subsection{Déphasage des impédances}
 Pour un dipôle de tension $\xul{U}$ traversé par une intensité $\xul{I}$, on
-définit $\xul{Z} = \frac{\xul{U}}{\xul{I}}$, et on a donc $\arg(\xul{Z}) =
-	\arg(\xul{U}) - \arg(\xul{I})$. Ainsi, la phase d'une impédance représente le
+définit $\xul{Z} = \frac{\xul{U}}{\xul{I}}$, et on a donc $\arg*{\xul{Z}} =
+	\arg*{\xul{U}} - \arg*{\xul{I}}$. Ainsi, la phase d'une impédance représente le
 déphasage entre la tension et le courant. Pour les différents dipôles
 classiques, on trouve~:
 \begin{itemize}
 	\item \psw{
-		      $\arg(\xul{Z}_R) = 0 \Rightarrow$ signaux en phase~;
+		      $\arg*{\xul{Z}_R} = 0 \Rightarrow$ signaux en phase~;
 	      }
 	\item \psw{
-		      $\arg(\xul{Z}_L) = \arg(\jj L\w) = \pi/2 \Rightarrow$ signaux en
+		      $\arg*{\xul{Z}_L} = \arg*{\jj L\w} = \pi/2 \Rightarrow$ signaux en
 		      quadrature de phase, avec $\xul{u}$ en avance sur $\xul{i}$~;
 	      }
 	\item \psw{
-		      $\arg(\xul{Z}_C) = \arg(1/\jj C\w) = -\pi/2 \Rightarrow$ signaux en
+		      $\arg*{\xul{Z}_C} = \arg*{1/\jj C\w} = -\pi/2 \Rightarrow$ signaux en
 		      quadrature de phase, avec $\xul{u}$ en retard sur $\xul{i}$.
 	      }
 	      \vspace{-15pt}

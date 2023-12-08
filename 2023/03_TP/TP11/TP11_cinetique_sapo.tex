@@ -5,9 +5,9 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-% \toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+\toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
@@ -52,7 +52,7 @@
 
 \enonce{%
 	\section{S'approprier}
-	% \subsection{Introduction}
+	\subsection{Introduction}
 
 	La réaction de saponification est l'hydrolyse basique (en présence d'ions
 	$\ce{OH^-}$) des esters, cette réaction permet la synthèse des savons. Le savon,
@@ -230,8 +230,10 @@
 
 \subsection{\'Etude théorique de la cinétique}
 
-On cherche à vérifier que cette réaction est d'ordre global 2 avec un ordre
-partiel de 1 par rapport à chacun des réactifs.
+\enonce{%
+	On cherche à vérifier que cette réaction est d'ordre global 2 avec un ordre
+	partiel de 1 par rapport à chacun des réactifs.
+}
 
 \QR{%
 	Écrire la loi de vitesse correspondante.
@@ -261,6 +263,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	réaction est supposée \textbf{totale}. On introduira pour plus de
 	commodité d'écriture $x$ l'avancement volumique $x = \xi / V$.
 }{%
+	~
 	\begin{center}
 		\def\rhgt{0.35}
 		\centering
@@ -311,6 +314,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	tracer, connaissant $x(t)$, pour vérifier que la réaction est bien
 	d'ordre 2~?
 }{%
+	\label{q:reglin}
 	\begin{align*}
 		v = k (c_0-x)^{2}            & = - \dv{(c_0-x)}{t} = \dv{x}{t}
 		% \notag
@@ -490,37 +494,37 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 }
 
 \QR{%
-Sachant que l'on va mesurer les conductivités, quel graphe doit-on
-tracer pour obtenir une droite si l'ordre de la réaction est bien de 2~?
-Comment pourra-t-on en déduire la constante de vitesse de la réaction~?
+	Sachant que l'on va mesurer les conductivités, quel graphe doit-on
+	tracer pour obtenir une droite si l'ordre de la réaction est bien de 2~?
+	Comment pourra-t-on en déduire la constante de vitesse de la réaction~?
 }{%
-On trace donc $\frac{\sigma_0 - \sigma_{\infty}}{\sigma - \sigma_{\infty}}$,
-puisque nous n'avons pas accès à $x$. Le modèle à tracer sera
-\[
-	y\tikzmark{ynb} = a\tikzmark{anb}x\tikzmark{xnb} + b\tikzmark{bnb}
-\]
-\tikz[remember picture, overlay]
-\draTP11_cinetique_sapo_solu-prof.pdfw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
-(pic cs:ynb) --++ (-10pt,-10pt)
-node[anchor=north east] {$\frac{\sigma_0 - \sigma_{\infty}}
+	On trace donc $\frac{\sigma_0 - \sigma_{\infty}}{\sigma - \sigma_{\infty}}$,
+	puisque nous n'avons pas accès à $x$. Le modèle à tracer sera
+	\[
+		y\tikzmark{ynb} = a\tikzmark{anb}x\tikzmark{xnb} + b\tikzmark{bnb}
+	\]
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
+	(pic cs:ynb) --++ (-10pt,-10pt)
+	node[anchor=north east] {$\frac{\sigma_0 - \sigma_{\infty}}
 			{\sigma - \sigma_{\infty}}$}
-;
-\tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
-(pic cs:anb) --++(-5pt,-10pt)
-node[anchor=north] {$c_0k$}
-;
-\tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={xshift=0pt, yshift=-6pt}]
-(pic cs:xnb) --++(5pt,-10pt)
-node[anchor=north] {$t$}
-;
-\tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={xshift=3pt, yshift=-6pt}]
-(pic cs:bnb) --++(10pt,-10pt)
-node[anchor=north west] {$1$}
-;
-\vspace{15pt}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
+	(pic cs:anb) --++(-5pt,-10pt)
+	node[anchor=north] {$c_0k$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=0pt, yshift=-6pt}]
+	(pic cs:xnb) --++(5pt,-10pt)
+	node[anchor=north] {$t$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=3pt, yshift=-6pt}]
+	(pic cs:bnb) --++(10pt,-10pt)
+	node[anchor=north west] {$1$}
+	;
+	\vspace{15pt}
 }
 
 \section{Réaliser}
@@ -586,14 +590,17 @@ node[anchor=north west] {$1$}
 	compliqué à étalonner que l'absorbance.
 }
 
-\begin{tcb}(rapp){Rappel}
-	\centering
-	Il est préférable de faire des mesures de conductimétrie sans
-	agitation. Mais ici ce n'est pas possible car il faut que les
-	concentrations soient uniformes en solution. Pour que la
-	perturbation soit moindre, il ne faut pas changer la vitesse
-	d'agitation au cours de la réaction.
-\end{tcb}
+\enonce{%
+	\begin{tcb}(rapp){Rappel}
+		\centering
+		Il est préférable de faire des mesures de conductimétrie sans
+		agitation. Mais ici ce n'est pas possible car il faut que les
+		concentrations soient uniformes en solution. Pour que la
+		perturbation soit moindre, il ne faut pas changer la vitesse
+		d'agitation au cours de la réaction.
+	\end{tcb}
+}
+
 \subsubsection{Détermination de $\sigma_0$ et de $\sigma_\infty$}
 \QR{%
 	$\sigma_0$ ne peut pas être déterminée précisément à partir du mélange
@@ -669,6 +676,7 @@ node[anchor=north west] {$1$}
 \QR{%
 	Faire un schéma du dispositif expérimental.
 }{%
+	~
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=.8\linewidth]{suivi_conduc}
@@ -688,7 +696,8 @@ node[anchor=north west] {$1$}
 \QR{%
 	Tracer le graphe nécessaire à la vérification de l'ordre 2.
 }{%
-	solu
+	% TODO: graphe
+	En cours…
 }
 \QR{%
 	Conclure quant à l'ordre global de la vitesse de la réaction étudiée.
@@ -736,6 +745,9 @@ On obtient
 	Faire la régression linéaire nécessaire à la détermination de l'énergie
 	d'activation de cette réaction. Préciser son unité.
 }{%
+	~
+	\smallbreak
+	\noindent
 	\begin{minipage}{0.45\linewidth}
 		\[\ln(k(T)) = \ln A - \frac{E_a}{R}\times \frac{1}{T}\]
 		On trouve une régression de $r^2 = \num{0.994}$, avec $\ln A =

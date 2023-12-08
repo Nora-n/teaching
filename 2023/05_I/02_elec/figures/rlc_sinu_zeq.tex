@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\ctikzset{current/distance=.8}
+	\draw
+	(0,0)
+	to[sV, name=E, v^>={{{\rotatebox[origin=c]{90}{$e(t) = E_0\cos(\wt)$}}}},
+	!vi]
+	(0,2)
+	to[R, name=R, i^>=$i(t)$, !vi]
+	(2,2)
+	to[L,l^=$L$, name=L, !vi]
+	(4,2)
+	to[C,l_=$C$, name=C, v^<=$u_C(t)$, !vi]
+	(4,0) --
+	(0,0)
+	;
+	\varronly{E} \varronly{C}
+	\iarronly{R}
+	\node[] at (R.center) {$R$};
+	\node[right=3em] (E) at (C.north) {$\equiv$};
+	\draw[shift={($(E)+(4em,-1)$)}]
+	(0,0)
+	to[sV, name=E, v^>={{{\rotatebox[origin=c]{90}{$\xul{e}(t) = E_0\exr^{\jj\wt}$}}}},
+	!vi]
+	(0,2)
+	to[R, name=R, i^>=$\xul{i}(t)$, !vi]
+	(2,2)
+	to[R, l^=$\jj L\w$, name=L, !vi]
+	(4,2)
+	to[R,l_=$1/\jj C\w$, name=C, v^<=$\xul{u_C}(t)$, !vi]
+	(4,0) --
+	(0,0)
+	;
+	\varronly{E} \varronly{C}
+	\iarronly{R}
+	\node[] at (R.center) {$R$};
+	\node[right=3em] (E) at (C.north) {$\equiv$};
+	\draw[shift={($(E)+(4em,-1)$)}]
+	(0,0)
+	to[sV, name=E,
+	v^>={{{\rotatebox[origin=c]{90}{$\xul{e}(t) = E_0\exr^{\jj\wt}$}}}},
+	!vi]
+	(0,2)
+	to[short, name=S, i>^=$\xul{i}(t)$, !vi]
+	(2,2)
+	to[R, name=Z, l_=$\xul{Z}\ind{eq}$, v^<=$\dcancel{\xul{u_C}(t)}$, !vi]
+	(2,0) --
+	(0,0)
+	;
+	\varronly{E} \varronly{Z}
+	\iarronly{S}
+\end{circuitikz}
+\end{document}

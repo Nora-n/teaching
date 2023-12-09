@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage{stackengine,xcolor,enumitem}
+
+% https://tex.stackexchange.com/a/590844/5764
+\newcommand\circnum[1]{\stackinset{c}{}{c}{.1ex}{\small\textcolor{white}{#1}}%
+  {\abovebaseline[-.7ex]{\Huge\textcolor{enumicol}{\textbullet}}}}
+
+% Setup special items
+\newif\iffitem
+	\newcommand{\setupmodenumerate}{%
+	\global\fitemfalse
+	\let\origmakelabel\makelabel
+	\def\fitem##1{\global\fitemtrue\def\toapply{##1}\item}%
+	\def\makelabel##1{%
+\origmakelabel{%
+	\iffitem{%
+		\renewcommand{\labelenumi}{\arabic{enumi}}%
+		\renewcommand{\labelenumii}{\alph{enumii}}%
+		\renewcommand{\labelenumiii}{\roman{enumiii}}%
+		\toapply{##1}%
+	}%
+\else##1\fi}%
+\global\fitemfalse
+}%
+}
+\setlist[enumerate]{before=\setupmodenumerate}
+% Number in squares
+\newcommand{\sqenumi}{\protect\fbox{\arabic*}}
+\newcommand{\sqitem}{\fitem{\fbox}}
+% Number in circles
+\newcommand{\clenumi}{\protect\icircled{\arabic*}}
+\newcommand{\clitem}{\fitem{\icircled}}
+% Description with numbers
+\newcommand\bitem[1]{\item{\bfseries #1}}
+% Setup points left of enumerate
+\RequirePackage{tabto}
+\newcommand\gpts[1]{\tabto*{-2\leftmargin}\textcolor{ForestGreen}{\llap{/#1~}\tabto{\TabPrevPos}}}
+\newcommand\rpts[1]{\tabto*{-2.5\leftmargin}\textcolor{Red}{\llap{/#1~}\tabto{\TabPrevPos}}}
+\newcommand{\nitem}[1]{\item\gpts{#1}\/}
+% mathitem to remove space when only equation in item
+% https://tex.stackexchange.com/a/497787
+\newcommand\mnitem[1]{\item\gpts{#1}\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}}
+\newcommand\mitem{\item\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}}
+
+\setlist[enumerate]{before=\setupmodenumerate}
+
+% \RenewDocumentCommand{\item}{om}{%
+%   \IfNoValueTF{#1}{
+%     \item #2
+%   }{
+%     \csname #1item\endcsname
+%   }
+% }
+%
+\begin{document}
+
+\begin{enumerate}
+  \clitem first
+  \item next
+  \item third
+  \item fourth
+  \item last
+\end{enumerate}
+
+\end{document}

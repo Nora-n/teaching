@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\ctikzset{current/distance=.8}
+	\draw[]
+	(0,0)
+	node{$\bullet$}
+	to[open, name=E, v^>=$e(t)$, !vi]
+	(0,2)
+	node{$\bullet$}
+	to[R, name=R, i^>=$\Iu$, !vi]
+	(2,2)
+	to[R, name=L, !vi]
+	(4,2)
+	to[R, name=C, v^<=$\Su$, !vi]
+	(4,0) --
+	(0,0)
+	;
+	\varronly{E} \varronly{C}
+	\iarronly{R}
+	\node[] at (R.center) {$R$};
+	\node[] at (L.center) {$\jlw$};
+	\node[] at (C.center) {\tiny$\frac{1}{\jcw}$};
+\end{circuitikz}
+\end{document}

@@ -11,7 +11,7 @@
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
 \makeatother
 
-% \toggletrue{student}
+\toggletrue{student}
 \HideSolutionstrue
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
@@ -279,7 +279,7 @@ informatique basé sur ce théorème, je vous recommande la vidéo de
 
 \noindent
 \begin{minipage}[t]{.48\linewidth}
-	Le \textbf{spectre} d’un signal représente l’amplitude des différentes
+	Le \textbf{spectre} d'un signal représente l'amplitude des différentes
 	composantes sinusoïdales le constituant en fonction de leurs
 	\textbf{fréquences}. Il donne les fréquences et les importances relatives des
 	sinus.
@@ -368,11 +368,11 @@ composant. C'est en effet le cas~:
 
 \section{Filtrage}
 \subsection{Traitement du signal et filtre}
-Le but du \textbf{traitement du signal} est d’\textbf{extraire l’information utile} d’un signal
-issu d’un capteur où de multiples signaux se superposent au signal utile~:
+Le but du \textbf{traitement du signal} est d'\textbf{extraire l'information utile} d'un signal
+issu d'un capteur où de multiples signaux se superposent au signal utile~:
 bruits électromagnétiques, autres informations, etc.
 \begin{itemize}
-	\item Pour recevoir la radio, on doit sélectionner le signal autour d’une
+	\item Pour recevoir la radio, on doit sélectionner le signal autour d'une
 	      bande de fréquence précise et éliminer le reste~;
 	\item Pour isoler une voix dans un morceau de musique, c'est le même principe.
 \end{itemize}
@@ -485,9 +485,9 @@ on applique un pont diviseur de tension~:
 			\Su &= \frac{1}{1+\jrcw}\Eu
 			\Arrow{$\Hu = \Su/\Eu$}
 			\\\Lra
-			\Aboxed{\Hu &= \frac{1}{1+\jrcw} = \frac{1}{1+\jj \frac{\w}{\w_0}}}
+			\Aboxed{\Hu &= \frac{1}{1+\jrcw} = \frac{1}{1+\jj \frac{\w}{\w_c}}}
 		\end{DispWithArrows*}
-		avec $\w_0 = \frac{1}{RC}$ la pulsation de coupure
+		avec $\w_c = \frac{1}{RC}$ la pulsation de coupure
 	}
 \end{minipage}
 
@@ -496,7 +496,7 @@ on applique un pont diviseur de tension~:
 	l'unité, il est commode d'introduire la \textbf{pulsation réduite}~:
 	\psw{
 		\[
-			x = \frac{\w}{\w_0}
+			x = \frac{\w}{\w_c}
 		\]
 	}
 	Ainsi, pour le RC, on obtient pour $\Hu$~:
@@ -628,9 +628,9 @@ s'appelle une \textbf{décade}.
 		10^{x}$. Ainsi,
 	\[
 		\log(10^{1}) = 1
-		\quad ; \quad
+		\quad~; \quad
 		\log (10^{2}) = 2
-		\quad ; \quad
+		\quad~; \quad
 		\log (10^{3}) = 3
 	\]
 \end{tcb*}
@@ -726,7 +726,7 @@ s'appelle une \textbf{décade}.
 				\Lra
 				\frac{1}{\sqrt{1+x^{2}}} \geq \frac{1}{\sqrt{2}}
 				\\\Lra
-				\boxed{x \leq 1 \Lra \w \leq \w_0}
+				\boxed{x \leq 1 \Lra \w \leq \w_c}
 			\end{gather*}
 		}
 		\vspace*{-15pt}
@@ -763,12 +763,12 @@ s'appelle une \textbf{décade}.
 Par exemple, pour le RC sur C~:
 \begin{figure}[htbp!]
 	\centering
-	\subcaptionbox{Gain\label{fig:rccbodegain}}[.48\linewidth]
+	\subcaptionbox{Gain}[.48\linewidth]
 	{\includegraphics[width=\linewidth]{RCC_bode-gain}}
-	\subcaptionbox{Phase\label{fig:rccbodephase}}[.48\linewidth]
+	\subcaptionbox{Phase}[.48\linewidth]
 	{\includegraphics[width=\linewidth]{RCC_bode-phase}}
 	\caption{Diagramme de \textsc{Bode} du filtre RC sur C.}
-	\label{fig:rccbode}
+	\label{fig:rccbode_first}
 \end{figure}
 C'est donc un \textbf{passe-bas}~!
 % \begin{center}
@@ -778,7 +778,7 @@ C'est donc un \textbf{passe-bas}~!
 
 \subsubsection{Asymptotes}
 \begin{tcb*}(defi){Diagramme asymptotique}
-	Le diagramme de Bode asymptotique d’un filtre correspond au diagramme de Bode
+	Le diagramme de Bode asymptotique d'un filtre correspond au diagramme de Bode
 	où seules les droites asymptotes affines sont tracées.
 \end{tcb*}
 \begin{tcb*}(tool){Obtention des asymptotes}
@@ -792,7 +792,7 @@ C'est donc un \textbf{passe-bas}~!
 \end{tcb*}
 \begin{tcb*}(appl){Diagramme asymptotique RC sur C}
 	Déterminer les droites asymptotes du diagramme de Bode de RC sur C. Vérifier
-	la cohérence avec les asymptotique de la Figure~\ref{fig:rccbode}.
+	la cohérence avec les asymptotique de la Figure~\ref{fig:rccbode_first}.
 	\tcblower
 	\vspace{12pt}
 	\begin{enumerate}
@@ -846,7 +846,8 @@ de la décomposition. Si $e(t) = E \cos(\wt)$, la sortie sera
 		s(t) = \abs{\Hu(\w)} \times E \cos(\wt + \f(\w))
 	\]
 }
-On trouve le gain à partir du gain en décibel en inversant la formule~:
+On trouve le déphasage par lecture directe, et on trouve le gain à partir du
+gain en décibel en inversant la formule~:
 \psw{
 	\[
 		G\ind{dB}(\w) = 20 \log \abs{\Hu(\w)}
@@ -857,9 +858,9 @@ On trouve le gain à partir du gain en décibel en inversant la formule~:
 \vspace{-15pt}
 \begin{tcb*}(exem){Filtrage par RC sur C}
 	En reprenant la Figure~\ref{fig:3some}, on ajoute le filtre RC en passe-bas.
-	Pour garder les basses fréquences, on choisit une fréquence de coupure $f_0$ à
+	Pour garder les basses fréquences, on choisit une fréquence de coupure $f_c$ à
 	\SI{10}{Hz}. Avec $R = \SI{1000}{\ohm}$ cela impose $C = \SI{1.6e-5}{F}$
-	($\w_0 = \frac{1}{RC}$). On obtient la figure suivante~:
+	($\w_c = \frac{1}{RC}$). On obtient la figure suivante~:
 	\smallbreak
 	\noindent
 	\begin{minipage}{\linewidth}
@@ -872,53 +873,921 @@ On trouve le gain à partir du gain en décibel en inversant la formule~:
 
 \subsection{Filtres moyenneurs, dérivateurs et intégrateurs}
 % Corot p.20, Schwei p.7
+Pour un même filtre, le traitement qu'il réalise dépend du signal d'entrée et de
+ses composantes~: un passe-bas utilisé sur un signal avec de très basses
+fréquences ne le modifie pas, alors qu'utilisé sur un signal composé de très hautes
+fréquences, il n'en garde que la moyenne. On distingue alors 3 effets selon les
+conditions d'utilisations~:
+\begin{tcb*}(defi){Effets des filtres}
+	Un filtre peut, \textbf{selon la plage de fréquences du signal d'entrée}, se
+	comporter avec les effets suivants~:
+	\begin{itemize}
+		\bitem{Moyenneur}~:
+		\psw{
+			Sortie proportionnelle à la moyenne de l'entrée,
+			\[
+				\boxed{s(t) = C \moy{e(t)}}
+			\]
+			En pratique, c'est un \textbf{passe-bas} pour lequel $\w_c \ll \w_e$~:
+			toutes les harmoniques sauf la composante continue sont atténuées.
+		}
+		\bitem{Intégrateur}~:
+		\psw{
+			Sortie proportionnelle à la primitive de l'entrée,
+			\[
+				\boxed{s(t) = C \int e(t)dt}
+				\Lra
+				\Su = \frac{C}{\jw}\Eu
+				\Lra
+				\boxed{\Hu(x) = \frac{C}{\jw}}
+			\]
+			Correspond à une pente de \SI{-20}{dB/decade} gain.
+			Par exemple, le passe-bas d'ordre 1 pour $\w \gtrsim 3\w_c$ est un
+			intégrateur\ftn{On se rappelle du TP7.}.
+		}
+		\bitem{Dérivateur}~:
+		\psw{
+			Sortie proportionnelle à la dérivée de l'entrée,
+			\[
+				\boxed{s(t) = C \dv{e}{t}}
+				\Lra
+				\Su = C\jw \Eu
+				\Lra
+				\boxed{\Hu(x) = C \times \jw}
+			\]
+			Correspond à une pente de \SI{+20}{dB/decade} en gain. Ça sera le cas d'un
+			passe-haut d'ordre 1, pour $\w \lesssim \num{0.3}\w_c$
+		}
+	\end{itemize}
+\end{tcb*}
 
 \section{Exemples de filtres d'ordre 1}
+% On appelle «~ordre~» la puissance maximale en $x$ (ou $\w$ ou $f$) de la
+% fonction de transfert.
 \subsection{RC sur C~: passe-bas}
 \subsubsection{Schéma}
+\smallbreak
+\noindent
+\begin{minipage}{\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=.5\linewidth, draft=true]{filtre_rc}
+		}{
+			\includegraphics[width=.5\linewidth]{filtre_rc}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur C.}
+	\end{center}
+\end{minipage}
+
 \subsubsection{Prévision comportement}
+On peut détecter dès cette écriture la nature du filtre en prévoyant son
+comportement à hautes et basses fréquences, grâce aux comportements limites des
+impédances utilisées~:
+\smallbreak
+\begin{isd}[sidebyside align=top]
+	\tcbsubtitle{\fatbox{Basses fréquences}}
+	\noindent
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rc-bf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rc-bf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur C en BF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = e(t)}
+			\\\Ra
+			H(0) = 1
+			\Lra
+			G(0) = 0
+			\\\qet
+			\Delta\f_{s/e}(0) = 0
+		\end{gather*}
+	}
+	\vspace{-15pt}
+	\tcblower
+	\tcbsubtitle{\fatbox{Hautes fréquences}}
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rc-hf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rc-hf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur C en HF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Tension d'un fil} \Ra \boxed{s(t) = 0}
+			\\\Ra
+			H(x) \opto{}{\w\to\infty} 0
+			\Lra
+			G(x) \opto{}{\w\to\infty} -\infty
+		\end{gather*}
+	}
+	\vspace{-15pt}
+\end{isd}
+
 \subsubsection{Fonction de transfert, généralisation}
+On a trouvé la fonction de transfert plus tôt. On généralise~:
+\begin{tcb*}(ror){Généralisation passe-bas ordre 1}
+	La forme canonique d'un filtre passe-bas du premier ordre est
+	\psw{
+		\[
+			\boxed{\Hu(x) = \frac{H_0}{1+\jx}}
+			\qav
+			x = \frac{\w}{\w_c}
+			\qet
+			H_0 = \cte
+		\]
+	}
+	\vspace{-15pt}
+\end{tcb*}
+
 \subsubsection{Diagramme de \textsc{Bode}}
-\begin{center}
-	\includegraphics[width=0.48\linewidth]{RCC_bode-gain}
-	\includegraphics[width=0.48\linewidth]{RCC_bode-phase}
-\end{center}
-\subsubsection{Comportement dérivateur à BF}
+On rappelle les diagrammes de \textsc{Bode}, avec~:
+\begin{table}[htbp!]
+	\centering
+	\caption{Étude RC sur C.}
+	\begin{tabularx}{.7\linewidth}{cYYY}
+		\toprule
+		 &
+		$\forall x$
+		 &
+		$x\to 0$
+		 &
+		$x\to\infty$
+		\\
+		\addlinespace[0.5em]
+		\cmidrule(lr){2-4}
+		$\DS\Hu = \frac{\Su}{\Eu}$
+		 &
+		\psw{$\DS \frac{1}{1+\jx}$}
+		 &
+		\psw{$1$}
+		 &
+		\psw{$\DS \frac{1}{\jx}$}
+		\\
+		\addlinespace[0.5em]
+		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		 &
+		\psw{$\DS -10 \log (1+x^{2})$}
+		 &
+		\psw{$0$}
+		 &
+		\psw{$-20 \log (x)$}
+		\\
+		\addlinespace[0.5em]
+		$\DS\Delta\f_{s/e} = \arg*{\Hu}$
+		 &
+		\psw{$-\arctan(x)$}
+		 &
+		\psw{$0$}
+		 &
+		\psw{$\DS-\frac{\pi}{2}$}
+		\\
+		\bottomrule
+	\end{tabularx}
+	\label{tab:rcc}
+\end{table}
+\begin{figure}[htbp!]
+	\centering
+	\subcaptionbox{Gain\label{fig:rccbodegain}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=\linewidth]{RCC_bode-gain_plain}
+		}{
+			\includegraphics[width=\linewidth]{RCC_bode-gain}
+		}
+		\vspace{-15pt}
+	}%
+	\subcaptionbox{Phase\label{fig:rccbodephase}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=\linewidth]{RCC_bode-phase_plain}
+		}{
+			\includegraphics[width=\linewidth]{RCC_bode-phase}
+		}
+		\vspace{-15pt}
+	}%
+	\caption{Diagramme de \textsc{Bode} du filtre RC sur C.}
+	\label{fig:rccbode}
+\end{figure}
+
+\subsubsection{Comportement intégrateur à HF}
+En hautes fréquences, la fonction de transfert est celle d'un intégrateur~:
+\psw{
+	\[
+		\Hu(\w) \opto{}{\w\to\infty} \frac{\w_c}{\jw}
+		\Lra
+		\boxed{\Su \opto{}{\w\to\infty} \frac{\w_c}{\jw}\Eu}
+	\]
+}
+Par exemple, sur un signal créneau, on obtient la figure suivante~:
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.95\linewidth]{fft_creneau_bth-fe=1000-fc=100}
+	\caption{Filtrage d'un signal créneau de $f_e = \SI{1}{kHz}$ par un passe-bas
+		de $f_c = \SI{100}{Hz}$.}
+	\label{fig:creneauPB}
+\end{figure}
 
 \subsection{RC sur R~: passe-haut}
 \subsubsection{Schéma}
+\smallbreak
+\noindent
+\begin{minipage}{\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=.5\linewidth, draft=true]{filtre_rcr}
+		}{
+			\includegraphics[width=.5\linewidth]{filtre_rcr}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur R.}
+	\end{center}
+\end{minipage}
+
 \subsubsection{Prévision comportement}
+On peut détecter dès cette écriture la nature du filtre en prévoyant son
+comportement à hautes et basses fréquences, grâce aux comportements limites des
+impédances utilisées~:
+\smallbreak
+\begin{isd}[sidebyside align=top]
+	\tcbsubtitle{\fatbox{Basses fréquences}}
+	\noindent
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rcr-bf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rcr-bf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur R en BF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Circuit ouvert} \Ra i(t) = 0 \Ra \boxed{s(t) = 0}
+			\\\Ra
+			H(x) \opto{}{\w\to\infty} 0
+			\Lra
+			G(x) \opto{}{\w\to\infty} -\infty
+		\end{gather*}
+	}
+	\vspace{-15pt}
+	\tcblower
+	\tcbsubtitle{\fatbox{Hautes fréquences}}
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rcr-hf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rcr-hf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC sur R en HF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{LdM} \Ra \boxed{s(t) = e(t)}
+			\\\Ra
+			H(0) = 1
+			\Lra
+			G(0) = 0
+			\\\qet
+			\Delta\f_{s/e}(0) = 0
+		\end{gather*}
+	}
+	\vspace{-15pt}
+\end{isd}
+C'est donc bien un \textbf{passe-haut}.
+
 \subsubsection{Fonction de transfert, généralisation}
+Pour trouver la fonction de transfert, on transforme le circuit en complexes et
+on applique un pont diviseur de tension~:
+\smallbreak
+\noindent
+\begin{minipage}[c]{.45\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rcr-cplx}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rcr-cplx}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RC en complexes.}
+	\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.5\linewidth}
+	Pont diviseur~:
+	\psw{
+		\begin{DispWithArrows*}[fleqn, mathindent=-5pt]
+			\Su &= \frac{R}{R + 1/\jcw}\Eu
+			\CArrow{$\times \frac{\jcw}{\jcw}$}
+			\\\Lra
+			\Su &= \frac{\jrcw}{1+\jrcw}\Eu
+			\Arrow{$\Hu = \Su/\Eu$}
+			\\\Lra
+			\Aboxed{\Hu &= \frac{\jrcw}{1+\jrcw} =
+				\frac{\jj \frac{\w}{\w_c}}{1+\jj \frac{\w}{\w_c}}}
+		\end{DispWithArrows*}
+		avec $\w_c = \frac{1}{RC}$ la pulsation de coupure.
+	}
+\end{minipage}
+\begin{tcb*}(ror){Généralisation passe-haut ordre 1}
+	La forme canonique d'un filtre passe-haut du premier ordre est
+	\psw{
+		\[
+			\boxed{\Hu(x) = H_0\frac{\jx}{1+\jx}}
+			\qav
+			x = \frac{\w}{\w_c}
+			\qet
+			H_0 = \cte
+		\]
+	}
+	\vspace{-15pt}
+\end{tcb*}
+
 \subsubsection{Diagramme de \textsc{Bode}}
-\begin{center}
-	\includegraphics[width=0.48\linewidth]{RCR_bode-gain}
-	\includegraphics[width=0.48\linewidth]{RCR_bode-phase}
-\end{center}
-\subsubsection{Comportement intégrateur à HF}
+On trace les diagrammes de \textsc{Bode}, avec~:
+\begin{table}[htbp!]
+	\centering
+	\caption{Étude RC sur R.}
+	\begin{tabularx}{.7\linewidth}{cYYY}
+		\toprule
+		 &
+		$\forall x$
+		 &
+		$x\to 0$
+		 &
+		$x\to\infty$
+		\\
+		\addlinespace[0.5em]
+		\cmidrule(lr){2-4}
+		$\DS\Hu = \frac{\Su}{\Eu}$
+		 &
+		\psw{$\DS \frac{\jx}{1+\jx}$}
+		 &
+		\psw{$\jx$}
+		 &
+		\psw{$1$}
+		\\
+		\addlinespace[0.5em]
+		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		 &
+		\psw{$\DS 20 \log \left( \frac{x}{\sqrt{1+x^{2}}} \right)$}
+		 &
+		\psw{$20 \log x$}
+		 &
+		\psw{$0$}
+		\\
+		\addlinespace[0.5em]
+		$\DS\Delta\f_{s/e} = \arg*{\Hu}$
+		 &
+		\psw{$\DS \frac{\pi}{2}-\arctan(x)$}
+		 &
+		\psw{$\DS \frac{\pi}{2}$}
+		 &
+		\psw{$0$}
+		\\
+		\bottomrule
+	\end{tabularx}
+	\label{tab:rcr}
+\end{table}
+\begin{figure}[htbp!]
+	\centering
+	\subcaptionbox{Gain\label{fig:rcrbodegain}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RCR_bode-gain_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RCR_bode-gain}
+		}
+		\vspace{-15pt}
+	}
+	\subcaptionbox{Phase\label{fig:rcrbodephase}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RCR_bode-phase_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RCR_bode-phase}
+		}
+		\vspace{-15pt}
+	}
+	\caption{Diagramme de \textsc{Bode} du filtre RC sur R.}
+	\label{fig:rcrbode}
+\end{figure}
+
+\subsubsection{Comportement dérivateur à BF}
+En basses fréquences, la fonction de transfert est celle d'un dérivateur~:
+\psw{
+	\[
+		\Hu(\w) \opto{}{\w\to\infty} \frac{\jw}{\w_c}
+		\Lra
+		\boxed{\Su \opto{}{\w\to\infty} \frac{\jw}{\w_c}\Eu}
+	\]
+}
+Par exemple, sur un signal triangle, on obtient la figure suivante~:
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.95\linewidth]{fft_trgl_bth_PH-fe=1000-fc=7000}
+	\caption{Filtrage d'un signal triangle de $f_e = \SI{1}{kHz}$ par un
+		passe-haut de $f_c = \SI{7000}{Hz}$.}
+	\label{fig:trglPH}
+\end{figure}
+C'est bien un dérivateur.
 
 \section{Exemples de filtres d'ordre 2}
 \subsection{RLC sur C~: passe-bas ordre 2}
 \subsubsection{Schéma}
+\smallbreak
+\noindent
+\begin{minipage}{\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=.5\linewidth, draft=true]{filtre_rlc}
+		}{
+			\includegraphics[width=.5\linewidth]{filtre_rlc}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur C.}
+	\end{center}
+\end{minipage}
+
 \subsubsection{Prévision comportement}
+On peut détecter dès cette écriture la nature du filtre en prévoyant son
+comportement à hautes et basses fréquences, grâce aux comportements limites des
+impédances utilisées~:
+\smallbreak
+\begin{isd}[sidebyside align=top]
+	\tcbsubtitle{\fatbox{Basses fréquences}}
+	\noindent
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlc-bf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlc-bf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur C en BF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = e(t)}
+			\\\Ra
+			H(0) = 1
+			\Lra
+			G(0) = 0
+			\\\qet
+			\Delta\f_{s/e}(0) = 0
+		\end{gather*}
+	}
+	\vspace{-15pt}
+	\tcblower
+	\tcbsubtitle{\fatbox{Hautes fréquences}}
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlc-hf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlc-hf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur C en HF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Tension d'un fil} \Ra \boxed{s(t) = 0}
+			\\\Ra
+			H(x) \opto{}{\w\to\infty} 0
+			\Lra
+			G(x) \opto{}{\w\to\infty} -\infty
+		\end{gather*}
+	}
+	\vspace{-15pt}
+\end{isd}
+C'est donc bien un \textbf{passe-bas}.
+
 \subsubsection{Fonction de transfert, généralisation}
+Pour trouver la fonction de transfert, on transforme le circuit en complexes et
+on applique un pont diviseur de tension~:
+\smallbreak
+\noindent
+\begin{minipage}[c]{.45\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlc-cplx}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlc-cplx}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC en complexes.}
+	\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.5\linewidth}
+	Pont diviseur~:
+	\psw{
+		\begin{DispWithArrows*}[fleqn, mathindent=-5pt]
+			\Su &= \frac{1/\jcw}{R + \jlw + 1/\jcw}\Eu
+			\CArrow{$\times \frac{\jcw}{\jcw}$}
+			\\\Lra
+			\Su &= \frac{1}{1 + \jrcw - LCw^{2}}\Eu
+			\Arrow{$\Hu = \Su/\Eu$}
+			\\\Lra
+			\Aboxed{\Hu &=
+				\frac{1}{1 - \left(\frac{\w}{\w_0}\right)^{2}+\jj \frac{\w}{Q\w_0}}}
+		\end{DispWithArrows*}
+		avec $\w_0 = \frac{1}{\sqrt{LC}}$ la pulsation de coupure et $Q =
+			\frac{1}{R}\sqrt{\frac{L}{C}}$ le facteur de qualité.
+	}
+\end{minipage}
+\begin{tcb*}(ror){Généralisation passe-bas ordre 2}
+	La forme canonique d'un filtre passe-bas du second ordre est
+	\psw{
+	\[
+		\boxed{\Hu(x) = \frac{H_0}{1-x^{2} + \jj \frac{x}{Q}}}
+		\qav
+		x = \frac{\w}{\w_0}
+		\qet
+		H_0 = \cte
+		\qet
+		Q \text{~ facteur de qualité}
+	\]
+	}
+	\vspace{-15pt}
+\end{tcb*}
+
 \subsubsection{Diagramme de \textsc{Bode}}
-\begin{center}
-	\includegraphics[width=0.48\linewidth]{RLCC_bode-gain}
-	\includegraphics[width=0.48\linewidth]{RLCC_bode-phase}
-\end{center}
+On trace les diagrammes de \textsc{Bode}, avec~:
+\smallbreak
+\noindent
+\begin{minipage}{\linewidth}
+	\centering
+	\captionof{table}{Étude RLC sur C.}
+	\begin{tabularx}{\linewidth}{cYYY}
+		\toprule
+		 &
+		$\forall x$
+		 &
+		$x\to 0$
+		 &
+		$x\to\infty$
+		\\
+		\addlinespace[0.5em]
+		\cmidrule(lr){2-4}
+		$\DS\Hu = \frac{\Su}{\Eu}$
+		 &
+		\psw{$\DS \frac{1}{1-x^{2}+\jj \frac{x}{Q}}$}
+		 &
+		\psw{$1$}
+		 &
+		\psw{$\DS - \frac{1}{x^{2}}$}
+		\\
+		\addlinespace[0.5em]
+		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		 &
+		\psw{$\DS -10 \log \left(\left(1-x^{2}\right)^{2} + \left( \frac{x}{Q} \right)^{2}\right)$}
+		 &
+		\psw{$0$}
+		 &
+		\psw{$-40 \log x$}
+		\\
+		\addlinespace[0.5em]
+		$\DS\tan(\arg*{\Hu})$
+		 &
+		\psw{$\DS -\frac{x/Q}{1-x^{2}}$}
+		 &
+		\psw{$0$}
+		 &
+		\psw{$0$}
+		\\
+		\addlinespace[0.5em]
+		$\DS\Delta\f_{s/e} = \arg*{\Hu}$
+		 &
+		\psw{$---$}
+		 &
+		\psw{$0$}
+		 &
+		\psw{$\DS -\pi$}
+		\\
+		\bottomrule
+	\end{tabularx}
+	\label{tab:rlc}
+\end{minipage}
+\begin{figure}[htbp!]
+	\centering
+	\subcaptionbox{Gain\label{fig:rlcbodegain}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-gain_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-gain}
+		}
+		\vspace{-15pt}
+	}
+	\subcaptionbox{Phase\label{fig:rlcbodephase}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-phase_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-phase}
+		}
+		\vspace{-15pt}
+	}
+	\caption{Diagramme de \textsc{Bode} du filtre RLC sur C.}
+	\label{fig:rlcbode}
+\end{figure}
+
+On observe donc une pente de \textbf{\SI{-40}{dB/décade}} en atténuation à
+grandes fréquences~: ce filtre sera meilleur en moyenneur.
 
 \subsection{RLC sur R~: passe-bande}
 \subsubsection{Schéma}
+\smallbreak
+\noindent
+\begin{minipage}{\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=.5\linewidth, draft=true]{filtre_rlcr}
+		}{
+			\includegraphics[width=.5\linewidth]{filtre_rlcr}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur R.}
+	\end{center}
+\end{minipage}
+
 \subsubsection{Prévision comportement}
+On peut détecter dès cette écriture la nature du filtre en prévoyant son
+comportement à hautes et basses fréquences, grâce aux comportements limites des
+impédances utilisées~:
+\smallbreak
+\begin{isd}[sidebyside align=top]
+	\tcbsubtitle{\fatbox{Basses fréquences}}
+	\noindent
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlcr-bf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlcr-bf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur R en BF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = 0}
+			\\\Ra
+			H(x) \opto{}{\w\to\infty} 0
+			\Lra
+			G(x) \opto{}{\w\to\infty} -\infty
+		\end{gather*}
+	}
+	\vspace{-15pt}
+	\tcblower
+	\tcbsubtitle{\fatbox{Hautes fréquences}}
+	\begin{minipage}[]{\linewidth}
+		\centering
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlcr-hf}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlcr-hf}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC sur R en HF}
+	\end{minipage}
+	On en déduit~:
+	\psw{
+		\begin{gather*}
+			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = 0}
+			\\\Ra
+			H(x) \opto{}{\w\to\infty} 0
+			\Lra
+			G(x) \opto{}{\w\to\infty} -\infty
+		\end{gather*}
+	}
+	\vspace{-15pt}
+\end{isd}
+C'est donc bien un \textbf{passe-bande}.
+
 \subsubsection{Fonction de transfert, généralisation}
+Pour trouver la fonction de transfert, on transforme le circuit en complexes et
+on applique un pont diviseur de tension~:
+\smallbreak
+\noindent
+\begin{minipage}[c]{.45\linewidth}
+	\begin{center}
+		\sswitch{
+			\includegraphics[width=\linewidth, draft=true]{filtre_rlcr-cplx}
+		}{
+			\includegraphics[width=\linewidth]{filtre_rlcr-cplx}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{RLC en complexes.}
+	\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.5\linewidth}
+	Pont diviseur~:
+	\psw{
+		\begin{DispWithArrows*}[fleqn, mathindent=-5pt]
+			\Su &= \frac{R}{R + \jlw + 1/\jcw}\Eu
+			\CArrow{$\times \frac{1/R}{1/R}$}
+			\\\Lra
+			\Su &= \frac{1}{1 + \jj \frac{L}{R}\w - \jj \frac{1}{RC\w}}\Eu
+			\Arrow{$\Hu = \Su/\Eu$}
+			\\\Lra
+			\Aboxed{\Hu &=
+				\frac{1}{1 + \jj Q \left( x - \frac{1}{x} \right)}}
+		\end{DispWithArrows*}
+		avec $\w_0 = \frac{1}{\sqrt{LC}}$ la pulsation de coupure et $Q =
+			\frac{1}{R}\sqrt{\frac{L}{C}}$ le facteur de qualité.
+	}
+\end{minipage}
+\begin{tcb*}(ror){Généralisation passe-bande ordre 2}
+	La forme canonique d'un filtre passe-bande du second ordre est
+	\psw{
+		\[
+			\boxed{\Hu(x) = \frac{H_0}{1 + \jj Q \left( x - \frac{1}{x} \right)}}
+			\qav
+			x = \frac{\w}{\w_0}
+			\qet
+			H_0 = \cte
+			\qet
+			Q \text{~ facteur de qualité}
+		\]
+	}
+	\vspace{-15pt}
+\end{tcb*}
 \subsubsection{Diagramme de \textsc{Bode}}
-\begin{center}
-	\includegraphics[width=0.48\linewidth]{RLCR_bode-gain}
-	\includegraphics[width=0.48\linewidth]{RLCR_bode-phase}
-\end{center}
+On trace les diagrammes de \textsc{Bode}, avec les informations du
+Tableau~\ref{tab:rlcr}.
+\begin{table}[htbp!]
+	\centering
+	\caption{Étude RLC sur R.}
+	\begin{tabularx}{\linewidth}{cYYY}
+		\toprule
+		 &
+		$\forall x$
+		 &
+		$x\to 0$
+		 &
+		$x\to\infty$
+		\\
+		\addlinespace[0.5em]
+		\cmidrule(lr){2-4}
+		$\DS\Hu = \frac{\Su}{\Eu}$
+		 &
+		\psw{$\DS \frac{1}{1+ \jj Q \left( x - \frac{1}{x} \right)}$}
+		 &
+		\psw{$\DS \jj \frac{x}{Q}$}
+		 &
+		\psw{$\DS -\jj \frac{1}{xQ}$}
+		\\
+		\addlinespace[0.5em]
+		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		 &
+		\psw{$\DS -10 \log (1+Q^{2}\left( x - \frac{1}{x} \right)^{2})$}
+		 &
+		\psw{$\DS 20 \log \left( \frac{x}{Q} \right)$}
+		 &
+		\psw{$\DS -20 \log (Qx)$}
+		\\
+		\addlinespace[0.5em]
+		$\DS\Delta\f_{s/e} = \arg*{\Hu}$
+		 &
+		\psw{$-\arctan(Q \left( x - \frac{1}{x} \right))$}
+		 &
+		\psw{$\DS + \frac{\pi}{2}$}
+		 &
+		\psw{$\DS -\frac{\pi}{2}$}
+		\\
+		\bottomrule
+	\end{tabularx}
+	\label{tab:rlcr}
+\end{table}
+\begin{figure}[htbp!]
+	\centering
+	\subcaptionbox{Gain\label{fig:rlcrbodegain}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RLCR_bode-gain_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RLCR_bode-gain}
+		}
+		\vspace{-15pt}
+	}
+	\subcaptionbox{Phase\label{fig:rlcrbodephase}}[.48\linewidth]
+	{\sswitch{
+			\includegraphics[width=.95\linewidth]{RLCR_bode-phase_plain}
+		}{
+			\includegraphics[width=.95\linewidth]{RLCR_bode-phase}
+		}
+		\vspace{-15pt}
+	}
+	\caption{Diagramme de \textsc{Bode} du filtre RLC sur R.}
+	\label{fig:rlcrbode}
+\end{figure}
+On observe, sur la Figure~\ref{fig:rlcrbodegain}, une pente de
+\textbf{\SI{20}{dB/décade}} en atténuation à basses fréquences, et
+\textbf{\SI{-20}{dB/décade}} à hautes fréquences~: ce filtre permettra d'isoler
+des fréquences dans un signal. Par exemple, sur un signal créneau, on obtient la
+Figure~\ref{fig:creneauPBD}.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.95\linewidth]{fft_creneau_bth_bande-fe=1000-fc=5000}
+	\caption{Filtrage d'un signal créneau de $f_e = \SI{1}{kHz}$ par un
+		passe-bande de $f_c = \SI{5000}{Hz}$.}
+	\label{fig:creneauPBD}
+\end{figure}
 
 \section{Résumé}
+\begin{tcb*}(tool){Étude d'un filtre}
+	\begin{enumerate}
+		\item On fait l'étude à basses et hautes fréquences~;
+		\item On écrit le circuit avec les amplitudes complexes et les impédances des
+		      composants~;
+		\item On fait un pont diviseur~;
+		\item On calcule l'amplitude complexe puis on en déduit la fonction de
+		      transfert~;
+		\item On calcule le gain en décibels et la phase~;
+		\item On fait l'étude asymptotique~;
+		\item On trace le diagramme de \textsc{Bode}.
+	\end{enumerate}
+	Ensuite, pour connaître le signal de sortie d'un signal d'entrée, on le
+	décompose en série de \textsc{Fourier} et on applique la fonction de transfert
+	complexe à chacune des composantes pour reconstituer le signal de sortie~:
+	\[
+		e(t) =
+		\left\{
+		\begin{array}{ccccc}
+			E_0                    & \ra & \fbox{$\Hu(0\jw_e)$} & \ra & S_0
+			\\
+			+                      &     &                      &     & +
+			\\
+			E_1\sin(\w_e t + \f_1) & \ra & \fbox{$\Hu(1\jw_e)$} & \ra & S_1\sin(\w_e t + \psi_1)
+			\\
+			+                      &     &                      &     & +
+			\\
+			E_2\sin(\w_e t + \f_2) & \ra & \fbox{$\Hu(2\jw_e)$} & \ra & S_2\sin(\w_e t + \psi_2)
+			\\
+			\vdots                 &     &                      &     & \vdots
+			\\
+			E_n\sin(\w_e t + \f_n) & \ra & \fbox{$\Hu(n\jw_e)$} & \ra & S_n\sin(\w_e t + \psi_n)
+		\end{array}
+		\right\} = s(t)
+	\]
+\end{tcb*}
+
 
 \section{Filtres en cascade}
+On appelle «~mettre en cascade~» le fait d'utiliser la sortie d'un filtre comme
+l'entrée d'un nouveau. Par exemple, avec deux RC~:
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\linewidth]{filtre_rcrc}
+	\caption{RC en cascade}
+	\label{fig:rcrc}
+\end{figure}
+On pourrait s'attendre à ce que la fonction de transfert soit
+\[
+	\Hu = \Hu_1\Hu_2 = \frac{1}{1+\jj R_1C_1\w} \frac{1}{1+\jj R_2C_2\w}
+\]
+Cependant, le calcul de la fonction de transfert donne
+\[
+	\Hu = \frac{1}{1 + \jj R_1C_1\w + \jj R_2C_2\w + \boxed{\jj R_1C_2\w} +
+		(\jw)^{2}R_1C_1R_2C_2}
+\]
+\begin{tcb}[cnt, bld](impo){Filtres en cascades}
+	Lorsque l'on place des filtres en cascade, la fonction de transfert totale
+	n'est pas le produit des fonctions de transfert de chaque étage.
+\end{tcb}
+
+Pour appliquer le pont diviseur de tension sur le premier RC, il faut que le
+condensateur $C_1$ et la résistance $R_1$ soient parcourus par le même courant,
+que le courant partant dans la deuxième branche soit très faible devant le
+courant de la première. Cela revient à ce que l'impédance du condensateur soit
+très faible devant celle de l'ensemble $R_2C_2$.
+
+\begin{tcb}[cnt](ror){Filtres en cascades}
+	Pour que l'on puisse faire le produit des fonctions de transfert, il faut que
+	l'impédance de sortie du premier filtre soit faible devant l'impédance d'entrée
+	du second, de sorte à négliger le courant dévié par le second étage.
+\end{tcb}
+
+En pratique, on emploie souvent des montages utilisant des amplificateurs
+opérationnels qui ont une très grande impédance d'entrée. On peut par exemple
+intercaler un montage suiveur entre les deux filtres RC.
 
 \end{document}

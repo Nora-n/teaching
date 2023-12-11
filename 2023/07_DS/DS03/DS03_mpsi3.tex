@@ -317,7 +317,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 }
 
 \resetQ
-\exercice[41]{États finaux variés}
+\exercice[42]{États finaux variés}
 \enonce{
 	On s'intéresse dans un premier temps à une solution aqueuse obtenue à
 	\SI{298}{K} par un mélange d'acide éthanoïque \ce{CH3COOH} (concentration
@@ -409,27 +409,27 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 		(c_1-x\ind{eq})(c_2-x\ind{eq})K^\circ_1 &= x\ind{eq}^{2}
 		\Arrow[new-group]{On rassemble}
 		\\\Lra
-		x\ind{eq}^{2} + (x\ind{eq}-c_1)(x\ind{eq}-c_2)K^\circ_1 &= 0
+		x\ind{eq}^{2} + (c_1-x\ind{eq})(x\ind{eq}-c_2)K^\circ_1 &= 0
 		\Arrow{On développe et factorise}
 		\\\Lra
 		\Aboxed{
-			x\ind{eq}^{2}(1+K^\circ_1) -
-			x\ind{eq}(c_1+c_2)K^\circ_1 + c_1c_2K^\circ_1 &= 0
+			x\ind{eq}^{2}(1-K^\circ_1) +
+			x\ind{eq}(c_1+c_2)K^\circ_1 - c_1c_2K^\circ_1 &= 0
 		}
 	\end{DispWithArrows*}
 	Ainsi, avec $\Delta$ le discriminant de ce trinôme~:
 	\begin{DispWithArrows*}
 		\Delta &= \left( c_1+c_2 \right)^{2}\left( K_1^\circ \right)^{2}
-		-4(1+K_1^\circ)c_1c_2K_1^\circ
+		+4(1-K_1^\circ)c_1c_2K_1^\circ
 		\Arrow{Solutions}
 		\\\Ra
 		\Aboxed{
 			x_{\equ,\pm} &=
 			\frac{
-				(c_1+c_2)K_1^\circ \pm \sqrt{
+				-(c_1+c_2)K_1^\circ \pm \sqrt{
 					\left( c_1+c_2 \right)^{2}\left( K_1^\circ \right)^{2}
-					-4(1+K_1^\circ)c_1c_2K_1^\circ}
-			}{2(1+K_1^\circ)}
+					+4(1-K_1^\circ)c_1c_2K_1^\circ}
+			}{2(1-K_1^\circ)}
 		}
 		\Arrow{Calcul}
 		\\
@@ -521,7 +521,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\[
 		\boxed{\pH =14+\log[\ce{HO-}]}
 		\Ra
-		\xul{\pH = \num{12,4}}
+		\xul{\pH = \num{12,1}}
 	\]
 	ce qui corrspond bien à un milieu basique.
 }
@@ -534,7 +534,7 @@ On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
 	\ce{Ca(OH)_2(s)} avec la forme \ce{H2CO_3(aq)}.
 }
 
-\QR[3]{%
+\QR[4]{%
 	Écrire la réaction $(5)$ mise en jeu dans la carbonatation du béton et calculer
 	sa constante d'équilibre $K^\circ_5$ à \SI{298}{K}. On donne à \SI{298}{K} les
 	constantes d'équilibre des réactions suivantes~:
@@ -729,19 +729,19 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 	\begin{isd}
 		Avec la loi des mailles,\\
 		\begin{DispWithArrows}[fleqn, mathindent=2pt]
-			u_L + u_R + u_C &= 0
+			u_L + u_R + u &= 0
 			\notag
 			\Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
 			\\\Lra
-			L \dv{i}{t} + Ri + u_C &= 0
+			L \dv{i}{t} + Ri + u &= 0
 			\notag
-			\Arrow{$i = C \dv{u_C}{t}$}
+			\Arrow{$i = C \dv{u}{t}$}
 			\\\Lra
-			LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C                   &= 0
+			LC \dv[2]{u}{t} + RC \dv{u}{t} + u                   &= 0
 			\notag
 			\Arrow{forme\\canonique}
 			\\
-			\Lra \dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &= 0
+			\Lra \dv[2]{u}{t} + \frac{R}{L} \dv{u}{t} + \frac{1}{LC}u &= 0
 			\label{eq:rlsimple}
 		\end{DispWithArrows}
 		\tcblower
@@ -853,7 +853,7 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 }
 \QR[9]{%
 	Établir l'expression de $u(t)$ pour $t\geq 0$ en fonction de $u_0$, $\w_0$,
-	$Q$ et $\w$, compte tenu des conditions initiales que vous expliciterez
+	$Q$ et $\W$, compte tenu des conditions initiales que vous expliciterez
 	et justifierez.
 }{%
 	On a donc
@@ -898,7 +898,7 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 	Montrer que si l'on tient compte de l'oscilloscope, l'équation
 	différentielle vérifiée par $u(t)$ devient:
 	\[
-		L(C+C_0)\dv[2]{u}{t }+
+		L(C+C_0)\dv[2]{u}{t}+
 		\left(\frac{L}{R_0}+RC+RC_0\right)\dv{u}{t}+
 		\left(1+\frac{R}{R_0}\right)u=0
 	\]
@@ -970,11 +970,11 @@ $R=\SI{8,31}{J.K^{-1}.mol^{-1}}$.
 
 \QR[4]{%
 	On définit le décrément logarithmique comme étant la quantité
-	$d_m=\ln\dfrac{u(t)}{u(t+mT)}$ où $T=2\pi/\w$ et $m$ est un entier
+	$d_m=\ln\dfrac{u(t)}{u(t+mT)}$ où $T=2\pi/\W$ et $m$ est un entier
 	strictement positif. Exprimer $d_m$ en fonction de $m$ et de $Q$.
 }{%
 	En remarquant que $ \cos{(\W (t + T))} = \cos{(\W t + 2\pi)} = \cos{(\W
-			t)}$, on montre facilement que $d_m =\ln { \left( \exp{\frac{\W_0 m T}{2Q}}
+			t)}$, on montre facilement que $d_m =\ln { \left( \exp{\frac{\w_0 m T}{2Q}}
 			\right) }$.
 	On obtient donc~: $d_m = \dfrac{\w_0 m T}{2Q}$. En remplaçant $T$ par
 	$\frac{2\pi}{\W}$ où $\W = \frac{\w_0}{Q} \sqrt{4Q^{2}-1}$, il vient~:
@@ -1391,7 +1391,7 @@ facilement en $t=0$~:
 		\bigbreak
 		Iel mène donc une étude des deux assemblages pour voir
 		comment ils se comportent. Iel dispose d'une masse $m=\SI{100}{g}$ repérée par
-		le point $M$, considéré comme un point matériel. On négle les masses des
+		le point $M$, considéré comme un point matériel. On négligee les masses des
 		ressorts.
 	\end{minipage}
 	\begin{minipage}[t]{.24\linewidth}
@@ -1481,14 +1481,14 @@ facilement en $t=0$~:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \QR[6]{%
-	Faire le bilan des forces s'exerçant sur le point $N$, les représenter sur le
+	Faire le bilan des forces s'exerçant sur le point N, les représenter sur le
 	même schéma et les exprimer en fonction des paramètres du problème.
 }{ %%%%%%%%%%%%%
 	\begin{itemize}
 		\bitem{BDF~:}
 		\[
 			\begin{array}{ll}
-				\textbf{Poids}     & \Pf = m'g\uz
+				\textbf{Poids}     & \Pf' = m'g\uz
 				\\
 				\textbf{Ressort 2} & \vv{F'}\ind{2, el} = k_2(\ell_2-\ell_0)\uz
 				\\

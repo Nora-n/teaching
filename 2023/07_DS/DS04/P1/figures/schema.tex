@@ -1,0 +1,75 @@
+﻿\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+\begin{tikzpicture}[declare function={
+				largeur=.5\linewidth;
+				voiturel=largeur/2;
+				voitureh=largeur/6;
+				suspensionh=largeur/1.5;
+				frequence=100;        %pour ajuster la période de la route
+				dephasage=30;     %position de la roue sur la sinusoide de la route
+				echelle=voitureh/3.5cm;
+			},
+	]
+	\draw[thick]
+	(0,0) coordinate (G) node [above right] {$G$}
+	%
+	(0,0) ++(-voiturel/2,-voitureh/2)
+	coordinate (arriere)
+	rectangle
+	++(voiturel,voitureh)
+	coordinate (avant);
+
+	\draw[dashed]
+	(-voiturel/2,0) --++
+	(largeur,0);
+
+	\draw [thick, -stealth]
+	(avant) ++(0,-voitureh/2) --
+	++(voitureh,0)
+	node [midway, above] {$\vv{V_a}$};
+	\coordinate (J) at ($(G)+(0,-voitureh/2)$);
+	\coordinate (Jr) at ($(J)+(-voiturel/4,0)$);
+	\coordinate (Ja) at ($(J)+(voiturel/4,0)$);
+	\coordinate (I) at ($(J)+(0,-suspensionh)$);
+
+	\draw[thick, decorate,
+		decoration={coil, amplitude=1.5ex, segment length=suspensionh/14}]
+	(Jr) -- ++(0,-suspensionh)
+	coordinate (Ir)
+	node [midway, right=2ex] {$k,\ell_0$};
+
+	\draw[thick]
+	(Ja) to[damper=$k'$]
+	++(0,-suspensionh)
+	coordinate (Ia);
+	\draw[thick] (Ia) -- (Ir);
+
+	\begin{scope}[yshift=-1.1*(voitureh+suspensionh), scale={echelle}]% la route
+		\draw[dashed] (-voiturel/2/echelle,0) -- ++(largeur/echelle,0);
+		\draw[line width=1pt,domain=-5:15, samples=200, smooth, name=route] plot (\x,{ sin(frequence*\x+dephasage)}) (-3,{ sin (-3*frequence+dephasage)}) node [above] {$z_S$};
+		\coordinate (O) at (0,{sin (dephasage)});
+		\coordinate (L1) at ({(-90-dephasage)/frequence},-1);
+		\coordinate (L2) at ({(270-dephasage)/frequence},-1);
+		\coordinate (L3) at ({(360+270-dephasage)/frequence},-1);
+		\draw[thick, stealth-stealth]
+		(L1) ++(0,-1ex) -- ++($(L2)-(L1)$)
+		node [midway, below] {$L$};
+		\draw[thick, stealth-stealth]
+		(L3) -- ++(0,2)
+		node [above] {$2\,z_{S_0}$};
+	\end{scope}
+
+	\draw (O) -- (I);
+	\draw[thick, stealth-stealth] (voiturel,0) -- ++(0,{-1.1*(voitureh+suspensionh)} ) node [midway, right] {$z_G$};
+
+	\draw[fill=black]
+	(G) circle (2pt)
+	(I) circle [radius=2pt] node [above left] {$I$}
+	(O) circle [radius=2pt] node [above left] {$O$}
+	(J) circle [radius=2pt] node [above right] {$J$};
+\end{tikzpicture}
+
+\end{document}

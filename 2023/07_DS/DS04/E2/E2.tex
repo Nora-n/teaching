@@ -47,8 +47,9 @@
 	l'expression de $u_a(t)$
 }
 
-\QR{
-	Obtenir l'équation dont $u_a$ est solution lorsque $t>0$ et la mettre sous la forme
+\QR[7]{
+	Obtenir l'équation dont $u_a$ est solution lorsque $t>0$ et la mettre sous la
+  forme
 	\begin{equation}
 		\label{eq:circuit_1}
 		\dv[2]{u_a}{t} + \frac{\w_0}{Q_a} \dv{u_a}{t} + \w_0^2 u_a = \w_0 ^2 E
@@ -70,7 +71,7 @@
 	calcul que $\boxed{Q_a = \frac{1}{R}\sqrt{\frac{L}{C}} \approx 0,063}$.
 }
 
-\QR{
+\QR[5]{
 	Obtenir l'équation dont $u_b$ est solution lorsque $t>0$ et la mettre sous la
 	forme
 	\begin{equation}
@@ -120,7 +121,7 @@
 
 \subsubsection{Etude du circuit A}
 
-\QR{
+\QR[2]{
 	En partant de l'équation (\ref{eq:circuit_1}), dont on adaptera le second
 	membre en remplaçant $E$ par $E\cos(\w t)$, montrer que
 	\[
@@ -142,7 +143,7 @@
 	d'où le résultat.
 }
 
-\QR{
+\QR[8]{
 	Exprimer alors l'amplitude des oscillations $U_a = \abs{\Uu_a}$. Qu'est-ce
 	que la résonance~? Donner une condition sur $Q_a$ pour que cette amplitude
 	atteigne la résonance. On ne cherchera \textbf{pas} à déterminer la
@@ -154,7 +155,7 @@
 		U_a = \frac{E}{\sqrt{(1-x^2)^2 + x^2/Q_a^2}}
 	\]
 	Il y a résonance si l'amplitude réelle passe par un maximum à une pulsation
-	non nulle et non infinie.
+	non nulle et non infinie. Ici, cela revient à avoir le dénominateur minimal.
 	Soit $X = x^2$, et $f(X) = \left(1 - X\right)^2 + \dfrac{X}{Q^2}$, la
 	fonction que l'on cherche à minimiser~: on cherche donc quand est-ce que sa
 	dérivée est nulle, c'est-à-dire
@@ -185,7 +186,7 @@
 	débuter une nouvelle étude à partir du circuit electronique.
 }
 
-\QR{
+\QR[2]{
 	Dessiner la représentation équivalente du circuit B en régime sinusoïdal
 	forcé.
 }{
@@ -197,7 +198,7 @@
 	\end{figure}
 }
 
-\QR{
+\QR[3]{
 	Obtenir alors l'expression de $\Uu_b$ en fonction de $x$, $Q_b$ et $E$.
 }{
 	On peut regrouper la bobine et le condensateur en parallèles
@@ -205,7 +206,7 @@
 	\begin{DispWithArrows*}
 		\Uu_b           & =
 		\frac{\Zu\ind{eq}}{R+\Zu\ind{eq}}E
-		\CArrow{$\times \Yu\ind{eq}$}
+		\CArrow{$\times \frac{\Yu\ind{eq}}{\Yu\ind{eq}}$}
 		\\\Lra
 		\Uu_b           & =
 		\frac{1}{1+R\Yu\ind{eq}} E
@@ -222,7 +223,7 @@
 	\end{DispWithArrows*}
 }
 
-\QR{
+\QR[2]{
 	Montrer alors que l'amplitude des oscillations $U_b = \abs{\Uu_b}$ s'exprime
 	selon
 	\[
@@ -240,11 +241,12 @@
 	effet, on a $1+ Q_b^2 (x-1/x)^2 \ge 1 + Q_b^2(1-1)^2$ $\forall x >0$.
 }
 
-\QR{
+\QR[5]{
 Comment se définit la bande passante~? Déterminer l'expression de la largeur
 de la bande passante $\Delta \w$ en fonction de $\w_0$ et $Q_b$. On pourra
 travailler avec la pulsation réduite ou conserver les pulsations.
 }{
+C'est l'ensemble des pulsations telles que $U_b (\w) \geq U_{b, \max}/\sqrt{2}$.
 On commence par déterminer les pulsations réduites $x_1$ et $x_2$ telles que
 $U_b(x_i) = E/\sqrt{2}$~:
 \begin{DispWithArrows*}
@@ -276,7 +278,7 @@ $x_2 - x_1 = 1/Q_b$ soit au final $\boxed{\Delta \w = \w_0 /Q_b}$.
 
 \subsubsection{Synthèse}
 
-\QR{
+\QR[6]{
 	Quelle est la valeur de $U_a (x=1)$~? La valeur de $U_b (x=1)$~? La valeur de
 	$\Delta x$~?
 	\bigbreak
@@ -287,8 +289,9 @@ $x_2 - x_1 = 1/Q_b$ soit au final $\boxed{\Delta \w = \w_0 /Q_b}$.
 		\SI{0.4}{V}$.
 }{
 	Pour le circuit A, on observe que $U_a(x=1) = Q_a E \approx \SI{0,32}{V}$ et
-	il n'y a pas résonance. Pour le circuit B, on observe une résonance autour de
-	$x=1$ avec une faible largeur ($\Delta x_c = 1/Q_b \approx 0,063$).
+	il n'y a pas résonance. Pour le circuit B, on observe une résonance telle que
+  $U_b (x=1) = E = \SI{5}{V}$, avec une faible largeur ($\Delta x = 1/Q_b
+  \approx 0,063$).
 	On obtient alors les courbes suivantes Figure~\ref{fig:gains}.
 	\begin{figure}[htbp!]
 		\centering

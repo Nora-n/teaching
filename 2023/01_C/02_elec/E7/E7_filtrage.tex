@@ -1,9 +1,6 @@
 \documentclass[../../main/main.tex]{subfiles}
 \graphicspath{{./figures/}}
 
-\setlength{\mtcindent}{-10pt}
-\mtcsetoffset{minitoc}{-10pt}
-
 \dominitoc
 \faketableofcontents
 
@@ -11,11 +8,11 @@
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \HideSolutionstrue
 \toggletrue{corrige}
-% \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{6}
@@ -251,9 +248,9 @@ informatique basé sur ce théorème, je vous recommande la vidéo de
 	pulsation $\w$ s'écrit
 	\psw{
 		\[
-			s(t) = S_0 + \sum_{n=1}^{+\infty} S_n \sin(n\w t + \f_n)
+			s(t) = S_0 + \sum_{n=1}^{+\infty} S_n \cos(n\w t + \f_n)
 			\Lra
-			s(t) = S_0 + \sum_{n=1}^{+\infty} S_n \sin(2\pi nf t + \f_n)
+			s(t) = S_0 + \sum_{n=1}^{+\infty} S_n \cos(2\pi nf t + \f_n)
 		\]
 	}%
 	Avec $S_0$ la valeur moyenne (composante continue), et les $S_n$ et $\f_n$ des
@@ -287,10 +284,10 @@ informatique basé sur ce théorème, je vous recommande la vidéo de
 	sinus.
 	\begin{tcb}(nota){Fondamental et harmoniques}
 		\begin{itemize}
-			\item La première composante sinusoïdale, $S_1 \sin(\wt + \f_1)$,
+			\item La première composante sinusoïdale, $S_1 \cos(\wt + \f_1)$,
 			      s'appelle le \textbf{fondamental}. Il \textbf{donne sa fréquence au
 				      signal entier}.
-			\item Le signal $S_n \sin(n\wt + \f_n)$ est appellé
+			\item Le signal $S_n \cos(n\wt + \f_n)$ est appellé
 			      \textbf{harmonique de rang $\mathbf{n}$}. Sa pulsation est un
 			      \textbf{multiple} du fondamental.
 		\end{itemize}
@@ -370,9 +367,9 @@ composant. C'est en effet le cas~:
 
 \section{Filtrage}
 \subsection{Traitement du signal et filtre}
-Le but du \textbf{traitement du signal} est d'\textbf{extraire l'information utile} d'un signal
-issu d'un capteur où de multiples signaux se superposent au signal utile~:
-bruits électromagnétiques, autres informations, etc.
+Le but du \textbf{traitement du signal} est d'\textbf{extraire l'information
+	utile} d'un signal issu d'un capteur où de multiples signaux se superposent au
+signal utile~: bruits électromagnétiques, autres informations, etc.
 \begin{itemize}
 	\item Pour recevoir la radio, on doit sélectionner le signal autour d'une
 	      bande de fréquence précise et éliminer le reste~;
@@ -550,19 +547,19 @@ filtre, on procède par superposition~:
 	e(t) =
 	\left\{
 	\begin{array}{ccccc}
-		E_0                    & \ra & \fbox{$\Hu(0\jw_e)$} & \ra & S_0
+		E_0                     & \ra & \fbox{$\Hu(0\jw_e)$} & \ra & S_0
 		\\
-		+                      &     &                      &     & +
+		+                       &     &                      &     & +
 		\\
-		E_1\sin(\w_e t + \f_1) & \ra & \fbox{$\Hu(1\jw_e)$} & \ra & S_1\sin(\w_e t + \psi_1)
+		E_1\sin(\w_e t + \f_1)  & \ra & \fbox{$\Hu(1\jw_e)$} & \ra & S_1\sin(\w_e t + \psi_1)
 		\\
-		+                      &     &                      &     & +
+		+                       &     &                      &     & +
 		\\
-		E_2\sin(\w_e t + \f_2) & \ra & \fbox{$\Hu(2\jw_e)$} & \ra & S_2\sin(\w_e t + \psi_2)
+		E_2\sin(2\w_e t + \f_2) & \ra & \fbox{$\Hu(2\jw_e)$} & \ra & S_2\sin(2\w_e t + \psi_2)
 		\\
-		\vdots                 &     &                      &     & \vdots
+		\vdots                  &     &                      &     & \vdots
 		\\
-		E_n\sin(\w_e t + \f_n) & \ra & \fbox{$\Hu(n\jw_e)$} & \ra & S_n\sin(\w_e t + \psi_n)
+		E_n\sin(n\w_e t + \f_n) & \ra & \fbox{$\Hu(n\jw_e)$} & \ra & S_n\sin(n\w_e t + \psi_n)
 	\end{array}
 	\right\} = s(t)
 \]
@@ -901,7 +898,7 @@ conditions d'utilisations~:
 				\Lra
 				\Su = \frac{C}{\jw}\Eu
 				\Lra
-				\boxed{\Hu(x) = \frac{C}{\jw}}
+				\boxed{\Hu(\jw) = \frac{C}{\jw}}
 			\]
 			Correspond à une pente de \SI{-20}{dB/decade} gain.
 			Par exemple, le passe-bas d'ordre 1 pour $\w \gtrsim 3\w_c$ est un
@@ -915,7 +912,7 @@ conditions d'utilisations~:
 				\Lra
 				\Su = C\jw \Eu
 				\Lra
-				\boxed{\Hu(x) = C \times \jw}
+				\boxed{\Hu(\jw) = C \times \jw}
 			\]
 			Correspond à une pente de \SI{+20}{dB/decade} en gain. Ça sera le cas d'un
 			passe-haut d'ordre 1, pour $\w \lesssim \num{0.3}\w_c$

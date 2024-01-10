@@ -1,0 +1,389 @@
+\documentclass[../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+\usepackage{pdfpages}
+
+\makeatletter
+\renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\makeatother
+
+% \toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{12}
+
+\chapter{\cswitch{Correction du TP}{\'Etude d'un filtre passe-bas du premier ordre}}
+
+\enonce{
+	\begin{prgm}
+		\begin{tcb}*(ror)"know"{Savoir}
+			\begin{itemize}
+				\item Décalage temporel/Déphasage à l'aide d'un oscilloscope numérique.
+				\item Reconnaître une avance ou un retard.
+			\end{itemize}
+		\end{tcb}
+		\begin{tcb}*(ror)"how"{Savoir-faire}
+			\begin{itemize}
+				\item Mettre en œuvre un dispositif expérimental illustrant l’utilité
+				      des fonctions de transfert pour un système linéaire à un ou plusieurs
+				      étages.
+				\item Passer d'un décalage temporel à un déphasage et inversement.
+				\item Agir sur un signal électrique à l'aide des fonctions simples
+				      suivantes~: filtrage
+			\end{itemize}
+		\end{tcb}
+	\end{prgm}
+	\vspace{-10pt}
+	\section{Objectifs}
+	\begin{itemize}
+		\item Apprendre à utiliser un dBmètre.
+		\item Apprendre à déterminer rapidement une fréquence de coupure.
+		\item Apprendre à mesurer un déphasage à l'oscilloscope.
+		\item Apprendre à tracer un diagramme de \textsc{Bode} sur papier semi-log et
+		      papier millimétré.
+	\end{itemize}
+}
+
+\enonce{%
+	\section{S'approprier}
+
+	\subsection{Méthode pour mesurer un déphasage -- rappel de cours}
+
+	Supposons $e(t) = E_{m} \cos(\w t)$ sur la voie $Y_1$ et $s(t) = S_{m} \cos (\w
+		t + \f)$ sur la voie $Y_2$ de l'oscillogramme ci-contre.  Le déphasage $\f$
+	entre deux signaux est un nombre appartenant à l'intervalle $\left]-\pi~;
+		\pi\right]$. Il se mesure grâce à l'oscilloscope.
+	\smallbreak
+	\noindent
+	\begin{minipage}[c]{.60\linewidth}
+		\begin{enumerate}
+			\item \xul{Déterminer la valeur absolue de $\Delta\f_{s/e}$}~: pour cela, il
+			      faut placer les curseurs verticaux de manière à déterminer le
+			      décalage temporel $\Delta t$, puis $\abs{\Delta\f_{s/e}} =
+				      \w\Delta{t}$ (en rad).
+			\item \xul{Ensuite déterminer le signe de $\Delta\f_{s/e}$}~:
+			      pour cela, on cherche quelle courbe est en avance sur l'autre. Sur
+			      l'oscillogramme ci-contre, $s$ est en retard sur $e$ puisqu'il s'annule
+			      après $e$~: on en déduit $\Delta\f_{s/e} < 0$.
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{.40\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{dephasage}
+			\captionof{figure}{Déphasage}
+			\label{fig:dephasage}
+		\end{center}
+	\end{minipage}
+
+	\subsection{Méthode pour mesurer un gain en dB}
+
+	Le gain se mesure grâce à un multimètre en fonction Volt alternatif (symbole
+	\fbox{V$\sim$}) puis dBmètre (bouton \fbox{dB}) pour activer la fonction
+	dBmètre.
+
+	\begin{tcb}(expe)<itc>{Mesure de gain}
+		\begin{enumerate}
+			\item Brancher le multimètre sur l'entrée $e(t)$ du montage~;
+			\item Appuyer sur \fbox{\texttt{rel}} une ou deux fois jusqu'à ce que le
+			      multimètre affiche 0~: on indique alors au multimètre que c'est cette
+			      tension $e(t)$ qui sert de référence.
+			\item Brancher ensuite le multimètre sur la sortie $s(t)$. Il affiche
+			      directement le gain en dB.
+		\end{enumerate}
+		\begin{center}
+			\begin{tcb}[cnt, bld, width=.8\linewidth](impo){Attention}
+				Il faut refaire le zéro relatif pour chaque fréquence.
+			\end{tcb}
+		\end{center}
+	\end{tcb}
+
+	\subsection{Méthode pour tracer un diagramme de \textsc{Bode}}
+
+	Pour tracer le diagramme de \textsc{Bode}, il est nécessaire pour chaque
+	fréquence de déterminer~:
+	\begin{enumerate}
+		\item le déphasage $\Delta\f_{s/e}$ de $s(t)$ par rapport à $e(t)$~;
+		\item Le gain en dB.
+	\end{enumerate}
+}
+
+\setcounter{section}{2}
+\section{Analyser}
+
+\begin{minipage}{0.60\linewidth}
+	Le montage étudié, schématisé ci-contre, est un circuit RC série alimenté
+	par la tension $e(t) = E_{m} \cos(\w t)$. On pose $s(t) = S_{m} \cos (\w t +
+		\f)$ la tension aux bornes du condensateur.
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{filtre_rc}
+	\end{center}
+\end{minipage}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+
+\QR{%
+	Établir l'expression de la fonction de transfert.
+}{%
+	Pont diviseur~:
+	\begin{DispWithArrows*}
+		\Su &= \frac{1/\jcw}{R + 1/\jcw}\Eu
+		\CArrow{$\times \frac{\jcw}{\jcw}$}
+		\\\Lra
+		\Su &= \frac{1}{1+\jrcw}\Eu
+		\Arrow{$\Hu = \Su/\Eu$}
+		\\\Lra
+		\Hu &= \frac{1}{1+\jrcw}
+		\Arrow{$\w_c = \frac{1}{RC}$}
+		\\\Lra
+		\Hu &= \frac{1}{1+\jj \frac{\w}{\w_c}}
+		\Arrow{$x = \frac{\w}{\w_c}$}
+		\\\Lra
+		\Aboxed{\Hu &= \frac{1}{1+\jx}}
+	\end{DispWithArrows*}
+}
+
+\QR{%
+	Déterminer le comportement asymptotique du filtre pour le gain et le
+	déphasage.
+}{%
+	\begin{enumerate}
+		\mitem
+		\[
+			\boxed{
+				\Hu(x) \opto{}{x\to 0} \frac{1}{1 + 0} = 1
+				\qet
+				\Hu(x) \opto{}{x\to \infty} \frac{1}{\jx}
+			}
+		\]
+		\vspace{-15pt}
+		\item
+		      \begin{itemize}
+			      \item Pour le gain~:
+			            \[
+				            G\ind{dB}(x) \opto{}{x\to 0} 20 \log (1) = 0
+				            \qet
+				            G\ind{dB}(x) \opto{}{x\to\infty}
+				            20 \log \abs{\frac{1}{\jx}} = -20 \log x
+			            \]
+			            %
+			            Ainsi, à hautes fréquences, \textbf{le gain diminue de
+				            \SI{20}{dB} par décade}~: si $\w$ est multiplié par 10, le
+			            gain en décibel baisse de \SI{20}{dB} (i.e.\ l'amplitude est
+			            divisée par 10).
+			      \item Pour la phase~:
+			            \[
+				            \f(x) \opto{}{x\to 0} \arg*{1} = 0
+				            \qet
+				            \f(x) \opto{}{x\to \infty}
+				            \arg*{\frac{1}{\jx}} = -\frac{\pi}{2}
+			            \]
+			            \vspace{-15pt}
+		      \end{itemize}
+	\end{enumerate}
+}
+
+\QR{%
+	Déterminer l'expression de la fréquence de coupure $f_{c}$, puis la
+	calculer pour $R=\SI{1,0}{k\ohm}$ et $C = \SI{0,10}{\micro F}$.
+	\pyc{R = 1e3; C=0.1e-6; fc = 1/(R*C*2*3.1415)}
+}{%
+	On a trouvé
+	\begin{gather*}
+		\w_c = \frac{1}{RC} \Lra \boxed{f_c = \frac{1}{2\pi RC}}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			R & = & \SI{1.0}{k\ohm}
+			\\
+			C & = & \SI{0.10}{\micro F}
+		\end{array}
+		\right.\\
+		\AN
+		\xul{
+			f_c = \py{fr'\SI{{{fc:.2e}}}{{Hz}}'}
+		}
+	\end{gather*}
+}
+
+\QR{%
+	Compléter le schéma avec les branchements de la carte Sysam permettant
+	de visualiser simultanément $e(t)$ sur la voie \texttt{EA0} et $s(t)$ sur la
+	voie \texttt{EA1} de l'oscilloscope.
+
+}{%
+	\begin{figure}[htbp!]
+		\centering
+		\includegraphics[width=.5\linewidth]{filtre_rc-sysam}
+		\caption{Schéma complété.}
+		\label{fig:rc-sysam}
+	\end{figure}
+}
+
+\QR{%
+	On souhaite éliminer toute composante continue des signaux observés,
+	doit-on choisir le mode AC ou DC~? (vous pourrez faire une recherche sur
+	internet ce que signifie mode AC et DC d'un oscilloscope).
+}{%
+	On choisit le mode \fbox{AC} (courant alternatif).
+}
+
+
+\QR{%
+Si l'amplitude $E_{m}$ du signal d'entrée est représentée par
+$\num{2,8}$ carreaux, en supposant que la sensibilité verticale est la
+même sur les 2 voies, montrer que pour $f=f_{c}$ l'amplitude $S_{m}$ du
+signal de sortie correspond alors à 2 carreaux sur l'oscillogramme.
+}{%
+À la fréquence coupure, on obtient
+\[
+	S_m(f_c) = \abs{\Hu(f_c)}E_m = \frac{E_m}{\sqrt{2}}
+\]
+L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
+}
+
+\section{Réaliser}
+
+\enonce{%
+	\subsection{Étude rapide de comportement}
+
+	\begin{tcb}(expe)<itc>{Diagramme automatique}
+		\begin{enumerate}
+			\item Connecter la carte Sysam à l'ordinateur~;
+			\item Ouvrir \texttt{Oscillo5} (Programmes Physique-chimie $\rightarrow$
+			      Eurosmart $\rightarrow$ \texttt{Oscillo5})~;
+			\item Alimenter votre filtre RC avec la sortie analogique \texttt{SA1} de
+			      la carte Sysam.
+			\item Relever la tension $e(t)$ sur le canal \texttt{EA0} et la tension
+			      $s(t)$ sur le canal \texttt{EA1}.
+			\item Passer en mode \textsc{Bode}~;
+			\item Afficher gain et phase~;
+			\item Prendre une échelle log avec une étendue de fréquence cohérente avec
+			      la fréquence de coupure que vous avez préalablement déterminée~;
+			\item Sélectionner \texttt{EA0} en entrée~;
+			\item Effacer acquisitions précédentes. Choisir~: toutes~;
+			\item Déclencher.
+			\item Les diagrammes sont tracés de manière automatique. Pratique si on
+			      veut être rapide~!
+		\end{enumerate}
+	\end{tcb}
+}
+
+\setcounter{subsection}{1}
+\subsection{Mesures pour le tracé du diagramme de \textsc{Bode}}
+
+\enonce{%
+	Il s'agit maintenant de faire un relevé fréquence par fréquence pour apprendre
+	à le faire «~à la main~».
+
+	\begin{tcb}(expe)<itc>{À la main}
+		Prendre comme amplitude du signal d'entrée environ $\SI{2}{V}$ (soit
+		$\SI{4}{Vpp}$) en utilisant le mode GBF d'Oscillo5. Pour des fréquences
+		entre \SI{100}{Hz} et \SI{50}{kHz}~:
+		\begin{enumerate}
+			\item Mesurer le déphasage entre $s(t)$ et $e(t)$ à l'aide d'Oscillo5,
+			      comme indiqué dans S'approprier (il faut afficher les deux signaux
+			      temporels). Pour plus de facilité, utiliser les curseurs (en bas à
+			      droite du menu d'Oscillo5).
+			\item Mesurer le gain en dB à l'aide du dBmètre, comme indiqué dans
+			      S'approprier.
+			\item Une échelle logarithmique de variation de la fréquence est
+			      pertinente et vous pourrez faire plus de mesures autour de la
+			      fréquence de coupure $f_{c}$ précédemment établie.
+		\end{enumerate}
+	\end{tcb}
+}
+
+\resetQ
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR{%
+	Regrouper les valeurs dans un tableau~:
+	\begin{table}[htbp!]
+		\centering
+		\caption{Mesures pour diagramme de \textsc{Bode}.}
+		\begin{tabularx}{\linewidth}{YYYYY}
+			\toprule
+			$f$ (\si{Hz})                       &
+			$G\ind{dB}$ (\si{dB})               &
+			$\abs{\Delta{t}}$ (\si{s})          &
+			$\abs{\Delta{\f_{s/e}}}$ (\si{rad}) &
+			$\Delta{\f_{s/e}}$ (rad)
+			\\
+			\midrule
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$
+			\\
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$                            &
+			$\vdots$
+			\\
+			\bottomrule
+		\end{tabularx}
+		\label{tab:ddb}
+	\end{table}
+}{%
+	solu
+}
+
+\section{Valider et conclure}
+
+\QR{%
+	Tracer le diagramme de \textsc{Bode} expérimental sur papier semi-log
+	(fourni en fin de sujet) en mettant la fréquence en abscisse (les 2 courbes
+	sur une même feuille en prenant l'échelle du gain à gauche et l'échelle du
+	déphasage à droite).
+}{%
+	solu
+}
+
+\QR{%
+	Ajouter sur le diagramme, les asymptotes obtenues grâce à l'étude
+	théorique de l'analyse.
+}{%
+	solu
+}
+\begin{blocQR}{}
+	\item En déduire~:
+	\QR{%
+		La fréquence de coupure expérimentale $f_{c, \exp}$ en considérant
+		$G_{\dB}(f_{c, \exp}) = G_{\dB, max} -\SI{3}{dB}$. La comparer à la valeur
+		théorique en calculant l'écart \textbf{normalisé}.
+	}{%
+		solu
+	}
+
+	\QR{%
+	Le déphasage expérimental $\f_{c, \exp}$ pour $f=f_{c, \exp}$. Le comparer à
+	la valeur théorique en calculant l'écart \textbf{normalisé}.
+	}{%
+	solu
+	}
+
+	\QR{%
+		La nature du filtre.
+	}{%
+		C'est un passe-bas.
+	}
+
+\end{blocQR}
+
+\enonce{%
+	\newpage
+
+	\thispagestyle{empty}
+	\includepdf{semilog}
+	\let\clearpage\relax
+}
+
+\end{document}

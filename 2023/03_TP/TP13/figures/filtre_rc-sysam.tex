@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\ctikzset{sources/symbol/rotate=0}
+	\draw
+	(0,0)
+	node[ground] {}
+	node{$\bullet$}
+	to[open, name=E, v^>=$e(t)$, !vi]
+	(0,2)
+	node{$\bullet$}
+	coordinate(V1)
+	to[R, name=R, !vi]
+	(3,2)
+	coordinate (V2)
+	to[C,l_=$C$, name=C, i>^=$i$, v^<=$s(t)$, !vi]
+	% to[R, name=C, i^>=$i$, v^<=$\ul{u_C}$, !vi]
+	(3,0) --
+	(0,0)
+	;
+	\varronly{C} \varronly{E}
+	\iarronly{C}
+	\node[] at (R.center) {$R$};
+	\draw[thick, ->]
+	(V1) --++ (130:.5)
+	node [above left] {EA0};
+	\draw[thick, ->]
+	(V2) --++ (40:.5)
+	node [above right] {EA1};
+	% \node[] at (C.center) {\tiny$\frac{1}{\jj C\w}$};
+\end{circuitikz}
+\end{document}

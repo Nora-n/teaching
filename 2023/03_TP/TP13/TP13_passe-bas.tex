@@ -6,7 +6,7 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-% \toggletrue{student}
+\toggletrue{student}
 \HideSolutionstrue
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
@@ -16,6 +16,31 @@
 \setcounter{chapter}{12}
 
 \chapter{\cswitch{Correction du TP}{\'Etude d'un filtre passe-bas du premier ordre}}
+
+\begin{pycode}
+import numpy as np
+import cmath
+R = 1e3           # Ohm
+C = 0.1e-6        # Farad
+wc = 1/(R*C)      # rad.s^-1
+fc = wc/(2*np.pi) # Hz
+def H(f):
+    return (1/(1+1j*(f/fc)))
+def G(f):
+    return (20*np.log10(abs(H(f))))
+def F(f):
+    return (cmath.phase(H(f)))
+def T(f):
+    return F(f)/(2*np.pi*f)
+# fmin = 1e2        # Hz
+# fmax = 5e4        # Hz
+# plist = np.array(
+# [0, 0.05, 0.1, 0.12, 0.145, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 0.9, 1]
+# )
+flist = [100, 300, 600,
+				1000, 1200, 1600, 2000, 3000, 5000, 7000,
+				10000, 20000, 30000, 40000, 50000]
+\end{pycode}
 
 \enonce{
 	\begin{prgm}
@@ -81,12 +106,12 @@
 
 	\subsection{Méthode pour mesurer un gain en dB}
 
-	Le gain se mesure grâce à un multimètre en fonction Volt alternatif (symbole
-	\fbox{V$\sim$}) puis dBmètre (bouton \fbox{dB}) pour activer la fonction
-	dBmètre.
-
+	Le gain se mesure grâce à un multimètre.
 	\begin{tcb}(expe)<itc>{Mesure de gain}
 		\begin{enumerate}
+      \item Appuyez sur la fonction Volt alternatif (symbole
+            \fbox{V$\sim$}), \textbf{puis} dBmètre (bouton \fbox{dB}) pour
+            activer la fonction dBmètre~;
 			\item Brancher le multimètre sur l'entrée $e(t)$ du montage~;
 			\item Appuyer sur \fbox{\texttt{rel}} une ou deux fois jusqu'à ce que le
 			      multimètre affiche 0~: on indique alors au multimètre que c'est cette
@@ -262,7 +287,7 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 			      la carte Sysam.
 			\item Relever la tension $e(t)$ sur le canal \texttt{EA0} et la tension
 			      $s(t)$ sur le canal \texttt{EA1}.
-			\item Passer en mode \textsc{Bode}~;
+			\item Passer en mode \texttt{Bode}~;
 			\item Afficher gain et phase~;
 			\item Prendre une échelle log avec une étendue de fréquence cohérente avec
 			      la fréquence de coupure que vous avez préalablement déterminée~;
@@ -283,14 +308,18 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 	à le faire «~à la main~».
 
 	\begin{tcb}(expe)<itc>{À la main}
-		Prendre comme amplitude du signal d'entrée environ $\SI{2}{V}$ (soit
-		$\SI{4}{Vpp}$) en utilisant le mode GBF d'Oscillo5. Pour des fréquences
-		entre \SI{100}{Hz} et \SI{50}{kHz}~:
 		\begin{enumerate}
+      \item Choisir maintenant le mode \texttt{BALAYAGE}, pour utiliser
+            \texttt{Oscillo5} comme un oscilloscope~;
+      \item Dans le panneau de contrôle (boîte flottante en haut de l'écran),
+            cliquer sur \texttt{Voir GBF1} et appuyer sur \texttt{Marche}~;
+      \item Prendre comme amplitude du signal d'entrée environ $\SI{2}{V}$ (soit
+            $\SI{4}{Vpp}$). Pour des fréquences entre \SI{100}{Hz} et
+            \SI{50}{kHz}~:
 			\item Mesurer le déphasage entre $s(t)$ et $e(t)$ à l'aide d'Oscillo5,
-			      comme indiqué dans S'approprier (il faut afficher les deux signaux
-			      temporels). Pour plus de facilité, utiliser les curseurs (en bas à
-			      droite du menu d'Oscillo5).
+			      comme indiqué dans S'approprier. Pour plus de facilité, utiliser
+            les curseurs (en bas à droite du menu d'Oscillo5) et les calibres
+            horizontaux (à droite) et verticaux (en bas).
 			\item Mesurer le gain en dB à l'aide du dBmètre, comme indiqué dans
 			      S'approprier.
 			\item Une échelle logarithmique de variation de la fréquence est
@@ -333,7 +362,132 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 		\label{tab:ddb}
 	\end{table}
 }{%
-	solu
+	\begin{table}[htbp!]
+		\centering
+		\caption{Mesures pour diagramme de \textsc{Bode}.}
+		\begin{tabularx}{\linewidth}{YYYYY}
+			\toprule
+			$f$ (\si{Hz})                             &
+			$G\ind{dB}$ (\si{dB})                     &
+			$\abs{\Delta{t}}$ (\si{s})                &
+			$\abs{\Delta{\f_{s/e}}}$ (\si{rad})       &
+			$\Delta{\f_{s/e}}$ (rad)
+			\\
+			\midrule
+			$\py{fr'\num{{{flist[0]}}}'}$         &
+			$\py{fr'\num{{{G(flist[0]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[0]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[0])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[0]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[1]}}}'}$         &
+			$\py{fr'\num{{{G(flist[1]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[1]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[1])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[1]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[2]}}}'}$         &
+			$\py{fr'\num{{{G(flist[2]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[2]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[2])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[2]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[3]}}}'}$         &
+			$\py{fr'\num{{{G(flist[3]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[3]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[3])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[3]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[4]}}}'}$         &
+			$\py{fr'\num{{{G(flist[4]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[4]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[4])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[4]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[5]}}}'}$         &
+			$\py{fr'\num{{{G(flist[5]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[5]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[5])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[5]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[6]}}}'}$         &
+			$\py{fr'\num{{{G(flist[6]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[6]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[6])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[6]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[7]}}}'}$         &
+			$\py{fr'\num{{{G(flist[7]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[7]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[7])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[7]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[8]}}}'}$         &
+			$\py{fr'\num{{{G(flist[8]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[8]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[8])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[8]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[9]}}}'}$         &
+			$\py{fr'\num{{{G(flist[9]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[9]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[9])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[9]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[10]}}}'}$         &
+			$\py{fr'\num{{{G(flist[10]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[10]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[10])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[10]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[11]}}}'}$         &
+			$\py{fr'\num{{{G(flist[11]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[11]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[11])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[11]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[12]}}}'}$         &
+			$\py{fr'\num{{{G(flist[12]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[12]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[12])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[12]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[13]}}}'}$         &
+			$\py{fr'\num{{{G(flist[13]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[13]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[13])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[13]):.2f}}}'}$
+			\\
+			$\py{fr'\num{{{flist[14]}}}'}$         &
+			$\py{fr'\num{{{G(flist[14]):.2f}}}'}$      &
+			$\py{fr'\num{{{T(flist[14]):.2e}}}'}$      &
+			$\py{fr'\num{{{abs(F(flist[14])):.2f}}}'}$ &
+			$\py{fr'\num{{{F(flist[14]):.2f}}}'}$
+			\\
+			\bottomrule
+		\end{tabularx}
+		\label{tab:ddb_corr}
+	\end{table}
+
+% 	\begin{table}[htbp!]
+% 		\centering
+% 		\caption{TESTTEST}
+% \begin{pycode}
+% print(r"\begin{tabularx}{\linewidth}{YYYYY}")
+% print(r"\toprule")
+% print(r"$f$ (\si{Hz})                             &")
+% print(r"$G\ind{dB}$ (\si{dB})                     &")
+% print(r"$\abs{\Delta{t}}$ (\si{s})                &")
+% print(r"$\abs{\Delta{\f_{s/e}}}$ (\si{rad})       &")
+% print(r"$\Delta{\f_{s/e}}$ (rad)")
+% print(r"\\"
+% print(r"\midrule")
+% for n in range(0,15):
+%     print(fr'\num{{{flist[{n}]}}} & \num{{{G(flist[{n}]):.2f}}} & \num{{{T(flist[{n}]):.2e}}} & \num{{{abs(F(flist[{n}])):.2f}}} & \num{{{F(flist[{n}]):.2f}}}\\')
+% print(r"\bottomrule")
+% print(r"\end{tabularx}")
+% \end{pycode}
+% 	\end{table}
 }
 
 \section{Valider et conclure}
@@ -341,17 +495,17 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 \QR{%
 	Tracer le diagramme de \textsc{Bode} expérimental sur papier semi-log
 	(fourni en fin de sujet) en mettant la fréquence en abscisse (les 2 courbes
-	sur une même feuille en prenant l'échelle du gain à gauche et l'échelle du
-	déphasage à droite).
+	sur une même feuille en prenant l'échelle du gain en haut et l'échelle du
+	déphasage en bas).
 }{%
-	solu
+	Voir fin du sujet.
 }
 
 \QR{%
 	Ajouter sur le diagramme, les asymptotes obtenues grâce à l'étude
 	théorique de l'analyse.
 }{%
-	solu
+	Idem.
 }
 \begin{blocQR}{}
 	\item En déduire~:
@@ -360,14 +514,20 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 		$G_{\dB}(f_{c, \exp}) = G_{\dB, max} -\SI{3}{dB}$. La comparer à la valeur
 		théorique en calculant l'écart \textbf{normalisé}.
 	}{%
-		solu
+		On trouve $f_{c, \exp} = \SI{1.57\pm0.02}{kHz}$, d'où l'écart normalisé
+    \[
+      \boxed{E_n = \frac{\abs{f_{c, \exp} - f_{c, \rm theo}}}{u_{f_{c, \exp}}}}
+      \Ra 
+      \xul{E_n = 1} < 2
+      \quad \text{donc compatibles.}
+    \]
 	}
 
 	\QR{%
 	Le déphasage expérimental $\f_{c, \exp}$ pour $f=f_{c, \exp}$. Le comparer à
 	la valeur théorique en calculant l'écart \textbf{normalisé}.
 	}{%
-	solu
+	 Calcul similaire.
 	}
 
 	\QR{%
@@ -378,12 +538,15 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 
 \end{blocQR}
 
-\enonce{%
-	\newpage
+\newpage
 
-	\thispagestyle{empty}
-	\includepdf{semilog}
-	\let\clearpage\relax
+\thispagestyle{empty}
+\cswitch{
+  \includepdf{semilog_solu}
+}{
+  \includepdf{semilog}
 }
+
+\let\clearpage\relax
 
 \end{document}

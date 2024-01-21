@@ -1,0 +1,39 @@
+\documentclass[border=1mm]{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\def\L{2}
+\def\H{3}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\draw[]
+	(-\L/4,0)
+	to[sV, name=E, v_>={$e(t)$}, !vi]
+	(-\L,0)
+  to[short]
+  (-\L,\H/2)
+  coordinate(Ln)
+  to[short]
+  (-\L,\H)
+	to[R, name=R0, v_<=$v$, !vi]
+	(\L,\H)
+  to[short]
+  (\L,\H/2)
+  coordinate(Rn)
+  to[short]
+  (\L,0)
+  to[R, name=RL]
+  (\L/4,0)
+  to[ccsw, l_=$L$, name=L]
+  (-\L/4,0)
+  ;
+	\draw[]
+	(Ln)
+	to[cosw, l^=$C_0$, name=C0, !vi]
+	(Rn)
+	;
+  \varronly{E} \varronly{R0}
+	\node[] at (R0.center) {$R_0$};
+	\node[] at (RL.center) {$R_L$};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass[../DS05.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\begin{document}
+
+\prblm[42]{Le bleu du ciel}
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/ciel_bleu/}{sujet.tex}
+\enonce{
+	\noindent Thomson a proposé un modèle d'atome dans lequel chaque électron $(M)$ est élastiquement lié à son noyau $(O)$ : il est soumis à une force de rappel $\vec{F}_R$ passant par le centre de l'atome. Dans tout l'exercice, on admettra que l'on peut se ramener à un problème selon une unique direction $(0,\vec{e}_x)$, c'est-à-dire que $\vec{F}_R = -kx\vec{e}_x$, où $x$ est la distance entre l'électron et l'atome. Nous supposerons que cet électron est freiné par une force de frottement de type fluide proportionnel à sa vitesse $\vec{F}_f = -h\vec{v} = -h\frac{dx}{dt}\vec{e}_x$ et que le centre $O$ de l'atome est fixe dans le référentiel d'étude supposé galiléen. On admet qu'une onde lumineuse provenant du Soleil impose sur un électron de l'atmosphère, une force $\vec{F}_E=-eE_0\cos(\omega t) \vec{e}_x$.
+
+	\paragraph{Données.}
+	masse d'une électron : $m=\SI{9,1e-31}{\kilo\gram}$,
+	charge élémentaire : $e=\SI{1,6e-19}{\coulomb}$,
+	célérité de la lumière dans le vide : $c=\SI{3,00e8}{\metre\per\second}$,
+	$k=\SI{500}{SI}$,
+	$h=\SI{1e-20}{SI}$.
+}
+
+\QR{
+	Quelles sont les dimensions des grandeurs $k$ et $h$ ? En quelles unités du système international les exprime-t-on ?
+}{
+	Par analyse dimensionnelle :
+	\eq{
+		{\rm dim}(k) = \frac{{force}}{{longueur}} = \frac{MLT^{-2}}{L} = \boxed{MT^{-2}}
+		\quad ; \quad
+		{\rm dim}(h) =\frac{{force}}{{vitesse}} = \frac{MLT^{-2}}{LT^{-1}} = \boxed{MT^{-1}}.
+	}
+
+	\noindent Leurs unités en système international sont donc :
+	\eq{
+		k~~\text{en}~~ \boxed{\si{.\kilo\gram.\second^{-2}}}
+		\qquad ; \qquad
+		h~~\text{en}~~ \boxed{\si{.\kilo\gram.\second^{-1}}}.
+	}
+
+}
+
+
+\QR{
+	En utilisant la loi de la quantité de mouvement, donner l'équation différentielle vérifiée par la position de l'électron $x(t)$.
+}{
+	D'après la loi de la quantité de mouvement appliqué à l'électron dans le référentiel de l'atome considéré comme galiléen :
+	\eq{
+		\vec{F}_R + \vec{F}_f + \vec{F}_E = m\vec{a}.
+	}
+
+	\noindent En projetant cette relation sur l'axe $(O,\vec{e}_x)$, on obtient :
+	\eq{
+		\boxed{-kx -h\dot{x} -eE_0\cos(\omega t) = m\ddot{x}}.
+	}
+
+}
+
+
+\QR{
+	Montrer qu'on peut l'exprimer sous la forme :
+	\eq{
+		\frac{d^2x}{dt^2}+\frac{\omega_0}{Q}\frac{dx}{dt}+\omega_0^2 x(t) = -\frac{e}{m}E_0\cos(\omega t).
+	}
+
+	\noindent On donnera les expressions de $\omega_0$ et $Q$ en fonction des données.
+}{
+	Sous forme canonique, cette équation est :
+	\eq{
+		\ddot{x} + \frac{h}{m}\dot{x} + \frac{k}{m} x = -\frac{eE_0}{m}\cos(\omega t).
+	}
+
+	\noindent On en déduit que :
+	\eq{
+		\frac{\omega_0}{Q} = \frac{h}{m}
+		\quad ; \quad
+		\omega_0^2 = \frac{k}{m}.
+	}
+
+	\noindent On trouve alors :
+	\eq{
+		\boxed{\omega_0 = \sqrt{\frac{k}{m}}}
+		\qquad ; \qquad
+		Q = \frac{m\omega_0}{h} = \boxed{\frac{\sqrt{mk}}{h}}.
+	}
+
+}
+
+\enonce{
+	\noindent On peut chercher les solutions de cette équation différentielle sous la forme :
+	\eq{
+		x(t)=x_h(t)+x_p(t),
+	}
+
+	\noindent où $x_h(t)$ est une solution de l'équation homogène et $x_p(t)$ une solution particulière.
+}
+
+\QR{
+Exprimer et calculer $Q$. Que peut-on en déduire sur le régime transitoire ?
+}{
+On trouve :
+\eq{
+\boxed{Q=2,1.10^{6}>\frac{1}{2}}.
+}
+
+\noindent On en déduit que le régime transitoire est pseudo-périodique.
+}
+
+
+\QR{
+	Montrer que le temps caractéristique du régime transitoire est $\tau=2Q/\omega_0$.
+}{
+	On sait alors que la solution homogène peut s'écrire sous la forme :
+	\eq{
+		x_h(t) = Ae^{-\omega_0t/(2Q)}\cos(\omega t + \varphi).
+	}
+
+	\noindent Le temps caractéristique du régime transitoire est alors :
+	\eq{
+		\boxed{\tau = \frac{2Q}{\omega_0}}.
+	}
+
+	\noindent Au bout de quelques $\tau$, on peut considérer que le régime transitoire est nul.
+}
+
+
+\QR{
+	Calculer $\tau$.
+}{
+	\eq{
+		\boxed{\tau = \SI{1,8e-10}{\second}}.
+	}
+
+}
+
+\enonce{
+	\noindent On suppose donc que l'électron est en régime permanent.
+}
+
+
+\QR{
+	Pourquoi peut-on alors dire que $x(t) \approx X_m \cos(\omega t +\varphi)  $ ?
+}{
+	Pour des durées supérieures à quelques $\tau$, donc supérieures à $10^{-9}\si{.\second}$, on peut considérer que $x_h(t)=0$. On alors $x(t)\approx x_p(t)$. On sait alors que la solution particulière est une fonction sinusoïdale de même fréquence que l'excitation.
+}
+
+
+\QR{
+Exprimer $X_m$ en fonction de $\omega_0$, de $Q$ et des données. On pourra utiliser la notation complexe.
+}{
+En notations complexes, on définit la représentation complexe $\underline{x}(t)=X_me^{j(\omega t+\varphi)}$ et l'amplitude complexe $\underline{X_m}=X_me^{j\varphi}$.
+
+\noindent On peut alors écrire :
+\eq{
+	(j\omega)^2 \underline{X_m} + \frac{(j\omega) \omega_0}{Q}\underline{X_m} +\omega_0^2 \underline{X_m} = \frac{-eE_0}{m}
+	\quad \Rightarrow \quad
+	\boxed{\underline{X_m} = \frac{\frac{-eE_0}{m}}{-\omega^2 + \frac{(j\omega) \omega_0}{Q} +\omega_0^2}}.
+}
+
+\noindent On a alors :
+\eq{
+	\boxed{X_m = |\underline{X_m}| = \frac{\frac{eE_0}{m}}{\sqrt{(\omega_0^2 -\omega^2)^2 + \left( \frac{\omega \omega_0}{Q} \right)^2} }
+		=
+		\frac{eE_0}{m\omega_0^2}\frac{1}{\sqrt{\left(1-\frac{\omega^2}{\omega_0^2} \right)^2 + \frac{\omega^2}{Q^2\omega_0^2}}}
+	}
+}
+
+}
+
+
+\QR{
+	Exprimer $\varphi$ en fonction de $\omega_0$ et de $Q$. On pourra également utiliser la notation complexe.
+}{
+	\noindent On peut réécrire l'amplitude complexe :
+	\eq{
+		\begin{aligned}
+			\underline{X_m} & = & \left( \frac{-eE_0}{m}\right)\times \left(\omega_0^2-\omega^2 \right)^{-1}\times  \left(1 + \frac{j}{Q} \frac{\omega\omega_0}{\omega_0^2-\omega^2}\right)^{-1}                                \\
+			                & = & \left( \frac{eE_0}{m}\right)\times \left(\omega^2-\omega_0^2 \right)^{-1}\times  \left(1 + \frac{j}{Q} \frac{1}{\left(\frac{\omega_0}{\omega} - \frac{\omega}{\omega_0} \right)}\right)^{-1}.
+		\end{aligned}
+	}
+
+	\noindent Finalement :
+	\eq{
+		\varphi = \arg (\underline{X_m})
+		=
+		\arg \left(\omega_0 \right) -
+		\arg \left( \omega^2-\omega_0^2  \right) -
+		\arg \left( 1 + \frac{j}{Q} \frac{1}{\left(\frac{\omega_0}{\omega} - \frac{\omega}{\omega_0} \right)} \right)
+		.
+	}
+
+	\noindent On trouve alors :
+	\eq{
+		\boxed{\varphi = -
+			\arg \left( \omega^2-\omega_0^2  \right) - \arctan\left[\frac{1}{Q\left(\frac{\omega_0}{\omega} - \frac{\omega}{\omega_0} \right)}\right]},
+	}
+
+	\noindent où $\arg \left( \omega^2-\omega_0^2  \right)$ est égal à $0$ si $\omega >0$ ou $\pi$ sinon.
+}
+
+\enonce{
+	\noindent Les longueurs d'ondes $\lambda$ du Soleil sont principalement incluses dans le domaine du visible, ainsi on considère que $\lambda \in [\lambda_b, \lambda_r]$, où $\lambda_b$ (resp. $\lambda_r$) est la longueur d'onde du rayonnement bleu (resp. rouge).
+}
+
+
+\QR{
+	Que valent $\lambda_b$ et $\lambda_r$ ?
+}{
+	$\boxed{\lambda_b=\SI{400}{\nano\metre}}$ et $\boxed{\lambda_r=\SI{800}{\nano\metre}}$.
+}
+
+
+\QR{
+	En déduire que $\omega \in[\omega_r,\omega_b]$. On donnera les valeurs littérales de $\omega_r$ et $\omega_b$ et on effectuera les applications numériques.
+}{
+	Le lien entre pulsation et longueur d'onde est :
+	\eq{
+		\omega = \frac{2\pi c}{\lambda}
+	}
+
+	\noindent Ainsi :
+	\eq{
+		\omega \in[\omega_r,\omega_b]
+		\quad \text{avec} \quad
+		\boxed{\omega_r = \frac{2\pi c}{\lambda_r}=\SI{2,36e15}{\radian\per\second}}
+		\quad ; \quad
+		\boxed{\omega_b = \frac{2\pi c}{\lambda_b}=\SI{4,71e15}{\radian\per\second}}
+	}
+
+}
+
+
+\QR{
+	Calculer $\omega_0$.
+}{
+	On trouve
+	\eq{
+		\boxed{\omega_0 = \SI{2,34e16}{\radian\per\second}}
+	}
+
+}
+
+
+\QR{
+	En déduire que :
+	\eq{
+		X_m \approx \frac{eE_0}{m\omega_0^2}.
+	}
+
+}{
+	En comparant $\omega$ et $\omega_0$, on peut considérer que $\omega_0 \gg \omega$ (il y a au moins un facteur 5 entre les 2, c'est un peu juste). De plus, $Q\gg 1$. Ainsi on peut simplifier le dénominateur du $\underline{X_m}$ car
+	\eq{
+		\frac{\omega\omega_0}{Q} \ll \omega^2 \ll \omega_0^2.
+	}
+
+	\noindent Dans ce cas,
+	\eq{
+		\boxed{X_m \approx \frac{eE_0}{m\omega_0^2}}.
+	}
+
+}
+
+\enonce{
+	\noindent Un électron diffuse dans toutes les directions un rayonnement dont la puissance moyenne $P$ est proportionnelle au carré de l'amplitude de son accélération.
+}
+
+
+\QR{
+	Montrer que :
+	\eq{
+		P = K \left(  \frac{eE_0\omega^2}{m\omega_0^2}\right)^2,
+	}
+
+	\noindent où $K$ est une constante que l'on ne cherchera pas à exprimer.
+}{
+	En amplitude complexe, l'accélération est :
+	\eq{
+		\underline{A_m} = (j\omega)^2 \underline{X_m}
+		\quad \Rightarrow \quad
+		A_m = \frac{eE_0\omega^2}{m\omega_0^2}.
+	}
+
+	\noindent D'après le sujet, la puissance est proportionnelle au carré de l'amplitude de l'accélération, donc
+	\eq{
+		\boxed{P=KA_m^2 = K\left(\frac{eE_0\omega^2}{m\omega_0^2} \right)^2}.
+	}
+
+}
+
+
+\QR{
+	Expliquer alors pourquoi le ciel est bleu.
+}{
+	On peut comparer la puissance diffusée pour un rayonnement bleu avec un rayonnement rouge :
+	\eq{
+		\boxed{\frac{P_b}{P_r} = \frac{\omega_b^2}{\omega_r^2} = 4}
+	}
+
+	\noindent La puissance diffusée pour les rayonnements bleu est 4 fois plus importante que celle pour un rayonnement rouge, d'où la couleur du ciel.
+}
+
+\end{document}

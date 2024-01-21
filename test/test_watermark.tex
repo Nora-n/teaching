@@ -1,60 +1,60 @@
-\documentclass{article}
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{adjustbox}% for \resizebox
-\usepackage{varwidth}
-\usepackage{transparent}
-
-\newsavebox{\confbox}
-\savebox{\confbox}{\color{red!50}Prof}
-\newenvironment{conf}{
-  \begin{lrbox}{0}%
-  \varwidth{.5\linewidth}%
-  }{%
-  \endvarwidth%
-  \end{lrbox}
-  \usebox0\llap{\resizebox{.25\wd0}{.25\ht0}{\usebox\confbox}}
-}
-
-\newsavebox{\draftbox}
-\savebox{\draftbox}{\color{red}\huge Draft}
-\newenvironment{draft}{%
-  \begin{lrbox}{0}%
-  \minipage[b]{\linewidth}%
-  }{%
-  \endminipage%
-  \end{lrbox}%
-  \leavevmode%
-  \rlap{\resizebox{.15\wd0}{.15\ht0}{\usebox\draftbox}}\usebox0
-}
-\begin{document}
-
-\begin{figure}
-	\begin{draft}
-		\centering
-		\includegraphics{example-image-duck}
-		\caption{Caption}
-		\label{fig:eg}
-	\end{draft}
-\end{figure}
-
-Some text
-
-\begin{table}
-	\centering
-	\begin{conf}
-		\begin{tabular}{ccc}
-			\hline          \\
-			xxx & xxx & xxx \\
-			xxx & xxx & xxx \\
-			xxx & xxx & xxx \\
-			\hline          \\
-		\end{tabular}
-		\caption{Caption}
-		\label{tab:eg}
-	\end{conf}
-\end{table}
-\end{document}
+% \documentclass{article}
+% \usepackage{xcolor}
+% \usepackage{graphicx}
+% \usepackage{adjustbox}% for \resizebox
+% \usepackage{varwidth}
+% \usepackage{transparent}
+%
+% \newsavebox{\confbox}
+% \savebox{\confbox}{\color{red!50}Prof}
+% \newenvironment{conf}{
+%   \begin{lrbox}{0}%
+%   \varwidth{.5\linewidth}%
+%   }{%
+%   \endvarwidth%
+%   \end{lrbox}
+%   \usebox0\llap{\resizebox{.25\wd0}{.25\ht0}{\usebox\confbox}}
+% }
+%
+% \newsavebox{\draftbox}
+% \savebox{\draftbox}{\color{red}\huge Draft}
+% \newenvironment{draft}{%
+%   \begin{lrbox}{0}%
+%   \minipage[b]{\linewidth}%
+%   }{%
+%   \endminipage%
+%   \end{lrbox}%
+%   \leavevmode%
+%   \rlap{\resizebox{.15\wd0}{.15\ht0}{\usebox\draftbox}}\usebox0
+% }
+% \begin{document}
+%
+% \begin{figure}
+% 	\begin{draft}
+% 		\centering
+% 		\includegraphics{example-image-duck}
+% 		\caption{Caption}
+% 		\label{fig:eg}
+% 	\end{draft}
+% \end{figure}
+%
+% Some text
+%
+% \begin{table}
+% 	\centering
+% 	\begin{conf}
+% 		\begin{tabular}{ccc}
+% 			\hline          \\
+% 			xxx & xxx & xxx \\
+% 			xxx & xxx & xxx \\
+% 			xxx & xxx & xxx \\
+% 			\hline          \\
+% 		\end{tabular}
+% 		\caption{Caption}
+% 		\label{tab:eg}
+% 	\end{conf}
+% \end{table}
+% \end{document}
 
 % \documentclass{article}
 % \usepackage{xparse,graphicx,xcolor}% http://ctan.org/pkg/{graphicx,xcolor}
@@ -76,3 +76,83 @@ Some text
 % \renewcommand{\confidential}{\color{green!70}\rule{10pt}{10pt}}% Change confidentiality notice
 % \includegraphics[width=15ex]{example-image-b}
 % \end{document}
+
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{adjustbox}% for \resizebox
+\usepackage{varwidth}
+
+\usepackage{tikz}
+\usetikzlibrary{trees, positioning, arrows, tikzmark, calc, mindmap}
+\newcommand*\circled[1]{%
+	\tikz[baseline=(char.base)]{%
+		\node[shape=circle, draw, inner sep=1pt] (char) {#1};
+	}%
+}
+\newsavebox{\draftbox}
+\savebox{\draftbox}{\circled{1}}% create image for overlay
+
+\newenvironment{draft}{\begin{lrbox}{0}\varwidth[b]{.5\linewidth}}%
+  {\endvarwidth\end{lrbox}\usebox0
+  \llap{\resizebox{0.5\wd0}{0.5\ht0}{\usebox\draftbox}}}
+
+\begin{document}
+
+\begin{figure}
+	\centering
+	\begin{draft}
+		\includegraphics{example-image-duck}
+		\caption{Caption}
+		\label{fig:eg}
+	\end{draft}
+\end{figure}
+
+Some text
+
+\begin{table}
+	\centering
+	\begin{draft}
+		\begin{tabular}{ccc}
+			\hline          \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			xxx & xxx & xxx \\
+			\hline          \\
+		\end{tabular}
+		\caption{Caption}
+		\label{tab:eg}
+	\end{draft}
+\end{table}
+
+\def\watermark#1{%
+	\setlength{\unitlength}{1pt}
+	\begin{picture}(0,0)
+		\put(50,-35){\textcolor{red!50!white}{\Huge #1}}
+	\end{picture} }
+
+\begin{tabular}{p{3cm}p{3cm}l}
+	\watermark{Revised}
+	abc def abc def abc def abc def abc def abc def abc def
+	abc def abc  def abc def abc def  abc def abc def abc def
+	 &
+	abc def abc def abc def abc def abc def abc def abc def
+	abc def abc def abc def abc def abc def abc def abc def
+	 & x \\
+	\hline
+	abc def abc def abc def abc def abc def abc def abc def
+	 &
+	abc def abc def abc def abc def abc def abc def abc def
+	 & x \\
+	\hline
+	abc def abc def
+	 &
+	abc def abc def
+	 & x \\
+	\hline
+	abc def abc def abc def abc def abc def abc def abc def
+	 &
+	abc def abc def abc def abc def abc def abc def abc def
+	 & x
+\end{tabular}
+\end{document}

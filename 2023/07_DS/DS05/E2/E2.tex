@@ -1,0 +1,140 @@
+\documentclass[../DS05.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\begin{document}
+
+\exercice[40]{Chute d'une bille}
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/chute_de_bille/}{sujet.tex}
+\enonce{
+	\noindent On dispose du matériel suivant :
+
+	\begin{itemize}
+		\item une bille de masse volumique $\rho_a=7900 \si{\kilo\gram \metre^{-3}}$, de rayon $R=5 \si{\milli\metre}$,
+		\item une éprouvette graduée,
+		\item de la glycérine de masse volumique $\rho_g=1260 \si{\kilo\gram \metre^{-3}}$,
+		\item un dynamomètre, avec un point d'accorche permettant de mesurer une force de traction,
+		\item trois béchers,
+		\item une boite de masse marquée.
+	\end{itemize}
+
+}
+
+\QR{
+	Donner l’expression générale de la poussée d’Archimède.
+}{
+	L'expression de la poussée d'Archimède est :
+	\eq{
+		\boxed{\vv{\Pi} = -\rho_{\rm fluide} V_{\rm immerge} \vv{g}}.
+	}
+}
+
+\QR{
+	Proposer un protocole expérimental permettant de vérifier l’expression de la poussée d’Archimède en utilisant le matériel listé.
+}{
+	On mesure le poids des masses dans l'air d'abord, puis on les plonge dans l'éprouvette et on mesure leur masse dite «~apparente~» dans la glycérine, c'est-à-dire la force qu'elles exercent en étant accrochées au dynamomètre lorsqu'elles sont immergées, ainsi que le volume de liquide déplacé.
+}
+
+\enonce{
+
+	La bille en acier tombe dans un tube rempli de glycérine. On considère que la force de frottement fluide exercée par la glycérine est $\vv{f}=-6\pi\eta R \vv{v}$ où $\eta$ est une constante appelée constante de viscosité dynamique de la glycérine. L’accélération de la pesanteur vaut $g=9,8 \si{.\metre.\second ^{-2}}$.
+
+}
+
+\QR{
+	Faire un bilan des forces exercées sur la bille.
+}{
+	Les forces qui s'appliquent sur la bille sont :
+	\begin{itemize}
+		\item le poids $\vv{P}=m\vv{g}$,
+		\item la poussée d'Archimède $\vv{\Pi} = - \frac{4\rho_g \pi R^3}{3}\vv{g}$,
+		\item la force de frottement visqueux : $\vv{f} = -6\pi\eta R \vv{v}$.
+	\end{itemize}
+}
+
+\QR{
+	Montrer que considérer la poussée d’Archimède sur la bille est équivalent à considérer une bille de masse volumique $\rho=\rho_a - \rho_g$ qui n’est pas soumise à la poussée d’Archimède.
+}{On a :
+	\eq{
+		\vv{P} + \vv{\Pi} = \left( m - \frac{4\rho_g \pi R^3}{3} \right)\vv{g} = m'\vv{g} = \vv{P'}
+		\quad ; \quad
+		m' = m - \frac{4\rho_g \pi R^3}{3}.
+	}
+	\noindent \'Ecrit autrement :
+	\eq{
+		m' = \rho_a V_{\rm solide} - \rho_g V_{\rm solide} = \left(\rho_a- \rho_g \right) V_{\rm solide}.
+	}
+}
+
+\QR{
+	Établir l’équation différentielle vérifiée par $v$, la norme de la vitesse.
+}{ On applique la loi de la quantité de mouvement à la bille dans le référentiel galiléen du laboratoire :
+	\eq{
+		m\dv{\vv{v}}{t} = \vv{P} + \vv{\Pi} +\vv{f}.
+	}
+	\noindent On projette alors cette équation sur l'axe vertical orienté vers le bas :
+	\eq{
+		\rho_a V_{\rm solide}\dv{v}{t} = \rho V_{\rm solide} g -6\pi\eta R v.
+	}
+
+	\noindent On peut écrire cette équation sous la forme canonique :
+
+	\eq{
+		\dv{v}{t} + \frac{6\pi\eta R v}{\rho_a V_{\rm solide}} = \frac{\rho  g}{\rho_a}
+		\qquad ; \qquad
+		\dv{v}{t} + \frac{v}{\tau} = \frac{v_l}{\tau}
+		.
+	}
+}
+
+\QR{
+	En déduire la constante de temps $\tau$ caractéristique du régime transitoire, ainsi que la vitesse limite $v_l$ atteinte par la bille.
+}{
+
+	\noindent On en déduit que :
+	\eq{
+		\tau = \frac{\rho_a V_{\rm solide}}{6\pi\eta R}
+		=
+		\boxed{\frac{2\rho_a R^2}{9\eta }}
+		\quad ; \quad
+		v_l = \frac{\tau \rho g}{\rho_a} =
+		\boxed{\frac{2\rho g R^2}{9\eta }}
+	}
+}
+
+\enonce{
+
+	L’expérience est réalisée dans un tube vertical contenant de la glycérine. On lâche la bille à la surface du liquide choisie comme référence des altitudes, puis on mesure la durée $\Delta t=1,6 \si{\second}$ mise pour passer de l’altitude $z_1 =40 \si{\centi\metre}$ à $z_2 =80 \si{\centi\metre}$.
+
+}
+
+\QR{
+	En déduire l’expression puis la valeur de la viscosité $\eta$.
+}{
+	On suppose que le régime permanent est atteint (on vérifiera \textit{a posteriori} cette hypothèse) :
+
+	\eq{
+		\boxed{v_l = \frac{z_2-z_1}{\Delta t} = 0,25\si{.\metre / \second}}
+		\quad ; \quad
+		\boxed{\eta = \frac{2\rho g R^2}{9v_l} = 1,45 \si{.\pascal .\second}}.
+	}
+}
+
+\QR{
+	Pourquoi ne pas avoir réalisé de mesure depuis la surface du liquide ?
+}{Il faut attendre d'être sûr que la bille ait atteint le régime permanent.
+}
+
+\QR{
+	Que vaut numériquement $\tau$ ? Commenter.
+}{
+	\eq{\tau = \frac{2\rho_a R^2}{9\eta} = \boxed{30.10^{-3} \si{.\second}}
+	}
+	\noindent L'hypothèse de régime permanent est donc bien validée car $\tau \ll \Delta t$.
+}
+
+\QR{
+	Pourquoi avoir choisi de la glycérine plutôt que de l’eau ?
+}{La glycérine est plus visqueuse donc le régime permanent est atteint plus rapidement. Avec de l'eau ($\eta = 10^{-3} \si{.\pascal.\second}$), il n'est pas sûr que la bille puisse atteindre sa vitesse limite avant la fin de la chute.
+}
+
+\end{document}

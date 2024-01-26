@@ -16,7 +16,7 @@
 \begin{document}
 \setcounter{chapter}{3}
 
-\chapter{\cswitch{Correction du TD d'entra\^inement}{TD entra\^inement~: approche
+\chapter{\cswitch{Correction du TD d'application}{TD entra\^inement~: approche
 	  \'energ\'etique}}
 
 \resetQ
@@ -47,9 +47,9 @@
 	Pendant la chute libre, la grimpeuse ne subit que l'action du poids,
 	qui est conservatif. On peut donc utiliser le TEM, avec~:
 	\begin{itemize}[label=$\diamond$]
-		\bitem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
+		\litem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
 		$\Ec_c = 0$
-		\bitem{À la fin de la chute libre~:} $z = 0$, $v=v \Ra \Ec_{p,p} = 0$ et
+		\litem{À la fin de la chute libre~:} $z = 0$, $v=v \Ra \Ec_{p,p} = 0$ et
 		$\Ec_c = mv^2/2$.
 	\end{itemize}
 	D'où
@@ -77,9 +77,9 @@
 	plus bas, ou entre le point O et le point le plus bas. Faisons le
 	premier cas~:
 	\begin{itemize}[label=$\diamond$]
-		\bitem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
+		\litem{Au début de la chute libre~:} $z = h$, $v=0 \Ra \Ec_{p,p} = mgh$ et
 		$\Ec_c = 0$
-		\bitem{À la fin de la chute amortie~:} $z = -\D l$, $v=0 \Ra \Ec_{p,p}
+		\litem{À la fin de la chute amortie~:} $z = -\D l$, $v=0 \Ra \Ec_{p,p}
 			= -mg\D l$, \fbox{$\Ec_{p,el} = k\D l^2/2$} et $\Ec_c = 0$.
 	\end{itemize}
 	Ainsi,
@@ -141,6 +141,163 @@
 }
 
 \resetQ
+\section{Pendule électrique}
+\enonce{%
+	On étudie un pendule constitué d'une boule de polystyrène expansé recouverte
+	d'une feuille d'aluminium, et suspendue à une potence par une fine tige de
+	longueur $R = \SI{10}{cm}$ dont nous négligerons la masse. La boule de masse $m
+		= \SI{20}{g}$ sera assimilée à un point matériel M.
+	\smallbreak
+	Une boule identique est placée en A (voir schéma). Les deux boules sont
+	chargées électriquement avec la même charge, et donc se repoussent. La force
+	exercée par A sur M s'écrit
+	\[
+		\Ff_e = \frac{k}{\rm AM^3} \vv{\rm AM}
+		\qavec
+		k = \SI{4.4e-3}{N.m^2}
+	\]
+	\bigbreak
+	\noindent
+	\begin{minipage}{0.45\linewidth}
+		\begin{center}
+			\includegraphics[height=4cm]{pendule_elec_sch-plain}
+			\captionof{figure}{Dispositif}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{pendule_elec_ep-plain}
+			\captionof{figure}{Courbe $\Ec_p(\tt)$}
+		\end{center}
+	\end{minipage}
+}
+\QR{%
+	Exprimer la distance AM en fonction de $R$ et $\tt$.
+}{%
+	Pour exprimer la distance AM, on la décompose par des vecteurs connus
+	et on pourra prendre la norme du vecteur $\vv{\rm AM}$ avec
+	$\sqrt{x_{\rm AM}{}^2 + y_{\rm AM}{}^2}$, ou $\sqrt{\vv{\rm
+				AM}\cdot\vv{\rm AM}}$. Notamment, $\vv{\rm AM} = \vv{\rm AO} + \OM$.
+	\begin{minipage}[t]{0.33\linewidth}
+		~%\vspace{-24pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{pendule_elec_am}
+			\captionsetup{justification=centering}
+			\captionof{figure}{Détermination de AM}
+			\label{fig:pendule_am}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.65\linewidth}
+		Il faut donc décomposer $\vv{\rm AO}$ et $\OM$ sur la même base,
+		comme on le fait pour le poids sur un plan incliné. En effet,
+		\begin{align*}
+			\vv{\rm AO} & = 2R\uz \\
+			\OM         & = R\ur
+		\end{align*}
+		mais on ne peut pas sommer les deux dans des bases différentes.
+		Décomposons $\ur$ sur $(\ux, \uz)$~: on trouve
+		\[\ur = \sin\tt\ux -\cos\tt\uz\]
+		Ainsi,\vspace{-24pt}
+		\begin{align*}
+			\vv{\rm AM}        & = \vv{\rm AO} + \OM
+			\\\Lra
+			\vv{\rm AM}        & = \mqty(R\sin\tt                                        \\2R-R\cos\tt)
+			\\\Ra
+			\norm{\vv{\rm AM}} & = \sqrt{R^2\sin^2\tt + (2R-R\cos\tt)^2}
+			\\\Lra
+			{\rm AM}           & = \sqrt{R^2\sin^2\tt + 4R^2 -2R^2\cos\tt +R^2\cos^2\tt}
+			\\\Lra
+			{\rm AM}           & = \sqrt{5R^2 -2R^2\cos\tt}
+			\qavec
+			\cos^2\tt + \sin^2\tt = 1
+			\\\Lra
+			\Aboxed{{\rm AM}   & = R\sqrt{5-2\cos\tt}}
+			\qed
+		\end{align*}
+	\end{minipage}
+}
+\QR{%
+	Montrer que la force $\Ff_e$ est conservative, et que son énergie
+	potentielle s'exprime
+	\[\Ec_{p,e}(\tt) = \frac{k}{R\sqrt{5-4\cos\tt}}\]
+}{%
+	Une force est conservative si son travail élémentaire s'exprime sous
+	la forme $-\dd\Ec_p$. Calculons son travail élémentaire~:
+	\begin{align*}
+		\de W(\Ff_e)         & = \Ff_e\cdot\dd{\vv{\rm AM}}
+		\\\Lra
+		\de W(\Ff_e)         & = \frac{k}{\rm AM^3}{\vv{\rm AM}}\cdot\dd{\vv{\rm AM}}
+		\\\Lra
+		\de W(\Ff_e)         & = \frac{k}{\rm AM^3} \underbracket[1pt]{\norm{\vv{\rm
+					AM}}}_{=\rm AM} \norm{\dd{\vv{\rm AM}}}
+		\underbracket[1pt]{\cos(\vv{\rm AM}, \dd{\vv{\rm AM}})}_{=1}
+		\\\Lra
+		\de W(\Ff_e)         & = \frac{k}{\rm AM^2} \cancel{\underbracket[1pt]{\frac{\rm
+					AM}{\rm AM}}_{=1}} \dd{\rm AM}
+		\\\Lra
+		\de W(\Ff_e)         & = -k\dd(\frac{1}{\rm AM})
+		\\\Lra
+		\Aboxed{\de W(\Ff_e) & = -\dd{\Ec_{p,e}}}
+		\\\qavec
+		\Aboxed{\Ec_{p,e}    & = \frac{k}{\rm AM} = \frac{k}{R\sqrt{5-4\cos\tt}}}
+		\qed
+	\end{align*}
+}
+\QR{%
+	Exprimer l'énergie potentielle totale $\Ec_p(\tt)$ de la boule M.
+}{%
+	La boule M a également une énergie potentielle de pesanteur. En
+	prenant O comme origine de l'altitude, l'altitude de la boule M $z(\tt)$
+	s'exprime
+	\[z(\tt) = -R\cos\tt\]
+	Ainsi,
+	\begin{align*}
+		\Ec_p(\tt)         & = \Ec_{p,p}(\tt) + \Ec_{p,e}(\tt)
+		\\\Lra
+		\Aboxed{\Ec_p(\tt) & = \frac{k}{R\sqrt{5-4\cos\tt}} - mgR\cos\tt}
+		\qed
+	\end{align*}
+}
+\QR{%
+	Le tracé de l'énergie potentielle est proposé sur la figure 2. Déduire
+	de ce graphe l'existence de positions d'équilibres, et indiquer leur
+	nature.
+}{%
+	On observe en tout 5 positions d'équilibres~: deux stables dans les
+	puits de potentiel vers $\pm\SI{1}{rad}$, et trois instables (maxima
+	locaux d'énergie potentielle) en $-\pi$, $0$ et $\pi$.
+}
+\QR{%
+	Discuter de la nature de la trajectoire de M suivant la valeur de son
+	énergie mécanique.
+}{%
+	Le mouvement du pendule ne se fait que dans les zones du graphique où
+	$\Ec_p < \Ec_m$. On distingue donc 4 cas~:
+	\[
+		\begin{array}{lrcll}
+			\textbf{Cas 1} & \quad \SI{0}{J}      & < \Ec_m & < \SI{3.5e-2}{J} & \Ra
+			\text{pas de mouvement}
+			\\
+			\textbf{Cas 2} & \quad \SI{3.5e-2}{J} & < \Ec_m & < \SI{4.4e-2}{J} & \Ra
+			\text{oscillations $\approx$ position stable}
+			\\
+			\textbf{Cas 3} & \quad \SI{4.4e-2}{J} & < \Ec_m & < \SI{5.4e-2}{J} & \Ra
+			\text{mouvement périodique entre $\Ec_{p,\max}$}
+			\\
+			\textbf{Cas 4} & \quad \SI{5.4e-2}{J} & < \Ec_m & < +\infty        & \Ra
+			\text{mouvement révolutif~: tours à l'infini}
+		\end{array}
+	\]
+	\begin{center}
+		\includegraphics[width=.7\linewidth]{pendule_elec_ep_corr}
+		\captionof{figure}{Mouvement selon $\Ec_m$}
+		\label{fig:pend_elec_em}
+	\end{center}
+}
+
+\resetQ
 \section{Recul d'un canon}
 \enonce{%
 	On considère un canon (figure~\ref{fig:canon}) de masse $M = \SI{800}{kg}$. Lors
@@ -152,7 +309,7 @@
 	longueur à vide $L_0$ dont l'une des extrémités est fixe, et l'autre liée au
 	canon. Le déplacement a lieu suivant l'axe O$x$. Dans la suite, le canon est
 	assimilé à un point matériel, son centre de gravité G (figure~\ref{fig:rep}).
-\noindent
+
 	\begin{minipage}{0.40\linewidth}
 		\begin{center}
 			\includegraphics[height=3cm]{recul_canon_a-plain}
@@ -189,17 +346,17 @@
 	Application numérique pour $d = \SI{1.0}{m}$.
 }{%
 	\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-		\bitem{Système~:} \{canon\}, repéré par G de masse $M$
-		\bitem{Référentiel~:} $\Rc\ind{sol}$, supposé galiléen
-		\bitem{Repère~:} mouvement horizontal donc cartésien, $(\Or,\ux,\uz)$
+		\litem{Système~:} \{canon\}, repéré par G de masse $M$
+		\litem{Référentiel~:} $\Rc\ind{sol}$, supposé galiléen
+		\litem{Repère~:} mouvement horizontal donc cartésien, $(\Or,\ux,\uz)$
 		avec $\uz$ vertical ascendant
-		\bitem{Repérage~:}
+		\litem{Repérage~:}
 		\begin{align*}
 			\OG & = x\ux    \\
 			\vf & = \xp\ux  \\
 			\af & = \xpp\ux
 		\end{align*}
-		\bitem{BDF~:}
+		\litem{BDF~:}
 		\[
 			\begin{array}{ll}
 				\textbf{Poids}    & \Pf = -mg\uz         \\
@@ -210,11 +367,11 @@
 		Le poids et la tension du ressort sont conservatives, et la
 		réaction du sol ne travaille pas~: on a donc un système
 		conservatif, et on applique simplement le TEM~:
-		\bitem{Au moment du tir~:} $v=v_c$, $x=L_0 \Ra \Ec_{c,0} =
+		\litem{Au moment du tir~:} $v=v_c$, $x=L_0 \Ra \Ec_{c,0} =
 			Mv_c{}^2/2$ et $\Ec_{p,el} = k_1(L_0-L_0)^2/2 = 0$
-		\bitem{Après le recul~:} $v=0$, $x=L_0-d \Ra \Ec_{c,f} = 0$ et
+		\litem{Après le recul~:} $v=0$, $x=L_0-d \Ra \Ec_{c,f} = 0$ et
 		$\Ec_{p, el} = k_1d^2/2$
-		\bitem{TEM~:}
+		\litem{TEM~:}
 		\begin{align*}
 			\frac{1}{2}k_1d^2 & =
 			\frac{1}{2}M\underbracket[1pt]{v_c}_{\mathclap{=mv_0/M}}{}^2
@@ -404,7 +561,6 @@ Soit
 \resetQ
 \section{Positions d'équilibre d'un anneau sur un cercle}
 \enonce{%
-  \noindent
 	\begin{minipage}{0.60\linewidth}
 		Un anneau assimilable à un point matériel M de masse $m$ peut glisser sans
 		frottement sur une glissière circulaire de rayon $R$ et de centre O.
@@ -473,21 +629,21 @@ Soit
 	Déterminer les positions d'équilibre de l'anneau.
 }{%
 	On trouve les positions d'équilibre de l'anneau en trouvant les angles
-	$\tt\ind{eq}$ tels que la dérivée de $\Ec_p$ s'annule, soit
+	$\tt_{\eq}$ tels que la dérivée de $\Ec_p$ s'annule, soit
 	\begin{align*}
-		\eval{\dv{\Ec_p}{\tt}}_{\tt\ind{eq}} & = -kR^2\sin\tt\ind{eq} +
-		mgR\cos\tt\ind{eq} = 0
+		\eval{\dv{\Ec_p}{\tt}}_{\tt_{\eq}} & = -kR^2\sin\tt_{\eq} +
+		mgR\cos\tt_{\eq} = 0
 		\\\Lra
-		\sin\tt\ind{eq}                      & = \frac{mg\cancel{R}}{kR^{\cancel{2}}}\cos\tt\ind{eq}
+		\sin\tt_{\eq}                      & = \frac{mg\cancel{R}}{kR^{\cancel{2}}}\cos\tt_{\eq}
 		\\\Lra
-		\tan\tt\ind{eq}                      & = \frac{mg}{kR}
+		\tan\tt_{\eq}                      & = \frac{mg}{kR}
 		\\\Lra
-		\boxed{\tt_{\equ,1} = \arctan(\frac{mg}{kR})}
+		\boxed{\tt_{\eq,1} = \arctan(\frac{mg}{kR})}
 		\quad                              & \text{et}\quad
-		\boxed{\tt_{\equ,2} = \pi + \arctan(\frac{mg}{kR})}
+		\boxed{\tt_{\eq,2} = \pi + \arctan(\frac{mg}{kR})}
 		\qed
 	\end{align*}
-	avec $\tt_{\equ,1}$ compris entre 0 et \ang{90}, et $\tt_{\equ,2}$ compris
+	avec $\tt_{\eq,1}$ compris entre 0 et \ang{90}, et $\tt_{\eq,2}$ compris
 	entre 180 et \ang{270}.
 }
 \QR{%
@@ -496,30 +652,32 @@ Soit
 	On étudie la stabilité des positions en évaluant la dérivée seconde de
 	$\Ec_p$ en ce point et en vérifiant son signe. On obtient
 	\begin{align*}
-		\eval{\dv[2]{\Ec_p}{\tt}}_{\tt\ind{eq}} & = -kR^2\cos\tt\ind{eq}
-		-mgR\sin\tt\ind{eq}
+		\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq}} & = -kR^2\cos\tt_{\eq}
+		-mgR\sin\tt_{\eq}
 		\\\Lra
-		\eval{\dv[2]{\Ec_p}{\tt}}_{\tt\ind{eq}} & = -\left(kR^2 +
-		\frac{m^2g^2}{k}\right)\cos\tt\ind{eq}
+		\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq}} & = -\left(kR^2 +
+		\frac{m^2g^2}{k}\right)\cos\tt_{\eq}
 	\end{align*}
 	en utilisant les résultats précédents sur la dérivée première de
 	$\Ec_p$. L'intérieur de la parenthèse étant positif, le signe de cette
 	dérivée seconde est opposé à celui du cosinus de la position
 	d'équilibre. Or,
-	$\cos\tt_{\equ,1} > 0$ et $\cos\tt_{\equ,2} < 0$, donc
+	$\cos\tt_{\eq,1} > 0$ et $\cos\tt_{\eq,2} < 0$, donc
 	\begin{gather*}
-		\boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\equ,1}} < 0}
+		\boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq,1}} < 0}
 		\qet
-		\boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\equ,2}} > 0}
+		\boxed{\eval{\dv[2]{\Ec_p}{\tt}}_{\tt_{\eq,2}} > 0}
 		\qed
 	\end{gather*}
 	La première position est donc instable, et la seconde stable.
-\begin{center}
-	\includegraphics[width=.5\linewidth]{anneau_cercle_ressort-corr_eq}
-  \captionof{figure}{Positions d'équilibre du système}
-	\label{fig:anncerccorr}
-\end{center}
 }
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\linewidth]{anneau_cercle_ressort-corr_eq}
+	\captionsetup{justification=centering}
+	\caption{Positions d'équilibre du système}
+	\label{fig:anncerccorr}
+\end{figure}
 
 \resetQ
 \section{Oscillateur de \textsc{Landau}}
@@ -575,10 +733,10 @@ Soit
 	${\rm AM} = \ell_0$. Dans ce cas, l'énergie potentielle élastique est
 	nulle. Au contraire, si $a > \ell_0$, le ressort est toujours étiré et
 	l'énergie potentielle élastique jamais nulle.
-  \begin{tcb}[bld](rema){}
-		Ce raisonnement se retrouve tout à fait sur l'expression
+	\begin{bexem}{}
+		\bfseries Ce raisonnement se retrouve tout à fait sur l'expression
 		mathématique de $\Ec_p$~!
-	\end{tcb}
+	\end{bexem}
 	Ainsi on peut identifier la courbe en \textbf{pointillés violets au cas
 		$\mathbf{a_4 = 3\ell_0}$}. La courbe en \textbf{points verts} ne fait
 	apparaître qu'un seul minimum, mais son énergie potentielle est nulle~:
@@ -646,163 +804,6 @@ Soit
 			\includegraphics[width=\linewidth]{landeau_xp-plain}
 		\end{center}
 	\end{minipage}
-}
-
-\resetQ
-\section{Pendule électrique}
-\enonce{%
-	On étudie un pendule constitué d'une boule de polystyrène expansé recouverte
-	d'une feuille d'aluminium, et suspendue à une potence par une fine tige de
-	longueur $R = \SI{10}{cm}$ dont nous négligerons la masse. La boule de masse $m
-		= \SI{20}{g}$ sera assimilée à un point matériel M.
-	\smallbreak
-	Une boule identique est placée en A (voir schéma). Les deux boules sont
-	chargées électriquement avec la même charge, et donc se repoussent. La force
-	exercée par A sur M s'écrit
-	\[
-		\Ff_e = \frac{k}{\rm AM^3} \vv{\rm AM}
-		\qavec
-		k = \SI{4.4e-3}{N.m^2}
-	\]
-	\bigbreak
-	\noindent
-	\begin{minipage}{0.45\linewidth}
-		\begin{center}
-			\includegraphics[height=4cm]{pendule_elec_sch-plain}
-			\captionof{figure}{Dispositif}
-		\end{center}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.35\linewidth}
-		\begin{center}
-			\includegraphics[width=\linewidth]{pendule_elec_ep-plain}
-			\captionof{figure}{Courbe $\Ec_p(\tt)$}
-		\end{center}
-	\end{minipage}
-}
-\QR{%
-	Exprimer la distance AM en fonction de $R$ et $\tt$.
-}{%
-	Pour exprimer la distance AM, on la décompose par des vecteurs connus
-	et on pourra prendre la norme du vecteur $\vv{\rm AM}$ avec
-	$\sqrt{x_{\rm AM}{}^2 + y_{\rm AM}{}^2}$, ou $\sqrt{\vv{\rm
-				AM}\cdot\vv{\rm AM}}$. Notamment, $\vv{\rm AM} = \vv{\rm AO} + \OM$.
-	\begin{minipage}[t]{0.33\linewidth}
-		~%\vspace{-24pt}
-		\begin{center}
-			\includegraphics[width=\linewidth]{pendule_elec_am}
-			\captionsetup{justification=centering}
-			\captionof{figure}{Détermination de AM}
-			\label{fig:pendule_am}
-		\end{center}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.65\linewidth}
-		Il faut donc décomposer $\vv{\rm AO}$ et $\OM$ sur la même base,
-		comme on le fait pour le poids sur un plan incliné. En effet,
-		\begin{align*}
-			\vv{\rm AO} & = 2R\uz \\
-			\OM         & = R\ur
-		\end{align*}
-		mais on ne peut pas sommer les deux dans des bases différentes.
-		Décomposons $\ur$ sur $(\ux, \uz)$~: on trouve
-		\[\ur = \sin\tt\ux -\cos\tt\uz\]
-		Ainsi,\vspace{-24pt}
-		\begin{align*}
-			\vv{\rm AM}        & = \vv{\rm AO} + \OM
-			\\\Lra
-			\vv{\rm AM}        & = \mqty(R\sin\tt                                        \\2R-R\cos\tt)
-			\\\Ra
-			\norm{\vv{\rm AM}} & = \sqrt{R^2\sin^2\tt + (2R-R\cos\tt)^2}
-			\\\Lra
-			{\rm AM}           & = \sqrt{R^2\sin^2\tt + 4R^2 -2R^2\cos\tt +R^2\cos^2\tt}
-			\\\Lra
-			{\rm AM}           & = \sqrt{5R^2 -2R^2\cos\tt}
-			\qavec
-			\cos^2\tt + \sin^2\tt = 1
-			\\\Lra
-			\Aboxed{{\rm AM}   & = R\sqrt{5-2\cos\tt}}
-			\qed
-		\end{align*}
-	\end{minipage}
-}
-\QR{%
-	Montrer que la force $\Ff_e$ est conservative, et que son énergie
-	potentielle s'exprime
-	\[\Ec_{p,e}(\tt) = \frac{k}{R\sqrt{5-4\cos\tt}}\]
-}{%
-	Une force est conservative si son travail élémentaire s'exprime sous
-	la forme $-\dd\Ec_p$. Calculons son travail élémentaire~:
-	\begin{align*}
-		\de W(\Ff_e)         & = \Ff_e\cdot\dd{\vv{\rm AM}}
-		\\\Lra
-		\de W(\Ff_e)         & = \frac{k}{\rm AM^3}{\vv{\rm AM}}\cdot\dd{\vv{\rm AM}}
-		\\\Lra
-		\de W(\Ff_e)         & = \frac{k}{\rm AM^3} \underbracket[1pt]{\norm{\vv{\rm
-					AM}}}_{=\rm AM} \norm{\dd{\vv{\rm AM}}}
-		\underbracket[1pt]{\cos(\vv{\rm AM}, \dd{\vv{\rm AM}})}_{=1}
-		\\\Lra
-		\de W(\Ff_e)         & = \frac{k}{\rm AM^2} \cancel{\underbracket[1pt]{\frac{\rm
-					AM}{\rm AM}}_{=1}} \dd{\rm AM}
-		\\\Lra
-		\de W(\Ff_e)         & = -k\dd(\frac{1}{\rm AM})
-		\\\Lra
-		\Aboxed{\de W(\Ff_e) & = -\dd{\Ec_{p,e}}}
-		\\\qavec
-		\Aboxed{\Ec_{p,e}    & = \frac{k}{\rm AM} = \frac{k}{R\sqrt{5-4\cos\tt}}}
-		\qed
-	\end{align*}
-}
-\QR{%
-	Exprimer l'énergie potentielle totale $\Ec_p(\tt)$ de la boule M.
-}{%
-	La boule M a également une énergie potentielle de pesanteur. En
-	prenant O comme origine de l'altitude, l'altitude de la boule M $z(\tt)$
-	s'exprime
-	\[z(\tt) = -R\cos\tt\]
-	Ainsi,
-	\begin{align*}
-		\Ec_p(\tt)         & = \Ec_{p,p}(\tt) + \Ec_{p,e}(\tt)
-		\\\Lra
-		\Aboxed{\Ec_p(\tt) & = \frac{k}{R\sqrt{5-4\cos\tt}} - mgR\cos\tt}
-		\qed
-	\end{align*}
-}
-\QR{%
-	Le tracé de l'énergie potentielle est proposé sur la figure 2. Déduire
-	de ce graphe l'existence de positions d'équilibres, et indiquer leur
-	nature.
-}{%
-	On observe en tout 5 positions d'équilibres~: deux stables dans les
-	puits de potentiel vers $\pm\SI{1}{rad}$, et trois instables (maxima
-	locaux d'énergie potentielle) en $-\pi$, $0$ et $\pi$.
-}
-\QR{%
-	Discuter de la nature de la trajectoire de M suivant la valeur de son
-	énergie mécanique.
-}{%
-	Le mouvement du pendule ne se fait que dans les zones du graphique où
-	$\Ec_p < \Ec_m$. On distingue donc 4 cas~:
-	\[
-		\begin{array}{lrcll}
-			\textbf{Cas 1} & \quad \SI{0}{J}      & < \Ec_m & < \SI{3.5e-2}{J} & \Ra
-			\text{pas de mouvement}
-			\\
-			\textbf{Cas 2} & \quad \SI{3.5e-2}{J} & < \Ec_m & < \SI{4.4e-2}{J} & \Ra
-			\text{oscillations $\approx$ position stable}
-			\\
-			\textbf{Cas 3} & \quad \SI{4.4e-2}{J} & < \Ec_m & < \SI{5.4e-2}{J} & \Ra
-			\text{mouvement périodique entre $\Ec_{p,\max}$}
-			\\
-			\textbf{Cas 4} & \quad \SI{5.4e-2}{J} & < \Ec_m & < +\infty        & \Ra
-			\text{mouvement révolutif~: tours à l'infini}
-		\end{array}
-	\]
-	\begin{center}
-		\includegraphics[width=.7\linewidth]{pendule_elec_ep_corr}
-		\captionof{figure}{Mouvement selon $\Ec_m$}
-		\label{fig:pend_elec_em}
-	\end{center}
 }
 
 \end{document}

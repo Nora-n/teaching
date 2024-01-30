@@ -6,9 +6,9 @@ moy = np.mean(T_val)
 
 # Calculs à la main avec numpy
 T_moins_moy = T_val - moy
-sig = np.sqrt(1/(nb_val)*np.sum(T_moins_moy**2))
+sig = np.sqrt(1/(nb_val-1)*np.sum(T_moins_moy**2))
 print(f'sigma/sqrt(n) =  {sig/np.sqrt(nb_val)}')
 
 # Calculs automatiques avec numpy
-sig = np.std(T_val)
+sig = np.std(T_val, ddof=1)
 print(f'std/sqrt(n) = {sig/np.sqrt(nb_val)}')

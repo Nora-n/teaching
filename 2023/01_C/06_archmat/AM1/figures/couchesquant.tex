@@ -3,115 +3,136 @@
 
 \begin{document}
 \begin{tikzpicture}[]
-    \coordinate (O) at (0,0);
-    \node[circle, draw, minimum size=150pt, fill=gray!30]
-        (noy) at (O) {};
-    \foreach \x/\y in {1/15, -10/-17, 0/-17, 6/-18, 10/6, 8/-10, -14/7, -18/0,
-        16/15, -10/14, 16/-2, -9/-9}{
-        \draw[] (3*\x pt,3*\y pt)
-        node[draw, circle, opacity=.8, text opacity=1.0, fill=ForestGreen!30]
-        %{\x,\y}
-        {$+$}
-    ;}
-    \node[] at (O) {\Huge\bfseries Noyau};
-    \foreach \n/\ell/\ta/\tb in {1/0/20/30, 2/0/20/25, 2/1/10/15,
-        3/0/20/24, 3/1/10/14, 3/2/00/04}{
-        \def\r{50 pt + 40*\n pt + 8*\ell pt}
-        \draw[dashed] (O) circle (\r);
-        \draw[] (\ta:\r)
-            node[draw, circle, opacity=.8, text opacity=1.0,
-            fill=brandeisblue, inner sep=0] {\small$-$};
-        \draw[] (\tb:\r)
-            node[draw, circle, opacity=.8, text opacity=1.0,
-            fill=brandeisblue, inner sep=0] {\small$-$};
-    ;}
-    \draw[red, thick]
-    (O) circle (50pt + 32pt)
-    (O) circle (50pt + 48pt)
-    (O) circle (50pt + 72pt)
-    (O) circle (50pt + 96pt)
-    (O) circle (50pt + 112pt)
-    (O) circle (50pt + 144pt)
-    ;
-    \coordinate (cnode3) at (50:50pt+144pt);
-    \draw[red, thick, <-]
-        (cnode3) --++
-        (50:20pt) --++
-        (40pt,0) coordinate (clim)
-        node [right] (ctext) {\Huge couche $n=3$};
-    \path[name path=vert] (clim) --++ (0,-360pt);
-    \coordinate (cnode2) at (40:50pt+96pt);
-    \path[name path=h2]
-        (cnode2) --++
-        (40:60pt) --++
-        (40pt,0);
-    % Define intersection
-    \path[name intersections={of=vert and h2, by=i2}];
-    \draw[red, thick, <-]
-        (cnode2) --++
-        (40:60pt) --
-        (i2)
-        node [right] (ctext) {\Huge couche $n=2$};
-    \coordinate (cnode1) at (30:50pt+48pt);
-    \path[name path=h1]
-        (cnode1) --++
-        (30:100pt) --++
-        (40pt,0);
-    % Define intersection
-    \path[name intersections={of=vert and h1, by=i1}];
-    \draw[red, thick, <-]
-        (cnode1) --++
-        (30:100pt) --
-        (i1)
-        node [right] (ctext) {\Huge couche $n=1$};
-    %
-    % Sous-couches
-    %
-    \coordinate (snode1) at (-30:50pt+40pt);
-    \path[name path=k1]
-        (snode1) --++
-        (-30:100pt) --++
-        (40pt,0);
-    % Define intersection
-    \path[name intersections={of=vert and k1, by=l1}];
-    \draw[gray, thick, <-]
-        (snode1) --++
-        (-30:100pt) --
-        (l1)
-        node [right] (ctext) {\Huge sous-couche 1s};
-    \coordinate (snode21) at (-40:50pt+80pt);
-    \coordinate (snode22) at (-40:50pt+88pt);
-    \path[name path=k2]
-        (snode21) --++
-        (-40:60pt) coordinate (r2) --++
-        (60pt,0);
-    % Define intersection
-    \path[name intersections={of=vert and k2, by=l2}];
-    \draw[gray, thick, <-]
-        (snode21) --
-        (r2) --
-        (l2) node [right] (ctext) {\Huge sous-couches 2s, 2p};
-    \draw[gray, thick, <-]
-        (snode22) --
-        (r2);
-    \coordinate (snode31) at (-50:50pt+120pt);
-    \coordinate (snode32) at (-50:50pt+128pt);
-    \coordinate (snode33) at (-50:50pt+136pt);
-    \path[name path=k3, draw, green]
-        (snode31) --++
-        (-50:20pt) coordinate (r3) --++
-        (60pt,0);
-    % Define intersection
-    \path[name intersections={of=vert and k3, by=l3}];
-    \draw[gray, thick, <-]
-        (snode31) --
-        (r3) --
-        (l3) node [right] (ctext) {\Huge sous-couches 3s, 3p, 3d};
-    \draw[gray, thick, <-]
-        (snode32) --
-        (r3);
-    \draw[gray, thick, <-]
-        (snode33) --
-        (r3);
+	\coordinate (O) at (0,0);
+	\node[circle, draw, minimum size=150pt, fill=gray!30]
+	(noy) at (O) {};
+	\foreach \x/\y in {
+			1/15, -10/-17,
+			-1/-17, 6/-18,
+			10/6, 8/-10, -14/7, -18/0, 16/15, -10/14,
+			-3/12, 10/-5,
+			16/-2, -9/-9, 0/3, -6/6, 1/-8, 17/-12,
+			-17/-6, 19/5, 3/5, 5/18, -4/19,
+			-21/4, -4/-4, 3/-3, -17/-14, 8/12}{
+			\draw[] (3*\x pt,3*\y pt)
+			node[draw, circle, opacity=.8, text opacity=1.0, fill=ForestGreen!30]
+			%{\x,\y}
+			{$+$}
+			;}
+	\node[] at (O) {\Huge\bfseries Noyau};
+	\foreach \n/\ell/\ta/\tb in {
+			1/0/20/30,
+			2/0/20/25,
+			2/1/-10/-5, 2/1/10/15, 2/1/0/5,
+			3/0/20/24,
+			3/1/-7/-3, 3/1/1/5, 3/1/9/13,
+			3/2/-47/-43, 3/2/-39/-35, 3/2/-31/-27, 3/2/-23/-19, 3/2/-15/-11}{
+			\def\r{50 pt + 40*\n pt + 8*\ell pt}
+			\draw[dashed] (O) circle (\r);
+			\draw[] (\ta:\r)
+			node[draw, circle, opacity=.8, text opacity=1.0,
+				fill=brandeisblue, inner sep=0] {\small$-$};
+			\draw[] (\tb:\r)
+			node[draw, circle, opacity=.8, text opacity=1.0,
+				fill=brandeisblue, inner sep=0] {\small$-$};
+			;}
+	\foreach \n/\ell/\ta/\tb in {2/1/-10/-5, 2/1/0/5}{
+			\def\r{50 pt + 40*\n pt + 8*\ell pt}
+			\draw[dashed] (O) circle (\r);
+			\draw[] (\ta:\r)
+			node[draw, circle, opacity=.8, text opacity=1.0,
+				fill=brandeisblue, inner sep=0] {\small$-$};
+			\draw[] (\tb:\r)
+			node[draw, circle, opacity=.8, text opacity=1.0,
+				fill=brandeisblue, inner sep=0] {\small$-$};
+			;}
+	\draw[red, thick]
+	(O) circle (50pt + 32pt)
+	(O) circle (50pt + 48pt)
+	(O) circle (50pt + 72pt)
+	(O) circle (50pt + 96pt)
+	(O) circle (50pt + 112pt)
+	(O) circle (50pt + 144pt)
+	;
+	\coordinate (cnode3) at (50:50pt+144pt);
+	\draw[red, thick, <-]
+	(cnode3) --++
+	(50:20pt) --++
+	(40pt,0) coordinate (clim)
+	node [right] (ctext) {\Huge couche $n=3$};
+	\path[name path=vert] (clim) --++ (0,-360pt);
+	\coordinate (cnode2) at (40:50pt+96pt);
+	\path[name path=h2]
+	(cnode2) --++
+	(40:60pt) --++
+	(40pt,0);
+	% Define intersection
+	\path[name intersections={of=vert and h2, by=i2}];
+	\draw[red, thick, <-]
+	(cnode2) --++
+	(40:60pt) --
+	(i2)
+	node [right] (ctext) {\Huge couche $n=2$};
+	\coordinate (cnode1) at (30:50pt+48pt);
+	\path[name path=h1]
+	(cnode1) --++
+	(30:100pt) --++
+	(40pt,0);
+	% Define intersection
+	\path[name intersections={of=vert and h1, by=i1}];
+	\draw[red, thick, <-]
+	(cnode1) --++
+	(30:100pt) --
+	(i1)
+	node [right] (ctext) {\Huge couche $n=1$};
+	%
+	% Sous-couches
+	%
+	\coordinate (snode1) at (-30:50pt+40pt);
+	\path[name path=k1]
+	(snode1) --++
+	(-30:100pt) --++
+	(40pt,0);
+	% Define intersection
+	\path[name intersections={of=vert and k1, by=l1}];
+	\draw[gray, thick, <-]
+	(snode1) --++
+	(-30:100pt) --
+	(l1)
+	node [right] (ctext) {\Huge sous-couche 1s};
+	\coordinate (snode21) at (-40:50pt+80pt);
+	\coordinate (snode22) at (-40:50pt+88pt);
+	\path[name path=k2]
+	(snode21) --++
+	(-40:60pt) coordinate (r2) --++
+	(60pt,0);
+	% Define intersection
+	\path[name intersections={of=vert and k2, by=l2}];
+	\draw[gray, thick, <-]
+	(snode21) --
+	(r2) --
+	(l2) node [right] (ctext) {\Huge sous-couches 2s, 2p};
+	\draw[gray, thick, <-]
+	(snode22) --
+	(r2);
+	\coordinate (snode31) at (-50:50pt+120pt);
+	\coordinate (snode32) at (-50:50pt+128pt);
+	\coordinate (snode33) at (-50:50pt+136pt);
+	\path[name path=k3, draw, green]
+	(snode31) --++
+	(-50:20pt) coordinate (r3) --++
+	(60pt,0);
+	% Define intersection
+	\path[name intersections={of=vert and k3, by=l3}];
+	\draw[gray, thick, <-]
+	(snode31) --
+	(r3) --
+	(l3) node [right] (ctext) {\Huge sous-couches 3s, 3p, 3d};
+	\draw[gray, thick, <-]
+	(snode32) --
+	(r3);
+	\draw[gray, thick, <-]
+	(snode33) --
+	(r3);
 \end{tikzpicture}
 \end{document}

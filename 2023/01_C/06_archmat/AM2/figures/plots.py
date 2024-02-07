@@ -39,8 +39,8 @@ for i in range(len(data["EL"])):
             ha="right", va="center", fontsize=20)
 
 ax.legend(fontsize=15)
-fig.savefig(f"./2023/01_C/06_archmat/AM2/figures/hydro_14.pdf",
-            bbox_inches="tight")
+# fig.savefig(f"./2023/01_C/06_archmat/AM2/figures/hydro_14.pdf",
+#             bbox_inches="tight")
 
 data = {
     "15": {
@@ -92,6 +92,7 @@ data = {
         np.array([0, 5, -5, 0]),
      },
 }
+
 colors = {
     "15": "cornflowerblue",
     "16": "limegreen",
@@ -186,5 +187,75 @@ ax.set_xlim(1,5.7)
 ax.set_xticks([1,2,3,4,5])
 ax.set_ylim(bottom=-150)
 
-fig.savefig(f"./2023/01_C/06_archmat/AM2/figures/LH.pdf",
+# fig.savefig(f"./2023/01_C/06_archmat/AM2/figures/LH.pdf",
+#             bbox_inches="tight")
+
+# Exercice VII TD AM1-2
+
+data = {
+    "14": {"EL":
+        np.array([r"CH$_4$", r"SiH$_4$", r"GeH$_4$", r"SnH$_4$"]),
+        "MM":
+        np.array([16.04, 32.12, 76.62, 122.71]),
+        "TEB":
+        np.array([-161.5,-112,-88.5,-52]),
+        "HA":
+        np.array(["center", "left", "center", "center"]),
+        "VA":
+        np.array(["top", "top", "top", "top"]),
+        "HO":
+        np.array([0, 0, 0, 0]),
+        "VO":
+        np.array([-5, -5, -5, -5]),
+        },
+    "17": {
+        "EL":
+        np.array([r"HF", r"HCl", r"HBr", r"HI"]),
+        "MM":
+        np.array([20.01, 36.46, 80.91, 127.91]),
+        "TEB":
+        np.array([19.5,-85,-67,-35]),
+        "HA":
+        np.array(["center", "left", "center", "center"]),
+        "VA":
+        np.array(["bottom", "bottom", "bottom", "bottom"]),
+        "HO":
+        np.array([0, 0, 0, 0]),
+        "VO":
+        np.array([5, 5, 5, 5]),
+     },
+}
+
+colors = {
+    "14": "cornflowerblue",
+    "17": "orange",
+}
+
+fig = plt.figure(figsize=(7,5))
+rect = 0.1, 0.10, 0.8, 0.8
+ax = fig.add_axes(rect)
+ax.grid()
+
+for k in data.keys():
+    dta = data[k]
+    ax.plot(dta["MM"], dta["TEB"],
+                marker="+",
+                ms="20",
+                lw=2,
+                color=colors[k],
+                label=f"Colonne {k}")
+    ax.set_xlabel("Masse molaire ($\\si{g.mol^{-1}}$)",fontsize=20)
+    ax.set_ylabel("$\\theta_{\\rm eb} (\\si{\\degreeCelsius})$",fontsize=20)
+
+    for i in range(len(dta["EL"])):
+        ax.text(dta["MM"][i]+dta["HO"][i], dta["TEB"][i]+dta["VO"][i],
+                dta["EL"][i],
+                ha=dta["HA"][i], va=dta["VA"][i], fontsize=20)
+
+    ax.legend(fontsize=15)
+
+ax.set_xlim(0, 140)
+ax.set_ylim(-180, 40)
+
+fig.savefig(f"./2023/02_TD/06_archmat/AM1-AM2/figures/teb_hydro.pdf",
             bbox_inches="tight")

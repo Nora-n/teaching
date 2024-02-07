@@ -7,8 +7,8 @@
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+\HideSolutionstrue
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
@@ -135,23 +135,23 @@ Activité \texttt{Capytale} disponible\ftn{\url{https://capytale2.ac-paris.fr/we
 	En déduire le résultat du mesurage de $T$ en calculant la moyenne et
 	l'incertitude de type A.
 }{%
-Cf.\ \texttt{Capytale}.
-% \begin{python}
-% import numpy as np
-%
-% T_val = np.array([25.3, 24.9, 25.1, 25.2, 23.8, 25.2, 25, 23, 24.9, 24.6, 25.1])
-% nb_val = len(T_val)
-% moy = np.mean(T_val)
-%
-% # Calculs à la main avec numpy
-% T_moins_moy = T_val - moy
-% sig = np.sqrt(1/(nb_val-1)*np.sum(T_moins_moy**2))
-% print(f'sigma/sqrt(n) =  {sig/np.sqrt(nb_val)}')
-%
-% # Calculs automatiques avec numpy
-% sig = np.std(T_val, ddof=1)
-% print(f'std/sqrt(n) = {sig/np.sqrt(nb_val)}')
-% \end{python}
+	Cf.\ \texttt{Capytale}~: \url{https://capytale2.ac-paris.fr/web/c/dc4d-2946813}
+	% \begin{python}
+	% import numpy as np
+	%
+	% T_val = np.array([25.3, 24.9, 25.1, 25.2, 23.8, 25.2, 25, 23, 24.9, 24.6, 25.1])
+	% nb_val = len(T_val)
+	% moy = np.mean(T_val)
+	%
+	% # Calculs à la main avec numpy
+	% T_moins_moy = T_val - moy
+	% sig = np.sqrt(1/(nb_val-1)*np.sum(T_moins_moy**2))
+	% print(f'sigma/sqrt(n) =  {sig/np.sqrt(nb_val)}')
+	%
+	% # Calculs automatiques avec numpy
+	% sig = np.std(T_val, ddof=1)
+	% print(f'std/sqrt(n) = {sig/np.sqrt(nb_val)}')
+	% \end{python}
 }
 
 % \begin{tcb}(rapp){Rappel~: incertitude de type A}
@@ -299,17 +299,31 @@ Cf.\ \texttt{Capytale}.
 	Vérifier que les deux courbes se retrouvent en phase pour une distance
 	entre les récepteurs égale à un multiple entier de d.
 }{%
-	solu
+	\begin{gather*}
+		\beforetext{On trouve}
+		\[
+			\boxed{d \approx \SI{10}{mm}}
+		\]
+	\end{gather*}
+	Cette mesure n'est cependant pas précise, on a un intervalle de $\pm
+		\SI{5}{mm}$ pour retrouver les signaux en phase. Or, on a $\lambda = d$. Pour
+	plus de précisions, on pourra mesurer plus de situations en phase et diviser
+	la distance totale par le nombre d'occurrence de retour en phase.
+
 }
 \QR{%
 	Mesurer la distance entre les deux récepteurs correspondant
 	à $10$ longueurs d'onde et en déduire une valeur de $\lambda$.
 }{%
-	solu
+	\begin{gather*}
+		d_{10} = \SI{8.7\pm 0.5e-2}{m}
+		\Lra
+		\boxed{\lambda = \frac{d_{10}}{10} = \SI{8.7\pm0.05e-3}{m}}
+	\end{gather*}
 }
 
 \QR{%
-  \textbf{BONUS} \enspace
+	\textbf{BONUS} \enspace
 	Dans le menu horizontal d'\texttt{Oscillo 5}, sélectionner
 	\texttt{X-Y}. Observer l'allure des courbes quand elles sont en phase.
 	Que remarquez-vous~? Cette méthode est-elle plus précise que la
@@ -318,7 +332,11 @@ Cf.\ \texttt{Capytale}.
 	phase~? Comment différencier des signaux en phase et des signaux en
 	opposition de phase~?
 }{%
-	solu
+	On remarque que les courbes se superposent en une ligne droite. Elle est plus
+	précise, on trouve plus facilement la position telle que la ligne soit droite.
+	En dehors de la phase, les signaux forment une ellipse penchée~; elle est la
+	plus grande quand les signaux sont en opposition de phase. Avec de bons
+	réglages, on peut atteindre un cercle.
 }
 
 \subsection{Valider}
@@ -330,7 +348,7 @@ Cf.\ \texttt{Capytale}.
 		c = \frac{\lambda}{T}
 	\]
 }{%
-	solu
+	On trouve des mesures compatibles (cf.\ corrigé en ligne).
 }
 
 \end{document}

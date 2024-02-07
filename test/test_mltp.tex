@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\ifx\conditionmacro\undefined
+  \immediate\write18{%
+    pdflatex --jobname="\jobname1"
+    "\gdef\string\conditionmacro{1}\string\input\space\jobname"
+  }%
+  \immediate\write18{%
+    pdflatex --jobname="\jobname2"
+    "\gdef\string\conditionmacro{2}\string\input\space\jobname"
+  }%
+  \immediate\write18{%
+    pdflatex --jobname="\jobname3"
+    "\gdef\string\conditionmacro{3}\string\input\space\jobname"
+  }%
+  \expandafter\stop
+\fi
+
+\begin{document}
+
+\ifnum\conditionmacro=1 Condition is 4\fi
+\ifnum\conditionmacro=2 Condition is 5\fi
+\ifnum\conditionmacro=3 Condition is 6\fi
+
+\verb|\conditionmacro| is \texttt{\meaning\conditionmacro}.
+
+\end{document}

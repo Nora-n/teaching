@@ -7,33 +7,31 @@
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+\HideSolutionstrue
+\toggletrue{corrige}
 \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\ifx\conditionmacro\undefined
-  \immediate\write18{%
-    pdflatex --jobname="\currfilebase_enon"
-    "\gdef\string\conditionmacro{1}\string\input\space\jobname"
-  }%
-  \immediate\write18{%
-    pdflatex --jobname="\currfilebase_solu-prof"
-    "\gdef\string\conditionmacro{2}\string\input\space\jobname"
-  }%
-  \immediate\write18{%
-    pdflatex --jobname="\currfilebase_solu-stud"
-    "\gdef\string\conditionmacro{3}\string\input\space\jobname"
-  }%
-  \expandafter\stop
-\fi
+\cswitch{
+  \sswitch{
+    \def\myjobname{TDAM1-AM2_solu-stud}
+  }{
+    \def\myjobname{TDAM1-AM2_solu-prof}
+  }
+}{
+    \def\myjobname{TDAM1-AM2_enon}
+}
 
+% \ifx\conditionmacro\undefined
+%   \immediate\write18{%
+%     pdflatex --jobname="\myjobname"
+%     "\gdef\string\conditionmacro{1}\string\input\space\jobname"
+%   }%
+%   \expandafter\stop
+% \fi
+%
 \begin{document}
 % \setcounter{chapter}{4}
-
-\ifnum\conditionmacro=1 \togglefalse{corrige}\fi
-\ifnum\conditionmacro=2 \toggletrue{corrige}\togglefalse{student}\fi
-\ifnum\conditionmacro=3 \toggletrue{corrige}\toggletrue{student}\fi
 
 \chapter{\cswitch{Correction du TD}{TD~: structures chimiques et propri\'et\'es
 	  macro}}
@@ -819,7 +817,7 @@ hypervalent (grâce à la sous-couche $d$ non-remplie). On obtient alors
 }
 
 \QR{%
-	Pour la molécule \ce{HF}, le moment dipolaire vaut $\mu = \SI{1.83}{D}$,
+	Pour la molécule \ce{HF}, le moment dipolaire vaut $p = \SI{1.83}{D}$,
 	et la longueur de liaison est de \SI{92}{pm}. Calculer les charges
 	partielles portées par chaque atome.
 }{%
@@ -834,7 +832,7 @@ hypervalent (grâce à la sous-couche $d$ non-remplie). On obtient alors
 \QR{%
 	Pour la molécule \ce{LiF}, la longueur de liaison vaut \SI{152}{pm}.
 	La charge partielle positive est $q = \num{0.9}\times e$. Calculer le
-	moment dipolaire de cette molécule $\mu$ et préciser son orientation.
+	moment dipolaire de cette molécule $p$ et préciser son orientation.
 }{%
 	$\muf$ est le long de la liaison covalente et dirigé de \ce{F} vers
 	\ce{Li}. Son moment dipolaire $\mu$ est~:

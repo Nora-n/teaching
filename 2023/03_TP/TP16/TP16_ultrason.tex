@@ -7,13 +7,33 @@
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \HideSolutionstrue
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
+% \ifx\conditionmacro\undefined
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_enon"
+%     "\gdef\string\conditionmacro{1}\string\input\space\jobname"
+%   }%
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_solu-prof"
+%     "\gdef\string\conditionmacro{2}\string\input\space\jobname"
+%   }%
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_solu-stud"
+%     "\gdef\string\conditionmacro{3}\string\input\space\jobname"
+%   }%
+%   \expandafter\stop
+% \fi
+
 \begin{document}
 \setcounter{chapter}{15}
+
+% \ifnum\conditionmacro=1 \togglefalse{corrige}\fi
+% \ifnum\conditionmacro=2 \toggletrue{corrige}\togglefalse{student}\fi
+% \ifnum\conditionmacro=3 \toggletrue{corrige}\toggletrue{student}\fi
 
 \chapter{\cswitch{Correction du TP}
   {Ondes ultrasonores~: mesure de caract\'eristiques}}
@@ -22,10 +42,11 @@
 	\begin{prgm}
 		\begin{tcb}*(ror)"how"{Savoir-faire}
 			\begin{itemize}
-				\item Mesurer la vitesse de phase, la longueur d’onde et le déphasage dû à la propagation d’un phénomène ondulatoire.
-				\item Étudier le filtrage linéaire d’un signal non sinusoïdal à partir
-				      d’une analyse spectrale.
-				\item Détecter le caractère non linéaire d’un système par l’apparition
+				\item Mesurer la vitesse de phase, la longueur d'onde et le déphasage dû
+				      à la propagation d'un phénomène ondulatoire.
+				\item Étudier le filtrage linéaire d'un signal non sinusoïdal à partir
+				      d'une analyse spectrale.
+				\item Détecter le caractère non linéaire d'un système par l'apparition
 				      de nouvelles fréquences.
 			\end{itemize}
 		\end{tcb}
@@ -301,9 +322,7 @@ Activité \texttt{Capytale} disponible\ftn{\url{https://capytale2.ac-paris.fr/we
 }{%
 	\begin{gather*}
 		\beforetext{On trouve}
-		\[
-			\boxed{d \approx \SI{10}{mm}}
-		\]
+		\boxed{d \approx \SI{10}{mm}}
 	\end{gather*}
 	Cette mesure n'est cependant pas précise, on a un intervalle de $\pm
 		\SI{5}{mm}$ pour retrouver les signaux en phase. Or, on a $\lambda = d$. Pour

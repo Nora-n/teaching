@@ -6,27 +6,47 @@
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
 \makeatother
 
-\toggletrue{student}
+% \toggletrue{student}
 % \HideSolutionstrue
 % \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
+\ifx\conditionmacro\undefined
+  \immediate\write18{%
+    pdflatex --jobname="\currfilebase_enon"
+    "\gdef\string\conditionmacro{1}\string\input\space\jobname"
+  }%
+  \immediate\write18{%
+    pdflatex --jobname="\currfilebase_solu-prof"
+    "\gdef\string\conditionmacro{2}\string\input\space\jobname"
+  }%
+  \immediate\write18{%
+    pdflatex --jobname="\currfilebase_solu-stud"
+    "\gdef\string\conditionmacro{3}\string\input\space\jobname"
+  }%
+  \expandafter\stop
+\fi
+
 \begin{document}
 \setcounter{chapter}{16}
 
-\chapter{\cswitch{Correction du TP}
-  {\'Etude du pendule simple}}
+\ifnum\conditionmacro=1 \togglefalse{corrige}\fi
+\ifnum\conditionmacro=2 \toggletrue{corrige}\togglefalse{student}\fi
+\ifnum\conditionmacro=3 \toggletrue{corrige}\toggletrue{student}\fi
+
+\chapter{\cswitch{Correction du TP}{\'Etude du pendule simple}}
 
 \enonce{
 	\begin{prgm}
 		\begin{tcb}*(ror)"how"{Savoir-faire}
 			\begin{itemize}
-				\item Capacité numérique~: à l’aide d’un langage de programmation,
-				      résoudre numériquement une équation différentielle du deuxième ordre
-				      non-linéaire et faire apparaître l’effet des termes non- linéaires.
-				\item Mettre en œuvre un protocole expérimental permettant d’étudier une
-				      loi de force par exemple à l’aide d’un microcontrôleur.
+				\item Capacité numérique~: à l'aide d'un langage de programmation,
+				      résoudre numériquement une équation différentielle du deuxième
+				      ordre non-linéaire et faire apparaître l'effet des termes
+				      non-linéaires.
+				\item Mettre en œuvre un protocole expérimental permettant d'étudier une
+				      loi de force par exemple à l'aide d'un microcontrôleur.
 			\end{itemize}
 		\end{tcb}
 	\end{prgm}

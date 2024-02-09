@@ -79,22 +79,25 @@
 
 \section{Analyser}
 
-\noindent
-\begin{minipage}{0.64\linewidth}
-	Soit une masse $m = \SI{190}{g}$ attachée à l'extrémité d'une tige en fibre
-	de carbone (de faible masse, pouvant être considérée négligeable devant
-	celle de $m$) de longueur $\ell = \SI{45}{cm}$ constante. Initialement, la
-	masse $m$ est lâchée d'un angle $\tt_0$ sans vitesse initiale. On prend $g =
-		\SI{9,8}{m.s^{-2}}$.
-\end{minipage}
-\hfill
-\begin{minipage}{0.34\linewidth}
-	\begin{center}
-		\includegraphics[width=3cm]{ch17pendule}
-		% \captionof{figure}{Schéma du pendule simple.}
-		% \label{fig:pendsimple}
-	\end{center}
-\end{minipage}
+\enonce{%
+	\noindent
+	\begin{minipage}{0.64\linewidth}
+		Soit une masse $m = \SI{190}{g}$ attachée à l'extrémité d'une tige en fibre
+		de carbone (de faible masse, pouvant être considérée négligeable devant
+		celle de $m$) de longueur $\ell = \SI{45}{cm}$ constante. Initialement, la
+		masse $m$ est lâchée d'un angle $\th_0$ sans vitesse initiale. On prend $g =
+			\SI{9,8}{m.s^{-2}}$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.34\linewidth}
+		\begin{center}
+			\includegraphics[width=3cm]{ch17pendule}
+			% \captionof{figure}{Schéma du pendule simple.}
+			% \label{fig:pendsimple}
+		\end{center}
+	\end{minipage}
+}
+
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
 \QR{%
 Montrer que l'énergie cinétique peut s'écrire sous la forme~:
@@ -114,21 +117,21 @@ On a un mouvement circulaire non uniforme, on trouve donc
 \]
 }
 \QR{%
-	En prenant l'origine des énergies potentielles en $\tt = 0$,
+	En prenant l'origine des énergies potentielles en $\th = 0$,
 	montrer que l'énergie potentielle totale du système peut s'écrire
 	sous la forme~:
 	\[
-		\Ec_{p,p} = mg\ell (1-\cos\tt)
+		\Ec_{p,p} = mg\ell (1-\cos\th)
 	\]
 }{%
 	L'énergie potentielle de pesanteur s'écrit
 	\[
-		\Ec_{p,p} = mgz(\tt)
+		\Ec_{p,p} = mgz(\th)
 	\]
-	Or, par rapport à la position $\tt = 0$ où le pendule est à la distance $\ell$
-	du point O, à un angle $\tt$ quelconque la masse est à la distance $\ell\cos(\theta)$. On trouve donc
+	Or, par rapport à la position $\th = 0$ où le pendule est à la distance $\ell$
+	du point O, à un angle $\th$ quelconque la masse est à la distance $\ell\cos(\theta)$. On trouve donc
 	\[
-		z(\tt) = \ell(1-\cos(\theta))
+		z(\th) = \ell(1-\cos(\theta))
 		\Ra
 		\boxed{\Ec_{p,p} = mg \ell(1-\cos(\theta))}
 		\qed
@@ -136,10 +139,12 @@ On a un mouvement circulaire non uniforme, on trouve donc
 }
 \section{Réaliser}
 
-\begin{tcb}[bld, cnt](impo){Important}
-	Attention, la tige du pendule est en fibre de carbone et est TRÈS FRAGILE~;
-	Ne pas serrer la vis de la masse trop fort sur la tige.
-\end{tcb}
+\enonce{%
+	\begin{tcb}[bld, cnt](impo){Important}
+		Attention, la tige du pendule est en fibre de carbone et est TRÈS FRAGILE~;
+		Ne pas serrer la vis de la masse trop fort sur la tige.
+	\end{tcb}
+}
 
 \begin{tcb}[breakable](expe)<itc>{Réglages}
 	\begin{enumerate}
@@ -191,39 +196,49 @@ On a un mouvement circulaire non uniforme, on trouve donc
 	\end{enumerate}
 \end{tcb}
 
-\begin{tcb}(expe)<itc>{Acquisition et enregistrement}
-	\begin{enumerate}
-		\item Écarter le pendule d'un angle de $\ang{20;;}$ à $\ang{30;;}$ environ.
-		\item Lancer l'acquisition~: \includegraphics[width=0.03\textwidth]{bouton2}
-	\end{enumerate}
-\end{tcb}
+\enonce{%
+	\begin{tcb}(expe)<itc>{Acquisition et enregistrement}
+		\begin{enumerate}
+			\item Écarter le pendule d'un angle de $\ang{20;;}$ à $\ang{30;;}$ environ.
+			\item Lancer l'acquisition~: \includegraphics[width=0.03\textwidth]{bouton2}
+		\end{enumerate}
+	\end{tcb}
+}
 
 \section{Valider}
 
 \subsection{Exploitation de l'enregistrement}
 
-\begin{tcb}(expe)<itc>{Visualisation des angles,
-			vitesses et accélérations en fonction du temps}
-	\begin{enumerate}
-		\item En utilisant la feuille de calcul, créer une nouvelle variable, notée
-		      \texttt{angle}, correspondant à l'angle exprimé en radians.
-		\item Visualiser \texttt{angle} en fonction du temps~; ajuster l'échelle
-		      grâce au calibrage (en cliquant droit).
-		\item Créer les variables \texttt{deriv\_Pendule} (dérivée première) et
-		      \texttt{dderiv\_Pendule} (dérivée seconde), en utilisant les fonctions
-		      traitements $\rightarrow$ calculs spécifiques $\rightarrow$ dérivée et
-		      dérivée seconde.
-		\item À partir des variables \texttt{deriv\_Pendule} et
-		      \texttt{dderiv\_Pendule} (exprimées en degrés), introduire les variables
-		      \texttt{deriv\_angle} et \texttt{dderiv\_angle} exprimées en radians.
-		\item Afficher simultanément les trois courbes obtenues et les lisser en
-		      utilisant les fonctions traitements $\rightarrow$ calculs spécifiques
-		      $\rightarrow$ lissage.
-	\end{enumerate}
-\end{tcb}
+\enonce{%
+	\begin{tcb}(expe)<itc>{Visualisation des angles,
+				vitesses et accélérations en fonction du temps}
+		\begin{enumerate}
+			\item En utilisant la feuille de calcul, créer une nouvelle variable, notée
+			      \texttt{angle}, correspondant à l'angle exprimé en radians.
+			\item Visualiser \texttt{angle} en fonction du temps~; ajuster l'échelle
+			      grâce au calibrage (en cliquant droit).
+			\item Créer les variables \texttt{deriv\_angle} (dérivée première) et
+			      \texttt{dderiv\_angle} (dérivée seconde), en utilisant les
+			      fonctions traitements $\rightarrow$ calculs spécifiques
+			      $\rightarrow$ dérivée et dérivée seconde.
+			      % \item Créer les variables \texttt{deriv\_Pendule} (dérivée première) et
+			      %          \texttt{dderiv\_Pendule} (dérivée seconde), en utilisant les
+			      %          fonctions traitements $\rightarrow$ calculs spécifiques
+			      %          $\rightarrow$ dérivée et dérivée seconde.
+			      % \item À partir des variables \texttt{deriv\_Pendule} et
+			      %          \texttt{dderiv\_Pendule} (exprimées en degrés), introduire les
+			      %          variables \texttt{deriv\_angle} et \texttt{dderiv\_angle} exprimées
+			      %          en radians.
+			\item Afficher simultanément les trois courbes obtenues, en mettant la
+			      fonction \texttt{angle} sur l'axe de droite et les lisser en
+			      utilisant les fonctions traitements $\rightarrow$ calculs spécifiques
+			      $\rightarrow$ lissage.
+		\end{enumerate}
+	\end{tcb}
+}
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
-\QR{%
+\QR<[start=1]>{%
 	Imprimer vos courbes.
 }{%
 	Non corrigé.
@@ -242,9 +257,9 @@ On a un mouvement circulaire non uniforme, on trouve donc
 	C'est logique, la vitesse est la dérivée de la position qui s'exprime comme
 	un oscillateur harmonique en
 	\[
-		\tt(t) = \tt_0 \cos(\w_0t)
+		\th(t) = \th_0 \cos(\w_0t)
 		\Ra
-		\tp(t) = \w_0\tt_0 \cos(\w_0t-\frac{\pi}{2})
+		\tp(t) = \w_0\th_0 \cos(\w_0t-\frac{\pi}{2})
 	\]
 	Et de même pour l'accélération qui est la dérivée de la vitesse.
 }
@@ -281,10 +296,10 @@ On a un mouvement circulaire non uniforme, on trouve donc
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
 \QR<[start=5]>{%
 	Proposer une exploitation permettant de vérifier la parabolisation
-	(énergie potentielle est équivalente à un polynôme d'ordre 2 en $\tt$)
+	(énergie potentielle est équivalente à un polynôme d'ordre 2 en $\th$)
 	de l'énergie potentielle autour de la position d'équilibre.
 }{%
-	On trace $\Ec_{p,p}(\tt)$ en mettant l'angle $\tt$ en abscisse et \texttt{Ep}
+	On trace $\Ec_{p,p}(\th)$ en mettant l'angle $\th$ en abscisse et \texttt{Ep}
 	en ordonnée sur \texttt{LatisPro}. On regarde visuellement que c'est une
 	parabole, et on peut modéliser la courbe grâce à l'outil de modélisation.
 }
@@ -292,18 +307,18 @@ On a un mouvement circulaire non uniforme, on trouve donc
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR<[start=4]>{%
 	Réaliser l'exploitation proposée. Imprimer et commenter. Faire le
-	développement limité autour de $\tt=0$ (position d'équilibre) de l'expression
+	développement limité autour de $\th=0$ (position d'équilibre) de l'expression
 	de l'énergie potentielle précédemment obtenue pour comparer à la valeur
 	obtenue à l'aide d'un écart normalisé.
 }{%
 	Impression non corrigée. Ça marche. En effectuant le DL de $\cos(\theta)$ à
 	l'ordre 2, on obtient
 	\[
-		\cos(\theta) \Sim_{\tt \to 0} 1 - \frac{\tt^{2}}{2}
+		\cos(\theta) \Sim_{\th \to 0} 1 - \frac{\th^{2}}{2}
 		\Lra
-		\Ec_{p,p}(\tt) = mg \ell(1 - \left( 1 - \frac{\tt^{2}}{2} \right))
+		\Ec_{p,p}(\th) = mg \ell(1 - \left( 1 - \frac{\th^{2}}{2} \right))
 		\Lra
-		\boxed{\Ec_{p,p}(\tt) = \frac{1}{2}mg \ell \tt^{2}}
+		\boxed{\Ec_{p,p}(\th) = \frac{1}{2}mg \ell \th^{2}}
 	\]
 	On doit trouver que le coefficient directeur de la modélisation est égal à
 	\begin{gather*}
@@ -345,18 +360,18 @@ On a un mouvement circulaire non uniforme, on trouve donc
 	sans dépasser un angle initial de $60\degres$ environ (on pourra
 	utiliser l'icône~: Outils $\rightarrow$ mesures automatiques).
 }{%
-	Pour plusieurs valeurs de $\tt_0$, on mesure la période $T$ observée grâce aux
+	Pour plusieurs valeurs de $\th_0$, on mesure la période $T$ observée grâce aux
 	curseurs de \texttt{LatisPro}. On remplit un tableau de valeurs et on compare
 	cette période à la période des petites oscillations $T_0 = 2\pi
 		\sqrt{\frac{\ell}{g}}$.
 }
 
 \QR{%
-	Présenter vos mesures sous forme d'un tableau $T\ind{exp} = f(\tt_0)$
+	Présenter vos mesures sous forme d'un tableau $T\ind{exp} = f(\th_0)$
 	et d'une courbe expérimentale que vous imprimerez et commenterez.
 	Conclure quant à l'isochronisme (ou non) des oscillations.
 }{%
-	Il n'y a pas d'isochronisme, $T \neq T_0$ à partir de $\tt_0 \approx
+	Il n'y a pas d'isochronisme, $T \neq T_0$ à partir de $\th_0 \approx
 		\ang{40}$.
 }
 
@@ -374,7 +389,7 @@ On a un mouvement circulaire non uniforme, on trouve donc
 L'objectif de cette résolution numérique est de résoudre l'équation
 différentielle non linéarisée et donc non analytique~:
 \[
-	\tpp + {\w_0}^2 \sin(\tt) = 0
+	\tpp + {\w_0}^2 \sin(\th) = 0
 \]
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
@@ -382,7 +397,7 @@ différentielle non linéarisée et donc non analytique~:
 	Dans un premier temps, vous allez compléter le script suivant sur
 	\texttt{Capytale} à ce lien~:
 	\url{https://capytale2.ac-paris.fr/web/c/eb53-1348043}. Il devra
-	permettre de résoudre, pour une condition initiale $\tt_0$ donnée,
+	permettre de résoudre, pour une condition initiale $\th_0$ donnée,
 	l'équation différentielle ci-dessus à l'aide du schéma numérique python
 	\texttt{solve\_ivp}. Pour ce faire, vous devrez importer
 	\texttt{scipy.integrate} au début de votre script avec
@@ -396,7 +411,7 @@ différentielle non linéarisée et donc non analytique~:
 }
 Le script précédent sera ensuite amélioré afin de résoudre l'équation
 différentielle pour un ensemble de solutions initiales comprises entre
-$\tt_0 \approx 0$ et $\tt_0 = \pi/2$. Vous trouverez la fréquence de
+$\th_0 \approx 0$ et $\th_0 = \pi/2$. Vous trouverez la fréquence de
 chaque solution grâce à une fonction \texttt{freqfinder} déjà créée
 l'occasion~; elle réalise la transformée de Fourier numérique de
 la solution temporelle (à l'aide de \texttt{numpy.fft}) afin d'en
@@ -415,7 +430,7 @@ modifier la période propre par la valeur expérimentale $T\ind{iso}$.
 
 \QR{%
 	Construire, grâce à ce script, le graphe permettant d'obtenir la
-	période $T\ind{simu}$ en fonction de l'amplitude initiale $\tt_0$.
+	période $T\ind{simu}$ en fonction de l'amplitude initiale $\th_0$.
 }{%
 	Idem.
 }
@@ -430,7 +445,7 @@ modifier la période propre par la valeur expérimentale $T\ind{iso}$.
 
 \QR{%
 	Superposer à ce premier graphe vos résultats expérimentaux obtenus
-	précédemment ($T\ind{exp} = f(\tt_0)$). Enregistrer votre travail sur
+	précédemment ($T\ind{exp} = f(\th_0)$). Enregistrer votre travail sur
 	\texttt{Capytale} et imprimer la courbe obtenue.
 }{%
 	Idem.

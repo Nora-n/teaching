@@ -1,0 +1,462 @@
+\documentclass[../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+\usepackage{pdfpages}
+
+\makeatletter
+\renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\makeatother
+
+% \toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{17}
+
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
+
+\chapter{\cswitch{Correction du TP}{\'Etude de la chute d'une bille en fluide
+	  visqueux}}
+
+\begin{pycode}
+	import numpy as np
+
+	m = 10.4e-3    # kg
+	tau = 73.5e-3  # s
+	R = 1.0e-2     # m
+	eta = m/(6*np.pi*tau*R)
+	etat = 1.5
+	taut = m/(6*np.pi*etat*R)
+\end{pycode}
+
+\enonce{
+	\begin{prgm}
+		\begin{tcb}*(ror)"how"{Savoir-faire}
+			\begin{itemize}
+				\item Choisir de façon cohérente la fréquence d’échantillonnage et la
+				      durée totale d’acquisition.
+				\item Évaluer, par comparaison à un étalon, une longueur (ou les
+				      coordonnées d’une position) sur une image numérique et en estimer la
+				      précision.
+				\item Enregistrer un phénomène à l’aide d’une caméra numérique et
+				      repérer la trajectoire à l’aide d’un logiciel dédié, en déduire la
+				      vitesse et l’accélération.
+				\item Mettre en œuvre un protocole expérimental de mesure de
+				      frottements fluides.
+			\end{itemize}
+		\end{tcb}
+	\end{prgm}
+	\vspace{-10pt}
+	\section{Objectifs}
+	\begin{itemize}
+		\item Reconnaître si le mouvement du centre d'inertie est rectiligne
+		      uniforme ou non.
+		\item Reconnaitre le régime transitoire et le régime permanent.  Déterminer
+		      la vitesse limite.
+		\item Évaluer le temps caractéristique $\tau$ par deux méthodes.
+		\item Trouver un ordre de grandeur de la viscosité $\eta$ de l'huile de
+		      silicone.
+	\end{itemize}
+	\section{S'approprier}
+	\begin{tcb}(mate){Matériel}
+		\begin{itemize}
+			\item Éprouvette contenant l'huile de silicone et des billes
+			\item \textit{Webcam}
+			\item Ordinateur et logiciel \texttt{Latispro}
+			\item Chronomètre
+		\end{itemize}
+	\end{tcb}
+	\begin{tcb}(data){Données}
+		\begin{itemize}
+			\item Bille orange~: $R = \SI{1,0}{cm}$ et $m = \SI{10,4}{g}$.
+			\item Masse volumique de l'huile de silicone~: $\rho_0 =
+				      \SI{970}{kg.m^{-3}}$.
+			\item $g = \SI{9,8}{m.s^{-2}}$.
+		\end{itemize}
+	\end{tcb}
+	\subsection{Principe}
+	Une éprouvette contenant un liquide visqueux sert de support à l'étude de la
+	chute d'une bille d'acier. La bille, qui constitue le système matériel étudié,
+	est lâchée sans vitesse initiale à l'instant $t = 0$.
+	\bigbreak
+	Le système d'acquisition vidéo est assuré par une \textit{webcam} couplée à un
+	ordinateur et réglée de manière à enregistrer 20 images par seconde. La
+	position instantanée $y$ du centre de gravité G de la bille est repérée par
+	l'axe vertical $(\Or y)$ orienté vers le bas, de vecteur unitaire $\uy$.
+}
+
+\setcounter{section}{2}
+\section{Analyser}
+
+On étudie le mouvement de translation d'une bille de rayon $R$ et de masse
+volumique $\rho$ dans de l'huile de silicone de viscosité $\eta$. On admettra
+que les actions de frottement exercées par le liquide sur la bille en mouvement
+à la vitesse $\vv{v}$ sont modélisables par une force de frottement
+$\vv{f}$ telle que
+\[
+	\vv{f} = -6\pi \,\eta \, R \, \vv{v}
+\]
+\bigbreak
+On dépose la bille en O sans vitesse initiale dans l'huile de silicone contenue
+dans une grande éprouvette. On exprimera  toutes les expressions littérales en
+fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR{%
+	Donner les caractéristiques de la poussée d'Archimède $\vv{\Pi}$
+	exercée sur la bille plongeant dans l'huile de silicone.
+}{%
+	C'est une force verticale, orientée vers le haut, de module égal au
+	\textbf{poids du fluide qui serait occupé par le volume de l'objet}~:
+	\[
+		\vv{\Pi} = -\rho_0\frac{4}{3}\pi R^{3}\gf
+	\]
+}
+
+\QR{%
+	Faire le bilan des forces exercées sur la bille plongeant dans l'huile
+	de silicone en précisant le référentiel de travail.
+}{%
+	\noindent
+	\begin{minipage}[t]{.70\linewidth}
+		On établit le système d'étude~:
+		\begin{itemize}
+			\bitem{Système}~:
+			\{bille\} dans $\Rc\ind{labo}$ supposé galiléen
+			\bitem{Schéma}~: cf. Figure~\ref{fig:eprouv}.
+			\bitem{Modélisation}~:
+			repère $(\Or, \uy)$,
+			repérage~: $\OM = y\uy$, $\vf = \yp\uy$, $\af = \ypp\uy$.
+			\bitem{Bilan des forces~:}
+			\[
+				\begin{array}{ll}
+					\textbf{Poids}               &
+					\Pf = mg\uy                               \\
+					\textbf{Poussée d'Archimède} &
+					\vv{\Pi} = -\frac{4\pi\rho_0 R^3}{3}g \uy \\
+					\textbf{Frottement fluide}   &
+					\vv{f} = -6\pi\eta R v \uy
+				\end{array}
+			\]
+		\end{itemize}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.25\linewidth}
+		\vspace{0pt}
+		\begin{center}
+			\includegraphics[width=.7\linewidth]{schema_eprouv}
+			\captionof{figure}{Schéma}
+			\label{fig:eprouv}
+		\end{center}
+	\end{minipage}
+}
+
+\QR{%
+	Établir l'équation différentielle que vérifie la valeur de la vitesse
+	$\vv{v}$ du centre d'inertie de la bille, sous la forme~:
+	\[
+		\dv{v}{t} + \frac{6\pi \eta R}{m}v = g\pa{1-\frac{4\pi \rho_0 \,
+				R^3}{3m}}
+	\]
+}{%
+	On applique le PFD à la bille~:
+	\begin{DispWithArrows*}
+		m\dv{\vv{v}}{t} &= \vv{P} + \vv{\Pi} +\vv{f}
+		\CArrow{$\cdot \uy$}
+		\\\Ra
+		m\dv{v}{t} &=  g\left(m-\rho_0 \frac{4}{3}\pi R^{3}\right) -6\pi\eta R v
+		\Arrow{Forme canonique}
+		\\\Lra
+		\Aboxed{
+			\dv{v}{t} + \frac{6\pi\eta R}{m}v &= g\left(1-\frac{4\pi\rho_0R^3}{3m}\right)
+		}
+	\end{DispWithArrows*}
+}
+
+\QR{%
+	Montrer que la vitesse de la bille tend vers une vitesse limite
+	$v\ind{limTheo}$ telle que~:
+	\[
+		v\ind{limTheo} = \frac{g}{6\pi \eta R} \pa{m-\frac{4\pi \rho_0 \, R^3}{3}}
+	\]
+}{%
+	On trouve $v\ind{lim}$ en l'injectant dans l'équation différentielle, avec
+	$\dv{v\ind{lim}}{t} = 0$, d'où le résultat immédiat.
+}
+
+\QR{%
+	Donner l'expression de la constante de temps $\tau\ind{theo}$ du
+	mouvement en fonction de $m$, $\eta$ et $R$.
+}{%
+	On identifie le terme devant $v$ comme étant $1/\tau\ind{theo}$ par analyse
+	dimensionnelle, soit
+	\[
+		\boxed{\tau\ind{theo} = \frac{m}{6\pi\eta R}}
+	\]
+}
+
+\QR{%
+	En déduire la forme de la solution de l'équation différentielle en $v(t)$.
+}{%
+	\leftcenters{%
+		Ainsi,
+	}{%
+		$\DS
+			\boxed{
+				\dv{v}{t} + \frac{v}{\tau\ind{theo}} = \frac{v\ind{lim}}{\tau\ind{theo}}
+			}
+		$
+	}
+}
+
+\enonce{%
+	\section{Réaliser}
+	\subsection{Enregistrement vidéo}
+
+	\begin{tcb}[breakable](expe)<itc>{Préréglages de la \textit{webcam} et de la prise de vue}
+		\begin{enumerate}
+			\item Ouvrir le logiciel \texttt{Amcap3} dans Bureau $\ra$ Programmes
+			      Physique Chimie $\ra$ \texttt{Amcap3}.
+			\item Dans le menu \texttt{Options}~:
+			      \begin{itemize}
+				      \item \texttt{Preview}, pour visualiser ce qu'on voit dans la
+				            caméra. Régler la distance caméra-éprouvette pour voir
+				            uniquement la moitié supérieure de l'éprouvette. Le trait noir
+				            sur l'éprouvette aide à régler l'horizontal de la caméra.
+				            Régler l'objectif de la caméra pour que l'image soit nette
+				            (faire le point sur l'éprouvette).
+				      \item \texttt{Video capture pin}~: taille de sortie choisir,
+				            \texttt{640*360}. Fréquence image~: 20. Format~: MJPG.
+				            $\ra$ Appliquer $\ra$ OK.
+				      \item \texttt{Video capture filter}~: luminosité, netteté et
+				            contraste en positions intermédiaires. $\ra$ Appliquer
+				            $\ra$ OK.
+			      \end{itemize}
+			\item Puis dans le menu \texttt{Capture}~:
+			      \begin{itemize}
+				      \item \texttt{Set Frame Rate}~: nombre d'images par seconde~: 20.
+				            $\ra$ Cocher~: \texttt{use} $\ra$ OK.
+				      \item \texttt{Set time limit}~: \SI{5}{s} $\ra$ Cocher~:
+				            \texttt{use} $\ra$ OK.
+				      \item \texttt{Start capture}~: dossier élève~: choisir où vous
+				            mettez vos dossiers.
+			      \end{itemize}
+		\end{enumerate}
+	\end{tcb}
+
+	\begin{tcb}(expe)<itc>{Enregistrement de la vidéo}
+		Aller sur~: \texttt{Capture}~; \texttt{Start Capture}~: Cliquer sur \texttt{OK},
+		puis lâcher la bille juste après.
+	\end{tcb}
+
+	\begin{tcb}[breakable](expe)<itc>{Traitement vidéo de la chute de la bille}
+		\begin{enumerate}
+			\item Ouvrir le logiciel \texttt{Latispro} dans programmes $\ra$
+			      discipline $\ra$ physique-chimie $\ra$ Eurosmart.
+			\item Cliquer sur la 5\ieme\ icône~: lecture de séquence AVI (ressemblant à
+			      Google chrome).
+			\item Fichiers $\ra$ ouvrir le fichier \texttt{avi}.
+			\item Revenir à zéro pour exploiter (4\ieme\ icône en bas).
+			\item Grâce à >, choisir le début de la vidéo à exploiter (première image
+			      quand la bille commence à descendre).
+			\item Puis cliquer sur sélection de l'origine et pointer la bille, grâce à
+			      la loupe à droite.
+			\item Sélection de l'étalon~: sélection de haut en bas sur la partie visible
+			      de l'éprouvette.
+			\item Indiquer la distance associée (ne pas mettre l'unité qui est le
+			      \si{m}). $\ra$ correspond à la hauteur de l'éprouvette graduée.
+			\item Sens des axes~: \fbox{$\downarrow \ra$}. Sélection manuelle des
+			      points.
+			\item Viser la cible et pointer grâce au zoom à droite~: pointer alors ainsi
+			      une quarantaine de positions de la bille.
+			      \begin{center}
+				      \begin{tcb}*[width=.8\linewidth](prop)"bomb"{Attention}
+					      Il faut \textbf{absolument} prendre plusieurs points pendant que
+					      la balle ne bouge pas~; vous choisirez de couper les points
+					      inutiles plus tard.
+				      \end{tcb}
+			      \end{center}
+			\item Terminer la sélection manuelle, quand il y a assez de points.
+			\item Fermer la fenêtre. Pour exploiter, cliquer sur le signal sinusoïdal
+			      vert. Icône~: \fbox{$\sim$}.
+		\end{enumerate}
+	\end{tcb}
+
+	\subsection{Modélisation des données}
+
+	\begin{tcb}(expe)<itc>{Tracé de la vitesse verticale en fonction du temps}
+		\begin{itemize}
+			\item Traitements~: $\ra$ Calculs spécifiques. $\ra$ Dérivée. $\ra$ Faire
+			      glisser $y$ pour obtenir $v = \dv{y}{t}$
+			\item Pour visualiser $v = f(t)$, faire glisser la fonction $v$ sur le
+			      graphe. On affichera uniquement les points sans les relier.
+		\end{itemize}
+	\end{tcb}
+
+	\begin{tcb}[breakable](expe)<itc>{Modélisation de la vitesse}
+		\begin{itemize}
+			\item Cliquer modéliser.
+			\item Choisir le modèle sous forme $A(1-\exr^{-t/\tau})$ (forme théorique
+			      attendue pour la loi de vitesse d'après la partie s'approprier). On
+			      forcera $V_0 = 0$ sur le modèle. Le calculer.
+			\item Le glisser sur la courbe en superposition.
+			\item Pour afficher la modélisation~: Copier dans le presse papier $\ra$
+			      Fermer $\ra$ Créer un commentaire $\ra$ Coller après avoir choisi une
+			      fenêtre.
+		\end{itemize}
+	\end{tcb}
+}
+
+\setcounter{section}{4}
+\section{Valider et conclure}
+
+\subsection{Détermination de la vitesse limite}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR<[start=1]>{%
+	Imprimer la courbe, puis déterminer la valeur expérimentale de la vitesse
+	limite.
+}{%
+	On lit la valeur finale~: $v\ind{lim} \approx \SI{26}{cm.s^{-1}}$
+}
+
+\subsection{Détermination de la constante de temps $\tau$ par deux méthodes}
+
+\subsubsection{Utilisation du temps de montée}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR<[start=7]>{%
+	Quelle est la valeur de la vitesse (en pourcentage de la vitesse
+	limite $v\ind{lim}$) lorsque $t=\tau$~? En déduire une méthode de
+	détermination de $\tau$ (qui est celle du cours).
+}{%
+	On a $v(\tau) = \num{0.63}v\ind{lim}$. On peut donc trouver $\tau$ en lisant
+	l'abscisse pour laquelle $v = \num{0.63}v\ind{lim}$.
+}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR<[start=2]>{%
+	Relever $\tau\ind{exp1}$.
+}{%
+	\leftcenters{%
+		On trouve
+	}{%
+		\xul{$\tau\ind{exp1} = \SI{75\pm 2}{ms}$}
+	}
+}
+
+\subsubsection{Utilisation de la modélisation de la vitesse}
+
+\QR{%
+	Déduire de la modélisation de la vitesse l'ordre de grandeur de la
+	constante de temps $\tau\ind{exp2}$, disponible dans la fenêtre de
+	modélisation.
+}{%
+	\leftcenters{%
+		On trouve
+	}{%
+		$\xul{\tau\ind{exp2} = \SI{72}{ms}}$
+	}
+}
+
+\QR{%
+	Calculer l'écart normalisé entre les deux valeurs expérimentales de
+	$\tau$. Conclure et discuter des limites de la mesure.
+}{%
+	\makebox[\linewidth]{$\DS
+			\begin{gathered}
+				\boxed{
+					E_N = \frac{\abs{\tau\ind{exp1} - \tau\ind{exp2}}}{u(\tau\ind{exp1})}
+				}
+				\Lra
+				\xul{E_N = \num{1.5}}
+			\end{gathered}
+		$}
+	\smallbreak
+	Les deux mesures sont compatibles, malgré l'absence d'incertitude sur la
+	valeur de la modélisation Latispro.
+}
+
+\subsection{Détermination de la viscosité $\eta$ de l'huile de silicone}
+
+\QR{%
+	Grâce à l'étude théorique de la partie S'approprier et à la valeur
+	moyenne de $\tau\ind{exp}$, déterminer la valeur expérimentale de la
+	viscosité $\eta\ind{exp}$ en précisant son unité.
+}{%
+	\makebox[\linewidth]{$\DS
+			\begin{gathered}
+				\tau\ind{exp} = \frac{\tau\ind{exp1} + \tau\ind{exp2}}{2} = \SI{73.5}{ms}
+				\\
+				\eta\ind{exp} = \frac{m}{6\pi\tau\ind{exp}R}
+				\qav
+				\left\{
+				\begin{array}{rcl}
+					m             & = & \SI{10.4e-3}{kg}
+					\\
+					\tau\ind{exp} & = & \SI{73.5e-3}{s}
+					\\
+					R             & = & \SI{1.0e-2}{m}
+				\end{array}
+				\right.\\
+				\AN
+				\xul{
+					\eta\ind{exp} = \SI{0.75}{Pa.s}
+				}
+			\end{gathered}
+		$}
+}
+
+\QR{%
+	La comparer à la valeur théorique de la viscosité $\eta\ind{theo} =
+		\SI{1,5}{SI}$.
+}{%
+	On est à la moitié de la valeur théorique~! Avec cette valeur de $\eta$, on
+	devrait avoir $\tau\ind{theo} = \SI{37}{ms}$…
+}
+
+\subsection{Détermination plus rapide de la vitesse limite sans enregistrement vidéo}
+
+\QR{%
+	Justifier que le régime transitoire ait une durée négligeable devant
+	la durée totale de chute de la bille.
+}{%
+	On trouve en effet, que ce soit sur le chronogramme ou par étude de la valeur
+	de $\tau$, que la vitesse limite est atteinte très rapidement~: au maximum
+	après $5\tau \approx \SI{0.4}{s}$ pour un temps de chute de plusieurs
+	secondes.
+}
+\QR{%
+	Proposer alors puis réaliser un protocole expérimental (sans
+	enregistrement) qui permettrait de déterminer la vitesse limite en
+	répétant les mesures 5 à 6 fois.
+}{%
+	On mesure au chronomètre le temps de trajet entre deux points repérés par
+	l'échelle derrière le tube.
+}
+
+\QR{%
+	Partagez vos résultats de mesure avec le reste de la classe.
+}{%
+	Non corrigé.
+}
+
+\QR{%
+	En déduire une nouvelle valeur de $v\ind{lim}$, en tenant compte de vos
+	différents mesurages et de ceux des autres groupes de la classe. Vous
+	présenterez le résultat avec l'incertitude de type A.
+}{%
+	Non corrigé.
+}
+
+\QR{%
+	Comparer à la valeur trouvée avec la modélisation.
+}{%
+	Non corrigé.
+}
+
+\end{document}

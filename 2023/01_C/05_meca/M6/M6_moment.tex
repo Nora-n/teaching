@@ -12,14 +12,14 @@
 % \HideSolutionstrue
 % \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{5}
 
-% \settype{prof}
-% \settype{stud}
-% \settype{book}
+\settype{prof}
+\settype{stud}
+\settype{book}
 
 \chapter{Moment cin\'etique pour un point mat\'eriel}
 
@@ -29,11 +29,11 @@
 	\small
 	\begin{tcb}*(ror)"know"{Savoirs}
 		\begin{itemize}
-			\item Moment cinétique d’un point matériel par rapport à un point et par
+			\item Moment cinétique d'un point matériel par rapport à un point et par
 			      rapport à un axe orienté.
-			\item Moment cinétique d’un système discret de points par rapport à un axe
+			\item Moment cinétique d'un système discret de points par rapport à un axe
 			      orienté.
-			\item Moment d’une force par rapport à un point ou un axe orienté.
+			\item Moment d'une force par rapport à un point ou un axe orienté.
 			\item Théorème du moment cinétique en un point fixe dans un référentiel
 			      galiléen.
 			\item Conservation du moment cinétique.
@@ -44,7 +44,7 @@
 			\item Relier la direction et le sens du vecteur moment cinétique aux
 			      caractéristiques du mouvement.
 			\item Utiliser le caractère algébrique du moment cinétique scalaire.
-			\item Calculer le moment d’une force par rapport à un axe orienté en
+			\item Calculer le moment d'une force par rapport à un axe orienté en
 			      utilisant le bras de levier.
 			\item Identifier les cas de conservation du moment cinétique.
 		\end{itemize}
@@ -66,11 +66,12 @@
 	\begin{tcb}(defi)<lftt>{Liste des définitions}
 		\tcblistof[\paragraph*]{defi}{\hspace*{6pt}}
 	\end{tcb}
-	\begin{tcb}(rapp)<lftt>{Liste des rappels}
-		\tcblistof[\paragraph*]{rapp}{\hspace*{6pt}}
-	\end{tcb}
+	% \begin{tcb}(rapp)<lftt>{Liste des rappels}
+	% 	\tcblistof[\paragraph*]{rapp}{\hspace*{6pt}}
+	% \end{tcb}
 	\begin{tcb}(prop)<lftt>{Liste des propriétés}
 		\tcblistof[\paragraph*]{prop}{\hspace*{6pt}}
+		\tcblistof[\paragraph*]{theo}{\hspace*{6pt}}
 	\end{tcb}
 	% \begin{tcb}(coro)<lftt>{Liste des corollaires}
 	% 	\tcblistof[\paragraph*]{coro}{\hspace*{6pt}}
@@ -164,12 +165,12 @@ de O, on introduit une grandeur appelée \textbf{moment d'une force}.
 	\tcbsubtitle{\fatbox{\textbf{Unité}}}
 	\[
 		\psw{
-			\si{N.m}
+			\si{J} = \si{N.m}
 		}
 	\]
 \end{tcb*}
 
-\begin{tcb*}(inte){Géométriquement}
+\begin{tcb*}(inte){Moment par rapport à un point~: géométriquement}
 	La \textbf{direction} de $\Mcf_{\Or}(\Ff)$ indique la manière dont la force
 	$\Ff$ a tendance à faire tourner M autour de O, et est donné par la
 	\textbf{règle de la main droite}.
@@ -214,8 +215,8 @@ de O, on introduit une grandeur appelée \textbf{moment d'une force}.
 \begin{tcb*}(appl)<lftt>'l'{Moment du poids}
 	\begin{minipage}[c]{0.70\linewidth}
 		Un véhicule assimilé à un point matériel M de masse $m$ se déplace de
-		haut en bas d’une colline~; la trajectoire est assimilée à un quart de
-		cercle vertical de centre O et de rayon $R$. On note $\th$ l’angle que
+		haut en bas d'une colline~; la trajectoire est assimilée à un quart de
+		cercle vertical de centre O et de rayon $R$. On note $\th$ l'angle que
 		fait OM avec la verticale. Calculer le moment du poids par rapport à O.
 	\end{minipage}
 	\hfill
@@ -260,188 +261,266 @@ norme d'un moment. On définit pour ça~:
 \begin{tcb*}(defi){Moment d'une force par rapport à un axe orienté}
 	Le moment d'une force par rapport à un axe orienté $(\Or,\uz)$ est le
 	\textbf{scalaire} défini par~:
-	\[\Mc_z(\Ff) = \left(\OM\wedge\Ff\right)\cdot\uz = \Mcf_{\Or}(\Ff)\cdot\uz\]
-	avec O un point de l'axe $z$. $\Mc_z$ est donc le projeté du moment
-	$\Mcf_{\Or}(\Ff)$ sur l'axe $(\Or z)$.
+	\psw{
+		\[
+			\Mc_{\D}(\Ff) =
+			\left(\OM\wedge\Ff\right)\cdot\ud =
+			\Mcf_{\Or}(\Ff)\cdot\ud
+		\]
+	}
+	avec O un point de l'axe $\D$. $\Mc_{\D}$ est donc le projeté du moment
+	$\Mcf_{\Or}(\Ff)$ sur l'axe $\D$.
 \end{tcb*}
-\begin{tcb*}(impo)<lftt>'l'{Important}
+\begin{tcb*}(impo)<lftt>'l'{Moment par rapport à un axe}
 	\begin{enumerate}
-		\item $\Mc_z$ est un \textbf{scalaire} puisqu'il est issu d'un
-		      \textbf{produit scalaire}.
-		\item $\Mc_z$ ne dépend pas du point O considéré.
+		\item \psw{
+			      $\Mc_{\D}$ est un \textbf{scalaire} puisqu'il est issu d'un
+			      \textbf{produit scalaire}.
+		      }
+		\item \psw{
+			      $\Mc_{\D}$ ne dépend pas du point O considéré.
+		      }
 	\end{enumerate}
 \end{tcb*}
-\textbf{Interprétation géométrique}~: cette fois-ci c'est le \textbf{signe} de
-$\Mc_z$ qui indique le sens de rotation par rapport à l'axe orienté~: il est
-positif si la rotation se fait dans le sens \textbf{direct}.
+\begin{tcb*}(inte){Moment par rapport à un axe~: géométriquement}
+	Cette fois-ci c'est le \textbf{signe} de $\Mc_{\D}$ qui indique le
+	sens de rotation par rapport à l'axe orienté~: il est positif si la
+	rotation se fait dans le sens \textbf{direct}.
+\end{tcb*}
 
 \subsection{Bras de levier d'une force}
 Pour calculer le moment d'une force $\Ff$ exercée en un point M par rapport à un
 axe orienté $\D$ (souvent $(\Or,\uz)$), on décompose $\Ff$ en deux composantes~:
 l'une parallèle et l'une perpendiculaire à l'axe $\D$, notées $\Ff = \Ff_{\perp}
-	+ \Ff_{\parr}$. \smallbreak
+	+ \Ff_{\parr}$.
+% TODO: Change H in O, H' in H, show \theta and OM
 \begin{center}
-	\includegraphics[scale=1]{bras_levier}
+	\sswitch{
+		\includegraphics[scale=1, draft=true]{bras_levier}
+	}{
+		\includegraphics[scale=1]{bras_levier}
+	}
+	\captionof{figure}{Projection d'une force et bras de levier.}
 \end{center}
-\begin{tcb*}(prop){Propriété~: bras de levier d'une force, heart}
+\begin{tcb*}(prop){Bras de levier d'une force}
 	Le \textbf{bras de levier} d'une force $\Ff$ appliquée en un point M est la
-	\textbf{distance $d$} entre l'\textbf{axe} de rotation et la \textbf{droite
-		d'action} donnée par sa composante $\Ff_{\perp}$. Le moment $\Mc_z(\Ff)$ est
-	alors
-	\[\boxed{\Mc_z(\Ff) = \pm d\norm{\Ff_{\perp}}}\]
+	\textbf{distance $d = OH$} entre l'\textbf{axe} de rotation et le
+	\textbf{projeté orthogonal H} de O sur la \textbf{droite d'action}, donnée par
+	sa composante $\Ff_{\perp}$. Le moment $\Mc_{\D}(\Ff)$ est alors
+	\psw{
+		\[
+			\boxed{
+				\Mc_{\D}(\Ff) =
+				\OMr \cdot \norm{\Ff_{\perp}} \sin(\a) =
+				\pm d\norm{\Ff_{\perp}}
+			}
+		\]
+	}
 	On détermine le signe en regardant dans quelle direction la force
 	$\Ff_{\perp}$ tend à faire tourner M.
 \end{tcb*}
-\begin{tcb*}(demo){Démonstration, hand}
-	On commence par déterminer le moment de la force par rapport au point H de
-	l'axe, puis on projettera par produit scalaire avec $\uz$. On a donc~:
+\begin{tcb*}(demo){Bras de levier}
+	On commence par déterminer le moment de la force par rapport au point O de
+	l'axe, puis on projettera par produit scalaire avec $\ud$. On a donc~:
 	\begin{gather*}
-		\vv{\rm HM} = \vv{\rm HH'} + \vv{\rm H'M}\\
-		\Ff = \Ff_{\perp} + \Ff_{\parr}
+		\psw{
+			\vv{\rm OM} = \vv{\rm OH} + \vv{\rm HM}
+		}
+		\qet
+		\psw{
+			\Ff = \Ff_{\perp} + \Ff_{\parr}
+		}
 	\end{gather*}
-	Ainsi,
-	\begin{align*}
-		\Mcf_{\rm H}(\Ff) & = \vv{\rm HM}\wedge\Ff       \\
-		                  & =
-		(\vv{\rm HH'} + \vv{\rm H'M})
-		\wedge
-		(\Ff_{\perp} + \Ff_{\parr})                      \\
-		                  & =
-		\underbracket[1pt]{
-			\vphantom{
-				\underbracket[1pt]{\strut\vv{\rm H'M}}_
-				{\parr\Ff_\perp}
-				\wedge
-				\Ff_{\perp}
-			}
-			\underbracket[1pt]{\strut\vv{\rm HH'}}_{\perp\uz}
-			\wedge
-			\underbracket[1pt]{\strut\Ff_{\perp}}_{\perp\uz}
-		}_{=\pm dF\uz} +
-		\underbracket[1pt]{
-			\vphantom{
-				\underbracket[1pt]{\strut\vv{\rm H'M}}_
-				{\parr\Ff_\perp}
-				\wedge
-				\Ff_{\perp}
-			}
-			\underbracket[1pt]{\strut\vv{\rm HH'}}_{\perp\uz}
-			\wedge
-			\underbracket[1pt]{\strut\Ff_{\parr}}_{\parr\uz}
-		}_{\perp\uz}+
-		\underbracket[1pt]{
-			\underbracket[1pt]{\strut\vv{\rm H'M}}_{\parr\Ff_\perp}
-			\wedge
-			\Ff_{\perp}
-		}_{=\of}+
-		\underbracket[1pt]{
-			\vphantom{
-				\underbracket[1pt]{\strut\vv{\rm H'M}}_
-				{\parr\Ff_\perp}
-				\wedge
-				\Ff_{\perp}
-			}
-			\underbracket[1pt]{\strut\vv{\rm H'M}}_{\perp\uz}
-			\wedge
-			\underbracket[1pt]{\strut\Ff_{\parr}}_{\parr\uz}
-		}_{\perp\uz}
-		\shortintertext{Or,}
-		\Mc_z(\Ff)        & = \Mcf_{\rm H}(\Ff)\cdot\uz  \\
-		\Lra
-		\Mc_z(\Ff)        & = \pm dF_{\perp} + 0 + 0 + 0
+	\begin{DispWithArrows*}
+		\Mcf_{\rm O}(\Ff)
+		& =
+		\psw{
+			\vv{\rm OM}\wedge\Ff
+		}
+		\Arrow{$\Ff = \Ff_{\perp} + \Ff_{\parr}$}
+		\\\Lra
+		\Mcf_{\rm O}(\Ff)
+		& =
+		\psw{
+			\OM \wedge (\Ff_{\parr} + \Ff_{\perp})
+		}
+		\Arrow{On distribue}
+		\\\Lra
+		\Mcf_{\rm O}(\Ff)
+		& =
+		\psw{
+			\underbracket[1pt]{\OM \wedge \Ff_{\parr}}_{\perp \ud} +
+			\underbracket[1pt]{\OM \wedge \Ff_{\perp}}_{\parr \ud}
+		}
+		\CArrow{$\cdot \ud$}
+		\\\Ra
+		\Mc_{\D}(\Ff)
+		& =
+		\psw{
+			0 +
+			\left( \OMr \norm{\Ff_{\perp}}\sin(\a)\ud \right)\cdot \ud
+		}
+		\Arrow{$\ud \cdot \ud = 1$}
+		\\\Lra
+		\Aboxed{    \Mc_{\D}(\Ff)
+			& =
+			\psw{
+				\underbracket[1pt]{\OMr \sin(\a)}_{\pm d}\norm{\Ff_{\perp}}
+			}}
 		\qed
-	\end{align*}
+	\end{DispWithArrows*}
 \end{tcb*}
 
-En général, on s'intéressera directement à une force perpendiculaire à l'axe
-orienté, auquel cas la situation se résume ainsi~:
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{bras_levier-simple}
-\end{figure}
-et on a alors
-\[
-	\OM\wedge\Ff =
-	\underbracket[1pt]{\vv{\rm OH}\wedge\Ff}_{=\pm dF\uz} +
-	\underbracket[1pt]{\vv{\rm HM}\wedge\Ff}_{=\of}
-\]
-On peut résumer ceci à la méthode suivante~:
+\begin{tcb*}[sidebyside](rema)<lftt>{Cas les plus courants}
+	\begin{itemize}
+		\item En général, $\Ff = \Ff_{\perp}$ donc
+		      \psw{
+			      \[
+				      \OM\wedge\Ff =
+				      \underbracket[1pt]{\vv{\rm OH}\wedge\Ff}_{=\pm dF\uz} +
+				      \underbracket[1pt]{\vv{\rm HM}\wedge\Ff}_{=\of}
+			      \]
+		      }
+	\end{itemize}
+	\vspace{-15pt}
+	\begin{center}
+		% TODO: Ajouter aire balayée ici ?
+		\sswitch{
+			\includegraphics[scale=1, draft=true]{bras_levier-simple}
+		}{
+			\includegraphics[scale=1]{bras_levier-simple}
+		}
+		\captionof{figure}{Bras de levier dans le plan $\perp$}
+		\label{fig:bras_simple}
+	\end{center}
+	\tcblower
+	\begin{itemize}
+		\item \psw{
+			      $\Ff \parr \ud \Ra \Mc_{\D} = 0$
+		      }
+		      et
+		      \psw{
+			      $\Ff \parr \OM \Ra \Mc_{\D} = 0$
+		      }
+	\end{itemize}
+	\vspace{-15pt}
+	\begin{center}
+		% TODO: Ajouter aire balayée ici ?
+		\includegraphics[width=.7\linewidth]{porte_nulles}
+		\captionof{figure}{Moments nuls}
+		\label{fig:porte_nulles}
+	\end{center}
+\end{tcb*}
 
-\begin{tcb*}(ror){Méthode du bras de levier, heart}
+\begin{tcb*}(inte){Moment d'une force et surface balayée}
+	On peut interpréter cette valeur comme la surface du parallélépipède
+	formé par $\OM$ et $\Ff_{\perp}$ la force dans le plan perpendiculaire à
+	l'axe $\D$~: cf.\ Figure~\ref{fig:bras_simple}.
+\end{tcb*}
+
+\begin{tcb*}(ror){Méthode du bras de levier}
 	\begin{enumerate}
-		\item Trouver le point O de l'axe de rotation dans le plan
-		      perpendiculaire à $\uz$ passant par M~;
-		\item Tracer la droite d'action, passant par M et dirigée par $\Ff$~;
-		\item Calculer géométriquement $\Ff_\perp$ si nécessaire~;
-		\item Calculer géométriquement $d$~;
-		\item Identifier le sens de rotation avec la règle de la main droite.
+		\item \psw{
+			      \textbf{Trouver} le point O de l'axe de rotation dans le plan
+			      perpendiculaire à $\ud$ passant par M~;
+		      }
+		\item \psw{
+			      (Optionnel) \textbf{Projeter} $\Ff$ dans ce plan perpendiculaire
+			      pour avoir $\Ff_{\perp}$ si nécessaire~;
+		      }
+		\item \psw{
+			      \textbf{Tracer} la droite d'action, passant par M et dirigée par
+			      $\Ff_{\perp}$~;
+		      }
+		\item \psw{
+			      \textbf{Placer} le point H et calculer géométriquement $d$~;
+		      }
+		\item \psw{
+			      \textbf{Identifier} le sens de rotation avec la règle de la main
+			      droite.
+		      }
 	\end{enumerate}
 \end{tcb*}
 
-\begin{tcb*}[sidebyside](appl){Application}
+\begin{tcb*}[sidebyside](appl)<lftt>{Trois forces pour un mouvement}
 	On considère trois forces, de normes égales, exercées sur une porte pour
 	l'ouvrir. Laquelle est la plus efficace~? Justifier à l'aide du bras de
 	levier.
 	\smallbreak
 	\hdashrule[0.5ex]{1.1\linewidth}{.5pt}{3pt}
-	\smallbreak
 	\begin{enumerate}
-		\item La première force créé un moment
-		      \[\Mc_z(\Ff_1) = d_1F\]
-		\item La deuxième force créé un moment
-		      \[\Mc_z(\Ff_2) = d_2F > d_1F\]
-		\item La troisième force créé un moment
-		      \[\Mc_z(\Ff_3) = d_2F_{3\perp} < d_2F\]
+		\item \psw{
+			      La première force créé un moment
+			      \[\Mc_z(\Ff_1) = d_1F\]
+		      }
+		      \vspace{-15pt}
+		\item \psw{
+			      La deuxième force créé un moment
+			      \[\Mc_z(\Ff_2) = d_2F > d_1F\]
+		      }
+		      \vspace{-15pt}
+		\item \psw{
+			      La troisième force créé un moment
+			      \[\Mc_z(\Ff_3) = d_2\cos(\theta) < d_2F\]
+		      }
+		      \vspace{-15pt}
 	\end{enumerate}
 	\tcblower
 	\begin{center}
-		\includegraphics[width=\linewidth]{porte_right-corr}
-		C'est donc $\Ff_2$ qui est la plus efficace.
+		\sswitch{
+			\includegraphics[width=\linewidth]{porte_right}
+		}{
+			\includegraphics[width=\linewidth]{porte_right-corr}
+		}
+		\vspace{-15pt}
+		\captionof{figure}{Schéma}
+		C'est donc \fbox{\psw{$\Ff_2$}} qui est la plus efficace.
 	\end{center}
 \end{tcb*}
 
 \subsection{Exemples de calcul de moments}
 
 \subsubsection{Clé sur un boulon}
-\begin{minipage}[c]{0.25\linewidth}
+\begin{isd}[lefthand ratio=.45]
 	\begin{center}
 		\includegraphics[scale=1]{moment_cle}
 	\end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\linewidth}
-	\begin{gather*}
-		\Ff = -F\uy
-		\qqet
-		\OM = -\ell\ux
-		\\
-		\OM\wedge\Ff = \ell F\ux\wedge\uy = \ell F \uz
-		\\
-		\boxed{\Mc_z(\Ff) = \ell F}
-	\end{gather*}
-\end{minipage}
+	\tcblower
+	\psw{
+		\begin{gather*}
+			\Ff = -F\uy
+			\qqet
+			\OM = -\ell\ux
+			\\
+			\OM\wedge\Ff = \ell F\ux\wedge\uy = \ell F \uz
+			\\
+			\boxed{\Mc_z(\Ff) = \ell F}
+		\end{gather*}
+	}
+	\vspace{-15pt}
+\end{isd}
 
 \subsubsection{Règle à l'horizontale}
-\begin{minipage}[c]{0.25\linewidth}
+\begin{isd}[lefthand ratio=.45]
 	\begin{center}
 		\includegraphics[scale=1]{moment_regle-a}
 	\end{center}
-\end{minipage}
-\hfill
-\begin{minipage}{0.65\linewidth}
-	\begin{gather*}
-		\Pf_1 = -mg\uy
-		\qqet
-		\OM_1 = -a\ux
-		\\
-		\OM\wedge\Pf_1 = (-a)\times(-mg)\ux\wedge\uy = mga\uz
-		\\
-		\boxed{\Mc_z(\Pf_1) = mga}
-		\qqet
-		\boxed{\Mc_z(\Pf_2) = -mga}
-	\end{gather*}
-	\centering La règle ne tourne pas.
-\end{minipage}
+	\tcblower
+	\psw{
+		\begin{gather*}
+			\Pf_1 = -mg\uy
+			\qqet
+			\OM_1 = -a\ux
+			\\
+			\OM\wedge\Pf_1 = (-a)\times(-mg)\ux\wedge\uy = mga\uz
+			\\
+			\boxed{\Mc_z(\Pf_1) = mga}
+			\qqet
+			\boxed{\Mc_z(\Pf_2) = -mga}
+		\end{gather*}
+		\centering La règle ne tourne pas.
+	}
+\end{isd}
 
 \section{Moment cinétique}
 Comme pour le chapitre de mécanique énergétique, on a commencé par introduire le
@@ -452,54 +531,88 @@ définir une grandeur vectorielle caractérisant la rotation d'un point matérie
 c'est le \textbf{moment cinétique}.
 
 \subsection{Moment cinétique par rapport à un point}
-\begin{tcb*}(defi){Définition~: moment cinétique par rapport à un point, heart}
+\begin{tcb*}[sidebyside, righthand ratio=.2](defi){Moment \textbf{cinétique} par
+			rapport à un point}
 	Le moment cinétique d'un point M par rapport à un point O dans le
 	référentiel $\Rc$ est le \textbf{vecteur}~:
-	\[
-		\boxed{\Lcf_{\Or/\Rc}(\Mr) = \OM\wedge\pf_{\Mr/\Rc} = \OM\wedge
-			m\vf_{\Mr/\Rc}}
-		\qquad
-		\text{Unité~:~}
-		\si{N.m.s}
-	\]
+	\psw{
+		\[
+			\boxed{\Lcf_{\Or/\Rc}(\Mr) = \OM\wedge\pf_{\Mr/\Rc} = \OM\wedge
+				m\vf_{\Mr/\Rc}}
+		\]
+	}%
 	qui traduit la «~quantité de rotation~» d'un point matériel en rotation
 	autour d'un autre.
+	\tcblower
+	\tcbsubtitle{\fatbox{\textbf{Unité}}}
+	\[
+		\psw{
+			\si{N.m.s} = \si{J.s}
+		}
+	\]
 \end{tcb*}
 
-\textbf{Interprétation}~: considérons un repère cylindrique autour de l'axe
-$(\Or z)$. On a alors
-\[
-	\left\{
-	\begin{aligned}
-		\OM & = r\ur            \\
-		\vf & = \rp\ur + r\w\ut
-	\end{aligned}
-	\right.
-	\quad\Ra\quad
-	\Lcf_{\Or/\Rc} = (r\ur)\wedge m(\rp\ur+r\w\ut) = mr^2\w\uz
-\]
-Ainsi, \textbf{le moment cinétique ne conserve une information que sur la
-	rotation du système}. Si celui-ci est nul tout le temps, soit il n'y a pas de
-mouvement, soit le vecteur vitesse et le vecteur position sont colinéaires et le
-mouvement est rectiligne.
+\begin{tcb*}[breakable](inte){Moment cinétique~: information et géométrie}
+	\begin{itemize}
+		\item Considérons un repère polaire autour de l'axe
+		      $(\Or z)$. On a alors
+		      \psw{
+			      \[
+				      \left\{
+				      \begin{aligned}
+					      \OM & = r\ur            \\
+					      \vf & = \rp\ur + r\w\ut
+				      \end{aligned}
+				      \right.
+				      \quad\Ra\quad
+				      \Lcf_{\Or/\Rc} = (r\ur)\wedge m(\rp\ur+r\w\ut) = mr^2\w\uz
+			      \]
+		      }%
+		      Ainsi, \textbf{le moment cinétique ne conserve une information que sur
+			      la rotation du système}. Si celui-ci est nul tout le temps, soit il
+		      n'y a pas de mouvement, soit le vecteur vitesse et le vecteur position
+		      sont colinéaires et le mouvement est rectiligne.
+		\item La \textbf{direction} de $\Lcf_{\Or}$
+		      indique la manière dont M tourne autour de O.
+	\end{itemize}
+	\begin{center}
+		\begin{tabularx}{\linewidth}{Y|Y|Y}
+			\sswitch{
+				\includegraphics[scale=1, draft=true]{moment_cin-a}
+			}{
+				\includegraphics[scale=1]{moment_cin-a}
+			}
+			 &
+			\sswitch{
+				\includegraphics[scale=1, draft=true]{moment_cin-b}
+			}{
+				\includegraphics[scale=1]{moment_cin-b}
+			}
+			 &
+			\sswitch{
+				\includegraphics[scale=1, draft=true]{moment_cin-c}
+			}{
+				\includegraphics[scale=1]{moment_cin-c}
+			}
+			\\
+			\psw{
+				Si $\Lcf_{\Or}(\Mr)$ est dirigé selon $+\uz$, M tourne autour de O dans
+				le sens \textbf{direct}.
+			}
+			 &
+			\psw{
+				Si $\Lcf_{\Or}(\Mr)$ est dirigé selon $-\uz$, M tourne autour de O dans
+				le sens \textbf{horaire}.
+			}
+			 &
+			\psw{
+				Si $\Lcf_{\Or}(\Mr) = \of$, M ne tourne pas autour du point O.
+			}
+		\end{tabularx}
+	\end{center}
+\end{tcb*}
 
-\textbf{Interprétation géométrique}~: la \textbf{direction} de $\Lcf_{\Or}$
-indique la manière dont M tourne autour de O.
-\begin{center}
-	\begin{tabularx}{\linewidth}{YYY}
-		\includegraphics[scale=1]{moment_cin-a} &
-		\includegraphics[scale=1]{moment_cin-b} &
-		\includegraphics[scale=1]{moment_cin-c}
-		\\
-		Si $\Lcf_{\Or}(\Mr)$ est dirigé selon $+\uz$, M tourne autour de O dans
-		le sens \textbf{direct}.                &
-		Si $\Lcf_{\Or}(\Mr)$ est dirigé selon $-\uz$, M tourne autour de O dans
-		le sens \textbf{horaire}.               &
-		Si $\Lcf_{\Or}(\Mr) = \of$, M ne tourne pas autour du point O.
-	\end{tabularx}
-\end{center}
-
-\begin{tcb*}(impo)<lftt>'l'{Important}
+\begin{tcb*}(rema)<lftt>'l'{Conséquences du moment cinétique}
 	\begin{enumerate}
 		\item Le vecteur $\Lcf_{\Or}$ est orthogonal à $\OM$ et à $\vf$.
 		\item Le moment cinétique $\Lcf_{\Or}$ dépend du point O~:
@@ -511,38 +624,50 @@ indique la manière dont M tourne autour de O.
 \end{tcb*}
 
 \subsection{Moment cinétique par rapport à un axe \xul{orienté}}
-\begin{tcb*}(defi){Définition~: moment cinétique par rapport à un axe orienté, heart}
-	Le moment cinétique d'un point M par rapport à un axe orienté $(\Or,\uz)$
+\begin{tcb*}[sidebyside, righthand ratio=.2](defi){Moment cinétique par rapport
+			à un axe orienté}
+	Le moment cinétique d'un point M par rapport à un axe orienté $\D$
 	dans le référentiel $\Rc$ est le \textbf{scalaire}~:
-	\[
-		\boxed{\Lc_z(\Mr) = (\OM\wedge\pf_{\Mr/\Rc})\cdot\uz =
-			\Lcf_{\Or/\Rc}(\Mr)\cdot\uz}
-		\qquad
-		\text{Unité~:~}
-		\si{N.m.s}
-	\]
-	avec O un point de l'axe. $\Lc_z$ est donc le projeté du moment
-	$\Lcf_{\Or/\Rc}$ sur $(\Or z)$.
+	\psw{
+		\[
+			\boxed{\Lc_{\D}(\Mr) = (\OM\wedge\pf_{\Mr/\Rc})\cdot\ud =
+				\Lcf_{\Or/\Rc}(\Mr)\cdot\ud}
+		\]
+	}%
+	avec O un point de l'axe. $\Lc_{\D}$ est le projeté du moment
+	$\Lcf_{\Or/\Rc}$ sur $\D$.
+	\tcblower
+	\tcbsubtitle{\fatbox{\textbf{Unité}}}
+	\psw{
+		\[
+			\si{J.s}
+		\]
+	}
 \end{tcb*}
 
-\textbf{Interprétation géométrique}~: cette fois-ci aussi, c'est le
-\textbf{signe} de $\Lc_z$ qui indique le sens de rotation de M autour de l'axe~:
-s'il est \textbf{positif} il se fait dans le sens \textbf{direct}.
+Cette fois-ci aussi, c'est le \textbf{signe} de $\Lc_{\D}$ qui indique le sens de
+rotation de M autour de l'axe~: s'il est \textbf{positif} il se fait dans le
+sens \textbf{direct}.
 
-\begin{tcb*}(impo)<lftt>'l'{Important}
-	\begin{enumerate}
-		\item $\Lc_z$ est un scalaire, alors que $\Lcf_{\Or}$ est un vecteur~!
-		\item $\Lc_z$ est indépendant du point O de l'axe $(\Or z)$. En effet~:
-		      \[
-			      \Lcf_{\mathrm{O'}/\Rc}\cdot\uz =
-			      \left[(\vv{\rm O'O}+\OM)\wedge\pf_{\Mr/\Rc}\right]\cdot\uz =
-			      \underbracket[1pt]{
-				      (\underbracket[1pt]{\vv{\rm O'O}}_{\parr\uz}\wedge\pf_{\Mr/\Rc})
-				      \cdot\uz}_{=0}
-			      + \Lcf_{\Or/\Rc}\cdot\uz = \Lcf_{\Or/\Rc}\cdot\uz
-		      \]
-	\end{enumerate}
-	\vspace*{-30pt}
+\begin{tcb*}[cnt, bld](impo)<lftt>'l'{Moment vecteur et moment scalaire}
+	$\Lc_{\D}$ est un scalaire, alors que $\Lcf_{\Or}$ est un vecteur~!
+\end{tcb*}
+
+\begin{tcb*}[cnt](prop){Moment cinétique scalaire et point d'origine}
+	$\Lc_{\D}$ est indépendant du point O de l'axe $\D$.
+\end{tcb*}
+\begin{tcb*}(demo){Moment cinétique scalaire et point d'origine}
+	\psw{
+		\[
+			\Lcf_{\mathrm{O'}/\Rc}\cdot\ud =
+			\left[(\vv{\rm O'O}+\OM)\wedge\pf_{\Mr/\Rc}\right]\cdot\ud =
+			\underbracket[1pt]{
+				(\underbracket[1pt]{\vv{\rm O'O}}_{\parr\ud}\wedge\pf_{\Mr/\Rc})
+				\cdot\ud}_{=0}
+			+ \Lcf_{\Or/\Rc}\cdot\ud = \Lcf_{\Or/\Rc}\cdot\ud
+		\]
+	}
+	\vspace{-15pt}
 \end{tcb*}
 
 \section{Théorème du moment cinétique}
@@ -551,82 +676,101 @@ entre moment cinétique et moment d'une force, ou avec un peu de recule sur ce
 qu'il est en train de se passer…
 
 \subsection{Par rapport à un point \textit{fixe}}
-\begin{tcb*}(prop){Théorème du moment cinétique par rapport à un point \textit{fixe},
-			heart}
+\begin{tcb*}(theo){Théorème du moment cinétique par rapport à un point
+			\textit{fixe}}
 	Pour un point matériel M de masse $m$ soumis à des forces extérieures
 	$\Ff_i$ dans un référentiel $\Rc$ supposé galiléen et O un point
 	\textbf{fixe} dans $\Rc$, on a
-	\[\boxed{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\Mcf_{\Or}(\Ff_i)}\]
+	\psw{
+		\[\boxed{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\Mcf_{\Or}(\Ff_i)}\]
+	}
 \end{tcb*}
-\begin{tcb*}(demo){Démonstration, hand}
-	Comme pour un bilan de puissance où l'on applique $\cdot\vf$ sur le PFD, il
-	suffit ici d'appliquer $\OM\wedge$~: \smallbreak
+\begin{tcb*}(demo){TMC vectoriel}
+	Comme pour le TPC où l'on applique $\cdot\vf$ sur le PFD, il suffit ici
+	d'appliquer $\OM\wedge$~:
+	\smallbreak
 	\begin{isd}
 		On part du PFD
-		\begin{align*}
-			m\af                 & = \sum_i \Ff_i
+		\begin{DispWithArrows*}[fleqn, mathindent=10pt]
+			\psw{m\af} & = \psw{\sum_i \Ff_i}
+			\Arrow{$\pf = m\vf$}
 			\\\Lra
-			\dv{\pf}{t}          & = \sum_i\Ff_i
+			\psw{\dv{\pf}{t}}          & = \psw{\sum_i\Ff_i}
+			\CArrow{$\OM \wedge \cdot $}
 			\\\Ra
-			\OM\wedge\dv{\pf}{t} & = \OM\tikzmark{om}\wedge\sum_i\tikzmark{ff}\Ff_i
-		\end{align*}
+			\psw{\OM\wedge\dv{\pf}{t}} & =
+			\psw{\OM\tikzmark{om}\wedge\sum_i\tikzmark{ff}\Ff_i}
+		\end{DispWithArrows*}
 		\tcblower
-		Or,
 		\begin{align*}
-			\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} & = \dv{\tikzmark{dv}}{t}
-			\left(\OM\tikzmark{omd}
-			\wedge\pf\tikzmark{pfd}
-			\right)
-			\\
-			                            & =
-			\underbracket[1pt]{
-				\xunderbracket{\dv{\OM}{t}}_{\parr\vf}
-				\wedge
-				\xunderbracket{\pf}_{\parr\vf}
-			}_{=\of}
-			+ \OM\wedge\dv{\pf}{t}
+			\psw{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t}}
+			 & =
+			\psw{
+				\dv{\tikzmark{dv}}{t}
+				\left(\OM\tikzmark{omd}
+				\wedge\pf\tikzmark{pfd}
+				\right)
+			}
+			\\\Lra
+			\psw{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t}}
+			 & =
+			\psw{
+				\underbracket[1pt]{
+					\xunderbracket{\dv{\OM}{t}}_{\parr\vf}
+					\wedge
+					\xunderbracket{\pf}_{\parr\vf}
+				}_{=\of}
+				+ \OM\wedge\dv{\pf}{t}
+			}
 		\end{align*}
 	\end{isd}
-	Ainsi,
 	\begin{gather*}
-		\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\OM\wedge\Ff_i
-		\Lra
-		\boxed{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\Mcf_{\Or}(\Ff_i)}
+		\beforetext{Ainsi,}
+		\psw{
+			\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\OM\wedge\Ff_i
+			\Lra
+			\boxed{\dv{\Lcf_{\Or/\Rc}(\Mr)}{t} = \sum_i\Mcf_{\Or}(\Ff_i)}
+		}
 		\qed
 	\end{gather*}
 \end{tcb*}
 \tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={yshift=12pt}]
+\draw[-stealth, transform canvas={yshift=12pt}, color=\sswitch{white}{black}]
 ([shift={(-6pt,0)}]pic cs:om) to[out=90, in=90] (pic cs:ff)
 ;
 \tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={yshift=6pt}]
+\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{black}]
 (pic cs:dv) to[out=90, in=90] ([shift={(-6pt,6pt)}]pic cs:omd)
 ;
 \tikz[remember picture, overlay]
-\draw[-stealth, transform canvas={yshift=6pt}]
+\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{black}]
 (pic cs:dv) to[out=90, in=90] ([shift={(-6pt,6pt)}]pic cs:pfd)
 ;
 \vspace{-20pt}
 
 \subsection{Par rapport à un axe \xul{orienté} \textit{fixe}}
-\begin{tcb*}(prop){Théorème du moment cinétique par rapport à un axe \xul{orienté}
-			\textit{fixe}, heart}
+\begin{tcb*}(theo){Théorème du moment cinétique par rapport à un axe
+			\xul{orienté} \textit{fixe}}
 	Pour un point matériel M de masse $m$ soumis à des forces extérieures
-	$\Ff_i$ dans un référentiel $\Rc$ supposé galiléen et $(\Or,z)$ un axe
+	$\Ff_i$ dans un référentiel $\Rc$ supposé galiléen et $\D$ un axe
 	orienté \textbf{fixe} dans $\Rc$, on a
-	\[\boxed{\dv{\Lc_z(\Mr)}{t} = \sum_i\Mc_z(\Ff_i)}\]
+	\psw{
+		\[\boxed{\dv{\Lc_{\D}(\Mr)}{t} = \sum_i\Mc_{\D}(\Ff_i)}\]
+	}
+	\vspace{-15pt}
 \end{tcb*}
-\begin{tcb*}(demo){Démonstration, hand}
-	On projette simplement le TMC version vectorielle sur $\uz$~:
-	\begin{align*}
-		\dv{\Lcf_{\Or/\Rc}(\Mr)}{t}\cdot\uz & = \sum_i\Mcf_{\Or}(\Ff_i)\cdot\uz
-		\\\Lra
-		\dv{\Lcf_{\Or/\Rc}(\Mr)\cdot\uz}{t} & = \sum_i\Mc_z(\Ff_i)
-		\\\Lra
-		\Aboxed{\dv{\Lc_z(\Mr)}{t}          & = \sum_i\Mc_z(\Ff_i)}
-		\qed
-	\end{align*}
+\begin{tcb*}(demo){TMC scalaire}
+	On projette simplement le TMC version vectorielle sur $\ud$~:
+	\psw{
+		\begin{align*}
+			\dv{\Lcf_{\Or/\Rc}(\Mr)}{t}\cdot\ud & = \sum_i\Mcf_{\Or}(\Ff_i)\cdot\ud
+			\\\Lra
+			\dv{\Lcf_{\Or/\Rc}(\Mr)\cdot\ud}{t} & = \sum_i\Mc_d(\Ff_i)
+			\\\Lra
+			\Aboxed{\dv{\Lc_d(\Mr)}{t}          & = \sum_i\Mc_d(\Ff_i)}
+			\qed
+		\end{align*}
+	}
 \end{tcb*}
 
 \section{Exemple du pendule simple}
@@ -642,9 +786,9 @@ qu'il est en train de se passer…
 			\item Origine~: point d'accroche du fil (centre de rotation
 			      pendule).
 			\item Repère~: $(O,\ur,\ut)$ avec base polaire (voir schéma).
+			\item Repérage~: $\OM = \ell\ur$, $\vf = \ell\tp\ut$.
 			\item $t$ initial~: moment du lâché, $\th(0) = \th_0$ et
 			      $\th(0) = 0$.
-			\item Repérage~: $\OM = \ell\ur$, $\vf = \ell\tp\ut$.
 		\end{itemize}
 	\end{enumerate}
 \end{minipage}
@@ -652,43 +796,53 @@ qu'il est en train de se passer…
 \begin{minipage}{0.25\linewidth}
 	\begin{center}
 		\includegraphics[width=\linewidth]{pendule_plain}
+		\captionof{figure}{Pendule simple.}
 	\end{center}
 \end{minipage}
 \begin{enumerate}[label=\sqenumi, start=4]
 	\bitem{Bilan des forces.}
-	\[
-		\begin{array}{ll}
-			\textbf{Poids}   & \Pf = m\gf = mg(\cos\th \ur - \sin\th \ut) \\
-			\textbf{Tension} & \Tf = -T\ur
-		\end{array}
-	\]
+	\psw{
+		\[
+			\begin{array}{ll}
+				\textbf{Poids}   & \Pf = m\gf = mg(\cos\th \ur - \sin\th \ut) \\
+				\textbf{Tension} & \Tf = -T\ur
+			\end{array}
+		\]
+	}
 	\bitem{Calcul des moments.}
-	\[
-		\left\{
-		\begin{array}{rcl}
-			\Mcf_{\Or}(\Pf) & = & (\ell\ur)\wedge mg(\cos\th \ur - \sin\th \ut)
-			= -mg\ell\sin\th\uz                                                 \\
-			\Mcf_{\Or}(\Tf) & = & (\ell\ur)\wedge(-T\ur) = \of                  \\
-			\Lcf_{\Or}(\Mr) & = & (\ell\ur)\wedge(m\ell\tp\ut) =
-			m\ell^2\tp\uz
-		\end{array}
-		\right.
-	\]
+	\psw{
+		\[
+			\left\{
+			\begin{array}{rcl}
+				\Mcf_{\Or}(\Pf) & = & (\ell\ur)\wedge mg(\cos\th \ur - \sin\th \ut)
+				= -mg\ell\sin\th\uz                                                 \\
+				\Mcf_{\Or}(\Tf) & = & (\ell\ur)\wedge(-T\ur) = \of                  \\
+				\Lcf_{\Or}(\Mr) & = & (\ell\ur)\wedge(m\ell\tp\ut) =
+				m\ell^2\tp\uz
+			\end{array}
+			\right.
+		\]
+	}
 	Ainsi
-	\[
-		\boxed{\Mc_z(\Pf) = -mg\ell\sin\th}
-		\qqet
-		\boxed{\Mc_z(\Tf) = 0}
-		\qqet
-		\boxed{\Lc_z(\Mr) = m\ell^2\tp}
-	\]
+	\psw{
+		\[
+			\boxed{\Mc_z(\Pf) = -mg\ell\sin\th}
+			\qqet
+			\boxed{\Mc_z(\Tf) = 0}
+			\qqet
+			\boxed{\Lc_z(\Mr) = m\ell^2\tp}
+		\]
+	}
+	\vspace{-15pt}
 	\bitem{TMC}~:
-	\begin{align*}
-		m\ell^2\tpp                          & = -mg\ell\sin\th + 0
-		\\\Lra
-		\Aboxed{\tpp + \frac{g}{\ell}\sin\th & = 0}
-		\qed
-	\end{align*}
+	\psw{
+		\begin{align*}
+			m\ell^2\tpp                          & = -mg\ell\sin\th + 0
+			\\\Lra
+			\Aboxed{\tpp + \frac{g}{\ell}\sin\th & = 0}
+			\qed
+		\end{align*}
+	}
 \end{enumerate}
 On a donc bien retrouvé l'équation du mouvement du pendule simple~!
 

@@ -7,7 +7,6 @@
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
@@ -345,7 +344,7 @@ fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
 	\leftcenters{%
 		On trouve
 	}{%
-		\xul{$\tau\ind{exp1} = \SI{75\pm 2}{ms}$}
+		\xul{$\tau\ind{exp1} = \SI{162\pm 10}{ms}$}
 	}
 }
 
@@ -359,7 +358,7 @@ fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
 	\leftcenters{%
 		On trouve
 	}{%
-		$\xul{\tau\ind{exp2} = \SI{72}{ms}}$
+		$\xul{\tau\ind{exp2} = \SI{160}{ms}}$
 	}
 }
 
@@ -373,7 +372,7 @@ fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
 					E_N = \frac{\abs{\tau\ind{exp1} - \tau\ind{exp2}}}{u(\tau\ind{exp1})}
 				}
 				\Lra
-				\xul{E_N = \num{1.5}}
+				\xul{E_N = \num{1}}
 			\end{gathered}
 		$}
 	\smallbreak
@@ -386,7 +385,8 @@ fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
 \QR{%
 	Grâce à l'étude théorique de la partie S'approprier et à la valeur
 	moyenne de $\tau\ind{exp}$, déterminer la valeur expérimentale de la
-	viscosité $\eta\ind{exp}$ en précisant son unité.
+	viscosité $\eta\ind{exp}$ en précisant son unité et son incertitude (revoir la
+	fiche incertitudes).
 }{%
 	\makebox[\linewidth]{$\DS
 			\begin{gathered}
@@ -398,25 +398,46 @@ fonction de $\rho_0$, $\eta$, $R$, $m$ et $g$.
 				\begin{array}{rcl}
 					m             & = & \SI{10.4e-3}{kg}
 					\\
-					\tau\ind{exp} & = & \SI{73.5e-3}{s}
+					\tau\ind{exp} & = & \SI{161e-3}{s}
 					\\
 					R             & = & \SI{1.0e-2}{m}
 				\end{array}
 				\right.\\
 				\AN
 				\xul{
-					\eta\ind{exp} = \SI{0.75}{Pa.s}
+					\eta\ind{exp} = \SI{0.343}{Pa.s}
 				}
 			\end{gathered}
 		$}
+	De plus,
+	\begin{gather*}
+		\frac{u(\eta)}{\eta} = \frac{u(\tau)}{\tau}
+		\Lra
+		\boxed{u(\eta) = \frac{\eta}{\tau} u(\tau)}
+		\Ra
+		\xul{u(\eta) = \SI{0.021}{Pa.s}}
+		\\\Ra
+		\boxed{\eta\ind{exp} = \SI{0.343\pm 0.021}{Pa.s}}
+	\end{gather*}
 }
 
 \QR{%
-	La comparer à la valeur théorique de la viscosité $\eta\ind{theo} =
-		\SI{1,5}{SI}$.
+	La valeur théorique de la viscosité et $\eta\ind{theo} =
+		\SIrange{0.32}{0.35}{SI}$. L'écrire sous forme de valeur centrale $\pm$ son
+	incertitude. Comparer alors votre résultat expérimental avec la valeur
+	théorique à l'aide d'un écart normalisé.
 }{%
-	On est à la moitié de la valeur théorique~! Avec cette valeur de $\eta$, on
-	devrait avoir $\tau\ind{theo} = \SI{37}{ms}$…
+	On a $\eta\ind{theo} = \SI{0.3366\pm0.0084}{Pa.s}$.
+	Ainsi,
+	\[
+		\boxed{
+			E_N = \frac{\abs{\eta\ind{theo} - \eta\ind{exp}}}
+			{\sqrt{u(\eta\ind{exp})^{2} + u(\eta\ind{theo})^{2}}}
+		}
+		\Lra
+		\xul{E_N = \num{0.27}}
+	\]
+	Les résultats sont bien cohérents.
 }
 
 \subsection{Détermination plus rapide de la vitesse limite sans enregistrement vidéo}

@@ -12,16 +12,16 @@
 \makeatother
 
 % \toggletrue{student}
-% \toggletrue{corrige}
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-% \renewcommand{\mycol}{gray}
+\renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{7}
 
-\settype{prof}
-\settype{stud}
-\settype{book}
+% \settype{prof}
+% \settype{stud}
+% \settype{book}
 
 \chapter{M\'ecanique du solide}
 
@@ -245,7 +245,7 @@ limite à deux situations.
 		\[
 			\forall \Mr \in \Sc, \forall A \in \Delta, \quad \norm{\vvr{AM}} = \cte
 		\]
-	}
+	}%
 	Alors, tous les points ont un \textbf{mouvement circulaire} autour de cet
 	axe, avec la \textbf{même vitesse angulaire} $\w(t) = \tp(t)$.
 	\smallbreak
@@ -269,7 +269,7 @@ limite à deux situations.
 		M du solide est
 		\psw{
 			\[
-				\boxed{\vf_{\Mr/\Rc}(t) = \vv{\W}_{\Sc/\Rc} \wedge \OM}
+				\boxed{\vf_{\Mr/\Rc}(t) = \wf_{\Sc/\Rc} \wedge \OM}
 			\]
 		}
 		\vspace{-15pt}
@@ -343,7 +343,7 @@ limite à deux situations.
 	vitesse d'un point M du solide est donnée par~:
 	\psw{
 		\[
-			\boxed{\vf_{\Mr/\Rc} = \vf_{\Or} + \vv{\W}\wedge \OM}
+			\boxed{\vf_{\Mr/\Rc} = \vf_{\Or} + \wf\wedge \OM}
 		\]
 	}
 	\vspace{-15pt}
@@ -455,7 +455,7 @@ simplement
 		}
 		\vspace{-15pt}
 	\end{tcb*}%
-	\begin{tcb*}(demo)<lftt>'r'{TRC}
+	\begin{tcb*}(demo)<rgtt>'r'{TRC}
 		\psw{
 			\begin{align*}
 				\dv{\pf\Rg(\Sc)}{t}         & = \sum_i \dv{\pf\Rg(\Mr_i)}{t}
@@ -504,63 +504,75 @@ intérieures. Les points M$_j$ avec $j\neq i$ exercent des forces sur M$_i$. La
 puissance de ces actions s'exprime~:
 \[\Pc_{\rint\to i} = \sum_{j\neq i} \Ff_{j\to i}\cdot\vf_i\]
 Seulement, on a la propriété suivante~:
-\begin{tcb*}(prop){Puissance des forces intérieures}
-	\begin{center}
-		\begin{bfseries}
+\begin{tcb*}[cnt, bld](prop){Puissance des forces intérieures}
 			La puissance des forces intérieures est nulle \ul{pour un système
 				indéformable}.
-		\end{bfseries}
-	\end{center}
 \end{tcb*}
 \begin{tcb*}(demo)<lftt>{Puissance des forces intérieures}
 	En effet, la puissance de toutes les forces intérieures s'exprime
-	\[
-		\Pc_{\rint} =
-		\sum_i\Pc_{\rint\to i} =
-		\sum_i\sum_{j\neq i}\Ff_{j\to i}\cdot \vf_i =
-		\sum_i\sum_{j\neq i}\Ff_{j\to i}\cdot \dv{\vv{\Mr_j\Mr_i}}{t}
-	\]
-	Or, pour un solide en translation, $\Mr_j\Mr_i = \vcte$ par construction. Ça
-	pourrait ne pas être le cas pour un solide en rotation, puisque le vecteur
-	n'est pas fixe. On peut pour cela étudier précisément deux puissances entre
-	M$_i$ et M$_j$~: on a, dans la base sphérique $(\Mr_j, \vv{u}_{r,j\to i},
-		\vv{u}_{\th,j\to i}, \vv{u}_{\f,j\to i})$~:
-	\begin{gather*}
-		\Ff_{j\to i} = F_{j\to i}\vv{u}_{r,j\to i} \qquad \text{force centrale due au
-			contact}\\
-		\dv{\vv{\Mr_j\Mr_i}}{t} = \rp_{i,j}\vv{u}_{r,j\to i} +
-		r_{i,j}\tp_{i,j}\vv{u}_{\th,j\to i} + r_{i,j}\sin\th_{i,j}\vv{u}_{\f,j\to i}
-		\\\Lra
-		\Ff_{j\to i}\cdot\dv{\vv{\Mr_j\Mr_i}}{t} = F_{j\to i}
-		\underbracket[1pt]{\rp_{i,j}}_{\mathclap{=0~\text{car indéformable}}}
-		\\\Lra
-		\boxed{\Pc_{\rint} = 0}
-		\qed
-	\end{gather*}
+  \psw{
+      \[
+      \Pc_{\rint} =
+      \sum_i\Pc_{\rint\to i} =
+      \sum_i\sum_{j\neq i}\Ff_{j\to i}\cdot \vf_i =
+      \sum_i\sum_{j\neq i}\Ff_{j\to i}\cdot \dv{\vv{\Mr_j\Mr_i}}{t}
+    \]
+  }%
+  Or, pour un solide en translation, $\vv{\Mr_j\Mr_i} = \vcte$ par construction.
+  Ça pourrait ne pas être le cas pour un solide en rotation, puisque le vecteur
+  n'est pas fixe. On peut pour cela étudier précisément la puissance entre
+  M$_i$ et M$_j$~: on a, dans la base cylindrique $(\Mr_j, \vv{u}_{r,j\to i},
+  \vv{u}_{\th,j\to i}, \vv{u}_{z,j\to i})$~:
+  \psw{
+      \begin{DispWithArrows*}
+        \Ff_{j\to i} &= F_{j\to i}\vv{u}_{r,j\to i}
+        \qquad \text{force centrale due au contact}
+        \Arrow{On dérive $\vv{\Mr_j\Mr_i}$}
+        \\
+        \dv{\vv{\Mr_j\Mr_i}}{t} &= \rp_{i,j}\vv{u}_{r,j\to i} +
+      r_{i,j}\tp_{i,j}\vv{u}_{\th,j\to i} + \zp_{i,j}\vv{u}_{z,j\to i}
+      \Arrow{On multiplie}
+      \\\Lra
+        \Ff_{j\to i}\cdot\dv{\vv{\Mr_j\Mr_i}}{t} &= F_{j\to i}
+      \underbracket[1pt]{\rp_{i,j}}_{\mathclap{=0~\text{car indéformable}}}
+      \\\Lra
+        \Aboxed{\Pc_{\rint} &= 0}
+      \qed
+    \end{DispWithArrows*}
+  }
 \end{tcb*}
 
 \subsection{Théorèmes}
 On retrouve ainsi les théorèmes utilisés pour le point, en prenant alors en
 compte les forces intérieures~:
 \begin{tcb*}(theo){Énergétique pour le solide}
-	Pour un système $\Sc$ dans un référentiel galiléen $\Rc$~: \smallbreak
+  Pour un système $\Sc$ \textbf{déformable ou non} dans un référentiel galiléen
+  $\Rc$~:
+  \smallbreak
 	\begin{isd}
 		\begin{center}
 			\tcbsubtitle{\fatbox{\textbf{TEC, TPC}}}
 		\end{center}
-		\begin{empheq}[box=\fbox]{align*}
-			\D\Ec_{c/\Rc} &= W_{\ext/\Rc} + W_{\rint/\Rc}\\
-			\dv{\Ec_{c/\Rc}}{t} &= \Pc_{\ext/\Rc} + \Pc_{\rint/\Rc}
-		\end{empheq}
+    \psw{
+          \begin{empheq}[box=\fbox]{align*}
+          \D\Ec_{c/\Rc} &= W_{\ext/\Rc} + W_{\rint/\Rc}\\
+          \dv{\Ec_{c/\Rc}}{t} &= \Pc_{\ext/\Rc} + \Pc_{\rint/\Rc}
+        \end{empheq}
+    }
+    \vspace{-15pt}
 		\tcblower
 		\begin{center}
 			\tcbsubtitle{\fatbox{\textbf{TEM, TPM}}}
 		\end{center}
-		\begin{empheq}[box=\fbox]{align*}
-			\D\Ec_{m/\Rc} &= W_{\ext,NC/\Rc} + W_{\rint, NC/\Rc}\\
-			\dv{\Ec_{m/\Rc}}{t} &= \Pc_{\ext,NC/\Rc} + \Pc_{\rint,NC/\Rc}
-		\end{empheq}
+    \psw{
+          \begin{empheq}[box=\fbox]{align*}
+          \D\Ec_{m/\Rc} &= W_{\ext,NC/\Rc} + W_{\rint, NC/\Rc}\\
+          \dv{\Ec_{m/\Rc}}{t} &= \Pc_{\ext,NC/\Rc} + \Pc_{\rint,NC/\Rc}
+        \end{empheq}
+    }
+    \vspace{-15pt}
 	\end{isd}
+  Les grandeurs intérieures sont nulles pour un système déformable.
 \end{tcb*}
 
 \begin{tcb*}(demo)<lftt>{Énergétique pour le solide}
@@ -570,27 +582,34 @@ compte les forces intérieures~:
 
 \section{Moments pour un système de points}
 \subsection{Moment cinétique et moment d'inertie}
-Comme pour le reste des grandeurs, le moment cinétique d'un système de points
-est la somme des moments cinétiques de chaque point~:
-\begin{tcb*}(defi){Moment cinétique d'un système}
-	Par rapport à un point O fixe dans $\Rc$ référentiel d'étude~:
-	\[
-		\boxed{\Lcf_{\Or/\Rc}(\Sc) = \sum_i\Lcf_{\Or/\Rc}(\Mr_i)
-			= \sum_i \OM_i\wedge\pf\Rg(\Mr_i)}
-	\]
+% Comme pour le reste des grandeurs, le moment cinétique d'un système de points
+% est la somme des moments cinétiques de chaque point~:
+\begin{tcbraster}[raster equal height=rows, raster columns=2]
+  \begin{tcb*}(defi){$\protect\Lcf(\Sc)$}
+  Par rapport à un point O fixe dans $\Rc$ référentiel d'étude~:
+  \psw{
+      \[
+      \boxed{\Lcf_{\Or}(\Sc) = \sum_i\Lcf_{\Or}(\Mr_i)
+        = \sum_i \OM_i\wedge\pf\Rg(\Mr_i)}
+    \]
+  }
 \end{tcb*}
-\begin{tcb*}(prop){Moment cinétique et moment d'inertie d'un solide}
-	Le moment cinétique d'un solide en rotation est proportionnel à la vitesse
-	angulaire $\wf = \w(t)\ud$~:
-	\[
-		\boxed{
-			\Lcf_{\Or} = J_{\D}\wf
-			\Lra
-			\Lc_z = J_{\D}\w
-		}
-	\]
-	avec $J_{\D}$ le moment d'inertie.
+\begin{tcb*}(prop)'r'{$\protect\Lcf(\Sc)$ et $J_{\D}$}
+  Le moment cinétique d'un solide en rotation est proportionnel à la vitesse
+  angulaire $\wf = \w(t)\ud$~:
+  \psw{
+      \[
+      \boxed{
+        \Lcf_{\Or} = J_{\D}\wf
+        \Lra
+        \Lc_{\D} = J_{\D}\w
+      }
+    \]
+  }%
+  avec $J_{\D}$ le moment d'inertie.
 \end{tcb*}
+\end{tcbraster}
+
 \begin{tcb*}(demo){Moment d'inertie d'un solide}
 	Pour un solide en rotation autour de l'axe $z$, on aura
 	\smallbreak
@@ -601,28 +620,44 @@ est la somme des moments cinétiques de chaque point~:
 			\\\Lra
 			\Lc_z(\Mr_i) & = (r_i\ur)\wedge(m_ir_i\tp_i\ut)\cdot\uz
 			\\\Lra
-			\Lc_z(\Mr_i) & = m_ir_i{}^2\tp_i\,
-			\underbracket[1pt]{\ur\wedge\ut}_{=\uz}\cdot\uz = m_ir_i{}^2\tp_i
+      \Lc_z(\Mr_i) & = m_ir_i{}^2
+      \underbracket[1pt]{\tp_i}_{\mathclap{=\,\w~\forall i}}\,
+			\underbracket[1pt]{\ur\wedge\ut}_{=\uz}\cdot\uz = m_ir_i{}^2\w
 			\\
-			\beforetext{Or}
+      \text{Or} \quad 
 			\Lc_z(\Sc)   & = \sum_i \Lc_z(\Mr_i)
 			\\\Lra
-			\Lc_z(\Sc)   & = \sum_i m_ir_i{}^2\tp_i
+			\Aboxed{\Lc_z(\Sc)   & = \left( \sum_i m_ir_i{}^2 \right)\w}
 			\qed
 		\end{align*}
 		\tcblower
 		\tcbsubtitle{\fatbox{\textbf{Continu (HP)}}}
-		\begin{gather*}
-			J_z = \int \dm\,r^2
-		\end{gather*}
+    \begin{DispWithArrows*}
+      \Lc_z &=
+      \int_{\mathrlap{\Mr \in \Sc}}
+      (\OM \wedge \dd{m}\vf_{\Mr}) \uz
+      \\\Lra
+      \Lc_z &=
+      \int_{\Mr \in \Sc}
+      \big( \underbracket{r\ur \wedge r\w \ut}_{\ur \wedge \ut = \uz} \big)
+      \uz\, \dd{m}
+      \\\Lra
+      \Aboxed{
+        \Lc_z &=
+                  \Big(
+                    \underbracket[1pt]{\int_{\mathrlap{\Mr \in \Sc}} r^2 \dd{m}}_{J_z}
+                  \Big)\w
+                }
+      \qed
+		\end{DispWithArrows*}
 	\end{isd}
 \end{tcb*}
 
 \begin{tcb*}(inte)<lftt>{Correspondance quantité de mouvement et quantité de rotation}
-	Le moment d'inertie caractérise \textbf{l'inertie de rotation}, c'est-à-dire
-	la facilité avec laquelle la rotation d'un solide s'établit ou s'arrête~; il
-	est analogue à la \textbf{masse} pour la translation, qui caractérise
-	l'inertie d'un corps à être mis en mouvement. On peut en effet associer
+Le moment d'inertie caractérise \textbf{l'inertie de rotation}, c'est-à-dire
+la facilité avec laquelle la rotation d'un solide s'établit ou s'arrête~; il
+est analogue à la \textbf{masse} pour la translation, qui caractérise
+l'inertie d'un corps à être mis en mouvement. On peut en effet associer
 	\[
 		\pf = m\vf
 		\qqet

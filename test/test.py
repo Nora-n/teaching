@@ -36,9 +36,19 @@ import numpy as np
 # print(f'w_sid = {w_sid:.2e} rad.s^-1')
 
 # DS06
-B = 1.0 # T
-eSm = 2e11 # SI
-a = 1.0e-3 # m
-v = 2.0e8  # m.s^-1
-Dt = a*B*eSm/v
-print(f'Delta\\th = {Dt} rad = {Dt*180/np.pi}°')
+# B = 1.0 # T
+# eSm = 2e11 # SI
+# a = 1.0e-3 # m
+# v = 2.0e8  # m.s^-1
+# Dt = a*B*eSm/v
+# print(f'Delta\\th = {Dt} rad = {Dt*180/np.pi}°')
+
+# TDM8
+T = 4.1 # s
+L = 3.0 # m
+d = 4.5 # m
+m = 300 # kg
+mtot = 2.3e3 # kg
+g = 9.81 # m.s^-2
+J = T**2/(4*np.pi**2)*mtot*g*d - m*L**2/3
+print(f"J = {J:.1e} kg.m²")

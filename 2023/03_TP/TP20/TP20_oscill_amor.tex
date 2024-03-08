@@ -94,14 +94,78 @@
 }
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
-\QR{%
+\QR[5]{%
 	Montrer que la longueur du ressort $(1)$ à l'équilibre est
 	$\DS z\ind{eq} = \frac{h}{2} - \frac{mg}{2k}$
 }{%
-	solu
+	\noindent
+	\begin{minipage}[t]{.60\linewidth}
+		\begin{itemize}
+			\bitem{Système}~: \{masse\} assimilée à un point matériel M de masse $m$.
+			\bitem{Référentiel}~: terrestre supposé galiléen.
+			\bitem{Repère}~: $(\Or, \uz)$ vertical ascendant.
+			\bitem{Repérage}~:
+			\[
+				\left\{
+				\begin{array}{rl}
+					\OM & = z(t)\uz
+					\\
+					\vf & = \zp(t)\uz
+					\\
+					\af & = \zpp(t)\uz
+				\end{array}
+				\right.
+			\]
+			De plus, à excitation nulle on trouve
+			\[
+				\ell_1(t) = z(t)
+				\qet
+				\ell_2(t) = Z(t) - z(t) = h - z(t)
+			\]
+			\bitem{BdF}~:
+			\begin{itemize}
+				\item $\Pf = -mg\uz$
+				\item
+				      $\Ff_{r,1} =
+					      -k \left( \ell_1(t) - \ell_0 \right)\uz =
+					      - k \left( z(t) - \ell_0 \right)\uz$
+				\item
+				      $\Ff_{r,2} =
+					      +k \left( \ell_2(t) - \ell_0 \right)\uz =
+					      +k \left( h - z(t) - \ell_0 \right)\uz$
+				\item $\Ff = -\alpha\vf = -\alpha \zp(t)\uz$
+			\end{itemize}
+		\end{itemize}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.45\linewidth}
+		\vspace{0pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{arduino_corr}
+		\end{center}
+	\end{minipage}
+	\begin{itemize}
+		\bitem{PFD}~: à l'équilibre,
+		\begin{DispWithArrows*}
+			\af = \of &= \sum_i \Ff_i
+			\Arrow{On projette}
+			\\\Lra
+			0 &=
+			-mg
+			-k \left( z\ind{eq} - \cancel{\ell_0} \right)
+			+ k \left( h - z\ind{eq} - \cancel{\ell_0} \right)
+			\underbracket[1pt]{-\alpha \zp\ind{eq}}_{=0}
+			\Arrow{On isole}
+			\\\Lra
+			2k z\ind{eq} &= kh - mg
+			\\\Lra
+			\Aboxed{z\ind{eq} &= \frac{h}{2} - \frac{mg}{2k}}
+			\qed
+		\end{DispWithArrows*}
+	\end{itemize}
 }
 
-\QR{%
+\QR[3]{%
 On pose $\ell(t) = z(t)-z\ind{eq}$. Montrer que l'équation différentielle du
 mouvement de la masse $m$ peut se mettre sous la forme canonique~:
 \[
@@ -109,13 +173,49 @@ mouvement de la masse $m$ peut se mettre sous la forme canonique~:
 \]
 Identifier $\w_0$ et $Q$, rappeler leur nom et leur unité.
 }{%
-solu
+On reprend le PFD précédent mais $\forall t$, en remarquant que $\lpp = \zpp$
+et $\lp = \zp$~:
+\begin{DispWithArrows*}[]
+	m\af &= \sum_i \Ff_i
+	\CArrow{$\cdot \uz$}
+	\\\Lra
+	m\zpp(t) &=
+	-mg
+	- k \left( z(t) - \cancel{\ell_0} \right)
+	+ k \left( h - z(t) - \cancel{\ell_0} \right)
+	- \alpha \zp(t)
+	\CArrow{$\mdiv m$}
+	\\\Lra
+	\zpp(t) +
+	\frac{\alpha}{m} \zp(t) +
+	\xunderbracket{\frac{2k}{m}}_{=\w_0{}^2} z(t) &=
+	\xunderbracket{-g +\frac{k}{m}h}_{= \w_0{}^2 z\ind{eq}}
+	\\\Lra
+	\zpp(t) +
+	\frac{\alpha}{m} \zp(t) +
+	\w_0{}^2 \left( z(t) - z\ind{eq} \right) &= 0
+	\\\Lra
+	\Aboxed{\lpp + \frac{\w_0}{Q} + \w_0{}^2 \ell &= 0}
+	\qed
+\end{DispWithArrows*}
+On trouve ainsi $\w_0$ la pulsation propre et $Q$ le facteur de qualité tels
+que~:
+\[
+	\w_0{}^2 = \frac{2k}{m} \Lra \boxed{\w_0 = \sqrt{\frac{2k}{m}}} \quad
+	[\si{rad.s^{-1}}]
+	\qet
+	\frac{\w_0}{Q} = \frac{\alpha}{m} \Lra \boxed{Q = \frac{\sqrt{2km}}{\alpha}}
+	\quad \text{sans unité}
+\]
 }
 
-\QR{%
+\QR[1]{%
 	Quel est le ressort équivalent aux deux ressorts~?
 }{%
-	solu
+	Par identification avec le résultat pour un unique ressort, on trouve
+	\[
+		\boxed{k' = 2k} \qet \boxed{\ell_0' = \frac{h}{2}}
+	\]
 }
 
 \subsection{En régime sinusoïdal forcé}
@@ -135,27 +235,52 @@ solu
 	\end{isd}
 }
 
-\QR{%
+\QR[2]{%
 	Rappeler l'allure des courbes de résonance (amplitude des oscillations
 	en fonction de la fréquence) en position ($\ell(t)$) et en vitesse ($v_z
 		= \lp(t)$) pour un tel système mécanique. À quel type de filtre
 	correspond chaque courbe~?
 }{%
-	solu
+	On trouve les courbes suivantes pour la tension/élongation et
+	l'intensité/vitesse (par analogie au RLC série)~:
+	\smallbreak
+	\begin{isd}
+		\tcbsubtitle{\fatbox{\textbf{Élongation}}}
+		\begin{center}
+			\includegraphics[width=.7\linewidth]{rlc_u-amp}
+			\captionsetup{justification=centering}
+			\captionof{figure}{Résonance en élongation\\Filtre passe-bas}
+		\end{center}
+		\tcblower
+		\tcbsubtitle{\fatbox{\textbf{Vitesse}}}
+		\begin{center}
+			\includegraphics[width=.7\linewidth]{rlc_i-amp}
+			\captionsetup{justification=centering}
+			\captionof{figure}{Résonance en vitesse\\Filtre passe-bande}
+		\end{center}
+	\end{isd}
 }
 
-\QR{%
+\QR[1]{%
 	Exprimer $v_z = \lp(t)$ et $a_z = \lpp(t)$, puis les
 	amplitudes $V$ et $A$ de leurs oscillations en fonction de $L$ et $\w$.
 }{%
-	solu
+	En RSF, on aura $\ell(t) = L \cos(\wt + \f)$, d'où
+	\begin{align*}
+		v_z(t) = -L\w \sin(\wt + \f)   & \Ra \boxed{V = L\w}
+		\\
+		a_z(t) = -L\w^2 \cos(\wt + \f) & \Ra \boxed{A = L\w^2}
+	\end{align*}
 }
 
-\QR{%
+\QR[1]{%
 	Quelle relation relie la bande passante et le facteur de qualité lors
 	de la résonance en vitesse~?
 }{%
-	solu
+	C'est l'acuité de la résonance~:
+	\[
+		\boxed{\Delta\w = \frac{\w_0}{Q}} \Lra \boxed{Q = \frac{\w_0}{\Delta\w}}
+	\]
 }
 
 \enonce{%
@@ -254,32 +379,59 @@ solu
 }
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
-\QR<[start=1]>{%
+\QR<[start=1]>[1]{%
 	Ces deux courbes ont-elles l'allure attendue (vous vérifierez en
 	particulier que les régimes asymptotiques soient approximativement
-	cohérents)~? Les résonances se font-elles à la même pulsation~?
+	cohérents)~? Les résonances se font-elles à la même pulsation~? Conclure sur
+	la valeur du facteur de qualité.
 }{%
 	Voir solution à \url{https://capytale2.ac-paris.fr/web/c/0c79-2069265}.
+	\smallbreak
+	Elles ont en effet l'allure attendue~: l'élongation est non-nulle pour $\w \to
+		0$ alors que la vitesse tend vers 0, elles passent par un maximum à la
+	pulsation estimée à l'œil et tendent vers 0 pour $\w \to \infty$.
+	\smallbreak
+	Théoriquement, les résonances ne se font pas à la même pulsation~: $\w_r$ pour
+	l'élongation est \textbf{plus faible} que $\w_0$ la pulsation de résonance
+	pour la vitesse. Ici, on ne perçoit pas de différence notable. On peut déjà en
+	conclure que le facteur de qualité est relativement élevé.
 }
 
-\QR{%
+\QR[.5]{%
 	Déterminer graphiquement la pulsation de résonance de l'oscillateur
 	$\w_0$.
 }{%
-	solu
+	On pointe le maximum des lissages et on trouve
+	$\w_0 \approx \SI{45}{rad.s^{-1}}$.
 }
 
-\QR{%
+\QR[.5]{%
 	Déterminer la bande passante de l'oscillateur, en déduire le facteur
 	de qualité $Q$.
 }{%
-	solu
+	On trouve les valeurs pour lesquelles $V(\w_c) =
+		\frac{V\ind{max}}{\sqrt{2}}$, et on trouve
+	\[
+		\Delta\w_0 \approx \SI{5}{rad.s^{-1}}
+		\quad \Ra \quad
+		\boxed{Q \approx 9}
+	\]
 }
 
-\QR{%
+\QR[1]{%
 	Conclure.
 }{%
-	solu
+	On tombe sur un résultat cohérent avec nos observations~:
+	\begin{itemize}
+		\item Le facteur de qualité est supérieur à $1/\sqrt{2}$ puisqu'il y a
+		      résonance~;
+		\item Le facteur de qualité est élevé puisque l'élongation maximale à la
+		      résonance est bien plus grande que l'excitation du pot vibrant, qui ne
+		      bouge que de quelques millimètres~;
+		\item Le facteur de qualité est de l'ordre de la dizaine puisqu'en éteignant
+		      le pot vibrant en pleine résonance, on obtient une dizaine d'oscillations
+		      pendant l'amortissement.
+	\end{itemize}
 }
 
 \subsection{Ajustement des données}
@@ -315,13 +467,38 @@ solu
 	\end{enumerate}
 }
 
-\QR{%
+\QR[2]{%
 	Relever vos observations~: est-ce qu'on obtient les mêmes réponses~?
 	Quelle approche vous paraît plus précise dans ce cas~? Quelles sont les
 	avantages et limites au fait d'ajuster un modèle théorique à des
 	données~?
 }{%
-	solu
+	Les résultats sont proches, mais le passage par la minimisation donne de
+	meilleurs résultats, notamment pour les parties de hautes variations où il
+	peut manquer des points de mesure. Souvent, on obtient un facteur de qualité
+	plus grand avec l'ajustement que le lissage si on manque de points autour de
+	la résonance.
+	\smallbreak
+	Ajuster un modèle à des données permet de sonder la vraisemblance des mesures
+	et une comparaison fidèle et honnête avec les incertitudes, tout en permettant
+	des calculs de paramètres automatiques et bien plus précis. On pose le cadre
+	mathématique et physique du réel dans le calcul informatique. Notamment, ici
+	on peut tracer l'ajustement pour des valeurs de $\w$ en-dehors des données
+	testées (voir correction~: tracé avec \texttt{wfit} allant jusqu'à 0).
+	\smallbreak
+	En revanche, il faut avoir une formule analytique pour cette approche
+	(d'autres méthodes récentes dépassent ce problème avec le \textit{machine
+		learning}, mais le résultat est alors souvent une boîte noire), et notamment
+	décider du nombre de paramètres libres (théorie incomplète, frottements
+	quadratiques et non linéaires…) et éviter
+	l'\textit{overfitting}\ftn{«~Surapprentissage~» en français.
+		Voir ce lien~:~\url{https://www.jedha.co/formation-ia/overfitting}}.
+	\smallbreak
+	En général, pour une expérience dont la
+	théorie est connue et maîtrisée comme c'est le cas ici, \textbf{l'ajustement
+		est toujours meilleur}. On préfèrera un lissage lorsque le jeu de donnée de
+	résulte pas de mécanismes descriptibles analytiquement (en sociologie
+	statistique notamment, selon les études).
 }
 
 \subsection{Comparaison à la théorie}
@@ -333,14 +510,28 @@ solu
 	Proposer un protocole (que vous réaliserez) afin de déterminer la
 	raideur $k$ des ressorts utilisés dans l'expérience.
 }{%
-	solu
+	Le plus simple~:
+	\begin{itemize}
+		\item Mesurer $\ell_0$ la longueur à vide d'un ressort \textbf{à
+			      l'horizontale} ~;
+		\item L'accrocher verticalement à un support~;
+		\item Prendre une masse connue et l'accrocher à la partie basse dudit
+		      ressort~;
+		\item Attendre l'équilibre si nécessaire, puis mesurer la longueur à
+		      l'équilibre. On obtient $k$ avec la relation $\ell\ind{eq} = \ell_0 +
+			      \frac{mg}{k} \Lra k = \frac{mg}{\ell\ind{eq}- \ell_0}$.
+	\end{itemize}
+	On pourrait aussi utiliser les résultats obtenus en faisant osciller une masse
+	en mesurant la période de l'élongation, mais cela dépendra de la valeur de
+	$\alpha$ ou de $Q$ ($T\ind{amorti} > T_0$ à cause des frottements). On
+	préfèrera donc un protocole indépendant, i.e.\ le premier.
 }
 
 \QR{%
 	En déduire la valeur de la pulsation théorique $\w\ind{0théo}$.
 	Comparer à la pulsation $\w_0$ précédemment obtenue.
 }{%
-	solu
+	Non corrigé.
 }
 
 \end{document}

@@ -6,16 +6,16 @@
 \makeatother
 
 % \toggletrue{student}
-% \toggletrue{corrige}
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{18}
 
-\settype{enon}
-\settype{solu_prof}
-\settype{solu_stud}
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
 
 \chapter{\cswitch{%
 	  Correction du TP
@@ -144,22 +144,42 @@ Et, en utilisant le fait que $\dd V = S \dd x = S (x-x_0)$,
 \]
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
-\QR{%
+\QR[2]{%
 	Donner alors l'équation différentielle du mouvement du piston en $x$
 }{%
-	solu
+	On a
+	\begin{gather*}
+		\left\{
+		\begin{array}{rl}
+			m \xpp  & = (P - P_0)S + \beta i(t)
+			\\
+			P - P_0 & = - \gamma \frac{P_0}{V_0}S (x-x_0)
+		\end{array}
+		\right.
+		\quad \Ra \quad
+		m \xpp = -\gamma \frac{P_0}{v_0}S^2(x-x_0) + \beta i(t)
+		\\\Lra
+		\boxed{
+			\xpp + \frac{P_0 S^2 \gamma}{m V_0}x =
+			\frac{P_0 S^2 \gamma}{m V_0} x_0 + \frac{\beta}{m}i(t)
+		}
+	\end{gather*}
 }
 
-\QR{%
-	Vérifier que la pulsation propre du mouvement est
-	\[
-		{\w_0}^2 = \frac{P_0S^2\g}{mV_0}
-	\]
+\QR[1]{%
+	Déterminer la pulsation propre du mouvement.
 }{%
-	solu
+	\begin{gather*}
+		\boxed{
+			\xpp + \w_0{}^2 x =
+			\w_0{}^2  x_0 + \frac{\beta}{m}i(t)
+		}
+		\quad \Ra \quad
+		{\w_0} = \sqrt{\frac{P_0S^2\g}{mV_0}}
+	\end{gather*}
 }
 
-\QR{%
+\QR[2]{%
 Montrer que le tracé de la \textbf{fréquence} de résonance au carré en
 fonction de $1/V_0$ est une droite de coefficient directeur $a$ dont on
 précisera l'expression.
@@ -169,9 +189,34 @@ précisera l'expression.
 	\w_0{}^{2} = (2\pi f_0)^{2}
 	\Lra
 	\boxed{
-	f_0{}^{2} = \frac{P_0S^{2}\gamma}{m4\pi^{2}}\frac{1}{V_0}
+	f_0{}^{2} = \frac{P_0S^{2}\gamma}{4m\pi^{2}}\frac{1}{V_0}
 	}
 \]
+D'où
+\[
+	y\tikzmark{yn} = a\tikzmark{an}x\tikzmark{xn} + b\tikzmark{bn}
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
+	(pic cs:yn) --++ (-10pt,-10pt)
+	node[anchor=north east] {$f_0{}^2$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-10pt, yshift=-6pt}]
+	(pic cs:an) --++(-5pt,-10pt)
+	node[anchor=north] {$\DS \frac{P_0 S^2 \gamma}{4m\pi^2}$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=0pt, yshift=-6pt}]
+	(pic cs:xn) --++(5pt,-10pt)
+	node[anchor=north] {$\DS \frac{1}{V_0}$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=3pt, yshift=-6pt}]
+	(pic cs:bn) --++(10pt,-10pt)
+	node[anchor=north west] {$0$}
+	;
+\]
+\vspace{20pt}
 }
 
 \enonce{%
@@ -250,17 +295,16 @@ Aller sur \texttt{Capytale}, en cliquant sur
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR<[start=1]>{%
 	Toujours sur \texttt{Capytale}, remplissez les listes des erreurs
-	\textbf{relatives} pour $V_0$ et $f_0$ (l'incertitude divisée par la
-	valeur).
+	\textbf{relatives} pour $V_0$ et $f_0$.
 }{%
-	solu
+	Voir Capytale~:~\url{https://capytale2.ac-paris.fr/web/c/c758-3021536}.
 }
 
 \QR{%
 	Créer les variables nécessaires au tracé de ${f_0}^2$ en fonction de
 	$1/V_0$.
 }{%
-	solu
+	Idem.
 }
 
 \QR{%
@@ -269,32 +313,47 @@ Aller sur \texttt{Capytale}, en cliquant sur
 	données relevées avec la régression. Les erreurs à afficher sont les
 	incertitudes absolues, pas relatives.
 }{%
-	solu
+	Idem.
 }
 
-\QR{%
+\QR[1]{%
 	La régression est-elle valide~?
 }{%
-	solu
+	Pour qu'elle soit valide, il faut que les points soient répartis aléatoirement
+	autour de la droite, et qu'elle passe par les incertitudes. Sur
+	\texttt{Capytale} c'est globalement le cas, par contre la droite ne passe pas
+	par 0 même avec les incertitudes. Elle est donc peu fiable.
 }
 
-\QR{%
-	Relever le coefficient directeur $a$ de la droite modélisée. Quelle
-	est son unité~?
+\QR[1]{%
+Relever le coefficient directeur $a$ de la droite modélisée. Quelle
+est son unité~?
 }{%
-	solu
+Pour la valeur, cf.\ Capytale.
+\[
+	a = V_0{f_0}^2
+	\quad \Ra \quad
+	[a] = [V_0][f_0{}^2]
+	\quad \Lraqud
+	\boxed{[a] = \si{cm^3.s^{-2}}}
+\]
 }
 
-\QR{%
+\QR[1]{%
 	Déduire, de la partie Analyse, l'expression littérale du coefficient
 	adiabatique $\g$ de l'air en fonction du coefficient directeur $a$ de la
 	droite modélisée, de la masse $m$ de l'aimant, \textbf{du diamètre $d$
 		du piston} et de la pression atmosphérique $P_0$.
 }{%
-	solu
+	On isole $\g$~:
+	\[
+		\gamma = \frac{4\pi^2 m a}{P_0 S^2}
+		\Lra
+		\boxed{\gamma = \frac{64ma}{P_0 d^4}}
+	\]
 }
 
-\QR{%
+\QR[1]{%
 	On a $m = \SI{8,8}{g}$ et $d = \SI{13,97}{mm}$. La pression
 	atmosphérique $P_0$ se lit sur le baromètre placé dans la salle (en
 	\si{mbar}). Après avoir détaillé les valeurs expérimentales et leurs
@@ -302,7 +361,20 @@ Aller sur \texttt{Capytale}, en cliquant sur
 	calculer la valeur expérimentale de $\g$ de l'air. Quelle est son
 	unité~?
 }{%
-	solu
+	On a, en unités SI,
+	\begin{gather*}
+		m = \SI{8.8e-3}{kg}
+		\quad ; \quad
+		P_0 = \SI{982.5e2}{Pa}
+		\quad ; \quad
+		d = \SI{13.97e-3}{m}
+		\quad ; \quad
+		a = \SI{8430.51e-6}{m^3.s^{-2}}
+		\\\beforetext{D'où}
+		\boxed{\gamma = \num{1.27}}
+	\end{gather*}
+	Avec des calculs ou en analysant la loi de \textsc{Laplace}, on trouve que
+	$\gamma$ est \textbf{adimensionné}.
 }
 
 \QR{%
@@ -310,24 +382,30 @@ Aller sur \texttt{Capytale}, en cliquant sur
 	de $a$ et l'incertitude sur la valeur de $a$. En déduire la valeur
 	moyenne et l'incertitude sur la valeur de $\g$.
 }{%
-	solu
+	Cf.\ Capytale.
 }
 
 \QR{%
 	Le cours de thermodynamique permettra de déterminer le coefficient
-	$\g$ de l'air en le considérant comme un gaz parfait diatomique. On a
+	$\g$ d'un gaz selon qu'il soit un gaz parfait diatomique ou monoatomique. On a
 	\[
-		\g\ind{théo} = \frac{7}{5}
+		\g\ind{dia,théo} = \frac{7}{5}
+		\qet
+		\g\ind{mono,théo} = \frac{5}{3}
 	\]
-	Calculer alors l'écart normalisé.
+	Déterminer la bonne valeur théorique par calcul d'écart normalisé. Comparez à
+	ce que vous savez des gaz composant l'air (mono- ou diatomique).
 }{%
-	solu
+	Idem. On doit trouver le coefficient pour un gaz parfait diatomique, puisque
+	l'air est principalement constitué de \ce{N2} et \ce{O2}.
 }
 
-\QR{%
+\QR[1]{%
 	Conclure.
 }{%
-	solu
+	Dû à l'usure des tubes et de problèmes d'étanchéité, les mesures sont peu
+	précises. On obtient cependant une valeur bien plus proche du gaz diatomique
+	que monoatomique.
 }
 
 \end{document}

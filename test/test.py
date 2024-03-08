@@ -52,3 +52,14 @@ mtot = 2.3e3 # kg
 g = 9.81 # m.s^-2
 J = T**2/(4*np.pi**2)*mtot*g*d - m*L**2/3
 print(f"J = {J:.1e} kg.m²")
+
+# TP17
+m = 190e-3                           # kg
+g = 9.81                             # m.s^-2
+l = 45e-2                            # m
+ul = 0.25e-2/np.sqrt(3)              # m
+a_theo = m*g*l/2                     # J.rad^-2
+a_expe = 0.406                       # J.rad^-2
+ua_expe = m*g*ul/2                   # m
+En = abs(a_theo - a_expe)/(ua_expe) # R
+print(f'a_theo = {a_theo:.3f} ; a_expe = {a_expe:.3f}±{ua_expe:.3f} ; En = {En}')

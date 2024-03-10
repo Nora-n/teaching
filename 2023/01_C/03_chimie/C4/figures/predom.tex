@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1, declare function={
+				wdth = 14;
+				hgth = 1.2;
+			}]
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,0) --
+	node[at end, below] {$\pk$}
+	(wdth/2,0) coordinate (M) --
+	node[at end, right] {$\pH$}
+	(wdth,0);
+	% Equality
+	\draw[very thick]
+	(M) --++ (0,hgth)
+	node[at end, above] {$\ce{[AH] = [A-]}$};
+	% Majority
+	\draw[dashed]
+	($(M)+(-1,0)$) coordinate (Ml) --++
+	(0,-hgth)
+	node[at end, below] {$\pk - 1$}
+	($(M)+(+1,0)$) coordinate (Mr) --++
+	(0,-hgth)
+	node[at end, below] {$\pk + 1$}
+	;
+	% Space of prédom
+	\draw[<->]
+	(0,hgth/2) --
+	node[midway, align=center, fill=white]
+	{\textbf{Acide prédomine}\\$[\ce{AH}] > [\ce{A-}]$}
+	(wdth/2,hgth/2);
+	\draw[<->]
+	(wdth/2,hgth/2) --
+	node[midway, align=center, fill=white]
+	{\textbf{Base prédomine}\\$[\ce{AH}] < [\ce{A-}]$}
+	(wdth,hgth/2);
+	% Space of majority
+	\draw[<->]
+	(0,-hgth/2) --
+	node[midway, align=center, fill=white]
+	{Acide majoritaire\\$[\ce{AH}] > 10[\ce{A-}]$}
+	($(Ml)+(0,-hgth/2)$);
+	\draw[<->]
+	($(Mr)+(0,-hgth/2)$) --
+	node[midway, align=center, fill=white]
+	{Base majoritaire\\$[\ce{A-}] > 10[\ce{AH}]$}
+	(wdth,-hgth/2);
+\end{tikzpicture}
+
+\end{document}

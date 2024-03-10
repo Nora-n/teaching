@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1, declare function={
+				wdth = 14;
+				hgth = 1.2;
+			}]
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,0) --
+	node[at end, below] {$\prm \ce{B}\ind{lim} \neq \pk[s]$}
+	node[midway, below] {Équilibre atteint}
+	(wdth/2,0) coordinate (M) --
+	node[midway, below] {Rupture d'équilibre}
+	node[at end, right] {$\prm \ce{B}$}
+	(wdth,0);
+	% Equality
+	\draw[very thick]
+	($(M)+(0,-.2)$) -- (wdth/2,hgth);
+	% Space of prédom
+	\draw[<->]
+	(0,hgth/2) --
+	node[midway, align=center, fill=white]
+	{\textbf{Existence de $\ce{A_pB_q\sol{}}$}}
+	(wdth/2,hgth/2);
+	\draw[<->]
+	(wdth/2,hgth/2) --
+	node[midway, align=center, fill=white]
+	{\textbf{Domaine de $\ce{A+\aqu{}}$}}
+	(wdth,hgth/2);
+\end{tikzpicture}
+
+\end{document}

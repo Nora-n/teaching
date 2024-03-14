@@ -11,16 +11,16 @@
 \hfuzz=5.002pt
 
 % \toggletrue{student}
-% \toggletrue{corrige}
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{7}
 
-\settype{enon}
-\settype{solu_prof}
-\settype{solu_stud}
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
 
 \chapter{\cswitch{Correction du TD}{TD~: Acide-base et précipitation}}
 
@@ -61,7 +61,7 @@
 	espèces.
 }{%
 	\begin{center}
-		\includegraphics[width=\linewidth]{predom_ex1}
+		\includegraphics[width=\linewidth]{predom_h2co3}
 	\end{center}
 }
 \QR{%
@@ -81,14 +81,14 @@
 \QR{
 	Déterminer l'espèce majoritaire dans les trois solutions $S_1, S_2$ et $S_3$
 	caractérisées par~:
-  \begin{tasks}(3)
-    \task 
+	\begin{tasks}(3)
+		\task
 		$\pH_{S_1} = \num{3}$
-    \task 
+		\task
 		$[\ce{H_3O+}]_{S_2} = \SI{1e-8}{mol.L^{-1}}$
-    \task 
-  $[\ce{HO-}]_{S_3} = \SI{1e-2}{mol.L^{-1}}$
-  \end{tasks}
+		\task
+		$[\ce{HO-}]_{S_3} = \SI{1e-2}{mol.L^{-1}}$
+	\end{tasks}
 }{
 	\begin{enumerate}
 		\item Si $\pH = 3$, \ce{H2CO3} prédomine~;
@@ -135,7 +135,7 @@
 	Associer à chaque courbe l'espèce correspondante.
 }{%
 	\begin{center}
-		\includegraphics[width=.5\linewidth]{distrib_ex2}
+		\includegraphics[width=.5\linewidth]{distrib_citrique}
 	\end{center}
 }
 \QR{%
@@ -174,7 +174,7 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 	\begin{minipage}[c]{.30\linewidth}
 		\vspace{0pt}
 		\begin{center}
-			\includegraphics[width=\linewidth]{gamma_ex3}
+			\includegraphics[width=\linewidth]{echpka_phosphate}
 			\captionof{figure}{Échelle $\pk$}
 		\end{center}
 	\end{minipage}
@@ -410,7 +410,7 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 			      \begin{center}
 				      \def\rhgt{0.35}
 				      \centering
-				      \begin{tabularx}{\linewidth}{|l|c||YdYdY|}
+				      \begin{tabularx}{.7\linewidth}{|l|c||YdYdY|}
 					      \hline
 					      \multicolumn{2}{|c||}{
 						      $\xmathstrut{\rhgt}$
@@ -480,22 +480,69 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 	On considère l'hydroxyde de fer II \ce{Fe(OH)_2} de $\pk[s] = \num{15}$.
 }
 \QR{%
-	Quelle est la valeur de $\prm \ce{OH} = - \log \frac{[\ce{HO-}]}{c^\circ}$ de
-	début de précipitation de \ce{Fe(OH)_2} à partir d'une solution en ions
-	\ce{Fe^2+} à la concentration $c_0 = \SI{1e-2}{mol.L^{-1}}$~?
+Quelle est la valeur de $\prm \ce{OH} = - \log \frac{[\ce{HO-}]}{c^\circ}$ de
+début de précipitation de \ce{Fe(OH)_2} à partir d'une solution en ions
+\ce{Fe^2+} à la concentration $c_0 = \SI{1e-2}{mol.L^{-1}}$~?
 }{%
-	On a
+\begin{center}
+	\def\rhgt{0.35}
+	\centering
+	\begin{tabularx}{.7\linewidth}{|l|c||YdYdY|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}} &
+		$\ce{Fe^2+\aqu}$   & $+$                     &
+		$2\ce{HO^-\aqu}$   & $\ra$                   &
+		$\ce{Fe(OH)_2\sol}$                            \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial            & $\xi = 0$               &
+		$c_0V$             & \vline                  &
+		$c_iV$             & \vline                  &
+		$0$                                            \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final              & $\xi_f = \ep \approx 0$ &
+		$c_0V - \ep$       & \vline                  &
+		$c_iV - 2\ep$      & \vline                  &
+		$\ep$                                          \\
+		\hline
+	\end{tabularx}
+\end{center}
+\[
+	K = \frac{{c^\circ}^3}{c_0c_i{}^2} = \frac{1}{K_s}
+	\Lra
+	\boxed{c_i = \sqrt{\frac{{c^\circ}^3 K_s}{c_0}}}
+	\Ra
+	\xul{[\ce{HO-}]\ind{eq} = \SI{3.2e-7}{mol.L^{-1}}}
+	\Lra
+	\xul{\prm \ce{OH} = \num{6.5}}
+\]
 }
 \QR{%
 	En déduire le pH de début de précipitation.
 }{%
-	solu
+	\[
+		K_e = \frac{[\ce{H_3O+}]\ind{eq}[\ce{HO-}]\ind{eq}}{{c^\circ}^2}
+		\Lra
+		\pk[e] = \pH + \prm \ce{OH}
+		\Lra
+		\boxed{\pH = \pk[e] - \prm \ce{OH}}
+		\Ra
+		\xul{\pH = \num{7.5}}
+	\]
 }
 \QR{%
 	Indiquer sur un diagramme, avec le pH en abscisse, les domaines de
 	prédominance des ions \ce{Fe^2+} et d'existence du solide.
 }{%
-	solu
+	\begin{center}
+		\includegraphics[width=\linewidth]{exist_feoh2}
+	\end{center}
+	Le solide existe si les concentrations en ions sont suffisamment importantes.
+	Donc, s'il y a assez des \ce{OH}, on aura $\ce{Fe(OH)_2\sol}$~; en l'occurrence,
+	c'est pour $\pH = \num{7.5}$ que le premier grain de solide apparaît.
 }
 
 \resetQ
@@ -512,23 +559,56 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 	Tracer un diagramme de prédominance contenant les domaines des 4 espèces à
 	considérer.
 }{%
-	solu
+	\begin{center}
+		\includegraphics[width=\linewidth]{predom_hcoo-hclo}
+	\end{center}
 }
 \begin{blocQR}
 	\item
-	Déterminer les les deux mélanges suivants sont stables (aucune réaction
+	Déterminer si deux mélanges suivants sont stables (aucune réaction
 	quantitative n'a lieu)~:
 	\QR{%
 		$n_{\ce{HCOOH},0} = \SI{1}{mol}$ et $n_{\ce{HClO},0} = \SI{1}{mol}$ dans $V =
 			\SI{1}{L}$
 	}{%
-		solu
+		\noindent
+		\begin{minipage}[c]{.75\linewidth}
+			Les deux acides ont des domaines joints, ils ne peuvent donc
+			\textbf{pas} réagir totalement entre eux. S'il y a une réaction, ça
+			sera avec l'eau comme base~; or, les deux acides sont faibles donc
+			leurs réaction avec l'eau sont limitées. On peut s'en convaincre avec
+			une échelle en $\pk$~: réaction prépondérante défavorisée, mélange
+			stable.
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{.24\linewidth}
+			\vspace{0pt}
+			\begin{center}
+				\includegraphics[width=\linewidth]{echpka_hcoo-hclo}
+			\end{center}
+		\end{minipage}
 	}
 	\QR{%
-		$n_{\ce{ClO-,0} = \SI{1}{mol}}$ et $n_{\ce{HCOOH},0} = \SI{1}{mol}$ dans $V =
+		$n_{\ce{ClO-,0}} = \SI{1}{mol}$ et $n_{\ce{HCOOH},0} = \SI{1}{mol}$ dans $V =
 			\SI{1}{L}$
 	}{%
-		solu
+		\noindent
+		\begin{minipage}[c]{.75\linewidth}
+			\ce{ClO-} et \ce{HCOOH} ont des domaines disjoints. Ils peuvent donc
+			réagir quantitativement (i.e.\ totalement) ensemble, selon la valeur
+			de $K$. Ici, on trouve $K = 10^{\abs{\Delta\pk}}$ puisque réaction
+			favorisée/domaines disjoints/$\g$ direct, soit $\boxed{K =
+					10^{\num{3.8}} > \num{e3}}$
+			\smallbreak
+			La réaction sera donc totale, et le \textbf{mélange n'est pas stable}.
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{.24\linewidth}
+			\vspace{0pt}
+			\begin{center}
+				\includegraphics[width=\linewidth]{echpka_hcooh-clo}
+			\end{center}
+		\end{minipage}
 	}
 \end{blocQR}
 
@@ -556,10 +636,10 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 		solution dans le bécher, tout en suivant l'évolution du pH. La figure
 		ci-contre montre le pH en fonction du volume $V$ de solution de \ce{NaOH}
 		versé.
-    \smallbreak
-	L'équivalence est repérée par le saut de pH, qui se produit pour un volume
-	versé $V\ind{eq} = \SI{12.75}{mL}$ (volume pour lequel la dérivée du pH en
-	fonction de $V$ est maximale).
+		\smallbreak
+		L'équivalence est repérée par le saut de pH, qui se produit pour un volume
+		versé $V\ind{eq} = \SI{12.75}{mL}$ (volume pour lequel la dérivée du pH en
+		fonction de $V$ est maximale).
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{.45\linewidth}
@@ -579,13 +659,76 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 	Écrire la réaction de \ce{CH3CO2H} avec \ce{HO-}. Calculer sa constante
 	d'équilibre et commenter.
 }{%
-	solu
+	\begin{gather*}
+		\ce{CH_3COOH\aqu{} + HO^-\aqu{} -> CH_3COO^-\aqu{} + H_2O\liq{}}
+		\tag*{$K$}
+		\\
+		\Ra
+		K =
+		\frac{[\ce{CH_3COO-}]\ind{eq}c^\circ}
+		{[\ce{HO-}]\ind{eq}[\ce{CH_3COOH}]\ind{eq}}
+		\times \frac{[\ce{H_3O+}]\ind{eq}}{[\ce{H_3O+}]\ind{eq}}
+		\Lra
+		\boxed{K = \frac{K_A}{K_e}}
+		\Ra
+		\xul{K = 10^{\num{9.25}} \gg 1}
+		\quad \text{donc totale}
+	\end{gather*}
 }
 \QR{%
 	Calculer le nombre de moles d'acide éthanoïque dans la solution diluée dosée,
 	puis la concentration en acide éthanoïque dans le vinaigre non dilué.
 }{%
-	solu
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{.8\linewidth}{|l|c||YdYdYdY|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}         &
+			$\ce{CH_3COOH\aqu}$        & $+$                &
+			$\ce{HO^-\aqu}$            & $\ra$              &
+			$\ce{CH_3COO-\aqu}$        & $+$                &
+			$\ce{H_2O\liq}$                                   \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial                    & $\xi = 0$          &
+			$c_1V_1$                   & \vline             &
+			$0$                        & \vline             &
+			$0$                        & \vline             &
+			excès                                             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm.                    & $\xi$              &
+			$c_1V_1 - \xi$             & \vline             &
+			$cV - \xi$                 & \vline             &
+			$\xi$                      & \vline             &
+			excès                                             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Équivalence                & $\xi = \xi_{\equ}$ &
+			$c_1V_1 - \xi\ind{eq}$     & \vline             &
+			$cV\ind{eq} - \xi\ind{eq}$ & \vline             &
+			$\xi\ind{eq}$              & \vline             &
+			excès                                             \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	À l'équivalence, on a introduit $n_{\ce{HO-},\equ} = cV\ind{eq} =
+		\SI{1.275e-3}{mol.L^{-1}}$ d'hydroxyde, et on a consommé en totalité les deux
+	produits, soit ici
+	\begin{gather*}
+		\boxed{n_{\ce{CH_3COOH},\equ} = n_{\ce{HO-},\equ}}
+		\Lra
+		\boxed{c_1 = \frac{n\ind{eq}}{V_1}}
+		\Ra
+		\xul{c_1 = \SI{6.375e-2}{mol.L^{-1}}}
+		\\\beforetext{De plus,}
+		\boxed{C = 20c_1}
+		\Ra
+		\xul{C = \SI{1.28}{mol.L^{-1}}}
+	\end{gather*}
 }
 \QR{%
 	Calculer la masse d'acide éthanoïque pour \SI{100}{g} de vinaigre. On donne
@@ -598,13 +741,33 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 		M_{\ce{H}} = \SI{1.0}{g.mol^{-1}}
 	\]
 }{%
-	solu
+	En supposant que le vinaigre a une densité de 1,
+	\begin{gather*}
+		\boxed{m = M n_1 = C V_1 M}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			CV_1             & = & \SI{1.28}{mol.L^{-1}}
+			\\
+			M(\ce{CH_3COOH}) & = & \SI{60}{g.mol^{-1}}
+		\end{array}
+		\right.\\
+		\AN
+		\xul{
+			m = \SI{7.7}{g} = 77\%
+		}
+	\end{gather*}
 }
 \QR{%
 	Calculer les concentrations de \ce{CH3CO2H} et de \ce{CH3CO2^-} dans le
 	vinaigre.
 }{%
-	solu
+	On connaît le pH à l'équilibre, donc avec la relation d'\textsc{Henderson}~:
+	\begin{gather*}
+		\pH = \pk[a] + \log \frac{[\ce{CH_3COO-}]}{[\ce{CH_3COOH}]}
+		\Ra
+		\xul{[\ce{CH_3COO-}]\ind{eq} = \SI{9.1e-3}{mol.L^{-1}}}
+	\end{gather*}
 }
 
 \resetQ
@@ -612,9 +775,9 @@ aqueuse à la concentration initiale $c_0 = \SI{1e-1}{mol.L^{-1}}$.
 La solubilité $s$ de l'hydroxyde d'étain $\ce{Sn(OH)_2\sol{}}$ varie avec le pH
 en raison des équilibres suivants~:
 \begin{alignat}{3}
-	\beforetext{$K_s=10^{\num{-25.2}}$}
+	\beforetext{$K=10^{\num{-25.2}}$}
 	\ce{Sn^2+\aqu{}    & + 2 HO^-\aqu{} &  & = Sn(OH)_2\sol{}   & }
-	\tag{S}\label{eq:RS}
+	\tag{0}\label{eq:R0}
 	\\
 	\beforetext{$K_{A,1}=10^{\num{-2.1}}$}
 	\ce{Sn^2+\aqu{}    & + H_2O\liq{}   &  & = Sn(OH)^+\aqu{}   & + H+\aqu}
@@ -638,23 +801,144 @@ On donne le graphe $\log s = f(\pH)$ ci-dessous~:
 	Indiquer sur une échelle de pH les domaines de prédominance des différentes
 	formes solubles de l'étain considérées ici.
 }{%
-	solu
+	\begin{center}
+		\includegraphics[width=\linewidth]{predom_h2co3}
+	\end{center}
 }
 \QR{%
 	Déterminer la solubilité de l'étain en ne considérant que l'équilibre~:
 	\begin{gather*}
 		\beforetext{$K^\circ$}
 		\ce{Sn(OH)_2\aqu{} = Sn(OH)_2\sol{}}
+		\tag{R}\label{eq:RR}
 	\end{gather*}
 }{%
-	solu
+	La réaction considérée s'écrit~:
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{.5\linewidth}{|l|c||YdY|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$\ce{Sn(OH)_2\sol}$ & $=$                  &
+			$\ce{Sn(OH)_2\aqu}\tikzmark{P5}$             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial             & $\xi = 0$            &
+			$n$                 & \vline               &
+			$0$                                          \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final               & $\xi_f = \xi_{\equ}$ &
+			$n - \xi_{\equ}$    & \vline               &
+			$\xi_{\equ}$                                 \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	\tikz[remember picture, overlay, transform canvas={yshift=6pt}]
+	\node[right=1cm of pic cs:P5] {(5)}
+	;
+	\begin{gather*}
+		\beforetext{On trouve donc}
+		s_2 = \frac{\xi\ind{eq}}{V}
+		\qqet
+		[\ce{Sn(OH)_2}]\ind{eq} = \frac{\xi\ind{eq}}{V} = s_2
+		\qqet
+		K_5 = \frac{[\ce{Sn(OH)_2}]\ind{eq}}{c^\circ} = s_2
+	\end{gather*}
+	On doit donc trouver la valeur de $K_5$. Pour cela, on écrit toutes les
+	réactions intéressantes en faisant attention à la définition de $K_s$~:
+	\begin{alignat}{4}
+		\beforetext{$K_s=10^{\num{-25.2}}$}
+		\ce{               &   & Sn(OH)_2\sol{} & = &  & Sn^2+\aqu{}    & + & 2 HO^-\aqu{}}
+		\tag{S}\label{eq:RS}
+		\\
+		\beforetext{$K_{A,1}=10^{\num{-2.1}}$}
+		\ce{Sn^2+\aqu{}    & + & H_2O\liq{}     & = &  & Sn(OH)^+\aqu{} & + & H+\aqu{}}
+			\tag{1}\label{eq:R1}
+		\\
+			\beforetext{$K_{A,2}=10^{\num{-5.0}}$}
+		\ce{Sn(OH)^+\aqu{} & + & H_2O\liq{}     & = &  & Sn(OH)_2\aqu{} & + & H+\aqu{}}
+		\tag{2}\label{eq:R2}
+		% \\
+		% \beforetext{$K_{A,3}=10^{\num{-9.5}}$}
+		% \ce{Sn(OH)_2\aqu{} & + H_2O\liq{}   &   & = Sn(OH)_3^-\aqu{} & + H+\aqu}
+		% 	\tag{3}\label{eq:R3}
+		\\
+		\beforetext{$K_{e}^2=10^{\num{-28}}$}
+		\ce{               &   & 2H_2O\liq{}    & = &  & 2HO^-\aqu{}    & + & 2H+\aqu{}}
+		\tag{E}\label{eq:RE}
+		\\
+		\beforetext{$K_5$}
+		\ce{               &   & Sn(OH)_2\sol{} & = &  & Sn(OH)_2\aqu{} &   & }
+		\tag{5}\label{eq:R5}
+	\end{alignat}
+	\begin{tcb}(rema)<lftt>{Remarque}
+		On peut écrire les équations avec des $\ce{H_2O\liq{}}$ de part et d'autre
+		pour faire apparaître des $\ce{H_3O^+\aqu}$ à la place des protons.
+	\end{tcb}
+	\begin{align*}
+		\beforetext{Ainsi,}
+		\eqref*{eq:R5} & = \eqref*{eq:RS} + \eqref*{eq:R1} + \eqref*{eq:R2} - \eqref*{eq:RE}
+		\\\Lra
+		K_5            & = K_s \cdot K_{A,1} \cdot  K_{A,2} / K_e{}^2
+		\\\Lra
+		\Aboxed{s_2    & = 10^{\num{-4.3}}\si{mol.L^{-1}}}
+	\end{align*}
+	\begin{tcb}[center](impo){Attention}
+		La définition des $K_s$ est celle \textbf{de la solubilité~!}
+	\end{tcb}
 }
 \QR{%
-	Exprimer la solubilité $s$ de l'hydroxyde d'étain pour tout pH, en considérant
-	cette fois tous les équilibres. Retrouver alors la pente de la courbe pour
-	$\pH > \num{10.5}$.
+Exprimer la solubilité $s$ de l'hydroxyde d'étain pour tout pH, en considérant
+cette fois tous les équilibres. Retrouver alors la pente de la courbe pour
+$\pH > \num{10.5}$.
 }{%
-	solu
+Par conservation de la matière, la solubilité $s$ n'est \textbf{pas
+	uniquement} la concentration en \ce{Sn^2+} mais est plus élevée, puisque la
+réaction de dissolution forme ce composé mais celui-ci intervient dans les
+autres réactions~: on aura donc
+\[
+	\boxed{
+	s = [\ce{Sn^2+}]\ind{eq} + [\ce{Sn(OH)^2}]\ind{eq} + [\ce{Sn(OH)_2}]\ind{eq}
+	+ [\ce{Sn(OH)_3^-}]\ind{eq}
+	}
+\]
+Nous avons déjà calculé la solubilité propre $s_2 = [\ce{Sn(OH)_2}]$~: on s'en
+sert de référence pour exprimer les concentrations des autres éléments à partir
+des définitions des constantes de réaction. En notant $h = [\ce{H+}]\ind{eq}$~:
+\begin{gather*}
+	K_{A,1} = \frac{[\ce{Sn(OH)+\aqu}]\ind{eq}h}{[\ce{Sn^2+\aqu}]\ind{eq}}
+	\qqet
+	K_{A,2} = \frac{[\ce{Sn(OH)_2\aqu{}}]\ind{eq}h}{[\ce{Sn(OH)+\aqu}]\ind{eq}}
+	\qqet
+	K_{A,3} = \frac{[\ce{Sn(OH)_3^-\aqu{}}]\ind{eq}h}{[\ce{Sn(OH)_2\aqu{}}]\ind{eq}}
+	\\\beforetext{Soit}
+	[\ce{Sn(OH)+}]\ind{eq} = \frac{s_2h}{K_{A,2}}
+	\qqet
+	[\ce{Sn^2+}]\ind{eq} = \frac{[\ce{Sn(OH)^+}]\ind{eq}h}{K_{A,1}} = \frac{s_2
+	h^2}{K_{A,1}K_{A,2}}
+	\qqet
+	[\ce{Sn(OH)_3^-}]\ind{eq} = s_2 \frac{K_{A,3}}{h}
+	\\\Ra
+	\boxed{s = s_2 \left( \frac{h^2}{K_{A,1}K_{A,2}} + \frac{h}{K_{A,2}} + 1 +
+		\frac{K_3}{h} \right)}
+\end{gather*}
+On retrouve, selon le diagramme de prédominance en pH, une succession de
+segments de droite (arrondis aux frontières)~: notamment, entre 6 et \num{8.5},
+quand $\ce{Sn(OH)_2\aqu{}}$ est majoritaire, on lit bien $\log s = \num{-4.3}$.
+\smallbreak
+Pour $\pH > \num{10.5}$, le terme dominant est celui en $1/h$, soit
+\begin{align*}
+	\log s         & = \log s_2 + \log K_{A,3} + \pH
+	\\\Lra
+	\Aboxed{\log s & = -\pk[5] - \pk[A,3] + \pH} = \num{-13.8} + \pH
+\end{align*}
+D'où la pente de 1 en pH~!
+% TODO: Plot en python, voir test.py
+
 }
 
 \resetQ

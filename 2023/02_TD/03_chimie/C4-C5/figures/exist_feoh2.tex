@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1, declare function={
+				wdth = 14;
+				hgth = 1.2;
+			}]
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,0) --
+	node[at end, below] {$\pH = \num{7.5}$}
+	node[midway, below] {Rupture d'équilibre}
+	(wdth/2,0) coordinate (M) --
+	node[midway, below] {Équilibre atteint}
+	node[at end, right] {$\pH$}
+	(wdth,0);
+	% Equality
+	\draw[very thick]
+	($(M)+(0,-.2)$) -- (wdth/2,hgth);
+	% Space of prédom
+	\node at ($(0,hgth/2)!0.5!(wdth/2,hgth/2)$)
+	{$\ce{Fe^2+\aqu}$};
+	\node at ($(wdth/2,hgth/2)!0.5!(wdth,hgth/2)$)
+	{$\ce{Fe(OH)_2\sol}$};
+\end{tikzpicture}
+
+\end{document}

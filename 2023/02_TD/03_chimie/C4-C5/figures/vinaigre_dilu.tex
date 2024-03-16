@@ -1,0 +1,57 @@
+\documentclass[preview]{standalone}
+
+\usepackage{pdftricks}
+\begin{psinputs}
+  \usepackage{mintikz}
+  % \usepackage[crop=off]{auto-pst-pdf}
+  % \usepackage{pst-labo}
+\end{psinputs}
+
+\begin{document}
+
+\begin{pdfpic}
+	\psset{unit=.5cm}
+	\newpsstyle{VinaigreDil}{linestyle=none, fillstyle=solid,
+		fillcolor=magenta!20!blue!20!white}
+	\begin{pspicture}(0,0)(15,8)
+		% Vinaigre
+		\rput[lb](0,0){
+			\pstTubeEssais[unit=1cm, glassType=flacon, bouchon,
+				% etiquette, Numero={$\underset{\normalsize c_0}{\text{Vinaigre}}$},
+				etiquette, Numero={\stackunder[2pt]{\rm Vinaigre}{$\mathclap{c_0}$}},
+				niveauLiquide1=90, aspectLiquide1=Vinaigre]
+		}
+		% Dilution
+		\rput[lb](5,0){
+			\pstTubeEssais[unit=1cm, glassType=fioleJauge,
+				niveauLiquide1=84, aspectLiquide1=Eau,
+				niveauLiquide2=5, aspectLiquide2=Vinaigre,
+			]%
+			\def\vh{0.15}
+			\psline{->}(-2.5,\vh)(-1,\vh)
+			\rput[l](-1,\vh){
+				% $\ce{CH3COOH\aqu}$
+				$\left\{\hspace{-5pt}\begin{gathered}
+						\ce{CH_3COOH}
+						\\
+						V_0 = \SI{10.0}{mL}
+						\\
+						c_0
+					\end{gathered}\right.$
+			}
+			\def\eh{4}
+			\psline{->}(-3,\eh)(-1,\eh)
+			\rput[l](-1,\eh){
+				% $\ce{CH3COOH\aqu}$
+				$\left\{\hspace{-5pt}\begin{gathered}
+						\ce{H_2O}
+						\\
+						V_e = \SI{190}{mL}
+					\end{gathered}\right.$
+			}
+			\rput[t](-3,-.5){\small$V\ind{tot} = \SI{200.0}{mL}$}
+		}
+	\end{pspicture}
+\end{pdfpic}
+
+\end{document}

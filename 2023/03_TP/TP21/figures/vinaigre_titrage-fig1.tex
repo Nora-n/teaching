@@ -1,0 +1,30 @@
+\documentclass{article}
+\input tmp.inputs
+\pagestyle{empty}
+\begin{document}
+	\psset{unit=.5cm}
+	\def\Veq{13.3}
+	\def\Vbmax{25}
+	\def\pheq{8.75}
+	\begin{pspicture}(\Vbmax,15)
+		\dosageAfBF[pHstyle=black, dpH=false, Equivalence=false,
+			% pKA=4.75,
+			CA=0.133, VA=10,
+			CB=0.10,
+		]
+		\dosageAfBF[pHstyle=points, dpHunit=.4, Equivalence=false,
+			pKA=4.75,
+			CA=0.133, VA=10,
+			CB=0.10,
+			% Equivalence, valeurs,
+			tangentes, pH1=5.5, tangentesstyle=tgred
+		]
+		\psline[linecolor=black, linestyle=dashed](0,\pheq)(\Vbmax,\pheq)
+		\rput[l](\Vbmax,\pheq){$\pH\ind{equi}$}
+		\psline[linecolor=black, linestyle=dashed](\Veq,0)(\Veq,14)
+		\rput[b](\Veq,14){$\SI{13.3}{mL}$}
+		% \rput[b](16,0){
+		% 	\pstDosage[unit=.5cm]
+		% }
+	\end{pspicture}
+\end{document}

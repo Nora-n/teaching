@@ -3,10 +3,8 @@ import matplotlib.pyplot as plt
 
 base = 42
 
-
 def cout(x, fixe, pourcent):
     return pourcent*base*x + fixe
-
 
 xliste = np.linspace(0, 50, 1000)
 cout_stand = cout(xliste, 0, 1)
@@ -44,7 +42,7 @@ ax.scatter(xliste[idx_rp], cout_remi[idx_rp],
 ax.set_xlim(min(xliste), max(xliste))
 ax.set_ylim(bottom=0)
 
-ax.set_xlabel('Jours', fontsize=15)
+ax.set_xlabel('Allers-retours', fontsize=15)
 ax.set_ylabel('Prix (€)', fontsize=15)
 
 ax.tick_params(labelsize=15)

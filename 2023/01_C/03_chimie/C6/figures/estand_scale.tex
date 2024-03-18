@@ -1,0 +1,88 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[yscale=4, declare function={
+				mmin = -0.85;
+				mmax = 2.2;
+				xoff = 2.2;
+				soff = 4;
+				wdth = .35;
+				btck = 0.20;
+				stck = 0.10;
+			}]
+	% pH
+	\fill[LimeGreen!10]
+	(-wdth,0) rectangle (wdth,1.23);
+	\fill[red!10]
+	(-wdth,mmin) rectangle (wdth,0);
+	\fill[blue!10]
+	(-wdth,1.23) rectangle (wdth,mmax);
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,mmin) --
+	(0,mmax)
+	node[above] {\Large$E^\circ (\si{V})$};
+	\node[draw, thick, rounded corners,
+		% fill=red!10
+	] at (xoff, mmax)
+	{\Large\textbf{Réducteurs}};
+	\node[draw, thick, rounded corners,
+		% fill=blue!10
+	] at (-xoff, mmax)
+	{\Large\textbf{Oxydants}};
+	\foreach \x in {-.5, 0, ..., 2}{
+			\draw[thick]
+			(-btck,\x) -- (btck,\x);
+		}
+	\foreach \x in {-0.8, -0.7, ..., 2}{
+			\draw
+			(-stck,\x) -- (stck,\x);
+		}
+	% AB scale
+	\draw[-{Stealth[scale=1.2]}, thick]
+	(soff,2.3) --
+	(soff,-0.80)
+	node[pos=.75, above, sloped] {\large\textbf{Force des réducteurs}};
+	\draw[-{Stealth[scale=1.2]}, thick]
+	(-soff,-0.80) --
+	(-soff,2.3)
+	node[pos=.75, above, sloped] {\large\textbf{Force des oxydants}};
+	% AB
+	\foreach \A/\B/\E in {
+			\red{\ce{Zn}}/\ce{Zn^2+}/-0.76,
+			\ce{S2O3^2-}/\ce{S4O8^2-}/0.08,
+			\ce{Cu}/\ce{Cu^2+}/0.34,
+			\ce{MnO2}/\ce{MnO4^-}/0.59,
+			\ce{H2O2}/\ce{O2}/0.79,
+			\ce{Cl2}/\blu{\ce{HClO^-}}/1.63,
+			\ce{H2O}/\blu{\ce{H2O2}}/1.78
+		}{
+			\node at (-xoff,\E) {\Large\B};
+			\node at (xoff,\E) {\Large\A};
+			\node at (0,\E) {$\times$};
+			\node[fill=white, opacity=.8, text opacity=1] at (0,\E)
+			{\Large\num{\E}};
+		}
+	% water
+	\foreach \A/\B/\E in {
+			\ce{H2O}/\ce{O2}/1.23
+		}{
+			\node at (-xoff,\E) {\Large\gre{\B}};
+			\node at (xoff,\E) {\Large\gre{\A}};
+			\node at (0,\E) {$\times$};
+			\node[fill=white, opacity=.8, text opacity=1] at (0,\E)
+			{\Large\gre{\num{\E}}};
+		}
+	\foreach \A/\B/\E in {
+			\ce{H2}/\ce{H2O}/0
+		}{
+			\node at (-0.44*xoff,\E) {\Large\gre{\B}};
+			\node at (0.44*xoff,\E) {\Large\gre{\A}};
+			\node at (0,\E) {$\times$};
+			\node[fill=white, opacity=.8, text opacity=1] at (0,\E)
+			{\Large\gre{\num{\E}}};
+		}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[yscale=4, declare function={
+				mmin = -0.1;
+				mmax = 1.5;
+				xoff = 2.2;
+				soff = 4;
+				wdth = .35;
+				btck = 0.20;
+				stck = 0.10;
+			}]
+	\def\ea{0.77}
+	\def\eb{1.74}
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,mmin) --
+	(0,mmax)
+	node[above] {\Large$E^\circ (\si{V})$};
+	\node[draw, thick, rounded corners,
+		% fill=red!10
+	] at (xoff, mmax)
+	{\Large\textbf{Réducteurs}};
+	\node[draw, thick, rounded corners,
+		% fill=blue!10
+	] at (-xoff, mmax)
+	{\Large\textbf{Oxydants}};
+	% water
+	\foreach \A/\DA/\B/\DB/\K/\KN [count=\i] in {
+			\ce{B}/draw/\xul{\ce{C}}//0/0,
+			\xul{\ce{C}}//\ce{A}/draw/1.23/1.23
+		}{
+			\node[\DB] (B\i) at (-xoff,\K) {\Large\B};
+			\node[\DA] (A\i) at (xoff,\K) {\Large\A};
+			\node at (0,\K) {$--$};
+		}
+	\draw[->, very thick]
+	% (B2) .. controls
+	% (A1.south west) ..
+	% ($(A1.south)!0.5!(B1.south)$) ..
+	% controls (B1.south east) ..
+	% (A2)
+	% node[pos=.80, left=.25] {\large Défavorisé}
+	(B2) .. controls
+	(A1.north west) ..
+	($(A1.north)!0.5!(B1.north)$) ..
+	controls (B1.north east) ..
+	(A2)
+	node[pos=.90, right=.1] {\Large Favorisé}
+	;
+\end{tikzpicture}
+
+\end{document}

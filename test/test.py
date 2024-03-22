@@ -67,28 +67,54 @@ import matplotlib.pyplot as plt
 # print(f'a_theo = {a_theo:.3f} ; a_expe = {a_expe:.3f}±{ua_expe:.3f} ; En = {En}')
 
 # TDC4-C5
-Ks = 10**-25.2
-K1 = 10**-2.1
-K2 = 10**-5
-K3 = 10**-9.5
-Ke = 10**-14
-K5 = Ks*K1*K2/(Ke**2)
-# print(f'K5 = {K5}, s2 = {10**-4.3}')
-pK5 = -np.log10(K5)
-pKA3 = -np.log10(K3)
-# print(f'log $s$ - pH = {-pK5 - pKA3}')
+# Ks = 10**-25.2
+# K1 = 10**-2.1
+# K2 = 10**-5
+# K3 = 10**-9.5
+# Ke = 10**-14
+# K5 = Ks*K1*K2/(Ke**2)
+# # print(f'K5 = {K5}, s2 = {10**-4.3}')
+# pK5 = -np.log10(K5)
+# pKA3 = -np.log10(K3)
+# # print(f'log $s$ - pH = {-pK5 - pKA3}')
+#
+# def s(h):
+#     return(K5*(h**2/(K1*K3) + h/K2 + 1 + K3/h))
+# def logs(ph):
+#     hlocal = 10**-ph
+#     return np.log10(K5*(hlocal**2/(K1*K3) + hlocal/K2 + 1 + K3/hlocal))
+#
+# phlist = np.linspace(2, 14, 500)
+# fig = plt.figure(figsize=(7,6))
+# # plt.loglog(hlist, s(hlist))
+# plt.plot(phlist, logs(phlist))
+# plt.grid()
+# plt.xlim(0,14)
+# plt.ylim(top=0)
+# plt.show()
 
-def s(h):
-    return(K5*(h**2/(K1*K3) + h/K2 + 1 + K3/h))
-def logs(ph):
-    hlocal = 10**-ph
-    return np.log10(K5*(hlocal**2/(K1*K3) + hlocal/K2 + 1 + K3/hlocal))
+# DS07 metronome
+m = 20e-3  # kg
+M = 200e-3 # kg
+g = 10     # m.s^-2
+R = 1.5e-2 # m
+ell = 2e-2 # m
+T0 = 1.2   # s
+D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
+    T0**2*M*g*ell/(4*np.pi**2))
 
-phlist = np.linspace(2, 14, 500)
-fig = plt.figure(figsize=(7,6))
-# plt.loglog(hlist, s(hlist))
-plt.plot(phlist, logs(phlist))
-plt.grid()
-plt.xlim(0,14)
-plt.ylim(top=0)
-plt.show()
+xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
+xm = -0.5*g*T0**2/(4*np.pi**2) - np.sqrt(D)/(2*m)
+print(f'x_+ = {xp*1e2:.2f} cm et x_- = {xm*1e2:.2f}')
+T0 = 1    # s
+xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
+D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
+    T0**2*M*g*ell/(4*np.pi**2))
+print(f'x_+ allegro = {xp*1e2:.2f} cm')
+# xp = ((g*T0**2)/(8*np.pi**2))*(
+#     -1 + np.sqrt(
+#     1 -
+#             ((64*M*np.pi**4)/(m*g**2*T0**4))*(ell**2 + 2/5*R**2) +
+#         ((16*M*np.pi**2)/(m*g*T0**2))*ell)
+# )
+# print(f'x_+ direct = {xp*1e2:.2f} cm')

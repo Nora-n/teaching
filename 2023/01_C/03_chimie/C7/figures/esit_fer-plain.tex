@@ -1,0 +1,82 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=.7, yscale=1]
+	\tikzmath{
+		\wdth = 12;
+		\hgth = 1;
+		\emin = -0.85;
+		\emax = 1.4;
+		\phmax = 12;
+		\tick = 0.025;
+		\ct = 0.01;
+		\pt = 1;
+		\pke = 14;
+		\pksfeohb = 15;
+		\pksfeohc = 38;
+		\phfeohb = \pke - 0.5*\pksfeohb - 0.5*log10(\ct);
+		\phfeohc = \pke - \pksfeohc/3 - log10(\ct)/3;
+		\estandfefeb = -0.44;
+		\estandfebfec = 0.77;
+		\efrontfefeb = \estandfefeb + 0.03*log10(\ct);
+		\efrontfebfec = \estandfebfec;
+	}
+	% 0
+	\coordinate (O) at (0,0);
+	\coordinate (Z) at (\phmax,0);
+	% place values
+	\coordinate (A) at (0,\hgth);
+	\coordinate (B) at (\phfeohb,\hgth);
+	\coordinate (C) at (\phmax,\hgth);
+	\coordinate (D) at (0, 2*\hgth);
+	\coordinate (E) at (\phfeohc, 2*\hgth);
+	\coordinate (F) at (\phfeohb, 2*\hgth);
+	\coordinate (G) at (\phmax, 2*\hgth);
+	\coordinate (H) at (0, 3*\hgth);
+	\coordinate (I) at (\phfeohc, 3*\hgth);
+	\coordinate (J) at (\phmax, 3*\hgth);
+	% Plot nodes
+	% \foreach \N in {1, ..., 10}{
+	% 		\node[draw] at (\AlphAlph{\N}) {\AlphAlph{\N}};
+	% 	}
+	% Place elements
+	% \node (FE) at (barycentric cs:O=1,Z=1,A=1,C=1) {$\ce{{Fe}_{\rm(s)}}$};
+	% \node (FE2) at (barycentric cs:A=1,B=1,D=1,F=1) {$\ce{{Fe}^2+_{\rm(aq)}}$};
+	% \node (FEOH2) at (barycentric cs:B=1,C=1,F=1,G=1) {$\ce{{Fe(OH)_2}_{\rm(s)}}$};
+	% \node (FE3) at (barycentric cs:D=1,E=1,H=1,I=1) {$\ce{{Fe}^3+_{\rm(aq)}}$};
+	% \node (FEOH3) at (barycentric cs:E=1,G=1,I=1,J=1) {$\ce{{Fe(OH)_3}_{\rm(s)}}$};
+	% Verti
+	% LR
+	\draw[thick]
+	(O) -- (A) node[midway, left, white] {0};
+	\draw[thick]
+	(A) -- (D) node[midway, left, white] {+\myRoman{2}};
+	\draw[thick]
+	(D) -- (H) node[midway, left, white] {+\myRoman{3}};
+	% \draw[thick]
+	% (Z) -- (J);
+	% Inner
+	% \draw[thick]
+	% (B) -- (F);
+	% \draw[thick]
+	% (E) -- (I);
+	% Horiz
+	% \draw[thick]
+	% (A) -- (C);
+	% \draw[thick]
+	% (D) -- (G);
+	% \draw[thick]
+	% (H) -- (J);
+	% Scale
+	\draw[very thick, -{Stealth}]
+	(0,0) --
+	node[at end, right] {$\pH$}
+	(\wdth+1,0);
+	\draw[very thick, -{Stealth}]
+	(0,0) --
+	node[at end, left] {n.o.}
+	(0,3*\hgth+.5);
+\end{tikzpicture}
+
+\end{document}

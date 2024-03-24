@@ -94,23 +94,23 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 # DS07 metronome
-m = 20e-3  # kg
-M = 200e-3 # kg
-g = 10     # m.s^-2
-R = 1.5e-2 # m
-ell = 2e-2 # m
-T0 = 1.2   # s
-D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
-    T0**2*M*g*ell/(4*np.pi**2))
-
-xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
-xm = -0.5*g*T0**2/(4*np.pi**2) - np.sqrt(D)/(2*m)
-print(f'x_+ = {xp*1e2:.2f} cm et x_- = {xm*1e2:.2f}')
-T0 = 1    # s
-xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
-D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
-    T0**2*M*g*ell/(4*np.pi**2))
-print(f'x_+ allegro = {xp*1e2:.2f} cm')
+# m = 20e-3  # kg
+# M = 200e-3 # kg
+# g = 10     # m.s^-2
+# R = 1.5e-2 # m
+# ell = 2e-2 # m
+# T0 = 1.2   # s
+# D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
+#     T0**2*M*g*ell/(4*np.pi**2))
+#
+# xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
+# xm = -0.5*g*T0**2/(4*np.pi**2) - np.sqrt(D)/(2*m)
+# print(f'x_+ = {xp*1e2:.2f} cm et x_- = {xm*1e2:.2f}')
+# T0 = 1    # s
+# xp = -0.5*g*T0**2/(4*np.pi**2) + np.sqrt(D)/(2*m)
+# D = m**2*g*T0**2/(16*np.pi**4) - 4*m*(2/5*M*R**2 + M*ell**2 -
+#     T0**2*M*g*ell/(4*np.pi**2))
+# print(f'x_+ allegro = {xp*1e2:.2f} cm')
 # xp = ((g*T0**2)/(8*np.pi**2))*(
 #     -1 + np.sqrt(
 #     1 -
@@ -118,3 +118,12 @@ print(f'x_+ allegro = {xp*1e2:.2f} cm')
 #         ((16*M*np.pi**2)/(m*g*T0**2))*ell)
 # )
 # print(f'x_+ direct = {xp*1e2:.2f} cm')
+
+# C7
+ct = 1
+pke = 14
+pks = 33.5
+pbeta4 = -35
+pkr = pks + pbeta4
+ph = pkr + pke + np.log10(ct)
+print(f'pH = {ph}')

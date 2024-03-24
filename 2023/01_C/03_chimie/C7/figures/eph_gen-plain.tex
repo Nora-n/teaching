@@ -1,0 +1,75 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=.5, yscale=3]
+	\tikzmath{
+		\wdth = 12;
+		\hgth = 4;
+		\emin = -0.85;
+		\emax = 1.4;
+		\tick = 0.025;
+		\phmax = 12;
+		\ct = 1;
+		\pt = 1;
+		\pke = 14;
+		\estanda = 1.2;
+		\estandb = 0.6;
+	}
+	\tikzset{declare function={
+				efront1(\x) = \estanda - 0.12*(\x);
+				efront2(\x) = \estandb - 0.015*(\x);
+			}}
+	\pgfmathparse{efront1(\phmax)}\let\elima\pgfmathresult
+	\pgfmathparse{efront2(\phmax)}\let\elimb\pgfmathresult
+	% 0
+	\coordinate (O) at (0,0);
+	\coordinate (Z) at (\wdth,0);
+	% Incli
+	% \draw[thick, name path=E1, blue,
+	% 	mynode={0.25}{above, rotate=-36}{$\boxed{\ce{Ox_1}}$},
+	% 	mynode={0.25}{below, rotate=-36}{$\ce{Red_1}$},
+	% 	mynode={0.85}{above, rotate=-36}{$\ce{Ox_1}$},
+	% 	mynode={0.85}{below, rotate=-36}{$\boxed{\ce{Red_1}}$},
+	% ]
+	% plot[domain=0:\fpeval{\phmax}] (\x,{efront1(\x)})
+	% ;
+	% \draw[thick, name path=E2, red,
+	% 	mynode={0.15}{above, rotate=-5}{$\ce{Ox_2}$},
+	% 	mynode={0.15}{below, rotate=-5}{$\boxed{\ce{Red_2}}$},
+	% 	mynode={0.75}{above, rotate=-5}{$\boxed{\ce{Ox_2}}$},
+	% 	mynode={0.75}{below, rotate=-5}{$\ce{Red_2}$},
+	% ]
+	% plot[domain=0:\fpeval{\phmax}] (\x,{efront2(\x)})
+	% ;
+	% Intersection
+	% \path[name intersections={of=E1 and E2, by=pho}];
+	% Plot \pH0
+	% \draw[dashed]
+	% (pho) -- (pho|-O)
+	% node[below] {$\pH_0$};
+	% Scale
+	\draw[very thick, -{Stealth}]
+	(-.5,0) --
+	node[at end, right] {$\pH$}
+	(\wdth+1,0);
+	% \foreach \x in {2, 4, ..., \fpeval{\wdth}}{
+	% 		\draw
+	% 		(\x,-\tick)
+	% 		node[below] {\num{\x}}
+	% 		--++ (0,2*\tick)
+	% 		;
+	% 	}
+	\draw[very thick, -{Stealth}]
+	(0,\emin) --
+	node[at end, left] {$E~(\si{V})$}
+	(0,\emax);
+	% \foreach \y in {-0.8, -0.4, ..., 1.3}{
+	% 		\draw
+	% 		(-6*\tick,\y)
+	% 		node[left=.3cm] {\num{\fpeval{round(\y,1)}}}
+	% 		--++ (12*\tick,0);
+	% 	}
+\end{tikzpicture}
+
+\end{document}

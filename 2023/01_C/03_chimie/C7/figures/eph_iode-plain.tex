@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=.5, yscale=3]
+	\tikzmath{
+		\wdth = 14;
+		\phmax = 14;
+		\hgth = 4;
+		\emin = -0.85;
+		\emax = 1.4;
+		\tick = 0.025;
+		\ct = 1;
+		\pt = 1;
+		\pke = 14;
+		\estanda = 1.1625;
+		\estandb = 0.60;
+		\estandc = 1.10;
+		\phlim = 50/6;
+	}
+	\tikzset{declare function={
+				efront1(\x) = \estanda - 0.0675*(\x);
+				efront2(\x) = \estandb;
+				efront3(\x) = \estandc - 0.06*(\x);
+			}}
+	\pgfmathparse{efront1(\phmax)}\let\elima\pgfmathresult
+	\pgfmathparse{efront2(\phmax)}\let\elimb\pgfmathresult
+	\pgfmathparse{efront3(\phmax)}\let\elimc\pgfmathresult
+	% 0
+	\coordinate (O) at (0,0);
+	\coordinate (Z) at (\wdth,0);
+	% Scale
+	\draw[very thick, -{Stealth}]
+	(-.5,0) --
+	node[at end, right] {$\pH$}
+	(\wdth+1,0);
+	\foreach \x in {2, 4, 6, 10, 12, 14}{
+			\draw
+			(\x,-\tick)
+			node[below] {\num{\x}}
+			--++ (0,2*\tick)
+			;
+		}
+	\draw[very thick, -{Stealth}]
+	(0,\emin) --
+	node[at end, left] {$E~(\si{V})$}
+	(0,\emax);
+	\foreach \y in {-0.8, -0.4, ..., 1.3}{
+			\draw
+			(-6*\tick,\y)
+			node[left=.3cm] {\num{\fpeval{round(\y,1)}}}
+			--++ (12*\tick,0);
+		}
+\end{tikzpicture}
+
+\end{document}

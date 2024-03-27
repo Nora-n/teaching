@@ -1,0 +1,71 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+	\def\wdth{12}
+	\def\hgth{0.8}
+	\def\pkaa{2.1}
+	\def\pkab{5.0}
+	\def\pkac{9.5}
+	% Pka
+	% \foreach \A/\DA/\B/\DB/\K/\KN/\P/\PN [count=\i] in {
+	% \ce{CH3COOH}/{draw, fill=white}/\ce{CH3COO-}//4.8/{A,1}/+/below,
+	% \ce{NH4+}//\ce{NH3}/{draw, fill=white}/9.2/{A,2}/-/above}
+	% {
+	% % Acide domain
+	% \fill[red!20]
+	% (0,\P \hgth) rectangle (\K,0);
+	% % Basic domain
+	% \fill[blue!10]
+	% (\K,0) rectangle (\wdth,\P \hgth);
+	% }
+	% Common ground
+	% \fill[VioletRed!20]
+	% (4.8,\hgth) rectangle (9.2,-\hgth);
+	% Acide domain
+	% \fill[red!20]
+	% (0,\hgth) rectangle (\pkaa,0);
+	% Basic domain
+	% \fill[blue!10]
+	% (\pkab,0) rectangle (\wdth,+\hgth);
+	% Common ground
+	% \fill[VioletRed!20]
+	% (\pkaa,0) rectangle (\pkab,\hgth);
+	% Draw
+	\foreach \A/\DA/\B/\DB/\K/\KN/\P/\PN [count=\i] in {
+	\ce{Sn^2+}////\pkaa/{A,1}/+/below,
+	////\pkab/{A,2}/+/below,
+	//\ce{Sn(OH)_3^-}//\pkac/{A,3}/+/below%
+	}{
+	% Pka line
+	\draw[very thick]
+	(\K,0) --++ (0,\P \hgth)
+	node[expand style=\DA, thick, midway, left=.1] {\A}
+	node[expand style=\DB, thick, midway, right=.1] {\B};
+	% go through
+	% \draw[very thick, dashed]
+	% (\K,0) --++ (0,-\P \hgth);
+	% Plot pka with cross
+	\node[\PN] at (\K,0) {$\pk[\KN]= \num{\K}$};
+	\node at (\K,0) {$\times$};
+	}
+	% middle
+	\node at ($(\pkaa,\hgth/2)!0.5!(\pkab,\hgth/2)$) {\ce{Sn(OH)^+}};
+	\node at ($(\pkab,\hgth/2)!0.5!(\pkac,\hgth/2)$) {\ce{Sn(OH)_3^-}};
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,0) --
+	node[at end, right] {$\pH$}
+	(\wdth,0);
+	\foreach \x in {0, 5, ..., \fpeval{\wdth-1}}{
+			\draw[thick]
+			(\x,0.15) -- (\x,-0.15);
+		}
+	\foreach \x in {0, ..., \fpeval{\wdth-1}}{
+			\draw
+			(\x,0.075) -- (\x,-0.075);
+		}
+\end{tikzpicture}
+
+\end{document}

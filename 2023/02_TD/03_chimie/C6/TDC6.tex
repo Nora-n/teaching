@@ -8,21 +8,21 @@
 \hfuzz=5.002pt
 
 % \toggletrue{student}
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{5}
 
-% \settype{enon}
-% \settype{solu_prof}
-% \settype{solu_stud}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
 
-\chapter{\cswitch{Correction du TD}{TD~: oxydorédution}}
+\chapter{\cswitch{Correction du TD}{TD~: oxydoréduction}}
 
 \resetQ
-\section{Équations bilan d'oxydorédution}
+\section{Équations bilan d'oxydoréduction}
 \enonce{%
 On s'intéresse aux couples
 $\ce{{MnO_4^{-}}_{\rm(aq)}}/\ce{{Mn}^2+_{\rm(aq)}}$,
@@ -34,7 +34,7 @@ l'ion permanganate et \ce{HClO} l'acide hypochloreux.
 \QR{%
 	Écrire et équilibrer les demi-équations de chacun des couples en milieu acide.
 }{%
-	\vspace{-15pt}
+	\leavevmode\vspace*{-15pt}\relax
 	\begin{alignat*}{4}
 		\beforetext{On obtient}
 		\ce{{MnO_4^{-}}_{\rm(aq)} & + 8 {H}^+_{\rm(aq)}      &  & +5e^- &  & = & {Mn}^2+_{\rm(aq)} & + 4 H_2O_{\rm(l)}}
@@ -65,6 +65,7 @@ l'ion permanganate et \ce{HClO} l'acide hypochloreux.
 		\end{enumerate}
 	\end{minipage}
 }{%
+	\vspace{-15pt}
 	\begin{enumerate}[label=\alph*)]
 		\item Pas de difficulté~:
 		      \[
@@ -277,7 +278,7 @@ On a~:
 		K^\circ =
 		10^{\DS +\frac{\abs{\Delta{E^\circ}}}{\num{0.06}}} =
 		10^{\DS \frac{E_2^\circ - E_1^\circ}{\num{0.06}}}
-		Lra
+		\Lra
 		K^\circ = \num{2.15}
 	\]
 	en prenant la valeur absolue puisqu'on a déterminé que la réaction était
@@ -488,15 +489,15 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	Écrire les réactions électrochimiques aux électrodes, puis la réaction de
 	fonctionnement qui se produit lorsque la pile débite.
 }{%
-	\vspace{-15pt}
+	\leavevmode\vspace*{-15pt}\relax
 	\begin{align*}
 		\ce{
-		{Ag}^+_{\rm(aq)} + e^- = Ag_{\rm(s)}
+		{Ag}^+_{\rm(aq)} + e^-           & = Ag_{\rm(s)}
 		}
 		\tag*{cathode = réduction}
 		\\
 		\ce{
-		Zn_{\rm(s)} = {Zn}^2+_{\rm(aq)} + 2e^-
+		Zn_{\rm(s)}                      & = {Zn}^2+_{\rm(aq)} + 2e^-
 		}
 		\tag*{anode = oxydation}
 		\\\Ra
@@ -511,9 +512,9 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	Schématiser le déplacement des porteurs de charge dans chaque partie de la
 	pile lorsqu'elle débite du courant.
 }{%
-	\begin{center}
-		\includegraphics[width=.5\linewidth, valign=t]{pile_ag-zn}
-	\end{center}
+	\hfill
+	\includegraphics[width=.5\linewidth, valign=t]{pile_ag-zn}
+	\hspace*{\fill}
 }%
 \QR{%
 	Déterminer la composition de la pile lorsqu'elle est usée. Quelle quantité
@@ -616,7 +617,26 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	Pour simplifier, on prendra \SI{1}{mol.L^{-1}} comme concentration frontière.
 	Qu'observe-t-on~?
 }{%
-	solu
+	\noindent
+	\begin{minipage}[t]{.75\linewidth}
+		On trace une échelle en potentiels limites, ici confondables avec les
+		potentiels standard puisque les concentrations sont unitaires, et on voit que
+		la \textbf{réaction prépondérante} est celle de \textbf{la dismutation} et
+		qu'\textbf{elle est favorisée} (gamma sens direct)~: $\ce{Cu^+}$ est donc bien
+		instable.
+		\smallbreak
+		On trouve la même chose avec un diagramme de prédominance~:
+		\begin{center}
+			\includegraphics[scale=1]{predom_cu}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.25\linewidth}
+		\vspace{0pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{estand_dismut-cu}
+		\end{center}
+	\end{minipage}
 }%
 \enonce{%
 	Les ions cuivre I forment avec les ions iodure \ce{I^-} le précipité
@@ -626,7 +646,29 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	Écrire l'équation de dissolution du précipité, puis les demi-équations rédox
 	pour les couples \ce{CuI/Cu} et \ce{Cu^2+/CuI}.
 }{%
-	solu
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{align*}
+		\beforetext{Dissolution}
+		\ce{
+		CuI_{\rm(s)} & = {Cu}^+_{\rm(aq)} + {I}^-_{\rm(aq)}
+		}
+		\tag*{$K_s$}
+		\\
+		\beforetext{Couple \ce{CuI/Cu}}
+		\ce{
+		{Cu}_{\rm(s)} + {I}^-_{\rm(aq)}
+		             & =
+		CuI_{\rm(s)} + e^-
+		}
+		\tag*{$E_3$}
+		\\\beforetext{Couple \ce{Cu^2+/CuI}}
+		\ce{
+		CuI_{\rm(s)}
+		             & =
+		{Cu}^2+_{\rm(aq)} + {I}^-_{\rm(aq)} + e^-
+		}
+		\tag*{$E_4$}
+	\end{align*}
 }%
 \QR{%
 	En déduire la relation de \textsc{Nernst} pour les couples \ce{CuI/Cu} et
@@ -635,13 +677,72 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	$E_1^\circ$ d'une part, puis $E_4^\circ$ en fonction de $\pk[s]$ et
 	$E_2^\circ$ d'autre part. Calculer les valeurs numériques.
 }{%
-	solu
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		\beforetext{On a}
+		E_3 = E_3^\circ + \num{0.06} \log \frac{c^\circ}{[\ce{I^-}]}
+		\qqet
+		E_4 = E_4^\circ + \num{0.06}\log \frac{[\ce{Cu^2+}][\ce{I^-}]}{{c^\circ}^2}
+	\end{gather*}
+	Comme le précipité est présent (sinon les demi-équations n'existeraient pas),
+	on est à l'équilibre du solide en solution saturée, soit
+	\begin{gather*}
+		K_s = \frac{[\ce{Cu^+}][\ce{I^-}]}{{c^\circ}^2}
+		\tag{S}
+		\\\Lra
+		\frac{[\ce{I^-}]}{c^\circ} = \frac{c^\circ K_s}{[\ce{Cu^+}]}
+		\tag{I}
+		\\\beforetext{Unicité potentiel $\Ra$}
+		E_1 = E_3
+		\Lra
+		E_1^\circ + \num{0.06} \log \frac{[\ce{Cu^+}]}{c^\circ} =
+		E_3^\circ + \num{0.06} \log \frac{c^\circ}{[\ce{I^-}]}
+		\\\Lra
+		E_3^\circ = E_1^\circ + \num{0.06} \log \frac{[\ce{Cu^+}][\ce{I^-}]}{{c^\circ}^2}
+		\tag*{avec (S)}
+		\\\Lra
+		\boxed{E_3^\circ = E_1^\circ - \num{0.06}\pk[s]}
+		\Ra
+		\xul{E_3^\circ = -\SI{0.14}{V}}
+		\\
+		\beforetext{Également,}
+		E_2 = E_4
+		\Lra
+		E_2^\circ + \num{0.06} \log \frac{[\ce{Cu^2+}]}{[\ce{Cu^+}]} =
+		E_4^\circ + \num{0.06} \log \frac{[\ce{Cu^2+}][\ce{I^-}]}{{c^\circ}^2}
+		\\\Lra
+		E_2^\circ + \num{0.06} \log \frac{[\ce{Cu^2+}]}{[\ce{Cu^+}]} =
+		E_4^\circ + \num{0.06} \log \frac{[\ce{Cu^2+}]K_s}{[\ce{Cu^+}]}
+		\tag*{avec (I)}
+		\\\Lra
+		\boxed{E_4^\circ = E_2^\circ + \num{0.06}\pk[s]}
+		\Ra
+		\xul{E_4^\circ = \SI{0.82}{V}}
+	\end{gather*}
 }%
 \QR{%
 	Expliquer alors en quoi les ions cuivre I sont stabilisés en présence d'ions
 	iodure.
 }{%
-	solu
+	\noindent
+	\begin{minipage}[t]{.70\linewidth}
+		La question n'est pas de discuter de la stabilité des ions
+		$\ce{{Cu}^+_{\rm(aq)}}$, mais du \textbf{cuivre au \no +\myRoman{1}}. Sous la
+		forme ionique, en effet il y a spontanément dismutation et ils ne sont pas
+		stables. En revanche, en présence d'ions iodure ils vont précipiter pour
+		former du $\ce{CuI_{\rm(s)}}$, mais le cuivre \textbf{reste au \no
+			+\myRoman{1}}. Or, avec une échelle en $E^\circ$, on voit que cette fois la
+		réaction de $\ce{CuI_{\rm(s)}}$ sur lui-même est défavorisé~:
+		\textbf{$\ce{CuI_{\rm(s)}}$ est stable}, et ainsi le \textbf{cuivre I a été
+			stabilité par précipitation}.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.29\linewidth}
+		\vspace{0pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{estand_dismut-cui}
+		\end{center}
+	\end{minipage}
 }%
 
 \resetQ
@@ -661,28 +762,102 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 \QR{%
 	Écrire l'équation bilan du titrage rédox direct.
 }{%
-	solu
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		\beforetext{On a}
+		\ce{2 {Cr}^3+_{\rm(aq)} + 7H_2O_{\rm(l)} = {Cr_2O_7}^{2-}_{\rm(aq)} + 14
+			{H}^+_{\rm(aq)} + 6 e^-}
+		\qet
+		\ce{{Fe}^2+ = {Fe}^3+ + e^-}
+		\\\Lra
+		\boxed{
+		\ce{
+		{Cr_2O_7}^{2-}_{\rm(aq)} + 14 {H}^+_{\rm(aq)} + 6 {Fe}^2+_{\rm(aq)}
+		=
+		2 {Cr}^3+_{\rm(aq)} + 7H_2O_{\rm(l)} + 6 {Fe}^3+_{\rm(aq)}
+		}
+		}
+		\tag{1}
+		\label{eq:titdir}
+	\end{gather*}
 }%
 \QR{%
-	Calculer sa constante d'équilibre. Cette réaction est-elle adaptée à un
-	titrage~? Pourquoi est-elle malgré tout peu adaptée à un titrage
-	colorimétrique~?
+	Déterminer l'expression de sa constante d'équilibre, puis la calculer. Cette
+	réaction est-elle adaptée à un titrage~? Pourquoi est-elle malgré tout peu
+	adaptée à un titrage colorimétrique~?
 }{%
-	solu
+	Par unicité du potentiel, on trouve
+	\begin{gather*}
+		E_1^\circ + \frac{\num{0.06}}{6} \log
+		\frac{[\ce{Cr_2O_7^{2-}}][\ce{H^+}]^{14}}{[\ce{Cr^3+}]^2 {c^\circ}^{13}}
+		=
+		E_2^\circ + \frac{\num{0.06}}{6} \log \frac{[\ce{Fe^3+}]^6}{[\ce{Fe^2+}]^6}
+		\\\Lra
+		\frac{6}{\num{0.06}} (E_1^\circ - E_2^\circ) =
+		\log \frac{[\ce{Fe^3+}]^6}{[\ce{Fe^2+}]^6} - \log \frac{[\ce{Cr_2O_7^{2-}}][\ce{H^+}]^{14}}{[\ce{Cr^3+}]^2 {c^\circ}^{14}}
+		\\\Lra
+		\frac{6}{\num{0.06}} (E_1^\circ - E_2^\circ) =
+		\log \frac{[\ce{Fe^3+}]^6[\ce{Cr^3+}]^2{c^\circ}^{13}}{[\ce{Fe^2+}]^6[\ce{Cr_2O_7^{2-}}][\ce{H^+}]^{14}} =
+		\log K^\circ
+		\\\Lra
+		\boxed{K^\circ = 10^{\DS \frac{6}{\num{0.06}}(E_1^\circ - E_2^\circ)}}
+		\Ra
+		\xul{K^\circ = \num{e56} \gg 1}
+	\end{gather*}
+	Cette réaction est donc \textbf{quantitative}, ce qui la rend bien adaptée à
+	un titrage (à condition qu'elle soit également rapide). Cependant, elle
+	consomme une espèce orange et une espèce verte, et forme une espèce orange et
+	une espèce verte~: le \textbf{changement de couleur} à l'équivalence
+	\textbf{risque d'être peu visible}.
 }%
 \QR{%
 	Justifier qu'il serait possible de suivre la réaction par potentiométrie.
-	Détreminer le sens du saut de potentiel qui serait observé~: est-il descendant
+	Déterminer le sens du saut de potentiel qui serait observé~: est-il descendant
 	ou montant~?
 }{%
-	solu
+	Cette réaction est une \textbf{réaction rédox}~: on peut donc mesurer son
+	potentiel pour rendre compte de sa composition, et ainsi de suivre le titrage.
+	\smallbreak
+	Pour déterminer le sens du saut de potentiel, il faut déterminer les espèces
+	prédominantes de chaque couple avant et après l'équivalence. L'énoncé indique
+	(implicitement) que ce sont les ions fer II qui sont ajoutés progressivement
+	au milieu. Ainsi~:
+	\begin{itemize}
+		\bitem{Avant l'équivalence}, $\ce{{Fe}^2+_{\rm(aq)}}$ est limitant, et
+		$\ce{{Cr_2O_7^{2-}}_{\rm(aq)}}$ est en excès. Comme la réaction est peu
+		avancée au début du titrage, on a peu de $\ce{{Cr}^3+_{\rm(aq)}}$ et de
+		$\ce{{Fe}^3+_{\rm(aq)}}$~; ainsi qualitativement
+		\[
+			\boxed{
+			[\ce{Cr_2O_7^{2-}}] > [\ce{Cr^3+}]
+			\qet
+			[\ce{Fe^3+}] > [\ce{Fe^2+}]
+			}
+		\]
+		c'est-à-dire que ce sont les \textbf{oxydants qui prédominent}, ainsi
+		\textbf{le potentiel de la solution est élevé}.
+		\bitem{Après l'équivalence}, et vers la fin du titrage,
+		$\ce{{Cr_2O_7^{2-}}_{\rm(aq)}}$ est limitant et $\ce{{Fe}^2+_{\rm(aq)}}$ est
+		en excès. La réaction n'avance plus et les produits sont présents avec la même
+		quantité qu'à l'équivalence, soit
+		\[
+			\boxed{
+			[\ce{Cr_2O_7^{2-}}] < [\ce{Cr^3+}]
+			\qet
+			[\ce{Fe^3+}] < [\ce{Fe^2+}]
+			}
+		\]
+		donc ce sont les \textbf{réducteurs qui dominent}, et \textbf{le potentiel de
+			la solution est faible}.
+	\end{itemize}
+	En conclusion, le \textbf{saut de potentiel observé est descendant}.
 }%
 \enonce{%
 	Pour contourner la difficulté sans montage de potentiométrie, on effectue un
 	dosage en retour. Dans un bécher, on verse $V_1 = \SI{4.0}{mL}$ de la solution
 	de dichromate de potassium dont on cherche la concentration $c_1$. On y ajoute
 	$V_2 = \SI{10.0}{mL}$ d'une solution de sulfate de fer II en milieu
-	sulfurique, de concentration $c_2 = \SI{0.10}{mol.L^{-1}}$ et $V_2 -
+	sulfurique, de concentration $c_2 = \SI{0.10}{mol.L^{-1}}$ et $V\ind{eau} =
 		\SI{90.0}{mL}$ d'eau. On verse ensuite par une burette une solution de
 	permanganate de potassium de concentration $c_3 = \SI{1.0e-2}{mol.L^{-1}}$.
 	Une coloration violette, caractéristique du permanganate en solution, apparaît
@@ -692,17 +867,70 @@ $[\ce{Ag+}]_i = c = \SI{0.18}{mol.L^{-1}}$ et $[\ce{Zn^2+}]_i = c' =
 	Comment peut-on s'assurer qualitativement que les ions fer II ont bien été
 	apportés en excès par rapport au dichromate~?
 }{%
-	solu
+	On imagine, même si c'est peu explicite, qu'avec un grand excès d'ions fer II
+	en solution on aura une couleur verte au lieu de la couleur orangée des ions
+	dichromate.
 }%
 \QR{%
-	Écrire l'équation bilan du titrage en retour.
+Écrire l'équation bilan du titrage en retour.
 }{%
-	solu
+Dans un titrage en retour, on \textbf{dose l'excès connu de réactif}. On peut
+cependant s'interroger sur les réactions possibles~: après la première
+réaction~\eqref{eq:titdir}, on a les quantités
+\[
+	\stackunder{$\ce{{Cr_2O_7}^{2-}_{\rm(aq)}}$}{$0$} +
+	\stackunder{$\ce{14 {H}^+_{\rm(aq)}}$}{excès} +
+	\stackunder{$\ce{6 {Fe}^2+_{\rm(aq)}}$}{$c_2V_2 - 6n_{\ce{Cr_2O_7^{2-}}}$}
+	=
+	\stackunder{$\ce{2 {Cr}^3+_{\rm(aq)}}$}{$2n_{\ce{Cr_2O_7^{2-}}}$} +
+	\stackunder{$\ce{7H_2O_{\rm(l)}}$}{excès} +
+	\stackunder{$\ce{6 {Fe}^3+_{\rm(aq)}}$}{$6n_{\ce{Cr_2O_7^{2-}}}$}
+\]
+donc il serait possible d'utiliser les ions permanganate, très oxydants, pour
+réagir avec le réducteur $\ce{Fe^2+}$ ou le réducteur $\ce{Cr^3+}$~; cependant
+avec une échelle en $E^\circ$ comme $E^\circ(\ce{Fe^{3+}/Fe^{2+}}) <
+	E^\circ(\ce{Cr_2O_7^{2-}/Cr^{3+}})$, c'est bien la réaction avec les ions fer et
+le permanganate qui est la réaction prépondérante.
+\smallbreak
+Ainsi, on écrit les demi-équations~:
+\begin{gather*}
+	\ce{
+	{Fe}^2+_{\rm(aq)} =
+		{Fe}^3+_{\rm(aq)} + e^-
+	}
+	\qet
+	\ce{
+	{Mn}^2+_{\rm(aq)} + 4 H_2O_{\rm(l)} =
+		{MnO_4}^-_{\rm(aq)} + 8 {H}^+_{\rm(aq)} + 5e^-
+	}
+	\\\Ra
+	\boxed{
+	\ce{
+	{MnO_4}^-_{\rm(aq)} + 8 {H}^+_{\rm(aq)} + 5{Fe}^2+_{\rm(aq)} =
+		{Mn}^2+_{\rm(aq)} + 4 H_2O_{\rm(l)} + 5{Fe}^3+_{\rm(aq)}
+	}
+	}
+\end{gather*}
 }%
 \QR{%
 	Déterminer la concentration $c_1$ de la solution de dichromate de potassium.
 }{%
-	solu
+	La quantité de dichromate est $c_1V_1$. Le second titrage étant également
+	total, à l'équivalence du dosage en retour on aura consommé tout les ions fer
+	II restant de la première avec l'ajout d'ions permanganate de la burette, soit
+	\begin{gather*}
+		c_3V_{3,\eqi} - \xi_f = 0
+		\qet
+		c_2v_2 - 6c_1V_1 - 5\xi_f = 0
+		\\\Lra
+		c_3V_{3,\eqi} = \frac{c_2V_2 - 6c_1V_1}{5}
+		\Lra
+		6c_1V_1 = c_2V_2 - 5 c_3V_{3,\eqi}
+		\\\Lra
+		\boxed{c_1 = \frac{c_2V_2 - 5c_3V_{3,\eqi}}{6V_1}}
+		\Ra
+		\xul{c_1 = \SI{1.7e-2}{mol.L^{-1}}}
+	\end{gather*}
 }%
 
 \resetQ
@@ -723,40 +951,78 @@ Figure~\ref{fig:pile_comb}
 Chaque cellule élémentaire est constituée de deux compartiments disjoints,
 alimentés chacun en gaz dihydrogène et dioxygène. Les électrodes sont séparées
 par un électrolyte solide qui laisse passer les anions oxygène. Les couples
-d'oxydorédution mis en jeu dans la réaction sont
+d'oxydoréduction mis en jeu dans la réaction sont
 $\ce{{H}^+_{\rm(aq)}/{H_2}_{\rm(g)}}$ et $\ce{{O_2}_{\rm(g)}/H_2O_{\rm(l)}}$.
 }%
 \QR{%
-	Indiquer la position des atomes constitutifs dans les réactifs et du produit.
-	En déduire les schémas de \textsc{Lewis} des trois molécules.
+	Indiquer la position des atomes constitutifs des réactifs et du produit dans
+	le tableau périodique. En déduire leur nombre d'électrons de valence et
+	ainsi les schémas de \textsc{Lewis} des trois molécules.
 }{%
-	solu
+	L'hydrogène est dans la première ligne, première colonne donc 1 électron de
+	valence et respecte la règle du duet~; l'oxygène deuxième
+	ligne, 16\ieme{} colonne donc 6 électrons de valence et respecte la règle de
+	l'octet. Ainsi,
+	\[
+		\cfig{H-H}
+		\qet
+		\cfig{\charge{120=\|,-120=\|}{O}=\charge{60=\|,-60=\|}{O}}
+		\qet
+		\cfig{\charge{45=\|,135=\|}{O}
+			(-[7,.7]H)
+			(-[5,.7]H)
+		}
+	\]
 }%
 \QR{%
 	À partir des informations du schéma, attribuer et justifier le choix de la
-	cathode et de l'anonde aux électrodes 1 et 2, ainsi que le sens de circulation
+	cathode et de l'anode aux électrodes 1 et 2, ainsi que le sens de circulation
 	des électrons.
 }{%
-	solu
+	Au niveau de l'électrode 1, il y a arrivée de dihydrogène, un réducteur, et
+	départ d'eau, l'oxydant associé~: il y a donc \textbf{oxydation du
+		dihydrogène}, et \textbf{l'électrode 1 est l'anode}. Réciproquement à
+	l'électrode 2 il y a arrivée de dioxygène, un oxydant, et départ d'eau qui est
+	le réducteur associé~: il y a donc \textbf{réduction du dioxygène}, et
+	\textbf{l'électrode 2 est la cathode}. Ainsi, les électrons traversent la pile
+	de l'électrode 1 vers l'électrode 2.
 }%
 \QR{%
-	Écrire les demi-équations électroniques pour chaque couple mis en jeu, quand
-	la pile débite.
+Écrire les demi-équations électroniques pour chaque couple mis en jeu, quand
+la pile débite.
 }{%
-	solu
+D'après la question précédente,
+\[
+	\ce{{H_2}_{\rm(g)} -> 2 {H}^+_{\rm(aq)} + 2e^-}
+	\qet
+	\ce{{O_2}_{\rm(g)} + 4 {H}^+_{\rm(aq)} + 4e^- -> 2 {H_2O}_{\rm(l)}}
+\]
+\begin{tcb}(rema)<lftt>{Signe des demi-équations}
+	Il n'est jamais faux d'écrire les demi-équations avec des signes «~=~», mais
+	comme la pile débite on suppose qu'on s'intéresse au sens de
+	fonctionnement~; on peut insister sur la transformation avec une flèche.
+\end{tcb}
 }%
 \QR{%
 	Le réactif qui est oxydé est appelé le combustible de la pile. Parmi les
 	espèces chimiques présentes dans les couples, laquelle constitue le
 	combustible~?
 }{%
-	solu
+	Parmi les espèces en présence, c'est \textbf{le dihydrogène} qui est oxydé,
+	c'est donc lui le combustible.
 }%
 \QR{%
-	En déduire l'équation de la réaction modélisant la transformation ayant lieu
-	dans la cellule de réaction.
+En déduire l'équation de la réaction modélisant la transformation ayant lieu
+dans la cellule de réaction.
 }{%
-	solu
+En combinant les demi-équations~:
+\[
+	\boxed{
+	\ce{
+	2 {H_2}_{\rm(g)} + {O_2}_{\rm(g)} -> 2 {H_2O}_{\rm(l)}
+	}
+	}
+\]
 }%
 \enonce{%
 	Dans un véhicule motorisé fonctionnant grâce à une pile à combustible, on
@@ -769,14 +1035,34 @@ $\ce{{H}^+_{\rm(aq)}/{H_2}_{\rm(g)}}$ et $\ce{{O_2}_{\rm(g)}/H_2O_{\rm(l)}}$.
 	puis le volume occupé par cette quantité de gaz à $\SI{20}{\degreeCelsius}$
 	sous pression atmosphérique.
 }{%
-	solu
+	La masse molaire du dihydrogène est $M_{\ce{H_2}} = \SI{2.0}{g.mol^{-1}}$~; la
+	quantité de matière nécessaire pour parcourir \SI{250}{km} est donc
+	\begin{gather*}
+		n = \frac{m}{M} = \SI{750}{mol}
+		\\\beforetext{Or, gaz parfait donc}
+		\boxed{V = \frac{nRT}{P}}
+		\Lra
+		\xul{V = \SI{1.8e4}{L}}
+	\end{gather*}
 }%
 \QR{%
 	Quel est l'avantage pour l'environnement de l'utilisation d'une pile à
 	combustible au dihydrogène par rapport à un carburant classique~? Quel en est
 	l'inconvénient majeur~?
 }{%
-	solu
+	Le gros avantage de la pile à combustible est qu'elle ne rejette que de l'eau,
+	et aucune substance polluante. L'inconvénient majeur de la pile envisagée ici
+	est bien sûr la production et le stockage du dihydrogène, qui est un gaz très
+	explosif.
+	\begin{tcb}(rema)<lftt>{Remarque}
+		Le stockage du dihydrogène pour les piles à combustible est un domaine de
+		recherche très actif. Il est a priori produit par électrolyse de l'eau
+		(i.e.\ l'inverse de la réaction ayant lieu dans la pile), l'énergie
+		nécessaire à l'électrolyse pouvant venir d'une source d'énergie propre. Il
+		est ensuite stocké selon différentes modalités~: bouteille de gaz ou de
+		liquide, stockage dans des hydrures métalliques solides, etc. Voir la page
+		Wikipédia «~Pile à combustible~» pour plus d'informations.
+	\end{tcb}
 }%
 
 \resetQ
@@ -797,32 +1083,89 @@ $\ce{{H}^+_{\rm(aq)}/{H_2}_{\rm(g)}}$ et $\ce{{O_2}_{\rm(g)}/H_2O_{\rm(l)}}$.
 	\end{tcb}
 }%
 \QR{%
-	Indiquer la position di lithium dans le tableau périodique. Pourquoi choisir
+	Indiquer la position du lithium dans le tableau périodique. Pourquoi choisir
 	un électrolyte organique plutôt que de l'eau~?
 }{%
-	solu
+	Le lithium est situé deuxième ligne, première colonne, sous l'hydrogène. C'est
+	le premier métal alcalin. Comme tous les alcalins, c'est un \textbf{très fort
+		réducteur}, qui réagit violemment avec l'eau (de manière explosive).
 }%
 \QR{%
 	Écrire les réactions aux électrodes lorsque l'accumulateur fonctionne en
 	générateur, ainsi que la réaction globale de fonctionnement.
 }{%
-	solu
+	\noindent
+	\begin{minipage}[t]{.55\linewidth}
+		En fonctionnement générateur, la réaction chimique a lieu dans le sens
+		spontané, donc entre espèces de domaines disjoints. On trace le diagramme de
+		prédominance~:
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.45\linewidth}
+		\begin{center}
+			\includegraphics[width=.7\linewidth]{predom_limno}
+		\end{center}
+	\end{minipage}
+	\smallbreak
+	D'où les demi-équations~:
+	\begin{align*}
+		\beforetext{Électrode de lithium}
+		\ce{Li_{\rm(s)}                                   & -> {Li}^+_{\rm(aq)} + e^-}
+		\\\beforetext{Électrode de manganèse}
+		\ce{{MnO_2}_{\rm(s)} + {Li}^+_{\rm(aq)} + e^-     & -> {LiMnO_2}_{\rm(s)}}
+		\\\beforetext{Fonctionnement global}
+		\ce{
+		{MnO_2}_{\rm(s)} + {Li}^+_{\rm(aq)} + Li_{\rm(s)} & ->
+		{LiMnO_2}_{\rm(s)} + {Li}^+
+		}
+		\\\beforetext{Soit}
+		\ce{
+		{MnO_2}_{\rm(s)} + Li_{\rm(s)}                    & ->
+		{LiMnO_2}_{\rm(s)}
+		}
+	\end{align*}
+	\begin{tcb}(rema)<lftt>{Remarque}
+		L'ion lithium joue un rôle analogue à celui des ions $\ce{H^+}$ en solution
+		aqueuse.
+	\end{tcb}
 }%
 \QR{%
 	La pile contient-elle un pont salin ou équivalent~? Pourquoi~?
 }{%
-	solu
+	Les deux espèces qui réagissent sont deux solides, physiquement séparés en
+	deux électrodes. Le rôle du pont salin étant d'empêcher les réactifs d'être en
+	contact direct pour force le transfert d'électrons par l'extérieur du système
+	(et donc être exploitables), il n'y a pas de pont salin nécessaire ici.
 }%
 \QR{%
 	Déterminer la force électromotrice de la pile.
 }{%
-	solu
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		E_{\ce{Li}} = E_1^\circ + \num{0.06}\log \frac{[\ce{Li^+}]}{c^\circ}
+		\qet
+		E_{\ce{MnO_2}} = E_2^\circ + \num{0.06} \log \frac{[\ce{Li^+}]}{c^\circ}
+		\\\Ra
+		e = E_{\ce{MnO_2}} - E_{\ce{Li}}
+		\Lra
+		\boxed{e = E_2^\circ - E_1^\circ}
+		\Ra
+		\xul{e = \SI{3.68}{V}}
+	\end{gather*}
 }%
 \QR{%
 	Déterminer la capacité $C$ de la pile en \si{A.h} pour une masse initiale de
 	\SI{2}{g} de lithium.
 }{%
-	solu
+	À partir de l'équation à l'électrode de lithium, on constate que lorsque la
+	réaction (totale) est terminée, la quantité de matière $n$ d'électrons ayant
+	transité dans le circuit est égale à la quantité de matière de lithium
+	initialement introduite. D'où la charge totale~:
+	\[
+		\boxed{C = \frac{m_{\ce{Li}}}{M_{\ce{Li}}} \Nc_A e}
+		\Ra
+		\xul{C = \SI{3.2e4}{C} = \SI{9.0}{A.h}}
+	\]
 }%
 
 \resetQ
@@ -833,7 +1176,7 @@ $\ce{{H}^+_{\rm(aq)}/{H_2}_{\rm(g)}}$ et $\ce{{O_2}_{\rm(g)}/H_2O_{\rm(l)}}$.
 Après avoir introduit un volume $V_0 = \SI{2.00}{mL}$ d'une solution
 commerciale d'hypochlorite de sodium $(\ce{Na^+}~;~\ce{ClO^-})$ dans une fiole
 jaugée de volume $V_f = \SI{100}{mL}$, on complète avec de l'eau distillée
-jusqu'au trait de jauge. À un volume $V = \SI{10.0}{mL}$ de cette solutio
+jusqu'au trait de jauge. À un volume $V = \SI{10.0}{mL}$ de cette solution
 fille, on ajoute environ \SI{10}{mL} d'une solution d'iodure de potassium
 $(\ce{K^+}~;~\ce{I^-})$ à 15\% en masse et \SI{5.0}{mL} d'acide éthanoïque
 $\ce{CH_3CO_2H_{\rm(aq)}}$ à \SI{3.0}{mol.L^{-1}}. L'échantillon obtenu est
@@ -845,7 +1188,7 @@ $(\ce{2Na^+}~;~\ce{{S_2O_3}^{2-}})$ de concentration $c =
 	\[
 		E^\circ(\ce{ClO^-/Cl^-}) = \SI{0.89}{V}
 		\qquad
-		E^\circ(\ce{I_2/I^-}) = \SI{0.54}{V}
+		E^\circ(\ce{I_{2}/I^-}) = \SI{0.54}{V}
 		\qquad
 		E^\circ(\ce{{S_4O_6}^2-/{S_2O_3}^2-}) = \SI{0.08}{V}
 	\]
@@ -856,20 +1199,95 @@ $(\ce{2Na^+}~;~\ce{{S_2O_3}^{2-}})$ de concentration $c =
 	$\ce{ClO^-}$ et les ions iodure \ce{I^-}. Prévoir qualitativement le caractère
 	favorisé ou défavorisé de la réaction.
 }{%
-	solu
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{align*}
+		\beforetext{Couple $\ce{ClO^-/Cl^-}$}
+		\ce{{Cl}^-_{\rm(aq)} + H_2O_{\rm(l)}          & = {ClO}^- + 2 {H}^+_{\rm(aq)} + 2e^-}
+		\tag{1}
+		\\
+		\beforetext{Couple $\ce{I_{2}/I^-}$}
+		\ce{2 {I}^-_{\rm(aq)}                         & = {I_2}_{\rm(aq)} + 2e^-}
+		\tag{2}
+		\\\beforetext{Réaction}
+		\ce{
+		{ClO}^- + 2 {H}^+_{\rm(aq)} 2 {I}^-_{\rm(aq)} & =
+		{Cl}^-_{\rm(aq)} + {I_2}_{\rm(aq)} + H_2O_{\rm(l)}
+		}
+		\tag*{$(3) = (2) - (1)$}
+	\end{align*}
+	On trace un diagramme de prédominance qualitatif (avec le potentiel frontière
+	égal au potentiel standard) pour montrer que les deux espèces ont des domaines
+	disjoints, et donc que la réaction est favorisée~:
+	\begin{center}
+		\includegraphics[width=.5\linewidth]{predom_cli}
+	\end{center}
 }%
 \QR{%
 Proposer une équation pour la réaction de titrage du diiode \ce{I2} par les
 ions thiosulfate $\ce{S_2O_3^{2-}}$. Prévoir qualitativement le caractère
 favorisé ou défavorisé de la réaction.
 }{%
-solu
+\leavevmode\vspace*{-15pt}\relax
+\begin{align*}
+	\beforetext{Couple $\ce{S_4O_6^2-/S_2O_3^2-}$}
+	\ce{2 {S_2O_3}^{2-}_{\rm(aq)}                 & = {S_4O_6}^{2-}_{\rm(aq)} + 2e^-}
+	\tag{1}
+	\\
+	\beforetext{Couple $\ce{I_{2}/I^-}$}
+	\ce{2 {I}^-_{\rm(aq)}                         & = {I_2}_{\rm(aq)} + 2e^-}
+	\tag{2}
+	\\\beforetext{Réaction}
+	\ce{
+	{ClO}^- + 2 {H}^+_{\rm(aq)} 2 {I}^-_{\rm(aq)} & =
+	{Cl}^-_{\rm(aq)} + {I_2}_{\rm(aq)} + H_2O_{\rm(l)}
+	}
+	\tag*{$(3) = (1) - (2)$}
+\end{align*}
+On trace un diagramme de prédominance qualitatif (avec le potentiel frontière
+égal au potentiel standard) pour montrer que les deux espèces ont des domaines
+disjoints, et donc que la réaction est favorisée~:
+\begin{center}
+	\includegraphics[width=.5\linewidth]{predom_i2s2o3}
+\end{center}
 }%
 \QR{%
-	Sachant que les ions iodure et l'acide éthanoïque sont introduits en excès,
-	déterminer la concentration en ions hypochlorite dans la solution commerciale.
+Sachant que les ions iodure et l'acide éthanoïque sont introduits en excès,
+déterminer la concentration en ions hypochlorite dans la solution commerciale.
 }{%
-	solu
+Raisonnons d'abord sur la deuxième réaction pour déterminer la quantité de
+matière $n_1$ de diiode formée par la première réaction. À l'équivalence, le
+thiosulfate est apporté dans les proportions stœchiométriques par rapport au
+diiode, un bilan de matière montre donc que
+\[
+	n_1 - \xi\ind{eq} = 0
+	\qet
+	cV' - 2\xi\ind{eq} = 0
+	\Lra
+	\boxed{n_1 = \frac{cV'}{2}}
+\]
+Considérons la première réaction totale. Comme le réactif limitant est par
+hypothèse l'ion hypochlorite $\ce{{ClO}^-_{\rm(aq)}}$, un bilan de matière
+montre que la quantité de matière initiale d'ion hypochlorite est égale à la
+quantité de matière de diiode formé, c'est-à-dire $n_1$. Ainsi, compte-tenu du
+processus de préparation des solutions,
+\[
+	n_1 = Vc_f
+	\Lra
+	c_f = \frac{n_1}{V}
+\]
+et par conservation de la matière au cours de la dilution, on a la
+concentration $c_0$ de la solution commerciale~:
+\[
+	c_0 V_0 = c_fV_f
+\]
+D'où en rassemblant,
+\[
+	c_0 = \frac{V_f}{V_0}c_f = \frac{V_f}{V_0}\frac{n_1}{V}
+	\Lra
+	\boxed{c_0 = \frac{V_fV'}{2V_0V}C}
+	\Ra
+	\xul{c_0 = \SI{8.0e-1}{mol.L^{-1}}}
+\]
 }%
 
 \end{document}

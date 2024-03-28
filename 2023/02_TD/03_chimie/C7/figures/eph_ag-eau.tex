@@ -16,9 +16,9 @@
 		% \phlim = 7.3;
 		\estandod = 1.23;
 		\estandagaga = 0.80;
-		\efrontagaga = \estandagaga - 0.06*log10(\ct);
+		\efrontagaga = \estandagaga + 0.06*log10(\ct);
 		\estandagago = 1.17;
-		\phlim = \estandagago - \estandagaga - 0.06*log10(\ct);
+		\phlim = (\estandagago - \estandagaga - 0.06*log10(\ct))/0.06;
 	}
 	\tikzset{declare function={
 				efront1(\x) = \efrontagaga;
@@ -91,11 +91,9 @@
 	node[pos=.55, below, blue!80, opacity=1, rotate=-17] {$\ce{{H_2}_{\rm(g)}}$}
 	(O);
 	% Place elements
-	\node (AGPn) at (barycentric cs:A=1,B=1,Bt=1,Btl=1) {};
+	\node (AGP) at (barycentric cs:A=1,B=1,Bt=1,Btl=1) {$\ce{{Ag}^+_{\rm(aq)}}$};
 	\node (AG2O) at (barycentric cs:Bt=1,B=1,C=1,Btr=1) {$\ce{{Ag_2O}_{\rm(s)}}$};
 	\node (AG) at ([shift={(-.5,.2)}]barycentric cs:A=1,B=1,C=1,CE=1,ClE=1) {$\ce{{Ag}_{\rm(s)}}$};
-	\node (AGP) at (-1,0.95) {$\ce{{Ag}^+_{\rm(aq)}}$};
-	\draw[->, thick] (AGPn.center) to[out=170, in=20] (AGP.north);
 	% Verti
 	\draw[thick]
 	(B) -- (Bt);
@@ -116,8 +114,8 @@
 	\draw[thick] plot[domain=0:\fpeval{\phlim}] (\x,{efront1(\x)});
 	\draw[thick] plot[domain=\fpeval{\phlim}:\fpeval{\phmax}] (\x,{efront2(\x)});
 	% water
-	\draw[thick, dotted] plot[domain=0:\fpeval{\phmax}] (\x,{efront3(\x)});
-	\draw[thick, dotted] plot[domain=0:\fpeval{\phmax}] (\x,{efront4(\x)});
+	\draw[thick, dotted, blue] plot[domain=0:\fpeval{\phmax}] (\x,{efront3(\x)});
+	\draw[thick, dotted, blue] plot[domain=0:\fpeval{\phmax}] (\x,{efront4(\x)});
 	% Scale
 	\draw[very thick, -{Stealth}]
 	(-.5,0) --

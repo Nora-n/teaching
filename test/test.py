@@ -118,12 +118,20 @@ import matplotlib.pyplot as plt
 #         ((16*M*np.pi**2)/(m*g*T0**2))*ell)
 # )
 # print(f'x_+ direct = {xp*1e2:.2f} cm')
+RT = 6370e3  # km
+h = 800e3    # m
+G = 6.67e-11 # m^3kg^-1s^-1
+MT = 5.97e24 # kg
+T = 2*np.pi*np.sqrt((RT+h)**3/(G*MT))
+print(f'T = {T:.2e}')
+v = np.sqrt((G*MT)/(RT+h))
+print(f'v = {v:.2e}')
 
 # C7
-ct = 1
-pke = 14
-pks = 33.5
-pbeta4 = -35
-pkr = pks + pbeta4
-ph = pkr + pke + np.log10(ct)
-print(f'pH = {ph}')
+# ct = 1
+# pke = 14
+# pks = 33.5
+# pbeta4 = -35
+# pkr = pks + pbeta4
+# ph = pkr + pke + np.log10(ct)
+# print(f'pH = {ph}')

@@ -1,0 +1,269 @@
+\documentclass{book}
+
+\usepackage{cours-preambule}
+
+% \toggletrue{student}
+\toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+% \usepackage{enumitem}
+% \usepackage{xparse}
+% \usepackage{xstring}
+% \usepackage[svgnames, dvipsnames, table]{xcolor}
+% \usepackage{hyperref}
+% \usepackage{hyperref-patches}
+%
+% % \olditem\leavevmode% ... call \olditem...
+% % \IfNoValueF{##1}{(##1~points)}% ...and possibly (.. points)
+%
+% % Setup special items
+% \newif\iffitem
+% 	\newcommand{\setupmodenumerate}{%
+% 	\global\fitemfalse
+% 	\let\origmakelabel\makelabel
+% 	\def\fitem##1{\global\fitemtrue\def\toapply{##1}\olditem}%
+% 	\def\makelabel##1{%
+% \origmakelabel{%
+% 	\iffitem{%
+% 		\renewcommand{\labelenumi}{\arabic{enumi}}%
+% 		\renewcommand{\labelenumii}{\alph{enumii}}%
+% 		\renewcommand{\labelenumiii}{\roman{enumiii}}%
+% 		\toapply{##1}%
+% 	}%
+% \else##1\fi}%
+% \global\fitemfalse
+% }%
+% }
+% \setlist[enumerate]{before=\setupmodenumerate}
+% % Number in squares
+% \newcommand{\sqenumi}{\protect\fbox{\arabic*}}
+% \newcommand{\sqitem}{\fitem{\fbox}}
+% % Number in circles
+% \newcommand{\clenumi}{\protect\icircled{\arabic*}}
+% \newcommand{\clalphi}{\protect\icircled{\Alph*}}
+% \newcommand{\clitem}{\fitem{\icircled}}
+% % Description with numbers
+% \newcommand\bitem[1]{\oltitem{\bfseries #1}}
+% % Setup points left of enumerate
+% \usepackage{tabto}
+% % \newcommand\gpts[1]{\tabto*{-2\leftmargin}\textcolor{ForestGreen}{\llap{/#1~}\tabto{\TabPrevPos}}}
+% % \newcommand\gpts[1]{{\color{ForestGreen}\llap{/#1\hspace{20pt}}}}
+% % \newcommand\bpts[1]{\tabto*{-2\leftmargin}\textcolor{brandeisblue}{\llap{/#1~}\tabto{\TabPrevPos}}}
+% % \newcommand\rpts[1]{\tabto*{-2.5\leftmargin}\textcolor{Red}{\llap{/#1~}\tabto{\TabPrevPos}}}
+% % \newcommand{\nitem}[1]{}
+% % Left anything from item
+% % \newcommand\ltm[2]{\tabto*{-#1}\llap{#2~}\tabto{\TabPrevPos}}
+% % \newcommand{\litem}[2]{\olditem\ltm{#1}{#2}\/}
+% % mathitem to remove space when only equation in item
+% % https://tex.stackexchange.com/a/497787
+% % \newcommand\mitem{\olditem\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}}
+% % \newcommand\mnitem[1]{\olditem\gpts{#1}\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax}}
+%
+% \usepackage{tikz}
+% \usetikzlibrary{shapes,
+% 	shapes.misc,
+% 	shapes.geometric}
+% \DeclareRobustCommand\str{%
+% 	\begin{tikzpicture}[scale=.8,
+% 			baseline={([yshift=-.8ex]current bounding box.center)}]
+% 		\node[star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill,] (s) {};
+% 		\node[circle,
+% 			inner sep=4.5pt,
+% 			draw, thick] (c) {};
+% 	\end{tikzpicture}
+% }
+% \DeclareRobustCommand\strr{%
+% 	\begin{tikzpicture}[scale=.8,
+% 			baseline={([yshift=-.8ex]current bounding box.center)}]
+% 		\def\xoff{3.5pt}
+% 		\def\sscale{.55}
+% 		\node [star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill,
+% 			scale=\sscale] (sl)
+% 		at (30:\xoff) {};
+% 		\node [star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill, scale=\sscale] (sr)
+% 		at (210:\xoff) {};
+% 		\node[circle,
+% 			inner sep=4.5pt,
+% 			draw, thick] (c) {};
+% 	\end{tikzpicture}
+% }
+% \DeclareRobustCommand\strrr{%
+% 	\begin{tikzpicture}[scale=.8,
+% 			baseline={([yshift=-.8ex]current bounding box.center)}]
+% 		\def\xoff{3.5pt}
+% 		\def\sscale{.55}
+% 		\node [star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill, scale=\sscale] (sa)
+% 		at (90:\xoff) {};
+% 		\node [star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill, scale=\sscale] (sb)
+% 		at (210:\xoff) {};
+% 		\node [star,
+% 			star point height=2.2pt,
+% 			minimum size=7.92pt,
+% 			inner sep=0,
+% 			draw, fill, scale=\sscale] (sc)
+% 		at (-30:\xoff) {};
+% 		\node[circle,
+% 			inner sep=4.5pt,
+% 			draw, thick] (c) {};
+% 	\end{tikzpicture}
+% }
+% \NewDocumentCommand{\strs}{m}{%
+%   \IfEqCase{#1}{%
+%     {1}{\str}%
+%     {2}{\strr}%
+%     {3}{\strrr}%
+%   }%
+% }%
+%
+% \newcommand*\circled[1]{%
+% 	\tikz[baseline=(char.base)]{%
+% 		\node[shape=circle, draw, inner sep=1pt] (char) {#1};
+% 	}%
+% }
+% \newcommand*\icircled[1]{%
+% 	\tikz[baseline=(char.base)]{%
+% 		\node[shape=circle, draw, inner sep=1pt, minimum size=3ex] (char) {#1};
+% 	}\kern-3pt
+% }
+%
+% \let\olditem\item % Store \item in \olditem
+% \def\lspace{20}
+% \def\sspace{40}
+% \def\mspace{-15}
+% \NewDocumentCommand{\ltm}{O{\lspace}m}{%
+%   \llap{#2\hspace{#1pt}}%
+% }
+% \RenewDocumentCommand{\item}{ooD""{1}g}{% Redefine \item to
+%   \IfValueTF{#1}{% If [<>] after \item
+%     \IfEqCase{#1}{% Check the value
+%       {l}{% \litem : generic left of item, optional left distance
+%         \IfValueTF{#2}{% if second optional value to \item : \item[l][opt]{mand}
+%           \olditem\leavevmode\ltm[#2]{#4}%
+%         }{% If no second optional value : \item[l]{mand}, do nothing with #2
+%           \olditem\leavevmode\ltm{#4}%
+%         }%
+%       }%
+%       {n}{% \nitem : left item /nb in green for points
+%         \IfValueTF{#2}{% if second optional value to \item : \item[l][opt]{mand}
+%           \olditem\leavevmode\ltm[#2]{\textcolor{ForestGreen}{/#4}}%
+%         }{% If no second optional value : \item[l]{mand}, do nothing with #2
+%           \olditem\leavevmode\ltm{\textcolor{ForestGreen}{/#4}}%
+%         }%
+%       }%
+%       {m}{% \mitem : remove vertical math space
+%         \IfValueTF{#2}{%
+%           \olditem\leavevmode\vspace*{-#2pt}\relax
+%         }{%
+%           \olditem\leavevmode\vspace*{\mspace pt}\relax
+%         }%
+%       }%
+%       {b}{% \bitem
+%         \olditem\leavevmode\textbf{#4}
+%       }%
+%       {s}{% \litem for difficulty stars
+%         \IfValueTF{#2}{%
+%           \olditem\leavevmode\ltm[#2]{\strs{#3}}%
+%         }{%
+%           \olditem\leavevmode\ltm{\strs{#3}}%
+%         }%
+%       }%
+%       {cl}{% \clitem for circled
+%         \fitem{\icircled}
+%       }%
+%       {sq}{% \sqitem for fbox
+%         \fitem{\fbox}
+%       }%
+%     }%
+%   }{\olditem}
+% }
+%
+% \let\oldsection\section
+% \RenewDocumentCommand{\section}{ood""m}{%
+%   \IfValueTF{#3}{%
+%     \IfEqCase{#3}{%
+%       {E}{\renewcommand{\thesection}{{\bfseries E\arabic{section}}}}
+%       {P}{\renewcommand{\thesection}{{\bfseries P\arabic{section}}}}
+%       {1}{\def\ustr{\str}}%
+%       {2}{\def\ustr{\strr}}%
+%       {3}{\def\ustr{\strrr}}%
+%     }%
+%   }{}%
+%   \IfValueTF{#1}{%
+%     \IfEq{#1}{s}{%
+%         \IfValueTF{#2}{%
+%           \oldsection{\texorpdfstring{\ltm[#2]{\ustr}#4}{#4}}%
+%         }{%
+%           \oldsection{\texorpdfstring{\ltm[\sspace]{\ustr}#4}{#4}}%
+%         }%
+%       }{%
+%         \IfValueTF{#2}{%
+%           \oldsection{\texorpdfstring{\ltm[#2]{\textcolor{Red}{/#1}}#4}{#4}}%
+%         }{%
+%           \oldsection{\texorpdfstring{\ltm[\sspace]{\textcolor{Red}{/#1}}#4}{#4}}%
+%         }%
+%       }%
+%   }{\oldsection{#4}}
+% }
+%
+% \let\oldsubsection\subsection
+% \RenewDocumentCommand{\subsection}{d()m}{%
+%   \IfValueT{#1}{%
+% 	  \renewcommand{\thesubsection}{{\bfseries #1}}%
+%   }
+%   \oldsubsection{#2}
+% }
+
+\begin{document}
+
+\begin{enumerate}
+	\item[n]{2} next
+	\item[l][30]{$\diamond$} third
+	\item[m][10]
+	\[
+		Aya
+	\]
+	\item[b]{This} last
+	\item[l]{\iconimpo}
+	\item[s]"1" Facile
+	\item[s]"2" Normal
+	\item[s]"3" Difficile
+	\item[cl] Entouré
+	\item[sq] Encadré
+	\item[what] Jsp
+\end{enumerate}
+
+\section{One}
+\section[24]{Two}
+\section[88]"P"{Probmème}
+\section{Three}
+\section[s]"1"{Exo facile}
+\subsection(T4){Petite partie}
+
+\QR[3]{%
+	Yes
+}{%
+	No
+}%
+
+\end{document}

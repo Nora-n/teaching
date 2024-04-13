@@ -8,16 +8,16 @@
 \hfuzz=5.002pt
 
 % \toggletrue{student}
-% \toggletrue{corrige}
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{1}
 
-\settype{enon}
-\settype{solu_prof}
-\settype{solu_stud}
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
 
 \chapter{\cswitch{Correction du TD}{TD~: Échanges d'énergie des systèmes
 	  thermodynamiques}}
@@ -71,7 +71,7 @@
 	$W\ind{AB} = W\ind{AC} + W\ind{CB}$.
 	\begin{itemize}
 		\item $W\ind{CB} = 0$ car isochore~;
-		      \item[m][25]
+		\item
 		      \begin{gather*}
 			      \beforetext{Si $A \ra C$ quasi-statique,}
 			      W\ind{AC} = - \int_{A}^{C} P \dd{V}
@@ -79,12 +79,12 @@
 			      W\ind{AC} = -P_1 (V_2-V_1)
 		      \end{gather*}
 	\end{itemize}
-	\begin{gather*}
-		\beforetext{Ainsi,}
+	Ainsi,
+	\[
 		W\ind{AB} = W\ind{AC}
 		\Ra
 		\xul{W\ind{AB} = \SI{-4.0}{kJ}}
-	\end{gather*}
+	\]
 }%
 \QR{%
 	On considère un autre chemin~: une transformation isochore de A vers D puis
@@ -120,8 +120,7 @@
 	\end{minipage}
 	\hfill
 	\noindent
-	\begin{minipage}[t]{.30\linewidth}
-		\vspace{0pt}
+	\begin{minipage}[c]{.30\linewidth}
 		L'aire sous la courbe est en effet plus grande pour la transformation ACB.
 		On voit que le signe est négatif puisqu'on parcours le trajet dans le sens
 		horaire.
@@ -141,21 +140,13 @@
 	adiabatique d'un gaz parfait, caractérisée par $PV^{\gamma} = \cte$
 	avec $\gamma > 1$.
 }{%
-	\sswitch{
-		\hfill
-		\includegraphics[width=.5\linewidth, valign=t]{PV_all}
-		\hspace*{\fill}
-	}{
-		\begin{center}
-			\includegraphics[width=.5\linewidth]{PV_all}
-		\end{center}
-	}
+	% TODO: Pareil
 }%
 \QR{%
 	Faire le lien entre l'aire sous la courbe et le travail des forces de
 	pression dans ce diagramme.
 }{%
-	\leavevmode\vspace*{-25pt}\relax
+	\leavevmode\vspace*{-15pt}\relax
 	\begin{gather*}
 		\Ac =
 		\int_{v_i}^{v_f} P \dd{v} =
@@ -172,9 +163,6 @@
 	\textbf{sens direct}, alors la transformation de $\dd{V} > 0$ passe en-dessous
 	de la transformation de $\dd{V} < 0$~; ainsi l'aire entourée correspond à un
 	travail \textbf{positif}.
-	\begin{center}
-		\includegraphics[width=.8\linewidth]{W_cycle-demo}
-	\end{center}
 }%
 
 \resetQ
@@ -196,62 +184,25 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 \QR{%
 	Représenter les trois transformations dans le diagramme $(P,V)$.
 }{%
-	\sswitch{
-		\hfill
-		\includegraphics[width=.5\linewidth, valign=t]{PV_droite}
-		\hspace*{\fill}
-	}{
-		\begin{center}
-			\includegraphics[width=.5\linewidth]{PV_droite}
-		\end{center}
-	}
+	% TODO: à faire~: voir graphiques en ligne
 }%
 \QR{%
-	Déterminer la température $T_B$ et le volume $V_B$.
+	Déterminer la température $T_B$ et le volume $V_B$
 }{%
-	\begin{itemize}
-		\item A et B sont reliés par une isotherme, donc $\boxed{T_A = T_B =
-				      \SI{300}{K}}$.
-		\item
-		      \leftcenters{%
-			      On a donc $PV = \cte$, soit
-		      }{%
-			      $\boxed{\DS P_B = P_A \frac{V_A}{V_B} = \frac{V_A}{3}}$
-		      }%
-	\end{itemize}
+	solu
 }%
 \QR{%
-	Exprimer les travaux reçus par le système pour ces trois transformations.
+	Calculer les travaux reçus par le système pour ces trois transformations.
 	Commentez.
 }{%
-	On condidère les transformations comme quasi-statique, soit $\boxed{P =
-			P\ind{ext}}$. Ainsi~:
-	\begin{gather*}
-		\beforetext{A1B~:}
-		W_1 = -\int_{A}^{B} -P \dd{V} = -nRT_A \ln \frac{V_B}{V_A}
-		\Lra
-		\boxed{W_1 = P_AV_A \ln 3}
-		\\\beforetext{A2B~:}
-		W_2 = W\ind{rect} + W\ind{trgl} = P_A(V_B-V_A) + \frac{1}{2} (P_B - P_A)(V_B
-		- V_A)
-		\Lra
-		\boxed{W_2 = \frac{4}{3}P_AV_1}
-		\\\beforetext{A3B~:}
-		W_3 = -P_A(V_B - V_A)
-		\Lra
-		\boxed{W_3 = \frac{2}{3}P_AV_A}
-	\end{gather*}
-	Le travail des forces de pression dépend ainsi du chemin suivi.
+	solu
 }%
 \QR{%
-	Exprimer les transferts thermiques reçus par le système pour ces trois
+	Calculer les transferts thermiques reçus par le système pour ces trois
 	transformations. On donne le premier principe de la thermodynamique~:
 	$\Delta{U} = W + Q$.
 }{%
-	Comme $T_A = T_B$, on a $\Delta{U} = 0$. Avec le premier principe~:
-	\[
-		\boxed{Q = -W}
-	\]
+	solu
 }%
 
 \resetQ
@@ -264,8 +215,8 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 		aspiré dans les conditions atmosphériques, sous la pression $P_0 =
 			\SI{1}{bar}$ et à la température $T_0 = \SI{290}{K}$, jusqu'au volume $V_m$.
 		Il est ensuite comprimé jusqu'à la pression $P_1$ où il occupe un volume
-		$V_1$, et est refoulé à la température $T_1$ dans un milieu où la pression
-		est $P_1 = \SI{6}{bar}$.
+		$V_1$, et est refoulé à la température $T_1$ dans un milieu où la pression est
+		$P_1 = \SI{6}{bar}$.
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{.48\linewidth}
@@ -295,58 +246,20 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 		représentant un aller-retour du piston. Indiquer le sens de parcous par une
 		flèche.
 	}{%
-		\noindent
-		\begin{minipage}[t]{.55\linewidth}
-			On étudie le gaz qui entre dans le corps de la pompe pendant la première
-			phase. L'évolution étudiée comporte les trois étapes suivantes~:
-			\begin{enumerate}[label=\clenumi]
-				\item Admission du gaz de A à B à la pression $P_0$~;
-				\item Compression de B à C~;
-				\item Refoulement de C à D à la pression $P_1$.
-			\end{enumerate}
-		\end{minipage}
-		\hfill
-		\begin{minipage}[t]{.40\linewidth}
-			\vspace{0pt}
-			\begin{center}
-				\includegraphics[width=\linewidth]{PV_compresseur}
-			\end{center}
-		\end{minipage}
+		solu
 	}%
 	\QR{%
 		Montrer que le travail de l'air situé à droite du piston est nul sur un
 		aller-retour.
 	}{%
-		La pression extérieure est constante, donc le travail des forces de pression
-		du gaz à droite du piston est~:
-		\[
-			W\ind{droite} =
-			W\ind{droite,AB} + W\ind{droite,BC} + W\ind{droite,CD} =
-			P_0 (
-			\cancel{V_B} - \bcancel{V_A} +
-			\dcancel{V_C} - \cancel{V_B} +
-			\bcancel{V_D} - \dcancel{V_C}
-			) = 0
-		\]
-		En effet, puisque le piston effectue un aller-retour, le volume balayé est
-		le même à l'aller (travaill résistant) qu'au retour (travail moteur).
+		solu
 	}%
 	\QR{%
-		Montrer que le travail fourni par le moteur qui actionne le piston est égal
-		à l'aire d'une surface sur le diagramme. On supposera que le mouvement est
-		assez lent pour que l'évolution soit mécaniquement réversible.
+		Montrer que le travail fourni par le moteur qui actionne le piston est égal à
+		l'aire d'une surface sur le diagramme. On supposera que le mouvement est assez
+		lent pour que l'évolution soit mécaniquement réversible.
 	}{%
-		La force exercée par le moteur pour déplacer le piston est $F = (P-P_0)S$
-		avec $S$ la section du piston. Ainsi, le travail fourni par le moteur est~:
-		\[
-			W\ind{moteur} = -\int_{ABCD} (P - P_0)\dd{V} = -\int_{ABCD} P \dd{V} -
-			W\ind{droite}
-			\Lra
-			\boxed{W\ind{moteur} = - \int_{ABCD} P \dd{V}}
-		\]
-		En effet, le travail \textbf{fourni par le moteur} est le travail
-		\textbf{reçu par le gaz}, en supposant la pression $P$ définie à chaque
-		instant. C'est ce qu'on appelle habituellement le travail de l'opérataire.
+		solu
 	}%
 \end{blocQR}
 \QR{%
@@ -354,93 +267,20 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 		\cte$. Il sort du compresseur à la température $T_1 = \SI{391}{K}$. Trouver la
 	valeur de $k$.
 }{%
-	On étudie le gaz enre B et C. On a trois équations d'états~:
-	\begin{DispWithArrows*}[groups]
-		P_BV_m = nRT_B
-		\qqet
-		P_CV_C &= nRT_C
-		\qqet
-		P_BV_B^{k} = P_CV_C^{k}
-		\\\Ra
-		\left( \frac{P_C}{P_C} \right) = \left( \frac{V_B}{V_C} \right)^{k}
-		& \Lra
-		\left( \frac{P_C}{P_C} \right)^{1-k} = \left( \frac{T_B}{T_C} \right)^{-k}
-		\CArrow{$\ln (~\cdot~)$}
-		\\
-		k =
-		\frac{\ln \frac{P_B}{P_C}}{\ln \frac{P_B}{P_C} - \ln \frac{T_B}{T_C}}
-		\Lra
-		\Aboxed{k &= \frac{\ln \frac{P_0}{P_1}}{\ln \frac{P_0}{P_1} - \ln \frac{T_0}{T_1}}}
-		\Ra
-		\xul{k = \num{1.2}}
-	\end{DispWithArrows*}
+	solu
 }%
 \QR{%
 	Exprimer le travail mécanique $W\ind{moteur}$ fourni par le moteur pendant un
 	aller-retour en fonction de $n, R, k, T_1$ et $T_0$.
 }{%
-	On calcule le travail sur les trois transformations élémentaires~:
-	\begin{enumerate}[label=\clenumi]
-		\item
-		      \leftcenters{%
-			      $P = P_0 = \cte$, donc
-		      }{%
-			      $
-				      W\ind{AB} = -P_0 \int_{V_0}^{V_m}\dd{V} = -P_0V_m
-				      \Lra
-				      \boxed{W\ind{AB} = -nRT_0}
-			      $
-		      }%
-		\item $PV^k = \cte = P_0V_m^k$, d'où
-		      \leavevmode\vspace*{-30pt}\relax
-		      \begin{DispWithArrows*}
-			      W\ind{BC} &=
-			      - \int_{V_m}^{V_1} P_0V_m^k \cdot \frac{\dd{V}}{V^k}
-			      \Arrow{$\DS \int \frac{1}{V^k} \qav k>1$}
-			      \\\Lra
-			      W\ind{BC} &=
-			      \frac{P_0V_m^k}{k-1} \left[ V^{1-k} \right]_{V_m}^{V_1}
-			      \Arrow{On développe}
-			      \\\Lra
-			      W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \left( \frac{V_1}{V_m}
-				      \right)^{1-k} - 1 \right)
-			      \Arrow{$\DS \left( \frac{V_1}{V_m}\right)^{1-k} = \frac{P_1V_1}{P_0V_m}$}
-			      \\\Lra
-			      W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \frac{P_1V_1}{P_0V_m} - 1 \right)
-			      \Arrow{$\DS \frac{P_1V_1}{P_0V_m} = \frac{T_1}{T_0}$}
-			      \\\Lra
-			      \Aboxed{W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \frac{T_1}{T_0} - 1 \right)}
-		      \end{DispWithArrows*}
-		\item
-		      \leftcenters{%
-			      $P = P_1$ donc
-		      }{%
-			      $
-				      W\ind{CD} = -\int_{V_1}^{0}P_1 \dd{V} = P_1V_1
-				      \Lra
-				      \boxed{W\ind{CD} = nRT_1}
-			      $
-		      }%
-	\end{enumerate}
-	\leavevmode\vspace*{-25pt}\relax
-	\begin{gather*}
-		\beforetext{D'où par somme}
-		\boxed{W\ind{moteur} = \frac{k}{k-1}nR (T_1-T_0)}
-	\end{gather*}
+	solu
 }%
 \QR{%
 	Le débit massique de l'air dans le compresseur est $D_m =
 		\SI{0.013}{kg.s^{-1}}$. Calculer la puissance $\Pc\ind{moteur}$ fournie par le
 	moteur.
 }{%
-	Par définition, $W\ind{moteur} = \Pc\ind{moteur}\Delta{t}$. Aussi, en
-	$\Delta{t} = \SI{1}{s}$ on a $n = \frac{D_m\Delta{t}}{M}$ quantité d'air
-	passant dans le compresseur. Ainsi,
-	\[
-		\boxed{\Pc\ind{moteur} = \frac{k}{k-1} \frac{D_m}{M}R (T_1-T_0)}
-		\Ra
-		\xul{\Pc\ind{moteur} = \SI{2.26}{kW}}
-	\]
+	solu
 }%
 
 \resetQ
@@ -462,77 +302,31 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 	Déterminer et calculer les grandeurs $P_2$, $V_2$ et $T_2$ au bout du temps
 	$\tau$ dans le compartiment.
 }{%
-	\begin{itemize}
-		\item Équilibre mécanique et paroi mobile verticale donc $\boxed{P_2 = P_1 =
-				      2P_0}$~;
-		\item Évolution lente donc transfert thermiques terminés, soit $\boxed{T_2 =
-				      T_0 = \SI{300}{K}}$~;
-		\item Ainsi $V_2 = \frac{nRT_2}{P_2} \Lra \boxed{V_2 = \frac{V_0}{2}} =
-			      \xul{\SI{1.0}{L}}$.
-	\end{itemize}
-	\begin{center}
-		\includegraphics[width=.8\linewidth]{Q_resist}
-	\end{center}
+	solu
 }%
 \QR{%
 	En déduire les expressions et les valeurs de $V_1$ et de $T_1$.
 }{%
-	\begin{itemize}
-		\item Conservation du volume~: $V_1+V_2 = 2V_0 \Lra \boxed{V_1 = 3V_0/2} =
-			      \xul{\SI{3.0}{L}}$~;
-		\item $T_1 = \frac{P_1V_1}{nR} - \frac{P1V_1}{P_0V_0}T_0 \Lra \boxed{T_1 =
-				      3T_0} = \xul{\SI{900}{K}}$
-	\end{itemize}
+	solu
 }%
 \QR{%
 	Déterminer et calculer les variations d'énergie interne $\Delta{U_1}$ et
 	$\Delta{U_2}$.
 }{%
-	\leavevmode\vspace*{-25pt}\relax
-	\begin{gather*}
-		\beforetext{Gaz de gauche}
-		\Delta{U_1} = C_V\Delta{T} = \frac{5}{2}nR (T_1-T_0)
-		\Lra
-		\boxed{\Delta{U_1} = \frac{5}{2}\frac{P_0V_0}{T_0}(T_1-T_0)}
-		\Ra
-		\xul{\Delta{U_1} = \SI{1.0}{kJ}}
-		\\\beforetext{Gaz de droite}
-		\Delta{T}\ind{droite} = 0 \Lra \boxed{\Delta{U_2} = 0}
-	\end{gather*}
+	solu
 }%
 \QR{%
 	Quel travail $W_{p,2}$ a été reçu par le compartiment (2)~? Combien vaut
 	$W_{p,1}$ reçu par le compartiment (1)~?
 }{%
-	Transformation lente donc quasi-statique, donc $P$ compartiment 1 défini à
-	chaque instant~:
-	\begin{gather*}
-		W_2 =
-		-\int_{V_i}^{V_f} P \dd{V} =
-		-nRT_0 \int_{V_i}^{V_f} \frac{\dd{V}}{V}
-		\Lra
-		\boxed{W_2 = P_0V_0 \ln \frac{V_0}{V_2}}
-		\Ra
-		\xul{W_2 = \SI{70}{J}}
-		\\\beforetext{Travail reçu = $-$travail fourni donc}
-		\Lra
-		\boxed{W_1 = -W_2}
-	\end{gather*}
+	solu
 }%
 \QR{%
 	Comment s'exprime l'énergie thermique reçue par le compartiment (1)~? La
 	relier à $U$ et $W_{p,1}$ grâce au premier principe $\Delta{U} = W + Q$.
 	Déterminer alors la valeur de $\tau$.
 }{%
-	L'énergie thermique est la puissance par effet \textsc{Joule} que multiplie le
-	temps de chauffe, soit
-	\[
-		Q_1 = RI^2 \times \tau
-		\Lra
-		\boxed{\tau = \frac{\Delta{U_1}-W_1}{RI^2}}
-		\Ra
-		\xul{\tau = \SI{43}{s}}
-	\]
+	solu
 }%
 
 \end{document}

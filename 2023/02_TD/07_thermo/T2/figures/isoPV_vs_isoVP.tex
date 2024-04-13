@@ -1,0 +1,55 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+% PV diagram - constant V
+\def\N{40} % number of plot samples
+\def\xmax{4}
+\def\ymax{3}
+
+\begin{tikzpicture}
+	% AREA
+	\coordinate (O) at (0,0);
+	\coordinate (A) at (.2*\xmax,.8*\ymax);
+	\coordinate (C) at (.8*\xmax,.8*\ymax);
+	\coordinate (D) at (.2*\xmax,.2*\ymax);
+	\coordinate (B) at (.8*\xmax,.2*\ymax);
+	\fill[
+		pattern=flexible hatch,
+		hatch distance=5pt,
+		hatch thickness=0.5pt,
+		hatch angle=45,
+	]
+	(A)
+	rectangle (B|-0,0)
+	node[midway, scale=1.3, darkgray, fill=white] {$W\ind{ACB}$};
+	\fill[
+		pattern=flexible hatch,
+		hatch distance=5pt,
+		hatch thickness=0.5pt,
+		hatch angle=-45,
+	]
+	(D)
+	rectangle (B|-0,0)
+	node[midway, scale=1.3, darkgray, fill=white, fill opacity=.8, text opacity=1]
+		{$W\ind{ADB}$};
+	% LINE
+	\draw[very thick, flch, isoP] (A) -- (C);
+	\draw[very thick, flch, isoV] (C) -- (B);
+	\draw[very thick, flch, isoV] (A) -- (D);
+	\draw[very thick, flch, isoP] (D) -- (B);
+	\fill (A) circle(0.07) node[above, anchor=south] {A};
+	\fill (C) circle(0.07) node[above right] {C};
+	\fill (D) circle(0.07) node[below left] {D};
+	\fill (B) circle(0.07) node[right, anchor=west] {B};
+	% AXIS
+	\draw[-{Stealth[scale=1.3]},thick] (0,-0.1*\ymax) -- (0,\ymax) node[anchor=north east] {$P$};
+	\draw[-{Stealth[scale=1.3]},thick] (-0.1*\xmax,0) -- (\xmax,0) node[anchor=north east] {$V$};
+	% TIDK
+	\xtick{A|-O}{$V_1$}
+	\xtick{B|-O}{$V_2$}
+	\ytick{A-|O}{$P_1$}
+	\ytick{B-|O}{$P_2$}
+\end{tikzpicture}
+
+\end{document}

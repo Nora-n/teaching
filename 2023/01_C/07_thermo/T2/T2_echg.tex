@@ -335,16 +335,6 @@ plus tard.
 	seulement définie dans l'état final.
 \end{tcb}
 
-\begin{tcb*}(ror){Isotherme en diagramme $(P,V)$}
-	Pour un gaz parfait en diagramme $(P,V)$, une transformation isotherme se
-	représente par \textbf{une parabole}~:
-	\psw{%
-		\[
-			PV = nRT_0 \Lra \boxed{P = \frac{nRT_0}{V}}
-		\]
-	}%
-\end{tcb*}
-
 \subsubsection{Sur le transfert thermique~: transformation adiabatique}
 Nous définirons dans la partie~\fullref{--}{sec:transtherm} les notions
 associées, mais il est crucial d'introduire nettement la différence entre
@@ -391,20 +381,25 @@ conseils~!)…
 \begin{tcb*}(ror){Résumé des transformations}
 	Une transformation thermodynamique peut être~:
 	\smallbreak
-	\begin{isd}
+	\begin{isd}[lefthand ratio=.35]
 		\begin{itemize}
 			\bitem{Isochore}~: \psw{$V = \cte \Lra \dd{V} = 0$}
 			\bitem{Isobare}~: \psw{$P = \cte \Lra \dd{P} = 0$}
 			\bitem{Monobare}~: \psw{$P\ind{ext} = \cte$}
-		\end{itemize}
-		\tcblower
-		\begin{itemize}
 			\bitem{Isotherme}~: \psw{$T = \cte \Lra \dd{T} = 0$}
 			\bitem{Monotherme}~: \psw{$T\ind{ext} = \cte$}
 			\bitem{Adiabatique}~: \psw{$Q = 0$}
 		\end{itemize}
+		\tcblower
+		\begin{center}
+			\sswitch{
+				\includegraphics[width=\linewidth]{PV_all-plain}
+			}{
+				\includegraphics[width=\linewidth]{PV_all}
+			}
+			\captionof{figure}{Représentations en $(P,V)$}
+		\end{center}
 	\end{isd}
-
 \end{tcb*}
 
 \subsection{Influence du choix du système}
@@ -414,10 +409,11 @@ particulièrement vigilant-e à l'établissement du système et de ses propriét
 
 \begin{tcb*}[breakable](appl)<lftt>{Choix d'un système}
 	\begin{isd}
-		Soit une enceinte indéformable, séparée en deux compartiments par une cloison
-		étanche et mobile. Le premier a pour état initial $(T_i,P_i,V_i,n)$, le second
-		$(T_i,2P_i,V_i,2n)$. Une cale bloque initialement la cloison mobile. On enlève
-		la cale et on place l'enceinte dans un environnement à température $T_0$.
+		Soit une enceinte indéformable, séparée en deux compartiments par une
+		cloison étanche et mobile. Le premier a pour état initial $(T_i,P_i,V_i,n)$,
+		le second $(T_i,2P_i,V_i,2n)$. Une cale bloque initialement la cloison
+		mobile. On enlève la cale et on place l'enceinte dans un environnement à
+		température $T_0$.
 		\tcblower
 		\begin{center}
 			\sswitch{
@@ -563,7 +559,9 @@ thermodynamique.
 		\tcbsubtitle{\fatbox{\textbf{Isochore}}}
 		\psw{%
 			\[
-				\boxed{W_p = 0}
+				\boxed{\delta W_p = 0}
+				\Lra
+				W_p = 0
 			\]
 		}%
 		\vspace{-15pt}
@@ -806,7 +804,7 @@ chemin~: $A \lra B \lra A$.
 			\item $P_A = \SI{2e5}{Pa}$ et $V_A = \SI{14}{L}$~;
 			\item Chauffage isochore, $P_B = 2P_A = \SI{4e5}{Pa}$~;
 			\item Détente isotherme quasi-statique, $V_C = 2V_B = \SI{28}{L}$~;
-			\item Refroidissement isobare, on retourne à l'état initial.
+			      \item[cl](A) Refroidissement isobare, on retourne à l'état initial.
 		\end{enumerate}
 		\tcblower
 		\begin{center}
@@ -873,39 +871,67 @@ chemin~: $A \lra B \lra A$.
 				            \]
 			            }%
 		      \end{enumerate}
-		\item On a déjà démontrer les formules utiles, mais \textbf{il faudrait
+		\item On a déjà démontré les formules utiles, mais \textbf{il faudrait
 			      les redémontrer} pour ne pas se tromper de signe.
 		      \begin{itemize}
-			      \item AB~:
-			            \psw{transformation isochore, donc
-				            \[
-					            \boxed{W_{p,AB} = 0}
-				            \]
+			      \item
+			            \leftcenters{%
+				            \psw{%
+					            AB~: transformation isochore, donc
+				            }%
+			            }{%
+				            \psw{%
+					            $\boxed{W_{p,\rm AB} = 0}$
+				            }%
 			            }%
-			      \item BC~:
-			            \psw{%
-				            isotherme et quasi-statique, donc
-				            \[
-					            \boxed{W_{p,BC} = nRT_B \ln (\frac{V_B}{V_C})}
-					            \Ra
-					            \xul{W_{p,BC} = \SI{-3.88}{kJ}}
-				            \]
+			      \item
+			            \leftcenters{%
+				            \psw{%
+					            BC~: isoT et Q.S. donc
+				            }%
+			            }{%
+				            \psw{%
+					            $
+						            % W_{p,\rm BC} = nRT_B \ln (\frac{V_B}{V_C})
+						            %       \Lra
+						            \boxed{W_{p,\rm BC} = -nRT_B \ln 2}
+						            \Ra
+						            \xul{W_{p,BC} = \SI{-3.88}{kJ}}
+					            $
+				            }%
 			            }%
-			      \item CA~:
-			            \psw{%
-				            isobare, donc
-				            \[
-					            \boxed{W_{p,CA} = P_C (V_A - V_C)}
-					            \Ra
-					            \xul{W_{p,CA}= \SI{2.8}{kJ}}
-				            \]
+			      \item
+			            \leftcenters{%
+				            \psw{%
+					            CA~: isobare, donc
+				            }%
+			            }{%
+				            \psw{%
+					            $
+						            % W_{p,\rm CA} = P_C (V_C - V_A)
+						            %       \Lra
+						            \boxed{W_{p,\rm CA} = 2P_AV_A}
+						            \Ra
+						            \xul{W_{p,CA}= \SI{2.8}{kJ}}
+					            $
+				            }%
 			            }%
-			      \item Cycle~:
+			      \item
+			            \leftcenters{%
+				            \psw{%
+					            Cycle~:
+				            }%
+			            }{%
+				            \psw{%
+					            $\DS
+						            W_{p,\rm cycle} = \sum_i W_i = W_{AB} + W_{BC} + W_{CA} =
+						            % + 2P_AV_A - nRT_B \ln 2
+						            \SI{-1.08}{kJ}
+					            $
+				            }%
+			            }%
+			            \smallbreak
 			            \psw{%
-				            \[
-					            W_{p,\rm cycle} = \sum_i W_i = W_{AB} + W_{BC} + W_{CA} =
-					            \SI{-1.08}{kJ}
-				            \]
 				            Il reçoit bien un travail \textbf{négatif}, c'est donc
 				            un cycle \textbf{moteur} comme prédit.
 			            }%

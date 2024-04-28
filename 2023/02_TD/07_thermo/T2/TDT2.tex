@@ -31,7 +31,8 @@
 \QR{%
 	Vous placez dans un thermos du thé bouillant et de l'eau froide.
 }{%
-	Transformation adiabatique d'une phase condensée, isobare et isochore.
+	Transformation adiabatique d'une phase condensée, isobare et isochore( et
+	monotherme, mais inutile si pas d'échange de chaleur).
 }%
 \QR{%
 	Vous oubliez votre tasse de café dans la cuisine la journée.
@@ -186,8 +187,8 @@ passer de l'état initial A $(P_A, V_A, T_A)$ à l'état final B $(P_B, V_B,
 \begin{itemize}
 	\item A1B isotherme~;
 	\item A2B représentée par une droite dans le diagramme $(P,V)$~;
-	\item A3B composée d'une transformation à volume constant, suivie d'une
-	      transformation à pression constante.
+	\item A3B composée d'une transformation à pression constante, suivie d'une
+	      transformation à volume constant.
 \end{itemize}
 On considère l'équilibre thermodynamique interne conservé à tout instant. On
 donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
@@ -214,9 +215,9 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 				      \SI{300}{K}}$.
 		\item
 		      \leftcenters{%
-			      On a donc $PV = \cte$, soit
+			      On a donc $P_AV_A = P_BV_B$, soit
 		      }{%
-			      $\boxed{\DS P_B = P_A \frac{V_A}{V_B} = \frac{V_A}{3}}$
+			      $\boxed{\DS V_B = V_A \frac{P_A}{P_B} = \frac{V_A}{3}}$
 		      }%
 	\end{itemize}
 }%
@@ -228,7 +229,7 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 			P\ind{ext}}$. Ainsi~:
 	\begin{gather*}
 		\beforetext{A1B~:}
-		W_1 = -\int_{A}^{B} -P \dd{V} = -nRT_A \ln \frac{V_B}{V_A}
+		W_1 = -\int_{A}^{B} P \dd{V} = -nRT_A \ln \frac{V_B}{V_A}
 		\Lra
 		\boxed{W_1 = P_AV_A \ln 3}
 		\\\beforetext{A2B~:}
@@ -255,7 +256,7 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 }%
 
 \resetQ
-\section[s]"2"{Étude d'un compresseur}
+\section[s]"3"{Étude d'un compresseur}
 \enonce{%
 	\noindent
 	\begin{minipage}[c]{.48\linewidth}
@@ -292,7 +293,7 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 	\item
 	\QR{%
 		Tracer sur un diagramme de \textsc{Watt} $(P,V)$ l'allure de la courbe
-		représentant un aller-retour du piston. Indiquer le sens de parcous par une
+		représentant un aller-retour du piston. Indiquer le sens de parcours par une
 		flèche.
 	}{%
 		\noindent
@@ -329,7 +330,7 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 			) = 0
 		\]
 		En effet, puisque le piston effectue un aller-retour, le volume balayé est
-		le même à l'aller (travaill résistant) qu'au retour (travail moteur).
+		le même à l'aller (travail résistant) qu'au retour (travail moteur).
 	}%
 	\QR{%
 		Montrer que le travail fourni par le moteur qui actionne le piston est égal
@@ -337,43 +338,49 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 		assez lent pour que l'évolution soit mécaniquement réversible.
 	}{%
 		La force exercée par le moteur pour déplacer le piston est $F = (P-P_0)S$
-		avec $S$ la section du piston. Ainsi, le travail fourni par le moteur est~:
+		avec $S$ la section du piston. Ainsi, le travail \textbf{reçu} par le moteur
+		est~:
 		\[
-			W\ind{moteur} = -\int_{ABCD} (P - P_0)\dd{V} = -\int_{ABCD} P \dd{V} -
-			W\ind{droite}
+			W\ind{moteur}\sup{reçu} =
+			\int_{\mathrlap{ABCD}} ~~ (P - P_0)\dd{V} =
+			\int_{\mathrlap{ABCD}} ~~ P \dd{V} - W\ind{droite}
 			\Lra
-			\boxed{W\ind{moteur} = - \int_{ABCD} P \dd{V}}
+			\boxed{W\ind{moteur}\sup{fourni} = -\int_{\mathrlap{ABCD}} ~~ P \dd{V}}
 		\]
-		En effet, le travail \textbf{fourni par le moteur} est le travail
-		\textbf{reçu par le gaz}, en supposant la pression $P$ définie à chaque
-		instant. C'est ce qu'on appelle habituellement le travail de l'opérataire.
+		En effet, le travail \textbf{fourni par le moteur} est l'opposé de son
+		travail reçu, et est égal au travail \textbf{reçu par le gaz}, en supposant
+		la pression $P$ définie à chaque instant. C'est ce qu'on appelle
+		habituellement le travail de l'opérataire.
 	}%
 \end{blocQR}
 \QR{%
-	Pendent la phase de compression, l'air suit une loi polytropique $PV^k =
-		\cte$. Il sort du compresseur à la température $T_1 = \SI{391}{K}$. Trouver la
-	valeur de $k$.
+Pendant la phase de compression, l'air suit une loi polytropique $PV^k =
+	\cte$. Il sort du compresseur à la température $T_1 = \SI{391}{K}$. Trouver la
+valeur de $k$.
 }{%
-	On étudie le gaz enre B et C. On a trois équations d'états~:
-	\begin{DispWithArrows*}[groups]
-		P_BV_m = nRT_B
-		\qqet
-		P_CV_C &= nRT_C
-		\qqet
-		P_BV_B^{k} = P_CV_C^{k}
-		\\\Ra
-		\left( \frac{P_C}{P_C} \right) = \left( \frac{V_B}{V_C} \right)^{k}
-		& \Lra
-		\left( \frac{P_C}{P_C} \right)^{1-k} = \left( \frac{T_B}{T_C} \right)^{-k}
-		\CArrow{$\ln (~\cdot~)$}
-		\\
-		k =
-		\frac{\ln \frac{P_B}{P_C}}{\ln \frac{P_B}{P_C} - \ln \frac{T_B}{T_C}}
-		\Lra
-		\Aboxed{k &= \frac{\ln \frac{P_0}{P_1}}{\ln \frac{P_0}{P_1} - \ln \frac{T_0}{T_1}}}
-		\Ra
-		\xul{k = \num{1.2}}
-	\end{DispWithArrows*}
+On étudie le gaz entre B et C. On retrouve une expression proche de la loi de
+\textsc{Laplace}, et on connaît $P$ et $T$ aux instants initial et final~: on
+la convertit donc en $P^{1-\gamma}T^{\gamma} = \cte$, d'où
+\begin{DispWithArrows*}[groups]
+	% P_BV_m = nRT_B
+	% \qqet
+	% P_CV_C &= nRT_C
+	% \qqet
+	% P_BV_B^{k} = P_CV_C^{k}
+	% \\\Ra
+	%   \left( \frac{P_C}{P_B} \right) &= \left( \frac{V_B}{V_C} \right)^{k}
+	%   \Arrow{}
+	% & \Lra
+	\left( \frac{P_C}{P_B} \right)^{1-k} &= \left( \frac{T_B}{T_C} \right)^{-k}
+	\CArrow{$\ln (~\cdot~)$}
+	\\
+	k =
+	\frac{\ln \frac{P_B}{P_C}}{\ln \frac{P_B}{P_C} - \ln \frac{T_B}{T_C}}
+	&\Lra
+	\boxed{k = \frac{\ln \frac{P_0}{P_1}}{\ln \frac{P_0}{P_1} - \ln \frac{T_0}{T_1}}}
+	\Ra
+	\xul{k = \num{1.2}}
+\end{DispWithArrows*}
 }%
 \QR{%
 	Exprimer le travail mécanique $W\ind{moteur}$ fourni par le moteur pendant un
@@ -399,15 +406,13 @@ donne $P_B = 3 P_A$, $T_A = \SI{300}{K}$ et $R =
 			      \Arrow{$\DS \int \frac{1}{V^k} \qav k>1$}
 			      \\\Lra
 			      W\ind{BC} &=
-			      \frac{P_0V_m^k}{k-1} \left[ V^{1-k} \right]_{V_m}^{V_1}
-			      \Arrow{On développe}
+			      \frac{P_0V_m^{k+1-1}}{k-1} \left[ V^{1-k} \right]_{V_m}^{V_1}
+			      \Arrow{On factorise par $V_m^{1-k}$}
 			      \\\Lra
 			      W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \left( \frac{V_1}{V_m}
 				      \right)^{1-k} - 1 \right)
-			      \Arrow{$\DS \left( \frac{V_1}{V_m}\right)^{1-k} = \frac{P_1V_1}{P_0V_m}$}
-			      \\\Lra
-			      W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \frac{P_1V_1}{P_0V_m} - 1 \right)
-			      \Arrow{$\DS \frac{P_1V_1}{P_0V_m} = \frac{T_1}{T_0}$}
+			      \Arrow{$PV^k = \cte \Lra TV^{k-1} = \cte$\\
+				      $\Lra\DS \left( \frac{V_1}{V_m}\right)^{1-k} = \frac{T_1}{T_0}$}
 			      \\\Lra
 			      \Aboxed{W\ind{BC} &= \frac{P_0V_m}{k-1} \left( \frac{T_1}{T_0} - 1 \right)}
 		      \end{DispWithArrows*}

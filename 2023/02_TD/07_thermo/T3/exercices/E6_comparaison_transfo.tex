@@ -152,6 +152,7 @@
 	\begin{align*}
 		W_{1\to 2}          & =
 		- \left( P_0 + \frac{Mg}{S} \right) (V_2-V_1)
+		\\
 		\beforetext{et on a}
 		\Delta{U}_{1 \to 2} & = \frac{5}{2}nR (T_2-T_1)
 		\intertext{Le transfert thermique reçu s'obtient alors par}
@@ -193,19 +194,53 @@
 \QR{%
 	Déterminer la pression dans l'état final et en déduire le volume. Commenter.
 }{%
-	solu
+	Dans l'état final $F$, la masse placée sur le piston est exactement la même que
+	dans le cas précédent~: on en déduit
+	\[
+		\boxed{P_F = P_2 = P_0 + \frac{Mg}{S}}
+	\]
+	et comme par ailleurs $T_F = T_0 = T_2$, avec la loi du gaz parfait on a
+	également $V_F = V_2$. Ainsi, \textbf{les états finaux sont les mêmes}. Cela
+	n'a rien d'étonnant~: les équilibres thermique et mécanique sont établis dans
+	les 2 états, et les contraintes extérieures (masse $M$, pression $P_0$ et
+	température $T_0$) sont les mêmes.
 }%
 \QR{%
 	Établir le bilan énergétique de la transformation en explicitant chaque terme.
 }{%
-	solu
+	La transformation étant quasi-statique, on a $P = P\ind{ext}$, soit
+	\begin{gather*}
+		W = -\int_{V_i}^{V_f} P\ind{ext}\dd{V} = -\int_{V_i}^{V_f} P \dd{V}
+		\\\Lra
+		W = -nRT_0 \int_{V_i}^{V_f} \frac{\dd{V}}{V} \Lra
+		\boxed{W = -nRT_0 \ln \frac{V_f}{V_i}}
+	\end{gather*}
+	Par ailleurs, la transformation étant isotherme on a $\Delta{U} = C_V\Delta{T}
+		= 0$, et avec le premier principe
+	\[
+		\Delta{U} = W+Q \Lra Q = -W
+		\qso
+		\boxed{Q = nRT_0 \ln \frac{V_f}{V_i}}
+	\]
+	On voit ainsi que les deux transformations ont les mêmes états initial et
+	final, donc la même variation d'énergie interne, alors que les échanges
+	d'énergie ne sont pas les mêmes.
 }%
 \QR{%
 	Représenter alors ces deux transformations dans un diagramme de \textsc{Watt}
 	$(P,V)$, en considérant la transformation $I\to 1$ mécaniquement réversible,
 	et commenter.
 }{%
-	solu
+	\sswitch{
+		\hfill
+		\includegraphics[width=.4\linewidth, valign=t]{E6_adia_vs_isoT}
+		\hspace*{\fill}
+	}{
+		\vspace{-30pt}
+		\begin{center}
+			\includegraphics[width=.4\linewidth]{E6_adia_vs_isoT}
+		\end{center}
+	}
 }%
 
 \end{document}%

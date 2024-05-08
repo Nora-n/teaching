@@ -1,0 +1,157 @@
+\documentclass[a4paper, 10pt, final, garamond]{book}
+\usepackage{cours-preambule}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\makeatother
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{25}
+
+\settype{enon}
+\settype{solu}
+
+\chapter{Premier principe de la thermodynamique\ifstudent{~(13')}}
+
+\begin{enumerate}[label=\sqenumi]
+	\item[n]{6}
+	Donner des conditions pour réaliser une transformation isotherme. Donner
+	des conditions pour réaliser une transformation adiabatique. Expliquer
+	succinctement la différence.
+	\smallbreak
+	\vspace{-15pt}
+	\psw{%
+		\begin{itemize}
+			\item On réalise une transformation isotherme avec des parois
+			      \textbf{diathermanes} \pt{1}, en \textbf{évolution lente} \pt{1} au
+			      contact d'un \textbf{thermostat}. \pt{1}
+			\item On réalise une transformation adiabatique avec des parois
+			      \textbf{calorifugées} \pt{1} et une \textbf{transformation rapide}.
+			      \pt{1}
+		\end{itemize}
+		Les deux modèles sont diamétralement opposés~: isotherme n'est possible
+		que grâce aux échanges de chaleur, adiabatique c'est leur absence. Le plus
+		souvent, $Q = 0 \Ra \Delta{T} \neq 0$. \pt{1}
+	}%
+	\item[n]{6}
+	Énoncer les conditions du premier principe enthalpique, puis le démontrer.
+	\smallbreak
+	\psw{%
+		Pour un transformation \textbf{monobare} avec  \textbf{équilibre mécanique
+			dans l'état initial et final} ($P_i = P_f = P\ind{ext}$), on a~:
+		\psw{%
+			\begin{DispWithArrows*}[groups]
+				\Delta{U} &\stm[-1]{=} W_p + W_u + Q
+				\Arrow{$P\ind{ext} = P_0$ \pt{1}}
+				\Arrow[jump=3,tikz-code=
+						{\draw
+							(#1) --++
+							(3cm,0) |-
+							node[pos=.25, sloped] {#3}
+							(#2) ;
+						}]{On combine}
+				\\\text{Or,~~}
+				W_p &\stm[-1]{=} -P_0(V_f - V_i)
+				\Arrow{$P_i = P_f = P_0$ \pt{1}}
+				\\\Ra
+				W_p & = -P_f V_f + P_iV_i
+				\Arrow{$W_p = -\Delta{PV}$}
+				\\\Lra
+				\Delta{U} &\stm[-1]{=} - \Delta{(PV)} + W_u + Q
+				\\\Lra
+				\Aboxed{\Delta{H} &= W_u + Q} \pt{1}
+				\qed
+			\end{DispWithArrows*}
+		}%
+	}%
+	\item[n]{8}
+	Dans un calorimètre parfaitement isolé de masse en eau $m_0 = \SI{24}{g}$, on
+	place $m_1 = \SI{150}{g}$ d'eau à $T_1 = \SI{298}{K}$. On ajoute $m_2 =
+		\SI{100}{g}$ de cuivre à $T_2 = \SI{353}{K}$, avec $c_{\ce{Cu}} =
+		\SI{385}{J.K^{-1}.kg^{-1}}$. On cherche la température d'équilibre $T_f$.
+	\begin{enumerate}[label=\sqenumi]
+		\item Exprimer $\Delta{H}\ind{eau}$ en fonction de $m_1$, $c\ind{eau}$,
+		      $T_1$ et $T_f$.
+		\item Exprimer $\Delta{H}_{\ce{Cu}}$ en fonction de $m_2$, $c_{\ce{Cu}}$,
+		      $T_2$ et $T_f$.
+		\item Exprimer $\Delta{H}\ind{calo}$ en fonction de $m_1$, $c\ind{eau}$,
+		      $T_1$ et $T_f$.
+		\item Justifier que $\Delta{H}\ind{tot} = 0$.
+		\item En déduire $T_f$.
+	\end{enumerate}
+	\smallbreak
+	\begin{enumerate}[label=\sqenumi]
+		\item[m]
+			\psw{%
+				\begin{gather*}
+					\boxed{\Delta{H}\ind{eau} = m_1c\ind{eau} (T_f - T_1)}
+					\hspace{10pt}
+					\pt{1}
+				\end{gather*}
+			}%
+		\item[m]
+			\psw{%
+				\begin{gather*}
+					\boxed{\Delta{H}_{\ce{Cu}} = m_2c_{\ce{Cu}} (T_f - T_2)}
+					\hspace{10pt}
+					\pt{1}
+				\end{gather*}
+			}%
+		\item[m]
+			\psw{%
+				\begin{gather*}
+					\boxed{\Delta{H}\ind{calo} = m_0c\ind{eau} (T_f - T_1)}
+					\hspace{10pt}
+					\pt{1}
+				\end{gather*}
+			}%
+		\item \psw{%
+			      Calorimètre isolé donc $Q = 0$ \pt{1}, et pas d'autres travaux donc
+			      $W_u = 0$~:
+			      \[
+				      \Delta{H} = W_u + Q \Lra \boxed{\Delta{H}\ind{tot} = 0}
+				      \hspace{10pt}
+				      \pt{1}
+			      \]
+		      }%
+		\item [m][20]
+		      \psw{%
+			      \begin{align*}
+				      (m_1 + m_0)c\ind{eau} (T_f - T_1) + m_2c_{\ce{Cu}}(T_f - T_2)
+				          & = 0
+				      \\\Lra
+				      T_f \left( (m_1+m_0)c\ind{eau} + m_2c_{\ce{Cu}} \right)
+				          & \stm[-1]{=}
+				      T_1 \left( m_1+m_0 \right)c\ind{eau} + T_2m_2c_{\ce{Cu}}
+				      \\\Lra
+				      \Aboxed{
+				      T_f & \stm[-1]{=}
+				      \frac{\left( m_1+m_0 \right)c\ind{eau}T_1 + m_2c_{\ce{Cu}}T_2}
+				      {(m_1+m_0)c\ind{eau} + m_2c_{\ce{Cu}}}
+				      }
+				      \\
+				      \makebox[0pt][l]{$\phantom{\AN}\xul{\phantom{T_f = \SI{301}{K}}}$}
+				      \AN
+				      T_f & \stm{=} \SI{301}{K}
+			      \end{align*}
+		      }%
+	\end{enumerate}
+\end{enumerate}
+\vspace{-15pt}
+\ifstudent{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west, align=left]
+		at ([shift={(1.4cm,0)}]current page.north west)
+		{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
+		\node[anchor=north east, align=right]
+		at ([shift={(-1.5cm,-17pt)}]current page.north east)
+		{\Large\bfseries Note~:\hspace{1cm}/20};
+	\end{tikzpicture}
+}
+\end{document}

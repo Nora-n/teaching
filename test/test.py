@@ -118,14 +118,14 @@ import matplotlib.pyplot as plt
 #         ((16*M*np.pi**2)/(m*g*T0**2))*ell)
 # )
 # print(f'x_+ direct = {xp*1e2:.2f} cm')
-RT = 6370e3  # km
-h = 800e3    # m
-G = 6.67e-11 # m^3kg^-1s^-1
-MT = 5.97e24 # kg
-T = 2*np.pi*np.sqrt((RT+h)**3/(G*MT))
-print(f'T = {T:.2e}')
-v = np.sqrt((G*MT)/(RT+h))
-print(f'v = {v:.2e}')
+# RT = 6370e3  # km
+# h = 800e3    # m
+# G = 6.67e-11 # m^3kg^-1s^-1
+# MT = 5.97e24 # kg
+# T = 2*np.pi*np.sqrt((RT+h)**3/(G*MT))
+# print(f'T = {T:.2e}')
+# v = np.sqrt((G*MT)/(RT+h))
+# print(f'v = {v:.2e}')
 
 # C7
 # ct = 1
@@ -135,3 +135,41 @@ print(f'v = {v:.2e}')
 # pkr = pks + pbeta4
 # ph = pkr + pke + np.log10(ct)
 # print(f'pH = {ph}')
+
+# TDT3 exo chambre
+P0 = 1e5 # Pa
+V = 36 # m^3
+Tc = 292     # K
+C_v = 5*P0*V/(2*Tc)
+print(f'C_v = {C_v:.2e} J.K^-1')
+gtoit = 0.50 # W.m^-2.K-1
+gmur = 2.90  # W.m^-2.K-1
+S = 12       # m^2
+Text = 283   # K
+Pc = (gtoit + gmur)*S*(Tc-Text)
+print(f'Pc = {Pc:.1e} W')
+tau = C_v/((gtoit+gmur)*S)
+print(f'\\tau = {tau:.1e} s')
+tau_m = tau/60
+print(f'\\tau_m = {tau_m:.1f} min')
+
+Pmax = 2e3 # W
+conv_euro = 0.27/(1e3*3600)
+
+t2 = tau*np.log(Pmax/(Pmax-Pc))
+print(f't2 = {t2:.1f} s')
+
+t_garde = 3*3600+t2 # s
+print(f't_garde = {t_garde:.2e} s')
+Q_garde = Pc*t_garde # J
+print(f'Q_garde = {Q_garde:.2e} J')
+Q_garde_euro = Q_garde*conv_euro # €
+print(f'Q_garde_euro = {Q_garde_euro:.2e} €')
+
+Q_rechauffe = Pmax*t2 # J
+print(f'Q_rechauffe = {Q_rechauffe:.2e} J')
+Q_rechauffe_euro = Q_rechauffe*conv_euro # #
+print(f'Q_rechauffe_euro = {Q_rechauffe_euro:.2e} €')
+
+t_egal = t2*(Pmax/Pc - 1)
+print(f't_egal = {t_egal/60:.2e} min')

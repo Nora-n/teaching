@@ -29,6 +29,14 @@
 % \settype{stud}
 
 \chapter{Machines thermiques}
+\epigraph{\openquote\textit{%
+		Thermodynamics is a funny subject. The first time you go through it, you
+		don't understand it at all. The second time you go through it, you think you
+		understand it, except for one or two small points. The third time you go
+		through it, you know you don't understand it, but by that time you are so
+		used to it, it doesn't bother you anymore.
+	}%
+	\closequote}{Arnold \textsc{Sommerfeld}, \~1950}
 
 \vspace*{\fill}
 
@@ -165,29 +173,142 @@
 \vspace*{\fill}
 \newpage
 
+\section{Introduction}
+\subsection{Définition}
 
-\begin{center}
-	\begin{tikzpicture}
-		\draw (0,0) rectangle (4,2);
-		\draw (2,1) node{fluide};
+\begin{tcb*}(defi){Machines thermiques et performance}
+	\begin{isd}[righthand ratio=.25]
+		Une machine thermique est un dispositif qui fait subir à un fluide un
+		\textbf{cycle thermodynamique}, dans le but d'\textbf{extraire du travail}
+		mécanique $W$ ou un \textbf{transfert thermique} $Q$.
+		% Selon le type de machine, l'énergie coûteuse et l'énergie produite ne sont pas
+		% les mêmes.
+		\tcblower
+		\tcbsubtitle{\fatbox{\textbf{Coeff.\ performance}}}
+		\vspace{-15pt}
+		\psw{%
+			\[
+				\text{COP} = \abs{\frac{\text{production}}{\text{coût}}}
+			\]
+		}%
+		\vspace{-15pt}
+	\end{isd}
+	\begin{isd}[sidebyside align=top]
+		\tcbsubtitle{\fatbox{\textbf{Machine motrice}}}
+		Elle \textbf{fournit un travail}~:
+		\begin{itemize}
+			\item[b]{Production}: \psw{$W < 0$}
+			\item[b]{Coût}: \psw{$Q > 0$}
+			\item[b]{Rendement}\ftn{On parle de \textbf{rendement} pour un
+				\textbf{moteur}, car il décrit une conversion d'énergie. On a donc
+				$\eta < 1$.}: \psw{$\DS\eta = \abs{\frac{W}{Q}}$}
+		\end{itemize}
+		\vspace{-15pt}
+		\tcblower
+		\tcbsubtitle{\fatbox{\textbf{Machine réceptrice}}}
+		Elle \textbf{reçoit un travail}~:
+		\begin{itemize}
+			\item[b]{Coût}: \psw{$W > 0$}
+			\item[b]{Production}: \psw{$Q \lessgtr 0$}
+			\item[b]{Efficacité}\ftn{On parle d'\textbf{efficacité} pour un
+				\textbf{récepteur} puisqu'elle quantifie un transfert thermique, pas
+				une conversion. On peut donc avoir $e > 1$.}: \psw{$\DS e =
+					\abs{\frac{Q}{W}}$}
+		\end{itemize}
+		\vspace{-15pt}
+	\end{isd}
+\end{tcb*}
+\vspace{-15pt}
+\begin{tcb}(exem)<lftt>{Machines thermiques}
+	\begin{itemize}
+		\item Une locomotive à vapeur convertit la chaleur extraite de la cheminée
+		      en mouvement des roues~: c'est un \xul{\psw{\textbf{moteur}}}.
+		\item Un radiateur électrique convertit un travail électrique (effet
+		      \textsc{Joule}) en chaleur~: c'est un \xul{\psw{\textbf{récepteur}}}.
+		\item Un réfrigérateur récupère un travail électrique et s'en sert pour
+		      capter l'énergie thermique des aliments~: c'est un
+		      \xul{\psw{\text{récepteur}}}.
+	\end{itemize}
+\end{tcb}
 
-		\draw (-3.5,1) circle (1);
-		\draw (-3.5,1) node[text centered,text width=2.5cm]{Source \\ froide \\ $T_f$};
+\vspace{-25pt}
+\subsection{Fonctionnement général}
+\begin{tcb*}[sidebyside](prop){Fonctionnement des machines thermiques}
+	Pour une machine en contact avec $n$ sources de chaleurs, son fonctionnement
+	est régit par les \textbf{deux principes} de la thermodynamique~:
+	\begin{itemize}
+		\item[b]{Premier principe}:
+		\psw{%
+			\[
+				\boxed{W + \sum_{i=1}^{n} Q_i = 0}
+			\]
+		}%
+		\vspace{-15pt}
+		\item[b]{Second principe} (\textbf{inégalité de \textsc{Clausius}}):
+		\psw{%
+			\[
+				\boxed{\sum_{i=1}^{n} \frac{Q_i}{T_i} \leq 0}
+			\]
+		}%
+		% Qu'on appelle aussi \textbf{inégalité de \textsc{Clausius}}
+	\end{itemize}
+	\tcblower
+	\begin{center}
+		\sswitch{
+			\includegraphics[scale=.8]{ppe_gen-stud}
+		}{
+			\includegraphics[scale=.8]{ppe_gen}
+		}
+		\captionof{figure}{Représentation des échanges}
+	\end{center}
+\end{tcb*}
 
+\begin{tcb*}(impo){Échanges algébriques}
+	Pour rappel, les énergies échangées sont \textbf{algébriques}, et dans le
+	premier principe $W$ et $Q$ sont des énergies \textbf{reçues}~: les flèches
+	sont donc dirigées \textbf{vers le fluide}, même si les échanges sont
+	négatifs. On indiquera explicitement le signe des échanges pour lever la
+	confusion selon le type de machine.
+\end{tcb*}
 
-		\draw (7.5,1) circle (1);
-		\draw (7.5,1) node[text centered,text width=2.5cm]{Source \\ chaude \\ $T_c$};
+\begin{tcb*}[sidebyside, sidebyside align=top](demo){Fonctionnement des machines thermiques}
+	\tcbsubtitle{\fatbox{\textbf{Premier principe}}}
+	\vspace{-15pt}
+	\psw{%
+		\begin{align*}
+			\Delta{U}\ind{cycle} & = 0
+			\\\Lra
+			W + \sum_i Q_i       & = 0
+			\\\Lra
+			\Aboxed{\sum_i Q_i   & = -W}
+			\qed
+		\end{align*}
+	}%
+	\vspace{-15pt}
+	\tcblower
+	\tcbsubtitle{\fatbox{\textbf{Inégalité de \textsc{Clausius}}}}
+	\vspace{-15pt}
+	\psw{%
+		\begin{align*}
+			\Delta{S}\ind{cycle}                                               & = 0
+			\\\Lra
+			\sum_i S_{\mathrm{ech},i} + \underbracket[1pt]{S\ind{cr}}_{\geq 0} & = 0
+			\\\Lra
+			\Aboxed{
+			\sum_{i=1}^{n} \frac{Q_i}{T_i}                                     & \leq 0
+			}
+			\qed
+		\end{align*}
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
-		\draw[simplef] (-2.5,1)--(0,1)node[midway,above]{$Q_f$};
-		\draw[simplef] (6.5,1)--(4,1)node[midway,above]{$Q_c$};
-		\draw[simplef] (2,-1)--(2,0)node[midway,right]{$W$};
+\subsection{Machines monothermes}
+\begin{tcb*}(defi){Machine monotherme}
+	Une machine thermique monotherme est composée d'un fluide en contact avec un
+	\textbf{unique thermostat}.
+\end{tcb*}
 
-		\draw [red,->,>=latex,very thick] (-2,0.75)--(-1,0.75);
-		\draw [red,->,>=latex,very thick] (5,0.75)--(6,0.75);
-		\draw [red,->,>=latex,very thick] (1.75,-0.95)--(1.75,-0.25);
-
-	\end{tikzpicture}
-\end{center}
 
 \end{document}
 

@@ -1,87 +1,42 @@
-\documentclass[a4paper, 10pt, final, garamond]{book}
+\documentclass[a4paper, 12pt, final, garamond]{book}
 \usepackage{cours-preambule}
-\usepackage[french]{babel}
-
-\raggedbottom
 
 \makeatletter
 \renewcommand{\@chapapp}{Thermodynamique -- chapitre}
 \makeatother
 
+\hfuzz=5.003pt
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
 \begin{document}
-\setcounter{chapter}{2}
+\setcounter{chapter}{4}
 
-\chapter{TD~: Second principe et machines thermiques}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
 
-\section{Questions de cours~: efficacités de \textsc{Carnot}}
-\begin{enumerate}
-  \item Énoncer (sans démonstration) le premier principe pour une machine
-    ditherme.
-  \item Énoncer (sans démonstration) l'inégalité de \textsc{Clausius} pour une
-    machine ditherme.
-  \item Indiquer sans démonstration le sens des transferts thermiques et du
-    travail pour les machines dithermes suivantes~:
-    \begin{itemize}
-      \item moteur~;
-      \item réfrigérateur~;
-      \item pompe à chaleur.
-    \end{itemize}
-  \item Pour un moteur, établir l'expression du rendement de \textsc{Carnot}.
-  \item De même pour une pompe à chaleur.
-\end{enumerate}
+\chapter{\cswitch{Correction du TD}{TD~: Machines thermiques}}
 
-\section{Moteur à explosion -- cycle de Beau de \textsc{Rochas}}
-Dans un moteur à explosion, $n$ moles de gaz parfait subit le cycle de Beau de
-\textsc{Rochas}, composé de deux adiabatiques et de deux isochores~:
-\begin{itemize}
-  \item compression adiabatique de l'état $(P_1,V_1,T_1)$ à l'état
-    $(P_2,V_2,T_2)$~;
-  \item échauffement isochore de l'état $(P_2,V_2,T_2)$ à l'état
-    $(P_3,V_3,T_3)$~;
-  \item détente adiabatique de l'état $(P_3,V_3,T_3)$ à l'état $(P_4,V_4,T_4)$~;
-  \item refroidissement isochore qui ramène le fluide à l'état initial.
-\end{itemize}
-Les transformations sont supposées quasi-statiques.
-\begin{enumerate}
-  \item Représenter le cycle dans un diagramme de \textsc{Clapeyron} $(P,V)$.
-  \item Exprimer les travaux et transferts thermiques au cours des différentes
-    étapes en fonction $n,R,\gamma$ et des températures. En déduire le
-    rendement théorique $r$ de ce cycle en fonction des températures
-    $T_1,T_2,T_3$ et $T_4$.
-  \item En déduire l'expression de $r$ en fonction du rapport volumétrique $x =
-    \frac{V_1}{V_2}$ et du coefficient adiabatique $\gamma = \frac{C_P}{C_V}$ du
-    fluide.
-  \item Le piston du cylindre où évolue l'air ($\gamma = \num{1.4}$) a une
-    course $\ell = \SI{10}{cm}$, une section $S = \SI{50}{cm^2}$ et emprisonne
-    un volume d'air de \SI{100}{cm^3} en fin de compression. Calculer~:
-    \begin{enumerate}
-      \item le rendement théorique du cycle~;
-      \item le travail fourni au cours d'un cycle, si l'air est admis à une
-        pression de \SI{1}{bar} et à \SI{300}{K} et si la température maximale
-        est de \SI{900}{K}.
-    \end{enumerate}
-\end{enumerate}
+\resetQ
+\subfile{exercices/E1_pac_dom.tex}
 
-\section{Étude d'un moteur de \textsc{Stirling}}
-Un cycle de \textsc{Stirling} est formé de deux isothermes ($T_F < T_C$) et de
-deux isochores alternées. Le cycle est décrit de façon quasistatique dans le
-sens moteur par $n$ moles de gaz parfait, caractérisé par un coefficient
-adiabatique $\gamma$ supposé constant, et commence par une compression isotherme.
-\begin{enumerate}
-  \item Représenter ce cycle dans un diagramme de \textsc{Clapeyron}.
-  \item En fonction des températures $T_F$ et $T_C$, du taux de compression $a =
-    \frac{V_1}{V_2}$ et de $n$, $R$ et $\gamma$, établir les expressions~:
-    \begin{enumerate}
-      \item de la quantité de chaleur reçue par le système au cours d'un cycle
-        (notée $Q_C$ et égale à $Q_{23}+Q_{34}$)~;
-      \item de la quantité de chaleur cédée par le système au cours d'un cycle
-        (notée $Q_F$ et égale à $Q_{41}+Q_{12}$)~;
-      \item du rendement thermodynamique de ce cycle.
-    \end{enumerate}
-  \item On admet que la chaleur fournie au fluide lors du chauffage isochore est
-    récupérée par un régénérateur lors du refroidissement isochore. Que devient
-    le rendement~? Comparer ce rendement à celui de \textsc{Carnot}. Que peut-on
-    en déduire sur l'entropie créée au cours du cycle~?
-\end{enumerate}
+\resetQ
+\subfile{exercices/E2_frigo_refrd_cuisine.tex}
+
+\resetQ
+\subfile{exercices/E3_bdr.tex}
+
+\resetQ
+\subfile{exercices/E4_stirling.tex}
+
+\resetQ
+\subfile{exercices/E5_cout_frigo.tex}
+
+\resetQ
+\subfile{exercices/E6_diesel.tex}
 
 \end{document}

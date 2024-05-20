@@ -8,9 +8,9 @@
 	réfrigérateur. Une heure plus tard, elles sont à la température du frigo.
 	\begin{tcn}(defi)<lftt>{Données}
 		\begin{itemize}
-			\item L'efficacité thermodynamique du refrigérateur vaut $70\%$ de
+			\item L'efficacité thermodynamique du réfrigérateur vaut $70\%$ de
 			      l'efficacité de \textsc{Carnot}~;
-			\item L'isolation imparfaite du refrigérateur se traduit par des fuites
+			\item L'isolation imparfaite du réfrigérateur se traduit par des fuites
 			      thermiques de puissance $\SI{10}{W}$~;
 			\item Tarifs électricité~: $\SI{1}{kWh}$ coûte $\SI{0.25}{\text{\euro}}$.
 		\end{itemize}
@@ -19,7 +19,56 @@
 \QR{%
 	Combien vous coûte ce refroidissement~?
 }{%
-	solu
+	Supposons que les bouteilles de jus de fruit sont à température initiale $T_I
+		= \SI{25}{\degreeCelsius}$, et que la température finale (celle du frigo) vaut
+	$T_F = \SI{5}{\degreeCelsius}$. Commençons par calculer l'énergie nécessaire
+	au refroidissement.
+	\begin{itemize}
+		\item[b]{Système}: \{contenu du frigo\}
+		\item[b]{Bilan des échanges}:
+		\begin{itemize}
+			\item Transfert thermique reçu de la part du fluide frigorigène~:
+			      $Q\ind{frigo} < 0$ que l'on cherche à déterminer~;
+			\item transfert thermique de fuite~: $Q\ind{fuite} =
+				      +\Pc\ind{fuite}\Delta{t} > 0$ avec $P\ind{fuite} = \SI{10}{W}$ et
+			      $\Delta{t} = \SI{1}{h} = \SI{3.6e3}{s}$~: \textbf{attention au signe},
+			      compte-tenu de la différence de température, c'est le \textbf{contenu
+				      du frigo} qui reçoit effectivement de l'énergie.
+		\end{itemize}
+		\item[b]{Variation d'énergie interne}: on assimile les jus à de l'eau du
+		point de vue thermique, soit
+		\begin{gather*}
+			\Delta{U} = m\ind{jus}c\ind{eau} (T_F-T_I) = Q\ind{frigo} + Q\ind{fuite}
+			\\\Lra
+			Q\ind{frigo} m\ind{jus}c\ind{eau} (T_F - T_I) - \Pc\ind{fuite}\Delta{t}
+			= \SI{-5.4e5}{J}
+		\end{gather*}
+	\end{itemize}
+	Calculons maintenant le coût en énergie électrique du refroidissement. On fait
+	l'hypothèse que l'énergie électrique fournie au frigo ne sert qu'à faire
+	tourner le moteur. Par définition de l'efficacité d'un frigo, $e =
+		\abs{Q\ind{froid}/W}$ où les échanges sont ceux du fluide. Ici, on a donc
+	\[
+		e = \abs{Q\ind{frigo}}/\Ec\ind{élec}
+	\]
+	Par ailleurs, l'efficacité de \textsc{Carnot} d'un frigo vaut $e_C =
+		T\ind{frigo}/(T\ind{ext} - T\ind{frigo})$. En combinant, on en déduit
+	\[
+		e =
+		\frac{\abs{Q\ind{frigo}}}{\Ec\ind{élec}} =
+		\num{0.7}\frac{T\ind{frigo}}{T\ind{ext}-T\ind{frigo}} \approx 10
+		\qqdc
+		\Ec\ind{élec} = \frac{\abs{Q\ind{frigo}}}{e} = \SI{5e4}{J}
+	\]
+	Enfin, calculons le prix en euros de cette énergie, sachant que $\SI{1}{kWh} =
+		\SI{1e3}{W}\times \SI{3.6e3}{s} = \SI{3.6e6}{J}$. On trouve
+	\[
+		\xul{
+			p =
+			\frac{\SI{5e4}{J}}{\SI{3.6e6}{J}}\times \SI{0.25}{\text{\euro}} \approx
+			\SI{0.33}{\text{\euro}}
+		}
+	\]
 }%
 
 \end{document}

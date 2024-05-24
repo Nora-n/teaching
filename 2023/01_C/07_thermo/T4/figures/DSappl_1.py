@@ -25,12 +25,18 @@ ax.plot(xs, Scr(xs), c='cornflowerblue', ls='none')
 ax.set_xlabel(r'$\displaystyle x = \frac{T_i}{T_f}$')
 ax.set_ylabel(r'$\displaystyle S_{{\rm cr}, m}$ (J$\cdot$K$^{-1}\cdot$mol$^{-1}$)')
 
+ax.set_ylim(bottom=-50)
+
 ax.grid()
 
 fig.savefig('./2023/01_C/07_thermo/T4/figures/DSappl_1-stud.pdf',
             bbox_inches="tight")
 
-ax.plot(xs, Scr(xs), c='cornflowerblue')
+ax.plot(xs, Scr(xs), c='cornflowerblue', label=r'$S_{{\rm cr},m}$')
+ax.plot(xs, Cvm*(xs-1), c='firebrick', label=r'$x-1$')
+ax.plot(xs, Cvm*np.log(xs), c='orange', label=r'$\ln(x)$')
+
+ax.legend()
 
 fig.savefig('./2023/01_C/07_thermo/T4/figures/DSappl_1.pdf',
             bbox_inches="tight")

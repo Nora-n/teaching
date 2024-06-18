@@ -1,0 +1,142 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+\usepackage{miller}
+\usepackage{tikz-3dplot}
+\usepackage{relsize}
+
+\begin{document}
+
+% set view angle
+\tdplotsetmaincoords{80}{100}% rot x rot z
+% x = 0 => top view
+
+\begin{tikzpicture}[
+		tdplot_main_coords,scale=1.5,
+		axis/.style={thick, ->, >=stealth'},
+		dot/.style = {circle, fill, minimum size=#1,
+				inner sep=0pt, outer sep=0pt},
+		dot/.default = 6pt  % size of the circle diameter 
+	]
+
+	\def \s {0}     % defines shear of z along y (instead of angles), for orthogonal systems: 0
+	\def \su {0}   % defines shear of x along y (instead of angles), for orthogonal systems: 0
+	\def \a {1}       % unit cells along a (only integers!)
+	\def \b {1}       % unit cells along b (only integers!)
+	\def \c {1}       % unit cells along c (only integers!)
+
+	% lattice directions parallel to c
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, red] (\u+\su*\v,\v,0) -- (\u+\su*\v,\v+\s*\w,\w);
+	% fond gauche
+	\foreach \u/\v/\w/\st in {0/0/1/dashed, 0/1/1/, 1/0/1/, 1/1/1/}{
+			\draw[thick, \st]
+			(\u+\su*\v,\v,0) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+	% lattice directions parallel to b
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {0,1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, blue]
+	%    (\u,0+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+	\foreach \u/\v/\w/\st in {0/1/1/, 0/1/0/dashed, 1/1/1/, 1/1/0/}{
+			\draw[thick, \st]
+			(\u,0+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+	% lattice directions parallel to a
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {0,1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, green]
+	%    (0+\su*\v,\v+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+	\foreach \u/\v/\w/\st in {1/0/0/dashed, 1/1/0/, 1/0/1/, 1/1/1/}{
+			\draw[thick, \st]
+			(0+\su*\v,\v+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+
+	% basis vectors
+	% \draw[axis] (0,0,0) -- (1,0,0) node[left] {$\bf a$};
+	% \draw[axis] (0,0,0) -- (\su,1,0) node[right] {$\bf b$};
+	% \draw[axis] (0,0,0) -- (0,\s,1) node[above] {$\bf c$};
+
+	% sommets
+	\foreach \u in {0,1,...,\a}
+	\foreach \v in {0,1,...,\b}
+	\foreach \w in {0,1,...,\c}
+	\node[dot, shading=ball, ball color=black]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+
+	% faces
+	\foreach \u/\v/\w [count=\i] in {%
+			.5/.5/0, .5/.5/1,
+			.5/0/.5/, .5/1/.5/,
+			0/.5/.5, 1/.5/.5%
+		}{
+			\node[dot=3pt, shading=ball, ball color=red] (F\i)
+			at (\u+\su*\v,\v+\s*\w,\w)
+			{};
+			% {F\i};
+		}
+	% link faces
+	\draw[red, dashdotted]
+	(F1)--(F2)
+	(F3)--(F4)
+	(F5)--(F6)
+	;
+
+	% OCTAEDRIQUE
+	% centre
+	\def \u {.5}
+	\def \v {.5}
+	\def \w {.5}
+	\node[dot=3pt, shading=ball]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+	% arêtes
+	% plan à profondeur = 1/2
+	\foreach \u in {.5}
+	\foreach \v in {0,1,...,\b}
+	\foreach \w in {0,1,...,\c}
+	\node[dot=3pt, shading=ball]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+	% plan à largeur = 1/2
+	\foreach \u in {0,1,...,\a}
+	\foreach \v in {.5}
+	\foreach \w in {0,1,...,\c}
+	\node[dot=3pt, shading=ball]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+	% plan à hauteur = 1/2
+	\foreach \u in {0,1,...,\a}
+	\foreach \v in {0,1,...,\b}
+	\foreach \w in {.5}
+	\node[dot=3pt, shading=ball]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+
+	% TETRAEDRIQUE
+	\foreach \u [count=\cu] in {0.25, 0.75}{
+			\foreach \v [count=\cv] in {0.25, 0.75}{
+					\foreach \w [count=\cw] in {0.25, 0.75}{
+							\node[dot=3pt, shading=ball, ball color=green] (T\cu\cv\cw)
+							at (\u+\su*\v,\v+\s*\w,\w)
+							{\fontsize{0.5pt}{1pt}\selectfont T\cu\cv\cw};
+						}
+				}
+		}
+	\draw[green, dotted]
+	(T111)--(T112)--(T122)--(T121)--(T111)--
+	(T211)--(T212)--(T222)--(T221)--(T211)
+	(T112)--(T212)
+	(T222)--(T122)
+	(T221)--(T121);
+
+	% lattice vectors
+	% \draw[thick,red] (0,0,0) -- (0+\su*3,3+\s*1,1) node[right] {\hkl[031]};
+	% \draw[thick,red] (0,0,0) -- (1+\su*3,3+\s*2,2) node[right] {\hkl[132]};
+	% \draw[thick,red] (0,0,0) -- (2+\su*1,1+\s*2,2) node[right] {\hkl[212]};
+	% \draw[thick,red] (0,0,0) -- (3+\su*3,3+\s*0,0) node[right] {\hkl[110]};
+	% \draw[thick,red] (0,0,0) -- (3+\su*1,1+\s*0,0) node[right] {\hkl[310]};
+
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+% set view angle
+\tdplotsetmaincoords{70}{30}% rot x rot z
+% x = 0 => top view
+\begin{tikzpicture}[tdplot_main_coords]
+	% axis
+	% \draw[-stealth] (1.5,0,0) --++ (1,0,0) node[below] {\small $\ux$};
+	% \draw[-stealth] (1.5,0,0) --++ (0,1,0) node[above right=-.1 and -.2] {\small $\uy$};
+	% \draw[-stealth] (1.5,0,0) --++ (0,0,1) node[above] {\small $\uz$};
+	% Champ mag
+	\begin{scope}[canvas is xz plane at y=0]
+		\foreach \z [count=\i] in {-.5, -.25, ..., .5}{
+				\ifthenelse{\i = 5}{
+					\draw[-stealth, myblue] (-1,\z) -- (1,\z)
+					node [above, pos=.2, transform shape] {$\Bf$};
+				}{
+					\draw[-stealth, myblue] (-1,\z) -- (1,\z);
+				}
+			}
+	\end{scope}
+	% spire
+	\begin{scope}[canvas is yz plane at x=0]
+		\draw [dashed] (0,-1cm) arc (-90:90:1cm);
+		\fill[opacity=.5, white] (0,0) circle (1cm) node {$S$};
+		\draw [flch={pos=.5}] (0,-1cm) arc (-90:-270:1cm);
+		\node[transform shape] at (0,0) {$S$};
+	\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

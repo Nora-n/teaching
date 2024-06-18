@@ -1,0 +1,203 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+% set view angle
+\tdplotsetmaincoords{80}{15}% rot x rot z
+% x = 0 => top view
+
+\begin{tikzpicture}[
+		tdplot_main_coords,scale=3,
+		axis/.style={thick, ->, >=stealth', purple},
+		dot/.style={circle, fill, minimum size=#1,
+				inner sep=0pt, outer sep=0pt},
+		dot/.default=6pt,  % size of the circle diameter 
+		shad/.style={ellipse, fill,
+				minimum width=#1, minimum height=2*#1,
+				inner sep=0pt, outer sep=0pt},
+		shad/.default=6pt  % size of the circle diameter 
+	]
+
+	\shadedraw[ball color=black] (1.3,0.5,0.8) circle (1pt)
+	node[right=.1]{\fontsize{6pt}{1pt}\selectfont \ce{O^{2-}}};
+	\shadedraw[ball color=myblue] (1.3,0.5,0.6) circle (1pt)
+	node{\fontsize{3pt}{1pt}\selectfont O}
+	node[right=.1]{\fontsize{6pt}{1pt}\selectfont Site O};
+	\shadedraw[ball color=myred] (1.3,0.5,0.4) circle (1pt)
+	node {\fontsize{3pt}{1pt}\selectfont T}
+	node[right=.1]{\fontsize{6pt}{1pt}\selectfont Site T};
+	\draw[myred] (1.3,0.5,0.2) circle (1pt)
+	node[right=.1, black]{\fontsize{6pt}{1pt}\selectfont Projection};
+
+	\def \s {0}     % defines shear of z along y (instead of angles), for orthogonal systems: 0
+	\def \su {0}   % defines shear of x along y (instead of angles), for orthogonal systems: 0
+	\def \a {1}       % unit cells along a (only integers!)
+	\def \b {1}       % unit cells along b (only integers!)
+	\def \c {1}       % unit cells along c (only integers!)
+
+	% lattice directions parallel to c
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, red] (\u+\su*\v,\v,0) -- (\u+\su*\v,\v+\s*\w,\w);
+	% fond gauche
+	\foreach \u/\v/\w/\st in {0/0/1/, 0/1/1/dashed, 1/0/1/, 1/1/1/}{
+			\draw[thick, \st]
+			(\u+\su*\v,\v,0) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+	% lattice directions parallel to b
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {0,1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, blue]
+	%    (\u,0+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+	\foreach \u/\v/\w/\st in {0/1/1/, 0/1/0/dashed, 1/1/1/, 1/1/0/}{
+			\draw[thick, \st]
+			(\u,0+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+	% lattice directions parallel to a
+	% \foreach \u in {0,1,...,\a}
+	% \foreach \v in {0,1,...,\b}
+	% \foreach \w in {0,1,...,\c}
+	% \draw[thick, myred]
+	%    (0+\su*\v,\v+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+	\foreach \u/\v/\w/\st in {1/0/0/, 1/1/0/dashed, 1/0/1/, 1/1/1/}{
+			\draw[thick, \st]
+			(0+\su*\v,\v+\s*\w,\w) -- (\u+\su*\v,\v+\s*\w,\w);
+		}
+
+	% basis vectors
+	% \draw[axis] (0,0,0) -- (1,0,0) node[left] {$ x$};
+	% \draw[axis] (0,0,0) -- (\su,1,0) node[right] {$ y$};
+	% \draw[axis] (0,0,0) -- (0,\s,1) node[above] {$ z$};
+
+	% sommets
+	\foreach \u in {0,1,...,\a}
+	\foreach \v in {0,1,...,\b}
+	\foreach \w in {0,1,...,\c}
+	\node[dot, shading=ball, ball color=black]
+	at (\u+\su*\v,\v+\s*\w,\w) {};
+
+	% \draw[red] (0,1,1) -- (1,0,0);
+	% \draw[blue] (1,0,0) -- (1,1,1);
+
+	% OCTAEDRIQUE
+	% arêtes
+	% plan à profondeur = 1/2
+	\foreach \u [count=\au] in {.5}{
+			\foreach \v [count=\av] in {0,1}{
+					\foreach \w [count=\aw] in {0,1}{
+							\node[dot=3pt, shading=ball, ball color=myblue] (Ax\av\aw)
+							at (\u+\su*\v,\v+\s*\w,\w)
+							% {\fontsize{3pt}{1pt}\selectfont Ox\av\aw};
+							{\fontsize{3pt}{1pt}\selectfont O};
+						}
+				}
+		}
+	% plan à largeur = 1/2
+	\foreach \u [count=\au] in {0,1}{
+			\foreach \v [count=\av] in {0.5}{
+					\foreach \w [count=\aw] in {0,1}{
+							\node[dot=3pt, shading=ball, ball color=myblue] (Ay\au\aw)
+							at (\u+\su*\v,\v+\s*\w,\w)
+							% {\fontsize{3pt}{1pt}\selectfont Oy\au\aw};
+							{\fontsize{3pt}{1pt}\selectfont O};
+						}
+				}
+		}
+	% plan à hauteur = 1/2
+	\foreach \u [count=\au] in {0,1}{
+			\foreach \v [count=\av] in {0,1}{
+					\foreach \w [count=\aw] in {0.5}{
+							\node[dot=3pt, shading=ball, ball color=myblue] (Az\au\av)
+							at (\u+\su*\v,\v+\s*\w,\w)
+							% {\fontsize{3pt}{1pt}\selectfont Oz\au\av};
+							{\fontsize{3pt}{1pt}\selectfont O};
+						}
+				}
+		}
+
+	\draw[myblue, densely dotted]
+	(Ax11)--(Ax12)--(Ax22)--(Ax21)--(Ax11)
+	(Ay11)--(Ay12)--(Ay22)--(Ay21)--(Ay11)
+	(Az11)--(Az12)--(Az22)--(Az21)--(Az11);
+
+	% TETRAEDRIQUE
+	\foreach \u [count=\cu] in {0.25, 0.75}{
+			\foreach \v [count=\cv] in {0.25, 0.75}{
+					\foreach \w [count=\cw] in {0.25, 0.75}{
+							\node[dot=3pt, shading=ball, ball color=myred] (T\cu\cv\cw)
+							at (\u+\su*\v,\v+\s*\w,\w)
+							{\fontsize{3pt}{1pt}\selectfont T};
+						}
+				}
+		}
+	\draw[myred, densely dashdotted]
+	(T111)--(T112)--(T122)--(T121)--(T111)--
+	(T211)--(T212)--(T222)--(T221)--(T211)
+	(T112)--(T212)
+	(T222)--(T122)
+	(T221)--(T121);
+
+	% projections
+	\foreach \u [count=\cu] in {0.25, 0.75}{
+			\foreach \v [count=\cv] in {0.25, 0.75}{
+					\foreach \w [count=\cw] in {0,1}{
+							\begin{scope}[canvas is xy plane at z=\w]
+								\draw[color=myred, x radius=.5pt, y radius=.5pt]
+								(\u+\su*\v,\v+\s*\w,\w)
+								ellipse
+								;
+							\end{scope}
+						}
+				}
+		}
+	\foreach \u [count=\cu] in {0, 1}{
+			\foreach \v [count=\cv] in {0.25, 0.75}{
+					\foreach \w [count=\cw] in {0.25, 0.75}{
+							\begin{scope}[canvas is yz plane at x=\u]
+								\draw[color=myred]
+								(\v,\w)
+								circle (.5pt)
+								;
+							\end{scope}
+						}
+				}
+		}
+
+	% lattice vectors
+	% \draw[thick,red] (0,0,0) -- (0+\su*3,3+\s*1,1) node[right] {\hkl[031]};
+	% \draw[thick,red] (0,0,0) -- (1+\su*3,3+\s*2,2) node[right] {\hkl[132]};
+	% \draw[thick,red] (0,0,0) -- (2+\su*1,1+\s*2,2) node[right] {\hkl[212]};
+	% \draw[thick,red] (0,0,0) -- (3+\su*3,3+\s*0,0) node[right] {\hkl[110]};
+	% \draw[thick,red] (0,0,0) -- (3+\su*1,1+\s*0,0) node[right] {\hkl[310]};
+
+	% faces
+	\foreach \u/\v/\w [count=\i] in {%
+			.5/.5/0, .5/.5/1,
+			.5/0/.5/, .5/1/.5/,
+			0/.5/.5, 1/.5/.5%
+		}{
+			\node[dot, shading=ball, ball color=black] (F\i)
+			at (\u+\su*\v,\v+\s*\w,\w)
+			{};
+			% {F\i};
+		}
+	% link faces
+	\draw[black, densely dashed]
+	(F1)--(F2)
+	(F3)--(F4)
+	(F5)--(F6)
+	;
+
+	% centre
+	\def \u {.5}
+	\def \v {.5}
+	\def \w {.5}
+	\node[dot=3pt, shading=ball, ball color=myblue]
+	at (\u+\su*\v,\v+\s*\w,\w)
+	{\fontsize{3pt}{1pt}\selectfont O};
+\end{tikzpicture}
+
+\end{document}

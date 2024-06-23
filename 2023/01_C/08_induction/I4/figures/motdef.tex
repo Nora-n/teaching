@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\renewcommand{\mycol}{black}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+\begin{tikzpicture}[auto,
+	node distance=2,
+	start chain=A going right,
+	block/.style={draw, thick, rounded corners, align=center,
+			minimum height=11mm, minimum width=12mm,
+			text opacity=1, draw opacity=1,
+			on chain=#1, join},
+	block/.default=A,
+	meca/.style={%
+			fill=mygreen, opacity=.5,
+			block,
+		},
+	elec/.style={%
+			fill=myblue, opacity=.5,
+			block,
+		},
+	sum/.style n args={5}{circle, draw, thick, minimum size=9mm,
+			append after command={\pgfextra{\let\LN\tikzlastnode}
+					(\LN.north west) edge[thick] (\LN.south east)
+					(\LN.south west) edge[thick] (\LN.north east)
+					node[left]     at (\LN.center) {$#2$}
+					node[above]    at (\LN.center) {$#3$}
+					node[right]    at (\LN.center) {$#4$}
+					node[below]    at (\LN.center) {$#5$}
+				},
+			node contents={},
+			on chain=#1, join},
+	sum/.default={A}{+}{+}{}{},
+	arr/.style={-{Stealth[scale=1]}, semithick},
+	every join/.style={-{Stealth[scale=1]}, semithick}
+	]
+	\begin{scope}
+		\tikzset{node distance={1cm}}
+		\node[elec, minimum width=20mm]
+		% {\psw(mygreen!50){Puissance}\\\psw(mygreen!50){mécanique}}; % A-3
+		{\psw(myblue!50){Puissance}\\\psw(myblue!50){électrique}};% A-1
+		\node[block, minimum width=20mm] {\psw{Moteur}}; % A-2
+		\node[meca, minimum width=20mm]
+		% {\psw(myblue!50){Puissance}\\\psw(myblue!50){électrique}};% A-1
+		{\psw(mygreen!50){Puissance}\\\psw(mygreen!50){mécanique}}; % A-3
+	\end{scope}
+
+	\node[start chain=B going below, block=B, below=.5 of A-2,
+		dashed,
+		join=with A-2
+	] {\psw{Pertes}};
+\end{tikzpicture}
+
+\end{document}

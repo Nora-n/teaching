@@ -1,0 +1,89 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\renewcommand{\mycol}{black}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+\begin{tikzpicture}[auto,
+	node distance=2,
+	start chain=A going right,
+	block/.style={draw, thick, rounded corners, align=center,
+			minimum height=11mm, minimum width=12mm,
+			text opacity=1, draw opacity=1,
+			on chain=#1, join},
+	block/.default=A,
+	meca/.style={%
+			fill=mygreen, opacity=.5,
+			block,
+		},
+	elec/.style={%
+			fill=myblue, opacity=.5,
+			block,
+		},
+	sum/.style n args={5}{circle, draw, thick, minimum size=9mm,
+			append after command={\pgfextra{\let\LN\tikzlastnode}
+					(\LN.north west) edge[thick] (\LN.south east)
+					(\LN.south west) edge[thick] (\LN.north east)
+					node[left]     at (\LN.center) {$#2$}
+					node[above]    at (\LN.center) {$#3$}
+					node[right]    at (\LN.center) {$#4$}
+					node[below]    at (\LN.center) {$#5$}
+				},
+			node contents={},
+			on chain=#1, join},
+	sum/.default={A}{+}{+}{}{},
+	arr/.style={-{Stealth[scale=1]}, semithick},
+	every join/.style={-{Stealth[scale=1]}, semithick}
+	]
+	\begin{scope}
+		\node[meca]
+		{\psw(mygreen!50){Action}\\\psw(mygreen!50){extérieure}}; % A-1
+		\tikzset{node distance={1cm}}
+		\sswitch{
+			\node[sum={A}{}{}{}{}];                                 % A-2
+		}{
+			\node[sum={A}{+}{}{}{-}];                               % A-2
+		}
+		\node[block]
+		{\psw{Mouvement}};                            % A-3
+		\tikzset{node distance={1.5cm}}
+		\node[block, join=by {"\psw{$\DS \dv{\F}{t} \neq 0$}"}]
+		{\psw{$e\ind{ind}$}};                                     % A-4
+		\node[elec]
+		{\psw(myblue!50){Courant}\\\psw(myblue!50){induit}};      % A-5
+		\node[above]
+		at ($(A-4)!0.45!(A-5)$)
+		{\psw{circuit}};
+		\node[below]
+		at ($(A-4)!0.45!(A-5)$)
+		{\psw{fermé}};
+		\tikzset{node distance={1cm}}
+		\sswitch{
+			\node[sum={A}{}{}{}{}];                                 % A-6
+		}{
+			\node[sum={A}{+}{+}{}{}];                               % A-6
+		}
+		\tikzset{node distance={1.5cm}}
+		\node[block] {\psw{\textsc{Laplace}}};                    % A-7
+		\draw[arr]
+		(A-7) --++
+		(0,-1) -|
+		node[near end, right] {\psw{Lenz}}
+		(A-2);
+	\end{scope}
+
+	\node[start chain=B going below, block=B, above=.5 of A-6,
+		join=with A-6 by {{Stealth[scale=1]}-}%, "champ mag"}
+	] {\psw{$\Bf\ind{ext}$}};
+	% \draw[arr]  (in)    edge ["Set point"]  (A-2)
+	% (A-2)   edge ["$E(s)$"]     (A-3)
+	% (A-3)   edge ["$u(s)$"]     (A-4)
+	% (A-4)   edge ["Output"]     (out)
+	% ($(A-4.east)!0.5!(out)$) -- ++ (0,-11mm)
+	% -| (A-2);
+\end{tikzpicture}
+
+\end{document}

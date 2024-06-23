@@ -1,0 +1,82 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\renewcommand{\mycol}{black}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{sankeydiagram}[%debug,%
+			start style=auto variable arrow, end style=auto variable arrow,
+			draw/.style={draw=black,thick},
+			ratio=3cm/100
+		]
+		\def\qty{100}
+		\def\arrowper{.2}
+		\sankeynodestart{name=ope,quantity=\qty}
+		\sankeyadvance{ope}{3cm}
+		\centerlabel{ope}{\psw{$\Pc\ind{ope}\sup{r} = Fv > 0$}}
+		% FORK 1
+		\sankeyfork{ope}{%
+			.8*\sankeygetnodeqty{ope}/lap,
+			.1*\sankeygetnodeqty{ope}/ec,
+			.1*\sankeygetnodeqty{ope}/frott%
+		}
+		% \sankeyfork{ope}{.8*\qty/elec, .2*\qty/joule}
+		% JOULE
+		\sankeyturn{frott}{-45}
+		\def\arrowper{.75}
+		\sankeyend{frott}
+		\def\bow{\sswitch{white}{black}
+		}
+		\node[below=.25, expand style=\bow] at (frott.center) {$\Pc_f\sup{f} = F_f v$};
+		% EC
+		\sankeyadvance{ec}{.5cm}
+		\sankeyturn{ec}{-45}
+		\def\arrowper{.75}
+		\sankeyend{ec}
+		\node[expand style=\bow] at ([shift={(.55,-.20)}]ec.center) {$\DS\dv{\Ec_c}{t}$};
+		% ADVANCE 1
+		\sankeyadvance{lap}{3cm}
+		\centerlabel{lap}{%
+			\psw{$\Pc\ind{Lap}\sup{f} = i \ell Bv > 0$}
+		}
+		% SETUP BOX
+		\node (BL) at (lap.center) {};
+		\node (BLT) at (lap.left) {};
+		% ADVANCE 2
+		\sankeyadvance{lap}{4cm}
+		% SETUP BOX
+		\node (BR) at (lap.center) {};
+		\node (BRB) at (lap.right) {};
+		% COPY TO CHANGE NAME
+		\sankeynode{as=lap,name=elec}
+		% ADANCE 3
+		\sankeyadvance{elec}{3cm}
+		\centerlabel{elec}{\psw{$\Pc\ind{elec}\sup{f} = ei > 0$}}
+		% FORK 2
+		\sankeyfork{elec}{%
+			.8*\sankeygetnodeqty{elec}/util,
+			.2*\sankeygetnodeqty{elec}/joule%
+		}
+		% FROTT
+		\sankeyturn{joule}{-45}
+		\sankeyend{joule}
+		\node[below=.35, expand style=\bow] at (joule.center) {$\Pc_J\sup{r} = Ri^2 > 0$};
+		% ADVANCE 4
+		\sankeyadvance{util}{2cm}
+		\def\arrowper{.5}
+		\sankeyend{util}
+		\node at (util.center) {\psw{$\Pc\ind{utile}\sup{r} = Ui$}};
+		% BOX
+		\draw[very thick, fill=white]
+		([shift={(0,.3)}]BLT.center) rectangle
+		([shift={(0,-.3)}]BRB.center)
+		node[midway, align=center]
+			{Conversion\\mécanique $\Ra$ électrique};
+	\end{sankeydiagram}
+\end{tikzpicture}
+
+\end{document}

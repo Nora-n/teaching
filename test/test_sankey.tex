@@ -1,0 +1,248 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+% \begin{tikzpicture}
+% 	% font choice
+% 	\sisetup{
+% 		round-mode=places,
+% 		round-precision=1,
+% 		add-decimal-zero,
+% 		round-pad=true,
+% 	}
+% 	\begin{sankeydiagram}[debug=true]
+% 		\colorlet{energy}{blue!30!cyan!80!black}
+% 		\colorlet{lost energy}{red!50!orange!90!black}
+% 		\sankeyset{
+% 			ratio=4cm/100,
+% 			minimum radius=1em,
+% 			start style=arrow,end style=arrow,
+% 			% draw/.style={draw=none,line width=0},
+% 			energy/.style={
+% 					fill/.style={
+% 							draw=black,
+% 							line width=1,
+% 						}
+% 				},
+% 			lost energy/.style={
+% 					fill/.style={
+% 							draw=black,
+% 							line width=1,
+% 						}
+% 				}
+% 		}
+% 		\newcommand\abovelabel[2]{ % valname, label
+% 			\node[anchor=south east,align=center,inner xsep=0] at (#1.left) {#2};
+% 		}
+% 		\newcommand\centerlabel[2]{ % valname, label
+% 			\node[anchor=center,align=center,inner xsep=0] at (#1.center) {#2};
+% 		}
+% 		\newcommand\energylabel[1]{ % valname
+% 			\node[anchor=north east,text=energy,inner xsep=0] at (#1.right)
+% 			{\num{\sankeygetnodeqty{#1}}};
+% 		}
+%
+% 		\newcommand\lostenergylabel[2]{ % valname, label
+% 			\node[anchor=north,text=lost energy] at ([yshift=-2.5mm]#1.center)
+% 			(value)
+% 			{\num{\sankeygetnodeqty{#1}}};
+% 			\node[anchor=north,inner sep=0,align=center] at (value.south) {#2};
+% 		}
+% 		\newcommand\lostenergylabelbottom[2]{ % valname, label
+% 			\draw[draw=lost energy,dashed,thick]
+% 			([yshift=-3mm]#1.center) coordinate (#1) -- ([yshift=-3mm]#1.center);
+% 			\lostenergylabel{#1}{#2}
+% 		}
+% 		\sankeynode{name=Co,quantity=100.0,start}
+% 		\path (Co.right) ++(0,-7mm) coordinate (c);
+% 		\newcommand\turnandstop[2]{ % valname, label
+% 			\begingroup
+% 			\sankeyset{lost energy}
+% 			\sankeyturnright{#1}{90}
+% 			\sankeynode{as=#1,name=#1-stop,at={#1 |- c}}
+% 			\sankeyoutin{#1}{#1-stop}
+% 			\sankeynode{as=#1-stop,name=#1}
+% 			\sankeyend{#1}
+% 			\lostenergylabel{#1}{#2}
+% 			\endgroup
+% 		}
+% 		\newcommand\turnandstopbottom[2]{ % valname, label
+% 			\begingroup
+% 			\sankeyset{lost energy}
+% 			\sankeyturnright{#1}{90}
+% 			\sankeynode{as=#1,name=#1-stop,at={#1 |- c}}
+% 			% \sankeyoutin{#1}{#1-stop}
+% 			\sankeynode{as=#1-stop,name=#1}
+% 			\sankeyend{#1}
+% 			\lostenergylabelbottom{#1}{#2}
+% 			\endgroup
+% 		}
+% 		\def\hshift{6.25em}
+% 		\sankeyadvance[energy]{Co}{2*\hshift}
+% 		\centerlabel{Co}{\textbf{Coal}\\(Primary energy)}
+% 		\energylabel{Co}
+% 		\sankeyfork{Co}{85/El1,15/Pg}
+% 		\turnandstop{Pg}{Power generation}
+% 		\sankeyadvance[energy]{El1}{1.8*\hshift}
+% 		\abovelabel{El1}{\textbf{Electricity}\\(Secondary energy)}
+% 		\energylabel{El1}
+% 		% \sankeyfork{El1}{33.5/El2,1.5/Tr}
+% 		% \turnandstopbottom{Tr}{Transmission}
+% 		% \sankeyadvance[energy]{El2}{.65*\hshift}
+% 		% \energylabel{El2}
+% 		% \sankeyfork{El2}{31.5/El3,2.0/Di}
+% 		% \turnandstop{Di}{Distribution}
+% 		% \sankeyadvance[energy]{El3}{.65*\hshift}
+% 		% \energylabel{El3}
+% 		% \sankeyfork{El3}{31.0/El4,0.5/Wi}
+% 		% \turnandstopbottom{Wi}{Wiring}
+% 		% \sankeyadvance[energy]{El4}{.65*\hshift}
+% 		% \abovelabel{El4}{\textbf{Electricity}\\(Final energy)}
+% 		% \energylabel{El4}
+% 		% \sankeyfork{El4}{3.0/Lr1,28.0/Lb}
+% 		%
+% 		% \turnandstop{Lb}{Lightbulb}
+% 		% \sankeyadvance[energy]{Lr1}{1.1*\hshift}
+% 		% \abovelabel{Lr1}{\textbf{Light radiation}\\(Useful energy)}
+% 		% \energylabel{Lr1}
+% 		% \sankeyfork{Lr1}{2.0/Lr2,1.0/Ls}
+% 		% \turnandstopbottom{Ls}{Lampshade}
+% 		% \sankeyadvance[energy]{Lr2}{.6*\hshift}
+% 		% \energylabel{Lr2}
+% 		% \sankeyfork{Lr2}{1.0/Il,1.0/Id}
+% 		% \turnandstop{Id}{Idle}
+% 		% \sankeyadvance[energy]{Il}{.6*\hshift}
+% 		% \abovelabel{Il}{\textbf{Illumination}\\(Energy services)}
+% 		% \energylabel{Il}
+% 		% \sankeyend[energy]{Il}
+% 	\end{sankeydiagram}
+% \end{tikzpicture}
+
+\begin{tikzpicture}
+	\sankeyset{%
+		new start style={variable arrow}{%
+				(\name.left) --++
+				(-\arrowvariabledist,0) --
+				([xshift=-\arrowvariabledist/6]\name.center) --
+				([xshift=-\arrowvariabledist]\name.right) --
+				(\name.right) -- cycle%
+			}{%
+				(\name.left) --++
+				(-\arrowvariabledist,0) --
+				([xshift=-\arrowvariabledist/6]\name.center) --
+				([xshift=-\arrowvariabledist]\name.right) --
+				(\name.right)%
+			},
+		new end style={variable arrow}{%
+				(\name.left) --
+				([yshift=1mm]\name.left) --
+				([xshift=\arrowvariabledist]\name.center) --
+				([yshift=-1mm]\name.right) --
+				(\name.right) -- cycle%
+			}{%
+				(\name.left) --
+				([yshift=1mm]\name.left) --
+				([xshift=\arrowvariabledist]\name.center) --
+				([yshift=-1mm]\name.right) --
+				(\name.right)
+			},
+	}
+	\sankeyset{%
+		new start style={auto variable arrow}{%
+				% \newcommand{\arrowvariabledist}{%
+				% 	0.3*\sankeygetnodeqty{\name}%
+				% }
+				(\name.left) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}]\name.left) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}/6]\name.center) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}]\name.right) --
+				(\name.right) -- cycle%
+			}{%
+				(\name.left) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}]\name.left) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}/6]\name.center) --
+				([xshift=-\arrowper*\sankeygetnodeqty{\name}]\name.right) --
+				(\name.right)%
+			},
+		new end style={auto variable arrow}{%
+				(\name.left) --
+				([yshift=1mm]\name.left) --
+				([xshift=\arrowper*\sankeygetnodeqty{\name}]\name.center) --
+				([yshift=-1mm]\name.right) --
+				(\name.right) -- cycle%
+			}{%
+				(\name.left) --
+				([yshift=1mm]\name.left) --
+				([xshift=\arrowper*\sankeygetnodeqty{\name}]\name.center) --
+				([yshift=-1mm]\name.right) --
+				(\name.right)
+			},
+	}
+	\newcommand\centerlabel[2]{ % valname, label
+		\node[anchor=center, align=center]
+		at ($(#1-old.center)!0.5!(#1.center)$)
+		{#2};
+	}
+	\begin{sankeydiagram}[%debug,%
+			start style=auto variable arrow, end style=auto variable arrow,
+			ratio=3cm/100
+		]
+		\def\qty{100}
+		\def\arrowper{.2}
+		\sankeynodestart{name=fourni,quantity=\qty}
+		\sankeyadvance{fourni}{3cm}
+		\centerlabel{fourni}{$\Pc\ind{fournie} = U_0i > 0$}
+		% FORK 1
+		\sankeyfork{fourni}{.8*\qty/elec, .2*\qty/joule}
+		% JOULE
+		\sankeyturn{joule}{-45}
+		\def\arrowper{.75}
+		\sankeyend{joule}
+		\node[below=.35] at (joule.center) {$\Pc_J$};
+		% ADVANCE 1
+		\sankeyadvance{elec}{3cm}
+		\centerlabel{elec}{%
+			$\begin{aligned}
+					\Pc\ind{elec} & = -ei
+					\\
+					              & = i \ell Bv > 0
+				\end{aligned}$
+			%
+		}
+		% SETUP BOX
+		\node (BL) at (elec.center) {};
+		\node (BLT) at (elec.left) {};
+		% ADVANCE 2
+		\sankeyadvance{elec}{4cm}
+		% SETUP BOX
+		\node (BR) at (elec.center) {};
+		\node (BRB) at (elec.right) {};
+		% COPY TO CHANGE NAME
+		\sankeynode{as=elec,name=meca}
+		% ADANCE 3
+		\sankeyadvance{meca}{3cm}
+		\centerlabel{meca}{$\Pc\ind{Lap} = i \ell Bv > 0$}
+		% FORK 2
+		\sankeyfork{meca}{%
+			.8*\sankeygetnodeqty{meca}/util,
+			.2*\sankeygetnodeqty{meca}/frott%
+		}
+		% FROTT
+		\sankeyturn{frott}{-45}
+		\sankeyend{frott}
+		\node[below=.35] at (frott.center) {$\Pc_f = F_f v$};
+		% ADVANCE 4
+		\sankeyadvance{util}{2cm}
+		\def\arrowper{.5}
+		\sankeyend{util}
+		\node at (util.center) {$\Pc\ind{utile}$}
+		% BOX
+		\draw[thick, fill=white]
+		([shift={(0,.3)}]BLT.center) rectangle
+		([shift={(0,-.3)}]BRB.center)
+		node[midway, align=center]
+			{Conversion\\électrique $\Ra$ mécanique};
+	\end{sankeydiagram}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,75 @@
+\documentclass[../TDN1.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Vitesse du son}
+
+\QR{%
+	Donner l'expression de la célérité $c$ du son dans un fluide en fonction de la
+	masse volumique du $\rho$ du fluide et du coefficient d'incompressibilité
+	$\chi$, homogène à l'inverse d'une pression.
+}{%
+	\ifprof{
+		\vspace{-15pt}
+	}
+	\begin{tcn}(data){Données}
+		$c$ est une vitesse, $\rho$ une masse volumique et $\chi$ une grandeur
+		relative à la pression. On nous donne $\dim{\chi} = \dim{P}^{-1}$ avec $P$
+		une pression.
+	\end{tcn}
+	\begin{tcn}(ques){Résultat attendu}
+		On cherche $c$ en fonction de $\rho$ et $\chi$, soit
+		\[
+			\boxed{c = \rho^\alpha\chi^\beta}
+		\]
+		avec $\alpha$ et $\beta$ à déterminer.
+	\end{tcn}
+	\begin{tcn}(tool){Outil}
+		Une pression est une force surfacique, c'est-à-dire une force répartie
+		sur une surface. On a donc
+		\[
+			\dim{P} = \frac{\dim{F}}{\rm L^2}
+		\]
+		De plus, la force de pesanteur s'exprime $F = mg$, avec $g$
+		l'accélération de la pesanteur~: ainsi,
+		\[
+			\dim{F} = \dim{m}\cdot \dim{g} = \rm M\cdot L\cdot T^{-2}
+		\]
+	\end{tcn}
+	\begin{tcn}[sidebyside](appl){Application}
+		On commence par déterminer la dimension de $c$. En tant que vitesse, on a
+		\[\dim{c} = \rm L\cdot T^{-1}\]
+		On exprime ensuite les dimensions de $\rho$ et $\chi$. D'une part,
+		\[\dim{\rho} = \rm M\cdot L^{-3}\]
+		D'autre part,
+		\begin{align*}
+			\dim{\chi} & = \DS\frac{\rm L^2}{\dim{F}}
+			\\\Lra
+			\dim{\chi} & = \DS\frac{\rm L^{\cancel{2}}}
+			{\rm M\cdot \cancel{\rm L}\cdot T^{-2}}
+			\\\Lra
+			\dim{\chi} & = \rm L\cdot M^{-1}\cdot T^2
+		\end{align*}
+		\tcblower
+		L'expression recherchée revient à résoudre
+		\[\rm L\cdot T^{-1} = (M\cdot L^{-1})^\alpha(L\cdot M^{-1}\cdot T^2)^\beta\]
+		En développant, on trouve un système de 3 équations à 2 inconnues~:
+		\[ \left\{
+			\begin{array}{rcl}
+				1  & = & -3\alpha + \beta \\
+				-1 & = & 2\beta           \\
+				0  & = & \alpha - \beta   \\
+			\end{array}
+			\right. \Longleftrightarrow \left\{
+			\begin{array}{rcl}
+				\beta  & = & - \frac{1}{2} \\
+				\alpha & = & - \frac{1}{2}
+			\end{array}
+			\right.\]
+		Ainsi, on peut exprimer $c$ tel que
+		\begin{empheq}[box=\fbox]{equation*}
+			c = \frac{1}{\sqrt{\rho\chi}}
+		\end{empheq}
+	\end{tcn}
+}%
+
+\end{document}

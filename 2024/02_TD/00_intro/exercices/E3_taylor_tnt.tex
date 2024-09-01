@@ -1,0 +1,115 @@
+\documentclass[../TDN1.tex]{subfiles}%
+
+\begin{document}
+\section[s]"3"{\textsc{Taylor} meilleur que James \textsc{Bond}~?}
+\enonce{%
+	À l'aide d'un film sur bande magnétique et en utilisant l'analyse
+	dimensionnelle, le physicien Geoffrey \textsc{Taylor} a réussi en 1950 à
+	estimer l'énergie $\Ec$ dégagée par une explosion nucléaire, valeur pourtant
+	évidemment classifiée. Le film permet d'avoir accès à l'évolution du rayon
+	$R(t)$ du «~nuage~» de l'explosion au cours du temps. Nous supposons que les
+	grandeurs influant sur ce rayon sont le temps $t$, l'énergie $\Ec$ de
+	l'explosion et la masse volumique $\rho$ de l'air.
+}%
+
+\QR{%
+	Quelles sont les dimensions de ces grandeurs~?
+}{%
+	On a directement \fbox{$\dim{R} = \rm L$}, \fbox{$\dim{t} = \rm T$},
+	\fbox{$\dim{\rho} = \rm M\cdot L^{-3}$} et \fbox{$\dim{\Ec} = \rm M\cdot
+			L^2\cdot T^{-2}$}.
+}%
+
+\QR{%
+	Chercher une expression de $R$ sous la forme $R = k\times
+		\Ec^{\alpha}t^\beta\rho^\gamma$, avec $k$ une constante adimensionnée.
+}{%
+	\ifprof{%
+		\vspace{-15pt}
+	}%
+	\begin{tcbraster}[raster columns=2, raster equal height=rows]
+		\begin{tcn}(data){Données}
+			On nous donne la formule $R = k\times
+				\Ec^{\alpha}t^\beta\rho^\gamma$ et que $\dim{k} = 1$.
+		\end{tcn}
+		\begin{tcn}(ques)'r'{Résultat attendu}
+			On cherche $\alpha$, $\beta$ et $\gamma$ tels que $R =
+				k\times \Ec^{\alpha}t^\beta\rho^\gamma$
+		\end{tcn}
+	\end{tcbraster}
+
+	\begin{tcn}(tool){Outils}
+		\begin{tasks}[label=\bdmd](3)
+			\task $\dim{\Ec} = \rm M\cdot L^2\cdot T^{-2}$~;
+			\task $\dim{t} = \rm T$~;
+			\task $\dim{\rho} = \rm M\cdot L^{-3}$.
+		\end{tasks}
+	\end{tcn}
+
+	\begin{tcn}(appl){Application}
+		\begin{gather*}
+			\beforetext{$\dim{R} = L$, donc on a}
+			L =
+			\left( M\cdot L^2\cdot T^{-2} \right)^\alpha T^\beta \left(
+			M\cdot L^{-3} \right)^\gamma
+			\\
+			\beforetext{Soit}
+			\left\{
+			\begin{array}{rcl}
+				1 & = & 2\alpha - 3\gamma \\
+				0 & = & -2\alpha + \beta  \\
+				0 & = & \alpha + \gamma
+			\end{array}
+			\right.
+			\Lra
+			\left\{
+			\begin{array}{rcl}
+				\alpha & = & -\gamma \\
+				\alpha & = & \beta/2 \\
+				\alpha & = & 1/5
+			\end{array}
+			\right.
+			\\
+			\beforetext{Ainsi,}
+			\left\{
+			\begin{array}{rcl}
+				\alpha & = & 1/5  \\
+				\gamma & = & -1/5 \\
+				\beta  & = & 2/5
+			\end{array}
+			\right.
+			\\
+			\beforetext{Soit}
+			\boxed{R = K\times \Ec^{1/5}t^{2/5}\rho^{-1/5}}
+		\end{gather*}
+	\end{tcn}
+}%
+
+\QR{%
+	L'analyse du film montre que le rayon augmente au cours du temps comme
+	$t^{2/5}$. Exprimer alors $\Ec$ en fonction de $R$, $\rho$ et $t$.
+}{%
+	On isole simplement en mettant la relation à la puissance 5~: \fbox{$\Ec
+			= K^{-5}R^5 t^{-2}\rho$}.
+}%
+
+\QR{%
+	En estimant que $R\approx \SI{70}{m}$ après $t = \SI{1}{ms}$, sachant
+	que la masse volumique de l'air vaut $\rho\approx \SI{1.0}{kg.m^{-3}}$
+	et en prenant $K\approx 1$, calculer la valeur de $\Ec$ en joules puis en
+	kilotonnes de TNT (une tonne de TNT libère \SI{4.18e9}{J}).
+}{%
+	On fait une simple application numérique~:
+	\[\Ec = \SI{1.7e15}{J}\quad\text{avec}\quad \left\{
+		\begin{array}{rcl}
+			K    & = & 1                   \\
+			R    & = & \SI{70}{m}          \\
+			t    & = & \SI{1e-3}{s}        \\
+			\rho & = & \SI{1.0}{kg.m^{-3}}
+		\end{array}
+		\right.\]
+	En équivalent tonne de TNT, on trouve~:
+	\[\xul{\Ec = \SI{4.1e2}{kT}\text{ de TNT}}\]
+}%
+
+\end{document}

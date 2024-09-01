@@ -1,0 +1,139 @@
+\documentclass[../TDN1.tex]{subfiles}%
+
+\begin{document}
+
+\section[s]"2"{Faire cuire des pâtes}
+\enonce{%
+	Sur une facture d'électricité, on peut lire sa consommation d'énergie
+	électrique exprimée en \si{kWh} (kilowatt-heure).
+}%
+\QR{%
+	Quelle est l'unité SI associée~? Que vaut \SI{1}{kWh} dans cette unité
+	SI~?
+}{%
+	\begin{tcbraster}[raster columns=2]
+		\begin{tcn}(data){Donnée}
+			Consommation électrique en \si{kWh}.
+		\end{tcn}
+		\begin{tcn}(ques)'r'{Résultat attendu}
+			Unité associée en unités SI.
+		\end{tcn}
+	\end{tcbraster}
+	\begin{tcn}(tool){Outil}
+		Toute énergie s'exprime en joules (J), et les \textbf{puissances}
+		sont des \textbf{énergies par unité de temps}. Notamment pour les
+		watts on a $\SI{1}{W} = \SI{1}{J.s^{-1}}$.
+	\end{tcn}
+	\begin{tcn}(appl){Application}
+		On a directement
+		\[ \SI{1}{kWh} = \SI{1e3}{J.s^{-1}.h}\]
+		Avec l'évidence que $ \SI{1}{h} = \SI{3600}{s}$, finalement
+		\[\xul{}{\SI{1}{kWh} = \SI{3.6e6}{J}}\]
+	\end{tcn}
+}%
+
+\QR{%
+Sachant que la capacité thermique massique de l'eau est $c =
+	\SI{4.18}{J.g^{-1}.K^{-1}}$ et que le prix du kilowatt-heure est de
+\SI{0.16}{\EUR}, évaluer le coût du chauffage électrique permettant de
+faire passer \SI{1}{L} d'eau de \SI{20}{\degreeCelsius} à
+\SI{100}{\degreeCelsius}.
+}{%
+\ifprof{%
+	\vspace{-15pt}
+}%
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcn}(data){Données}
+		Notre objet d'étude est l'eau. On a~:
+		\begin{itemize}
+			\item $V_{\rm eau} = \SI{1}{L}$~;
+			\item $T_{\rm i} = \SI{20}{\degreeCelsius}$~;
+			\item $T_{\rm f} = \SI{100}{\degreeCelsius}$~;
+			\item $c = \SI{4.18}{J.g^{-1}.K^{-1}}$
+		\end{itemize}
+		De plus, on nous donne
+		\begin{itemize}
+			\item $ \SI{1}{kWh} = \SI{1}{\EUR}$.
+		\end{itemize}
+	\end{tcn}
+	\begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+		\begin{tcbraster}[raster columns=1]
+			\begin{tcn}[add to natural height=\myspace](ques)'r'{Résultat
+				attendu}
+				On cherche à monter \SI{1}{L} d'eau de 20 à
+				\SI{100}{\degreeCelsius} et d'en calculer le coût en
+				euros.
+			\end{tcn}
+			\begin{tcn}(tool)'r'{Outil}
+				On doit donc trouver le coût en énergie et le convertir
+				en euro. On cherche pour ça une loi reliant l'énergie
+				consommée avec les données du problème, sachant que
+				\textbf{pour l'eau}, \SI{1}{L} = \SI{1}{kg}.
+			\end{tcn}
+		\end{tcbraster}
+	\end{tcolorbox}
+\end{tcbraster}
+\begin{tcn}(appl){Application}
+	L'énergie à apporter $Q$ se déduit de la dimension de la capacité
+	thermique massique~: $\dim{c} = \dim{Q}\rm\cdot M^{-1}\cdot
+		\Theta^{-1}$. En appelant $m$ la masse du volume d'eau, par cette
+	analyse dimensionnelle on a
+	\[\boxed{Q = mc\Delta T}\]
+	On a donc
+	\[Q = \SI{3.3e5}{J}\quad\text{avec}\quad \left\{
+		\begin{array}{rcl}
+			m        & = & \SI{1}{kg}                    \\
+			c        & = & \SI{4.18}{J.g^{-1}.K^{-1}}    \\\Lra
+			c        & = & \SI{4.18e3}{J.kg^{-1}.K^{-1}} \\
+			\Delta T & = & \SI{80}{K}
+		\end{array}
+		\right.\]
+	et pour utiliser le coût en euros, on la converti en \si{kWh}~:
+	\[\xul{Q = \SI{9.3e-2}{kWh} = \SI{1.5e-2}{\EUR}}\]
+\end{tcn}
+}%
+
+\QR{%
+	Si la plaque chauffe avec une puissance de $P = \SI{1200}{W}$, combien
+	de temps faudra-t-il pour chauffer ce litre d'eau~?
+}{%
+	\ifprof{
+		\vspace{-15pt}
+	}
+	\begin{tcbraster}[raster columns=2, raster equal height=rows]
+		\begin{tcn}(data){Données}
+			On utilise une plaque chauffante de puissance $P =
+				\SI{1200}{W}$.
+		\end{tcn}
+		\begin{tcn}(ques)'r'{Résultat attendu}
+			On cherche la durée que cette plaque prendrait pour
+			transférer l'énergie calculée précédemment.
+		\end{tcn}
+	\end{tcbraster}
+	\begin{tcbraster}[raster columns=2, raster equal height=rows]
+		\begin{tcn}(tool){Outil}
+
+			Une puissance est une énergie par unité de temps, et
+			\SI{1}{W} = \SI{1}{J.s^{-1}}.
+
+		\end{tcn}
+		\begin{tcn}(appl)'r'{Application}
+			On en déduit
+			\begin{gather*}
+				P = \frac{Q}{\Delta t}
+				\qav
+				\left\{
+				\begin{array}{rcl}
+					Q & = & \SI{3.3e5}{J}            \\
+					P & = & \SI{1200}{J\cdot s^{-1}}
+				\end{array}
+				\right.
+				\\
+				\text{d'où}\quad
+				\boxed{\Delta t = \frac{Q}{P} = \xul{\SI{2.8e2}{s}}}
+			\end{gather*}
+		\end{tcn}
+	\end{tcbraster}
+}%
+
+\end{document}

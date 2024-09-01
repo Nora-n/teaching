@@ -1,0 +1,61 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+%------------------ Ressort horizontal dans trois situations ---------------
+\begin{tikzpicture}[scale=0.8]
+	%\grid{5}{5}
+	%--------------------ressort central---------------------	
+	\coordinate (O) at (0,-2.75);
+
+	%ressort
+
+	%----------ressort etiré------------
+
+	\begin{scope}[shift=({0,-5.5})]
+
+		\coordinate (M) at (1,0.36);
+		\node[anchor=west, right=.3] at (M.east) {$M$};
+
+		%Axe
+		\draw [->] (-4.5,0) --++ (0,1.75) node [right] {$y$} ;
+		\draw [->] (-4.5,0) -- (3,0)  node [below] {$x$} ;
+
+		%repérage de x
+		\draw [|<->|] (0,1.75) -- (0.6,1.75) node [midway,above] {\scriptsize $x_0>0$};
+		\draw [|<->|]
+		(-3.6,1.75) --
+		(0,1.75)
+		coordinate(lor)
+		node [midway,above]
+			{\scriptsize $\ell_0$};
+		\node[below] (0,0) {O\bp};
+		\draw[dashed] (lor) -- (0,0);
+
+		%repérage de \ell
+		\draw [|<->|] (-3.6,1) -- (0.6,1) node [midway,above] {$\ell > \ell_0$};
+
+		\begin{scope}[scale=0.75,shift=({-4.78,0.5}),rotate around={90:(0,0)}]
+			%bloc qui tient le ressort
+			\draw[thick,gray] (0,0) -- (0,-0.3);
+			\fill[pattern=north east lines] (-0.5,0) rectangle (0.5,0.3);
+			\draw[thick](-0.5,0) node[below] {O} --(0.5,0);
+			%fin ressort
+		\end{scope}
+
+		%ressort
+		\draw [ressort,decorate,decoration={coil,aspect=0.5,segment length=5mm,amplitude=3mm}] (-3.375,0.36)--++(4,0) ;
+
+		\draw[rounded corners=4pt,fill=gray!30] (0.625,0) rectangle++ (0.75,0.75) node [midway, shift=({0,0.05})] {$\centerdot$};
+
+		\draw [->,-stealth,thick,blue] (M) --++(0,-1) node [right] {$\vv{P}$};
+		\draw [->,-stealth,thick,green!50!black] (M)++(0,-0.35) --++(0,+1) node [right] {$\vv{R}$};
+		\draw [->,-stealth,thick,red] (M)++(-0.375,0)--++(-1.5,0) node [above=-1] {$\vv{F}$};
+
+	\end{scope}
+	%----------FIN ressort etiré------------
+
+\end{tikzpicture}
+
+\end{document}

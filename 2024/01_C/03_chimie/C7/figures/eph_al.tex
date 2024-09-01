@@ -1,0 +1,99 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=.4]
+	% \def\ct{1}
+	% \def\pke{14}
+	% \def\pksalohc{33.5}
+	% \def\phalohc{\pke-\pksalohc/3-}
+	\tikzmath{
+		\wdth = 18;
+		\hgth = 4;
+		\emin = -3.2;
+		\emax = 0.5;
+		\tick = 0.1;
+		\ct = 1;
+		\pke = 14;
+		\pksalohc = 33.5;
+		\phalohc = \pke-\pksalohc/3 - log10(\ct)/3;
+		\pbeta4 = -35;
+		\pkaalohc = \pksalohc + \pbeta4;
+		\phalohd = \pkaalohc + \pke + log10(\ct);
+		\estandalc = -1.66;
+		\efrontal = \estandalc + 0.02*log10(\ct);
+		\estandalohc = -2.31;
+		\estandalohd = -2.33;
+	}
+	\tikzset{declare function={
+				% efront3(\x) = \estandalohc + 0.02*log10(\ct) - 0.06*\x;
+				% efront4(\x) = \estandalohd + 0.02*log10(\ct) - 0.08*\x;
+				efront3(\x) = \efrontal - 0.06*(\x-\phalohc);
+				efront4(\x) = efront3(\phalohd) - 2*0.08*(\x-\phalohd);
+			}}
+	\pgfmathparse{efront3(\phalohd)}\let\efrontlim\pgfmathresult
+	\pgfmathparse{efront4(\wdth)}\let\efrontend\pgfmathresult
+	% print values
+	% \node[draw, align=left] at (\wdth/2, \hgth/2)
+	% {
+	% $E^\circ(\ce{Al^3+/Al}) = \SI{\fpeval{round(\estandalc,2)}}{V}$\\
+	% $E^\circ(\ce{Al(OH)3 /Al}) = \SI{\fpeval{round(\estandalohc,2)}}{V}$\\
+	% $E^\circ(\ce{Al(OH)4 /Al}) = \SI{\fpeval{round(\estandalohd,2)}}{V}$\\
+	% $\pH\ind{lim}(\ce{Al^3+/Al(OH)3}) = \num{\fpeval{round(\phalohc,2)}}$\\
+	% $\pH\ind{lim}(\ce{Al(OH)4 /Al(OH)3}) = \num{\fpeval{round(\phalohd,2)}}$\\
+	% $E\ind{front}(\ce{Al(OH)4 /Al(OH)3/Al}) = \SI{\fpeval{round(\efrontlim,2)}}{V}$
+	% };
+	% 0
+	\coordinate (O) at (0,0);
+	\coordinate (Z) at (\wdth,0);
+	% place values
+	\coordinate (A) at (\phalohc,0);
+	\coordinate (B) at (\phalohd,0);
+	\node[above] at (A) {\num{\fpeval{round(\phalohc,2)}}};
+	\node[above] at (B) {\num{\fpeval{round(\phalohd,2)}}};
+	\coordinate (C) at (0,\efrontal);
+	\node[left] at (C) {\num{\fpeval{round(\efrontal, 2)}}};
+	\coordinate (D) at (\phalohc,\efrontal);
+	\coordinate (E) at (\phalohd,\efrontlim);
+	% \node[left] at (E-|O) {\num{\fpeval{round(\efrontlim,2)}}};
+	\coordinate (F) at (\wdth,\efrontend);
+	\coordinate (G) at (F-|O);
+	% fill
+	\fill[red!20] (O) -- (A) -- (D) -- (C);
+	\fill[orange!20] (A) -- (B) -- (E) -- (D);
+	\fill[dgreen!20] (B) -- (Z) -- (F) -- (E);
+	\fill[blue!20] (C) -- (D) -- (E) -- (F) -- (G);
+	% Place elements
+	\node (AL3) at (barycentric cs:O=1,A=1,C=1,D=1) {$\ce{{Al}^3+_{\rm(aq)}}$};
+	\node (ALOH3) at (barycentric cs:A=1,B=1,D=1,E=1) {$\ce{{Al(OH)_3}_{\rm(s)}}$};
+	\node (ALOH4) at (barycentric cs:B=1,Z=1,E=1,F=1) {$\ce{{Al(OH)_4^{-}}_{\rm(aq)}}$};
+	\node (ALOH4) at (barycentric cs:C=1,D=1,E=1,F=1,G=1) {$\ce{Al_{\rm(s)}}$};
+	% horiz
+	\draw[thick]
+	(C) -- (D);
+	% verti
+	\draw[thick]
+	(D) -- (A);
+	\draw[thick]
+	(E) -- (B);
+	% incli
+	\draw[thick] plot[domain=\fpeval{\phalohc}:\fpeval{\phalohd}] (\x,{efront3(\x)});
+	\draw[thick] plot[domain=\fpeval{\phalohd}:\fpeval{\wdth}] (\x,{efront4(\x)});
+	% Scale
+	\draw[very thick, -{Stealth}]
+	(-.5,0) --
+	node[at end, right] {$\pH$}
+	(\wdth+1,0);
+	% \foreach \x in {0, 1, ..., \fpeval{\wdth}}{
+	% 		\draw (\x,-\tick) --++ (0,2*\tick);
+	% 	}
+	\draw[very thick, -{Stealth}]
+	(0,\emin) --
+	node[at end, left] {$E~(\si{V})$}
+	(0,\emax);
+	% \foreach \y in {\fpeval{\emin}, ..., \fpeval{\emax}}{
+	% 		\draw (-\tick,\y) --++ (2*\tick,0);
+	% 	}
+\end{tikzpicture}
+
+\end{document}

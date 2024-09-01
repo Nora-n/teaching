@@ -1,0 +1,55 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+	% O
+	\coordinate (O) at (0,0);
+	\node at (O) [below left=-.07 and -.07]{O};
+	% Axes
+	\draw [->,-latex]
+	(O) --++ (2.5,0)
+	coordinate (R)
+	node [below] {$\ux$};
+	\draw [->,-latex]
+	coordinate (T)
+	(O) --++ (0,2.5) node [left] {$\uy$};
+	% sens angles
+	\node (Cp) at (2.5,1.5) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.25}
+	% Vecteur
+	\draw [->,-latex, thick, ForestGreen]
+	(O) --++ (30:2.5)
+	coordinate (Atop)
+	node [above, midway, sloped] {$\vv{a}$};
+	% Projections
+	\draw [dashed, brandeisblue, thick]
+	(Atop) -- ($(O)!(Atop)!(R)$)
+	node[midway, right] {$a_y$}
+	coordinate (Ar);
+	\draw [dashed, firebrick, thick]
+	(Atop) -- ($(O)!(Atop)!(T)$)
+	node[midway, above] {$a_x$}
+	coordinate (At);
+	\draw [dashed, firebrick, thick]
+	(O) -- (Ar)
+	node[midway, below] {$a_x$};
+	\draw [dashed, brandeisblue, thick]
+	(O) -- (At)
+	node[midway, left] {$a_y$};
+	% Text
+	\node[firebrick] (Tr) at (1.55, 2.5)
+	{\small$a_x = \vv{a}\!\cdot\!\!\ux = a\cos(\theta)$};
+	\node[brandeisblue, below=-.20 of Tr]
+	{\small$a_y = \vv{a}\!\cdot\!\!\uy = a\sin(\theta)$};
+	% angle
+	\pic[angle radius=0.75cm, angle eccentricity=1.25,
+		draw, "$\theta$" alias=theta,
+		->, color=black]
+	{angle=R--O--Atop};
+	\pic[angle radius=0.55cm, angle eccentricity=1.25,
+		draw, "$\f$" alias=phi,
+		->, color=black]
+	{angle=Atop--O--T};
+\end{tikzpicture}
+\end{document}

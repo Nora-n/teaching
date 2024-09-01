@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\def \indice{1.65};%indice de réfraction
+	\def \anglim{asin(1/(\indice))};
+	\coordinate (O) at (0,0);
+	\clip (-2.5,-2.5) rectangle(2.5,1.8);
+	\draw[verre](-3,0)--++(6,0)--++(0,-3)--++(-6,0)--cycle;
+	\draw (-2,-.5) node[right]{$n_1$} (-2,.5) node[right]{$n_2<n_1$};
+	\draw[thin,dashed] (0,-2)--(0,1) node[above]{R\'eflexion totale : $i_1>i_{\lim}$};
+	\draw[dashed,gray] (O)--++({-90-\anglim}:3);
+	\draw[simplerev,thick,red] (O)--++(-150:3)--++(30:1);
+	\draw[simple,thick,red] (O)--++(-30:3)--++(150:1);
+	\draw (0,-0.5) node[below left]{\scriptsize{$i_1$}} arc(-90:-150:0.5);
+	\draw[gray] (0,-1) node[below left]{$i_{\lim}$} arc(-90:-90-\anglim:1);
+\end{tikzpicture}
+
+\end{document}

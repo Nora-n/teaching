@@ -1,0 +1,60 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	% Sens de comptage
+	\node[] (Cp) at (-4.5,2) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (4.5,2) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.3}
+	% Axe optique
+	\draw[thin](-5,0)--(2,0);
+	\draw[thin, dashed] (2,0)--(4,0);
+	\draw[thin, ->] (4,0)--(5,0)node[right]{A.O.};
+	% Lentille 
+	\coordinate (O) at (0,0);
+	\def \fa{2}
+	\def \lsiz{2}
+	\coordinate (F) at ($(O)+(-\fa,0)$);
+	\coordinate (Fp) at ($(O)+(\fa,0)$);
+
+	\foreach \x/\z in {O/\fa}{
+	\draw[shift={(\x)}] (0,0)
+	node[below right] {O$_{}$};
+	\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+	node[below right] {F$'_{}$};
+	\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+	node[below left] {F$_{}$};
+	}
+
+	\draw[shift={(O)}, thick,
+		<->, >=latex, name path=L] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{}$};
+	% Objet
+	\def \pos{4.5}
+	\def \siz{-1}
+	\coordinate (A\bp) at ($(O)+(\pos,0)$);
+	\coordinate (B\bp) at ($(A\bp)+(0,\siz)$);
+	\draw[->, Red!70] (A\bp)
+	node[above] {A\bp}
+	-- (B\bp)
+	node[above left] {B\bp};
+	% Écran
+	\def\ecsiz{3}
+	\draw[dotted] ($(4.5,0)+(0,-\ecsiz/2)$)
+	--++ (0,\ecsiz);
+	\node[above right] at (4.5,0) {E};
+	% Grandeurs
+	\node[below] (O) at (O) {};
+	\node[below] (Fp) at (Fp) {};
+	\draw[<->, ForestGreen] (O) --
+	node[below, midway, sloped]{\scriptsize $\SI{5}{cm}$} (Fp);
+	% Grandeurs
+	\node[above] (O) at (0,0) {};
+	\node[above] (A\bp) at (A\bp) {};
+	\draw[<->, ForestGreen] (O) --
+	node[above, midway, sloped]{\scriptsize $\SI{4}{m}$} (A\bp);
+\end{tikzpicture}
+\end{document}

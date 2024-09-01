@@ -1,0 +1,142 @@
+\documentclass[a4paper, 10pt, final, garamond]{book}
+\usepackage{cours-preambule}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\makeatother
+
+\toggletrue{student}
+% \HideSolutionstrue
+% \toggletrue{corrige}
+\renewcommand{\mycol}{black}
+
+\begin{document}
+\setcounter{chapter}{7}
+
+\chapter{Cinétique chimique \ifstudent{ (10')}}
+
+\begin{enumerate}[label=\sqenumi, leftmargin=10pt]
+	\nitem{1}%
+	\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax-10pt}
+	\begin{gather*}
+		\beforetext{Soit}
+		\ce{\alpha_1R_1 + \alpha_2R_2} +…
+		=
+		\ce{\beta_1P_1 +\beta_2P_2}+…
+		\Lra
+		0 = \sum_{i}^{N}\nu_i \ce{X_i}
+	\end{gather*}
+	Donne l'expression de la vitesse de réaction, la vitesse de formation d'un
+	produit et de disparition d'un réactif, et donner le lien entre vitesse de
+	réaction et la concentration d'un constituant quelconque $[\ce{X_i}]$.
+	\smallbreak
+	\vspace{-15pt}
+	\wsw{
+		\begin{gather*}
+			\boxed{v = \dv{x}{t}}
+			\qquad ; \qquad
+			\boxed{v_{f,\ce{P}} = \dv{[\ce{P}]}{t}}
+			\qet
+			\boxed{v_{f,\ce{R}} = -\dv{[\ce{R}]}{t}}
+			\qquad \Ra \qquad
+			\boxed{v = \frac{1}{\nu_i} \dv{[\ce{X}_i]}{t}}
+		\end{gather*}
+	}
+	\nitem{2}%
+	Qu'est-ce qu'une réaction admettant un ordre~? Donne un exemple pour une
+	réaction $\ce{aA + bB -> cC + dD}$. Détailler les termes de vocabulaire
+	nécessaires. Définir en une phrase ce qu'est une réaction simple. Que se
+	passe-t-il pour si la réaction précédente est simple~?
+	\smallbreak
+	\wsw{
+	Une réaction admet un ordre si sa vitesse peut s'écrire sous la forme
+	\[
+		\boxed{v = k[\ce{A}]^p[\ce{B}]^q}
+	\]
+	avec $k$ la constante de vitesse, $p$ et $q$ sont les \textbf{ordres partiels}
+	de la réaction, $m = p + q$ est \textbf{l'ordre global} de la réaction.
+	\smallbreak
+	Une réaction est simple si elle décrit un unique acte chimique. Dans ce cas,
+	les ordres partiels de la réaction sont les coefficients stœchiométriques
+	arithmétiques~:
+	\[
+		\boxed{v = k [\ce{A}]^{a} [\ce{B}]^{b}}
+	\]
+	}
+	\nitem{5}%
+	Décrire en une phrase ce qu'est la dégénérescence de l'ordre. Démontrer son
+	intérêt pour l'étude d'une loi de vitesse sur l'exemple $\ce{aA + bB -> cC +
+			dD}$. Démontrer l'intérêt de mettre les réactifs en proportions
+	stœchiométriques.
+	\smallbreak
+	\wsw{
+	La dégénérescence de l'ordre consiste à mettre tous les réactifs en excès
+	sauf un. Par exemple, si \ce{A} est en excès, alors $[\ce{A}](t) \approx
+		[\ce{A}]_0$~; ainsi
+	\[
+		\boxed{
+		v =
+		k[\ce{A}]^{p}[\ce{B}]^{q} =
+		\underbracket[1pt]{k[\ce{A}]_0{}^{p}}_{= \cte}[\ce{B}]^{q} =
+		k\ind{app}[\ce{B}]^{q}
+		}
+	\]
+	et on peut trouver l'ordre partiel en \ce{B}. Si les réactifs sont en
+	proportions stœchiométriques, on aura
+	\[
+		[{\ce{A}}]_0 = ac_0
+		\qet
+		[{\ce{B}}]_0 = bc_0
+		\Ra
+		\boxed{
+			[{\ce{A}}] = a (c_0 - x)
+			\qet
+			[{\ce{B}}] = b (c_0 - x)
+		}
+	\]
+	On peut donc factoriser la loi de vitesse~:
+	\begin{gather*}
+		v =
+		k \left( a (c_0 - x)\right)^{p}\left( b (c_0 - x)\right)^{q}
+		\Lra
+		v =
+		ka^{p}b^{q} \left(c_0 - x\right)^{p + q}
+		\Lra
+		\boxed{v = k_{\rm app} (c_0 -x)^{m}}
+	\end{gather*}
+	avec $m = p + q$ l'ordre global, et $k\ind{app} = ka^{p}b^{q}$ la constante
+	apparente. On a donc accès à l'ordre global.
+	}
+	\vfill
+	\nitem{2}%
+	Donner l'équation différentielle d'une réaction $\ce{aA + bB -> cC + dD}$
+	d'ordre 2 par rapport au réactif \ce{A}. La résoudre sous la forme
+	$1/[\ce{A}]$.
+	\smallbreak
+	\vspace{-15pt}
+	\wsw{
+		\begin{gather*}
+			\dv{[{\ce{A}}]}{t} = -av
+			\Lra
+			\boxed{\dv{[{\ce{A}}]}{t} = -ka[{\ce{A}}]^2}
+			\\\Lra
+			- \frac{\dd{[\ce{A}]}}{[{\ce{A}}]^2} = ka \dd{t}
+			\Ra
+			\frac{1}{[{\ce{A}}]} = kat + \frac{1}{[\ce{A}]_0}
+		\end{gather*}
+	}
+\end{enumerate}
+
+\ifstudent{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west, align=left]
+		at ([shift={(1.4cm,0)}]current page.north west)
+		{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
+		\node[anchor=north east, align=right]
+		at ([shift={(-1.5cm,-17pt)}]current page.north east)
+		{\Large\bfseries Note~:\hspace{1cm}/10};
+	\end{tikzpicture}
+}
+
+\end{document}

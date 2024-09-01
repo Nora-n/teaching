@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[rmeter, name=A]
+    (0,2) --
+    (1,2) coordinate (Ntl)
+    to[R, name=R, !vi]
+    (3,2) coordinate (Ntm)
+    to[R, name=r1, !vi]
+    (5,2) coordinate (Ntr) --
+    (6,2)
+    to[rmeter, name=Ap]
+    (6,0) --
+    (5,0) coordinate (Nbr)
+    to[rmeter, name=V]
+    (3,0) coordinate (Nbm) --
+    (1,0) coordinate (Nbl) --
+    (0,0);
+    \draw[]
+    (Ntl)
+    to[R, name=R2, !vi]
+    (Nbl);
+    \draw[]
+    (Ntm)
+    to[V, name=E, V^<=$E_{}$, !vi]
+    (Nbm);
+    \draw[]
+    (Ntr)
+    to[R, name=R1, !vi]
+    (Nbr);
+    \node[] at (A.center) {A};
+    \node[] at (Ap.center) {A'};
+    \node[] at (V.center) {V};
+    \node[] at (R.center) {$R$};
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \varronly{E}
+\end{circuitikz}
+
+\end{document}

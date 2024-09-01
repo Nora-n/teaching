@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[R, name=r, i>_=$i$, v^<=$ri$, !vi]
+    (2,0)
+    to[V, name=E, V^>=$E_{0}$, !vi]
+    (4,0) --
+    (4,-2) -- (3,-2)
+    to[R, name=R, v^<=$U$, !vi]
+    (1,-2) --
+    (0,-2) --
+    (0,0);
+    \varronly{r} \varronly{E} \varronly{R}
+    \iarronly{r}
+    \node[] at (r.center) {$r$};
+    \node[] at (R.center) {$R$};
+    \draw[color=red!70]
+    (0.2,-.5) -- (3.8,-.5)
+    node [midway, below] {$U = E_0 - rI$}
+    node [currarrow, pos=1] {};
+\end{circuitikz}
+\end{document}
+

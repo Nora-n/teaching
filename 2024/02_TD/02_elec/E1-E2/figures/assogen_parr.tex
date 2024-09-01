@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[V, name=E1, V^>=$E_{1}$, i^>=$i_{1}$, !vi]
+    (0,2)
+    to[R, name=r1, i_>=$i_1$, v^<=$U_{r_1}$, !vi]
+    (0,4) --
+    (2,4) coordinate (N1)
+    to[R, name=r2, i<^=$i_2$, v^>=$U_{r_2}$, !vi]
+    (2,2)
+    to[V, name=E2, V^<=$E_{2}$, i<_=$i_{2}$, !vi]
+    (2,0) coordinate (N2) --
+    (0,0);
+    \draw[]
+    (N1) --++
+    (2,0) --++
+    (0,-1)
+    to[R, name=R4, i>_=$i_4$, v^<=$U_{R_4}$, !vi]
+    (4,1) --
+    (4,0) --
+    (N2);
+    \varronly{E1} \varronly{r1} \varronly{r2} \varronly{E2}
+    \varronly{R4}
+    \iarronly{E1} \iarronly{r1} \iarronly{r2} \iarronly{E2}
+    \iarronly{R4}
+    \node[] at (r1.center) {$r_1$};
+    \node[] at (r2.center) {$r_2$};
+    \node[] at (R4.center) {$R_4$};
+\end{circuitikz} 
+
+\end{document}

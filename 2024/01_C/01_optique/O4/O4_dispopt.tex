@@ -1,0 +1,810 @@
+\documentclass[../../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\dominitoc
+\faketableofcontents
+
+\makeatletter
+\renewcommand{\@chapapp}{Optique -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+% \HideSolutionstrue
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{3}
+
+\chapter{Dispositifs optiques}
+
+\vfill
+
+\begin{prgm}
+	\begin{tcb}*(ror)"know"{Savoirs}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Modéliser l'œil comme l'association d'une lentille de vergence
+			      variable et d'un capteur plan fixe.
+			\item Citer les ordres de grandeur de la limite de résolution angulaire et
+			      de la plage d'accommodation.
+			\item Modéliser l'appareil photographique comme
+			      l'association d'une lentille et d'un capteur.
+		\end{itemize}
+	\end{tcb}
+
+	\begin{tcb}*(ror)"how"{Savoir-faire}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Construire géométriquement la profondeur de champ
+			      pour un réglage donné.
+			\item Étudier l'influence de la focale, de la durée d'exposition, du
+			      diaphragme sur la formation de l'image.
+		\end{itemize}
+	\end{tcb}
+\end{prgm}
+
+\vfill
+\minitoc
+\vfill
+
+\newpage
+
+\section{Œil}
+\subsection{Présentation et modélisation}
+Un œil est constitué de trois parties~:\smallbreak
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcb}[label=nota:oeilvoca](nota){Vocabulaire}
+		\begin{description}
+			\item[L'iris,] partie colorée, est percé de la pupille dont le diamètre est
+			      variable (\SIrange{2}{8}{mm}). Il joue le rôle de \textit{diaphragme},
+			      permettant de limiter la puissance lumineuse pénétrant dans
+			      l'œil~;
+			\item[Le cristallin,] milieu transparent ayant un effet de lentille mince,
+			      accroché à des muscles permettant d'en changer la focale selon leur
+			      contraction~;
+			\item[La rétine,] l'«~écran~» de l'œil, constituée de cellules sensibles à
+			      la lumière (les cônes et les bâtonnets).
+		\end{description}
+		\begin{center}
+			\includegraphics[width=\linewidth]{oeil_coupe}
+			\captionof{figure}{Structure de l'œil.}
+			\label{fig:oeil_coupe}
+		\end{center}
+	\end{tcb}
+	\begin{tcb}[label=def:oeil](defi)'r'{Modèle de l'œil}
+
+		En optique, on le décrit donc par une \textbf{lentille mince convergente} de
+		\textbf{vergence variable} associée à un \textbf{écran fixe}, telle que $d
+			\approx \SI{22.3}{mm}$.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{oeil_modele}
+			\captionof{figure}{Modèle de l'œil en optique.}
+			\label{fig:oeil_modele}
+		\end{center}
+	\end{tcb}
+\end{tcbraster}
+
+\subsection{Caractéristiques}
+
+\subsubsection{Plage d'accommodation}
+L'œil ne voit net que si l'image se forme sur la rétine, comme pour tout
+dispositif optique avec un écran. Selon la distance de l'objet à une
+lentille, on a vu dans le chapitre 3 que la distance de l'image pouvait varier~:
+ainsi, pour toujours voir net, un œil fait varier la vergence du cristallin pour
+s'accommoder, en augmentant sa vergence (lentille $\oplus$ convergente) pour les
+objets proches.
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcb}[label=def:pppr](defi){Punctum remotum, proximum}
+		On appelle \textbf{punctum remotum} (PR) le point objet \textbf{le plus
+			éloigné} qu'un œil voit \textit{net}.
+		\tcbsubtitle{\fatbox{Valeur}}
+		\psw{
+			Pour un œil \textbf{sans défaut} (emmétrope), le PR est \textbf{à
+				l'infini}.
+		}
+		\tcblower
+		On appelle \textbf{punctum proximum} (PP) le point objet \textbf{le plus
+			proche} qu'un œil voit \textit{net}.
+		\tcbsubtitle{\fatbox{Valeur}}
+		\psw{
+			Pour un œil \textbf{sans défaut} (emmétrope), le PP est à $\approx$
+			\textbf{\SI{25}{cm}}.
+		}
+	\end{tcb}
+	\begin{tcb}[width=\linewidth](exem)'r'{Schéma exemple}
+		\begin{center}
+			\includegraphics[width=\linewidth]{oeil_acco}
+			\label{fig:oeil_acco}
+			\captionof{figure}{Principe de l'accommodation d'un œil.}
+		\end{center}
+	\end{tcb}
+\end{tcbraster}
+
+\begin{tcb}[width=\linewidth](exem){Exercice~:}
+	Quelles sont les valeurs maximale et minimale de la focale du cristallin
+	pour un œil emmétrope~? On rappelle que la distance cristallin-rétine est $d
+		\approx \SI{22.3}{mm}$.
+	\tcblower
+	\begin{isd}
+		\psw{
+			Pour le remotum on a directement que la focale doit être égale à la
+			distance cristallin-rétine, puisqu'un objet à l'infini se forme dans le plan
+			focal image. Pour le proximum, on utilise la relation de conjugaison avec A' =
+			E, $\OA = \SI{-25}{cm}$ et on trouve $f'$ :
+			\begin{gather*}
+				\xul{\OFp_\mathrm{repos} = \SI{22.3}{mm}}
+				\text{, }
+				\boxed{
+					\OFp_{\rm acco} = \frac{\obar{\rm OE}\OA}{\OA - \obar{\rm OE}}
+				}
+				\\
+				\mathrm{A.N.~:}\enskip
+				\xul{
+					\OFp_{\rm acco} = \SI{21}{mm}
+				}
+			\end{gather*}
+		}
+		\vspace*{-20pt}
+		\tcblower
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{oeil_plain}
+			}{
+				\includegraphics[width=\linewidth]{oeil_plain}
+			}
+		\end{center}
+	\end{isd}
+\end{tcb}
+
+\begin{tcb}[label=impl:instrument_opt](impl){Réglage instrument optique}
+	Le principe des instruments optiques est d'avoir de meilleures
+	caractéristiques que l'œil humain, mais que l'image formée soit visible par
+	un œil. Pour que cela se fasse sans fatigue,
+	\begin{center}
+		\bfseries L'image finale d'un instrument d'optique doit être à l'infini.
+	\end{center}
+\end{tcb}
+
+\subsubsection{Résolution angulaire}
+Comme tout capteur, l'œil distingue deux points sources si leurs images se
+forment sur deux cellules différentes de la rétine. On caractérise cette
+capacité par le pouvoir de résolution.
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcb}[label=def:resolu](defi){Pouvoir de résolution}
+		Le pouvoir de résolution (ou séparateur) d'un capteur optique est
+		l'\textbf{angle minimal} que doivent former deux rayons pour être perçus
+		comme provenant de \textbf{deux points différents}.
+	\end{tcb}
+	\begin{tcb}[label=odgr:resolu](odgr)'r'{Résolution}
+
+		Dans de bonnes conditions d'éclairement (luminosité moyenne), le pouvoir
+		séparateur d'un œil emmétrope est \fbox{$\alpha \approx\ang{;1;} =
+				\SI{3e-4}{rad}$}. Cela revient à distinguer deux détails séparés de
+		\SI{1}{mm} à une distance de \SI{3}{m}.
+	\end{tcb}
+\end{tcbraster}
+
+\subsubsection{Défauts de l'œil}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcb}[label=def:defaut_oeil](defi){Défauts de l'œil}
+		\begin{description}
+			\item[Myopie] : \psw{
+				      cristallin \textbf{trop} convergent. PR pas à
+				      l'infini. Corrigé par lentille divergente.
+			      }
+			\item[Hypermétropie] : \psw{
+				      cristallin \textbf{pas assez} convergent. PP
+				      plus éloigné que l'œil emmétrope. Corrigé avec lentille
+				      convergente.
+			      }
+			\item[Presbytie] : \psw{
+				      les muscles du cristallin vieillissent et ont du
+				      mal à accommoder. Pour la faciliter, on utilise une lentille
+				      convergente.
+			      }
+		\end{description}
+	\end{tcb}
+	\begin{tcb}[width=\linewidth](exem)'r'{Schéma}
+		\begin{center}
+			\includegraphics[width=\linewidth]{oeil_defaut}
+			\captionof{figure}{Schéma des défauts de l'œil.}
+			\label{fig:oeil_defaut}
+		\end{center}
+	\end{tcb}
+\end{tcbraster}
+
+\section{La loupe}
+Le point le plus proche permettant une vision nette étant fixé (PP), pour mieux
+voir un objet, il faut utiliser un instrument~: c'est ce que permet la loupe.
+
+\begin{tcb}[label=def:loupe, valign=center, sidebyside, sidebyside align=top](defi){Effet loupe et accommodation}
+	Pour obtenir l'effet loupe, il faut que l'objet soit situé entre le
+	\textbf{centre optique} d'une lentille \textit{convergente} et son
+	\textbf{foyer objet}~: on obtient alors une image \textbf{virtuelle},
+	\textbf{droite} et \textbf{agrandie}.
+	\vfill
+	\begin{center}
+		\switch{
+			\includegraphics[width=\linewidth]{loupe-plain}
+		}{
+			\includegraphics[width=\linewidth]{loupe}
+		}
+		\captionof{figure}{Loupe avec accommodation}
+		\label{loupeavecacc}
+	\end{center}
+	\tcblower
+	De plus, afin que l'œil puisse observer cette image sans accommodation,
+	celle-ci doit être \textbf{à l'infini}. La meilleure position de l'objet
+	est celle où il sera \textbf{sur le foyer principal objet}.
+	\vspace{22pt}
+	\begin{center}
+		\switch{
+			\includegraphics[width=\linewidth]{loupeparfaite-plain}
+		}{
+			\includegraphics[width=\linewidth]{loupeparfaite}
+		}
+		\captionof{figure}{Loupe sans accommodation}
+		\label{loupesansacc}
+	\end{center}
+\end{tcb}
+
+\begin{tcb}(appl){Exercice}
+	L'image obtenue avec une loupe peut-elle être plus ou moins grande~?
+	La distance objet-lentille joue-t-elle sur la taille de l'image
+	observée~?
+	\tcblower
+	\begin{isd}
+		\psw{
+			La réponse est non~:
+			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+				\item Si on approche l'objet de la lentille, l'image devient moins
+				      grande (voir figure \ref{loupeplusieursobjets}), mais elle est vue
+				      plus près ;
+				\item Si on éloigne l'objet de la lentille (en gardant $|\obar{\rm OA}| <
+					      |\obar{\rm OF}|$ , l'image devient plus grande (voir figure
+				      \ref{loupeplusieursobjets}), mais elle est vue plus loin !
+			\end{itemize}
+			\medskip
+			L'angle $\theta'$ défini sur cette figure est le même quel que soit le cas,
+			il ne dépend que de la lentille~: avec les dispositifs optiques, c'est cet
+			angle qui est notre grandeur d'intérêt, plutôt que le grandissement
+			transversal qui vaut pour une image sur un écran.
+		}
+		\tcblower
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth]{loupe_objets-plain}
+			}{
+				\includegraphics[width=\linewidth]{loupe_objets}
+			}
+			\captionof{figure}{Image obtenue avec une loupe dans plusieurs cas de
+				distance objet-lentille}
+			\label{loupeplusieursobjets}
+		\end{center}
+	\end{isd}
+\end{tcb}
+
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+	\begin{tcb}[label=def_gross, raster multicolumn=2, sidebyside](defi){Grossissement}
+		On définit alors le grossissement d'un dispositif optique par le rapport
+		\psw{
+			\begin{equation*}
+				\boxed{G = \frac{\theta'}{\theta}}
+			\end{equation*}
+		}
+		Avec
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item L'angle $\theta'$ sous lequel est vu l'image~;
+			\item L'angle $\theta$ sous lequel est vu l'objet depuis l'œil à la
+			      distance de vision minimale de l'œil emmétrope soit $d_m
+				      = \SI{25}{cm}$.
+		\end{itemize}
+		\tcblower
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{thetaobj}
+			}{
+				\includegraphics[width=\linewidth]{thetaobj}
+			}
+			\captionof{figure}{Définition de $\theta$}
+			\label{thetaobj}
+		\end{center}
+		\begin{center}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{thetaimg}
+			}{
+				\includegraphics[width=\linewidth]{thetaimg}
+			}
+			\captionof{figure}{Définition de $\theta'$}
+			\label{thetaimg}
+		\end{center}
+	\end{tcb}
+	\begin{tcolorbox}[blankest, raster multicolumn=1]
+		\begin{tcbraster}[raster columns=1]
+			\begin{tcb}[label=prop_loupe](prop)'r'{Loupe et grossissement}
+				Une loupe a un grossissement fixé, tel que
+				\psw{
+					\begin{equation*}
+						\boxed{G = \frac{d_m}{f'}}
+					\end{equation*}
+				}
+			\end{tcb}
+			\begin{tcb}[label=demo_gross-loupe](demo)'r'{Grossissement loupe}
+				Avec les schémas~\ref{thetaobj} et \ref{thetaimg}, en
+				appelant $h$ la hauteur de l'objet et en supposant qu'on a des
+				petits angles ($\tan(\theta)\approx\theta$), on a
+				\psw{
+					\begin{equation*}
+						G = \frac{\theta'}{\theta} = \frac{\dfrac{h}{f'}}{\dfrac{h}{d_m}}
+						= \frac{d_m}{f'}
+					\end{equation*}
+				}
+			\end{tcb}
+		\end{tcbraster}
+	\end{tcolorbox}
+\end{tcbraster}
+
+\section{L'appareil photo réflex}
+
+\subsection{Description}
+
+\begin{tcb}[sidebyside, righthand ratio=.4](defi){Définition et schéma}
+
+	On appelle appareil photo réflex un appareil qui utilise un seul objectif pour
+	la visée et pour la prise de vue. Pour se faire, l'appareil utilise un miroir
+	plan incliné à \ang{45;;} sur l'axe optique de l'objectif et un pentaprisme~:
+
+	\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+		\item Pour la visée, le miroir plan renvoie la lumière vers le pentaprisme
+		      qui la transmet à l'œil par l'intermédiaire du viseur~;
+		\item Lorsque la-e photographe appuie sur le déclencheur, ce miroir plan
+		      pivote de façon à laisser passer la lumière vers le capteur.
+	\end{itemize}
+	\tcblower
+	\begin{center}
+		\includegraphics[width=\linewidth]{reflex}
+		\captionof{figure}{Description d'un appareil photo réflex}
+	\end{center}
+\end{tcb}
+
+\begin{tcb}[fontupper=\Large](impo){Attention}
+	Dans le cadre de notre pratique d'optique en première année de CPGE, on
+	modélisera simplement un appareil photo comme l'association d'une lentille et
+	d'un écran mobile~!
+\end{tcb}
+
+
+\subsection{Champ d'un appareil photo}
+
+% Le champ d'un appareil photo est la portion d'espace qu'il peut photographier.
+% Celui-ci dépend de la focale de l'objectif, mais aussi de la taille du capteur.
+
+\subsubsection{Influence de la focale de l'objectif}
+
+Voici des photos prises du même endroit avec un appareil muni d'un unique
+capteur mais avec des objectifs de focales différentes. À droite le schéma
+illustrant chaque situation~:
+
+\begin{center}
+	\begin{tabular}{cc}
+		\includegraphics[height=4cm]{focale-25mm.png} &
+		% \includegraphics[width=.5\linewidth]{focale_obj-a} \\
+		\includegraphics[height=4cm]{focale_obj-a}         \\
+		\includegraphics[height=4cm]{focale-80mm.png} &
+		\includegraphics[width=.5\linewidth]{focale_obj-b} \\
+		% \includegraphics[height=4cm]{focale_obj-b}      \\
+	\end{tabular}
+\end{center}
+
+\begin{tcb}[cnt](ror){Influence focale}
+	Plus la focale est grande, plus le champ est étroit, plus on capture un détail
+	de l'image.
+\end{tcb}
+
+On dit que la première photo est prise avec un grand angle (focale courte,
+encombrement de l'appareil minimum), la deuxième est prise avec un téléobjectif
+(focale longue, encombrement important).
+
+\subsubsection{Influence de la taille du capteur}
+
+Voyons maintenant ce qu'il se passe si on garde une focale de 25 mm (première
+photo) mais que l'on diminue la taille du capteur. Sur des illustrations cela
+donne~:
+
+\begin{minipage}{0.49\linewidth}
+	\begin{center}
+		\includegraphics[scale=1]{taille_capt-a} \\
+	\end{center}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+	\begin{center}
+		\includegraphics[scale=1]{taille_capt-b} \\
+	\end{center}
+\end{minipage}
+
+\begin{tcb}(rema){Remarque}
+	Ainsi, grand angle ne signifie pas forcément courte focale, car cela dépend de
+	la taille du capteur.
+\end{tcb}
+
+% \subsubsection{Focale réelle et équivalente}
+%
+% Pour que tout le monde puisse identifier si un appareil sera un grand angle d'un
+% téléobjectif, on a inventé la focale équivalente. C'est une focale calculée pour
+% une seule taille de capteur (en l'occurrence un capteur $24 \times 36$). Si
+% cette focale équivalente est grande, on a un téléobjectif, si elle est petite,
+% on a un grand angle. C'est généralement cette focale équivalente qui est
+% annoncée sur les appareils compacts à objectifs fixes.
+%
+% \medskip
+%
+% Pour les objectifs des réflex qui sont généralement interchangeables, on indique
+% sur ceux-ci leur focale réelle. On ne connaîtra donc le champ couvert par
+% l'appareil que si on associe cette valeur réelle à la taille du capteur. Les
+% fabricants d'appareils donnent alors le facteur de conversion permettant de
+% passer de la focale réelle de objectif à la focale équivalente de l'ensemble
+% objectif-capteur.\newline
+%
+% \medskip
+%
+% Voici alors l'utilisation des appareils selon leur focale équivalente~:
+%
+% \begin{minipage}{0.49\linewidth}
+% 	\begin{itemize}[leftmargin=150pt]
+% 		\item [\textbf{\SIrange{00}{60}{mm}}] grand angle ;
+% 		\item [\textbf{\SIrange{60}{120}{mm}}] focale à portrait ;
+% 	\end{itemize}
+% \end{minipage}
+% \begin{minipage}{0.49\linewidth}
+% 	\begin{itemize}[leftmargin=70pt]
+% 		\item [\textbf{\SIrange{40}{60}{mm}}] standard ;
+% 		\item [\textbf{\SIrange{60}{300}{mm}}] téléobjectif.
+% 	\end{itemize}
+% \end{minipage}
+
+\subsection{La mise au point}
+
+Voici trois photos prises dans les mêmes conditions (même appareil, même focale,
+même endroit de prise de vue) mais avec trois mises au point différentes~:
+\begin{center}
+	\includegraphics[height=3cm]{miseaupt-45cm.png}
+	\includegraphics[height=3cm]{miseaupt-2m.png}
+	\includegraphics[height=3cm]{miseaupt-10m.png}
+\end{center}
+
+C'est elle qui détermine ce qui sera net sur la photo finale et ce qui ne le
+sera pas. On la règle donc de façon à \textbf{choisir le sujet} à photographier.
+Elle peut se régler automatiquement (souvent en appuyant à mi-course sur le
+déclencheur), ou bien manuellement via une bague qui tourne autour de
+l'objectif. Sur cette bague, la mise au point est gradué en mètres~: «~je veux
+faire la mise au point à 5 m de l'appareil~». Un objectif indique généralement
+les distances minimales et maximales de mise au point.
+
+Prenons l'exemple d'une scène avec un humain situé devant un arbre~:
+
+\begin{minipage}{0.53\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{mise_pt-a}
+	\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+	Je dois choisir qui je veux photographier. Si je choisis l'humain, je dois
+	placer mon capteur au niveau de l'image de l'humain, les points objets de
+	l'arbre donneront des taches images, ce qui donnera un arrière plan composé
+	d'un arbre flou.
+\end{minipage}
+
+\begin{minipage}[c]{0.53\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{mise_pt-b}
+	\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.45\linewidth}
+	\begin{center}
+		\includegraphics[scale=.8]{mise_pt-res}
+	\end{center}
+\end{minipage}
+
+Donc la bague de mise au point doit agir sur la position du capteur par rapport
+à l'objectif pour sélectionner l'image à «~imprimer~» (dans le cas de l'humain,
+je fais la mise au point sur un objet proche, je dois éloigner mon capteur de
+l'objectif). Sur les appareils basiques, il y a vraiment déplacement, sur de
+plus perfectionnés, des lentilles de l'objectif se déplacent pour obtenir la
+mise au point voulue.
+
+\subsection{La profondeur de champ}
+
+\begin{center}
+	\includegraphics[scale=0.15]{photo-pdc-faible.jpg} \qquad
+	\includegraphics[scale=0.15]{photo-pdc-eleve.jpg}
+\end{center}
+
+Sur la première photo, nous voyons que le batracien est net, mais l'avant plan
+et l'arrière plan sont flous, la profondeur de champ est faible. Sur la
+deuxième, les sabots comme la tête de l'animal sont nets alors qu'ils ne sont
+pas situés sur le même plan : la profondeur de champ est grande.
+
+\begin{tcb}[label=def:pdc](defi){Profondeur de champ}
+	Profondeur de champ = distance entre les \textbf{deux points extrêmes} dont
+	les \textbf{images sont vues nettes}.
+\end{tcb}
+
+\subsubsection{Profondeur de champ et distance de mise au point}
+
+\begin{tcb}[bld, cnt](ror){Profondeur de champ et mise au point}
+	Plus la distance de mise au point est grande, plus la profondeur de champ est
+	grande.
+\end{tcb}
+
+\begin{center}
+	\includegraphics[scale=.90]{pfd_chp-map-a}
+	\captionof{figure}{}
+\end{center}
+
+\subsubsection{Profondeur de champ et focale}
+
+\begin{tcb}[bld, cnt](ror){PdC et focale}
+	Plus la focale est courte, plus la profondeur de champ est grande.
+\end{tcb}
+
+\begin{center}
+	\includegraphics[scale=.85]{pfd_chp-foc}
+	\captionof{figure}{}
+\end{center}
+
+% \begin{figure}[htbp]
+% 	\centering
+% 	\includegraphics[scale=.85]{pfd_chp-foc}
+% 	\caption{}
+% 	\label{fig:}
+% \end{figure}
+
+\subsubsection{Profondeur de champ et ouverture}
+
+L'ouverture, c'est-à-dire le diamètre d'entrée de l'objectif, se règle à l'aide
+d'un diaphragme. Plus l'ouverture est petite et plus la profondeur de champ sera
+grande~; mais attention, la taille de l'ouverture influe sur la quantité de
+lumière qui imprégnera le capteur. Cette ouverture est indiquée en fonction de
+la focale de l'objectif~: une ouverture de $\frac{f}{22}$ est plus petite qu'une
+ouverture de $\frac{f}{4}$.
+
+Voici deux schémas qui montrent pourquoi la réduction de l'ouverture agrandit la
+profondeur de champ~:
+
+\begin{minipage}{0.47\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{pfd_chp_ouverture-a}
+		\captionof{figure}{}
+	\end{center}
+	Avec un diaphragme ouvert, les feuilles des arbres créent une tache
+	lumineuse assez large sur le capteur, et ne seront pas vues nettes.
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\linewidth}
+	\begin{center}
+		\includegraphics[width=\linewidth]{pfd_chp_ouverture-b}
+		\captionof{figure}{}
+	\end{center}
+	En réduisant l'ouverture, cette tache est plus petite. Si elle est
+	inférieure à la taille d'un pixel du capteur, les feuilles
+	seront vues nettes.
+\end{minipage}
+
+\medskip
+
+L'objet qui donnera une tache aussi grosse que les feuilles d'arbre du premier
+schéma sera plus loin en avant ou en arrière de l'humain, la zone de netteté
+sera plus réduite.
+
+\subsubsection{Résumé et conclusion}
+\begin{tcb}[label=ror:app_phot](ror){Résumé caractéristiques appareil photo}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Focale $\nearrow\quad\Rightarrow$ champ \psw{$\searrow$}~;
+			\item Position capteur $\nearrow\quad\Rightarrow$ mise au point
+			      \psw{$\searrow$}~;
+			\item Taille capteur $\nearrow\quad\Rightarrow$ champ \psw{$\nearrow$}~;
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.50\linewidth}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Focale $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}~;
+			\item Position capteur $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}~;
+			\item Ouverture $\nearrow\quad\Rightarrow$ PDC \psw{$\searrow$}.
+		\end{itemize}
+	\end{minipage}
+\end{tcb}
+
+Typiquement, on utilise une profondeur de champ faible, donc une grande
+ouverture pour effectuer des portraits, et une profondeur de champ importante
+lorsqu'il s'agit de photographier un paysage.\newline
+Mais en même temps que l'on règle celle-ci, il faut penser à régler le temps
+d'exposition du capteur (le temps pendant lequel le miroir plan du reflex
+pivotera), car la photo risquerait d'être sur-exposée (pour un portrait) ou
+sous-exposée (pour un paysage).
+
+\section{Systèmes optiques à plusieurs lentilles}
+
+\subsection{Association quelconque de lentilles}
+Les associations de lentilles ne présentent pas de difficultés particulières,
+une fois les techniques de construction maîtrisées. Il faut cependant savoir
+toujours se repérer dans les constructions.
+
+\subsubsection{Entraînement}
+
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			convergentes}
+	Deux lentilles minces convergentes $\Lc_1$ de centre optique O$_1$ et
+	$\Lc_2$ de centre optique O$_2$ sont disposées selon le schéma ci-dessous.
+	Trouver la position de l'image finale $\ABp$ de l'objet AB donnée par
+	l'association $\Lc_1 + \Lc_2$, et donner la nature de tous les objets et
+	images.
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-a_plain.pdf}
+		\captionof{figure}{Association de lentilles convergentes}
+		\label{fig:asso_lent-conv_plain}
+	\end{center}
+\end{tcb}
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			mixtes}
+	Une lentille mince convergente $\Lc_1$ de centre optique O$_1$ et une
+	divergente $\Lc_2$ de centre optique O$_2$ sont disposées selon le schéma
+	ci-dessous. Trouver la position de l'image finale A'B' de l'objet AB
+	donnée par l'association $\Lc_1 + \Lc_2$, et donner la nature de tous les
+	objets et images.
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-b_plain.pdf}
+		\captionof{figure}{Association de lentilles mixtes}
+		\label{fig:asso_lent-mix_plain}
+	\end{center}
+\end{tcb}
+
+\begin{tcb}[label=defi:microscope, cnt, bld](defi){Microscope}
+	Un microscope est une association de deux lentilles convergentes qui donne
+	une image à l'infini d'un objet à distance finie~: $\AB \opto{\Lc_1}{\rm O_1}
+		\ABb \opto{\Lc_2}{\rm O_2} +\infty$
+\end{tcb}
+
+\subsection{Lunettes astronomiques}
+\subsubsection{Définition}
+
+On appelle lunette astronomique un système optique composé d'une lentille
+convergente appelée \textbf{objectif} (dirigée vers l'objet) et d'une
+lentille appelée \textbf{oculaire} (dirigée vers l'œil), telle qu'un
+\textbf{objet à l'infini donne une image à l'infini}.
+
+On appelle ce type de système un système \textbf{afocal}. Une lunette est dite
+de \textbf{Kepler} si l'oculaire est \textbf{convergent}, et de
+\textbf{Galilée} s'il est \textbf{divergent}.
+
+\begin{center}
+	\includegraphics[width=\linewidth]{kepler}
+	\captionof{figure}{Schéma d'une lunette de Kepler.}
+	\label{fig:kepler}
+\end{center}
+
+\subsubsection{Caractéristiques}
+
+\begin{tcbraster}[raster columns=4, raster equal height=rows]
+	\begin{tcb}[label=def:encombrement](defi){Encombrement}
+		On appelle \textit{encombrement} la distance $\obar{\rm O_1O_2}$ entre
+		l'objectif et l'oculaire.
+	\end{tcb}
+	\begin{tcb}[label=exem:encombrement,
+			raster multicolumn=3](exem)'r'{Calcul d'encombrement}
+		Soit l'objectif $\Lc_1$ de centre O$_1$ et de vergence $V_1 =
+			\SI{3.125}{\delta}$, et l'oculaire $\Lc_2$ de centre O$_2$ et de
+		vergence $V_2 = \SI{25}{\delta}$. Quel est l'encombrement du système~?
+		\tcblower
+		\begin{isd}
+			\psw{
+				Le système étant afocal, on a\\
+			}
+			\switch{
+				\includegraphics[width=\linewidth, draft=true]{afocal}
+			}{
+				\includegraphics[width=\linewidth]{afocal}
+			}
+			\tcblower
+			\vspace{-1cm}
+			\psw{
+				\begin{align*}
+					\obar{\rm O_1O_2} & = \obar{\rm O_1F_1'} + \obar{\rm F_2O_2} \\
+					                  & = f'_1 + f'_2                            \\
+					                  & = \frac{1}{V_1} + \frac{1}{V_2}          \\
+					\obar{\rm O_1O_2} & = \SI{36}{cm}
+				\end{align*}
+			}
+		\end{isd}
+	\end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=4, raster equal height=rows]
+	\begin{tcb}[label=prop:gross_lunette](prop){Grossissement}
+		Pour les lunettes, on a $G$ tel que
+		\psw{
+			\begin{empheq}[box=\fbox]{equation*}
+				G = \frac{f'_1}{-f'_2}
+			\end{empheq}
+		}
+	\end{tcb}
+	\begin{tcb}[label=demo:gross_lunette, raster multicolumn=3](demo)'r'{Grossissement}
+		\psw{
+			À partir de la figure~\ref{fig:kepler} et en considérant des petits
+			angles, on a $\theta' = \dfrac{\ABb}{\obar{O_2F_2}}$, et $\theta =
+				\dfrac{\AB}{\obar{O_1F'_1}}$~; ainsi, comme $G =
+				\dfrac{\theta'}{\theta}$, et que $\obar{O_2F_2} = -f'_2$, on a
+			directement le résultat.
+		}
+	\end{tcb}
+\end{tcbraster}
+\begin{tcb}[label=rema:gross_lunette](rema){Grossissement}
+	Comme on s'intéresse à des points à l'infini, c'est le \textbf{grossissement}
+	qui nous intéresse. Cette équation est la même pour les deux lunettes, mais
+	\textbf{$f'_2 < 0$ pour une lentille divergente}~: l'une donne donc une image
+	droite et l'autre renversée.
+\end{tcb}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+	\begin{tcb}(defi){Cercle oculaire}
+
+		On appelle \textbf{cercle oculaire} l'\textbf{image de la monture de
+			l'objectif donnée par l'oculaire}.
+
+	\end{tcb}
+	\begin{tcb}*(inte)"left"'r'{Utilité du cercle oculaire}
+		Il correspond à la section la plus étroite du faisceau sortant de
+		l'oculaire, où l'œil reçoit le maximum de lumière.
+	\end{tcb}
+\end{tcbraster}
+\begin{tcb}[label=exem:co](exem){Lunette et cercle oculaire}
+	\begin{center}
+		\includegraphics[width=.83\linewidth]{kepler_2obj}
+		\captionof{figure}{Images de 2 points objets à l'infini.}
+		% \label{fig:kepler_2obj}
+	\end{center}
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.83\linewidth]{kepler_co}
+		\captionof{figure}{Schématisation du cercle oculaire.}
+		% \label{fig:kepler_co}
+	\end{center}
+\end{tcb}
+
+\subsection*{Association quelconque de lentilles}
+\subsubsection*{Corrigé}
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			convergentes}
+
+	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
+		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
+	\textbf{image réelle pour $\Lc_1$} mais \textbf{objet virtuel pour $\Lc_2$},
+	et finalement $\ABp$ image réelle.
+
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-a.pdf}
+		\captionof{figure}{Association de lentilles convergentes}
+		\label{fig:asso_lent-conv}
+	\end{center}
+\end{tcb}
+\begin{tcb}[label=exem:asso_lent](exem){Association quelconque de lentilles
+			mixtes}
+
+	On schématise l'association par $\AB \opto{\Lc_1}{O_1} \ABb
+		\opto{\Lc_2}{O_2} \ABp$. On part d'un objet réel pour avoir $\ABb$
+	\textbf{image virtuelle pour $\Lc_1$} mais \textbf{objet réel pour $\Lc_2$},
+	et finalement $\ABp$ image virtuelle.
+
+	\tcblower
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{asso_lent-b.pdf}
+		\captionof{figure}{Association de lentilles mixtes}
+		\label{fig:asso_lent-mix}
+	\end{center}
+\end{tcb}
+
+\end{document}

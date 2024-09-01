@@ -1,0 +1,366 @@
+\documentclass[../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\makeatother
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{21}
+
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
+\chapter{\cswitch{%
+	  Correction du TP
+  }{%
+	  Détermination de $\pk[s](\ce{AgCl})$ par colorimétrie \& potentiométrie
+  }
+ }
+
+\enonce{%
+\begin{prgm}
+	\begin{tcb}*(ror)"how"{Savoir-faire}
+		\begin{itemize}
+			\item Identifier et exploiter la réaction support du titrage
+			      (recenser les espèces présentes dans le milieu au cours du
+			      titrage, repérer l'équivalence, justifier qualitativement
+			      l'allure de la courbe ou le changement de couleur observé).
+			\item Exploiter une courbe de titrage pour déterminer la
+			      concentration d'une espèce dosée.
+			\item Choisir et utiliser un indicateur coloré de fin de
+			      titrage~; distinguer l'équivalence et le virage d'un indicateur
+			      coloré de fin de titrage.
+			\item Dosage par précipitation (technique de \textsc{Mohr})
+		\end{itemize}
+	\end{tcb}
+\end{prgm}
+\vspace{-10pt}
+
+\section{Objectifs}
+
+\begin{itemize}
+	\item Réaliser des dosages colorimétriques (méthode de \textsc{Mohr}) et
+	      potentiométrique.
+	\item Modéliser les courbes obtenues.
+	\item Exploiter les courbes pour déterminer le $\pk[s]$ du chlorure
+	      d'argent.
+\end{itemize}
+
+\section{S'approprier}
+\subsection{Introduction}
+
+Le chlorure d'argent $\ce{AgCl_{\rm(s)}}$ est une solide blanc photosensible
+présent naturellement dans certains affleurements de filons d'argent. Il est,
+entre autres, utilisé dans les cathodes des batteries $\ce{AgCl-Mg}$ servant
+de dispositif de propulsion des torpilles sous-marines fonctionnant à l'eau de
+mer.
+\smallbreak
+On veut doser une solution de chlorure de sodium $(\ce{Na^+};\ce{Cl^-})$ de
+concentration $c_0$ par une solution de nitrate d'argent
+$(\ce{Ag^+},\ce{NO_3^-})$ de concentration $c_1$, puis déterminer le produit de
+solubilité $K_s$ du chlorure d'argent afin de le comparer à la valeur fournie
+par la littérature. En raison de la faible valeur du produit de solubilité du
+chlorure d'argent, la mise en présence des ions argent $\ce{Ag^+}$ et chlorure
+$\ce{Cl^-}$ provoque la précipitation du chlorure d'argent, selon l'équation
+bilan
+\begin{gather}
+	\ce{{Ag^+}_{\rm(aq)} + {Cl^-}_{\rm(aq)} = AgCl_{\rm(s)}}
+	\label{eq:prepAgCl}
+\end{gather}
+% avec $K = K_s^{-1}$ et $K_s = \num{1.8e-10}$ à \SI{298}{K}.
+
+\subsection{Dosage colorimétrique des ions \ce{Cl^-} par la méthode de
+	\textsc{Mohr}}
+La méthode de \textsc{Mohr} est une méthode de dosage colorimétrique des ions
+chlorure $\ce{Cl^-}$ par les ions argent $\ce{Ag^+}$ en présence d'ions
+chromate $\ce{CrO_4^{2-}}$. En présence des ions $\ce{Ag^+}$, les ions
+chlorure peuvent former un précipité blanc (qui noircit à la lumière), tandis
+que les ions chromate peuvent former avec les ions argent un précipité rouge
+brique. En solution, les ions chromate sont jaunes.
+\smallbreak
+\begin{tcb}(data)<lfnt>{Données}
+	À \SI{298}{K}~:
+	$\pk[s](\ce{AgCl}) = \num{9.8}$ et
+	$\pk[s](\ce{Ag_2CrO_4}) = \num{11.9}$
+\end{tcb}
+
+\subsection{Dosage potentiométrique~: détermination de $\pk[s](\ce{AgCl})$}
+\subsubsection{Principe du dosage}
+Pour suivre ce dosage, on construit une pile d'oxydoréduction~: dans $V_0 =
+	\SI{10}{mL}$ de la solution de chlorure de sodium, on introduit une électrode
+de mesure constituée d'un fil d'argent de potentiel $E$. L'autre pôle est une
+électrode de référence au sulfate mercureux. Le potentiel de cette électrode
+par rapport à l'électrode standard à hydrogène est égal à $E\ind{ref} =
+	\SI{651}{mV}$ à \SI{25}{\degreeCelsius}. Ainsi, en notant $U$ la tension lue
+au millivoltmètre haute impédance entre l'électrode de mesure et l'électrode
+de référence, et $E$ le potentiel de la solution lue par l'électrode de
+mesure, on a
+\[
+	U = E - E\ind{ref}
+	\Lra
+	\boxed{E = U + E\ind{ref}}
+\]
+\begin{tcb}(impo){Volume d'eau ajouté}
+	Pour que les électrodes trempent correctement, on ajoute $V\ind{eau} =
+		\SI{10}{mL}$ d'eau distillée, mesurée à l'aide d'une pipette ou fiole
+	jaugée.
+\end{tcb}
+Ce potentiel d'électrode est par ailleurs fourni par la formule de
+\textsc{Nernst}~:
+\[
+	E = E(\ce{Ag^+/Ag}) = E^\circ (\ce{Ag^+/Ag}) + \num{0.06} \log ([\ce{Ag^+}])
+\]
+Ainsi, \textbf{la mesure de $U$ permet de suivre l'avancement du dosage}. On
+notera $V$ le volume de solution de nitrate d'argent versé et $V\ind{eqv}$ le
+volume versé à l'équivalence.
+
+\subsubsection{Relations quantitatives}
+La réaction~\eqref{eq:prepAgCl} est pratiquement totale dans le sens direct. À
+l'équivalence, on a versé en solution autant d'ions argent que d'ions chlorure,
+soit $c_1V\ind{eq} = c_0V_0$ \textbf{compte-tenu de la stœchiométrie}. Avant,
+\ce{Ag^+} est limitant, après, \ce{Cl^-} est limitant. Le tableau d'avancement
+en \textbf{quantité de matière} est donc~:
+\begin{center}
+	\def\rhgt{0.35}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdY|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}                     &
+		$\ce{{Ag}^+_{\rm(aq)}}$                & $+$                         &
+		$\ce{{Cl-}_{\rm(aq)}}$                 & $\ra$                       &
+		$\ce{AgCl_{\rm(s)}}$                                                   \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                                & $\xi = 0$                   &
+		$0$                                    & \vline                      &
+		$c_0V_0$                               & \vline                      &
+		$0$                                                                    \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Avant l'équi.                          & $\xi = \xi\ind{max} = c_1V$ &
+		$c_1V - c_1V \approx \ep_1$            & \vline                      &
+		$c_0V_0 - c_1V$                        & \vline                      &
+		$c_1V$                                                                 \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		À l'équi.                              & $\xi_f = \xi_{\equ}$        &
+		$0$                                    & \vline                      &
+		$c_0V_0 - c_1V\ind{eqv} = 0$           & \vline                      &
+		$c_1V\ind{eqv}$                                                        \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Après l'équi.                          & $\xi_f = \xi_{\equ}$        &
+		$c_1V - c_1V\ind{eqv}$                 & \vline                      &
+		$c_0V_0 - c_1V\ind{eqv} \approx \ep_2$ & \vline                      &
+		$c_1V\ind{eqv}$                                                        \\
+		\hline
+	\end{tabularx}
+\end{center}
+On appelle $\ep_1$ et $\ep_2$ les quantité de matière infinitésimales restantes
+en ions \ce{Ag^+} avant l'équivalence, et en ions \ce{Cl^-} après l'équivalence,
+respectivement.
+
+\subsubsection{Expression de $U$ au cours du dosage}
+\begin{itemize}
+	\bitem{À l'équivalence}, $V = V\ind{eqv}$ et les ions chlorure et argent ont
+	été introduits en \textbf{proportions stœchiométriques}, et on est à
+	l'équilibre soit
+	\begin{gather*}
+		[\ce{Ag+}]\ind{eq} = [\ce{Cl-}]\ind{eq} = c^\circ \sqrt{K_s}
+		\\\beforetext{D'où}
+		U\ind{eqv} = E - E\ind{ref} =
+		E^\circ (\ce{Ag+/Ag}) + \num{0.03}\log K_s
+		\Lra
+		\boxed{
+			U\ind{eqv} =
+			E^\circ (\ce{Ag+/Ag}) - \num{0.03}\pk[s] - E\ind{ref}
+		}
+	\end{gather*}
+	\bitem{Avant l'équivalence}, $V < V\ind{eqv}$ et d'après le tableau
+	d'avancement avec la relation d'équivalence $c_0V_0 = c_1V\ind{eqv}$~:
+	\vspace{-15pt}
+	\begin{gather*}
+		[\ce{Cl^-}]\ind{eq} = \frac{c_0V_0 - c_1V}{V_0+V+V\ind{eau}}
+		= \frac{c_1 (V\ind{eq} - V)}{V_0+V+V\ind{eau}}
+		\Lra
+		[\ce{Ag^+}]\ind{eq} = K_s \frac{V_0+V+V\ind{eau}}{c_1 (V\ind{eqv}-V)}
+		\\\Lra
+		\boxed{
+			U\ind{avant} =
+			E^\circ (\ce{Ag^+/Ag}) - \num{0.06} \pk[s] +
+			\num{0.06}\log (\frac{V_0+V+V\ind{eau}}{c_1 (V\ind{eq} - V)}) - E\ind{ref}
+		}
+	\end{gather*}
+	\bitem{Après l'équivalence}, $V > V\ind{eqv}$ et d'après le tableau
+	d'avancement avec la relation d'équivalence $c_0V_0 = c_1V\ind{eqv}$~:
+	\vspace{-15pt}
+	\begin{gather*}
+		[\ce{Ag^+}]\ind{eq} = \frac{c_1(V - V\ind{eqv})}{V_0+V+V\ind{eau}}
+		\\\Lra
+		\boxed{
+			U\ind{après} =
+			E^\circ (\ce{Ag^+/Ag}) +
+			\num{0.06}\log (\frac{c_1 (V - V\ind{eq})}{V_0+V+V\ind{eau}}) - E\ind{ref}
+		}
+	\end{gather*}
+\end{itemize}
+
+L'évolution rapide de la courbe de $U$ à l'équivalence est exploitée pour
+déterminer le point équivalent.
+}
+
+\setcounter{section}{2}
+\section{Analyser}
+\subsection{Condition de précipitation}
+\enonce{%
+	On dispose d'une solution de chlorure de sodium de volume $V_0 =
+		\SI{10.0}{mL}$ et de concentration $c_0 \approx \SI{7.5e-2}{mol.L^{-1}}$, et
+	d'une solution de nitrate d'argent de concentration $c_1 \approx
+		\SI{5.0e-2}{mol.L^{-1}}$~; ce sont des ordres de grandeur des concentrations.
+}%
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR{%
+	Montrer que le précipité apparaît dès la première goutte de nitrate d'argent
+	versée. $K_s$ étant très faible, on pourra négliger le volume de la goutte en
+	ions argent $V_L$ à verser devant $V_0$.
+}{%
+	solu
+}%
+\QR{%
+	Déterminer l'ordre de grandeur du volume $V\ind{eqv}$ de la solution de
+	nitrate d'argent nécessaire pour que tous les ions aient précipité.
+}{%
+	solu
+}%
+\enonce{%
+	Dans toute la suite on supposera qu'il y a équilibre hétérogène (coexistence
+	solide-liquide).
+}%
+
+\subsection{Étude théorique de la méthode de \textsc{Mohr}}
+\QR{%
+	En exploitant les deux réactions de précipitation, prévoir lequel des deux
+	précipités est formé en premier lorsque l'on ajoute une solution d'ions $Ag^+$ à
+	une solution obtenue en mélangeant $V_0 = \SI{10.0}{mL}$ d'une solution d'ions
+	\ce{Cl^-} de concentration voisine de $c_0 \approx \SI{7.5e-2}{mol.L^{-1}}$ et
+	$V_2 = \SI{1.0}{mL}$ d'une solution de chromate de potassium de concentration
+	$c_2 = \SI{0.20}{mol.L^{-1}}$. Pour cela, on tracera les domaines d'existence
+	des deux précipités en fonction de $\prm Ag$.
+}{%
+	solu
+}%
+\QR{%
+	En déduire quelle sera la couleur de la solution initiale.
+}{%
+	solu
+}%
+\QR{%
+	Comment repérer l'équivalence~?
+}{%
+	solu
+}%
+
+\section{Réaliser}
+% \subsection{Dosage colorimétrique}
+
+\resetQ
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\enonce{%
+	\begin{tcb}*[breakable](expe)<itc>"chem"{Dosage colorimétrique}
+		\begin{enumerate}
+			\item Réaliser le dosage colorimétrique correspondant à la méthode de
+			      \textsc{Mohr} avec les quantités précisées. On placera sous le bécher un
+			      morceau de \textbf{papier blanc} pour bien repérer le changement de couleur.
+
+			\item Penser à faire un \textbf{témoin colorimétrique} en préparant dans un
+			      second bécher la même solution initiale (mélange d'ions chlorure et
+			      d'ions chromate) qui, elle, ne sera \textbf{pas dosée}.
+		\end{enumerate}
+	\end{tcb}
+}%
+
+
+\QR{%
+	Noter la couleur du premier précipité formé, puis du second.
+}{%
+	solu
+}%
+\QR{%
+	Déterminer le volume équivalent $V\ind{eqv}$ et en déduire la concentration
+	$c_0$ de la solution de chlorure de sodium.
+}{%
+	solu
+}%
+
+% \subsection{Dosage potentiométrique}
+\enonce{%
+	\begin{tcb}*(expe)<itc>"chem"{Dosage potentiométrique}
+		\begin{enumerate}
+			\item Réaliser la pile correspondante et préparer le dosage.
+			      \begin{center}
+				      \begin{tcb}*[width=.8\linewidth](prop)"bomb"{Attention}
+					      Il ne faut surtout pas ajouter de chromate de potassium~!
+				      \end{tcb}
+			      \end{center}
+			      N'oublier pas d'ajouter le volume $V\ind{eau} = \SI{10}{mL}$ d'eau
+			      distillée pour que les électrodes soient correctement plongées.
+			\item Créer un tableau de valeurs sur \textbf{Régressi} (important pour la
+			      modélisation ensuite) avec deux colonnes~: $U$ et $V$. Resserrer les
+			      valeurs autour de l'équivalence. La mesure de $U$ n'est valable que si
+			      les deux électrodes trempent dans la solution.
+		\end{enumerate}
+	\end{tcb}
+}%
+
+
+\section{Analyser}
+\QR{%
+	Réaliser la méthode des tangentes automatique sur Régressi pour déterminer le
+	volume équivalent.
+}{%
+	solu
+}%
+\QR{%
+	Modéliser la courbe en deux parties grâce aux curseurs~:
+	\begin{gather*}
+		\beforetext{Avant}
+		U = a + b \log (\frac{V_0+V+V\ind{eau}}{c_1(V\ind{eqv}-V)})
+		\\\beforetext{Après}
+		U = c + d \log (\frac{c_1(V-V\ind{eqv})}{V_0+V+V\ind{eau}})
+	\end{gather*}
+	Les coefficients $a$, $b$, $c$ et $d$ sont déterminés par l'ordinateur, vous
+	devez remplacer les autres variables par leurs valeurs manuellement.
+}{%
+	solu
+}%
+\QR{%
+	Grâce aux expressions de $U$ données dans la partie S'approprier, vérifier
+	qu'on obtient $\pk[s]$ grâce à la relation~:
+	\[
+		\pk[s] = \frac{c-a}{b} = \frac{c-a}{d}
+	\]
+}{%
+	solu
+}%
+
+\section{Conclure}
+\QR{%
+	Donner alors la valeur de $\pk[s]$ pour chacun de deux calculs précédent,
+	ainsi que la valeur moyenne. Estimez l'incertitude en faisant varier les
+	valeurs de $V\ind{eqv}$ dans les modélisations, et calculer l'écart normalisé.
+
+}{%
+	solu
+}%
+
+\end{document}

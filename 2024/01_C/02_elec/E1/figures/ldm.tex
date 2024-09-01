@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[R, name=R1, v^<=$U_1$, !vi]
+    (2,0)
+    to[R, name=R2, v^>=$U_2$, !vi]
+    (2,-2)
+    to[R, name=R3, v^>=$U_3$, !vi]
+    (0,-2)
+    to[R, name=R4, v^<=$U_4$, !vi]
+    (0,0)
+    ;
+    \node[black] (LM1) at (1,-1) {};
+    \circledarrow{black}{(LM1)}{0.5}
+    \foreach \n in {1, ...,4}{
+        \varronly{R\n}
+    }
+    \node[right=2em] (E) at (R2.north) {$\Rightarrow$};
+    \node[shift={($(E)+(1em,0)$)}, anchor=west]
+    {$\left\{\begin{aligned}
+                                & U_1 + U_4 - U_3 - U_2 = 0\\
+            \Longleftrightarrow~ & U_1 + U_1 = U_3 + U_2
+    \end{aligned}\right.$}
+    ;
+\end{circuitikz}
+\end{document}

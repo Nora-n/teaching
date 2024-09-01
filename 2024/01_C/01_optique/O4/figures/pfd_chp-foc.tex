@@ -1,0 +1,140 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+
+	% \begin{scope}
+	% \node at (-0.6,0) { \centering \fbox{\textbf{\small Plus la focale est courte, plus la profondeur de champ est grande}}};
+	% \end{scope}
+
+	\begin{scope}[shift=({0,-3.5})]
+
+		\def \taillehaut{2.5}; %taille de la lentille
+		\def \taillebas{2.5};%taille de la lentille
+		\def \xA{-5};%position de l'objet
+		\def \xAA {(\xA*\f)/(\xA+\f)};%position de l'image
+		\def \xB{-6.75};%position de l'objet
+		\def \xBB {(\xB*\f)/(\xB+\f)};%position de l'image
+		\def \xC{-4};%position de l'objet
+		\def \xCC {(\xC*\f)/(\xC+\f)};%position de l'image
+		\coordinate (O1) at (0,0);%centre optique de la première lentille
+		\coordinate (A) at (\xA,0);%position de l'objet
+		\coordinate (B) at (\xB,0);%position de l'objet
+		\coordinate (C) at (\xC,0);%position de l'objet
+		\def \f{1.5};%focale de la première lentille
+		\coordinate (F') at (\f,0);
+		\coordinate (A') at ({\xAA},0);%position de l'image
+		\coordinate (B') at ({\xBB},0);%position de l'image
+		\coordinate (C') at ({\xCC},0);%position de l'image
+
+		\fill [gray!50,opacity=0.75] (-4,0) rectangle (-6.75,1);
+
+		\node at (A) {$\bullet$} ;
+
+
+		\node at (B) {$\bullet$} ;
+
+		\node at (C) {$\bullet$} ;
+
+		\draw[thin,->](-7.5,0)--++(13,0)node[below]{A.O.};
+
+		\draw[shift={(O1)},ultra thick ,<->,>=latex] (0,-\taillebas)--(0,\taillehaut) node[above]{\scriptsize Objectif de focale $\mathrm{f}_1$};%lentille convergente
+		\draw[,red,simple] (A)--(0,2);
+		\draw[,red,simple] (0,2)--(A')--++($0.35*(A')-0.35*(0,2)$);
+		\draw[,red,simple] (A)--(0,-2);
+		\draw[,red,simple] (0,-2)--(A')--++($0.35*(A')-0.35*(0,-2)$);
+
+		\draw[,blue,simple] (B)--(0,2);
+		\draw[,blue,simple] (0,2)--(B')--++($0.35*(B')-0.35*(0,2)$);
+		\draw[,blue,simple] (B)--(0,-2);
+		\draw[,blue,simple] (0,-2)--(B')--++($0.35*(B')-0.35*(0,-2)$);
+
+		\draw[purple,simple] (C)--(0,2);
+		\draw[purple,simple] (0,2)--(C')--++($0.35*(C')-0.35*(0,2)$);
+		\draw[purple,simple] (C)--(0,-2);
+		\draw[purple,simple] (0,-2)--(C')--++($0.35*(C')-0.35*(0,-2)$);
+
+
+		\foreach \x/\z in {O1/\f}{
+				\draw[shift={(\x)}] (0,0) node[below left] { O};
+				\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt) node[below left] {F'};
+				\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt) node[below] {F};
+			}
+
+		\fill [gray, opacity=0.75] (2.14,0) ellipse (0.10 and 0.19);
+
+		\draw [|<->|] (-4,1) -- (-6.75,1) node [above,midway] {\tiny Profondeur de champ};
+
+	\end{scope}
+
+	\begin{scope}[shift=({0,-9.5})]
+		%\draw [ultra thin, gray!20] (-6,-6) grid[step=0.5] (6,6);
+		%\draw [thin,gray!50] (-6,-6) grid[step=1] (6,6);
+		\def \taillehaut{2.5}; %taille de la lentille
+		\def \taillebas{2.5};%taille de la lentille
+		\def \xA{-5};%position de l'objet
+		\def \xAA {(\xA*\f)/(\xA+\f)};%position de l'image
+		\def \xB{-5.95};%position de l'objet
+		\def \xBB {(\xB*\f)/(\xB+\f)};%position de l'image
+		\def \xC{-4.4};%position de l'objet
+		\def \xCC {(\xC*\f)/(\xC+\f)};%position de l'image
+		\coordinate (O1) at (0,0);%centre optique de la première lentille
+		\coordinate (A) at (\xA,0);%position de l'objet
+		\coordinate (B) at (\xB,0);%position de l'objet
+		\coordinate (C) at (\xC,0);%position de l'objet
+		\def \f{2};%focale de la première lentille
+		\coordinate (F') at (\f,0);
+		\coordinate (A') at ({\xAA},0);%position de l'image
+		\coordinate (B') at ({\xBB},0);%position de l'image
+		\coordinate (C') at ({\xCC},0);%position de l'image
+
+
+		\fill [gray!50,opacity=0.75] (-4.4,0) rectangle (-5.95,1);
+
+		\node at (A) {$\bullet$} ;
+
+
+		\node at (B) {$\bullet$} ;
+
+		\node at (C) {$\bullet$} ;
+
+		\draw[thin,->](-7.5,0)--++(13,0)node[below]{A.O.};
+
+		\draw[shift={(O1)},ultra thick ,<->,>=latex] (0,-\taillebas)--(0,\taillehaut) node[above]{\scriptsize Objectif de focale $\mathrm{f}_2 >\mathrm{f}_1$};%lentille convergente
+		\draw[,red,simple] (A)--(0,2);
+		\draw[,red,simple] (0,2)--(A')--++($0.35*(A')-0.35*(0,2)$);
+		\draw[,red,simple] (A)--(0,-2);
+		\draw[,red,simple] (0,-2)--(A')--++($0.35*(A')-0.35*(0,-2)$);
+
+		\draw[,blue,simple] (B)--(0,2);
+		\draw[,blue,simple] (0,2)--(B')--++($0.35*(B')-0.35*(0,2)$);
+		\draw[,blue,simple] (B)--(0,-2);
+		\draw[,blue,simple] (0,-2)--(B')--++($0.35*(B')-0.35*(0,-2)$);
+
+		\draw[purple,simple] (C)--(0,2);
+		\draw[purple,simple] (0,2)--(C')--++($0.35*(C')-0.35*(0,2)$);
+		\draw[purple,simple] (C)--(0,-2);
+		\draw[purple,simple] (0,-2)--(C')--++($0.35*(C')-0.35*(0,-2)$);
+
+
+		\foreach \x/\z in {O1/\f}{
+				\draw[shift={(\x)}] (0,0) node[below left] { O};
+				\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt) node[below] { F'};
+				\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt) node[below] { F};
+			}
+
+		\fill [gray, opacity=0.75] (3.325,0) ellipse (0.10 and 0.19);
+
+		\draw [|<->|] (-4.4,1) -- (-5.95,1) node [above,midway] {\tiny Profondeur de champ};
+
+	\end{scope}
+
+	\begin{scope}[shift=({0,-12.5})]
+		\node (txt) at (-0.6,0) {\scriptsize : tache qui sera vue nette par la pellicule ou le capteur};
+		\fill [gray, opacity=0.75, anchor=east] (txt.west) ellipse (0.10 and 0.19);
+	\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,151 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	% Sens de comptage
+	\node[] (Cp) at (-7,4) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (7,4) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.3}
+	% grid
+	\draw[lightgray!10, ultra thin, help lines]
+	(-8,-4) grid (8,5);
+	\draw[lightgray!10, ultra thin, help lines, dotted, step=.5cm]
+	(-8,-4) grid (8,5);
+	% Axe optique
+	\draw[thick, ->](-7,0)--(7,0)node[below]{A.O.};
+	% Lentille 1
+	\coordinate (O1) at (-2,0);
+	\def \fa{3}
+	\def \lsiz{4}
+	\coordinate (F1) at ($(O1)+(-\fa,0)$);
+	\coordinate (F1p) at ($(O1)+(\fa,0)$);
+
+	\foreach \x/\z in {O1/\fa}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {$O_1$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[below] at ([shift={(\z,0)}]\x) {$F'_1$};
+			\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+		}
+
+	\draw[shift={(O1)}, thick,
+		<->, >=latex, name path=L1] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{1}$};
+	% Lentille 2
+	\coordinate (O2) at (2,0);
+	\def \fb{4.5}
+	\def \lsiz{4}
+	\coordinate (F2) at ($(O2)+(-\fb,0)$);
+	\coordinate (F2p) at ($(O2)+(\fb,0)$);
+
+	\foreach \x/\z in {O2/\fb}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {$O_2$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[above] at ([shift={(\z,0)}]\x) {$F'_2$};
+			\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			\node[above] at ([shift={(-\z,0)}]\x) {$F_2$};
+		}
+
+	\draw[shift={(O2)}, thick,
+		<->, >=latex, name path=L2] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{2}$};
+	% Objet
+	\def \pos{-5}
+	\def \siz{2}
+	\coordinate (A) at ($(O1)+(\pos,0)$);
+	\coordinate (B) at ($(A)+(0,\siz)$);
+	\draw[thick, ->, Purple!70] (A)
+	node[below] {A}
+	-- (B)
+	node[above left] {B};
+	% Rayons pour objet avant foyer d'une lentille convergente
+	% Lengths
+	\len{(A)}{(O1)}{\posi}
+	\len{(A)}{(B)}{\size}
+	\len{(O1)}{(F1)}{\foc}
+	% Rayon 1
+	\draw[Purple!70, simple] (B) -- (O1);
+	\def\mut{2}
+	\path[brandeisblue, simple, name path=OBp] (O1)
+	--++ ($\mut*(O1)-\mut*(B)$);
+	% Rayon 2
+	\draw[Purple!70, double] (B) --++ (\posi,0) coordinate (I);
+	\def \mut{3}
+	\path[brandeisblue, double, name path=IBp] (I)
+	--++ ($\mut*(F1p)-\mut*(I)$);
+	\def \intsiz{\size*\foc/(\posi-\foc)}
+	% Rayon 3
+	\draw[Purple!70, triple] (B) -- (F1)
+	--++ (\foc,-{\intsiz}) coordinate (E);
+	\def \mut{3}
+	\path[brandeisblue, triple, name path=EBp] (E) --++ (\mut*\foc,0);
+	% Intersections avec lentille
+	\path[name intersections={of=L2 and OBp, by=OBpI}];
+	\path[name intersections={of=L2 and IBp, by=IBpI}];
+	\path[name intersections={of=L2 and EBp, by=EBpI}];
+	% Actual draw
+	\draw[brandeisblue, simple, name path=OBpA]
+	(O1) --
+	(OBpI);
+	\draw[brandeisblue, double, name path=IBpA]
+	(I) --
+	(IBpI);
+	\draw[brandeisblue, triple, name path=EBpA]
+	(E) --
+	(EBpI);
+	% Dashed draws
+	\def \mut{1}
+	\draw[brandeisblue, simple, dashed, name path=OBpB] (OBpI)
+	--++ ($\mut*(O1)-\mut*(B)$);
+	\def \mut{1.5}
+	\draw[brandeisblue, double, dashed, name path=IBpB] (IBpI)
+	--++ ($\mut*(F1p)-\mut*(I)$);
+	\def \mut{3}
+	\draw[brandeisblue, triple, dashed, name path=EBpB] (E)
+	--++ (\mut*\foc,0);
+	% Image
+	\path[name intersections={of=OBpB and IBpB, by=B1}];
+	\coordinate (A1) at ($(B1)+(0,{\intsiz})$);
+	\draw[thick, ->, brandeisblue] (A1)
+	node[above] {$A_1$}
+	-- (B1)
+	node[below right] {$B_1$};
+	% Rayons pour objet virtuel d'une lentille convergente
+	% Lengths
+	\len{(A1)}{(O2)}{\posi}
+	\len{(A1)}{(B1)}{\size}
+	\len{(O2)}{(F2)}{\foc}
+	% Rayon 1
+	\draw[ForestGreen, simple] ($2*(O2)-(B1)$) -- (O2);
+	\def \mut{1.2}
+	\draw[orange!70, simple, name path=OBp] (O2)
+	--++ ($\mut*(B1)-\mut*(O2)$);
+	% Rayon 2
+	\def \mut{2}
+	\draw[ForestGreen, double] ($(B1)-(\mut*\posi,0)$)
+	--++ (\mut*\posi-\posi,0) coordinate (I);
+	\draw[ForestGreen, dashed, double] (I) --++ (1.5*\posi,0);
+	\def \mut{1.1}
+	\draw[orange!70, double, name path=IBp] (I)
+	--++ ($\mut*(F2p)-\mut*(I)$);
+	% Rayon 3
+	\def \intsiz{-\size*\foc/(\posi+\foc)}
+	\draw[ForestGreen, triple] (F2) --++ (\foc,{\intsiz}) coordinate (E);
+	\def \mut{0.9}
+	\draw[ForestGreen, dashed, triple, shorten >=-1cm] (E) -- (B1);
+	\draw[orange!70, triple, name path=EBp] (E) --++ (1.5*\posi,0);
+	% Image
+	\path[name intersections={of=OBp and IBp, by=Bp}];
+	\coordinate (Ap) at ($(Bp)+(0,-{\intsiz})$);
+	\draw[thick, ->, Red!70] (Ap)
+	node[above] {A'}
+	-- (Bp)
+	node[below right] {B'};
+\end{tikzpicture}
+
+\end{document}

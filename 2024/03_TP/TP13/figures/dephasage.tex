@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{axis}[
+			xmin=-0.78, xmax=10,
+			ymin=-1.2, ymax=1.2,
+			xlabel={$t$}, ylabel=\textcolor{Red}{$e(t)$},
+			axis lines=center,
+			axis line style=ultra thick,
+			xtick=\empty, ytick=\empty,
+			extra y ticks={0},
+			y tick label style={yshift={(\tick==0)*-.5em},
+					xshift={(\tick==0)*.25em}},
+			x label style={font=\large,
+					at={(current axis.right of origin)}, anchor=north, below},
+			y label style={font=\large,
+					at={(current axis.above origin)}, anchor=east, left},
+			clip=false]
+		\addplot[very thick,
+			domain=-0.78:10,
+			samples=500,
+			Red!70]
+		{cos(\x r)};
+		\node[cornflowerblue, anchor=west, right]
+		(itext) at (current axis.above origin)
+		{\large$s(t)$};
+		\addplot[very thick, dashed,
+			domain=-0.78:10,
+			samples=500,
+			brandeisblue!70]
+		{0.7*cos(\x r+deg(-pi/4))};
+		\draw[thick]
+		% Left
+		(axis cs:pi/2,0) -- (axis cs:pi/2,1)
+		node[inner sep=0] (RT) {}
+		% Right
+		(axis cs:pi/2+pi/4,0) -- (axis cs:3*pi/4,1)
+		node[inner sep=0] (BT) {};
+		\draw[<->, thick]
+		(RT) -- (BT)
+		node[above, midway] {\Large$\Delta{t}$};
+	\end{axis}
+\end{tikzpicture}
+\end{document}

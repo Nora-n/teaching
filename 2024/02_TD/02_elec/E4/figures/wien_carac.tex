@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\usepackage{xfp}
+\usepackage{physics}
+
+\def\E{5}
+\def\R{100}
+\def\C{0.02}
+\def\tauu{\R*\C}
+\def\rp{\fpeval{-3/(2*\tauu) + sqrt(5)/(2*\tauu)}}
+\def\rm{\fpeval{-3/(2*\tauu) - sqrt(5)/(2*\tauu)}}
+\def\rpm{\fpeval{\rp-\rm}}
+\def\xmax{20}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        xmin=-1, xmax=\xmax,
+        ymin=-1, ymax=5.2,
+        xlabel=$t$, ylabel=$v$,
+        axis lines=center,
+        xtick=\empty, ytick=\empty,
+        tangent/.style={
+            add node at x={#1}{4.8},
+        },
+        clip=false]
+        \addplot[thick,
+        domain=0:\xmax,
+        samples=500,
+        tangent=0.001,
+        Red!70]
+        {\E/(\tauu*\rpm)*(exp(\rp*\x) - exp(\rm*\x))};
+        % \node[anchor=north east, align=right] (RQtext) at (axis cs: \xmax, 5) {
+        %         $R = \R\,\Omega$\\
+        %         $\tau = \fpeval{round(\tauu,2)}$\\
+        %         $r_+ = \fpeval{round(\rp,2)}$\\
+        %         $r_- = \fpeval{round(\rm,2)}$\\
+        %         $r_+ - r_- = \rpm$
+        % };
+        \node[] at (axis cs:4.0,2.5) {$\DS\dv{v}{t} (0) = \frac{E}{\tau}$};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

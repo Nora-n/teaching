@@ -1,0 +1,105 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+% set view angle
+\tdplotsetmaincoords{70}{30}% rot x rot z
+% x = 0 => top view
+\begin{tikzpicture}[tdplot_main_coords]
+	\clip (-8,-4,-5.5) rectangle (13,4,5.5);
+	% \draw[-stealth] (0,0,0) --++ (1,0,0) node[below] {\small $\ux$};
+	% \draw[-stealth] (0,0,0) --++ (0,1,0) node[above right=-.1 and -.2] {\small $\uy$};
+	% \draw[-stealth] (0,0,0) --++ (0,0,1) node[above] {\small $\uz$};
+	\def \s {0}     % defines shear of z along y (instead of angles), for orthogonal systems: 0
+	\def \su {0}   % defines shear of x along y (instead of angles), for orthogonal systems: 0
+	\def\lgt{3}
+	\def\wdt{1}
+	\def\hgt{.5}
+	% % lattice directions parallel to z
+	% \foreach \u/\v/\w/\st in {-1/-1/1/, -1/1/1/dashed, 1/-1/1/, 1/1/1/}{
+	% 		\draw[thick, \st]
+	% 		(\u*\lgt,\v*\wdt,-\w*\hgt) -- (\u*\lgt,\v*\wdt,\w*\hgt);
+	% 	}
+	% % lattice directions parallel to y
+	% \foreach \u/\v/\w/\st in {-1/1/1/, -1/1/-1/dashed, 1/1/1/, 1/1/-1/}{
+	% 		\draw[thick, \st]
+	% 		(\u*\lgt,-\v*\wdt,\w*\hgt) -- (\u*\lgt,\v*\wdt,\w*\hgt);
+	% 	}
+	% % lattice directions parallel to x
+	% \foreach \u/\v/\w/\st in {1/-1/-1/, 1/1/-1/dashed, 1/-1/1/, 1/1/1/}{
+	% 		\draw[thick, \st]
+	% 		(-\u*\lgt,\v*\wdt,\w*\hgt) -- (\u*\lgt,\v*\wdt,\w*\hgt);
+	% 	}
+	% ;
+	\begin{scope}[canvas is xz plane at y=0]
+		\path (-3,0) coordinate (A); %attribution d'un nom à un point 
+		\path (3,0) coordinate (B);
+		%aimant 
+		\fill [color=red!30] (-3,-0.5) rectangle (0,0.5);
+		\node[transform shape] at (-2.5,0) {N};
+		\node[transform shape] at (2.5,0) {S};
+		\draw[thick] (-3,-0.5) rectangle (3,0.5);
+		% déplacement
+		\draw[-{Stealth[scale=1.5]}, ultra thick]
+		(-1,2) -- (1,2)
+		node[above, midway, scale=1.5] {$\vf$};
+		%lignes de champ 
+		\begin{scope} %application de style à une partie de code 
+			\draw[myblue,thick,flch={pos=.50,scale=2}] (-1.5,0.5) .. controls +(-1,1) and +(1,1) .. (1.5,0.5);
+			\draw[myblue,thick,flch={pos=.50,scale=2}] (-2.5,0.5) .. controls +(-4.5,3) and +(4.5,3) .. (2.5,0.5);
+			\draw[myblue,thick,flch={pos=.50,scale=2}] (-3,0.5) .. controls +(-10,5) and +(10,5) .. (3,0.5);
+			\draw[myblue,thick,flch={pos=.50,scale=2},yscale=-1] (-1.5,0.5) .. controls +(-1,1) and +(1,1) .. (1.5,0.5);%yscale permet de retourner verticalement la figure 
+			\draw[myblue,thick,flch={pos=.50,scale=2},yscale=-1] (-2.5,0.5) .. controls +(-4.5,3) and +(4.5,3) .. (2.5,0.5);
+			\draw[myblue,thick,flch={pos=.50,scale=2},yscale=-1] (-3,0.5) .. controls +(-10,5) and +(10,5) .. (3,0.5);
+		\end{scope}
+		\begin{scope}
+			\draw[myblue,thick,flch={pos=.05,scale=2}, flch={pos=.95,scale=2}] (-3,0.25) .. controls +(-22,7) and +(22,7) .. (3,0.25);
+			% \draw[blue,thick,flch={pos=.05,scale=2}, flch={pos=.95,scale=2}] (-3,0.1) .. controls +(-60,10) and +(60,10) .. (3,0.1);
+			\draw[myblue,thick,flch={pos=.25,scale=2}] (A) -- (-10,0); %ligne dans l'axe 
+			\draw[myblue,thick,flch={pos=.75,scale=2}] (10,0) -- (B);%ligne dans l'axe 
+			\draw[myblue,yscale=-1,thick,flch={pos=.95,scale=2}] (-3,0.25) .. controls +(-22,7) and +(22,7) .. (3,0.25);
+			% \draw[purple,yscale=-1,thick, flch={pos=.03,scale=2}, flch={pos=.97,scale=2}] (-3,0.1) .. controls +(-60,10) and +(60,10) .. (3,0.1);
+		\end{scope}
+	\end{scope}
+	\begin{scope}[canvas is yz plane at x=8, scale=3]
+		\draw[ultra thick, dashed] (0,-1cm) arc (-90:90:1cm);
+		\fill[opacity=.5, white] (0,0) circle (1cm) node {$S$};
+		\draw[ultra thick, flch={pos=.5,scale=2},
+			mynode={0.5}{below left=-.5 and -.2, scale=3}{$i$}]
+		(0,1cm) arc (-270:-90:1cm);
+		\node[transform shape] at (0,0) {$S$};
+	\end{scope}
+
+	% \begin{scope}[xshift=-3.6cm,yshift=2.1cm,rotate=-70,scale=0.35]
+	% 	%boussole 
+	% 	\fill [color=red!30] (0,0) --++ (2,0.5) --++ (0,-1) --cycle;
+	% 	\fill [color=blue!30] (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% 	\draw [->,>=latex, thick] (2,0) --++ (-5,0);
+	% 	\node at(-2,1){$ \vec{B}$};
+	% 	\node at (1,0.8) {n};
+	% 	\node at (3,0.8) {s};
+	% 	\draw (0,0) --++ (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% \end{scope}
+	% \begin{scope}[xshift=2.7cm,yshift=-2.35cm,rotate=195,scale=0.35]
+	% 	%boussole 
+	% 	\fill [color=red!30] (0,0) --++ (2,0.5) --++ (0,-1) --cycle;
+	% 	\fill [color=blue!30] (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% 	\draw [->,>=latex, thick] (2,0) --++ (-5,0);
+	% 	\node at(-2,1){$ \vec{B}$};
+	% 	\node at (1,0.8) {n};
+	% 	\node at (3,0.8) {s};
+	% 	\draw (0,0) --++ (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% \end{scope}
+	% \begin{scope}[xshift=2.7cm,yshift=2.35cm,rotate=165,scale=0.35,yscale=-1]
+	% 	%boussole 
+	% 	\fill [color=red!30] (0,0) --++ (2,0.5) --++ (0,-1) --cycle;
+	% 	\fill [color=blue!30] (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% 	\draw [->,>=latex, thick] (2,0) --++ (-5,0);
+	% 	\node at(-2,1){$ \vec{B}$};
+	% 	\node at (1,0.8) {n};
+	% 	\node at (3,0.8) {s};
+	% 	\draw (0,0) --++ (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	% \end{scope}
+\end{tikzpicture}
+\end{document}
+

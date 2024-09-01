@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+	% Sens de comptage
+	\node[] (Cp) at (-2.5,2) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (2.5,2) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.3}
+	% Axe optique
+	\draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+	% Lentille 
+	\coordinate (O) at (0,0);
+	\def \fa{2}
+	\def \lsiz{2}
+	\coordinate (F) at ($(O)+(-\fa,0)$);
+	\coordinate (Fp) at ($(O)+(\fa,0)$);
+
+	\foreach \x/\z in {O/\fa}{
+	\draw[shift={(\x)}] (0,0)
+	node[below right] {O$_{}$};
+	\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+	node[below left] {F$'_{}$};
+	\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+	node[below right] {F$_{}$};
+	}
+
+	\draw[shift={(O)}, thick, <->, >=latex] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{}$};
+	% Objet
+	\def \pos{-3}
+	\def \siz{1.5}
+	\coordinate (A) at ($(O)+(\pos,0)$);
+	\coordinate (B) at ($(A)+(0,\siz)$);
+	\coordinate (I) at ($(O)+(0,1)$);
+	% Rayon obj
+	\draw[brandeisblue, simple, name path=B] (B) -- (I);
+	% Objet
+	\def \pos{-3}
+	\def \siz{0.5}
+	\coordinate (Aa) at ($(O)+(\pos,0)$);
+	\coordinate (Bb) at ($(Aa)+(0,\siz)$);
+	% Rayon aide 1
+	\draw[ForestGreen, double] (Bb) -- (O);
+	\draw[ForestGreen, double, name path=G] (O) --++ ($(O)-(Bb)$);
+	% Plan focal objet
+	\draw[shift={(F)}, dashed,
+		gray!70, name path=PFo] ($(F)+(0,-1.5)$)
+	--++ (0,3) node[above right] {$\pi$};
+	\path[name intersections={of=B and PFo, by=BF}];
+	\draw[] (BF) node {+};
+	% Rayon aide 2
+	\len{(BF)}{(F)}{\FBF}
+	\def\mut{1.5}
+	\draw[ForestGreen, triple, name path=Gb] ($(BF)-.5*(\fa,0)$)
+	-- ($(O)+(0,\FBF)$) coordinate (E);
+	\draw[ForestGreen, triple] (E) --++ ($\mut*(Fp)-\mut*(E)$);
+	% Plan focal image
+	\draw[shift={(Fp)}, dashed,
+		gray!70, name path=PFi] ($(Fp)+(0,-1.5)$)
+	--++ (0,3) node[above right] {$\pi'$};
+	\path[name intersections={of=G and PFi, by=GF}];
+	\draw[] (GF) node {+};
+	% Rayon obj émergent
+	\draw[orange!50, simple] (I) --++ ($\mut*(GF)-\mut*(I)$);
+\end{tikzpicture}
+
+\end{document}

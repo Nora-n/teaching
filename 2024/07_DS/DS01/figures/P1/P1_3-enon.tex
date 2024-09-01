@@ -1,0 +1,94 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+	\def\xtr{5}
+	\def\ytr{4}
+	% Sens de comptage
+	\node[] (Cp) at (1.5,3.5) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (2.5,3.5) {$\oplus$};
+	\circledarrow{black}{(Cp)}{.3}
+	% grid
+	\draw[lightgray!10, ultra thin, help lines]
+	(-\xtr,-\ytr) grid (9,\ytr);
+	\draw[lightgray!10, ultra thin, help lines, dotted, step=.5cm]
+	(-\xtr,-\ytr) grid (9,\ytr);
+	% Axe optique
+	\draw[thin, ->](-\xtr,0)--(10,0)node[below]{A.O.};
+	% Lentille 
+	\coordinate (O) at (0,0);
+	\def \fa{4}
+	\def \lsiz{2}
+	\coordinate (F) at ($(O)+(-\fa,0)$);
+	\coordinate (Fp) at ($(O)+(\fa,0)$);
+
+	\foreach \x/\z in {O/\fa}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {S};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[below] at ([shift={(\z,0)}]\x) {F'};
+			\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			\node[below right] at ([shift={(-\z,0)}]\x) {F};
+		}
+
+	\draw[shift={(O)}, ultra thick, <->, >=latex, name path=L1]
+	(0,-\lsiz) coordinate (Lbot) node[right]{D} --
+	(0,\lsiz) coordinate (Ltop) node[right]{D'};
+	% Monture 1
+	\draw[line width=3pt] (Ltop) --++ (0,2);
+	\draw[line width=3pt] (Lbot) --++ (0,-2);
+
+	% Oeil
+	\oeil[shift={(9,0)},rotate=180];
+	\draw[thick]
+	(8,-1) node[below]{P} --++
+	(0,+2) node[above]{P'}
+	node[midway, above left]{O};
+	% Objet
+	\def \pos{-1.3333}
+	\def \siz{2}
+	\coordinate (A) at ($(O)+(\pos,0)$);
+	\node[above right] at (A) {A};
+	\coordinate (Bp) at ($(A)+(0,\siz)$);
+	\coordinate (B) at ($(A)+(0,-\siz)$);
+	\draw[<->, Purple!70, thick]
+	(B)
+	node[below] {B}
+	-- (Bp)
+	node[above] {B\bp};
+	% Rayons pour objet entre le foyer et le centre d'une lentille convergente
+	\len{(A)}{(O)}{\posi}
+	\len{(A)}{(Bp)}{\size}
+	\len{(O)}{(F)}{\foc}
+	% \draw[brandeisblue, simple, thick] (Bp) -- (O);
+	% \draw[orange!70, simple, thick] (O) --++ ($(O)-(Bp)$);
+	% \def \mut{1.0}
+	% \draw[orange!70, simplerev,
+	% 	dashed, name path=OBp, thick] (Bp) --++ ($\mut*(Bp)-\mut*(O)$);
+	% \draw[brandeisblue, double, thick] (Bp) --++ (\posi,0) coordinate (I);
+	% \def \mut{1.5}
+	% \draw[orange!70, double, thick] (I) --++ ($\mut*(Fp)-\mut*(I)$);
+	% \def \mut{1.0}
+	% \draw[orange!70, doublerev,
+	% 	dashed, name path=IBp, thick] (I) --++ ($-\mut*(Fp)+\mut*(I)$);
+	% \def \intsiz{\size*\foc/(\posi-\foc)}
+	% \draw[brandeisblue, triple, thick] (Bp) -- (F)
+	% --++ (\foc,-{\intsiz}) coordinate (E);
+	% % \def \mut{1.3}
+	% % \draw[orange!70, triple] (E) --++ (\mut*\foc,0);
+	% % \draw[orange!70, triplerev,
+	% % 	dashed, name path=EBp] (E) --++ (-\mut*\foc,0);
+	% \path[name intersections={of=OBp and IBp, by=B2p}];
+	% \coordinate (A\bp) at ($(B2p)+(0,{\intsiz})$);
+	% \node[above left, Red!70] at (A\bp) {A$_2$};
+	% \coordinate (B2) at ($(B2p)+(0,{2*\intsiz})$);
+	% \draw[<->, Red!70, thick] (B2)
+	% node[above left] {B$_2$}
+	% -- (B2p)
+	% node[below left] {B$_2'$};
+\end{tikzpicture}
+
+\end{document}

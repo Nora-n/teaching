@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        to[V, name=E, V_>=$E$, !vi]
+    (0,2) --
+    (2,2) coordinate (A)
+        to[R, name=Req, !vi]
+    (2,0) coordinate (B)
+        to[R, name=R3, v^<=$U_4$, !vi]
+    (0,0)
+    ;
+    \varronly{R3} \varronly{E}
+    \node[rotate=90] at (Req.center) {$R_{\rm eq,1}$};
+    \node[] at (R3.center) {$2R$};
+\end{circuitikz}
+\end{document}

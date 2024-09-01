@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\def\wdt{3}
+	\def\hgt{3}
+	\node[draw, thick,
+		minimum width=2cm,
+		minimum height=2cm,
+		anchor=center] (syst) at (0,0)
+	{fluide};
+
+	% Source 1
+	\node[draw, thick, circle, align=center, minimum width=1cm]
+	(S1) at (-\wdt,0)
+	{$T_0$};
+	\draw[flch={scale=1.3, pos=.60}]
+	(S1.east) --
+	node[midway, above] {$Q$}
+	(syst.west);
+
+	% Travail
+	\node[draw, thick, circle, align=center, minimum width=1.7cm]
+	(W) at (\wdt,0)
+	{Parties\\mobiles};
+	\draw[flch={scale=1.3, pos=.60}]
+	(W.west) --
+	node[midway, above] {$W$}
+	(syst.east);
+\end{tikzpicture}
+\end{document}

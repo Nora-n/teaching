@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0) node [transformer core, american](T){}
+	% (T.A1) node[above] {A1}
+	% (T.A2) node[below] {A2}
+	% (T.B1) node[above] {B1}
+	% (T.B2) node[below] {B2}
+	% (T.base) node{K}
+	% ($(T.base)+(1mm,-2mm)$)  -- ++(0,-1.8)
+	% ($(T.base)+(-1mm,-2mm)$) -- ++(0,-1.8)
+	;
+	\draw
+	(T.A1) --
+	([shift={(-1,0)}]T.A1)
+	to[sV, name=V, !vi]
+	([shift={(-1,0)}]T.A2)
+	node[ground] {} --
+	(T.A2)
+	;
+	\draw
+	(T.B1)
+	to[R, name=R, v^<=$u_R$, !vi]
+	([shift={(2,0)}]T.B1)
+	node[ground, rotate=90] {}
+	to[R, name=Rp, v^<=$u_{R_p}$, !vi]
+	([shift={(2,0)}]T.B2)
+	--
+	(T.B2)
+	;
+	\draw(T.A1) to[open, name=VL, v<={$u_e$}, !vi](T.A2);
+	\draw(T.B2) to[open, name=VR, v>={$u_e$}, !vi](T.B1);
+	\varronly{VL} \varronly{VR} \varronly{R} \varronly{Rp}
+	\node at (R.center) {$R$};
+	\node at (Rp.center) {$R_p$};
+\end{circuitikz}
+
+\end{document}

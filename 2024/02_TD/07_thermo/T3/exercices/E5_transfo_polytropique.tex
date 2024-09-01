@@ -1,0 +1,126 @@
+\documentclass[../TDT3.tex]{subfiles}%
+
+\begin{document}
+
+\section[s]"2"{Transformation polytropique}
+\enonce{%
+	Une transformation polytropique est une transformation d’un gaz pour laquelle
+	il existe un coefficient $k > 0$ tel que $PV^k = \cte$ tout au long de la
+	transformation. De telles transformations sont intermédiaires entre des
+	adiabatiques et des isothermes, et se rencontrent en thermodynamique
+	industrielles, par exemple lorsque le système réfrigérant ne permet pas
+	d’éliminer tout le transfert thermique produit par une réaction chimique. On
+	raisonnera à partir d’une transformation quasi-statique d’un gaz parfait.
+	\begin{tcn}(data)<lfnt>{Données}
+		\vspace{-15pt}
+		\leftcenters{%
+			Pour un gaz parfait,
+		}{%
+			$\DS C_V = \frac{nR}{\gamma-1}$ et $\DS C_P = \frac{\gamma nR}{\gamma-1}$.
+		}%
+		\vspace{-15pt}
+	\end{tcn}
+}%
+\QR{%
+	À quelles transformations connues correspondent les cas $k = 0$, $k=1$ et
+	$k=+\infty$~?
+}{%
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{itemize}
+		\item $k=0 \Ra P = \cte$ donc \textbf{isobare}~;
+		\item $k=1 \Ra PV = \cte = nRT$ donc \textbf{isotherme}~;
+		\item $K = +\infty \Ra V = \cte$ donc \textbf{isochore} (sinon toute infime
+		      variation de volume entraîne des effets infinis).
+	\end{itemize}
+}%
+\QR{%
+Calculer le travail des forces de pression pour un gaz subissant uns
+transformation polytropique entre deux états $(P_0,V_0,T_0)$ et
+$(P_1,V_1,T_1)$ en fonction d'abord des pressions et des volumes, puis dans un
+second temps des températures seulement.
+}{%
+Par définition, on a tout au long de la transformation $PV^k = P_0V_0{}^k$,
+soit $\boxed{P = P_0 (V_0/V)^k}$. Si de plus la transformation est
+quasi-statique, c'est-à-dire mécaniquement réversible donc que l'équilibre
+mécanique est atteint tout au long de la transformation, on aura $P =
+	P\ind{ext}$. Le travail reçu entre les états est donc~:
+\begin{DispWithArrows*}
+	W &=
+	-\int_{V_0}^{V_1} P \dd{V}
+	\\\Lra
+	W &=
+	-\int_{V_0}^{V_1} P_0V_0{}^k \frac{\dd{V}}{V^k}
+	\\\Lra
+	W &=
+	-P_0V_0{}^k \frac{V_1^{1-k} - V_0^{1-k}}{1-k}
+	\Arrow{$P_0V_0{}^k = P_1V_1{}^k$\\$P_1V_1{}^kV^{1-k} = P_1V_1$}
+	\\\Lra
+	W &=
+	-\frac{1}{1-k} \left( P_1V_1 - P_0V_0 \right)
+	\Arrow{$PV = nRT$}
+	\\\Lra
+	\Aboxed{W &= \frac{nR}{k-1} (T_1-T_0)}
+	\qed
+\end{DispWithArrows*}
+}%
+\QR{%
+	Montrer que le transfert thermique au cours de la transformation précédente
+	s'écrit
+	\[
+		Q = nR \left( \frac{1}{\gamma-1}-\frac{1}{k-1} \right) (T_1-T_0)
+	\]
+}{%
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		\Delta{U} = W + Q
+		\Lra
+		Q = \Delta{U} - W
+		\Lra
+		Q = C_V\Delta{T} - \frac{nR}{k-1}\Delta{T}
+		\\\Lra
+		\boxed{Q = nR \left( \frac{1}{\gamma-1}-\frac{1}{k-1} \right) (T_1-T_0)}
+		\qed
+	\end{gather*}
+}%
+\QR{%
+	Analyser les cas $k = 0$, $k = 1$ et $k = +\infty$, et vérifier la cohérence
+	avec l'analyse initiale.
+}{%
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{itemize}
+		\item
+		      \leavevmode\vspace*{-25pt}\relax
+		      \begin{gather*}
+			      \beforetext{$k=0$ donne par le calcul~:}
+			      \boxed{Q = \frac{\gamma nR}{\gamma-1} = C_P\Delta{T}}
+			      \\\beforetext{Or, $k=0 \Ra$ isobare, donc}
+			      \Delta{H} = \underbracket[1pt]{W_u}_{0} + Q
+			      \\\Lra
+			      C_P\Delta{T} = Q
+		      \end{gather*}
+		      On retrouve bien la même chose.
+		\item $k=1$ donne une forme indéterminée mathématiquement, ce qui implique
+		      qu'on ait $\Delta{T} = 0$ pour la réalité physique~: c'est cohérent
+		      avec le résultat précédent de transformation isotherme.
+		\item
+		      \leftcenters{%
+			      $k\to \infty$ donne
+		      }{%
+			      $
+				      Q = C_V\Delta{T}
+				      \Lra
+				      \Delta{U} = C_V\Delta{T}
+			      $
+		      }%
+		      \smallbreak
+		      ce qui est effectivement la relation connue pour un gaz parfait.
+	\end{itemize}
+}%
+\QR{%
+	À quel type de transformation correspond le cas $k = \gamma$~?
+}{%
+	$k = \gamma$ donne $\boxed{Q = 0}$~: c'est une transformation
+	\textbf{adiabatique}.
+}%
+
+\end{document}

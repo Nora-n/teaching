@@ -1,0 +1,88 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+    % Sens de comptage
+    \node[] (Cp) at (3,2) {$\oplus$};
+    \circledarrow{black}{(Cp)}{0.3}
+    % Dioptre
+    \def\nair{1}
+    \def\neau{1.6}
+    \node[screen,
+        object height=4cm, rotate=90,
+        name path=Dpath]
+        (dioptre) at (1.5,0) {};
+    % Milieu n1
+    \node[above right] at (dioptre.north) {$n_{\rm air}$};
+    % Milieu n2
+    \def\dh{2}
+    \coordinate (D1) at ($(dioptre.north)!\dh cm!-90:(dioptre.south)$);
+    \fill[brandeisblue!20]
+        (dioptre.south) -- (dioptre.north) --
+        (D1) -- (D1-|dioptre.south) -- cycle;
+    \node[below right] at (dioptre.north) {$n > n_{\rm air}$};
+    \node[draw, fill=gray!10, opacity=10, left]
+        at (dioptre.south) {dioptre};
+    % Point
+    \coordinate (A) at (0,2);
+    % Rayons
+    \def\i{56}
+    \def\il{90-\i}
+    \path[name path=AI] (A) --++ (-\i:5cm);
+    % Define intersection
+    \path[name intersections={of=Dpath and AI, by=I}];
+    \draw[brandeisblue, simple] (A) -- (I)
+        node [midway, below, sloped]
+        {\fontsize{8pt}{12pt}\selectfont incident};
+    % \draw[brandeisblue!70, simple, dashed]
+    %     (I) --++ ($0.8*(I)-0.8*(A)$) coordinate (Dtop);
+    % Snell
+    \draw[orange!70, simple] (I) --++
+        ({-90+asin(\nair*sin(\il)/\neau)}:2cm) coordinate (B)
+        node [midway, above, sloped]
+        {\fontsize{8pt}{12pt}\selectfont r\'efract\'e};
+    % Normal
+    \def\hsiz{2}
+    \draw[gray!50, dashed, name path=Hpath]
+    ([shift={(0,\hsiz)}]I) coordinate (Htop) --
+    ([shift={(0,-\hsiz)}]I) coordinate (Hbot);
+    % Define intersection
+    \path[name intersections={of=Hpath and Dpath, by=H}];
+    \node[gray!70, below left] at (H) {I};
+    \node[gray!70] at (H) {$\times$};
+    % Projection
+    \coordinate (Ah) at ($(dioptre.north)!(A)!(dioptre.south)$);
+    % \node[above right, gray!70] at (Ah) {Ah};
+    % \node[gray!70] at (Ah) {$\times$};
+    % Compute x, y
+    \len{(Ah)}{(A)}{\Ay}
+    \len{(Ah)}{(H)}{\Ax}
+    \draw[simple, brandeisblue]
+        (H) --++ (\Ax,\Ay) coordinate (Ap)
+        node [midway, below, sloped] { \fontsize{8pt}{12pt}\selectfont r\'efl\'echi};
+    % Draw angles
+    \coordinate (D0) at (dioptre.north);
+    \pic[angle radius=0.2cm, angle eccentricity=1.3, draw]
+    {right angle=Htop--I--D0};
+    % Draw angles
+    \pic[angle radius=1cm, angle eccentricity=1.3,
+    draw, ->, brandeisblue, "$i_1$" alias=i1]
+    {angle=Htop--I--A};
+    \pic[angle radius=0.9cm, angle eccentricity=1.3,
+    draw, <-, brandeisblue, "$r$" alias=i1p]
+    {angle=Ap--I--Htop};
+    \pic[angle radius=1cm, angle eccentricity=1.3,
+    draw, ->, orange!70, "$i_2$" alias=i2]
+    {angle=Hbot--I--B};
+    % Draw angles
+    \pic[angle radius=0.7cm, angle eccentricity=1.3,
+    draw, ->, ForestGreen, "$\alpha$" alias=alpha]
+    {angle=A--I--D0};
+    % Draw angles
+    % \pic[angle radius=1.5cm, angle eccentricity=1.3,
+    % draw, ->, ForestGreen, "$D$" alias=D]
+    % {angle=B--I--Dtop};
+\end{tikzpicture}
+\end{document}
+

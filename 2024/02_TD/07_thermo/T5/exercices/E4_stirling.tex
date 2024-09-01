@@ -1,0 +1,270 @@
+\documentclass[../TDT5.tex]{subfiles}%
+
+\begin{document}
+\section{Étude d'un moteur de \textsc{Stirling}}
+\enonce{%
+	Le moteur de \textsc{Stirling} est constitué de deux chambres, une chaude et
+	une froide, reliées par un régénérateur de volume constant pouvant être
+	constitué de fils de cuivre tressés. Le gaz, en circuit fermé, reçoit un
+	transfert thermique d’une source chaude (par exemple une chaudière à
+	combustion) et cède un transfert thermique à la source froide (par exemple
+	l’atmosphère).
+	\smallbreak
+	Le rôle du régénérateur, base de l’invention de Robert \textsc{Stirling}, est
+	fondamental pour obtenir une bonne efficacité. Dans son brevet original de 1816,
+	\textsc{Stirling} explique que le gaz chaud entre dans la partie chaude du
+	régénérateur et est progressivement refroidi durant son parcours pour
+	ressortir par l’autre extrémité à une température presque identique à la
+	température de la source froide.
+	\bigbreak
+	Dans le parcours inverse, le gaz est progressivement réchauffé. Cette astuce
+	technologique permet d’avoir une partie des échanges thermiques internes au
+	moteur. On considérera le cycle parcouru par $n = \SI{40}{mmol}$ d’air,
+	considéré comme un gaz parfait de rapport isentropique $\gamma = \num{1.4}$.
+	\bigbreak
+	Dans un premier temps, on néglige le régénérateur~: les deux chambres ne font
+	qu’une. Le cycle de \textsc{Stirling} est alors modélisable par la succession de
+	deux isothermes et deux isochores à partir d'un état 1 ($P_1 = \SI{1}{bar}$,
+	$T_1 = \SI{300}{K}$). Il est décrit comme suit~:
+	\begin{center}
+		\includegraphics[width=\linewidth]{E4_schema_str}
+	\end{center}
+	\begin{itemize}
+		\item $1\to 2$~: compression isotherme réversible à $T_F = T_1$ jusqu'à l'état
+		      2, où $V_2 = V_1/10$~;
+		\item $2\to 3$~: échauffement isochore au contact de la source chaude à $T_C =
+			      \SI{600}{K}$ jusqu'à l'état 3 de température $T_3 = T_C$~;
+		\item $3\to 4$~: détente isotherme réversible au contact de la source chaude à
+		      $T_C$, jusqu'à l'état 4 de volume $V_4 = V_1$~;
+		\item $4\to 1$~: refroidissement isochore au contact de la source froide
+		      jusqu'à revenir à l'état 1.
+	\end{itemize}
+}%
+
+\QR{%
+	Calculer les valeurs numériques de $P,V,T$ pour chacun des quatre états.
+}{%
+	En utilisant les informations de l'énoncé et l'équation d'état du gaz parfait,
+	on obtient les valeurs suivantes~:
+	\begin{center}
+		\begin{tabularx}{\linewidth}{YYYY}
+			\toprule
+			\textbf{État 1}                                                &
+			\textbf{État 2}                                                &
+			\textbf{État 3}                                                &
+			\textbf{État 4}
+			\\
+			\midrule
+			$P_1 = \SI{1}{bar}$                                            &
+			$P_2 = 10P_1 = \SI{10}{bar}$                                   &
+			$P_3 = \frac{T_3}{T_2}P_2 = \frac{T_C}{T_F}P_2 = \SI{20}{bar}$ &
+			$P_4 = \frac{V_2}{V_1}P_3 = \SI{2}{bar}$
+			\\
+			$V_1 = \frac{nRT_1}{P_1} = \SI{0.98}{L}$                       &
+			$V_2 = \frac{V_1}{10} = \SI{0.098}{L}$                         &
+			$V_3 = V_2$                                                    &
+			$V_1 = V_1$
+			\\
+			$T_1 = T_F = \SI{300}{K}$                                      &
+			$T_2 = T_1$                                                    &
+			$T_3 = T_C = \SI{600}{K}$                                      &
+			$T_4 = T_3$
+			\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+}%
+
+\QR{%
+	Représenter ce cycle dans un diagramme de \textsc{Watt} (P,V). Justifier alors
+	sans calculer que ce cycle est moteur.
+}{%
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{center}
+		\includegraphics[width=.5\linewidth]{E3_PV_bdr}
+		\captionof{figure}{Cycle de \textsc{Stirling}. Sens horaire $\Ra$ cycle
+			\textbf{moteur}.}
+	\end{center}
+}%
+
+\QR{%
+	Calculer pour chaque étape le travail et le transfert thermique reçus par le
+	gaz. Commenter ces résultats~: a-t-on bien un cycle moteur~?
+}{%
+	\begin{itemize}
+		\item $1\to 2$~: réversible, donc forcément quasi-statique et $P\ind{ext} =
+			      P$. Ainsi,
+		      \begin{align*}
+			      W_{12} =
+			      -\int_{1}^{2} P \dd{V} =
+			      -\int_{1}^{2} nRT_F \frac{\dd{V}}{V}
+			      \Lra
+			      \Aboxed{W_{12} & = -nRT_F \ln \frac{V_2}{V_2}}
+			      \Ra
+			      \xul{W_{12} = \SI{230}{J}}
+			      \\\beforetext{IsoT $\Ra$}
+			      \Delta{U}_{12} = 0
+			      \Lra
+			      Q_{12} = -W_{12}
+			      \Lra
+			      \Aboxed{Q_{12} & = nRT_F \ln \frac{V_2}{V_1}}
+			      \Ra
+			      \xul{Q_{12} = -\SI{230}{J}}
+		      \end{align*}
+		\item $2\to 3$~: isochore, donc
+		      \begin{gather*}
+			      \boxed{W_{23} = 0}
+			      \\\Lra
+			      Q_{23} = \Delta{U}_{23} = C_V (T_3-T_2)
+			      \Lra
+			      \boxed{Q_{23} = \frac{nR}{\gamma-1} (T_C - T_F)}
+			      \Ra
+			      \xul{Q_{23} = \SI{249}{J}}
+		      \end{gather*}
+		\item $3\to 4$~: même raisonnement que $1\to 2$~:
+		      \[
+			      \boxed{W_{34} = -nRT_C \ln \frac{V_1}{V_2}}
+			      \Ra
+			      \xul{W_{34} = \SI{-459}{J}}
+			      \qqet
+			      \boxed{Q_{34} = nRT_C \ln \frac{V_1}{V_2}}
+			      \Ra
+			      \xul{Q_{34} = \SI{459}{J}}
+		      \]
+		\item $4\to 1$~: même raisonnement que $2\to 3$~:
+		      \[
+			      \boxed{W_{41} = 0}
+			      \qqet
+			      \boxed{Q_{41} = \frac{nR}{\gamma-1}(T_F - T_C)}
+			      \Ra
+			      \xul{Q_{41} = \SI{-249}{J}}
+		      \]
+	\end{itemize}
+	En sommant les travaux, on a
+	\[
+		W = W_{12} + W_{34} = nR (T_C-T_F)\ln \frac{V_2}{V_1} < 0
+	\]
+	c'est donc effectivement un moteur puisque le gaz \textbf{fournit en travail}
+	en moyenne sur un cycle.
+}%
+
+\QR{%
+	Quel est, sur le plan énergétique, la production de ce système sur un cycle~?
+	Quel est le coût énergétique~? En déduire l'expression et la valeur du
+	rendement.
+}{%
+	La \textbf{production} énergétique est le \textbf{travail} $W = W_{12} +
+		W_{34} < 0$ qu'il fournit. Le coût est le transfert thermique qu'il reçoit de
+	la source chaude, $Q_C = Q_{23} + Q_{34} > 0$. Le rendement est donc
+	\[
+		\eta =
+		\abs{\frac{W}{Q_C}} =
+		- \frac{W_{12} + W_{34}}{Q_{23} + Q_{34}}
+		\Lra
+		\boxed{
+			\eta = \frac{\DS(T_C-T_F)\ln \frac{V_1}{V_2}}
+			{\DS\frac{T_C-T_F}{\gamma-1} + T_C \ln \frac{V_1}{V_2}}
+		}
+		\Ra
+		\xul{\eta = \num{0.32}}
+	\]
+}%
+
+\QR{%
+	Calculer l'entropie créée au sein du système au cours du cycle. Quel type
+	d'irréversibilité entre en jeu~?
+}{%
+	Le bilan d'entropie sur le cycle complet s'écrit $\Delta{S} = S\ind{ech} +
+		S\ind{cr} = 0$, soit
+	\[
+		S\ind{cr} =
+		-S\ind{ech} =
+		- \frac{Q_{12} + Q_{41}}{T_F} - \frac{Q_{12} + Q_{34}}{T_C}
+		\Lra
+		\boxed{
+			S\ind{cr} = \frac{nR (T_C T_F)^2}{(\gamma-1)T_CT_F}
+		}
+		\Ra
+		\xul{S\ind{cr} = \SI{0.42}{J.K^{-1}}}
+	\]
+	L'irréversibilité est d'origine thermique~: pendant les deux isochores, le gaz
+	n'est pas à la même température que le thermostat avec lequel il est en
+	contact. Le transfert thermique s'accompagne donc de création d'entropie par
+	inhomogénéité.
+}%
+
+\enonce{%
+	L'invention du régénérateur par \textsc{Stirling} a permis d'améliorer
+	considérablement le rendement de la machine précédente. Son idée est de faire
+	en sorte que le gaz échange du transfert thermique au cours des
+	transformations $2\to 3$ et $4\to 1$ non pas avec les thermostats, mais avec
+	un système qui n'échange de l'énergie qu'avec les gaz au cours de ces
+	transformations.
+}%
+
+\QR{%
+	Justifier la pertinence de l'idée de \textsc{Stirling}.
+}{%
+	Le transfert thermique $Q_{23}$, qui diminue le rendement, est exactement
+	opposé au transfert thermique $Q_{41}$. Plutôt que de perdre le transfert
+	thermique $Q_{41}$ en le cédant à la source froide, l'idée de
+	\textsc{Stirling} consiste à le céder au régénérateur pour qu'il le rende au
+	gaz lors de l'étape $2\to 3$. Le transfert thermique n'est alors \textbf{plus
+		fourni par la source chaude}, ce qui est plus économique.
+}%
+
+\QR{%
+Que vaut le rendement dans ces conditions~? Ce rendement peut-il être amélioré
+sans changer les sources~?
+}{%
+Comme $Q_{23}$ n'est plus fournir par la source chaude, il ne compte plus dans
+le rendement, qui devient
+\[
+	\eta =
+	\abs{\frac{W}{Q_C}} =
+	-\frac{W_{12}+W_{34}}{Q_{34}} =
+	\frac{T_C-T_F}{T_C}
+	\Lra
+	\boxed{\eta = 1 - \frac{T_F}{T_C}}
+\]
+On reconnaît alors le \textbf{rendement de \textsc{Carnot}}, c'est-à-dire le
+meilleur rendement possible pour un moteur fonctionnant avec ces deux sources.
+}%
+
+% \begin{blocQR}
+% 	\item \enonce{%
+% 		En fonction des températures $T_F$ et $T_C$, du taux de compression $a =
+% 			\frac{V_1}{V_2}$ et de $n$, $R$ et $\gamma$, établir les expressions~:
+% 	}%
+% 	\QR{%
+% 	de la quantité de chaleur reçue par le système au cours d'un cycle
+% 	(notée $Q_C$ et égale à $Q_{23}+Q_{34}$)~;
+% 	}{%
+% 	solu
+% 	}%
+%
+% 	\QR{%
+% 	de la quantité de chaleur cédée par le système au cours d'un cycle
+% 	(notée $Q_F$ et égale à $Q_{41}+Q_{12}$)~;
+% 	}{%
+% 	solu
+% 	}%
+%
+% 	\QR{%
+% 		du rendement thermodynamique de ce cycle.
+% 	}{%
+% 		solu
+% 	}%
+%
+% \end{blocQR}
+%
+% \QR{%
+% 	On admet que la chaleur fournie au fluide lors du chauffage isochore est
+% 	récupérée par un régénérateur lors du refroidissement isochore. Que devient
+% 	le rendement~? Comparer ce rendement à celui de \textsc{Carnot}. Que peut-on
+% 	en déduire sur l'entropie créée au cours du cycle~?
+% }{%
+% 	solu
+% }%
+
+\end{document}

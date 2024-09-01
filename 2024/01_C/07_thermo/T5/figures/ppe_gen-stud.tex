@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\def\wdt{3}
+	\def\hgt{3}
+	\node[draw, thick,
+		minimum width=2cm,minimum height=2cm,
+		anchor=center] (syst) at (0,0)
+	{};
+
+	% Source 1
+	\node[draw, thick, circle, align=center, minimum width=1cm]
+	(S1) at (-\wdt,0)
+	{};
+	\draw[]
+	(S1.east) --
+	% node[midway, above] {$Q_1$}
+	(syst.west);
+
+	% Source 2
+	\node[draw, thick, circle, align=center, minimum width=1cm]
+	(S2) at (0,\hgt)
+	{};
+	\draw[]
+	(S2.south) --
+	% node[midway, right] {$Q_2$}
+	(syst.north);
+
+	% Source 3
+	\node[draw, thick, circle, align=center, minimum width=1cm]
+	(S3) at (\wdt,0)
+	{};
+	\draw[]
+	(S3.west) --
+	% node[midway, above] {$Q_3$}
+	(syst.east);
+
+	% Travail
+	\node[draw, thick, circle, align=center, minimum width=1.7cm]
+	(W) at (0,-\hgt)
+	{};
+	\draw[]
+	(W.north) --
+	% node[midway, left] {$W$}
+	(syst.south);
+\end{tikzpicture}
+\end{document}

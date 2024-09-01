@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\ctikzset{sources/symbol/rotate=0}
+	\draw
+	(0,0)
+	to[sV, name=R1, v^>={{{\rotatebox[origin=c]{90}{$e(t) = E\cos(\wt)$}}}}, !vi]
+	(0,2)
+	to[R, name=R2, v^<=$u_1$, !vi]
+	(2,2)
+	to[R, name=R3, v^<=$u_2$, !vi]
+	(2,0)
+	to[R, name=R4, v^<=$u_3$, !vi]
+	(0,0)
+	;
+	\node[black] (LM1) at (1,1) {};
+	\circledarrow{black}{(LM1)}{0.4}
+	\foreach \n in {1, ...,4}{
+			\varronly{R\n}
+		}
+	\node[right=2em] (E) at (R3.north) {$\Rightarrow$};
+	\node[shift={($(E)+(1em,0)$)}, anchor=west]
+	{$\left\{\begin{aligned}
+				                     & u_3 + u_2 + u_1 - e = 0 \\
+				\Longleftrightarrow~ & e = u_1 + u_2 + u_3
+			\end{aligned}\right.$}
+	;
+\end{circuitikz}
+\end{document}
+

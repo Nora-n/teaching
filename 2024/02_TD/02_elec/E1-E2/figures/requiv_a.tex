@@ -1,0 +1,67 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0) node {$\bullet$} node [left] (A) {A}
+    to[R, name=R1]
+    (2,0) coordinate (N1) %node [above] {N1}
+    to[R, name=R2]
+    (4,0)
+    to[R, name=R3 ]
+    (4,-2) coordinate (Nbr) --
+    (2,-2) coordinate (N2) %node [below] {N2}
+    to[R, name=R4]
+    (0,-2) node {$\bullet$} node [left] (B) {B};
+    \draw[] 
+    (N1)
+    to[R, name=R5]
+    (N2);
+    \foreach \n in {1, 2, ..., 5}{
+        \node[] at (R\n.center) {$R$};}
+    \draw[dashed, ForestGreen]
+    ([shift={(0.3,0.3)}]N1) rectangle
+    ([shift={(0.3,-0.3)}]Nbr);
+    \node[right=1em] (E1) at (R3) {$\equiv$};
+    \draw[shift={($(E1)+(2em,1)$)}]
+    (0,0) node {$\bullet$} node [left] (A) {A}
+    to[R, name=R1]
+    (2,0) coordinate (N1) -- %node [above] {N1}
+    (4,0)
+    to[R, name=Req1, color=ForestGreen]
+    (4,-2) coordinate (Nbr) --
+    (2,-2) coordinate (N2) %node [below] {N2}
+    to[R, name=R2]
+    (0,-2) node {$\bullet$} node [left] (B) {B};
+    \draw[] 
+    (N1)
+    to[R, name=R3]
+    (N2);
+    \foreach \n in {1, 2, 3}{
+        \node[] at (R\n.center) {$R$};}
+    \node[rotate=90] at (Req1.center) {\color{ForestGreen} $R_{\rm eq,1}$};
+    \draw[dashed, brandeisblue]
+    ([shift={(-0.3,0.3)}]N1) rectangle
+    ([shift={(0.3,-0.3)}]Nbr);        
+    \node[right=1em] (E2) at (Req1) {$\equiv$};
+    \draw[shift={($(E2)+(2em,1)$)}]
+    (0,0) node {$\bullet$} node [left] (A) {A}
+    to[R, name=R1, color=orange]
+    (2,0) coordinate (N1)
+    to[R, name=Req2, color=brandeisblue]
+    (2,-2) coordinate (Nbr)
+    to[R, name=R2, color=orange]
+    (0,-2) node {$\bullet$} node [left] (B) {B};
+    \node[] at (R1.center) {\color{orange}$R$};
+    \node[] at (R2.center) {\color{orange}$R$};
+    \node[rotate=90] at (Req2.center) {\color{brandeisblue} $R_{\rm eq,2}$};
+    \node[right=1em] (E3) at (Req2) {$\equiv$};
+    \draw[shift={($(E3)+(2em,0)$)}]
+    (0,0) node {$\bullet$} node [left] {A}
+    to[R, name=Req]
+    (2,0) node {$\bullet$} node [right] {B};
+    \node[] at (Req.center) {$ R_{\rm eq}$};
+\end{circuitikz}
+
+\end{document}

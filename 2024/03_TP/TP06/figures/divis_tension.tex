@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	node[ground]
+	to[sV, name=E, v_>=$u_e$, !vi]
+	(0,4)
+	--
+	(2,4)
+	coordinate (It)
+	% node {$\bullet$}
+	to[R, name=R1, i^>=$I$, v^<=$U_{1}$, !vi]
+	(2,2)
+	coordinate (Im)
+	% node {$\bullet$}
+	to[R, name=R2, v^<=$U_{2}$, !vi]
+	(2,0)
+	coordinate (Ib)
+	% node {$\bullet$}
+	--
+	(0,0)
+	% node (C) {$\bullet$}
+	% node [left] {C}
+	;
+	% \draw[color=red!70] (A) -- (C)
+	% node [left, midway, anchor=east] {$U_{\rm brch}$}
+	% node [currarrow, pos=0, sloped, rotate=180] {};
+	\varronly{E} \varronly{R1} \varronly{R2}
+	\iarronly{R1}
+	\node[] at (R1.center) {$R_1$};
+	\node[] at (R2.center) {$R_2$};
+	% \node[right=1em] at (It) {A};
+	% \node[right=1em] at (Im) {B};
+	% \node[right=1em] at (Ib) {C};
+\end{circuitikz}
+
+\end{document}

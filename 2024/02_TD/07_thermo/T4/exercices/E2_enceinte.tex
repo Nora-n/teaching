@@ -1,0 +1,129 @@
+\documentclass[../TDT4.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Équilibre d'une enceinte à deux compartiments}
+\enonce{%
+	Une enceinte indéformable aux parois calorifugées est séparée en deux
+	compartiments par une cloison étanche, diatherme et mobile sans frottement.
+	Les deux compartiments contiennent un même gaz parfait. Dans l'état initial,
+	la cloison est maintenue au milieu de l'enceinte. Le gaz du compartiment 1 est
+	dans l'état $(T_0,P_0,V_0)$ et le gaz du compartiment 2 dans l'état
+	$(T_0,2P_0,V_0)$. On laisse alors la cloison bouger librement jusqu'à ce que
+	le système atteigne un état d'équilibre.
+}%
+\QR{%
+	Exprimer les quantités de matière $n_1,n_2$ dans chaque compartiment en
+	fonction de $n_0 = P_0V_0/RT_0$.
+}{%
+	Pas d'échange de matière~:
+	\[
+		\boxed{n_1 = n_0}
+		\qqet
+		2P_0V_0 = n_2RT_0
+		\Lra
+		\boxed{n_2 = 2n_0}
+	\]
+}%
+\QR{%
+	Exprimer la température, le volume et la pression du gaz de chaque
+	compartiment dans l'état final, en fonction de $n_0,T_0$ et $V_0$.
+}{%
+	On étudie l'ensemble des gaz~: la transformation est donc \textbf{isochore} et
+	\textbf{adiabatique}. On exploite l'équilibre thermodynamique~:
+	\begin{itemize}
+		\item[b]{Équilibre thermique}: parois diathermanes $\Ra$ échange de chaleur,
+		pas de matière donc
+		\begin{gather*}
+			\boxed{T_1 = T_2}
+			\tag{1}
+			\label{eq:eqth}
+		\end{gather*}
+		\item[b]{Équilibre mécanique}: les forces sur la paroi mobile se compensent,
+		soit $P_1S = P_2S$, soit
+		\begin{gather*}
+			\boxed{P_1 = P_2}
+			\tag{2}
+			\label{eq:eqm}
+		\end{gather*}
+		\item[b]{Premier principe}:
+		\leavevmode\vspace*{-20pt}\relax
+		\begin{gather*}
+			\Delta{U} = W+Q
+			\Lra
+			C_V (T_1-T_0) + C_V (T_2 - T_0) = 0
+			\\\Lra
+			T_1 + T_2 = 2T_0
+			\\\beforetext{Or $T_1 \stc{=}{\eqref{eq:eqth}} T_2$}
+			\Lra
+			\boxed{T_1 = T_2 = T_0}
+		\end{gather*}
+		\item[b]{Conservation du volume}:
+		\leavevmode\vspace*{-20pt}\relax
+		\begin{gather*}
+			\boxed{V_1+V_2 = 2V_0}
+			\tag{3}
+			\label{eq:consv}
+		\end{gather*}
+		\item[b]{Équation d'état gaz parfait}:
+		\leavevmode\vspace*{-20pt}\relax
+		\begin{gather*}
+			\left\{
+			\begin{array}{ll}
+				P_1V_1 & = n_0RT_0
+				\\
+				P_2V_2 & = 2n_0RT_0
+			\end{array}
+			\right.
+			\Lra
+			P_2V_2 = 2P_1V_1
+			\\\beforetext{Or $P_1 \stc{=}{\eqref{eq:eqm}} P_2$}
+			\Lra
+			\boxed{V_2 = 2V_1}
+			\tag{4}
+			\label{eq:vdbl}
+			\\
+			\eqref{eq:vdbl} \text{ et } \eqref{eq:consv}
+			\Lra
+			3V_1 = 2V_0
+			\Lra
+			\left\{
+			\begin{array}{ll}
+				\Aboxed{V_1 & = \frac{2}{3}V_0}
+				\\
+				\Aboxed{V_2 & = \frac{4}{3}V_0}
+			\end{array}
+			\right.
+			\\\beforetext{Enfin,}
+			P_1 \frac{2}{3}V_0 = n_0RT_0
+			\Lra
+			\boxed{P_1 = \frac{3n_0RT_0}{2V_0} = P_2}
+		\end{gather*}
+	\end{itemize}
+}%
+\QR{%
+	Exprimer l'entropie créée en fonction de $n_0$. Conclure.
+}{%
+	Avec $\Delta{S}\sup{G.P.} = C_V \ln \frac{T_f}{T_i} + nR \ln \frac{V_f}{V_i}$,
+	on a~:
+	\begin{align*}
+		\Delta{S}_1       & =
+		C_V \underbracket[1pt]{\ln \frac{T_0}{T_0}}_{=0} +
+		n_0R \ln \frac{V_1}{V_0} =
+		n_0R \ln \frac{2}{3}
+		\\
+		\Delta{S}_2       & = 2n_0R \ln \frac{4}{3}
+		\\\beforetext{$S$ additive, donc}
+		\Delta{S}         & = \Delta{S_1} + \Delta{S_2}
+		\\\Lra
+		\Delta{S}         & = n_0R \left( \ln \frac{2}{3} + 2 \ln \frac{4}{3}\right)
+		\\\Lra
+		\Delta{S}         & = n_0R \left( \ln \frac{2}{3} + \ln \frac{16}{9} \right)
+		\\\Lra
+		\Delta{S}         & = n_0R \ln \frac{32}{27}
+		\\\beforetext{Or $Q = 0 \Ra S\ind{ech} = 0 \Ra$}
+		\Aboxed{S\ind{cr} & = n_0R \ln \frac{32}{27}} > 0
+	\end{align*}
+	On a donc une transformation \textbf{irréversible} par inhomogénéité de
+	pression/matière/concentration.
+}%
+\end{document}

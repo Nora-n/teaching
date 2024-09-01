@@ -1,0 +1,64 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \def\TAU{1}
+    \def\TAUdraw{1.15}
+    \def\E{5}
+    \begin{axis}[
+        xmin=-2, xmax=11,
+        ymin=-0.5, ymax=6,
+        xlabel=$t$, ylabel=$u_C(t)$,
+        xtick=\empty, ytick=\empty,
+        extra y ticks={0},
+        y tick label style={yshift={(\tick==0)*-.5em},
+                            xshift={(\tick==0)*.25em}},
+        axis lines=center,
+        tangent/.style={
+            add node at x={#1}{4.8},
+        },
+        clip=false]
+        \addplot[
+            domain=0:10,
+            smooth, thick,
+            orange,
+            name path=uc,
+            tangent=0.001]
+        {\E*(1-exp(-\x/\TAU)};
+        \addplot[
+            domain=-2:0,
+            smooth, thick,
+            Red!70]
+        {0};
+        \addplot[
+            domain=0:10,
+            smooth, thick,
+            Red!70]
+        {\E} node [pos=0, left] {$E$};
+        \path[name path=vert] (\TAUdraw,5) -- (\TAUdraw,0);
+        % Define intersection
+        \path[name intersections={of=vert and uc, by=A}];
+        \coordinate (O) at (0,0);
+        \draw[dashed] (A) -- (A-|O)
+            node [left, anchor=east] {\num{0.632}$E$};
+        \draw[dashed] (\TAUdraw,5) -- (\TAUdraw,0) node [below] {$\tau$};
+        % RP
+        \draw[dashed]
+            (5*\TAUdraw,0) coordinate (T) node [below] {$5\tau$} --++
+            (axis direction cs:0,\E);
+        \node[below=8pt] (Og) at (O) {};
+        \node[below=8pt] (Tg) at (T) {};
+        \node[below=8pt] (Ig) at (11,0) {};
+        % Grandeurs
+        \draw[|<->|] (Og) --
+        node[below, midway, sloped]
+        {\small R\'egime transitoire} (Tg);
+        \draw[|<->|] (Tg) --
+        node[below, midway, sloped]
+        {\small R\'egime permanent} (Ig);
+        
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

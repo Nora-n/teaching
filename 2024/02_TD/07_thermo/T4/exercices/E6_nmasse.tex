@@ -1,0 +1,113 @@
+\documentclass[../TDT4.tex]{subfiles}%
+
+\begin{document}
+\section[s]"2"{Masse posée sur un piston}
+\enonce{%
+	Considérons une enceinte hermétique, diatherme, fermée par un piston de masse
+	négligeable pouvant coulisser sans frottements. Cette enceinte contient un gaz
+	supposé parfait. Elle est placée dans l'air, à température $T_0$ et pression
+	$P_0$.
+}%
+\QR{%
+	On place une masse $m$ sur le piston. Déterminer les caractéristiques du gaz
+	une fois les équilibres thermique et mécanique atteints.
+}{%
+	\leavevmode\vspace*{-20pt}\relax
+	\begin{align*}
+		\beforetext{Équilibre thermique $\Ra$}
+		\Aboxed{T_F & = T_I = T_0}
+		\\\beforetext{Équilibre mécanique $\Ra$}
+		P_I S = P_0 S
+		            & \qet
+		P_FS = P_0S + mg
+		\\\Lra
+		\Aboxed{P_F & = P_0 + \frac{mg}{S}}
+		\\\beforetext{Gaz parfait $\Ra$}
+		\Aboxed{V_F & = \frac{nRT_0}{P_0 + \frac{mg}{S}}}
+	\end{align*}
+}%
+\QR{%
+	Déterminer le transfert thermique échangé $Q$ et l'entropie créée.
+}{%
+	\leavevmode\vspace*{-20pt}\relax
+	\begin{itemize}
+		\item[b]{Transfert thermique}: on étudie le système \{gaz\} (le piston étant
+		négligé). Il est soumis à la pression extérieure $P_0$ et à la force
+		exercée par la masse $m$, donnant un surplus de pression $mg/S$. Ainsi, le
+		système est soumis à une pression apparent
+		\[
+			P\ind{app} = P_0 + \frac{mg}{S}
+		\]
+		qui est constante. On a donc une transformation monobare, soit
+		\begin{align*}
+			W         & = -P\ind{app} (V_F-V_I)
+			\\\beforetext{1\iere{} loi de \textsc{Joule}, $T_I = T_F$~:}
+			\Delta{U} & = W + Q
+			\\\Ra
+			Q         & = P\ind{app}(V_F-V_I)
+			\\\Lra
+			Q         & = P\ind{app} nRT_0 \left( \frac{1}{P\ind{app}} - \frac{1}{P_0}
+			\right)
+			\\\Lra
+			Q         & =
+			\cancel{P\ind{app}} nRT_0
+			\frac{\overbracket{P_0 - P\ind{app}}^{=-mg/S}}{P_0 \cancel{P\ind{app}}}
+			\\\Lra
+			\Aboxed{Q & = - \frac{nRT_0}{P_0}\frac{mg}{S}}
+		\end{align*}
+		\item[b]{Entropie créée}:
+		\leavevmode\vspace*{-25pt}\relax
+		\begin{align*}
+			\Delta{S} & =
+			C_P \underbracket[1pt]{\ln \frac{T_F}{T_I}}_{=0} -
+			nR \ln \frac{P_F}{P_I} = -nR \ln (1+\frac{mg}{P_0S})
+			\\\Lra
+			S\ind{cr} & = \Delta{S} - \frac{Q}{T_0}
+			\\\Lra
+			\Aboxed{
+			S\ind{cr} & = nR \left(
+				\frac{mg}{P_0S} - \ln (1 + \frac{mg}{P_0S})
+				\right)
+			}
+		\end{align*}
+	\end{itemize}
+}%
+\QR{%
+	On réalise la même expérience, mais en $N$ étapes successives, par exemple en
+	ajoutant du sable «~grain à grain~». Déterminer l'entropie créée dans la
+	limite $N \to \infty$.
+}{%
+	Dans le cas où la transformation est réalisée en $N \gg 1$ étapes, une masse
+	$m/N$ est ajoutée à chaque étape. Au cours d'une étape, on a donc création de
+	\begin{align*}
+		S_{\mathrm{cr},i} & =
+		nR \left(
+		\frac{mg/N}{P_0S} - \ln (1 + \frac{mg/N}{P_0S})
+		\right)
+		\\\beforetext{Développement limité}
+		S_{\mathrm{cr},i} & =
+		nR \left(
+		\frac{mg/N}{P_0S} - \frac{mg/N}{P_0S} +
+		\frac{1}{2} \left( \frac{mg/N}{P_0S} \right)^2\right)
+		\\\Lra
+		S_{\mathrm{cr},i} & = \frac{nR}{2} \left( \frac{mg}{NP_0S} \right)^2
+		\\\beforetext{Par somme~:}
+		S\ind{cr}         & = NS_{\mathrm{cr},i}
+		\\\Lra
+		S\ind{cr}         & = \frac{nR}{2N} \left( \frac{mg}{P_0S} \right)^2
+		\\\Lra
+		S\ind{cr}         & \opto{}{N\to\infty} 0
+	\end{align*}
+	Ainsi, lorsqu'elle est réalisée \textbf{suffisamment lentement}, la
+	transformation tend vers une \textbf{transformation réversible}.
+	\begin{tcn}(impo){Attention~!}
+		Comme le terme d'ordre le plus bas du développement limité s'annule, il est
+		nécessaire de poursuivre à l'ordre suivant pour obtenir un résultat correct.
+		\smallbreak
+		On peut également reprendre la méthode de la question précédente, mais la
+		transformation n'est plus monobare, ce qui change donc le calcul du
+		transfert thermique.
+	\end{tcn}
+}%
+
+\end{document}

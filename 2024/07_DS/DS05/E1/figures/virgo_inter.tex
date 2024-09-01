@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+	\node[laser]
+	(LS) at (0,0) {Source};
+	\node at (LS.aperture east) {$\times$};
+	\node[above=3pt]
+	at (LS.aperture east) {S};
+	\node[semi-transparent mirror, rotate=-45, right=2cm of LS,
+		label={-15:I}, label={north:L}, label={center:$\times$}]
+	(ST) {};
+	\node[mirror, label={north:M$_1$}, right=4cm of ST]
+	(M1) {};
+	\node[mirror, rotate=90, above=2cm of ST.center, anchor=center]
+	(M2) {};
+	\node[above=3pt] at (M2.center) {M$_2$};
+	\node[sensor line, rotate=-90,
+		label={right:détecteur},
+		below=2cm of ST.center, anchor=center]
+	(D) {};
+	\node at (D.pixel 3 west) {$\times$};
+	\node[above right] at (D.pixel 3 west) {D};
+	% Rayons
+	\draw[red, thick, fleche={.25}{>}, fleche={.65}{>}, fleche={.75}{<}]
+	(LS.aperture east) --
+	(M1.center);
+	\draw[red, thick, fleche={.65}{>}, fleche={.75}{<}]
+	(ST.center) --
+	(M2.center);
+	\draw[red, thick, transform canvas={xshift={-3pt}}, fleche={.5}{>}]
+	(ST.center) --
+	node[midway, left] {(2)}
+	(D.pixel 3 west);
+	\draw[red, thick, transform canvas={xshift={3pt}}, fleche={.5}{>}]
+	(ST.center) --
+	node[midway, right] {(1)}
+	(D.pixel 3 west);
+	% Dimensions
+	\draw[lightgray!70!black]
+	(ST.center) to[dim arrow={label=$\ell_1$, raise=.25cm}] (M1.center);
+	\draw[lightgray!70!black]
+	(ST.center) to[dim arrow={label=$\ell_2$, raise=.25cm}] (M2.center);
+	\draw[lightgray!70!black]
+	(LS.aperture east) to[dim arrow={label'=$a$, raise=-.25cm}] (ST.center);
+	\draw[lightgray!70!black]
+	(ST.center) to[dim arrow={label=$b$, raise=.75cm}] (D.pixel 3 west);
+\end{tikzpicture}
+\end{document}

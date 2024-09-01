@@ -1,0 +1,61 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    to[I, name=I, i^>=$I_{}$, !vi]
+    (0,2) --
+    (1,2) coordinate (Itl)
+    to[R, name=R1, i>_=$I_1$,
+        v^<={{{{\rotatebox[origin=c]{90}{$U_{R_1}$}}}}}, !vi]
+    (1,0) coordinate (Ibl) --
+    (0,0);
+    \draw[]
+    (Itl) --
+    (2,2) coordinate (Itm)
+    to[R, name=R2, i>_=$I_2$,
+        v^<={{{{\rotatebox[origin=c]{90}{$U_{R_2}$}}}}}, !vi]
+    (2,0) coordinate (Ibm) --
+    (0,0);
+    \draw[]
+    (Itm) --
+    (3,2) coordinate (Itr)
+    to[R, name=R3, i>_=$I_3$,
+        v^<={{{{\rotatebox[origin=c]{90}{$U_{R_3}$}}}}}, !vi]
+    (3,0) coordinate (Ibr) --
+    (Ibm);
+    \draw[]
+    (Itr) --
+    (4,2) node [right] (A) {A};
+    \draw[]
+    (Ibr) --
+    (4,0) node [right] (B) {B};
+    \draw[red, -Triangle]
+    (B) -- node[below, midway, sloped] (txt) {$U_{AB}$}
+    (A);
+    \varronly{R1} \varronly{R2} \varronly{R3}
+    \iarronly{I} \iarronly{R1} \iarronly{R2} \iarronly{R3}
+    \node[] at (R1.center) {$R_1$};
+    \node[] at (R2.center) {$R_2$};
+    \node[] at (R3.center) {$R_3$};
+    % Equiv
+    \node[right=1em] (E) at (txt) {$\equiv$};
+    \draw[shift={($(E)+(2em,-1)$)}]
+    (0,0)
+        to[I, name=I, i^>=$I_{}$, !vi]
+    (0,2) --
+    (1,2)
+        coordinate (Itl)
+        to[R, name=Req, i>_=$I$,
+            v^<={{{{\rotatebox[origin=c]{90}{$U_{R_{\rm eq}}$}}}}}, !vi]
+    (1,0)
+        coordinate (Ibl) --
+    (0,0);
+    \iarronly{I} \iarronly{Req}
+    \varronly{Req}
+    \node[rotate=90] at (Req.center) {$R_{\rm eq}$}
+\end{circuitikz}
+
+\end{document}

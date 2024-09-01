@@ -1,0 +1,124 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+    % Dioptre
+    \def\nair{1}
+    \def\neau{1.33}
+    \begin{scope}[rotate=90]
+        % Dioptre 1
+        \node[screen, rotate=180,
+            object height=4cm,
+            name path=Dpath]
+            (dioptre) at (1.5,0) {};
+        % Milieu n1
+            \node[above left] at (dioptre.north) {$n_{\rm air}$};
+        % Milieu n2
+        \def\dh{3}
+        \coordinate (D1) at ($(dioptre.north)!\dh cm!-90:(dioptre.south)$);
+        \fill[brandeisblue!10]
+            (dioptre.south) -- (dioptre.north) --
+            (D1) -- (D1-|dioptre.south) -- cycle;
+        % Text
+            \node[] at ([shift={(0.25,-1.5)}]dioptre.north) {$n > n_{\rm air}$};
+        \node[draw, left,
+            fill=gray!10, opacity=10,
+            rotate=90] at (dioptre.south) {dioptre};
+        % Dioptre 2
+        \node[screen, anchor=north,
+            object height=4cm, rotate=180,
+            name path=Dpath2]
+            (dioptre2) at (D1) {};
+        % Milieu n1 bis
+        \node[anchor=west] at ([shift={(0.25,-0.5)}]dioptre2.north) {$n_{\rm air}$};
+        \node[draw, right,
+            fill=gray!10, opacity=10,
+            rotate=90] at (dioptre2.north) {dioptre};
+        % Point
+        \coordinate (A) at (0,2);
+        % Rayons
+        \def\i{60}
+        \def\il{90-\i}
+        \path[name path=AH] (A) --++ (-\i:5cm);
+        % Define intersection
+        \path[name intersections={of=Dpath and AH, by=H}];
+        % Normal
+        \def\hsiz{2}
+        \draw[gray!50, dashed, name path=Hpath]
+            ([shift={(0,\hsiz)}]H) coordinate (Htop) --
+            ([shift={(0,-2*\hsiz)}]H) coordinate (Hbot);
+        \node[gray!70, above left] at (H) {H};
+        \node[gray!70] at (H) {$\times$};
+        % Define intersection
+        \path[name intersections={of=Hpath and Dpath2, by=J}];
+        \node[gray!70] at (J) {$\times$};
+        \node[gray!70, above right] at (J) {$J$};
+        % Draw
+        \draw[brandeisblue, simple] (A) -- (H);
+        \draw[brandeisblue!50, dashed, name path=AB]
+            (H) --++
+            ($1.9*(H)-1.9*(A)$) coordinate (Ab);
+        % Snell
+        \def\r{asin(\nair*sin(\il)/\neau)}
+        \def\rl{\r-90}
+        \path[name path=HI] (H) --++
+            ({\rl}:3.5cm);
+        % Define intersection
+        \path[name intersections={of=HI and Dpath2, by=I}];
+        \draw[orange!70, simple,] (H) -- (I);
+        % Snell
+        \def\ib{\il-90}
+        \draw[Red!70, simple] (I) --++ (\ib:1.7cm) coordinate (B);
+        % Normal 2
+        \node[gray!70, below right] at (I) {I};
+        \draw[gray!50, dashed, name path=Ipath]
+            ([shift={(0,\hsiz)}]I) coordinate (Itop) --
+            ([shift={(0,-\hsiz)}]I) coordinate (Ibot);
+        % Draw angles droit
+        \coordinate (D0) at (dioptre.north);
+        \pic[angle radius=0.2cm, angle eccentricity=1.3, draw]
+            {right angle=Htop--H--D0};
+        \coordinate (D02) at (dioptre2.north);
+        \pic[angle radius=0.2cm, angle eccentricity=1.3, draw]
+            {right angle=Itop--I--D02};
+        % Draw angles H
+        \pic[angle radius=1cm, angle eccentricity=1.3,
+            draw, ->, brandeisblue, "$i_1$" alias=i1]
+            {angle=Htop--H--A};
+        \pic[angle radius=1cm, angle eccentricity=1.3,
+            draw, ->, orange!70, "$i_2$" alias=r1]
+            {angle=Hbot--H--I};
+        % Draw angles I
+        \pic[angle radius=1cm, angle eccentricity=1.3,
+            draw, ->, orange!70, "$i_2$" alias=i2]
+            {angle=Itop--I--H};
+        \pic[angle radius=1cm, angle eccentricity=1.3,
+            draw, ->, Red!70, "$i_3$" alias=r2]
+            {angle=Ibot--I--B};
+        % Define intersection
+        \path[name intersections={of=AB and Ipath, by=I2}];
+        % Draw angles
+        \pic[angle radius=0.6cm, angle eccentricity=1.3,
+            draw, ->, brandeisblue!50,
+            "$i_1$" alias=i1b]
+            {angle=I--I2--Ab};
+        % Define intersection
+        \path[name intersections={of=AB and Dpath2, by=K}];
+        \node[gray!70] at (K) {$\times$};
+        \node[gray!70, above right] at (K) {$K$};
+        % Grandeurs
+        \node[inner sep=0pt, right=.5cm] (Jg) at (J) {};
+        \node[inner sep=0pt, right=.5cm] (Ig) at (I) {};
+        \draw[|<->|, ForestGreen] (Jg) --
+            node[right, midway, sloped]
+            {$x$} (Ig);
+        \node[inner sep=0pt, right=.5cm] (Kg) at (K) {};
+        \draw[|<->|, ForestGreen] (Ig) --
+            node[right, midway, sloped]
+            {$d$} (Kg);
+    \end{scope}
+\end{tikzpicture}
+
+\end{document}
+

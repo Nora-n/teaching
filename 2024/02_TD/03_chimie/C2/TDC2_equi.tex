@@ -1,0 +1,1712 @@
+\documentclass[../../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{Chimie -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+\HideSolutionstrue
+\toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{1}
+
+\chapter{\cswitch{Correction du TD}
+  {TD~: Transformation et \'equilibre chimique}}
+
+\section{Transformations totales}
+\enonce{%
+	Compléter les tableaux suivants. Les gaz seront supposés parfaits. Dans la
+	ligne $t$, on demande d'exprimer la quantité de matière en fonction de
+	l'avancement molaire $\xi(t)$ à un instant $t$ quelconque.
+}
+\QR{%
+	Réaction de l'oxydation du monoxyde d'azote en phase gazeuse, à $T =
+		\SI{25}{\degreeCelsius}$ dans un volume $V = \SI{10.0}{L}$~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}      &
+			$\ldots\ce{NO\gaz{}}$   & $+$   &
+			$\ldots\ce{O_2\gaz{}}$  & $\ra$ &
+			$\ldots\ce{NO_2\gaz{}}$ &
+			$n_{\tot, gaz} $        &
+			$P_{\tot} (\si{bar})$                             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol}) & $\xi = 0$                  &
+			$\num{1.00}$       & \vline                     &
+			$\num{2.00}$       & \vline                     &
+			$\num{0.00}$       &
+			                   &
+			\\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol}) & $\xi$                      &
+			                   & \vline                     &
+			                   & \vline                     &
+			                   &
+			                   &
+			\\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final (\si{mol})    & $\xi_f = \wht{\num{0.50}}$ &
+			                    & \vline                     &
+			                    & \vline                     &
+			                    &
+			                    &
+			\\
+			\hline
+		\end{tabularx}
+	\end{center}
+}{%
+  Pour la quantité totale de gaz, il suffit de sommer les quantité de matière de
+  chacun des gaz~: ici, initialement on a $n_0(\ce{NO\gaz{}}) +
+  n_0(\ce{O_2\gaz{}}) = \SI{3.00}{mol}$ de gaz. Ensuite, pour la pression totale
+  on utilise l'équation d'état des gaz parfaits~:
+	\begin{tcb}(rapp){Rappel~: gaz parfait}
+    \vspace{-15pt}
+		\begin{gather*}
+			\boxed{pV = nRT}
+			\qavec
+			\left\{
+			\begin{array}{ll}
+				p & \text{en Pa }                 \\
+				V & \text{en m}^3                 \\
+				n & \text{en mol}                 \\
+				T & \text{en \textbf{Kelvin} (K)}
+			\end{array}
+			\right.\\
+			\text{et }
+			\boxed{R = \SI{8.314}{J.mol^{-1}.K^{-1}}}\\
+			\text{est la constante des gaz parfaits}
+		\end{gather*}
+	\end{tcb}
+	Il faut donc convertir le volume en $\si{m^3}$. Pour cela, il suffit
+	d'écrire
+	\[\SI{10.0}{L} = \SI{10.0}{dm^3} = \num{10.0}(\SI{e-1}{m})^3 =
+		\SI{10.0e-3}{m^3}\]
+	Il est très courant d'oublier les puissances sur les conversions du
+	genre~: n'oubliez pas les parenthèses. Il nous faut de plus convertir la
+	température en Kelvins, attention à ne pas vous tromper de sens~: il
+	faut ici \textbf{ajouter} \SI{273.15}{K} à la température en degrés
+	Celsius, ce qui donne $T = \SI{298.15}{K}$. On peut donc faire
+	l'application numérique pour $P_{\tot}$ initial.
+	\bigbreak
+	On remplit la deuxième ligne du tableau avec les coefficients
+	stœchiométriques algébriques des constituants en facteur de chaque
+	$\xi$, et on somme les quantités de matière de gaz pour $n_{\tot,
+				gaz}$. En réalité, il est plus simple de partir de la valeur totale de
+	la première ligne et de compter algébriquement le nombre de $\xi$~: on
+	en perd 3 avec les réactifs pour en gagner 2 avec les produits, donc en
+	tout la quantité de matière totale de gaz décroit de 1$\xi$. On ne peut
+	pas calculer précisément la valeur de $P_{\tot}$ ici, il faudrait
+	l'exprimer en fonction de $\xi$ (ça viendra dans d'autres
+	exercices).
+  \bigbreak
+	Enfin, pour trouver le réactif limitant, on résout~:
+	\begin{gather*}
+		\left\{
+		\begin{array}{rcl}
+			n_0(\ce{NO\gaz{}})-2\xi_f & = & 0 \\
+			n_0(\ce{O_2\gaz{}})-\xi_f & = & 0
+		\end{array}
+		\right.
+		\Longleftrightarrow
+		\left\{
+		\begin{array}{rcl}
+			\xi_f & = & \SI{0.50}{mol}              \\
+			\xi_f & = & \SI{1.00}{mol} > \xi_{\max}
+		\end{array}
+		\right.
+	\end{gather*}
+	La seule valeur possible est la plus petite, $\xi_f = \SI{0.50}{mol}$~:
+	si on prenait \SI{1.00}{mol} on trouverait une quantité négative de
+	\ce{NO} à l'état final, ce qui, vous en conviendrez, est une absurdité.
+	Même travail qu'initialement pour $n_{\tot, gaz}$ et $P_{\tot}$.
+	D'où le tableau~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$2\ce{NO\gaz{}}$    & $+$                  &
+			$\ce{O_2\gaz{}}$    & $\ra$                &
+			$2\ce{NO_2\gaz{}}$  &
+			$n_{\tot, gaz} $    &
+			$P_{\tot} (\si{bar})$                        \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol})  & $\xi = 0$            &
+			$\num{1.00}$        & \vline               &
+			$\num{2.00}$        & \vline               &
+			$\num{0.00}$        &
+			$\num{3.00}$        &
+			$\num{7.40}$                                 \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol})  & $\xi$                &
+			$\num{1.00} - 2\xi$ & \vline               &
+			$\num{2.00} - \xi$  & \vline               &
+			$2\xi$              &
+			$\num{3.00} - \xi$  &
+			--                                           \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final (\si{mol}) & $\xi_f = \num{0.50}$ &
+			\num{0.00}       & \vline                     &
+			\num{1.50}       & \vline                     &
+			\num{1.00}       &
+			\num{2.50}       &
+			\num{6.20}                                   \\
+			\hline
+		\end{tabularx}
+	\end{center}
+}
+\QR{%
+  Réaction de combustion de l'éthanol dans l'air. Les réactifs sont
+  introduits dans les proportions stœchiométriques. Le dioxygène provient
+  de l'air, qui contient 20\% de $\ce{O2}$ et 80\% de $\ce{N2}$ en
+  fraction molaire.
+  \begin{center}
+    \def\rhgt{0.50}
+    \centering
+    \begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|Y|}
+      \hline
+      \multicolumn{2}{|c||}{
+        $\xmathstrut{\rhgt}$
+      \textbf{Équation} (\si{mol})} &
+      $\ce{C_2H_5OH\liq{}}$         & $+$                        &
+      $3\ce{O_2\gaz{}}$             & $\ra$                      &
+      $2\ce{CO_2\gaz{}}$            & $+$                        &
+      $3\ce{H_2O\gaz{}}$            &
+      $n_{\ce{N_2}}$                &
+      $n_{\tot, gaz}$                                              \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Initial                       & $\xi = 0$                  &
+      $\num{2.00}$                  & \vline                     &
+                                    & \vline                     &
+                                    & \vline                     &
+                                    &
+                                    &
+      \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Interm.                       & $\xi$                      &
+                                    & \vline                     &
+                                    & \vline                     &
+                                    & \vline                     &
+                                    &
+                                    &
+      \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Final                         & $\xi_f = \wht{\num{2.00}}$ &
+                                    & \vline                     &
+                                    & \vline                     &
+                                    & \vline                     &
+                                    &
+                                    &
+      \\
+      \hline
+    \end{tabularx}
+  \end{center}
+}{%
+  Pour une réaction $a{\ce{A}} + b{\ce{B}} = c{\ce{C}} + d{\ce{D}}$, le fait
+  que les réactifs soient introduits dans les proportions stœchiométriques
+  se traduit par
+  \[ \frac{n_{\ce{A}}^0}{a} = \frac{n_{\ce{B}}^0}{b}
+    \Longleftrightarrow
+    n_{\ce{B}}^0 = \frac{b}{a}n_{\ce{A}}^0
+  \]
+  Ici, on a donc $n_{\ce{O2}}^0 = 3n_{\ce{C2H2OH}}^0$, c'est-à-dire
+  $n_{\ce{O2}}^0 = \SI{6.00}{mol}$. On peut donc remplir cette
+  case.
+  \bigbreak
+  On suppose qu'on commence sans $\ce{CO2}$ ou $\ce{H2O}$ initialement,
+  puisque rien n'est indiqué~; en revanche, on sait qu'il y a déjà du
+  diazote dans le milieu puis que le dioxygène vient de l'air, comme c'est
+  indiqué. Comme il y a 80\% de \ce{N2} pour 20\% de \ce{O2}, cela veut
+  dire qu'il y a 4 fois plus de diazote que de dioxygène, donc
+  \SI{24.00}{mol}. Ici, la colonne $n_{\tot, gaz}$ n'a pas grande
+  utilité puisqu'il n'y a qu'un gaz, mais c'est une bonne pratique à ne
+  pas oublier.
+  \bigbreak
+  Le reste du remplissage est le même que pour la question 1. On trouve
+  évidemment $\xi_f = \SI{2.00}{mol}$ avec les deux réactifs limitant,
+  c'est le principe des proportions stœchiométriques.
+  \begin{center}
+    \def\rhgt{0.50}
+    \centering
+    \begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|Y|}
+      \hline
+      \multicolumn{2}{|c||}{
+        $\xmathstrut{\rhgt}$
+      \textbf{Équation} (\si{mol})} &
+      $\ce{C_2H_2OH\liq{}}$         & $+$                  &
+      $3\ce{O_2\gaz{}}$             & $\ra$                &
+      $2\ce{CO_2\gaz{}}$            & $+$                  &
+      $3\ce{H_2O\gaz{}}$            &
+      $n_{\ce{N_2}}$                &
+      $n_{\tot, gaz}$                                        \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Initial                       & $\xi = 0$            &
+      $\num{2.00}$                  & \vline               &
+      $\num{6.00}$                  & \vline               &
+      $\num{0.00}$                  & \vline               &
+      $\num{0.00}$                  &
+      $\num{24.00}$                 &
+      $\num{30.00}$                                          \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Interm.                       & $\xi$                &
+      $\num{2.00} - \xi$            & \vline               &
+      $\num{6.00} - 3\xi$           & \vline               &
+      $2\xi$                        & \vline               &
+      $3\xi$                        &
+      $\num{24.00}$                 &
+      $\num{30.00} + 2\xi$                                   \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Final                         & $\xi_f = \num{2.00}$ &
+      $\num{0.00}$                  & \vline               &
+      $\num{0.00}$                  & \vline               &
+      $\num{4.00}$                  & \vline               &
+      $\num{6.00}$                  &
+      $\num{24.00}$                 &
+      $\num{34.00}$                                          \\
+      \hline
+    \end{tabularx}
+  \end{center}
+}
+
+\section{Équilibre… ou pas~!}
+\resetQ
+\enonce{%
+La dissociation du peroxyde de baryum sert à l'obtention de dioxygène avant la
+mise au point de la liquéfaction de l'air, selon l'équation
+
+\centersright{%
+	$\ce{2BaO2\sol{} <=> 2BaO\sol{} + O2\gaz{}}$%
+}{%
+	$K\degree(\SI{795}{\degreeCelsius}) = \num{0.50}$%
+}
+
+Le volume de l'enceinte, initialement vide de tout gaz, vaut $V = \SI{10}{L}$.
+On rappelle que $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$.
+}
+
+\begin{blocQR}
+	\item
+	\QR{%
+		Exprimer la constante d'équilibre $K\degree$ en fonction de la pression
+		partielle à l'équilibre $p_{\ce{O2}, \eq}$.
+	}{%
+		Par définition, $K\degree = Q_{r, \eq}$. On exprime donc le
+		quotient de réaction avec les activités à l'équilibre~:
+		\[
+      \boxed{K\degree = \frac{p_{\ce{O2,\eq}}}{p\degree}}
+    \]
+	}
+
+	\QR{%
+		En déduire la valeur numérique de $p_{\ce{O2}, \eq}$.
+	}{%
+		On a la valeur de $K\degree$ et la valeur de $p\degree$~: de
+		l'équation précédente on isole $p_{\ce{O2}, \eq}$~:
+		\begin{gather*}
+			\boxed{p_{\ce{O2},\eq} = K\degree p\degree}
+			\qavec
+			\left\{
+			\begin{array}{rcl}
+				K\degree & = & \num{0.50}     \\
+				p\degree & = & \SI{1.00}{bar}
+			\end{array}
+			\right.\\
+			\AN
+			\xul{p_{\ce{O2},\eq} = \SI{0.50}{bar} = \SI{5.0e4}{Pa}}
+		\end{gather*}
+	}
+	\QR{%
+		Calculer le nombre de moles de dioxygène qui permet d'atteindre
+		cette pression dans l'enceinte.
+	}{%
+		Avec la loi des gaz parfaits, on a
+		\begin{gather*}
+			p_{\ce{O2},\eq}V = n_{\ce{O2}, \eq}RT
+			\Lra
+			\boxed{n_{\ce{O2}, \eq} = \frac{p_{\ce{O2},\eq}V}{RT}}
+			\qavec
+			\left\{
+			\begin{array}{rcl}
+				V & = & \SI{10e-3}{m^3} \\
+				T & = & \SI{1068.15}{K}
+			\end{array}
+			\right.\\
+			\AN
+			\xul{n_{\ce{O2}, \eq} = \SI{0.056}{mol}}
+		\end{gather*}
+	}
+\end{blocQR}
+\begin{blocQR}
+	\item Cas 1~:
+	\enonce{
+		\begin{center}
+			\def\rhgt{0.50}
+			\centering
+			\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+				\hline
+				\multicolumn{2}{|c||}{
+					$\xmathstrut{\rhgt}$
+				\textbf{Équation}}  &
+				$2\ce{BaO_2\sol{}}$ & $\rightleftharpoons$ &
+				$2\ce{BaO\sol{}}$   & $+$                  &
+				$\ce{O_2\gaz{}}$    &
+				$n_{\tot, gaz}$                              \\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Initial (\si{mol})  & $\xi = 0$            &
+				$\num{0.20}$        & \vline               &
+				$\num{0.00}$        & \vline               &
+				$\num{0.00}$        &
+				$\num{0.00}$                                 \\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Interm. (\si{mol})  & $\xi$                &
+				                    & \vline               &
+				                    & \vline               &
+				                    &
+				\\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Final  (\si{mol})   & $\xi = \xi_f$        &
+				                    & \vline               &
+				                    & \vline               &
+				                    &
+				\\
+				\hline
+			\end{tabularx}
+		\end{center}
+	}
+	\ifcorrige{
+		\begin{center}
+			\def\rhgt{0.50}
+			\centering
+			\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+				\hline
+				\multicolumn{2}{|c||}{
+					$\xmathstrut{\rhgt}$
+				\textbf{Équation}}  &
+				$2\ce{BaO_2\sol{}}$ & $\rightleftharpoons$ &
+				$2\ce{BaO\sol{}}$   & $+$                  &
+				$\ce{O_2\gaz{}}$    &
+				$n_{\tot, gaz}$                              \\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Initial (\si{mol})  & $\xi = 0$            &
+				$\num{0.20}$        & \vline               &
+				$\num{0.00}$        & \vline               &
+				$\num{0.00}$        &
+				$\num{0.00}$                                 \\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Interm. (\si{mol})  & $\xi$                &
+				$\num{0.20} - 2\xi$ & \vline               &
+				$2\xi$              & \vline               &
+				$\xi$               &
+				$\xi$                                        \\
+				\hline
+				$\xmathstrut{\rhgt}$
+				Final  (\si{mol})   & $\xi = \xi_f$        &
+				$\num{0.088}$       & \vline               &
+				$\num{0.112}$       & \vline               &
+				$\num{0.056}$       &
+				$\num{0.056}$                                \\
+				\hline
+			\end{tabularx}
+		\end{center}
+	}
+	\QR{%
+		Calculer le quotient de réaction initial $Q_{r,0}$ et en déduire le sens
+		d'évolution du système.
+	}{%
+		On change juste $p_{\ce{O2},\eq}$ de la première question en
+		$p_{\ce{O2}, 0}$~; sachant qu'on commence sans gaz dans l'enceinte,
+		cette pression est nulle~:
+		\[\boxed{Q_{r,0} = \frac{p_{\ce{O2}, 0}}{p\degree} = 0}\]
+		On a donc $Q_{r,0} < K$, et l'évolution se fait en sens direct.
+	}
+	\QR{%
+		Remplir le tableau d'avancement et remplir la ligne intermédiaire dans le
+		tableau en fonction de $\xi$.
+	}{%
+		Voir tableau.
+	}
+	\QR{%
+		Déterminer $\xi_f$ en précisant si l'équilibre est atteint ou pas. On
+		rappelle que l'équilibre correspond à la coexistence de toutes les
+		espèces.
+	}{%
+		~
+		\vspace{-15pt}
+		\begin{tcb}(tool){État d'équilibre}
+			Pour trouver l'état final dans cette situation, \textbf{on
+				détermine $\xi_{\eq}$ s'il y avait équilibre, et on regarde
+				si c'est compatible avec $\xi_{\max}$ si la réaction était
+				totale}.
+		\end{tcb}
+		S'il y a équilibre, ça veut dire que $n_{\ce{O2}, \eq} =
+			\SI{0.056}{mol}$ comme déterminé au début. Or, le tableau nous
+		indique que $n_{\ce{O2}, f} = \xi_f$, donc si c'est un équilibre
+		\xul{$\xi_{\eq} = \SI{0.056}{mol}$}.
+    \bigbreak
+		L'avancement est maximal si \ce{BaO2} est limitant~: on trouve donc
+		$\xi_{\max}$ en résolvant $\num{0.20} - 2\xi_{\max} = 0$,
+		c'est-à-dire \xul{$\xi_{\max} = \SI{0.1}{mol}$}.
+    \bigbreak
+		La valeur est finale $\xi_f$ est la plus petite valeur (en valeur
+		absolue) de $\xi_{\eq}$ et $\xi_{\max}$~; or ici $\xi_{\eq} <
+			\xi_{\max}$~: il y a donc bien équilibre, et on a
+		\[\xul{\xi_f = \xi_{\eq} = \SI{0.056}{mol}}\]
+	}
+	\QR{%
+		Remplir la dernière ligne du tableau d'avancement.
+	}{%
+		Voir tableau.
+	}
+\end{blocQR}
+\QR{%
+	Mêmes questions dans le cas 2~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$2\ce{BaO_2\sol{}}$ & $\rightleftharpoons$ &
+			$2\ce{BaO\sol{}}$   & $+$                  &
+			$\ce{O_2\gaz{}}$    &
+			$n_{\tot, gaz}$                              \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol}) & $\xi = 0$ &
+			$\num{0.10}$       & \vline    &
+			$\num{0.00}$       & \vline    &
+			$\num{0.00}$       &
+			$\num{0.00}$                               \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol})  & $\xi$                &
+			                    & \vline               &
+			                    & \vline               &
+			                    &
+			\\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mol})   & $\xi = \xi_f$        &
+			                    & \vline               &
+			                    & \vline               &
+			                    &
+			\\
+			\hline
+		\end{tabularx}
+	\end{center}
+}{%
+	Cas 2~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}       &
+			$2\ce{BaO_2\sol{}}$      & $\rightleftharpoons$ &
+			$2\ce{BaO\sol{}}$        & $+$                  &
+			$\ce{O_2\gaz{}}$         &
+			$n_{\tot, gaz}$                                   \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol})       & $\xi = 0$            &
+			$\num{0.10}$             & \vline               &
+			$\num{0.00}$             & \vline               &
+			$\num{0.00}$             &
+			$\num{0.00}$                                      \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol})       & $\xi$                &
+			$\num{0.10} - 2\xi$      & \vline               &
+			$2\xi$                   & \vline               &
+			$\xi$                    &
+			$\xi$                                             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mol})        & $\xi = \xi_f$        &
+			$\ifcorrige{\num{0.00}}$ & \vline               &
+			$\ifcorrige{\num{0.10}}$ & \vline               &
+			$\ifcorrige{\num{0.05}}$ &
+			$\ifcorrige{\num{0.05}}$                          \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	\begin{enumerate}[leftmargin=20pt, label=\alph* --]
+		\item On a toujours aucun gaz au départ, donc ici aussi
+		      \[\boxed{Q_{r,0} = \frac{p_{\ce{O2}, 0}}{p\degree} = 0}\]
+		      et la réaction est en sens direct.
+		\item Voir tableau.
+		\item Même procédé~: \textbf{on détermine $\xi_{\eq}$ s'il y avait
+			      équilibre, et on regarde si c'est compatible avec $\xi_{\max}$
+			      si la réaction était totale}.
+            \bigbreak
+		      S'il y a équilibre, ça veut dire que $n_{\ce{O2}, \eq} =
+			      \SI{0.056}{mol}$ comme déterminé au début. Or, le tableau nous
+		      indique que $n_{\ce{O2}, f} = \xi_f$, donc si c'est un équilibre
+		      \xul{$\xi_{\eq} = \SI{0.056}{mol}$}.
+          \bigbreak
+		      L'avancement est maximal si \ce{BaO2} est limitant~: on trouve donc
+		      $\xi_{\max}$ en résolvant $\num{0.10} - 2\xi_{\max} = 0$,
+		      c'est-à-dire \xul{$\xi_{\max} = \SI{0.050}{mol}$}.
+          \bigbreak
+		      La valeur est finale $\xi_f$ est la plus petite valeur (en valeur
+		      absolue) de $\xi_{\eq}$ et $\xi_{\max}$~; or ici $\xi_{\eq} >
+			      \xi_{\max}$~: il n'y a donc \textbf{pas équilibre}, et on a
+		      \[\xul{\xi_f = \xi_{\max} = \SI{0.050}{mol}}\]
+		\item Voir tableau.
+	\end{enumerate}
+}
+\QR{%
+	Mêmes questions dans le cas 3~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$2\ce{BaO_2\sol{}}$ & $\rightleftharpoons$ &
+			$2\ce{BaO\sol{}}$   & $+$                  &
+			$\ce{O_2\gaz{}}$    &
+			$n_{\tot, gaz}$                              \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol})  & $\xi = 0$            &
+			$\num{0.10}$         & \vline               &
+			$\num{0.050}$        & \vline               &
+			$\num{0.10}$         &
+			$\num{0.10}$                                  \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol})  & $\xi$                &
+			                    & \vline               &
+			                    & \vline               &
+			                    &
+			\\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mol})   & $\xi = \xi_f$        &
+			                    & \vline               &
+			                    & \vline               &
+			                    &
+			\\
+			\hline
+		\end{tabularx}
+	\end{center}
+}{%
+	Cas 3~:
+	\begin{center}
+		\def\rhgt{0.50}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}   &
+			$2\ce{BaO_2\sol{}}$  & $\rightleftharpoons$ &
+			$2\ce{BaO\sol{}}$    & $+$                  &
+			$\ce{O_2\gaz{}}$     &
+			$n_{\tot, gaz}$                               \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mol})   & $\xi = 0$            &
+			$\num{0.10}$         & \vline               &
+			$\num{0.050}$        & \vline               &
+			$\num{0.10}$         &
+			$\num{0.10}$                                  \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mol})   & $\xi$                &
+			$\num{0.10} - 2\xi$  & \vline               &
+			$\num{0.050} + 2\xi$ & \vline               &
+			$\num{0.10} + \xi$   &
+			$\num{0.10} + \xi$                            \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mol})    & $\xi = \xi_f$        &
+			$\num{0.15}$         & \vline               &
+			$\num{0.00}$         & \vline               &
+			$\num{0.075}$        &
+			$\num{0.075}$                                 \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	\begin{enumerate}[leftmargin=20pt, label=\alph* --]
+		\item On a cette fois du gaz au départ, donc ici
+		      \begin{gather*}
+			      Q_{r,0}
+			      = \frac{p_{\ce{O2}, 0}}{p\degree}
+            \Lra
+            \boxed{
+              Q_{r,0}
+              = \frac{n_{\ce{O2}, 0}RT}{Vp\degree}
+            }
+			      \qavec
+			      \left\{
+			      \begin{array}{rcl}
+				      n_{\ce{O2}, 0} & = & \SI{0.10}{mol}  \\
+				      T              & = & \SI{1069.15}{K} \\
+				      V              & = & \SI{10e-3}{m^3}
+			      \end{array}
+			      \right.\\
+			      \AN
+			      \xul{Q_{r,0} = \num{0.89}}
+		      \end{gather*}
+		      Cette fois, $Q_{r,0} > K$ donc la réaction se fait en sens
+		      indirect.
+		\item Voir tableau.
+		      \begin{tcb}(impo){Important}
+
+			      Le procédé de remplissage du tableau \textbf{ne doit pas changer}
+			      même si la réaction se fait dans le sens indirect~: les coefficients
+			      stœchiométriques de la réaction n'ont pas changé, donc les facteurs
+			      devant des $\xi(t)$ non plus.
+			      \smallbreak
+			      Certes, on aura $\xi < 0$ mais il est plus naturel et moins
+			      perturbant de garder la forme de base du remplissage du tableau
+			      plutôt que de s'embêter à repenser l'écriture du tableau.
+
+		      \end{tcb}
+		\item Même procédé~: \textbf{on détermine $\xi_{\eq}$ s'il y
+			      avait équilibre, et on regarde si c'est compatible avec
+			      $\xi_{\max}$ si la réaction était totale}.
+            \bigbreak
+		      S'il y a équilibre, ça veut dire que $n_{\ce{O2}, \eq} =
+			      \SI{0.056}{mol}$ comme déterminé au début. Or, le tableau nous
+		      indique que $n_{\ce{O2}, f} = \num{0.10} + \xi_f$, donc si c'est
+		      un équilibre \xul{$\xi_{\eq} = -\SI{0.044}{mol}$}.
+          \bigbreak
+		      L'avancement est maximal si \ce{BaO} ou \ce{O2} sont limitant~:
+		      on résout donc
+		      \begin{gather*}
+			      \left\{
+			      \begin{array}{rcl}
+				      n_{\ce{BaO}}^{0+}+2\xi_{\max} & = & 0 \\
+				      n_{\ce{O_2}}^{0+}+\xi_{\max}  & = & 0
+			      \end{array}
+			      \right.
+			      \Longleftrightarrow
+			      \left\{
+			      \begin{array}{rcl}
+				      \xi_{\max} & = & -\SI{0.025}{mol} \\
+				      \xi_{\max} & = & -\SI{0.050}{mol}
+			      \end{array}
+			      \right.
+		      \end{gather*}
+		      Le seul $\xi_{\max}$ possible est le plus petit \textbf{en
+			      valeur absolue}, c'est-à-dire \xul{$\xi_{\max} = -\SI{0.025}{mol}$}.
+              \bigbreak
+          La valeur est finale $\xi_f$ est la plus petite valeur \textbf{en
+          valeur absolue} de $\xi_{\eq}$ et $\xi_{\max}$~; or ici
+          $\abs{\xi_{\eq}} > \abs{\xi_{\max}}$~: il n'y a donc \textbf{pas
+          équilibre}, et on a
+		      \[\xul{\xi_f = \xi_{\max} = -\SI{0.025}{mol}}\]
+		\item Voir tableau.
+	\end{enumerate}
+}
+
+\section{Combinaisons de réactions et constantes d'équilibre}
+\resetQ
+\QR{%
+	On considère les réactions numérotées $(1)$ et $(2)$ ci-dessous~:
+	\[\ce{4Cu\sol{} + O2\gaz{} = 2Cu2O\sol{}}\quad K_1\degree
+		\qqet
+		\ce{2Cu2O\sol{} + O2\gaz{} = 4CuO\sol{}}\quad K_2\degree\]
+	Exprimer les constantes d'équilibre des trois réactions ci-dessous en fonction
+	de $K_1\degree$ et $K_2\degree$~:
+	\[
+		\ce{2Cu\sol{} + O2\gaz{} = 2CuO\sol{}}
+    \quad ; \quad 
+		\ce{8Cu\sol{} + 2O2\gaz{} = 3Cu2O\sol{}}
+    \quad ; \quad 
+		\ce{2CuO\sol{} = 4Cu\sol{}+ O2\gaz{}}
+	\]
+}{%
+	Dans cet exercice, on introduit le lien entre relation sur les équations-bilan
+	et les constantes d'équilibre associées. En effet, on a vu dans le cours que
+	\[a{\ce{A}} + b{\ce{B}} = c{\ce{C}} + d{\ce{D}}\]
+	a pour constante d'équilibre
+	\[K_1\degree = \prod_i a({\ce{X}}_i)^{\nu_{i, 1}}\]
+	Si on inverse la réaction pour avoir
+	\[c{\ce{C}} + d{\ce{D}} = a{\ce{A}} + b{\ce{B}}\]
+	alors on prend l'opposé de chaque coefficient stœchiométrique~: $\nu_{i, 2} =
+		- \nu_{i,1}$, ce qui fait que cette réaction a pour constante d'équilibre
+	\[
+		K_2\degree
+		= \prod_i a({\ce{X}}_i)^{\nu_{i,2}}
+		= \prod_i a({\ce{X}}_i)^{-\nu_{i,1}}
+		= \left(\prod_i a({\ce{X}}_i)^{\nu_{i,1}}\right)^{-1}
+		= \left( K_1\degree \right)^{-1}
+	\]
+
+	Le même raisonnement tient pour montrer que
+	\[2a{\ce{A}} + 2b{\ce{B}} = 2c{\ce{C}} + 2d{\ce{D}}\]
+	a pour constante d'équilibre
+	\[K_3\degree = K_1\degree^2\]
+
+	On étend le raisonnement pour montrer que si on ajoute deux réactions (1) et
+	(2) pour avoir une équation (3), alors on aura $K_3\degree = K_1\degree\times
+		K_2\degree$, et que si on a $(3) = \alpha(1) + \beta(2)$, alors
+	$K_3\degree = K_1\degree^{\alpha}\times K_2\degree^{\beta}$.
+	\bigbreak
+	Ainsi, dans cet exercice il suffit de trouver les relations entre les
+	équations (3), (4), (5) et les équations (1) et (2) de constantes respectives
+	$K_1\degree$ et $K_2\degree$. On trouve alors~:
+	\begin{enumerate}[leftmargin=20pt, label=\alph* --]
+		\item
+		      \[
+			      (3)
+			      = \frac{(1)+(2)}{2}
+			      \Lra
+			      K_3\degree
+			      = \left(K_1\degree\times K_2\degree\right)^{1/2}
+			      = \sqrt{K_1\degree K_2\degree}
+		      \]
+		\item
+		      \[
+			      (4) = 2(1)
+			      \Lra
+			      K_4\degree
+			      = \left( K_1\degree \right)^2
+		      \]
+		\item
+		      \[
+			      (5)
+			      = -(1)
+			      \Lra
+			      K_5\degree
+			      = \left( K_1\degree \right)^{-1}
+		      \]
+	\end{enumerate}
+	Tout ceci se vérifie bien sûr en écrivant les constantes de chacune des
+	réactions~:
+	\[
+		K_1\degree = \frac{p\degree}{p_{\ce{O2}}}
+    \quad ; \quad 
+		K_2\degree = \frac{p\degree}{p_{\ce{O2}}}
+    \quad ; \quad 
+		K_3\degree = \frac{p\degree}{p_{\ce{O2}}}
+    \quad ; \quad 
+		K_4\degree = \frac{p\degree^2}{p_{\ce{O2}}{}^2}
+    \quad ; \quad 
+		K_5\degree = \frac{p_{\ce{O2}}}{p\degree}
+	\]
+}
+
+\section{Équilibre avec des solides}
+\resetQ
+\enonce{%
+	La chaux vive, solide blanc de formule $\ce{CaO\sol{}}$, est un des produits
+	de chimie industrielle les plus communs. Utilisée depuis l'Antiquité,
+	notamment dans le domaine de la construction, elle est aujourd'hui utilisée
+	comme intermédiaire en métallurgie. Elle est obtenue industriellement par
+	dissociation thermique du calcaire dans un four à $T = \SI{1100}{K}$. On
+	modélise cette transformation par la réaction d'équation~:
+
+	\centersright{%
+		$\ce{CaCO3\sol{} = CaO\sol{} + CO2 \gaz{}}$
+	}{%
+		$K\degree(\SI{1100}{K}) = \num{0.358}$
+	}
+}
+
+\QR{%
+	Dans un récipient de volume $V = \SI{10}{L}$ préalablement vide, on
+	introduit \SI{10}{mmol} de calcaire à température constante $T =
+		\SI{1100}{K}$. Déterminer le sens d'évolution du système chimique.
+}{%
+	Comme on ne part que de calcaire, la réaction \textbf{ne peut avoir
+		lieu que dans le sens direct}. On vérifie cette intuition en calculant
+	$Q_{r,0}$ pour le comparer à $K$, sachant qu'on part d'un récipient vide
+	de gaz au début~:
+	\[\boxed{Q_{r,0} = \frac{p_{\ce{CO2}, 0}}{p\degree} = 0 < K\degree}\]
+	La réaction se fait bien dans le sens direct.
+}
+
+\QR{%
+	Supposons que l'état final est un état d'équilibre. Déterminer la
+	quantité de matière de calcaire qui devrait avoir réagi. Conclure sur
+	l'hypothèse faite.
+}{%
+	Si l'état final est un état d'équilibre, alors avec l'équation
+	précédente on aura
+	\begin{gather*}
+		p_{\ce{CO2}, \eq}
+		= K\degree p\degree\\
+		\Longleftrightarrow
+		n_{\ce{O2}, \eq}
+		= \frac{p_{\ce{O2},\eq}V}{RT}
+		= \frac{Kp\degree V}{RT}
+	\end{gather*}
+	Or, un tableau d'avancement donne que $n_{\ce{O2}, \eq} = \xi_{\eq}$~; on
+	trouve donc
+	\begin{gather*}
+		\boxed{\xi_{\eq} = \frac{K\degree p\degree V}{RT}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			K        & = & \num{0.358}              \\
+			V        & = & \SI{10e-3}{m^3}          \\
+			T        & = & \SI{1100}{K}             \\
+			p\degree & = & \SI{1}{bar}              \\
+			R        & = & \SI{8.314}{J.mol.K^{-1}}
+		\end{array}
+		\right.\\
+		\mathrm{A.N.~:}\quad
+		\xul{\xi_{\eq} = \SI{39}{mmol}}
+	\end{gather*}
+	Pour savoir si cette valeur est réalisable, on calcule $\xi_{\max}$ que
+	l'on trouverait si le calcaire était limitant, c'est-à-dire en résolvant
+	$\num{10} - \xi_{\max} = 0$~: on trouve naturellement \xul{$\xi_{\max}
+			= \SI{10}{mmol}$}.
+	\bigbreak
+	On sait que la valeur de $\xi_f$ est la plus petite valeur absolue entre
+	$\xi_{\eq}$ et $\xi_{\max}$. Or, ici on trouve $\xi_{\eq} >
+		\xi_{\max}$, ce qui veut dire que \textbf{l'équilibre ne peut être
+		atteint} et qu'on aura ainsi
+	\[\xul{\xi_f = \xi_{\max} = \SI{10}{mmol}}\]
+	c'est-à-dire que \textbf{la réaction est totale}. On peut donc remplir
+	la dernière ligne du tableau d'avancement.
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$\ce{CaCO_3\sol{}}$ & $=$                  &
+			$\ce{CaO\sol{}}$    & $+$                  &
+			$\ce{CO_2\gaz{}}$   &
+			$n_{\tot, gaz}$                              \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mmol}) & $\xi = 0$            &
+			$10$                & \vline               &
+			$0$                 & \vline               &
+			$0$                 &
+			$0$                                          \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mmol}) & $\xi$                &
+			$10 - \xi$          & \vline               &
+			$\xi$               & \vline               &
+			$\xi$               &
+			$\xi$                                        \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mmol})  & $\xi_f = \xi_{\max}$ &
+			$0$                 & \vline               &
+			$10$                & \vline               &
+			$10$                &
+			$10$                                         \\
+			\hline
+		\end{tabularx}
+	\end{center}
+}
+\QR{%
+	Si on part de \SI{50}{mmol} de calcaire, quelle est la quantité de chaux
+	obtenue~? Comment faire pour augmenter la quantité de chaux produite~?
+}{%
+	En ne partant que de calcaire, dès que $\xi_f$ atteint $\xi_{\eq}$ la réaction
+	s'arrêtera puisqu'on aura atteint l'équilibre. Mettre plus de calcaire ne
+	formera pas plus de chaux, l'excédent de réactif initial ne réagira simplement
+	pas. Ainsi, \textbf{la quantité de matière de calcaire maximale qui puisse
+		être transformée est de $\xi_{\max} = \SI{39}{mmol}$}.
+	\bigbreak
+	Pour déplacer l'équilibre dans le sens direct, il faut diminuer la quantité de
+	$\ce{CO_2\gaz{}}$~: on diminue alors $Q_r$ qui peut repasser en-dessous de
+	$K\degree$. Il suffit pour ça de \textbf{travailler en volume ouvert} ou
+	\textbf{d'aspirer le $\ce{CO_2\gaz{}}$}.
+}
+
+\section{Équilibre en solution aqueuse}
+\resetQ
+\enonce{%
+	Considérons un système de volume \SI{20}{mL} évoluant selon la réaction
+	d'équation bilan~:
+
+	\centersright{%
+		$\ce{CH3COOH\aqu{} + F^{-}\aqu{} <=> CH3COO^{-}\aqu{} + HF\aqu{}}$
+	}{%
+		$K\degree(\SI{25}{\degreeCelsius}) = \num{e-1.60}$
+	}
+
+	Déterminer le sens d'évolution du système et l'avancement à l'équilibre en
+	partant des deux situations initiales suivantes~:
+}
+
+\QR{%
+$[\ce{CH3COOH}]_0 = [\ce{F^{-}}]_0 = c = \SI{0.1}{mol.L^{-1}}$ et
+$[\ce{CH3COO^{-}}]_0 = [\ce{HF}]_0 = 0$
+}{%
+Pour déterminer le sens d'évolution du système, on calcule $Q_{r,0}$
+et on le compare à $K\degree$~:
+\[\boxed{
+	Q_{r,0} = \frac{[\ce{CH3COO^{-}}]_0[\ce{HF}]_0}
+	{[\ce{CH3COOH}]_0[\ce{F^{-}}]_0} = 0 < K\degree}
+\]
+La réaction évoluera donc \textbf{dans le sens direct}.
+\bigbreak
+Pour trouver l'avancement à l'équilibre, on dresse le tableau
+d'avancement, que l'on peut directement faire en concentrations puisque
+le volume ne varie pas (ce qui est toujours le cas cette année)~:
+\begin{center}
+	\def\rhgt{0.35}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdYdY|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}       &
+		$\ce{CH_3COOH\aqu{}}$    & $+$             &
+		$\ce{F^{-}\aqu{}}$       & $=$             &
+		$\ce{CH_3COO^{-}\aqu{}}$ & $+$             &
+		$\ce{HF\aqu{}}$                              \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                  & $x = 0$         &
+		$c$                      & \vline          &
+		$c$                      & \vline          &
+		$0$                      & \vline          &
+		$0$                                          \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final                    & $x_f = x_{\eq}$ &
+		$c - x_{\eq}$          & \vline          &
+		$c - x_{\eq}$          & \vline          &
+		$x_{\eq}$              & \vline          &
+		$x_{\eq}$                                  \\
+		\hline
+	\end{tabularx}
+\end{center}
+D'après la loi d'action des masses, on a
+\begin{gather*}
+	K\degree = \frac{x_{\eq}{}^2}{(c-x_{\eq})^2}
+	\Longleftrightarrow
+	\sqrt{K\degree} = \frac{x_{\eq}}{c-x_{\eq}}
+	\Longleftrightarrow
+	x_{\eq} = \sqrt{K\degree}(c-x_{\eq})\\
+	\Longleftrightarrow
+	\boxed{x_{\eq} = \frac{\sqrt{K\degree}}{1+ \sqrt{K\degree}}c}
+	\qavec
+	\left\{
+	\begin{array}{rcl}
+		K\degree & = & \num{e-1.60}         \\
+		c        & = & \SI{0.1}{mol.L^{-1}}
+	\end{array}
+	\right.\\
+	\mathrm{A.N.~:}\quad
+	\xul{x_{\eq} = \SI{1.4e-2}{mol.L^{-1}}}
+\end{gather*}
+En encadrant le résultat, on vérifie la cohérence physico-chimique de la
+réponse~: ici c'est bien cohérent de trouver $x_{\eq} > 0$ puisqu'on
+avait déterminé que la réaction se faisait dans le sens direct.
+}
+\QR{%
+$[\ce{CH3COOH}]_0 = [\ce{F^{-}}]_0 = [\ce{CH3COO^{-}}]_0 =
+	[\ce{HF}]_0 = c = \SI{0.1}{mol.L^{-1}}$
+}{%
+De la même manière, pour déterminer le sens d'évolution du système, on
+calcule $Q_{r,0}$ et on le compare à $K$~:
+\[\boxed{
+	Q_{r,0} = \frac{[\ce{CH3COO^{-}}]_0[\ce{HF}]_0}
+	{[\ce{CH3COOH}]_0[\ce{F^{-}}]_0}
+	= \frac{c^2}{c^2} = 1 > K\degree}
+\]
+La réaction évoluera donc \textbf{dans le sens indirect}.
+\bigbreak
+On effectue un bilan de matière grâce à un tableau d'avancement~:
+\begin{center}
+	\def\rhgt{0.35}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdYdY|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}       &
+		$\ce{CH_3COOH\aqu{}}$    & $+$             &
+		$\ce{F^{-}\aqu{}}$       & $=$             &
+		$\ce{CH_3COO^{-}\aqu{}}$ & $+$             &
+		$\ce{HF\aqu{}}$                              \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                  & $x = 0$         &
+		$c$                      & \vline          &
+		$c$                      & \vline          &
+		$c$                      & \vline          &
+		$c$                                          \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final                  & $x_f = x_{\eq}$ &
+		$c - x_{\eq}$          & \vline          &
+		$c - x_{\eq}$          & \vline          &
+		$c + x_{\eq}$          & \vline          &
+		$c + x_{\eq}$                              \\
+		\hline
+	\end{tabularx}
+\end{center}
+D'après la loi d'action des masses, on a
+\begin{gather*}
+	K\degree = \frac{(c+x_{\eq})^2}{(c-x_{\eq})^2}
+	\Longleftrightarrow
+	\sqrt{K\degree} = \frac{c+x_{\eq}}{c-x_{\eq}}
+	\Longleftrightarrow
+	c+x_{\eq} = \sqrt{K\degree}(c-x_{\eq})\\
+	\Longleftrightarrow
+	\boxed{x_{\eq} = \frac{\sqrt{K\degree}-1}{\sqrt{K\degree}+1}c}
+	\qavec
+	\left\{
+	\begin{array}{rcl}
+		K\degree & = & \num{e-1.60}         \\
+		c        & = & \SI{0.1}{mol.L^{-1}}
+	\end{array}
+	\right.\\
+	\mathrm{A.N.~:}\quad
+	\xul{x_{\eq} = -\SI{5.3e-2}{mol.L^{-1}}}
+\end{gather*}
+De même que précédemment, on vérifie qu'il est logique de trouver
+$x_{\eq} < 0$~: la réaction se fait bien dans le sens indirect.
+}
+
+
+\section{Équilibre en phase gazeuse}
+\resetQ
+\enonce{%
+	On étudie en phase gazeuse l'équilibre de dimérisation de \ce{FeCl3}, de
+	constante d'équilibre $K\degree(T)$ à une température $T$ donnée et
+	d'équation-bilan
+	\[\ce{2FeCl3\gaz{} = Fe2Cl6\gaz{}}\]
+
+	La réaction se déroule sous une pression totale constante $p_{\tot} =
+		2p\degree = \SI{2}{bars}$. À la température $T_1 = \SI{750}{K}$, la constante
+	d'équilibre vaut $K\degree(T_1) = \num{20.8}$. Le système est maintenu à la
+	température $T_1 = \SI{750}{K}$. Initialement le système contient $n_0$ moles
+	de \ce{FeCl3} et de \ce{Fe2Cl6}. Soit $n_{\tot}$ la quantité totale de matière
+	d'espèces dans le système.
+}
+
+\QR{%
+	Exprimer la constante d'équilibre en fonction des pressions partielles
+	des constituants à l'équilibre et de $p\degree$.
+}{%
+	On peut dresser le tableau d'avancement initial dans cette situation~:
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{.7\linewidth}{|l|c||YdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}    &
+			$2\ce{FeCl_3\gaz{}}$  & $=$       &
+			$\ce{Fe_2Cl_6\gaz{}}$ &
+			$n_{\tot, gaz}$                     \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial               & $\xi = 0$ &
+			$n_0$                 & \vline    &
+			$n_0$                 &
+			$2n_0$                              \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	Par la loi d'action des masses et les activités de constituants
+	gazeux~:
+	\[
+		\boxed{
+			K\degree = \frac{p_{\ce{Fe2Cl6}}p\degree}{p_{\ce{FeCl3}}{}^2}
+		}
+	\]
+}
+\QR{%
+Exprimer le quotient de réaction $Q_r$ en fonction de la quantité de
+matière de chacun des constituants, de la pression totale $p_{\tot}$
+et de $p\degree$. Calculer la valeur initial $Q_{r,0}$ du quotient de
+réaction.
+}{%
+Pour passer des pressions partielles aux quantités de matière, on
+utilise la loi de \textsc{Dalton}~:
+\begin{tcb}(rapp){Rappel~: loi de \textsc{Dalton}}
+	Soit un mélange de gaz parfaits de pression $P$. Les pressions
+	partielles $P_i$ de chaque constituant $\mathrm{X}_i$ s'exprime
+	\[\boxed{P_i = x_iP}\]
+	avec $x_i$ la fraction molaire du constituant~:
+	\[\boxed{x_i = \frac{n_i}{n_{\tot}}}\]
+\end{tcb}
+On écrit donc
+\[
+	p_{\ce{Fe2Cl6}} = \frac{n_{\ce{Fe2Cl6}}}{n_{\tot}}\times p_{\tot}
+	\qquad
+	p_{\ce{FeCl3}} = \frac{n_{\ce{FeCl3}}}{n_{\tot}}\times p_{\tot}
+\]
+
+Pour simplifier l'écriture, on peut séparer les termes de pression
+totale des termes de matière en comptant combien vont arriver «~en
+haut~» et combien «~en bas~»~: 1 en haut contre 2 en bas, on se
+retrouvera avec $p_{\tot}$ au dénominateur, ce qui est logique par
+homogénéité vis-à-vis de $p\degree$ qui reste au numérateur. Comme
+$n_{\tot}$ apparaît le même nombre de fois que $p_{\tot}$ mais
+avec une puissance -1, on sait aussi qu'il doit se retrouver au
+numérateur, là aussi logiquement pour avoir l'homogénéité vis-à-vis de
+la quantité de matière. Ainsi,
+
+\[\boxed{
+	Q_r = \frac{n_{\ce{Fe2Cl6}}/\cancel{n_{\tot}}
+	\times\bcancel{p_{\tot}}}
+	{n_{\ce{FeCl3}}{}^2/n_{\tot}^{\cancel{2}}
+	\times p_{\tot}^{\bcancel{2}}} p\degree
+	= \frac{n_{\ce{Fe2Cl6}} n_{\tot}}
+	{n_{\ce{FeCl3}}{}^2} \frac{p\degree}{p_{\tot}}
+	}
+\]
+Avec $p_{\tot} = 2p\degree$ et $n_{\ce{Fe2Cl6}} = n_0 =
+	n_{\ce{FeCl3}}$, on a $n_{\tot} = 2n_0$ (cf.\ tableau d'avancement),
+d'où
+
+\[
+	Q_{r,0} = \frac{n_0\times2n_0}{n_0{}^2} \frac{1}{2}
+	\Leftrightarrow
+	\xul{Q_{r,0} = 1}
+\]
+}
+\QR{%
+	Le système est-il initialement à l'équilibre thermodynamique~?
+	Justifier la réponse. Si le système n'est pas à l'équilibre, dans quel
+	sens se produira l'évolution~?
+}{%
+	Le système serait à l'équilibre si $Q_{r,0} = K\degree$~; or, ici
+	$Q_{r,0} \neq K\degree$, donc l'équilibre n'est pas atteint. De plus, $Q_{r,0}
+		< K\degree$ donc le système évoluera dans le sens direct.
+}
+\enonce{%
+	On considère désormais une enceinte indéformable, de température
+	constante $T_1 = \SI{750}{K}$, initialement vide. On y introduit une
+	quantité $n$ de \ce{FeCl3} gazeux et on laisse le système évoluer de
+	telle sorte que la pression soit maintenu constante et égale à $p =
+		2p\degree = \SI{2}{bars}$. On désigne par $\xi$ l'avancement de la
+	réaction.
+}
+\QR{%
+	Calculer à l'équilibre la valeur du rapport $z = \xi/n$.
+}{%
+	On dresse le tableau d'avancement pour effectuer un bilan de matière
+	dans cette nouvelle situation~:
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{.7\linewidth}{|l|c||YdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}    &
+			$2\ce{FeCl_3\gaz{}}$  & $=$           &
+			$\ce{Fe_2Cl_6\gaz{}}$ &
+			$n_{\tot, gaz}$                         \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial               & $\xi = 0$     &
+			$n$                   & \vline        &
+			$0$                   &
+			$n$                                     \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final                 & $\xi = \xi_f$ &
+			$n-2\xi$              & \vline        &
+			$\xi$                 &
+			$n-\xi$                                 \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	On reprend l'expression du quotient réactionnel initial en
+	remplaçant les quantités de matière par leur expression selon $\xi$ pour
+	déterminer l'avancement à l'équilibre, décrit par $K\degree$~:
+	\begin{gather*}
+		K\degree = \frac{\xi(n-\xi)}{(n-2\xi)^2}
+		\underbrace{\frac{p\degree}{p_{\tot}}}_{=\frac{1}{2}}
+		\Leftrightarrow
+		K\degree = \underbrace{\cancel{\frac{n^2}{n^2}}}_{=1}
+		\frac{\xi/n(1-\xi/n)}
+		{\left( 1 - 2\xi/n \right)^2} \frac{1}{2}
+	\end{gather*}
+	Pour simplifier les calculs, posons $z = \frac{\xi}{n}$. L'équation
+	précédente devient~:
+	\begin{align*}
+		K\degree                                                & = \frac{1}{2} \frac{z(1-z)}{\left( 1 - 2z \right)^2}
+		\\\Lra
+		2K\degree(1-2z)^2                                       & = z(1-z)
+		\\\Lra
+		2K\degree(1-4z + 4z^2)                                  & = z - z^2
+		\\\Lra
+		\Aboxed{z^2(8K\degree +1) - z(8K\degree +1) + 2K\degree & = 0}
+	\end{align*}
+	On trouve un polynôme du second degré. Soit $\Delta$ son discriminant~:
+	\begin{align*}
+		\Delta         & = \left( 8K\degree+1 \right)^{2+} -
+		4\left(8K\degree+1\right)\times 2K\degree
+		\\\Lra
+		\Delta         & = \left( 8K\degree+1 \right)\left(
+		\cancel{8K\degree}+1-\cancel{8K\degree} \right)
+		\\\Lra
+		\Aboxed{\Delta & = 8K\degree+1}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			K\degree & = & \num{20.8}
+		\end{array}
+		\right.                                             \\
+		\makebox[0pt][l]{$\phantom{\AN}\xul{\phantom{\Delta = \num{167.4}}}$}
+		\AN
+		\Delta         & = \num{167.4}
+	\end{align*}
+	Les racines sont
+	$\DS\left\{
+		\begin{array}{rcl}
+			z_1 & = & \num{0.54} \\
+			z_2 & = & \num{0.46}
+		\end{array}
+		\right.$.
+	\bigbreak
+	Étant donné qu'on part de $\xi = 0$ et que $\xi$ augmente, la valeur que
+	prendrait $z_{\eq}$ serait $z_{\eq} = \num{0.46}$. On doit cependant
+	vérifier que cette valeur est bien possible, en déterminant $z_{\max}$~:
+	pour cela, on résout $n-2\xi = 0$, ce qui donne $z_{\max} = \num{0.5}$.
+	On a bien $z_{\eq} < z_{\max}$, donc \textbf{l'équilibre est atteint} et
+	on a \xul{$\xi/n = \num{0.46}$}.
+}
+
+\section{Transformations de gaz}
+\resetQ
+\QR{%
+On considère l'équilibre suivant~:
+
+\centersright{%
+	$\DS\ce{H2S\gaz{} + \frac{3}{2}O2\gaz{} = H2O\gaz{} + SO2\gaz{}}$
+}{%
+	$K_1\degree$
+}
+
+Donner l'expression de la constante d'équilibre $K_1\degree$. En
+supposant les réactifs introduits dans les proportions stœchiométriques,
+faire un bilan de matière à l'équilibre. Exprimer $K_1\degree$ en
+fonction de $\xi_{\eq}$.
+}{%
+Par la loi d'action des masses, on a
+\begin{gather*}
+	K_1\degree =
+	\frac{p_{\ce{SO2}}p_{\ce{H2O}}}{p_{\ce{O2}}^{3/2}p_{\ce{H2S}}}
+	\underbrace{\frac{p\degree^{5/2}}{p\degree^2}}_{= p\degree^{1/2}}
+	\Leftrightarrow
+	K_1\degree =
+	\frac{n_{\ce{H2O}}n_{\ce{SO2}}n_{\tot,
+	gaz}^{1/2}}{n_{\ce{H2S}}n_{\ce{O2}}{}^{3/2}}
+	\left(\frac{p\degree}{p}\right)^{1/2}
+\end{gather*}
+Soit $n_0$ la quantité de matière de $\ce{H2S}$ introduite
+initialement~: pour que $\ce{O2}$ soit introduit dans les proportions
+stœchiométriques, on relie sa quantité initiale à celle de $\ce{H2S}$
+\textit{via} les coefficients stœchiométriques tel que $n_{\ce{O2}}^0 =
+	\frac{3}{2}n_{\ce{H2S}}^0 = \frac{3}{2}n_0$. D'où le tableau
+d'avancement~:
+\begin{center}
+	\def\rhgt{0.35}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}                      &
+		$\ce{H_2S\gaz{}}$                       & $+$                 &
+		$\frac{3}{2}\ce{O_2\gaz{}}$             & $=$               &
+		$\ce{H_2O\gaz{}}$                       & $+$                 &
+		$\ce{SO_2\gaz{}}$                       &
+		$n_{\tot, gaz}$                                                 \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                                 & $\xi = 0$           &
+		$n_0$                                   & \vline              &
+		$\frac{3}{2}n_0$                        & \vline              &
+		$0$                                     & \vline              &
+		$0$                                     &
+		$\frac{5}{2}n_0$                                                \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final                                   & $\xi_f = \xi_{\eq}$ &
+		$n_0 - \xi_{\eq}$                       & \vline              &
+		$\frac{3}{2}n_0 - \frac{3}{2}\xi_{\eq}$ & \vline              &
+		$\xi_{\eq}$                             & \vline              &
+		$\xi_{\eq}$                             &
+		$\frac{5}{2}n_0 - \frac{1}{2}\xi_{\eq}$                         \\
+		\hline
+	\end{tabularx}
+\end{center}
+On peut donc remplacer les quantités de matière de l'expression de
+$K_1\degree$ par les expressions avec $\xi_{\eq}$~:
+\[\boxed{
+		K_1\degree =
+		\frac{\xi_{\eq}^2( \frac{5}{2}n_0- \frac{1}{2}\xi_{\eq})^{1/2}}
+		{(n_0-\xi_{\eq})( \frac{3}{2}n_0 - \frac{3}{2}\xi_{\eq})^{3/2}}
+		\left(\frac{p\degree}{p}\right)^{1/2}}
+\]
+}
+
+\QR{%
+	On considère l'équilibre suivant~:
+
+	\centersright{%
+		$\DS\ce{2H2S\gaz{} + SO2\gaz{} = 2H2O\gaz{} + 3S\liq{}}$
+	}{%
+		$K_2\degree$}
+
+	Donner l'expression de la constante d'équilibre $K_2\degree$. On
+	introduit les réactifs avec des quantités quelconques. Faire un bilan de
+	matière à l'équilibre. Exprimer $K_2\degree$ en fonction de $\xi_{\eq}$.
+}{%
+	Par la loi d'action des masses, on a
+	\begin{gather*}
+		K_2\degree =
+		\frac{p_{\ce{H2O}}{}^2p\degree}
+    {p_{\ce{SO2}}p_{\ce{H2S}}{}^2}
+		\Lra
+		K_1\degree =
+		\frac{n_{\ce{H2O}}{}^2n_{\tot, gaz}}
+    {n_{\ce{SO2}}n_{\ce{H2S}}{}^2}
+		\frac{p\degree}{p}
+	\end{gather*}
+	Soit $n_1$ la quantité de matière de $\ce{H2S}$ introduite initialement,
+	et $n_2$ la quantité de matière initiale en $\ce{SO2}$~:
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}} &
+			$2\ce{H_2S\gaz{}}$ & $+$           &
+			$\ce{SO_2\gaz{}}$  & $=$         &
+			$2\ce{H_2O\gaz{}}$ & $+$           &
+			$3\ce{S\liq{}}$    &
+			$n_{\tot, gaz}$                      \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial            & $\xi = 0$     &
+			$n_1$              & \vline        &
+			$n_2$              & \vline        &
+			$0$                & \vline        &
+			$0$                &
+			$n_1+n_2$                            \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final              & $\xi_f = \xi_{\eq}$ &
+			$n_1 - 2\xi_{\eq}$     & \vline        &
+			$n_2 - \xi_{\eq}$      & \vline        &
+			$0 + 2\xi_{\eq}$       & \vline        &
+			$0 + 3\xi_{\eq}$       &
+			$n_1+n_2-\xi_{\eq}$                  \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	On peut donc remplacer les quantités de matière de l'expression de
+	$K_1\degree$ par les expressions avec $\xi_{\eq}$~:
+	\[\boxed{
+			K_1\degree =
+			\frac{4\xi_{\eq}^2(n_1+n_2-\xi_{\eq})}
+			{(n_1-2\xi_{\eq})^2(n_2-\xi_{\eq})}
+			\frac{p\degree}{p}}
+	\]
+}
+
+\QR{%
+	On fait brûler du méthane dans de l'oxygène~:
+	\[
+		\ce{\ldots CH4\gaz{} + \ldots O2\gaz{}
+			-> \ldots CO2\gaz{} + \ldots H2O\liq{}}
+	\]
+	Équilibrer l'équation de la réaction. Elle peut être considérée
+	comme totale. On introduit les réactifs de façon à consommer la moitié
+	du dioxygène. Décrire l'état final du système.
+}{%
+	L'équation bilan équilibrée est~:
+	\[\ce{CH4\gaz{} + 2O2\gaz{} \rightarrow CO2\gaz{} + 2H2O\liq{}}\]
+	Soit $n_0$ la quantité initiale en dioxygène. Si la moitié seulement est
+	consommée, alors que la réaction est totale, c'est que le méthane est
+	limitant. On trouve la quantité de $\ce{CH4}$ à introduire initialement
+	en dressant le tableau d'avancement pour que $n_{\ce{H2O},f} =
+		\frac{1}{2}n_0$, c'est-à-dire $n_0 - 2\xi_{\max} = 0$~: on obtient
+	\[\boxed{\xi_{\max} = \frac{1}{4}n_0}
+		\qor
+		n_{\ce{CH4}}^0 - \xi_{\max} = 0
+		\qdonc
+		\boxed{n_{\ce{CH4}}^0 = \frac{1}{4}n_0}
+	\]
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}     &
+			$\ce{CH_4\gaz{}}$      & $+$                  &
+			$2\ce{O_2\gaz{}}$      & $\ra$                &
+			$\ce{CO_2\gaz{}}$      & $+$                  &
+			$2\ce{H_2O\liq{}}$     &
+			$n_{\tot, gaz}$                                 \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial                & $\xi = 0$            &
+			$\frac{1}{4}n_0$       & \vline               &
+			$n_0$                  & \vline               &
+			$0$                    & \vline               &
+			$0$                    &
+			$\frac{5}{4}n_0$                                \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm.                & $\xi$                &
+			$\frac{1}{4}n_0 - \xi$ & \vline               &
+			$n_0 - 2\xi$           & \vline               &
+			$\xi$                  & \vline               &
+			$2\xi$                 &
+			$\frac{5}{4}n_0 - 2\xi$                         \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final                  & $\xi_f = \xi_{\max}$ &
+			$0$                    & \vline               &
+			$\frac{1}{2}n_0$       & \vline               &
+			$\frac{1}{4}n_0$       & \vline               &
+			$\frac{1}{2}n_0$       &
+			$\frac{3}{4}n_0$                                \\
+			\hline
+		\end{tabularx}
+	\end{center}
+}
+
+\section{Coefficient de dissociation}
+\resetQ
+\enonce{%
+  On considère l'équilibre de l'eau en phase gazeuse~:
+  \[
+    \ce{2H2O = 2H2\gaz{} + O2\gaz{}}
+  \]
+}
+
+\QR{%
+  On se place à \SI{400}{K} sous une pression constante $P = \SI{1.00}{bar}$.
+  Sous quelle forme se trouve l'eau~?
+}{%
+  Pour connaître l'état de l'eau, on détermine la température en degrés
+  pour interpréter par des connaissances élémentaires si elle est solide
+  (glace), liquide, ou vapeur~: \SI{400}{K} = \SI{127}{\degreeCelsius}, et
+  la pression est de \SI{1}{bar}, c'est-à-dire presque la pression
+  habituelle. À cette température, l'eau est sous forme vapeur.
+}
+\QR{%
+  La valeur de la constante vaut $K(\SI{400}{K}) = \num{3.12e-59}$. Conclure
+  sur la stabilité de l'eau dans ces conditions.
+}{%
+  La constante est extrêmement petite~: $K \ll \num{e-4}$, donc la
+  réaction est \textbf{quasi-nulle} dans ce sens~: l'eau ne se dissocie
+  pratiquement pas de cette manière et est par conséquent très stable.
+}
+\QR{%
+  On supposant que l'on introduit de l'eau pure, calculer le coefficient
+  de dissociation de l'eau.\\
+  \textit{Rappel}~: le coefficient de dissociation $\alpha$ est
+  égal au rapport de la quantité ayant été dissociée sur la quantité
+  initiale.
+}{%
+  Si on introduit de l'eau pure, on n'a pas les autres composants au
+  départ. Soit $n_0$ la quantité de matière d'eau pure introduite~: on
+  dresse le tableau d'avancement~:
+  \begin{center}
+      \def\rhgt{0.35}
+      \centering
+      \begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+      \hline
+      \multicolumn{2}{|c||}{
+        $\xmathstrut{\rhgt}$
+      \textbf{Équation}} &
+      $2\ce{H_2O\gaz{}}$        & $=$                 &
+      $2\ce{H_2\gaz{}}$        & $+$                 &
+      $\ce{O_2\gaz{}}$ &
+      $n_{\tot, gaz}$                              \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Initial            & $\xi = 0$           &
+      $n_0$               & \vline              &
+      $0$               & \vline              &
+      $0$  &
+      $n_0$                                     \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Final              & $\xi_f = \xi_{\eq}$         &
+      $n_0 - 2\xi_{\eq}$     & \vline              &
+      $2\xi_{\eq}$     & \vline &
+      $\xi_{\eq}$&
+      $n_0 + \xi_{\eq}$                           \\
+      \hline
+      \end{tabularx}
+  \end{center}
+  Le coefficient de dissociation correspond à la quantité d'eau
+  transformée sur la quantité initiale, c'est-à-dire
+  \[\alpha = \frac{2\xi_{\eq}}{n_0}\]
+  On va donc exprimer la constante d'équilibre en fonction des quantités
+  de matière pour introduire $\xi_{\eq}$ et faire apparaître $\alpha$, à l'aide
+  de l'activité d'un gaz, de la loi de \textsc{Dalton} puis de la
+  définition de la fraction molaire~:
+  \begin{gather*}
+      K\degree = \frac{p_{\ce{H2}}{}^2p_{\ce{O2}}}
+      {p_{\ce{H2O}}{}^2p\degree}
+      \Lra
+      K\degree = \frac{n_{\ce{H2}}{}^2n_{\ce{O2}}}
+        {n_{\ce{H2O}}{}^2n_{\tot, gaz}}
+      \overbracket[1pt]{\frac{p}{p\degree}}^{=1}
+      \\\Lra
+      K\degree = \frac{4\xi_{\eq}^3}{(n_0-2\xi_{\eq})^2(n_0+\xi_{\eq})}
+      \Lra
+      K\degree = \underbrace{\cancel{\frac{n_0{}^2}{n_0{}^3}}}_{=1}
+          \frac{4 \left(\frac{\xi_{\eq}}{n_0}\right)^3}
+          {\left( 1- \frac{2\xi_{\eq}}{n_0} \right)^2
+          \left( 1+ \frac{\xi_{\eq}}{n_0} \right)}
+      \\\Lra
+      K\degree = \frac{4 \left(\frac{\alpha}{2}\right)^3}
+          {\left( 1- \alpha \right)^2
+          \left( 1+ \frac{\alpha}{2} \right)}
+      \Lra
+      \boxed{
+      K\degree = \frac{\alpha^3}
+          {\left( 1- \alpha \right)^2
+          \left( 2+ \alpha \right)}
+  }
+  \end{gather*}
+  Une résolution numérique (\texttt{Python} ou calculatrice) donne
+  \[\boxed{\alpha = \num{3.97e-20} \ll 1}\]
+  Ceci est en accord avec le très faible avancement de la réaction.
+}
+\QR{%
+    À \SI{3000}{K}, toujours sous une pression de \SI{1}{bar}, le coefficient de
+    dissociation vaut $\alpha = \num{0.30}$. Calculer $K\degree(\SI{3000}{K})$.
+    Conclure sur la stabilité de l'eau dans ces conditions.
+}{%
+  En prenant $\alpha = \num{0.30}$, cela veut dire que 30\% de l'eau se dissocie,
+  l'eau ne serait plus stable dans ces conditions. La valeur de $K\degree$
+  correspondant est $K\degree = \num{2.4e-2}$, ce qui est peu favorisé dans le
+  sens direct mais pas quasi-nulle.
+}
+
+\section{Ions mercure}
+\resetQ
+\enonce{%
+  Les ions mercure (II) $\ce{Hg^{2+}}$ peuvent réagir avec le métal liquide
+(insoluble dans l'eau) mercure \ce{Hg} pour donner les ions mercure (I)
+$\ce{Hg2^{2+}}$ selon l'équilibre chimique ci-dessous~:
+
+\centersright{%
+$\ce{Hg^{2+}\aqu{} + Hg\liq{} = Hg2^{+2}\aqu{}}$
+}{%
+$K\degree(\SI{25}{\degreeCelsius}) = 91$}
+}
+
+\QR{%
+    Dans quel sens évolue un système obtenu en mélangeant du mercure
+        liquide en large excès avec $V_1 = \SI{40.0}{mL}$ d'une solution de
+        chlorure de mercure (I) à $c_1 = \SI{1.0e-3}{mol.L^{-1}}$ et $V_2 =
+          \SI{10.0}{mL}$ d'une solution de chlorure de mercure (II) à $c_2 =
+          \SI{2.0e-3}{mol.L^{-1}}$~?
+}{%
+On détermine les concentrations en mercure (I) et (II)~:
+        \begin{gather*}
+            [\ce{Hg^{2+}\aqu{}}] = \frac{c_2V_2}{V_1 + V_2} = c_2' =
+            \SI{0.4}{mmol.L^{-1}}
+            \qqet
+            [\ce{Hg_2^{2+}\aqu{}}] = \frac{c_1V_1}{V_1 + V_2} = c_1' =
+            \SI{0.8}{mmol.L^{-1}}
+        \end{gather*}
+        On peut donc calculer le quotient de réaction initial, avec
+        $a(\ce{Hg\liq{}}) )= 1$~:
+        \[\boxed{Q_{r,0} = \frac{c_1'}{c_2'} = 2 < K}
+        \quad\Longrightarrow\quad
+        \text{évolution sens direct}\]
+}
+\QR{%
+    Déterminer la composition finale de la solution.
+}{%
+        On dresse le tableau d'avancement en concentration~:
+        \begin{center}
+           \def\rhgt{0.35}
+            \centering
+           \begin{tabularx}{\linewidth}{|l|c||YdYdY|}
+            \hline
+            \multicolumn{2}{|c||}{
+              $\xmathstrut{\rhgt}$
+            \textbf{Équation}}   &
+            $\ce{Hg^{2+}\aqu{}}$ & $+$ &
+            $\ce{Hg\liq{}}$      & $=$ &
+            $\ce{Hg_2^{2+}\aqu}$\\
+            \hline
+            $\xmathstrut{\rhgt}$
+            Initial & $x = 0$ &
+            $c_2'$  & \vline  &
+            excès   & \vline  &
+            $c_1'$              \\
+            \hline
+            $\xmathstrut{\rhgt}$
+            Interm.      & $x$    &
+            $c_2' - \xi$ & \vline &
+            excès        & \vline &
+            $c_1' + \xi$   \\
+            \hline
+            $\xmathstrut{\rhgt}$
+            Final          & $x_f = x_{\eq}$ &
+            $c_2' - \xi_f$ & \vline          &
+            excès          & \vline          &
+            $c_1' + \xi_f$  \\
+            \hline
+           \end{tabularx}
+        \end{center}
+        Par la loi d'action des masses, on trouve en effet
+        \begin{gather*}
+            K\degree = \frac{c_1'+x_{\eq}}{c_2'-x_{\eq}}
+            \Leftrightarrow
+            \boxed{x_{\eq} = \frac{K\degree c_2' - c_1'}{K\degree + 1} =
+            \SI{0.387}{mmol.L^{-1}}}
+        \end{gather*}
+        ce qui est bien inférieur à $x_{\max} = c_2' = \SI{0.4}{mmol.L^{-1}}$~:
+        l'équilibre est atteint.
+}
+
+\end{document}

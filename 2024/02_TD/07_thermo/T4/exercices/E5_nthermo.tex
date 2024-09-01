@@ -1,0 +1,123 @@
+\documentclass[../TDT4.tex]{subfiles}%
+
+\begin{document}
+\section[s]"2"{Corps en contact avec $n$ thermostats quasi-statiques}
+\enonce{%
+Un métal de capacité thermique $C_P$ passe de la température initiale $T_0$ à
+la température finale $T_f = T_N$ par contacts successifs avec une suite $N$
+thermostats de températures $T_i$ étagées entre $T_0$ et $T_f$. On prendra le
+rapport $T_i/T_{i+1} = \alpha$ constant.
+}%
+\QR{%
+	Exprimer pour chaque étape la variation d'entropie du corps $\Delta S_i$ en
+	fonction de $m, c$ et $\alpha$.
+}{%
+	\leavevmode\vspace*{-20pt}\relax
+	\begin{gather*}
+		\Delta{S}_i = C_P \ln \frac{T_{i+1}}{T_i} = -mc \ln \alpha
+	\end{gather*}
+}%
+\QR{%
+	Calculer le transfert thermique reçu par le métal sur une étape en fonction de
+	$T_{i+1}$ et $T_i$, puis l'entropie échangée $S\ind{ech}$ en fonction de $m,
+		c$ et $\alpha$.
+}{%
+	\leavevmode\vspace*{-20pt}\relax
+	\begin{gather*}
+		\Delta{U}_i = \boxed{mc (T_{i+1}-T_i) = Q_i}
+		\qet
+		\boxed{S_{\mathrm{ech},i} = \frac{Q_i}{T_{i+1}} = mc(1-\alpha)}
+	\end{gather*}
+}%
+\QR{%
+	Calculer la variation d'entropie du corps $\Delta S$, l'entropie échangée
+	$S\ind{ech}$ ainsi que l'entropie créée $S_c$ sur l'ensemble en fonction de
+	$C_P, \alpha$ et $N$.
+}{%
+	\leavevmode\vspace*{-20pt}\relax
+	\begin{align*}
+		\Aboxed{\Delta{S}  & = \sum_i \Delta{S}_i = -NC_P \ln \alpha}
+		\\
+		\Aboxed{S\ind{ech} & = \sum_i S_{\mathrm{ech},i} = NC_P (1-\alpha)}
+		\\
+		\Aboxed{S\ind{cr}  & = \Delta{S} - S\ind{ech} = NC_P (\alpha-1-\ln \alpha)}
+	\end{align*}
+}%
+\QR{%
+	Étudier $S\ind{cr}$ pour $N \ra \infty$. On exprimera $\alpha$ en fonction de
+	$T_f, T_i$ et $N$, et on utilisera le développement limité $\exp(x) =
+		1+x+x^2/2$ pour $x$ petit devant 1. Conclure.
+}{%
+	On voit vite qu'on peut exprimer $\alpha^N$ grâce à une technique de
+	télescopie~:
+	\begin{align*}
+		\alpha =
+		\frac{T_{N-1}}{T_N} =
+		\frac{T_{N-2}}{T_{N-1}} =
+		\ldots =
+		\frac{T_0}{T_1}
+		          & \Ra
+		\alpha^N =
+		\frac{\cancel{T_{N-1}}}{T_N}\frac{\bcancel{T_{N-2}}}{\cancel{T_{N-1}}}
+		\ldots
+		\frac{\dcancel{T_1}}{\bcancel{T_2}}\frac{T_0}{\dcancel{T_1}}
+		\\\Lra
+		\alpha^N = \frac{T_0}{T_f}
+		          & \Lra
+		\boxed{\alpha = \left( \frac{T_0}{T_f} \right)^{1/N}}
+		\\\beforetext{Ainsi,}
+		S\ind{cr} & =
+		C_P N \left(
+		\left( \frac{T_0}{T_f} \right)^{1/N} -
+		1 -
+		\ln (\frac{T_0}{T_f})^{1/N}
+		\right)
+		\\\Lra
+		S\ind{cr} & =
+		C_P \left(
+		N \left( \frac{T_0}{T_f} \right)^{1/N} -
+		N -
+		\ln (\frac{T_0}{T_f})
+		\right)
+		\\\Lra
+		S\ind{cr} & =
+		C_P \left(
+		N \exp (\frac{1}{N} \ln (\frac{T_0}{T_f})) -
+		N -
+		\ln (\frac{T_0}{T_f})
+		\right)
+		\intertext{Or, comme $\ln (\frac{T_0}{T_f}) = \cte$, on a $\DS \frac{1}{N}
+				\ln (\frac{T_0}{T_f}) \opto{}{N \to \infty} 0$. On peut effectuer le
+			développement limité $\exp (x) \Sim_{x \to 0} 1+x+\frac{x^2}{2}$, soit}
+		S\ind{cr} & \Sim_{N \to 0}
+		C_P \left(
+		N \left(
+			1 +
+			\frac{1}{N} \ln (\frac{T_0}{T_f}) +
+			\frac{1}{2N^2} \left[ \ln (\frac{T_0}{T_f})\right]^2
+			\right) -
+		N -
+		\ln (\frac{T_0}{T_f})
+		\right)
+		\\\Lra
+		S\ind{cr} & \Sim_{N \to 0}
+		C_P \left(
+		N +
+		\cancel{\ln (\frac{T_0}{T_f})} +
+		\frac{1}{2N} \left[ \ln (\frac{T_0}{T_f})\right]^2 -
+		N -
+		\cancel{\ln (\frac{T_0}{T_f})}
+		\right)
+		\\\Lra
+		S\ind{cr} & \Sim_{N \to 0}
+		\frac{C_P}{2N} \left[ \ln (\frac{T_0}{T_f}) \right]^2
+		\\\Lra
+		\Aboxed{
+		S\ind{cr} & \opto{}{N \to \infty} 0
+		}
+	\end{align*}
+	Ainsi, en effectuant des transformations \textbf{infinitésimales}, on trouve
+	bien une entropie créée nulle, donc une transformation \textbf{réversible}~!
+}%
+
+\end{document}

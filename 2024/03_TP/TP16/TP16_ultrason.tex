@@ -1,0 +1,373 @@
+\documentclass[../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+\usepackage{pdfpages}
+
+\makeatletter
+\renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\makeatother
+
+% \toggletrue{student}
+% \HideSolutionstrue
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
+
+% \ifx\conditionmacro\undefined
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_enon"
+%     "\gdef\string\conditionmacro{1}\string\input\space\jobname"
+%   }%
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_solu-prof"
+%     "\gdef\string\conditionmacro{2}\string\input\space\jobname"
+%   }%
+%   \immediate\write18{%
+%     pdflatex --jobname="\currfilebase_solu-stud"
+%     "\gdef\string\conditionmacro{3}\string\input\space\jobname"
+%   }%
+%   \expandafter\stop
+% \fi
+
+\begin{document}
+\setcounter{chapter}{15}
+
+% \ifnum\conditionmacro=1 \togglefalse{corrige}\fi
+% \ifnum\conditionmacro=2 \toggletrue{corrige}\togglefalse{student}\fi
+% \ifnum\conditionmacro=3 \toggletrue{corrige}\toggletrue{student}\fi
+
+\chapter{\cswitch{Correction du TP}
+  {Ondes ultrasonores~: mesure de caract\'eristiques}}
+
+\enonce{
+	\begin{prgm}
+		\begin{tcb}*(ror)"how"{Savoir-faire}
+			\begin{itemize}
+				\item Mesurer la vitesse de phase, la longueur d'onde et le déphasage dû
+				      à la propagation d'un phénomène ondulatoire.
+				\item Étudier le filtrage linéaire d'un signal non sinusoïdal à partir
+				      d'une analyse spectrale.
+				\item Détecter le caractère non linéaire d'un système par l'apparition
+				      de nouvelles fréquences.
+			\end{itemize}
+		\end{tcb}
+	\end{prgm}
+	\vspace{-10pt}
+	\section{Objectifs}
+	\begin{itemize}
+		\item Se familiariser avec les logiciels \texttt{Oscillo 5} et
+		      \texttt{LatisPro}.
+		\item Utiliser l'interface Sysam.
+		\item Mesurer la fréquence et la longueur d'onde pour une onde ultrasonore
+		\item Mesurer la vitesse de propagation des ultrasons dans l'air à la
+		      température de la salle.
+		\item Reconnaître une avance ou un retard entre deux courbes visualisées sur
+		      un oscilloscope.
+		\item Repérer le passage par un déphasage $0$ ou $\pi$ en mode \texttt{XY}.
+		\item Évaluer une incertitude de type A.
+		\item Simuler un processus aléatoire de variation des valeurs
+		      expérimentales de l'une des grandeurs – simulation \textsc{Monte-Carlo}
+		      – pour évaluer l'incertitude sur les paramètres du modèle.
+	\end{itemize}
+}
+
+\section{S'approprier~: Outils théoriques et matériel disponible}
+
+\enonce{%
+	Un émetteur d'ultrasons émet des ondes ultrasonores (fréquence supérieure à
+	$\SI{20}{kHz}$ donc non audibles) en continu ou en salves (appelées trains
+	d'ondes). Les ondes ultrasonores sont des ondes mécaniques, longitudinales
+	(lorsqu'elles se propagent dans les fluides), de compression-dilatation à trois
+	dimensions.
+}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR{%
+	Rappeler la différence entre ondes longitudinales et ondes
+	transversales. Donner un exemple pour chacune.
+}{%
+	Pour les ondes transversales, la direction de la perturbation est
+	perpendiculaire à la direction de propagation. Pour les ondes longitudinales,
+	les directions son parallèles.
+	\smallbreak
+	L'onde de compression dans un ressort est longitudinale, une onde sur une
+	corde est transversale.
+}
+
+\enonce{%
+	Selon les expériences, on disposera en plus d'un ou de deux récepteurs adaptés.
+	On observe les ondes qui sont émises par l'émetteur et celles qui sont
+	éventuellement reçues par le ou les récepteur(s) sur l'écran du logiciel
+	\texttt{Oscillo 5}.
+}
+
+\section{Mesure de la période $T$ des ondes}
+
+\enonce{%
+	\subsection{Réaliser}
+
+	\begin{tcb}(expe)<itc>{Connexion à l'interface Sysam}
+		\begin{itemize}
+			\item Relier l'émetteur d'ultrasons à la sortie analogique SA1 de
+			      l'interface Sysam et les masses des appareils entre elles. Cette sorte
+			      remplace un GBF et alimente le générateur d'ultrasons.
+			\item Relier l'émetteur d'ultrasons à la voie EA0 du canal 0 de
+			      l'interface pour visualiser le signal de l'émetteur sur \texttt{Oscillo
+				      5} et les masses des appareils entre elles.
+			\item Allumer l'ordinateur sur votre session.
+		\end{itemize}
+	\end{tcb}
+
+	\begin{tcb}(expe)<itc>{Démarrer Oscillo 5 et régler le GBF}
+		\begin{itemize}
+			\item Ouvrir Oscillo5 (Programmes Physique-chimie $\rightarrow$ Eurosmart
+			      $\rightarrow$ Oscillo5)~;
+			\item Cliquer sur \texttt{Voir GBF 1} dans le panneau de contrôle (permet
+			      d'accéder à un menu de réglage du GBF).
+			\item Cliquer sur \texttt{marche} du bouton marche/arrêt.
+			\item Sélectionner \texttt{sinusoïde}.
+			\item Régler la fréquence à \SI{40}{kHz} avec les curseurs et l'amplitude à
+			      \SI{10}{V}.
+			\item Les réglages sont terminés. Vous pouvez cacher le panneau de contrôle
+			      du GBF.
+		\end{itemize}
+	\end{tcb}
+
+	\begin{tcb}(expe)<itc>{Visualiser la voie EA0 et vérifier la fréquence}
+		\begin{itemize}
+			\item Activer la voie.
+			\item Choisir la base de temps (menu balayage) et l'amplitude du signal de
+			      façon à pouvoir mesurer la période du signal.
+			\item En utilisant les curseurs, dans le menu mesures en bas à droite,
+			      déplacer les curseurs pour mesurer de nouveau la période.
+			\item En déduire la fréquence et la comparer à celle du constructeur~:
+			      \SI{40}{kHz}.
+		\end{itemize}
+	\end{tcb}
+}
+
+\setcounter{subsection}{1}
+\subsection{Valider}
+Activité \texttt{Capytale} disponible\ftn{\url{https://capytale2.ac-paris.fr/web/c/2a24-2849120}}
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR<[start=1]>{%
+	Mettre en commun vos résultats de mesures de $T$ entre les différents
+	groupes. Vous ferez un tableau \texttt{numpy} sur \texttt{Capytale}.
+	\smallbreak
+	En déduire le résultat du mesurage de $T$ en calculant la moyenne et
+	l'incertitude de type A.
+}{%
+	Cf.\ \texttt{Capytale}~: \url{https://capytale2.ac-paris.fr/web/c/dc4d-2946813}
+	% \begin{python}
+	% import numpy as np
+	%
+	% T_val = np.array([25.3, 24.9, 25.1, 25.2, 23.8, 25.2, 25, 23, 24.9, 24.6, 25.1])
+	% nb_val = len(T_val)
+	% moy = np.mean(T_val)
+	%
+	% # Calculs à la main avec numpy
+	% T_moins_moy = T_val - moy
+	% sig = np.sqrt(1/(nb_val-1)*np.sum(T_moins_moy**2))
+	% print(f'sigma/sqrt(n) =  {sig/np.sqrt(nb_val)}')
+	%
+	% # Calculs automatiques avec numpy
+	% sig = np.std(T_val, ddof=1)
+	% print(f'std/sqrt(n) = {sig/np.sqrt(nb_val)}')
+	% \end{python}
+}
+
+% \begin{tcb}(rapp){Rappel~: incertitude de type A}
+%     Considérons la grandeur physique $x$. L'évaluation de l'incertitude de type
+%     A permet de donner un résultat de mesurage $M(x)$ par une \textbf{analyse
+%     statistique} réalisées sur plusieurs mesures $m_i(x)$ réalisées dans des
+%     \textbf{conditions de répétabilité} (les grandeurs d'influence n'ont pas
+%     changé). L'avantage est qu'il n'est \textbf{pas nécessaire de connaître
+%     les caractéristiques techniques des dispositifs de mesure employés}. Pour un
+%     ensemble $m_i(x)$ de $n$ mesures de $x$, 
+%     \[
+%         \boxed{M(x) = \obar{m}(x) \pm \frac{1}{\sqrt{n}} \sigma(x)}
+%     \]
+%     % Avec\vspace*{-24pt}
+%     \[
+%         \obar{m}(x) = \frac{1}{n} \, \sum_{i=1}^{n} m_i(x)
+%         \qqet
+%         \sigma(x) = \sqrt{\frac{1}{n-1} \, \sum_{i=1}^{n} (m_i(x)-\obar{m}(x))^2}
+%     \]
+% \end{tcb}
+
+\section{Mesure de la vitesse de propagation $c$}
+
+\subsection{Analyser~: proposer un protocole}
+
+\enonce{%
+	Vous disposez d'un émetteur, d'un récepteur, d'une règle graduée au millimètre.
+	L'émetteur peut envoyer un signal continu ou des salves.
+}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR<[start=2]>{%
+	Proposer un protocole expérimental vous permettant de mesurer la
+	vitesse de propagation des ultrasons dans l'air. Pour plus de précision,
+	vous prendrez plusieurs mesures vous permettant de réaliser une
+	régression linéaire.
+}{%
+	On propose~:
+	\begin{itemize}
+		\item Placer les deux émetteurs face à face, à une distance $d_1$ grande et
+		      connue mesurée à la règle graduée.
+		\item Envoyer des salves suffisamment espacées pour que les signaux émis et
+		      reçus ne se superposent pas.
+		\item Sur \texttt{Oscillo5}, mesurer l'écart temporel $\Delta{t_1}$ entre
+		      l'émission de la salve et le début de sa réception.
+		\item Calculer $c_1 = d_1/\Delta{t_1}$.
+		\item Diminuer la distance et réitérer l'opération pour obtenir les
+		      distances $d_i$, les écarts temporels $\Delta{t_i}$ et les célérités
+		      $c_i$.
+		\item Tracer $d = f(\Delta{t})$ et en effectuer la régression linéaire~: le
+		      coefficient directeur sera la célérité.
+	\end{itemize}
+}
+
+\enonce{%
+	\subsection{Réaliser}
+
+	Réaliser le protocole précédemment proposé.
+	\begin{tcb}(expe)<itc>{Indications}
+		\begin{itemize}
+			\item Reprendre le montage précédent~;
+			\item Relier en plus le récepteur sur la voie EA1 de l'interface (et laisser
+			      l'émetteur sur EA0)~;
+			\item Accéder au menu GBF sur \texttt{Oscillo 5}~;
+			\item Sélectionner \texttt{salve}. Laisser $\SI{10}{ms}$ de durée et
+			      $\SI{10}{V}$ d'amplitude~;
+			\item Les nouveaux réglages sont terminés. Cacher le panneau GBF~;
+			\item Visualiser les deux voies EA0 et EA1. Synchro auto et préacquisition
+			      $10 \%$~;
+			\item Cliquer sur \texttt{monocoup} pour réaliser l'acquisition~;
+			\item La fonction curseur permet de réaliser la mesure souhaitée.
+		\end{itemize}
+	\end{tcb}
+}
+
+\setcounter{subsection}{2}
+\subsection{Valider}
+
+\QR{%
+	Pré-remplir (en vous aidant des fiches pratiques «~Régression linéaire~»
+	et «~Survivre en \texttt{Python}~») sur \texttt{Capytale}
+	un script \texttt{Python} permettant de réaliser la régression linéaire
+	dont $c$ est le coefficient directeur.
+}{%
+	Cf.\ correction sur \textsc{Capytale}.
+}
+\QR{%
+	Faites de même pour le traitement de l'incertitude sur $c$ par méthode
+	\textsc{Monte-Carlo}.
+}{%
+	Idem.
+}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR<[start=2]>{%
+	Déterminer l'incertitude de type B sur vos mesures de temps et de distance.
+	Évaluer alors l'incertitude-type sur la mesure de $c$ par méthode
+	\textsc{Monte-Carlo}.
+}{%
+	Idem.
+}
+\QR{%
+	Comparer la valeur de célérité des ondes ultrasonores dans l'air avec
+	la formule empirique donnant $c$ dans l'air en fonction de la
+	température
+	\footnote{\url{https://hypertextbook.com/facts/2000/CheukWong.shtml}}~:
+	\[
+		c = \num{331,5} + \num{0,60}\,\theta
+	\]
+	avec $c$ la vitesse en $\si{m.s^{-1}}$ et $\theta$ la température de
+	l'air en $\degreeCelsius$, à l'aide d'un écart \textbf{normalisé}.
+}{%
+	Idem.
+}
+
+\section{Détermination de la longueur d'onde $\lambda$}
+
+\enonce{%
+	Ne faites cette partie que si vous avez pu terminer \textbf{proprement} les deux
+	mesures précédentes.
+}
+
+\subsection{Réaliser}
+
+\enonce{%
+	\begin{tcb}(expe)<itc>{Mesure de longueur d'onde}
+		\begin{itemize}
+			\item L'émetteur d'ultrasons émet maintenant en direction des deux
+			      récepteurs adaptés situés côte à côte de chaque côté de la règle.
+			\item On observe sur l'écran de l'oscilloscope deux signaux correspondants
+			      aux ondes reçues par chacun des deux récepteurs. Positionner de nouveau
+			      le générateur en position continue sinusoïde comme au III.
+			\item Relier les deux récepteurs aux voies EA1 et EA2 de l'interface Sysam.
+			\item Superposer la ligne de «~zéro~» de chacune des deux voies.
+			\item Régler correctement les sensibilités horizontales et verticales
+			      permettant d'observer les sinusoïdes des voies EA1 et EA2.
+		\end{itemize}
+	\end{tcb}
+}
+
+\QR{%
+	Mesurer la plus petite distance $d$ entre récepteurs pour
+	laquelle les deux courbes se retrouvent en phase. La mesure de $d$
+	est-elle précise~? Quel est le lien entre $d$ et $\lambda$~?
+	Vérifier que les deux courbes se retrouvent en phase pour une distance
+	entre les récepteurs égale à un multiple entier de d.
+}{%
+	\begin{gather*}
+		\beforetext{On trouve}
+		\boxed{d \approx \SI{10}{mm}}
+	\end{gather*}
+	Cette mesure n'est cependant pas précise, on a un intervalle de $\pm
+		\SI{5}{mm}$ pour retrouver les signaux en phase. Or, on a $\lambda = d$. Pour
+	plus de précisions, on pourra mesurer plus de situations en phase et diviser
+	la distance totale par le nombre d'occurrence de retour en phase.
+
+}
+\QR{%
+	Mesurer la distance entre les deux récepteurs correspondant
+	à $10$ longueurs d'onde et en déduire une valeur de $\lambda$.
+}{%
+	\begin{gather*}
+		d_{10} = \SI{8.7\pm 0.5e-2}{m}
+		\Lra
+		\boxed{\lambda = \frac{d_{10}}{10} = \SI{8.7\pm0.05e-3}{m}}
+	\end{gather*}
+}
+
+\QR{%
+	\textbf{BONUS} \enspace
+	Dans le menu horizontal d'\texttt{Oscillo 5}, sélectionner
+	\texttt{X-Y}. Observer l'allure des courbes quand elles sont en phase.
+	Que remarquez-vous~? Cette méthode est-elle plus précise que la
+	précédente~? Quelle est l'allure en mode \texttt{X-Y} lorsque les
+	courbes sont en phase, en opposition de phase ou en quadrature de
+	phase~? Comment différencier des signaux en phase et des signaux en
+	opposition de phase~?
+}{%
+	On remarque que les courbes se superposent en une ligne droite. Elle est plus
+	précise, on trouve plus facilement la position telle que la ligne soit droite.
+	En dehors de la phase, les signaux forment une ellipse penchée~; elle est la
+	plus grande quand les signaux sont en opposition de phase. Avec de bons
+	réglages, on peut atteindre un cercle.
+}
+
+\subsection{Valider}
+
+\QR{%
+	Vos trois mesures indépendantes de $\lambda$, $c$ et $T$
+	respectent-elles la relation~:
+	\[
+		c = \frac{\lambda}{T}
+	\]
+}{%
+	On trouve des mesures compatibles (cf.\ corrigé en ligne).
+}
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.8]\clip (-7.5,-3.5) rectangle (7.5,3.5); % découpe de la figure selon les dimensions 
+	\tikzstyle simplerev=[postaction={decorate,decoration={markings, mark=at position .3 with {\arrow[scale=1,>=stealth]{<}}}}]
+	\tikzstyle simple=[postaction={decorate,decoration={markings, mark=at position .8 with {\arrow[scale=1,>=stealth]{>}}}}]
+	\tikzstyle arrowstyle=[scale=1.5];%taille de flèche 
+	\tikzstyle directed=[postaction={decorate,decoration={markings,mark=at position .52 with {\arrow[arrowstyle]{stealth}}}}];
+	\filldraw [fill=gray!20,draw=black,opacity=0.4] (-2.6,0) ellipse (0.25cm and 1cm);
+	\filldraw [gray!20,opacity=0.5] (-2.6,-1) to [bend left=8] (-2.6,1) -- (2.6,1) to [bend right=8] (2.6,-1) -- cycle;
+	\foreach \y in {-0.8,-0.4,...,0.9}
+		{
+			\draw[color=red,thick,directed] (2.6,\y) --++ (-5.2,0);
+		}
+	\draw[red,thick, directed] (-2.6,0.8) .. controls +(-5,2) and +(5,2) .. (2.6,0.8);
+	\draw[red,thick, directed] (-2.6,0.4) .. controls +(-18,4) and +(18,4) .. (2.6,0.4);
+	\draw[red,thick, directed,yscale=-1] (-2.6,0.8) .. controls +(-5,2) and +(5,2) .. (2.6,0.8);
+	\draw[red,thick, directed,yscale=-1] (-2.6,0.4) .. controls +(-18,4) and +(18,4) .. (2.6,0.4);
+	\draw[red,thick, postaction={decorate,decoration={markings,mark=at position .25 with {\arrow[arrowstyle]{stealth}}}}] (-2.6,0) -- (-10,0); %ligne dans l'axe 
+	\draw[red,thick, postaction={decorate,decoration={markings,mark=at position .25 with {\arrowreversed[arrowstyle]{stealth}}}}] (2.6,0) -- (10,0);%ligne dans l'axe 
+	\foreach \x in {-2.5,-2.4,...,2.6}
+		{
+			\filldraw [fill=gray!25,draw=black,opacity=0.5] (\x,1) arc (90:270:0.25cm and 1cm); %arc elliptique 
+		}
+	\filldraw [fill=gray!50,draw=black,opacity=0.5] (2.6,0) ellipse (0.25cm and 1cm);
+	\draw (-2.6,1) -- (2.6,1);
+	\draw (-2.6,-1) -- (2.6,-1);
+	\draw [ |<->|] (-2.6,1.2) -- (2.6,1.2) node [midway, above] {$L$};
+	\draw [simple] (-2.6,-1) to [bend right=45] ++(-1,-1) ;
+	\node at (-3,-1.5) {I};
+	\draw [simplerev] (2.6,-1) to [bend right=45] ++(1,-1) ;
+	\node at (3.2,-1.5) {I};
+	\begin{scope}[xshift=2.7cm,yshift=2.1cm,rotate=172,scale=0.3,yscale=-1]
+		%boussole 
+		\fill [color=red!30] (0,0) --++ (2,0.5) --++ (0,-1) --cycle;
+		\fill [color=blue!30] (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+		\draw [->,>=latex, thick] (2,0) --++ (-5,0);
+		\node at(-2,1){$ \vec{B}$};
+		\node at (1,0.8) {n};
+		\node at (3,0.8) {s};
+		\draw (0,0) --++ (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	\end{scope}
+	\begin{scope}[scale=0.3]
+		%boussole 
+		\fill [color=red!30] (0,0) --++ (2,0.5) --++ (0,-1) --cycle;
+		\fill [color=blue!30] (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+		\draw [->,>=latex, thick] (2,0) --++ (-5,0);
+		\node at(-2,1){$ \vec{B}$};
+		\node at (1,0.8) {n};
+		\node at (3,0.8) {s};
+		\draw (0,0) --++ (2,0.5) --++ (2,-0.5) --++ (-2,-0.5) --cycle;
+	\end{scope}
+\end{tikzpicture}
+\end{document}
+

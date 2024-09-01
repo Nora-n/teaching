@@ -1,0 +1,91 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[yscale=4, declare function={
+				mmin = -0.5;
+				mmax = 2.2;
+				xoff = 2.2;
+				soff = 4;
+				wdth = .35;
+				btck = 0.20;
+				stck = 0.10;
+			}]
+	\def\ea{0.77}
+	\def\eb{1.74}
+	% pH
+	\fill[LimeGreen!10]
+	(-wdth,0) rectangle (wdth,1.23);
+	\fill[red!10]
+	(-wdth,mmin) rectangle (wdth,0);
+	\fill[blue!10]
+	(-wdth,1.23) rectangle (wdth,mmax);
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,mmin) --
+	(0,mmax)
+	node[above] {\Large$E^\circ (\si{V})$};
+	\node[draw, thick, rounded corners,
+		% fill=red!10
+	] at (xoff, mmax)
+	{\Large\textbf{Réducteurs}};
+	\node[draw, thick, rounded corners,
+		% fill=blue!10
+	] at (-xoff, mmax)
+	{\Large\textbf{Oxydants}};
+	\foreach \x in {-0.5, 0, ..., 2}{
+			\draw[thick]
+			(-btck,\x) -- (btck,\x);
+		}
+	\foreach \x in {-0.5, -0.4, ..., 2}{
+			\draw
+			(-stck,\x) -- (stck,\x);
+		}
+	% AB scale
+	\draw[-{Stealth[scale=1.2]}, thick]
+	(soff,2.3) --
+	(soff,mmin)
+	node[pos=.75, above, sloped] {\large\textbf{Force des réducteurs}};
+	\draw[-{Stealth[scale=1.2]}, thick]
+	(-soff,mmin) --
+	(-soff,2.3)
+	node[pos=.75, above, sloped] {\large\textbf{Force des oxydants}};
+	% AB
+	\foreach \A/\DA/\B/\DB/\K/\KN [count=\i] in {
+			\ce{Fe^2+}//\ce{Fe^3+-}//\ea/\ea,
+			\ce{Ce^3+}//\ce{Ce^4+}//\eb/\eb
+		}{
+			\node[\DB] (B\i) at (-xoff,\K) {\Large\B};
+			\node[\DA] (A\i) at (xoff,\K) {\Large\A};
+			\node at (0,\K) {$\times$};
+			\node[fill=white, opacity=.8, text opacity=1] at (0,\K)
+			{\Large\num{\KN}};
+		}
+	% water
+	\foreach \A/\DA/\B/\DB/\K/\KN [count=\i from 3] in {
+			\ce{H2O}//\ce{O2}//1.23/1.23,
+			\ce{H2}//\ce{H2O}//0/0
+		}{
+			\node[\DB] (B\i) at (-xoff,\K) {\Large\B};
+			\node[\DA] (A\i) at (xoff,\K) {\Large\A};
+			\node at (0,\K) {$\times$};
+			\node[fill=white, opacity=.8, text opacity=1] at (0,\K)
+			{\Large\num{\KN}};
+		}
+	% \draw[->, very thick]
+	% (B2) .. controls
+	% (A1.south west) ..
+	% ($(A1.south)!0.5!(B1.south)$) ..
+	% controls (B1.south east) ..
+	% (A2)
+	% node[pos=.80, left=.25] {\large Défavorisé}
+	% (B2) .. controls
+	% (A1.north west) ..
+	% ($(A1.north)!0.5!(B1.north)$) ..
+	% controls (B1.north east) ..
+	% (A2)
+	% node[pos=.90, right=.1] {\Large Favorisé}
+	% ;
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}%
+	%\usetikzlibrary{svg.path}%
+	\begin{axis}[
+			clip=false,
+			width=140mm, height=90mm,
+			xmin=0, xmax=14,
+			xlabel=$\pH$,
+			ymin=0, ymax=1.8,
+			ylabel=$E$ (\si{\volt}),
+			grid=both,
+		]
+		\addplot [thick] coordinates{(0, 1.43) (2.17, 1.43)  (7.5, 1.28) (14, 0.89)};
+		\addplot [thick] coordinates{(0, 1.56)  (2.17, 1.43)};
+		\addplot [thick] coordinates{(7.5, 1.28)  (7.5, 1.8)};
+		%
+		\addplot [dotted] coordinates{(2.17, 1.43) (2.17,-.1)} node [below] {2,17};
+		\addplot [dotted] coordinates{(0, 1.56)  (-.5,1.56)} node [left] {1,56};
+		%    
+		\addplot [dotted] coordinates{(8, 1)} node {$A$};
+		\addplot [dotted] coordinates{(0.4, 1.48)} node {$B$};
+		\addplot [dotted] coordinates{(5, 1.6)} node {$C$};
+		\addplot [dotted] coordinates{(11, 1.5)} node {$D$};
+	\end{axis}%
+\end{tikzpicture}%
+\end{document}

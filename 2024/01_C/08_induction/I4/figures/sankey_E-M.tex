@@ -1,0 +1,77 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\renewcommand{\mycol}{black}
+% \settype{book}
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{sankeydiagram}[%debug,%
+			start style=auto variable arrow, end style=auto variable arrow,
+			draw/.style={draw=black,thick},
+			ratio=3cm/100
+		]
+		\def\qty{100}
+		\def\arrowper{.2}
+		\sankeynodestart{name=gene,quantity=\qty}
+		\sankeyadvance{gene}{3cm}
+		\centerlabel{gene}{\psw{$\Pc\ind{gene}\sup{f} = U_0i > 0$}}
+		% FORK 1
+		\sankeyfork{gene}{.8*\qty/fem, .2*\qty/joule}
+		% JOULE
+		\sankeyturn{joule}{-45}
+		\def\arrowper{.75}
+		\sankeyend{joule}
+		\def\bow{\sswitch{white}{black}
+		}
+		\node[below=.35, expand style=\bow] at (joule.center) {$\Pc_J\sup{r} = Ri^2$};
+		% ADVANCE 1
+		\sankeyadvance{fem}{3cm}
+		\centerlabel{fem}{%
+			\psw{%
+				$\begin{aligned}
+						\Pc\ind{fem}\sup{r} & = -ei
+						\\
+						                    & = i \ell Bv > 0
+					\end{aligned}$
+			}%
+		}
+		% SETUP BOX
+		\node (BL) at (fem.center) {};
+		\node (BLT) at (fem.left) {};
+		% ADVANCE 2
+		\sankeyadvance{fem}{4cm}
+		% SETUP BOX
+		\node (BR) at (fem.center) {};
+		\node (BRB) at (fem.right) {};
+		% COPY TO CHANGE NAME
+		\sankeynode{as=fem,name=lap}
+		% ADANCE 3
+		\sankeyadvance{lap}{3cm}
+		\centerlabel{lap}{\psw{$\Pc\ind{Lap}\sup{r} = i \ell Bv > 0$}}
+		% FORK 2
+		\sankeyfork{lap}{%
+			.8*\sankeygetnodeqty{lap}/util,
+			.2*\sankeygetnodeqty{lap}/frott%
+		}
+		% FROTT
+		\sankeyturn{frott}{-45}
+		\sankeyend{frott}
+		\node[below=.35, expand style=\bow] at (frott.center) {$\Pc_f\sup{f} = F_f v$};
+		% ADVANCE 4
+		\sankeyadvance{util}{2cm}
+		\def\arrowper{.5}
+		\sankeyend{util}
+		\node at (util.center) {\psw{$\Pc\ind{utile} = \dv{\Ec_c}{t}$}};
+		% BOX
+		\draw[very thick, fill=white]
+		([shift={(0,.3)}]BLT.center) rectangle
+		([shift={(0,-.3)}]BRB.center)
+		node[midway, align=center]
+			{Conversion\\électrique $\Ra$ mécanique};
+	\end{sankeydiagram}
+\end{tikzpicture}
+
+\end{document}

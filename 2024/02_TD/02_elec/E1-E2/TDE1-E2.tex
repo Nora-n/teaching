@@ -1,0 +1,1342 @@
+\documentclass[../../main/main.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+% \HideSolutionstrue
+
+\begin{document}
+\setcounter{chapter}{1}
+
+\chapter{\switch{TD~: circuits \'electriques avec r\'esistances et sources}{Correction du TD}}
+
+\section{Circuit simple}
+\switch{
+	On constitue un circuit électrique avec un générateur réel de tension $(E,r)$,
+	entre les bornes duquel on branche une résistance $R$ réglable.
+	\begin{enumerate}
+		\item Faire un schéma normalisé du circuit.
+		\item Flécher les tensions et intensités, en respectant la convention pour
+		      chacun.
+		\item Déterminer l'expression de l'intensité du courant qui circule dans le
+		      circuit.
+		\item Déterminer l'expression de la puissance absorbée par la résistance.
+		\item Tracer la courbe de $P$ en fonction de $R$, et montrer que cette
+		      courbe passe par un maximum. Déterminer les coordonnées du maximum.
+	\end{enumerate}
+}{
+	\begin{center}
+		\begin{tcb}[width=.5\linewidth](data){Données}
+			Générateur \underline{réel} $(E,r)$ de tension~: \smallbreak
+			\begin{center}
+				\includegraphics{circ_simple-a}
+			\end{center}
+		\end{tcb}
+	\end{center}
+	\begin{enumerate}
+		\item
+		      \begin{tcbraster}[raster columns=3, raster equal height=rows]
+			      \begin{tcb}(ques){Résultat attendu}
+				      On demande un schéma \underline{normalisé}, autrement dit avec les
+				      conventions de schémas \textit{européennes}.
+			      \end{tcb}
+			      \begin{tcb}*(tool){Outils}
+				      Générateur~:
+				      \includegraphics{circ_simple-b}
+				      \smallbreak
+				      Résistance~:\vspace{12pt}
+				      \includegraphics{circ_simple-c}
+			      \end{tcb}
+			      \begin{tcb}(appl)'r'{Application}
+				      On obtient~: \smallbreak
+				      \includegraphics{circ_simple-d}
+			      \end{tcb}
+		      \end{tcbraster}
+		\item
+		      \begin{tcbraster}[raster columns=2, raster equal height=rows]
+			      \begin{tcb}*(tool){Outils}
+				      Générateur convention générateur~: \smallbreak
+				      \vspace{-12pt}
+				      \begin{center}
+					      \includegraphics{circ_simple-e}
+				      \end{center}
+				      Résistance convention récepteur~: \smallbreak
+				      \vspace{-12pt}
+				      \begin{center}
+					      \includegraphics{circ_simple-f}
+				      \end{center}
+			      \end{tcb}
+			      \begin{tcb}(appl)'r'{Application}
+				      \begin{center}
+					      \includegraphics{circ_simple-g}
+				      \end{center}
+			      \end{tcb}
+		      \end{tcbraster}
+		\item
+		      \begin{tcbraster}[raster columns=5, raster equal height=rows]
+			      \begin{tcb}[raster multicolumn=2](ques){Résultat attendu}
+              À partir d'un circuit où on considère $E$, $r$ et $R$ comme des
+              grandeurs connues, on cherche l'intensité $I$ qui parcourt la
+              maille que l'on vient de tracer.
+			      \end{tcb}
+			      \begin{tcb}*[raster multicolumn=3](rema)"lrem"'r'{Remarque}
+              Il y a deux outils qui seront utiles pour déterminer des grandeurs
+              dans des circuits~: la \textbf{loi des mailles} et la \textbf{loi
+              des nœuds}. À cela se rajoute la \textbf{loi d'Ohm} qui relie
+              tension et intensité dans une résistance. Ces notions seront vues
+              dans le chapitre suivant et donc décrites ultérieurement, on va
+              ici utiliser la composition des tensions.
+			      \end{tcb}
+		      \end{tcbraster}
+		      \begin{tcbraster}[raster columns=3, raster equal height=rows]
+			      \begin{tcb}(tool){Outil}
+              En nommant des points d'intérêt du circuit, ce qui est souvent
+              conseillé, on va pouvoir utiliser la composition $U_\mathrm{AC} =
+              U_\mathrm{AB} + U_\mathrm{BC}$ en respectant le sens des tensions
+              pour obtenir une information supplémentaire sur le circuit.
+              \smallbreak On rappelle que deux points sur un fil sont au même
+              potentiel, et on peut donc les nommer de la même manière.
+			      \end{tcb}
+			      \begin{tcb}[raster multicolumn=2, sidebyside](appl)'r'{Application}
+				      \tcbsubtitle{\fatbox{Schéma}}
+				      \begin{center}
+					      \includegraphics{circ_simple-h}
+				      \end{center}
+				      \tcblower
+				      \tcbsubtitle{\fatbox{Calcul}}
+				      Ici on peut écrire
+				      \begin{align*}
+					      U_\mathrm{AB} + U_\mathrm{BC} + U_\mathrm{CA} & = U_\mathrm{AA} \\
+					      \Leftrightarrow -E + U_r + U_R                & = 0
+				      \end{align*}
+				      et avec la \textbf{loi d'Ohm}, i.e. $U_r = rI$ et $U_R = RI$~:
+				      \begin{equation*}
+					      (r+R)I = E\\
+				      \end{equation*}
+				      soit
+				      \begin{equation*}
+					      \boxed{I = \frac{E}{r+R}}
+				      \end{equation*}
+			      \end{tcb}
+		      \end{tcbraster}
+
+		\item
+		      \begin{tcbraster}[raster columns=2, raster equal height=rows]
+			      \begin{tcb}(tool){Outil}
+				      Pour un récepteur de tension $U$ traversé par l'intensité $I$ en
+				      convention récepteur, la puissance absorbée est \fbox{$P=UI$}.
+			      \end{tcb}
+			      \begin{tcb}(appl)'r'{Application}
+				      Ici, la tension aux bornes de $R$ est $U_R = RI$, avec $I$ l'intensité
+				      la traversant. On a donc
+				      \begin{equation*}
+					      \boxed{\Pc_R = RI^2 = \frac{RE^2}{(r+R)^2}}
+				      \end{equation*}
+			      \end{tcb}
+		      \end{tcbraster}
+
+		\item
+		      \begin{tcbraster}[raster columns=3, raster equal height=rows]
+			      \begin{tcb}(ques){Résultat attendu}
+				      On cherche à faire une étude de la fonction $P$ de variable $R$, comme
+				      on ferait l'étude de $f(x)$ en mathématiques.
+			      \end{tcb}
+			      \begin{tcb}[raster multicolumn=2](tool)'r'{Outils}
+				      Bon sens pour l'allure de la courbe, procédés de dérivation pour le
+				      maximum. D'une manière générale, on a besoin de~:
+				      \begin{itemize}
+					      \item Dérivation d'un produit~:
+					            \begin{equation*}
+						            \boxed{D[\textcolor{Purple!70}{u}
+									            \textcolor{orange}{v}] =
+							            \textcolor{brandeisblue}{u'}\textcolor{orange}{v} +
+							            \textcolor{Red!70}{v'}\textcolor{Purple!70}{u}}
+					            \end{equation*}
+                \item Dérivation d'une fonction $u$ élevée à une puissance
+                  $\alpha$ ~:
+					            \begin{equation*}
+                        \boxed{D[\textcolor{Purple}{u}^
+                        {\textcolor{ForestGreen}{\alpha}}] =
+                      \textcolor{ForestGreen}{\alpha}
+                    \textcolor{brandeisblue}{u'}
+                  \textcolor{Purple}{u}^{\textcolor{Goldenrod}{\alpha-1}}}
+					            \end{equation*}
+				      \end{itemize}
+			      \end{tcb}
+		      \end{tcbraster}
+		      \vfill
+		      \begin{tcb}[breakable, sidebyside,
+            righthand width=.5\linewidth](appl){Application}
+			      \tcbsubtitle{\fatbox{Tracé}}
+			      \hspace{-12pt}
+			      \begin{tikzpicture}[scale=0.85]
+				      \def\E{5}
+				      \def\r{5}
+				      \begin{axis}[
+						      axis lines=left,
+						      xmin=0, xmax=50,
+						      ymin=0, ymax=1.5,
+						      xlabel=$R$, ylabel=$\Pc(R)$,
+						      clip=false]
+					      \addplot[
+						      domain=0:50,
+						      samples=200,
+						      smooth]
+					      {x*\E^2/(\r+x)^2};
+					      \addlegendentry{$\frac{RE^2}{(r+R)^2}$}
+					      \draw[dashed, Red!70]
+					      (0,1.25) node {$\bullet$} node [above, rotate=90]
+					      {$P(R_\mathrm{max})$} --++
+					      (5,0) --++
+					      (0,-1.25) node {$\bullet$} node[below] {$R_\mathrm{max}$};
+				      \end{axis}
+			      \end{tikzpicture}
+			      \tcblower
+			      \tcbsubtitle{\fatbox{Calcul}}
+			      Soit
+			      \begin{itemize}
+				      \item $ \textcolor{orange}{v(R) = R}
+					            \Longrightarrow
+						          \textcolor{Red}{v'(R) = 1}$
+				      \item $ \textcolor{Purple}{u(R) = r+R}
+                      \Longrightarrow
+						          \textcolor{brandeisblue}{u'(R)=1}$
+			      \end{itemize}
+			      Ainsi
+            \[
+              \textcolor{Purple}{u(R)}^{\textcolor{ForestGreen}{{-2}}} =
+              \frac{\textcolor{ForestGreen}{1}}
+              {\textcolor{Purple}{(r+R)}^{\textcolor{ForestGreen}{2}}}
+              \Rightarrow
+              D[\textcolor{Purple}{u(R)}^{\textcolor{ForestGreen}{{-2}}}] =
+              \frac{\textcolor{ForestGreen}{-2}
+              \times\textcolor{brandeisblue}{1}}
+              {\textcolor{Purple}{(r+R)}^{\textcolor{Goldenrod}{3}}}
+            \]
+            \bigbreak
+			      Et donc,
+			      \begin{align*}
+				      \Pc'(R) & = \frac{\textcolor{ForestGreen}{-2}}
+				      {\textcolor{Purple}{(r+R)}^{\textcolor{Goldenrod}{3}}}
+				      \times \textcolor{orange}{R} + \textcolor{Red}{1}\times
+				      \frac{\textcolor{ForestGreen}{1}}
+				      {\textcolor{Purple}{(r+R)}^{\textcolor{ForestGreen}{2}}} \\
+				      \Pc'(R) & = \frac{-2R}{(r+R)^3} + \frac{r+R}{(r+R)^3}
+			      \end{align*}
+			      Ainsi
+			      \begin{equation*}
+				      \boxed{\Pc'(R) = \frac{r-R}{(r+R)^3}}
+			      \end{equation*}
+			      Et donc
+			      \begin{equation*}
+				      \Pc'(R_\mathrm{max}) = 0 \Longrightarrow
+				      \textcolor{Red!70}{\boxed{R_\mathrm{max} = r}}
+			      \end{equation*}
+			      Avec
+			      \begin{equation*}
+				      \textcolor{Red!70}{\boxed{\Pc(R_\mathrm{max}) = \frac{E^2}{4r}}}
+			      \end{equation*}
+		      \end{tcb}
+	\end{enumerate}
+}
+
+\section{Résistances équivalentes}
+\switch{
+	\begin{enumerate}
+		\item Exprimer la résistance équivalente à l'association de deux résistances
+		      $R_1$ et $R_2$ placées en parallèle.
+		\item Que devient cette expression si $R_1 = R_2$~?
+		\item Exprimer la résistance équivalente à l'association des résistances
+		      $R_1$, $R_2$ et $R_3$ placées en parallèle.
+		\item Que devient cette expression si $R_1 = R_2 = R_3$~?
+		\item Exprimer la résistance équivalente à l'association de $n$ résistances
+		      identiques placées en parallèle.
+	\end{enumerate}
+}{
+	\begin{enumerate}
+		\item
+		      \begin{tcbraster}[raster columns=2, raster equal height=rows]
+			      \begin{tcb}(ques){Résultat attendu}
+				      \begin{center}
+					      \includegraphics{2parrequiv}
+				      \end{center}
+			      \end{tcb}
+			      \begin{tcb}(tool)'r'{Outil}
+				      L'association en parallèle de deux résistances $R_1$ et $R_2$ donne une
+				      résistance équivalente $ R_{\rm eq}$ telle que~:
+				      \begin{empheq}[box=\fbox]{equation*}
+					      \frac{1}{ R_{\rm eq}} = \frac{1}{R_1} + \frac{1}{R_2}
+				      \end{empheq}
+			      \end{tcb}
+			      \begin{tcb}(impo){Attention !}
+              Faites particulièrement attention à bien écrire $\DS \frac{1}{
+              R_{\rm eq}}$ et non pas simplement $ R_{\rm eq}$, même après 5
+              lignes de calcul quand c'est nécessaire. Pensez toujours à
+              vérifier l'homogénéité d'un résultat littéral avant de l'encadrer.
+              Cette erreur est une des plus communes.
+			      \end{tcb}
+			      \begin{tcb}(appl)'r'{Application}
+				      En mettant les deux termes sur même dénominateur~:
+				      \begin{align*}
+					      \frac{1}{ R_{\rm eq}}                 & = \frac{1}{R_1}\times \textcolor{orange}{
+						      \frac{R_2}{R_2}} + \frac{1}{R_2}\times \textcolor{orange}{
+					      \frac{R_1}{R_1}}                                                                  \\
+					      \Leftrightarrow \frac{1}{ R_{\rm eq}} & = \frac{R_2 + R_1}{R_1R_2}                \\
+					      \Leftrightarrow R_{\rm eq}            & = \frac{R_1R_2}{R_1+R_2}
+				      \end{align*}
+			      \end{tcb}
+		      \end{tcbraster}
+
+        \item ~
+		      \begin{center}
+			      \begin{tcb}[width=\linewidth](appl){Application}
+				      \[R_1 = R_2 = R \Longrightarrow \boxed{ R_{\rm eq} = \frac{R}{2}}\]
+			      \end{tcb}
+		      \end{center}
+
+		\item
+		      \begin{tcbraster}[raster columns=2, raster equal height=rows]
+			      \begin{tcb}(ques){Résultat attendu}
+				      \begin{center}
+					      \includegraphics{3parrequiv}
+				      \end{center}
+			      \end{tcb}
+			      \begin{tcb}(tool)'r'{Outil}
+              L'association en parallèle de trois résistances $R_1$, $R_2$ et
+              $R_3$ donne une résistance équivalente $ R_{\rm eq}$ telle que~:
+				      \begin{empheq}[box=\fbox]{equation*}
+					      \frac{1}{ R_{\rm eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
+				      \end{empheq}
+			      \end{tcb}
+		      \end{tcbraster}
+		      \begin{center}
+			      \begin{tcb}[width=\linewidth](appl){Application}
+				      De la même manière que précédemment, la mise sous même dénominateur
+				      donne~:
+				      \begin{gather*}
+					      \frac{1}{ R_{\rm eq}}       = \frac{R_2R_3}{R_1R_2R_3} +
+					      \frac{R_1R_3}{R_1R_2R_3} + \frac{R_1R_2}{R_1R_2R_3}
+					      \Lra
+					      R_{\rm eq}  = \frac{R_1R_2R_3}{R_1R_2 + R_2R_3 +
+						      R_1R_3}
+				      \end{gather*}
+				      qui est bien homogène à une résistance étant de la forme $\DS
+					      \frac{R^{\cancel{3}}}{\cancel{R^2}} = R$.
+			      \end{tcb}
+		      \end{center}
+		\item ~
+		      \begin{center}
+			      \begin{tcb}[width=\linewidth](appl){Application}
+				      \[R_1 = R_2 = R_3 = R \Longrightarrow R_{\rm eq} = \frac{R^3}{3R^2}
+					      \Leftrightarrow \boxed{R_{\rm eq} = \frac{R}{3}}\]
+			      \end{tcb}
+		      \end{center}
+		\item
+		      \begin{tcbraster}[raster columns=2, raster equal height=rows]
+			      \begin{tcb}(ques){Résultat attendu}
+				      \begin{center}
+					      \includegraphics{nparrequiv}
+				      \end{center}
+			      \end{tcb}
+			      \begin{tcb}(appl)'r'{Application}
+				      Il n'y a toujours qu'une seule formule attendue, et elle s'écrit~:
+				      \[ \frac{1}{R_{\rm eq}} = \underbrace{ \frac{1}{R} + \frac{1}{R} +
+						      \cdots + \frac{1}{R}}_{\textit{n fois}} \Leftrightarrow
+					      \boxed{R_{\rm eq} = \frac{R}{n}} \]
+			      \end{tcb}
+		      \end{tcbraster}
+	\end{enumerate}
+}
+
+\section{Association de générateurs}
+\switch{
+  Deux générateurs de tension de forces électromotrices $E_1$ et $E_2$ et de
+résistances internes $r_1$ et $r_2$ sont branchés en série. Ils alimentent une
+résistance $R_3$.
+
+\begin{enumerate}
+  \item Dessiner le schéma normalisé de ce circuit électrique et flécher les
+        courants et les tensions.
+  \item Écrire l'équation de la maille et en déduire l'expression du courant
+        qui circule dans cette maille.
+  \item Simplifier le schéma en ne faisant apparaître qu'un seul générateur
+        équivalent aux deux générateurs initiaux aux bornes de $R_3$.
+  \item Que devient le générateur équivalent lorsque $r_1$ et $r_2$ sont
+        nulles~?
+  \item Conclusion à retenir : peut–on brancher deux générateurs idéaux de
+        tension en série~? Deux générateurs réels~?
+\end{enumerate}
+Les deux générateurs ($E_1$, $r_1$) et ($E_2$, $r_2$) sont maintenant placés en
+parallèle. Ils alimentent une résistance $R_4$ (en parallèle sur l'ensemble des
+deux générateurs).
+\begin{enumerate}[resume]
+  \item Dessiner le schéma normalisé de ce montage et flécher les courants et
+        les tensions.
+  \item Reproduire le schéma avec des générateurs idéaux (donc $r_1$ et $r_2$
+        nulles) et flécher les courants et les tensions. Que peut-on dire de la
+        tension aux bornes de $R_4$~?
+  \item Conclusion à retenir : peut–on brancher deux générateurs idéaux de
+        tension en parallèle~? Deux générateurs réels~?
+\end{enumerate}
+
+}{
+\begin{tcbraster}[raster columns=5, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        1)\vspace*{-20pt}
+        \begin{center}
+            \includegraphics{assogen_ser}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=3](tool)'r'{Outil}
+        %\vspace{-12pt}
+        2)
+        \textbf{Loi des mailles}~: la somme algébrique des tensions d'une maille
+        est nulle (cf. exercice I). Pour l'appliquer, on se donne un
+        sens de lecture d'une maille, ici dans le sens direct mais peu importe,
+        puis on peut~:
+        \begin{itemize}
+            \item Écrire les tensions traversées dans le même sens que leur
+                flèche d'un côté du signe égal, les autres de l'autre côté~;
+            \item Écrire les tensions traversées dans le même sens avec un «~+~»
+                et les autres avec un «~-~», le tout devant «~$=0$~».
+        \end{itemize}
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=9, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=4](appl){Application}
+        Étant donné qu'il n'y a qu'une maille, il ne peut y avoir qu'une seule
+        intensité dans le circuit. On pose donc $i_1 = i_2 = i$, et en applicant
+        la loi des mailles on a
+        \begin{align*}
+            & U_{R_3} + U_{r_2} - E_2 + U_{r_1} - E_1 =
+                0\\
+            & \Leftrightarrow R_3i + r_2i + r_1i =
+                E_1 + E_2\\
+            & \Leftrightarrow i \left( r_1+r_2+R_3 \right) =
+                E_1 + E_2\\
+            & \Leftrightarrow \boxed{i = \frac{E_1 + E_2}{r_1+r_2+R_3}}
+        \end{align*}
+    \end{tcb}    
+    \begin{tcb}[raster multicolumn=5](impl)'r'{Schéma simplifié}
+        3)
+        L'expression que l'on a trouvée est en tout point similaire à celle du
+        premier exercice si on considère qu'on a un générateur de force
+        électromagnétique $E = E_1 + E_2$ et de résistance interne $r = r_1 +
+        r_2$~; on peut donc dessiner~:
+        \begin{center}
+            \includegraphics{assogen_ser-simple}
+        \end{center}
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(coro){Situation particulière}
+        4)
+        Quand $r_1$ et $r_2$ sont nulles, on se retrouve avec un générateur de
+        résistance interne $r = 0$~: c'est donc un \underline{générateur idéal}.
+    \end{tcb}
+    \begin{tcb}(impo)'r'{Conclusion}
+        L'étude théorique précédente ne présente aucune incohérence ou
+        impossibilité de pratique peu importe la situation, si tant est que les
+        générateurs sont branchés dans le même sens~; si ça n'est pas le cas
+        l'un considère l'autre comme un récepteur et le fait surchauffer.
+    \end{tcb}
+\end{tcbraster}
+
+\begin{tcbraster}[raster columns=5, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        5)
+        \vspace*{-12pt}
+        \begin{center}
+            \includegraphics{assogen_parr}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Générateurs idéaux}
+        6)\vspace*{-20pt}
+        \begin{center}
+            \includegraphics{assogen_parr-ideal}
+        \end{center}
+        On doit trouver (avec l'unicité de la tension entre deux points, ici par
+        exemple A et B) que $U_{R_4} = E_2 = E_1$.
+    \end{tcb}
+\end{tcbraster}
+\begin{center}
+    \begin{tcb}[width=\linewidth](ror){Conclusion}
+        On ne peut brancher des générateurs idéaux de tension en parallèle que
+        si leurs tensions sont les mêmes~; les générateurs réels peuvent l'être
+        et ce sont les intensités qui vont s'adapter pour suivre la loi des
+        mailles.
+    \end{tcb}
+\end{center}
+}
+
+\section{Calcul de résistances équivalentes}
+\switch{
+  Exprimer la résistance équivalente entre les points $A$ et $B$ pour chacun des
+schémas suivants.
+\bigbreak
+\begin{minipage}{0.32\linewidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{requiv_a-plain}
+  \end{center}
+\end{minipage}
+\begin{minipage}{0.32\linewidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{requiv_b-plain}
+  \end{center}
+\end{minipage}
+\begin{minipage}{0.32\linewidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{requiv_c-plain}
+  \end{center}
+\end{minipage}
+}{
+\subsection{Schéma 1}
+\begin{center}
+    \includegraphics{requiv_a}
+\end{center}
+La suite de schémas équivalents précédents donne~:
+\begin{align*}
+    R_{\rm eq}                 & = \textcolor{orange}{R + R} +
+        \textcolor{brandeisblue}{R_{\rm eq,2}} \\
+    \Leftrightarrow R_{\rm eq} & = \textcolor{orange}{2R} +
+        \textcolor{brandeisblue}{\frac{
+                R\times \textcolor{ForestGreen}{R_{\rm eq,1}}
+        }{R + \textcolor{ForestGreen}{R_{\rm eq,1}}}}\\
+    \Leftrightarrow R_{\rm eq} & = 2R + \frac{
+        R\times\textcolor{ForestGreen}{2R}}{
+        R+\textcolor{ForestGreen}{2R}} \\
+    \Leftrightarrow R_{\rm eq} & = 2R + \frac{2R^{\cancel{2}}}{3\cancel{R}}\\
+    \Leftrightarrow R_{\rm eq} & = \frac{8R}{3}
+\end{align*}
+
+\subsection{Schéma 2}
+\begin{center}
+    \includegraphics{requiv_b}
+\end{center}
+Et cette fois~:
+\begin{align*}
+    R_{\rm eq}                 & =
+    \textcolor{orange}{R_1} + \color{brandeisblue}R_{\rm eq,2} \\
+    \Leftrightarrow R_{\rm eq} & =
+        R_1 + \textcolor{brandeisblue}{\frac{
+        R_2\times \textcolor{ForestGreen}{R_{\rm eq,1}}}{
+        R_2 + \textcolor{ForestGreen}{R_{\rm eq,1}}}} \\
+    \Leftrightarrow R_{\rm eq} & =
+        R_1 + \frac{R_2\times(r+R+R_2)}{r+R+2R_2}\\
+\end{align*}
+
+\subsection{Schéma 3}
+Ce schéma est un peu plus compliqué, mais la bonne pratique de nommer des points
+de potentiel sur un schéma aide à ne pas se perdre. En effet, étant donné que
+l'on nous demande de déterminer la résistance équivalente entre A et B, toute
+simplification du circuit est à faire. On a travaillé sur les associations de
+résistances mais il ne faut pas oublier, et donc savoir reconnaître, les
+potentiels court-circuits. Ici, en reportant le point A sur chaque point
+d'intérêt où il peut être reporté (c'est-à-dire s'il n'y a pas de dipôle entre
+les deux), on voit qu'un courant qui partirait de A pour aller à B (ce que fait
+un Ohmmètre) éviterait complètement les trois premières résistances. On peut
+redessiner le schéma différemment pour faire apparaître le court-circuit de
+manière plus explicite~:
+
+\begin{center}
+    \includegraphics{requiv_c}
+\end{center}
+
+Ainsi, le circuit se simplifie en~:
+\begin{center}
+    \includegraphics{2parrequiv}
+\end{center}
+Soit
+\[ \boxed{R_{\rm eq} = \frac{R_1R_2}{R_1 + R_2}}\]
+}
+\section{Conventions}
+
+\switch{
+  \begin{minipage}{0.30\linewidth}
+  Pour le circuit ci-contre :
+\end{minipage}
+\begin{minipage}{0.70\linewidth}
+  \begin{center}
+    \includegraphics[width=.3\linewidth]{convs_plain}
+  \end{center}
+\end{minipage}
+\begin{enumerate}
+  \item
+        \begin{enumerate}
+          \item Flécher les courants et les tensions en convention récepteur
+                pour chaque dipôle.
+          \item Exprimer la puissance (notée $\Pc(R)$ pour le dipôle $R$)
+            associée à chaque dipôle.
+          \item En faisant un bilan de puissance reçue par le système,
+                déterminer l'expression du courant I.
+        \end{enumerate}
+  \item
+        \begin{enumerate}
+          \item Reproduire le circuit et flécher les courants et tensions en
+                convention générateur pour chaque dipôle.
+          \item Exprimer la puissance associée à chaque dipôle.
+          \item En faisant un bilan de puissance, déterminer l'expression du
+                courant I.
+        \end{enumerate}
+  \item
+        \begin{enumerate}
+          \item Reproduire le schéma et flécher les courants et tensions de
+                chaque dipôle en fonction de sa nature (récepteur / générateur).
+          \item Exprimer la puissance associée à chaque dipôle.
+          \item En faisant un bilan de puissance reçu par le système,
+                déterminer l'expression du courant I.
+        \end{enumerate}
+  \item Comparer les résultats obtenus aux réponses précédentes
+\end{enumerate}
+}{
+\subsection{Tout récepteur}
+\begin{tcbraster}[raster columns=7, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        \subsubsection{}
+        \vfill
+        \begin{center}
+            \includegraphics{convs_a}
+        \end{center}
+        \vfill
+    \end{tcb}
+    \begin{tcb}*[raster multicolumn=2](tool){Calcul}
+        \subsubsection{}
+        \vfill
+        \begin{itemize}[leftmargin=20pt]
+            \item $\Pc_{\text{r}}(E) = -EI$
+            \item $\Pc_{\text{r}}(r) = rI^2$
+            \item $\Pc_{\text{r}}(R) = RI^2$
+        \end{itemize}
+        \vfill
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Application}
+        \subsubsection{}
+        On a $\sum \Pc_{\text{f}} = \sum \Pc_{\text{r}}$, donc d'après
+        la question précédente~:
+        \begin{align*}
+            0         & = -EI + rI^2 + RI^2\\
+            I(r+R)    & = E\\
+            \Aboxed{I & = \frac{E}{r+R}}
+        \end{align*}
+    \end{tcb}
+\end{tcbraster}
+
+\subsection{Tout générateur}
+\begin{tcbraster}[raster columns=7, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        \subsubsection{}
+        \vfill
+        \begin{center}
+            \includegraphics{convs_b}
+        \end{center}
+        \vfill
+    \end{tcb}
+    \begin{tcb}*[raster multicolumn=2](tool){Calcul}
+        \subsubsection{}
+        \vfill
+        \begin{itemize}[leftmargin=20pt]
+            \item $\Pc_{\text{f}}(E) = EI$
+            \item $\Pc_{\text{f}}(r) = -rI^2$
+            \item $\Pc_{\text{f}}(R) = -RI^2$
+        \end{itemize}
+        \vfill
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Application}
+        \subsubsection{}
+        On a $\sum \Pc_{\text{f}} = \sum \Pc_{\text{r}}$, donc d'après
+        la question précédente~:
+        \begin{align*}
+            EI - rI^2 - RI^2 & = 0\\
+            I(r+R)           & = E\\
+            \Aboxed{I        & = \frac{E}{r+R}}
+        \end{align*}
+    \end{tcb}
+\end{tcbraster}
+
+\subsection{Conventions combinées}
+\begin{tcbraster}[raster columns=7, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        \subsubsection{}
+        \vfill
+        \begin{center}
+            \includegraphics{convs_c}
+        \end{center}
+        \vfill
+    \end{tcb}
+    \begin{tcb}*[raster multicolumn=2](tool){Calcul}
+        \subsubsection{}
+        \vfill
+        \begin{itemize}[leftmargin=20pt]
+            \item $\Pc_{\text{f}}(E) = EI$
+            \item $\Pc_{\text{r}}(r) = rI^2$
+            \item $\Pc_{\text{r}}(R) = RI^2$
+        \end{itemize}
+        \vfill
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Application}
+        \subsubsection{}
+        On a $\sum \Pc_{\text{f}} = \sum \Pc_{\text{r}}$~: avec les
+        conventions adaptées, on a~:
+        \begin{align*}
+            EI        & = rI^2 + RI^2\\
+            I(r+R)    & = E\\
+            \Aboxed{I & = \frac{E}{r+R}}
+        \end{align*}
+    \end{tcb}
+\end{tcbraster}
+\begin{center}
+    \begin{tcb}[width=\linewidth](impo){Conclusion}
+        On trouve bien toujours la même valeur de l'intensité dans le circuit,
+        ce qui montre bien que les conventions ne sont que des conventions et ne
+        changent pas la manière dont la physique fonctionne ensuite. Il faut
+        noter cependant que le $I$ du premier schéma n'est pas le $I$ des
+        schémas 2 et 3, étant donné que le sens n'est pas le même~: les
+        intensitées sont opposées.
+    \end{tcb}
+\end{center}
+}
+
+\section{Mesures de tensions et intensités}
+
+\switch{
+  Dans les circuits ci-dessous, quelles sont les valeurs affichées par les
+instruments de mesure si ceux-ci sont parfaits~? On donne : $E = \SI{5,0}{V}$ ;
+$r_1 = \SI{10}{\Omega}$ ; $R = \SI{20}{\Omega}$ ; $R_1 = \SI{30}{\Omega}$ ; $R_2
+  = \SI{40}{\Omega}$. On rappelle que dans un circuit, les ampèremètres parfaits
+sont équivalents à des fils alors que les voltmètres parfaits sont équivalents à
+des interrupteurs ouverts.
+
+\begin{minipage}{0.48\linewidth}
+  \includegraphics[width=\linewidth]{mes_iu_a-plain}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+  \includegraphics[width=\linewidth]{mes_iu_b-plain}
+\end{minipage}
+}{
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(tool){Rappel}
+        \begin{center}
+            \includegraphics{amp_parfait}
+            \smallbreak
+            \includegraphics{volt_parfait}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}[sidebyside](data)'r'{Données}
+        \begin{itemize}
+            \item $E   = \SI{5.0}{V}$
+            \item $r_1 = \SI{10}{\ohm}$
+            \item $R   = \SI{20}{\ohm}$
+        \end{itemize}
+        \tcblower
+        \begin{itemize}
+            \item $R_1 = \SI{30}{\ohm}$
+            \item $R_2 = \SI{40}{\ohm}$
+        \end{itemize}
+    \end{tcb}
+\end{tcbraster}
+\subsection{Schéma 1}
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \hspace*{-12pt}
+            \includegraphics{mes_iu_a}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}*(impl){Simplification}
+        \begin{center}
+            \hspace*{-12pt}
+            \includegraphics{mes_iu_a-simple}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}(appl)'r'{Application}
+
+        V ouvre le circuit, donc aucun courant ne passe dans la boucle de
+        droite~: A mesure \SI{0}{A}. On trouve $I$ avec la loi des mailles et on
+        trouve $\DS I = \frac{E}{r_1 + R_1}$, et donc A' mesure \SI{0.125}{A}.
+        Pour V, $R$ n'a pas de différence de potentiel donc il mesure $U_{R_1}
+        = \SI{3.75}{V}$.
+
+    \end{tcb}
+\end{tcbraster}
+\subsection{Schéma 2}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{mes_iu_b}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}*(impl)"limp"'r'{Simplification}
+        \begin{center}
+           \includegraphics{mes_iu_b-simple}
+        \end{center} 
+    \end{tcb}
+\end{tcbraster}
+\begin{center}
+    \begin{tcb}[width=\linewidth](appl){Application}
+        Cette fois c'est la partie de droite qui est ouverte, et donc pas
+        parcourue par un courant~: A' mesure \SI{0}{A}. L'ampèremètre de gauche
+        court-circuite quant à lui la résitance $R_2$, ainsi toute l'intensité
+        se trouve dans la boucle où on a tracé \textcolor{brandeisblue}{$I$}~;
+        une rapide loi des mailles donne $\DS I = \frac{E}{R} = \SI{0.25}{A}$. V
+        mesure ici aussi la tension $E$.
+    \end{tcb}
+\end{center}
+}
+
+\section{Diviseur de tension}
+
+\switch{
+  \begin{wrapfigure}[10]{R}{.2\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{divtens_plain}
+\end{wrapfigure}
+~
+\begin{enumerate}
+  \item Écrire la loi des mailles pour le montage ci-contre et en déduire
+        l'expression de l'intensité du courant $I(R_2)$ qui parcourt cette
+        maille.
+  \item En déduire l'expression de la tension $U_{BC}$, aux bornes de la
+        résistance $R_1$.
+\end{enumerate}
+On ajoute une résistance $R_3$ qui sera connectée en parallèle avec la
+résistance $R_1$.
+\begin{enumerate}[resume]
+  \item Est-ce que la valeur de la tension $U_{BC}$ calculée à la question
+        précédente va changer~?
+  \item Si oui, calculer les nouvelles valeurs de $U_{BC}$ et $I(R_2)$.
+\end{enumerate}
+}{
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{divtens}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}*(ques){Résultat attendu}
+                On cherche $I$ puis $U_{BC}$.
+            \end{tcb}
+            \begin{tcb}*[add to natural height=\myspace](tool){Outils}
+                \begin{itemize}[leftmargin=10pt]
+                    \item Loi des mailles pour $I$~;
+                    \item Loi d'Ohm pour $U_{BC}$.
+                \end{itemize}
+            \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+    \begin{tcb}(appl)'r'{Application}
+        Il suffit d'une loi des mailles pour trouver
+        \[I = \frac{E}{R_1+R_2}\]
+        Puis trivialement
+        \[U_{BC} = R_1I = \frac{R_1}{R_1+R_2}E\]
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(rema){Remarque}
+        On remarque donc que deux dipôles de résistances $R_1$ et $R_2$ se
+        partageant une tension totale $E$ vont se la répartir
+        en respectant la fraction de résistance à laquelle chaque diôle
+        participe. C'est également une simple moyenne pondérée.
+    \end{tcb}
+    \begin{tcb}(ror)'r'{Important}
+        Ce résultat est bien plus général que pour deux dipôles et fonctionne
+        avec $n$ dipôles \textbf{\textit{en série}} sur une branche. Il faut
+        pouvoir se ramener à ce schéma précis pour appliquer la formule du pont
+        diviseur de tension – que vous pouvez maintenant utiliser sans loi des
+        mailles~: $\DS U_x = E\times \frac{R_x}{R_\mathrm{tot}}$
+    \end{tcb}
+\end{tcbraster}
+
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{divtens_b}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}*(appl){Réponse}
+                Oui, elle va changer puisqu'on a branché un nouveau dipôle.
+            \end{tcb}
+            \begin{tcb}*(ques){Résultat attendu}
+                On cherche $I$ et $U_{BC}$.
+            \end{tcb}
+            \begin{tcb}*[add to natural height=\myspace](tool){Outils}
+                \begin{itemize}[leftmargin=10pt]
+                    \item Loi des mailles pour $I$~;
+                    \item Loi d'Ohm pour $U_{BC}$.
+                \end{itemize}
+            \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+    \begin{tcb}*(impl)"limp"'r'{Schéma simplifié}
+        \begin{center}
+            \includegraphics{divtens_b-simple}
+        \end{center}
+    \end{tcb}
+\end{tcbraster}
+\begin{center}
+    \begin{tcb}[sidebyside](appl){Application}
+        On peut envisager ce calcul de deux manières~:
+        \begin{itemize}
+
+            \item D'une part, $U_{BC} = R_1 I_1$ et on pourrait déterminer $I_1$
+                en fonction de $I$ avec une LdN, et pour ça avoir $I$ avec une
+                LdM en calculant $R_{\rm eq}$ comme précédemment, et donc~:
+
+            \item On voit immédiatement que $U_{BC} = R_{\rm eq}I$. Autant
+                partir là-dessus.
+        \end{itemize}
+        \tcblower
+        On obtient ainsi \[ R_{\rm eq} = \frac{R_1R_3}{R_1+R_3} \quad \text{et}
+        \quad I = \frac{E}{R_2 + \frac{R_1R_3}{R_1+R_3}}\] d'où après calcul
+        \[\boxed{U_{BC} = \frac{ER_1R_3}{R_2(R_1+R_3)+R_1R_3}}\]
+        %\quad \text{ou}
+        %\quad \boxed{U_{BC} = \frac{E}{\frac{R_2}{R_3} + \frac{R_2}{R_1} + 1}}\]
+    \end{tcb}
+\end{center}
+}
+
+\section{Diviseur de courant}
+
+\switch{
+  \begin{wrapfigure}[10]{R}{.2\linewidth}
+  \vspace{60pt}
+  \centering
+  \includegraphics[width=\linewidth]{divcour_plain}
+\end{wrapfigure}
+~
+\begin{enumerate}
+  \item Exprimer les tensions aux bornes de $R_1$ et $R_2$ dans le montage
+        ci-contre.
+  \item A partir de la loi des mailles, exprimer $I(R_2$) en fonction de I,
+        $R_1$ et $R_2$.
+\end{enumerate}
+On ajoute une résistance $R_3$ qui sera connectée en parallèle avec la
+résistance $R_1$.
+\begin{enumerate}[resume]
+  \item Est-ce que la valeur de l'intensité $I(R_2$) va changer~?
+  \item Si oui, donner sa nouvelle expression.
+  \item Est-ce que la valeur de l'intensité délivrée par le générateur va
+        changer~?
+  \item Si oui, donner sa nouvelle expression.
+\end{enumerate}
+}{
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{divcour}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}*(ques){Résultat attendu}
+                On cherche $U_{R_1}$ et $U_{R_2}$.
+            \end{tcb}
+            \begin{tcb}*[add to natural height=\myspace](tool){Outils}
+                \begin{itemize}
+                    \item Unicité de la tension en parallèle~;
+                    \item Expression résistance $\parr$.
+                \end{itemize}
+            \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+    \begin{tcb}*(impl)"limp"'r'{Schéma simplifié}
+        \begin{center}
+            \includegraphics{divcour-simple}
+        \end{center}
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(appl){Application}
+        On a certes $U_{R_1} = I_1R_1$ et $U_{R_2} = I_2R_2$, mais comme on a
+        $U_{R_1} = U_{R_2} = U_{AB}$, le plus simple est de déterminer $U_{AB}$.
+        Une résistance équivalente $R_{\rm eq} = \frac{R_1R_2}{R_1+R_2}$ avec
+        l'intensité $I$ qui est connue (car imposée par le générateur de
+        courant) donne facilement \[U_{R_1} = U_{R_2} = R_{\rm eq}I =
+        \frac{R_1R_2}{R_1+R_2}I\]
+    \end{tcb}
+    \begin{tcb}(ror)'r'{Important}
+        Ce résultat est la base de la réflexion menant à l'expression du
+        diviseur de courant qui donne l'expression de $I_x$~: on voit
+        directement apparaître que $\DS I_x = I\times\frac{R_{\rm eq}}{R_x}$ de par
+        l'unicité de la tension. Souvenez-vous de cette simplicité.
+    \end{tcb}
+\end{tcbraster}
+
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+    \begin{tcb}(ques){Résultat attendu}
+        On cherche $I_2$ en fonction de $I, R_1, R_2$ \textbf{à partir de la loi
+        des mailles}.
+    \end{tcb}
+    \begin{tcb}*(tool){Outils}
+        -- LdM~: $I_1R_1 = I_2R_2 \quad \color{ForestGreen}(1)$~;
+        \smallbreak
+        -- LdN~: $I = I_1 + I_2 \quad \color{ForestGreen}(2)$.
+    \end{tcb}
+    \begin{tcb}(appl)'r'{Application}
+        En utilisant \textcolor{ForestGreen}{(2)} dans
+        \textcolor{ForestGreen}{(1)}, on a $I_2R_2 = (I-I_2)R_1$, donc en
+        isolant $I_2$ on obtient facilement \[\boxed{I_2 = I
+        \frac{R_1}{R_1+R_2}}\]
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=7, raster equal height=rows]
+    \begin{tcolorbox}[blankest, raster multicolumn=4, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{divcour_3}
+        \end{center}
+    \end{tcb}
+    \begin{tcb}(ques){Résultat attendu}
+        Évidemment, $I_2$ va changer puisqu'on branche un nouveau dipôle en
+        parallèle. Une rivière qui se divise en 3 plutôt qu'en 2 va avoir des
+        débits différents dans les deux situations. Donc on cherche $I_2$ en
+        fonction de $I, R_1, R_2, R_3$ \textbf{sans méthode imposée}.
+    \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Application}
+        Avec la réflexion de la question 1 ou la relation du pont diviseur de
+        courant qui est maintenant utilisable à volonté, on a facilement $I_2 =
+        I\times \frac{R_{\rm eq}}{R_2}$. Avec $R_{\rm eq} =
+        \frac{R_1R_2R_3}{R_1R_2+R_1R_3+R_2R_3}$, on a finalement
+        \[\boxed{I_2 = I \times \frac{R_1R_3}{R_1R_2+R_1R_3+R_2R_3}}\]
+    \end{tcb}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(rema){Remarque}
+        L'intensité $I$ ne va pas changer, puisque c'est celle que l'on fixe
+        avec le générateur.
+    \end{tcb}
+    \begin{tcb}(ror)'r'{Important}
+        Bien que la loi des mailles soit l'origine de nombreuses relations, ici
+        c'est la simple unicité de la tension qui amène au diviseur de courant.
+    \end{tcb}
+\end{tcbraster}
+}
+
+\section{Calcul d'intensité}
+
+\switch{
+  \noindent
+\begin{minipage}{0.45\linewidth}
+  En utilisant les lois fondamentales dans l'ARQS
+  (dites \textit{lois de Kirchhoff}), exprimer l'intensité traversant $R$ dans
+  le circuit ci-contre. Faire de même avec un pont diviseur de courant d'une
+  part, et de même avec un diviseur de tension d'autre part.
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{calc_intens-plain}
+  \end{center}
+\end{minipage}
+}{
+\begin{tcbraster}[raster columns=5, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=3](data){Schéma}
+        1)
+        \begin{center}
+            \includegraphics{calc_intens}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, raster multicolumn=2, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}[add to natural height=\myspace](ques)'r'{Résultat attendu}
+                On cherche à exprimer $I_2$.
+            \end{tcb}
+            \begin{tcb}(tool)'r'{{LdN, LdM}}
+                \begin{itemize}
+                    \item $I = I_1 + I_2 \color{ForestGreen}(1)$ (LdN)~;
+                    \item $I_1R_1 + Ir_1 = E_1 \color{ForestGreen}(2)$ (LdM 1)~;
+                    \item $I_2(R+R_2) = I_1R_1 \color{ForestGreen}(3)$ (LdM 2).
+                \end{itemize}
+            \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(impo){Conseil}
+        Pour les systèmes, il faut~: numéroter les équations qu'on veut
+        réutiliser en premier lieu, à l'aide des $\color{ForestGreen}(1)$ par
+        exemple, savoir qu'un système de 3 équations (indépendantes) à 3
+        inconnues \underline{est} résolvable ensuite, et comprendre comment s'y
+        prendre enfin. Cette dernière partie est bien sûr la vraie étape
+        difficile et passe par la pratique, mais elle s'apprend.
+    \end{tcb}
+    \begin{tcb}*(rema)"lrem"'r'{Exemple}
+        $I_2$ apparaît dans l'équation $\color{ForestGreen}(3)$, mais s'exprime
+        en fonction de $I_1$ inconnu. On doit donc commencer par trouver une
+        expression de $I_1$ utile. $I_1$ fait partie de l'équation
+        $\color{ForestGreen}(2)$ qui, elle, dépend de $I$ mais en utilisant
+        $\color{ForestGreen}(1)$ on peut facilement changer
+        $\color{ForestGreen}(2)$ en une nouvelle équation reliant $I_1$ à $I_2$
+        \underline{et qui n'est pas $\color{ForestGreen}(3)$} et qu'on
+        appellera brillamment $\color{ForestGreen}(4)$. Ainsi, en réinjectant
+        \textcolor{ForestGreen}{(4)} dans \textcolor{ForestGreen}{(3)}, on aura
+        une expression de $I_2$ en fonction uniquement des paramètres du circuit
+        ($E, R$).
+    \end{tcb}
+\end{tcbraster}
+
+\begin{center}
+    \begin{tcb}[sidebyside, righthand ratio=.55](appl){Application}
+        Injecter \textcolor{ForestGreen}{(1)} dans \textcolor{ForestGreen}{(2)}
+        donne~:
+        \begin{align*}
+            I_1R_1 + (I_1+I_2)r_1 &= E_1\\
+            I_1(R_1+r_1) &= E_1-I_2r_1\\
+            I_1 &= \frac{E_1 - I_2r_1}{R_1 + r_1} \quad \color{ForestGreen}(4)
+        \end{align*}
+        Ainsi, il suffit de réinjecter \textcolor{ForestGreen}{(4)} dans
+        \textcolor{ForestGreen}{(3)} pour avoir~:
+        \tcblower
+        \begin{align*}
+            I_2(R_2+R) &= \frac{E_1 - I_2r_1}{R_1 + r_1}\times R_1\\
+            I_2(R_2+R)\times(R_1+r) &= (E_1-I_2r)\times R_1\\
+            I_2 \left[ (R_2+R)(R_1+r_1)+r_1R_1 \right] &= E_1R_1
+        \end{align*}
+        et finalement
+        \[\boxed{I_2 = \frac{E_1R_1}{\left[ (R_2+R)(R_1+r_1)+r_1R_1 \right]}}\]
+    \end{tcb}
+\end{center}
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}[](ques){Résultat attendu}
+        2)
+        On cherche à trouver $I_2$ \textit{avec un diviseur de courant}.
+    \end{tcb}
+    \begin{tcb}[sidebyside, righthand ratio=0.4](tool)'r'{Outil}
+        \begin{center}
+            \includegraphics[]{divcour}
+        \end{center}
+        \tcblower
+        \begin{center}
+            Dans le circuit ci-contre,
+            \[ I_2 = \frac{R_{\rm eq}}{R_2}I\]
+        \end{center}
+    \end{tcb}
+\end{tcbraster}
+\begin{tcb}[](data){Schéma}
+    \includegraphics[width=\linewidth]{calc_intens-divcour}
+\end{tcb}
+\begin{tcb}[breakable, sidebyside](appl){Application}
+    Sur le schéma ci-dessus, on définit
+    \[ \boxed{R_{\rm eq,1} = R+R_2} \qet \boxed{R_{\rm eq,2} =
+        \frac{R_1(R+R_2)}{R + R_1 + R_2}}\]
+    pour appliquer la relation du pont diviseur de courant~:
+    \begin{equation*}
+        I_2                 = \frac{R_{\rm eq, 2}}{R_{\rm eq,1}}I
+        \Leftrightarrow I_2 = \frac{R_1}{R + R_1 + R_2}I
+    \end{equation*}
+    \tcblower
+    Avec une loi des mailles on trouve
+    \begin{equation*}
+        I                 = \frac{E_1}{r_1 + R_{\rm eq,2}}
+        \Leftrightarrow I = \frac{E_1}{r_1 + \frac{R_1(R+R_2)}{R + R_1 + R_2}}
+    \end{equation*}
+    Ainsi
+    \begin{gather*}
+        I_2 = \frac{R_1}{\cancel{\color{orange!70}R + R_1 + R_2}}
+            \frac{E_1}{r_1 \textcolor{orange!70}{(R+R_1+R_2)}
+                    + \frac{R_1(R+R_2)}{\cancel{\color{orange!70}R + R_1 +
+                R_2}}}\\
+        \Leftrightarrow \boxed{I_2 = \frac{R_1E_1}{(R+R_1+R_2)r_1 + R_1(R+R_2)}}
+    \end{gather*}
+    On trouve bien le même résultat (en développant un peu).
+\end{tcb}
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}[](ques){Résultat attendu}
+        3) On cherche à trouver $I_2$ \textit{avec un diviseur de tension}.
+    \end{tcb}
+    \begin{tcb}[sidebyside, righthand ratio=.4](tool)'r'{Outil}
+        \begin{center}
+            \includegraphics[width=\linewidth]{divtens-rangle}
+        \end{center}
+        \tcblower
+        \begin{center}
+            Dans le circuit ci-contre,
+            \[ U_{R_2} = \frac{R_2}{R_1+R_2}E\]
+        \end{center}
+    \end{tcb}
+\end{tcbraster}
+\begin{tcb}[breakable, sidebyside](appl){Application}
+    Sur le schéma ci-dessus, on définit
+    \[ \boxed{R_{\rm eq,1} = R+R_2} \qet \boxed{R_{\rm eq,2} =
+        \frac{R_1(R+R_2)}{R + R_1 + R_2}}\]
+    pour appliquer la relation du pont diviseur de tension~:
+    \begin{equation*}
+        I_2(R_{\rm eq,1}) = U_{AB} =
+            \boxed{U_{R_{\rm eq,2}} = \frac{R_{\rm eq,2}}{r_1 + R_{\rm eq,2}}E}
+    \end{equation*}
+    \tcblower
+    En développant on trouve
+    \begin{gather*}
+        I_2\cancel{(R+R_2)} =\\
+            \frac{R_1\cancel{(R+R_2)}}{\cancel{\color{orange!70}R + R_1 + R_2}}
+            \frac{E}{r_1 \textcolor{orange!70}{(R+R_1+R_2)}
+                    + \frac{R_1(R+R_2)}{\cancel{\color{orange!70}R + R_1 +
+                R_2}}}
+    \end{gather*}
+    Ce qui donne bien
+    \begin{equation*}
+        \boxed{I_2 = \frac{R_1E}{(R+R_1+R_2)r_1 + R_1(R+R_2)}}
+    \end{equation*}
+\end{tcb}
+}
+
+\section{Association de générateurs~: application}
+
+\switch{
+  Deux générateurs de tension ($E_1$, $r_1$) et ($E_2$, $r_2$) sont placés en
+parallèle l'un de l'autre. Ils alimentent une résistance $R_4$, également placée
+en parallèle sur les générateurs.
+\begin{enumerate}
+  \item Dessiner le schéma normalisé de ce montage et flécher les courants et
+        les tensions.
+  \item Exprimer l'intensité du courant qui circule dans $R_4$.
+  \item Exprimer la tension aux bornes de $R_4$.
+\end{enumerate}
+}{
+\begin{tcbraster}[raster columns=2, raster equal height=rows]
+    \begin{tcb}(data){Schéma}
+        \begin{center}
+            \includegraphics{assogen_parr-ldm}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}[add to natural height=\myspace](ques)'r'{Résultat attendu}
+                On cherche $I_4$ puis $U_4 = R_4I_4$.
+            \end{tcb}
+            \begin{tcb}(tool)'r'{Outils}
+                \begin{itemize}
+                    \item LdM 1~: $I_4R_4 + I_1r_1 = E_1 \quad
+                      \color{ForestGreen}(1)$~;
+                    \item LdM 2~: $I_4R_4 + I_2r_2 = E_2 \quad
+                      \color{ForestGreen}(2)$~;
+                    \item LdN 1~: $I_1 + I_2 = I_4 \quad
+                      \color{ForestGreen}(3)$.
+                \end{itemize}
+            \end{tcb} 
+        \end{tcbraster}
+    \end{tcolorbox}
+\end{tcbraster}
+\begin{tcbraster}[raster columns=7, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=3](ror){Approche méthodique}
+        Notre but est de trouver une équation contenant $I_4$ et des valeurs
+        connues, c'est-à-dire tout sauf $I_1, I_2$.
+        \bigbreak
+        L'équation \textcolor{ForestGreen}{(1)} peut nous aider~; on peut la
+        transformer en remplaçant $I_1$ par $I_4-I_2$ grâce à
+        \textcolor{ForestGreen}{(3)} pour avoir une équation
+        \textcolor{ForestGreen}{(4)} avec $I_4$ et $I_2$.
+        \bigbreak
+        Mais comme \textcolor{ForestGreen}{(2)} nous permet d'isoler $I_2$ et de
+        l'exprimer en fonction de $I_4$, en injectant cette expression dans
+        \textcolor{ForestGreen}{(4)} on obtient une équation entre $I_4$ et les
+        éléments du circuit. Question résolue !
+    \end{tcb}
+    \begin{tcb}[raster multicolumn=4](appl)'r'{Application}
+        Avec \textcolor{ForestGreen}{(3)} dans \textcolor{ForestGreen}{(1)}~:
+        \[I_4R_4 + (I_4-I_2)r_1 = E_1 \quad \color{ForestGreen}(4)\]
+        En réexprimant \textcolor{ForestGreen}{(2)}~:
+        \[I_2 = (E_2 - I_4R_4)/r_2\]
+        En injectant \textcolor{ForestGreen}{(2)} dans
+        \textcolor{ForestGreen}{(4)}~:
+        \begin{align*}
+            I_4(R_4+r_1) - (E_2-I_4R_4) \frac{r_1}{\color{brandeisblue}r_2}
+                &= E_1\\
+                \Leftrightarrow I_4(\textcolor{orange}{R_4} +
+                                    \textcolor{red}{r_1})
+                                    {\color{brandeisblue}r_2}
+                                    -
+                                    (E_2-I_4\textcolor{orange}{R_4})
+                                    \textcolor{red}{r_1}
+                &= E_1{\color{brandeisblue}r_2}\\
+            \Leftrightarrow I_4(\textcolor{red}{r_1}
+                                \textcolor{brandeisblue}{r_2} +
+                                \textcolor{red}{r_1}\textcolor{orange}{R_4} +
+                                \textcolor{brandeisblue}{r_2}\textcolor{orange}{R_4})
+                &= E_1r_2 +E_2r_1
+        \end{align*}
+        Soit
+        \[\boxed{I_4 = \frac{E_1r_2 + E_2r_1}{r_1r_2+r_1R_4+r_2R_4}} \quad
+        \text{et} \quad \boxed{U_{R_4} = R_4\times I_4}\]
+    \end{tcb}
+\end{tcbraster}
+}
+
+\section{Pont de Wheatstone}
+
+\switch{
+  \noindent
+\begin{minipage}{0.65\linewidth}
+  En électronique, on réalise régulièrement des ponts de mesure pour mesurer
+  indirectement une résistance. On dispose d'un circuit comprenant un
+  générateur de tension qui alimente un pont de Wheatstone composé des
+  résistances $R_1$ et $R_2$. La résistance $R_i$ est inconnue, et la
+  résistance $R$ est variable (il s'agit d'un potentiomètre). On fait évoluer
+  $R$ jusqu'à ce que le voltmètre indique une tension nulle. Le pont est alors
+  équilibré. \bigbreak
+
+  À l'aide des lois de Kirchhoff, déterminer l'expression de la valeur de
+  $R_i$ en fonction des valeurs des autres résistances lorsque le pont est
+  équilibré.
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\linewidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{wheatstone-plain}
+  \end{center}
+\end{minipage}
+}{
+\begin{tcbraster}[raster columns=6, raster equal height=rows]
+    \begin{tcb}[raster multicolumn=2](data){Schéma}
+        \begin{center}
+            \includegraphics{wheatstone}
+        \end{center}
+    \end{tcb}
+    \begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+        \begin{tcbraster}[raster columns=1]
+            \begin{tcb}*[add to natural height=\myspace](ques){Résultat}
+
+                \fontsize{10pt}{12pt}\selectfont On cherche $R_i$, ou $U_{DC}$
+                quand «~le pont est équilibré~».
+
+            \end{tcb}
+            \begin{tcb}*(tool){Outil}
+
+                \fontsize{10pt}{12pt}\selectfont D'après l'énoncé, le pont est
+                équilibré quand $V = 0$, soit quand $V_B = V_D$.
+
+            \end{tcb}
+        \end{tcbraster}
+    \end{tcolorbox}
+    \begin{tcb}[raster multicolumn=3](appl)'r'{Application}
+        Si le pont est équilibré, alors $U_{AB} = U_{AD}$ et $U_{BC} = U_{DC}$.
+        Or, avec le pont diviseur de tension, on a à la fois
+        \begin{align*}
+            U_{BC} & = E \frac{R_1}{R_1+R}\\
+            U_{DC} & = E \frac{R_i}{R_i+R_2}
+        \end{align*}
+        Donc
+        \begin{align*}
+            U_{BC} &= U_{DC}\\
+            \Leftrightarrow \cancel{E} \frac{R_1}{R_1+R}
+                   & = \cancel{E} \frac{R_i}{R_i+R_2}\\
+            \Leftrightarrow R_1(\cancel{R_i}+R_2) & = R_i(\cancel{R_1}+R)\\
+            \Leftrightarrow \Aboxed{R_i & = \frac{R_1R_2}{R}}
+        \end{align*}
+    \end{tcb}
+\end{tcbraster}
+}
+
+\end{document}

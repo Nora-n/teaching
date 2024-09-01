@@ -1,0 +1,73 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+%------------------ Ressort horizontal dans trois situations ---------------
+\begin{tikzpicture}[scale=0.8]
+	\coordinate (M) at (1,0.36);
+	\node[anchor=west, right=.3] at (M.east) {$M$};
+
+	%Axe
+	\draw [->] (-4.5,0) --++ (0,1.75) node [right] {$y$} ;
+	\draw [->] (-4.5,0) -- (3,0)  node [below] {$x$} ;
+
+	% Supprt
+	\draw[thick] (-3.6,0) node[below] {O} -- (-3.6, 2.2);
+	\fill[pattern=north east lines] (-3.6,0) rectangle (-3.9,2.2);
+
+	%ressort
+	\draw [ressort,Coil={0.5}{4mm}{3mm}] (-3.6,0.36)--($(M) + (-0.375,0)$) ;
+	\draw[rounded corners=4pt,fill=gray!30] (0.625,0) rectangle++ (0.75,0.75)
+	node [midway, shift=({0,0.05})] {$\centerdot$};
+
+	% Forces
+	\draw [->,-stealth,thick,blue] (M) --++(0,-1) node [pos=.6, right] {$\vv{P}$};
+	\draw [->,-stealth,thick,green!50!black] (M)++(0,-0.35) --++(0,+1)
+	node [right] {$\vv{R}$};
+	\draw [->,-stealth,thick,red] (M)++(-0.375,0)--++(-1.5,0)
+	node [midway, below left] {$\vv*{F}{\rm ressort}$};
+
+	% Attache visqueux
+	\path[] ($(M)+(0,0.5*0.75)$) coordinate (Mt) |- (-0.5,2.0) coordinate (Pm);
+	\path[] ([shift={(0,-.25)}]Pm) coordinate (Pb) --++ (0,.5) coordinate (Pt);
+
+	% Support visqueux
+	\draw[] (-3.6, 2.0) --++ (1,0) coordinate (Sm);
+	\draw[thick]
+	([shift={(0,-.25)}]Sm) coordinate (Sb) --++
+	(0,.5) coordinate (St);
+	\draw[thick] (Sb) --++ (3,0) coordinate (Sbr);
+	\draw[thick] (St) --++ (3,0) coordinate (Str);
+
+	% milieu fluide
+	\fill[cornflowerblue!20] (St) -- (Sb) -- (Pb) -- (Pt) -- cycle;
+	\fill[cornflowerblue!20] (Str) -- (Sbr) -- (Pb) -- (Pt) -- cycle;
+	% Piston on top
+	\draw[thick] (Pb) -- (Pt);
+	\draw[] (Mt) |- (Pm);
+
+	%repérage de \ell
+	\draw [|<->|]
+	(-3.6,1.2) --
+	(0,1.2)
+	coordinate(lor)
+	node [midway,below=-.05]
+		{\scriptsize $\ell_0$};
+	\node[below] (0,0) {O\bp};
+	\draw[dashed] (lor) -- (0,0);
+
+	\draw [|<->|] (-3.6,1.3) -- (0.6,1.3) node [midway,above=-.05]
+	{\scriptsize$\ell > \ell_0$};
+
+	%repérage de x
+	\draw [|<->|] (0,1.2) -- (0.6,1.2) node [midway,below=-.05]
+	{\scriptsize $x_0>0$};
+
+	% F frott
+	\draw [->,-stealth,thick,Purple] (Pm) --++ (0.5,0) node [above=0.2]
+	{$\vv*{F}{\rm frott}$};
+
+\end{tikzpicture}
+
+\end{document}

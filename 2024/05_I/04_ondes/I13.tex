@@ -1,0 +1,129 @@
+\documentclass[a4paper, 10pt, final, garamond]{book}
+\usepackage{cours-preambule}
+\graphicspath{{./figures/}}
+
+\makeatletter
+\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\makeatother
+
+% \toggletrue{student}
+% \HideSolutionstrue
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
+
+\begin{document}
+\setcounter{chapter}{12}
+
+\chapter{Ondes progressives et interférences\ifstudent{ (12')}}
+
+\begin{enumerate}[label=\sqenumi]
+	\nitem{5}%
+	Soit $g (t) = A \cos(\wt+\f)$ la perturbation en $x=0$ d'un milieu 1D. L'onde
+	progressive allant vers la droite, démontrer l'expression du signal $s (x,t)$
+	en fonction de $\w$, $t$, $k$, $x$ et $\f$. Comment s'appelle $k$~? L'exprimer
+	en fonction de $\lambda$.
+	\smallbreak
+	\psw{
+		L'onde en $x$ est la même qu'en $x=0$, mais avec un retard dû à son
+		déplacement. Ainsi,
+		\[
+			s(x,t) \stm{=} g \left(t-\frac{x}{c}\right)
+			= A \cos(\w \left( t-\frac{x}{c} \right) + \f)
+			\stm{=} A \cos(\wt - \frac{\w}{c}x + \f)
+		\]
+		Avec $k \stm{=} \frac{\w}{c} = \frac{2\pi}{\lambda}$ le vecteur \stk{}\
+		d'onde, on obtient
+		\[
+			\boxed{s (x,t) \stm[-1]{=} A \cos(\wt - kx +\f)}
+		\]
+	}
+	\nitem{7}%
+	Qu'est-ce que l'approximation par une onde plane~? Répondre en français.
+	Démontrer alors le lien entre déphasage et différence de marche en un point M
+	recevant le signal somme de deux sources sphériques S$_1$ et S$_2$ de même
+	fréquence dans le cadre de cette approximation. Détaillez les expressions de
+	$\Delta{L}$ et $\Delta\f$.
+	\smallbreak
+	\psw{
+		Toute vibration en un point M de l'espace peut s'approximer par une onde
+		plane si la source est suffisamment \pt{1} éloignée. Pour deux sources
+		S$_1$ et S$_2$ et un point M loin d'elles, on aura~:
+		\begin{gather*}
+			s_1(\Mr,t) \stm{=} A_1\cos(\wt - k\SaMr + \f_{01})
+			\qet
+			s_2(\Mr,t) = A_2\cos(\wt - k\SbMr + \f_{02})
+			\\\Ra
+			\f_1(\Mr) \stm{=} -k\SaMr + \f_{01}
+			\qet
+			\f_2(\Mr) = -k\SaMr + \f_{02}
+			\\\Ra
+			\D\f_{1/2}(\Mr) =
+			\f_1(\Mr) - \f_2(\Mr) \stm{=}
+			-k(\SaMr - \SbMr) + \f_{01} - \f_{02}
+			\\\Lra
+			\boxed{\D\f_{1/2}(\Mr) \stm{=} -k\D L_{1/2}(\Mr) + \D\f_0}
+			\qav k=\frac{2\pi}{\lambda}
+		\end{gather*}
+		avec $\Delta{L_{1/2}(\Mr) \stm{=} \SaMr - \SbMr}$ la différence de marche et
+		$\Delta\f_0 \stm{=} \f_{01} - \f_{02}$ la différence de phase à l'origine.
+	}
+	\nitem{6}%
+	Quelles sont les conditions pour avoir interférence entre deux ondes~? Pour
+	quelles valeurs de $\Delta\f_{1/2} (M)$ une superposition de signaux donne des
+	interférences constructives~? destructives~? Répondre en utilisant
+	l'\textbf{ordre d'interférence}. Pour $\Delta{\f_0}=0$, à quelles valeurs de
+	$\Delta{L_{1/2}}$ cela correspond~?
+	\smallbreak
+	\psw{
+		Il faut des ondes de même fréq\stk{u}ence et de même nat\stk{u}re. On
+		obtient
+		\smallbreak
+		\begin{isd}[sidebyside align=top]
+			\tcbsubtitle{\fatbox{\textbf{Interférences constructives}}}
+			\psw{
+				\begin{gather*}
+					\Delta\f_{1/2}(\Mr) \stm{=} 2p\pi
+					\Lra
+					\boxed{\Delta{L}_{2/1}(\Mr) \stm{=} p\lambda}
+				\end{gather*}
+			}
+			\tcblower
+			\tcbsubtitle{\fatbox{\textbf{Interférences destructives}}}
+			\psw{
+				\begin{gather*}
+					\Delta\f_{1/2}(\Mr) \stm{=} (2p+1)\pi
+					\Lra
+					\boxed{\Delta{L}_{2/1}(\Mr) \stm{=} \left(p+\frac{1}{2}\right)\lambda}
+				\end{gather*}
+			}
+		\end{isd}
+	}
+	\nitem{2}%
+	Pourquoi fait-on des interférences \textbf{lumineuses} avec une unique
+	source~? Comment s'exprime l'intensité d'un signal $s (\Mr,t)$~?
+	\smallbreak
+	\psw{
+		Les sources lumineuses changent de  phase à l'origine très fréquemment
+		($\tau_c \approx \SI{3e-15}{s}$ pour le Soleil). Or, pour interférer deux
+		ondes doivent être cohé\stk[-1](un){r}entes, c'est-à-dire avoir $\Delta\f_0$
+		constant.
+		\smallbreak
+		L'intensité d'un signal est proportionnel à la moyenne du carré de son
+		amplitude~:
+		\[
+			\boxed{I(\Mr) \stm[-1]{=} K \moy{s^{2}(\Mr,t)}}
+		\]
+	}
+
+	\ifstudent{
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[anchor=north west, align=left]
+			at ([shift={(1.4cm,0)}]current page.north west)
+			{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
+			\node[anchor=north east, align=right]
+			at ([shift={(-1.5cm,-17pt)}]current page.north east)
+			{\Large\bfseries Note~:\hspace{1cm}/20};
+		\end{tikzpicture}
+	}
+\end{enumerate}
+\end{document}

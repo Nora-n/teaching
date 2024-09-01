@@ -1,0 +1,76 @@
+\documentclass[../TDT3.tex]{subfiles}%
+
+\begin{document}
+
+\section[s]"1"{Échauffement d'une bille en mouvement dans l'air}
+\enonce{%
+	Une bille métallique, de capacité thermique massique $c$ (supposée constante)
+	est lancée vers le haut avec une vitesse $\vfo$ dans le champ de pesanteur
+	$\gf$ uniforme. Elle atteint une altitude $h$ puis redescend.
+}%
+\begin{tcn}(data)<lfnt>{Données}
+	$g = \SI{9.81}{m.s^{-2}}~;~c = \SI{0.4}{kJ.kg^{-1}}~;~v_0 =
+		\SI{10}{m.s^{-1}}~;~h = \SI{5}{m}$.
+\end{tcn}
+\QR{%
+Déterminer l'altitude maximale $h_0$ que peut atteindre la bille si on néglie
+les forces de frottement fluide entre l'air et la bille. Exprimer $h_0$ en
+fonction de $v_0$ et $g$.
+}{%
+Système = \{bille\} dans $\Rc\ind{terre}$ supposé galiléen. Seule force subie
+est le poids. Avec $\zp(0) = v_0$ et $z(0) = 0$~:
+\[
+	\zpp = -g \Ra \zp = -gt + v_0 \Ra z = -\frac{1}{2}gt^2+ v_0t
+\]
+Altitude maximale quand $\DS \zp(t\ind{max}) = 0 \Lra t\ind{max} = \frac{v_0}{g}$,
+soit
+\[
+	\boxed{h_0 = z(t\ind{max}) = \frac{v_0{}^2}{2g}}
+\]
+}%
+\enonce{%
+	On constate que l'altitude $h$ est inférieure à $h_0$, à cause des forces de
+	frottement. Calculer la variation de température $\Delta{T}$ de cette bille
+	entre l'instant où elle est lancée et l'instant où elle atteint son point le
+	plus haut, en supposant que~:
+	\begin{itemize}
+		\item On néglige toute variation de volume de la bille~;
+		\item l'air ambiant reste macroscopiquement au repos~;
+		\item le travail des forces de frottement se dissipe pour moitié dans l'air
+		      ambiant et pour moitié dans la bille.
+	\end{itemize}
+}%
+
+\QR{%
+	Exprimer $\Delta{T}$ en fonction de $h_0$, $h$, $g$ et $c$.
+}{%
+	L'énergie mécanique de la bille, sans frottement, est constante, et en
+	utilisant l'énergie au maximum d'altitude s'écrit $E_{m,0} = mgh_0$. Avec
+	frottement, son énergie n'est \textbf{plus constante}, mais à son maximum
+	d'altitude on a $E_m = mgh$.
+	\smallbreak
+	La différence entre ces énergie est égale à l'énergie perdue par frottement
+	avec l'air, soit le travail reçu de l'air~:
+	\[
+		W_f = E_{m,0} - E_m = mg(h_0 - h)
+	\]
+	Or, la moitié de cette énergie est évacuée dans l'air, tandis que l'autre
+	moitié est emmagasinée sous forme d'énergie interne de la bille. Ainsi,
+	\begin{gather*}
+		\Delta{U} = \frac{1}{2} mg (h_0-h)
+		\Lra
+		mc\Delta{T} = \frac{1}{2}mg (h_0-h)
+		\\\Lra
+		\boxed{\Delta{T} = \frac{g}{2c}(h_0-h)}
+	\end{gather*}
+	étant donné que la bille est supposée incompressible et indilatable, et
+	qu'elle suit donc la première loi de \textsc{Joule}.
+}%
+\QR{%
+	Calculer $h_0$ puis $\Delta{T}$.
+}{%
+	On trouve $h_0 \approx \SI{5.097}{m}$, soit $\xul{\Delta{T} \approx
+			\SI{1.2}{mK}}$.
+}%
+
+\end{document}

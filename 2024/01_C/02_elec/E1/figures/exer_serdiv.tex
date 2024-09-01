@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+    node {$\bullet$}
+    node [left] (A) {A}
+        to[R, name=R1]
+    (2,0)
+        to[R, name=R0]
+    (4,0)
+    coordinate (C)
+        to[R, name=R3]
+    (6,0)
+        to[R, name=R2]
+    (6,-2)
+    coordinate (E) --
+    (0,-2)
+    node {$\bullet$}
+    node [left] (B) {B};
+    \draw (2,0) to[R, name=r0]
+    (2,-2);
+    \draw (4,0) to[R, name=r2]
+    (4,-2);
+    \foreach \n in {0, ..., 3}{
+        \node[] at (R\n.center) {$R_\n$};
+    }
+    \foreach \n in {0, 2}{
+        \node[] at (r\n.center) {$r_\n$};
+    }
+\end{circuitikz}
+\end{document}

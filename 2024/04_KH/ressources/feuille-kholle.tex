@@ -1,0 +1,97 @@
+\documentclass[10pt, a4paper, garamond, landscape]{book}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[french]{babel}
+\frenchbsetup{StandardLists=true}
+\usepackage[T1]{fontenc}
+
+\usepackage[top=1.4cm, bottom=1cm, left=1.2cm, right=1.2cm]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{physics}
+\usepackage[version=4]{mhchem}
+
+\usepackage{tabularx, colortbl, xcolor}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\newcommand{\mcl}[4]{\multicolumn{#1}{#2>{
+    \hsize=\dimexpr#1\hsize+\tabcolsep*(2*(#1-1))+\arrayrulewidth*(#1-2)\relax
+}#3}{#4}}
+\renewcommand{\arraystretch}{1.2}
+
+\usepackage{pgffor}
+
+%%% En-tête et pied de page
+
+\pagestyle{fancy}
+\fancyhead[L]{Nom~:\hspace{3cm} Prénom~:\hspace{3cm}}
+\fancyhead[C]{MPSI3 -- Physique-chimie -- Trinôme~:}
+\fancyhead[R]{Semestre 1}
+\fancyfoot[C]{}
+
+%%% watermark
+\newcommand{\watermark}[3]{
+	\setlength{\unitlength}{1pt}
+	\begin{picture}(0,0)
+		\put(#1,#2){\textcolor{gray!10!white}{#3}}
+	\end{picture}
+}
+
+%%% circled
+\usepackage{tikz}
+\newcommand*\circled[1]{%
+	\tikz[]{%
+		\node[shape=circle, draw, inner sep=1pt, scale=10, anchor=center] (char) {#1};
+	}%
+}
+\begin{document}
+\begin{twocolumn}
+	\foreach \n in {1,2,...,9}{
+			\begin{tabularx}{\linewidth}{|Y*{11}{|Y}}\hline
+				\rowcolor{lightgray!40}
+				\mcl{3}{|}{X|}{
+					Semaine~:
+				} &
+				\mcl{6}{}{X|}{
+					Interrogataire~:
+				} &
+				\mcl{3}{}{X|}{
+					Note~: \hfill/20
+				}   \\[.2cm]\hline
+
+				\mcl{3}{|}{Y|}{Connaissances~:
+				} &
+				\mcl{3}{}{Y|}{Analyse~:
+				} &
+				\mcl{3}{}{Y|}{Réaliser, valider~:
+				} &
+				\mcl{3}{}{Y|}{Communication~:
+				}   \\[.8cm]\hline
+
+				\mcl{4}{|}{X|}{
+					\underline{Cours}~:
+				} &
+				\mcl{8}{}{X|}{
+					\underline{Commentaires}~:
+				}   \\[2.6cm]\hline
+
+				\mcl{4}{|}{X|}{
+					\underline{Exercice}~:
+				} &
+				\mcl{8}{}{X|}{
+					\underline{Commentaires}~:
+					\watermark{-60}{-40}{\circled{\n}}
+				}   \\[2.6cm]\hline
+
+				\mcl{6}{|}{X|}{
+					\underline{Tableau}~:
+				} &
+				\mcl{6}{}{X|}{
+					\underline{Oral}~:
+				}   \\[.5cm]\hline
+			\end{tabularx}
+			\vfill
+		}
+\end{twocolumn}
+\end{document}

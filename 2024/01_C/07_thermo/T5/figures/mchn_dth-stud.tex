@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\def\wdt{3}
+	\def\hgt{3}
+	\node[draw, thick,
+		minimum width=2cm,
+		minimum height=2cm,
+		anchor=center] (syst) at (0,0)
+	{fluide};
+
+	% Source 1
+	\node[draw, thick, circle, align=center, minimum width=1cm,
+		% fill=red, fill opacity=.5, text opacity=1
+	]
+	(S1) at (-\wdt,0)
+	{};
+	\draw[]
+	(S1.east) --
+	node[midway, above] {}
+	(syst.west);
+
+	% Source 3
+	\node[draw, thick, circle, align=center, minimum width=1cm,
+		% fill=brandeisblue, fill opacity=.5, text opacity=1
+	]
+	(S3) at (\wdt,0)
+	{};
+	\draw[]
+	(S3.west) --
+	node[midway, above] {}
+	(syst.east);
+
+	% Travail
+	\node[draw, thick, circle, align=center, minimum width=1.7cm,
+		% fill=limegreen, fill opacity=.5, text opacity=1
+	]
+	(W) at (0,-\hgt)
+	{};
+	\draw[]
+	(W.north) --
+	node[midway, left] {}
+	(syst.south);
+\end{tikzpicture}
+\end{document}

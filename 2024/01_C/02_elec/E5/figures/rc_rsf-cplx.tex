@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\ctikzset{sources/symbol/rotate=0}
+	\draw
+	(0,0)
+	to[sV, name=E,
+	v^>={{{\rotatebox[origin=c]{90}{$\xul{e}(t) = E_0\exr^{\jj\wt}$}}}}, !vi]
+	(0,2)
+	to[R, name=R, !vi]
+	(3,2)
+	% to[C,l_=$C$, name=C, i>^=$i$, v^<=$u_C$, !vi]
+	to[R, name=C, i^>=$i$,
+	v^<={{{\rotatebox[origin=c]{90}{$\xul{u_C} = \xul{U_C}\exr^{\jj\wt}$}}}}, !vi]
+	(3,0) --
+	(0,0)
+	;
+	\varronly{C} \varronly{E}
+	\iarronly{C}
+	\node[] at (R.center) {$R$};
+	\node[] at (C.center) {\tiny$\frac{1}{\jj C\w}$};
+\end{circuitikz}
+\end{document}

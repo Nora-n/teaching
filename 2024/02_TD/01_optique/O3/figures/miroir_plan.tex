@@ -1,0 +1,59 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[use optics]
+    \begin{scope}[]
+    % Miroir
+    \node[mirror, rotate=-90] (M) at (0,-1) {};
+    \node[right] at (M.north) {M};
+    % Objet
+    \coordinate (A) at (-0.25,0);
+    % Rayons
+    \draw[simple]
+        (A) -- ([shift={(-0.15,0)}]M.north) coordinate (Id);
+    \draw[double]
+        (A) -- ([shift={(0.15,0)}]M.south) coordinate (Ig);
+    \end{scope}
+    \begin{scope}[shift={(3,0)}]
+        % Miroir
+        \node[mirror, rotate=-90, name path=Mpath] (M) at (0,-1) {};
+        \node[right] at (M.north) {M};
+        % Point
+        \coordinate (A) at (0,-2);
+        % Rayons
+        \coordinate (O1) at (-1.5,0);
+        \coordinate (O2) at (-0.75,0);
+        % Define intersection
+        \path[name path=1A] (O1) -- (A);
+        \path[name path=2A] (O2) -- (A);
+        \path[name intersections={of=1A and Mpath, by=Ig}];
+        \path[name intersections={of=2A and Mpath, by=Id}];
+        % Draw
+        \draw[simple] (O1) -- (Ig);
+        \draw[simple, dashed] (Ig) -- (A);
+        \draw[double] (O2) -- (Id);
+        \draw[double, dashed] (Id) -- (A);
+    \end{scope}
+    \begin{scope}[shift={(6,0)}]
+        % Miroir
+        \node[mirror, rotate=-90, name path=Mpath] (M) at (0,-1) {};
+        \node[right] at (M.north) {M};
+        % Point
+        \coordinate (Ap) at (-0.5,-1.75);
+        % Rayons
+        \coordinate (E1) at (0,1);
+        \coordinate (E2) at (1,0.5);
+        \path[name path=Eg] (Ap) -- (E1);
+        \path[name path=Ed] (Ap) -- (E2);
+        % Define intersection
+        \path[name intersections={of=Eg and Mpath, by=Ig}];
+        \path[name intersections={of=Ed and Mpath, by=Id}];
+        % Draw
+        \draw[dashed, simple] (Ap) -- (Ig);
+        \draw[dashed, double] (Ap) -- (Id);
+        \draw[simple] (Ig) --++ ($2*(Ig)-2*(Ap)$);
+        \draw[double] (Id) --++ ($(Id)-(Ap)$);
+    \end{scope}
+\end{tikzpicture}
+\end{document}

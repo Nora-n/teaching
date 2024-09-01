@@ -1,0 +1,135 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\renewcommand*\circled[1]{%
+	\tikz[baseline=(char.base)]{%
+		\node[shape=circle, draw, inner sep=1pt, fill=white] (char) {#1};
+	}%
+}
+\begin{document}
+\begin{tikzpicture}[pics/legend entry/.style={code={%   
+						\draw[pic actions]
+						(-0.25,0) -- (0.25,0);}}]
+	\tikzmath{
+		\wdt = 10;
+		\hgt = 10;
+		\Tc = 300;
+		\Tf = 100;
+		\xQcmx = -\Tf/\Tc*\hgt/2;
+		\xQcmn = \Tf/\Tc*\hgt/2;
+	}
+	\tikzset{declare function={
+				hardlim(\x) = -\Tc/\Tf*\x;
+				motfrig(\x) = -\x;
+			}}
+	\pgfmathparse{hardlim(\xQcmx)}\let\yQcmx\pgfmathresult
+	\pgfmathparse{hardlim(\xQcmn)}\let\yQcmn\pgfmathresult
+
+	% Points
+	\coordinate (O) at (0,0);
+	\coordinate (R) at (\wdt/2,0);
+	\coordinate (L) at (-\wdt/2,0);
+	\coordinate (T) at (0,\hgt/2);
+	\coordinate (TR) at (T-|R);
+	\coordinate (TL) at (T-|L);
+	\coordinate (B) at (0,-\hgt/2);
+	\coordinate (BR) at (B-|R);
+	\coordinate (BL) at (B-|L);
+	\coordinate (C) at (\xQcmx,\yQcmx);
+	\coordinate (D) at (\xQcmn,\yQcmn);
+	\coordinate (E) at (-\hgt/2,\hgt/2);
+
+	% Regions
+	% Inaccessible
+	\fill[
+		pattern=flexible hatch,
+		hatch distance=7pt,
+		hatch thickness=0.5pt,
+		hatch angle=25,
+	]
+	(C) --
+	(TR) --
+	(BR) --
+	(D);
+	\node[fill=white, scale=1.3]
+	(nop) at
+	([shift={(0,.5)}]barycentric cs:C=1,TR=1,BR=1,D=1)
+	{Inaccessible};
+	% Moteurs
+	\fill[limegreen, opacity=.5]
+	(C) --
+	(O) --
+	(E) --
+	cycle;
+	\node[scale=2]
+	(nop) at
+	(barycentric cs:C=1,O=1,E=1)
+	{\circled{1}};
+	% Chaud vers froid
+	\fill[red, opacity=.5]
+	(TL) --
+	(E) --
+	(O) --
+	(L) --
+	cycle;
+	\node[scale=2]
+	(nop) at
+	(barycentric cs:TL=1,E=1,O=1,L=1)
+	{\circled{2}};
+	% Chauffe-tout
+	\fill[yellow, opacity=.5]
+	(L) --
+	(O) --
+	(B) --
+	(BL) --
+	cycle;
+	\node[scale=2]
+	(nop) at
+	(barycentric cs:L=1,O=1,B=1,BL=1)
+	{\circled{3}};
+	% Chauffe inverse
+	\fill[brandeisblue, opacity=.5]
+	(O) --
+	(B) --
+	(D) --
+	cycle;
+	\node[scale=2]
+	(nop) at
+	(barycentric cs:O=1,B=1,D=1)
+	{\circled{4}};
+
+	% Limits
+	\draw[ultra thick]
+	plot[domain=\fpeval{-\Tf/\Tc*\hgt/2}:\fpeval{\Tf/\Tc*\hgt/2}]
+	(\x,{hardlim(\x)});
+	\draw[ultra thick, dotted]
+	plot[domain=\fpeval{-\hgt/2}:\fpeval{\hgt/2}]
+	(\x,{motfrig(\x)});
+
+	% Legend
+	\matrix [draw, below left, fill=white,
+		nodes={anchor=center,
+				% minimum size=5pt,
+				inner sep=0pt
+			},
+	] at (\wdt/2,\hgt/2) {
+		\pic[ultra thick]{legend entry};         &
+		\node {~~$Q_C =$};                       & \node {$-\frac{T_C}{T_F}Q_F$};
+		\\[5pt]
+		\pic[ultra thick, dotted]{legend entry}; &
+		\node {~~$Q_C =$};                       & \node {$-Q_F$};                       \\
+	};
+
+	% Axis
+	% X
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(-\wdt/2,0) --
+	node[at end, below left=.1 and .1, fill=white] {$Q_F$}
+	(\wdt/2,0);
+	% Y
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(0,-\hgt/2) --
+	node[at end, below right=.1 and .1, fill=white] {$Q_C$}
+	(0,\hgt/2);
+\end{tikzpicture}
+\end{document}

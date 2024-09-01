@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\def\h{2}
+\def\w{1}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	% \node at (0,0) {$\bullet$};
+	% \node[above] at (0,0) {A};
+	\draw
+	(0,0) coordinate(A)
+	to[short]
+	(\w,0)
+	coordinate (L)
+	%%% top
+	to[short]
+	(\w,\h/2)
+	to[R, name=Rtl]
+	(3*\w,\h/2)
+	coordinate(T)
+  node {$\bullet$}
+  node[above] {C}
+	to[R, name=Rtr, v^<=$v$, !vi]
+	(5*\w,\h/2)
+	to[short]
+	(5*\w,0)
+	coordinate(R)
+	to[short]
+	(6*\w,0)
+	coordinate(B)
+	%%% bottom
+	(L)
+	to[short]
+	(\w,-\h/2)
+	to[R, name=Rbl]
+	(3*\w,-\h/2)
+	coordinate(Bt)
+  node {$\bullet$}
+  node[below] {D}
+	to[R, name=Rbr, v_<=$v'$, !vi]
+	(5*\w,-\h/2)
+	to[short]
+	(R)
+	%%% middle
+	(T)
+	to[nos, name=D, v^>=$u$, !vi]
+	(Bt)
+	%%% go to E
+	(B)
+	to[short]
+	(6*\w,-1.25*\h)
+	to[V, name=E, V_>=$E$, !vi]
+	(0,-1.25*\h)
+	to[short]
+	(A)
+	;
+	\node at (B) {$\bullet$};
+	\node[above] at (B) {B};
+	\foreach \n in {Rtl, Rbr}{
+			\node at (\n.center) {$3R$};
+		}
+	\foreach \n in {Rbl, Rtr}{
+			\node at (\n.center) {$R$};
+		}
+	% \node at (D.center) {$D$};
+	\varronly{D} \varronly{Rtr} \varronly{E} \varronly{Rbr}
+\end{circuitikz}
+
+\end{document}

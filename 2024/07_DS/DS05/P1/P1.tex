@@ -1,0 +1,435 @@
+\documentclass[../DS05.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\begin{document}
+
+\prblm[53]{Microphone pour guitare}
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/microphone_guitare_electrique/}{sujet.tex}
+\enonce{
+	\noindent
+	\begin{minipage}[c]{.70\linewidth}
+		Situés sous les cordes, les microphones sont l'un des éléments les plus
+		fondamentaux d'une guitare électrique, car c'est sur eux que repose toute
+		production du son, même en l'absence totale de caisse de résonance. Un
+		microphone de guitare est composé d'un ou plusieurs aimants, entourés d'une
+		bobine de cuivre.
+		\smallbreak
+		Le comportement électrique du microphone est donné sur la figure ci-dessous.
+		L'excitation sinusoïdale provoquée par la vibration de la corde, est
+		modélisée par un générateur de tension sinusoïdale $e(t)$ de pulsation
+		$\w$.
+		\smallbreak
+		Le condensateur de capacité $C_0$ et le dipôle ohmique de résistance $R_0$
+		sont dus à la présence d'un aimant à l'intérieur du bobinage.
+		\smallbreak
+		Données pour les composants~:
+		\[
+			e(t) =E_m\cos(\w t)
+			\quad ; \quad
+			C_0  =\SI{100}{pF}
+			\quad ; \quad
+			R_0  =\SI{1}{M \ohm}
+			\quad ; \quad
+			R_L  =\SI{3}{k \ohm}
+		\]
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{.29\linewidth}
+		~
+		\begin{center}
+			\includegraphics[width=\linewidth]{circuit_plain}
+			\captionof{figure}{Circuit étudié.}
+			\label{fig:circuit_plain}
+		\end{center}
+	\end{minipage}
+}
+
+\QR[6]{%
+	Déterminer qualitativement l'expression de la tension $v$ à basse fréquence
+	puis à haute fréquence. On utilisera pour cela les schémas équivalents pour
+	les fréquences concernées. Quel est le type de filtre correspondant à cette
+	situation~?
+}{
+	En basse et haute fréquence, on a les schémas équivalents suivants~:
+	\smallbreak
+	\vspace{-15pt}
+	\noindent
+	\begin{minipage}[t]{.48\linewidth}
+		~
+		\begin{center}
+			\includegraphics[width=.65\linewidth]{circuit_BF}
+			\captionof{figure}{Basses fréquences\protect\pt{1}.}
+			\label{fig:BF}
+		\end{center}
+		Ainsi, à basse fréquence, en appliquant un pont diviseur de tension
+		\pt{1}, on a
+		\[
+			\xul{v} \stm{=} \dfrac{R_0}{R_0+R_L}\xul{e} \approx \eu
+		\]
+		puisque $R_0 \gg R_L$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.48\linewidth}
+		~
+		\begin{center}
+			\includegraphics[width=.65\linewidth]{circuit_HF}
+			\captionof{figure}{Hautes fréquences\protect\pt{1}.}
+			\label{fig:HF}
+		\end{center}
+		À haute fréquence,
+		\[
+			\xul{v} \stm{=} 0
+		\]
+		car c'est la tension aux bornes d'un fil.
+	\end{minipage}
+	\begin{center}
+		Le circuit se comporte donc comme un \textbf{filtre passe-bas} \pt{1}.
+	\end{center}
+}
+
+\QR[4]{%
+	Déterminer, en fonction des données, de l'inductance de la bobine $L$ et de la
+	pulsation $\w$, la fonction de transfert complexe $\Hu(\w) = \frac{\Vu}{\Eu}$
+	où $\Vu$ et $\Eu$ sont les amplitudes complexes associées aux signaux $v(t)$
+	et $e(t)$. La mettre sous la forme $\Hu = \frac{1}{\ldots}$.
+}{
+	L'association parallèle du condensateur et de la résistance $R_0$ est
+	équivalente à une admittance $\xul{Y}\ind{eq}\stm[-1]{=}\jj
+		C_0\w+\frac{1}{R_0}$. On applique ensuite un pont diviseur de tension~:
+	\begin{DispWithArrows*}
+		\Vu &\stm{=} \frac{\Zu\ind{eq}}{\Zu\ind{eq}+\Zu_{R_L}+\Zu_{L}}\Eu
+		\CArrow{$\times \frac{\Yu\ind{eq}}{\Yu\ind{eq}}$}
+		\\\Lra
+		\Hu = \frac{\Vu}{\Eu} &\stm{=} \frac{1}{1+(R_L+\jlw)\xul{Y}\ind{eq}}
+		\Arrow{On remplace}
+		\\\Lra
+		\Hu &= \frac{1}{1+(R_L+\jlw)(\jj C_0\w+\frac{1}{R_0})}
+		\Arrow{On développe}
+		\\\Lra
+		\Aboxed{
+			\Hu &\stm{=} \frac{1}{1+\frac{R_L}{R_0} - LC_0\w^2 +
+				\jw\left(R_LC_0+\frac{L}{R_0}\right)}
+		}
+	\end{DispWithArrows*}
+}
+
+\enonce{
+	On rappelle les formes canoniques pour deux types de filtre d'ordre 2~:
+	\begin{align*}
+		\Hu=\frac{H_0}{1-x^2+\frac{\jx}{Q}}    & \quad \text{(passe-bas)}   \\
+		\Hu=\frac{H_0}{1+\jj Q(x-\frac{1}{x})} & \quad \text{(passe-bande)}
+	\end{align*}
+	avec $x=\frac{\w}{\w_0}$ la pulsation réduite et $Q$ le facteur de qualité.
+}
+
+\QR[7]{\label{q:w}
+	Écrire la fonction de transfert précédente sous la forme canonique appropriée.
+	En déduire le facteur de qualité et la pulsation propre $\w_0$ en fonction de
+	$C_0$, $R_0$, $R_L$, et $L$.
+}{
+	On a $1+\frac{R_L}{R_0}=\frac{R_0+R_L}{R_0}$. On multiplie en haut et en bas
+	\pt{1} l'expression de $\Hu$ par $\frac{R_0}{R_0+R_L}$~:
+	\[
+		\Hu \stm{=} \frac{\frac{R_0}{R_0+R_L}}
+		{1 - \frac{LC_0R_0}{R_0+R_L}\w^2 +
+			\jw\frac{R_0}{R_0+R_L}\pa{R_LC_0+\frac{L}{R_0}}}
+	\]
+	On a donc la forme canonique souhaitée (celle du passe-bas du second ordre)~:
+	$\Hu=\dfrac{H_0}{1-x^2+\frac{\jx}{Q}}$ avec
+	\[
+		\boxed{H_0 \stm{=} \frac{R_0}{R_0+R_L}}
+		\qet
+		\w_0^2 = \frac{R_0+R_L}{LCR_0}
+		\Ra
+		\boxed{\w_0 \stm[-1]{=} \sqrt{\frac{R_0+R_L}{LC_0R_0} }}
+	\]
+	On en déduit le facteur de qualité par identification~:
+	\begin{DispWithArrows*}[]
+		\frac{1}{Q\w_0} &\stm{=} \frac{R_0}{R_0+R_L}\pa{R_LC_0+\frac{L}{R_0}}
+		\Arrow{On développe}
+		\\\Lra
+		\frac{1}{Q\w_0} &= \frac{R_LR_0C_0 + L}{R_L+R_0}
+		\CArrow{$(\cdot )^{-1}$}
+		\\\Lra
+		\w_0 Q &= \frac{R_L+R_0}{R_LC_0R_0+L}
+		\CArrow{$\mdiv \w_0$}
+		\\\Lra
+		Q &\stm{=} \frac{R_L+R_0}{R_LC_0R_0+L}\frac{1}{\w_0}
+		\Arrow{On remplace}
+		\\\Lra
+		Q &= \frac{R_L+R_0}{R_LC_0R_0+L}\sqrt{\frac{LC_0R_0}{R_0+R_L} }
+		\Arrow{On simplifie la racine}
+		\\\Lra
+		\Aboxed{Q &\stm[-1]{=} \frac{\sqrt{(R_L+R_0)LC_0R_0}}{R_LC_0R_0+L}}
+	\end{DispWithArrows*}
+}
+
+\enonce{
+	Dans toute la suite, on utilisera la forme canonique.
+}
+
+\QR[7]{%
+	Qu'est-ce que la résonance~? Établir la condition d'existence d'une résonance
+	et déterminer la pulsation réduite de résonance $x_r$ en fonction du facteur
+	de qualité.
+}{
+	Par définition, il y a résonance quand un système excité par l'extérieur
+	atteint un maximum d'amplitude \pt{1} pour une fréquence d'excitation non
+	nulle et non infinie \pt{1}, appelée fréquence d'excitation. On cherche donc
+	le maximum de
+	\[
+		|\Hu|=\frac{|H_0|}{\sqrt{(1-x^2)^2+\frac{x^2}{Q^2}}}
+	\]
+	Comme le numérateur est constant, cette fonction est maximale si le
+	dénominateur est minimal \pt{1}. Par ailleurs, la fonction racine étant
+	monotone croissante, on peut alors chercher le minimum de la fonction
+	\[
+		f:x \to (1-x^2)^2+\frac{x^2}{Q^2}
+	\]
+	sur $\mathbb{R}^{+\star}$. Pour cela, on dérive et on cherche la valeur
+	d'annulation~:
+	\begin{align*}
+		f'(x)            & \stm{=} 2(-2x)(1-x^2)+\frac{2x}{Q^2}
+		\\
+		\beforetext{Ainsi, $f'(x_r) = 0 \Ra$}
+		2(2x_r)(1-x_r^2) & = \frac{2x_r}{Q^2}
+	\end{align*}
+	On cherche une solution non nulle, on en déduit
+	\[
+		2(1-x_r^2) = \frac{1}{Q^2}
+		\quad \Lra \quad
+		1-x_r^2 = \frac{1}{2Q^2}
+		\quad \Lra \quad
+		x_r^2 \stm{=} 1-\frac{1}{2Q^2}
+	\]
+	Cette équation n'admet de solution que si $1-\frac{1}{2Q^2}\geq 0$, soit si
+	\[
+		\boxed{Q \stm[-1]{\geq} \frac{1}{\sqrt{2}}}
+	\]
+	qui est la condition de résonance. On a alors
+	\[
+		\boxed{x_r \stm[-1]{=} \sqrt{1-\frac{1}{2Q^2}} < 1}
+	\]
+}
+
+\QR[10]{%
+	Établir l'expression des asymptotes des diagrammes de \textsc{Bode} en gain
+	\textbf{et} en phase.
+	Tracer les allures de $G_{\dB}$ et $\Delta{\f}_{s/e}$ en fonction de la
+	pulsation réduite $x$ pour $Q \approx \num{0.5}$ et $Q \approx 5$.
+}{
+	On trace les diagrammes de \textsc{Bode}, avec~:
+	\smallbreak
+	\noindent
+	\begin{minipage}{\linewidth}
+		\centering
+		\captionof{table}{Étude RLC sur C.}
+		\begin{tabularx}{\linewidth}{cYYY}
+			\toprule
+			 &
+			$\forall x$
+			 &
+			$x\to 0$
+			 &
+			$x\to\infty$
+			\\
+			\addlinespace[0.5em]
+			\cmidrule(lr){2-4}
+			$\DS\Hu = \frac{\Su}{\Eu}$
+			 &
+			$\DS \frac{H_0}{1-x^{2}+\jj \frac{x}{Q}}$
+			 &
+			$1$ \pt{1}
+			 &
+			$\DS - \frac{H_0}{x^{2}}$ \pt{1}
+			\\
+			\addlinespace[0.5em]
+			$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+			 &
+			$\DS -10 \log \left(\left(1-x^{2}\right)^{2} + \left( \frac{x}{Q} \right)^{2}\right)$
+			 &
+			$20 \log \abs{H_0}$ \pt{1}
+			 &
+			$20 \log \abs{H_0} -40 \log x$ \pt{1}
+			\\
+			\addlinespace[0.5em]
+			$\DS\tan(\arg*{\Hu})$
+			 &
+			$\DS -\frac{x/Q}{1-x^{2}}$
+			 &
+			$0$
+			 &
+			$0$
+			\\
+			\addlinespace[0.5em]
+			$\DS\Delta\f_{s/e} = \arg*{\Hu}$
+			 &
+			$---$
+			 &
+			$0$ \pt{1}
+			 &
+			$\DS -\pi$ \pt{1}
+			\\
+			\bottomrule
+		\end{tabularx}
+		\label{tab:rlc}
+	\end{minipage}
+	\begin{figure}[h]
+		\centering
+		\subcaptionbox{Gain\protect\pt{2}\label{fig:rlcbodegain}}[.48\linewidth]
+		{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-gain}
+		}
+		\subcaptionbox{Phase\protect\pt{2}\label{fig:rlcbodephase}}[.48\linewidth]
+		{
+			\includegraphics[width=.95\linewidth]{RLCC_bode-phase}
+		}
+		\caption{Diagramme de \textsc{Bode} du filtre}
+		\label{fig:rlcbode}
+	\end{figure}
+}
+
+\enonce{
+	Dans les questions suivantes, on suppose que le facteur de qualité est grand.
+	La réponse expérimentale du microphone (amplitude de la tension $v$ en
+	fonction de la fréquence $f$ pour une amplitude de tension d'entrée constante)
+	est donnée par la Figure~\ref{fig:ddb}. On propose d'étudier trois méthodes
+	pour estimer le facteur de qualité à l'aide de cette courbe. \textbf{On
+		exprimera Q avec un seul chiffre significatif}.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{bode.jpg}
+		\caption{Gain expérimental.}
+		\label{fig:ddb}
+	\end{figure}
+}
+
+\QR[2]{%
+	Comment se simplifie l'expression de la pulsation de résonance lorsque $Q\gg
+		1$~? Exprimer la valeur maximale du gain $G_{\max}$ en fonction du facteur de
+	qualité et de $H_0$.
+}{
+	Si $Q\gg 1$, $\frac{1}{Q^2}\ll 1$ donc $x_r=\sqrt{1-\frac{1}{2Q^2}}\approx 1$.
+	Ainsi, $\boxed{\w_r=\w_0}$. \pt{1}
+	\smallbreak
+	On a alors
+	\[
+		G_{\max} = G(x=1) =
+		\left|\frac{H_0}{1-1+\jj\frac{1}{Q}}\right|
+		\Ra
+		\boxed{G_{max} \stm[-1]{=} H_0Q}
+	\]
+}
+
+\QR[2]{%
+	Où peut-on lire $H_0$~? En déduire après lecture graphique une valeur numérique
+	pour $Q$.
+}{
+	$H_0 \stm[-1]{=} G\ind{BF}$. On a donc
+	\[
+		\boxed{Q \stm[-1]{=} \frac{G_{\max}}{G_{BF}}}
+	\]
+	Sur le graphique, on lit $G_{\max} / G_{BF} = v_{\max} / v_0 = 90/19$. Il vient
+	donc
+	\[
+		Q \approx \num{4.5} \Lra \boxed{Q \stm[-1]{\approx} 5}
+	\]
+}
+
+\enonce{
+	On définit l'acuité $A$ de la résonance par la relation suivante~:
+	\[
+		A = \frac{f_r}{\Delta f} \approx Q
+	\]
+	avec $\Delta f$ la largeur de la bande passante. On admet que $A$ est égal à
+	$Q$ dans le cas étudié ici.
+}
+
+\QR[1]{%
+	Rappeler la définition d'une fréquence de coupure.
+}{
+	Une fréquence de coupure $f_c$ est telle que
+	$\boxed{G(f_c)\stm{=}\dfrac{G_{max}}{\sqrt{2}}}$, ou avec la tension
+	$\boxed{v(f_c)=\dfrac{v_{max}}{\sqrt{2}}}$
+}
+
+\QR[5]{%
+Faire une seconde estimation du facteur de résonance à l'aide d'une mesure de
+l'acuité. Comparer avec la première méthode.
+}{
+Sur le graphique, on relève $f_r \stm{=} \SI{7000}{Hz}$. On détermine les
+fréquences de coupure en cherchant les points où
+$v = \frac{v_{max}}{\sqrt{2}} = \frac{90}{\sqrt{2}} \stm{=} \SI{64}{mV}$.
+\smallbreak
+On lit également $f_{c1}\stm".5"{=}\SI{6,00}{kHz}$ et
+$f_{c2}\stm".5"{=}\SI{7,50}{kHz}$. On a donc
+\[
+	A = Q \approx \num{4.67} \Lra \boxed{Q \stm[-1]{\approx} 5}
+\]
+On retrouve bien le même résultat \pt{1} qu'avec l'autre méthode.
+}
+
+\QR[6]{%
+	À l'aide des expressions de $\w_0$ et $Q$ déterminées dans la question
+	\ref{q:w}, donner une estimation de la valeur de l'inductance $L$ à partir
+	d'une lecture graphique de la fréquence de résonance $f_r$. En déduire le
+	facteur de qualité puis commenter le résultat obtenu.
+}{
+	La lecture de $f_0$ nous donne $\w_0$. Or, $\w_0 =
+		\sqrt{\frac{R_0+R_L}{LC_0R_0}}$ d'où
+	\begin{align*}
+		\w_0^2 & = \frac{R_0+R_L}{LC_0R_0}
+		\\\Lra
+		\Aboxed{
+		L      & = \frac{R_0+R_L}{C_0R_0\w_0^2} \stm[-1]{=}
+			\frac{R_0+R_L}{4\pi^2 f_0^2 C_0R_0}
+		}
+	\end{align*}
+	Or, comme $R_L=\SI{3e3}{\ohm}$ et $R_0=\SI{1e6}{\ohm}$, on peut considérer que
+	$R_L\ll R_0$, on a alors $R_L+R_0 \stm{=} R_0$ d'où
+	\begin{gather*}
+		\boxed{L \stm{=} \frac{1}{4\pi^2 f_0^2 C_0}}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			f_0 & = & \SI{7000}{Hz}
+			\\
+			C_0 & = & \SI{100e-12}{F}
+		\end{array}
+		\right.\\
+		\AN
+		\xul{
+			L \stm{=} \SI{5.17}{H}
+		}
+	\end{gather*}
+	On peut alors retrouver $Q$ en appliquant la formule théorique provenant de la
+	détermination de la fonction de transfert~:
+	\[
+		Q =
+		\frac{\sqrt{(R_L+R_0)LCR_0}}{R_LCR_0+L} \approx
+		\frac{\sqrt{LCR_0^2}}{R_LCR_0+L}
+		\Lra
+		\boxed{Q \stm[-1]{\approx} 4}
+	\]
+	On obtient bien des résultats cohérents \pt{1} avec les 3 méthodes. Le facteur
+	de qualité est relativement grand devant 1, ce qui est cohérent avec
+	l'hypothèse faite au début de l'étude.
+}
+
+\QR[3]{%
+	La fréquence de résonance varie selon le type de microphone utilisé. Quel est
+	l'effet sur le son restitué~?
+}{
+	Le microphone est un passe-bas mais du fait de son facteur de qualité élevé,
+	il possède une résonance marquée \pt{1}. Pour une même note jouée par
+	l'instrument, l'usage de deux microphones différents induira la restitution de
+	la même \textbf{note} \pt{1} (caractérisée par la fréquence du fondamental et
+	sachant qu'un filtre linéaire ne modifie jamais la fréquence fondamentale du
+	signal), mais le spectre sera différent car toutes les harmoniques ne seront
+	pas amplifiées de la même façon suivant la valeur de la fréquence de
+	résonance. Le type de microphone modifie donc le \textbf{timbre} \pt{1} du
+	son. Le choix du microphone peut donc donner un son plus "jazz" ou plus
+	"rock"…
+}
+
+\end{document}

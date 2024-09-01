@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \def\h{.7}
+    \def\l{1.5}
+    \draw
+    (0,0) --
+    (0,\h)
+        to[R, name=R1, !vi]
+    (1*\l,\h)
+        coordinate (A)
+        to[R, name=R2, !vi]
+    (4*\l,\h)
+        coordinate (B)
+        to[R, name=R3, !vi]
+    (5*\l,\h) --
+    (5*\l,0)
+        to[V, name=E, V^>=$E_{}$, !vi]
+    (0,0)
+    ;
+    \draw[]
+    (A) --
+    (1*\l,2*\h)
+        to[R, name=R4, !vi]
+    (2*\l,2*\h)
+        to[R, name=R5, v^>=$U$, !vi]
+    (3*\l,2*\h)
+        to[R, name=R6, !vi]
+    (4*\l,2*\h) --
+    (B);
+    \varronly{E} \varronly{R5}
+    \foreach \n in {1, ...,6}{
+        \node[] at (R\n.center) {$R$};
+    ;}
+\end{circuitikz}
+\end{document}

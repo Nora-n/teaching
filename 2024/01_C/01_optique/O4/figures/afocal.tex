@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\node[] (AB) at (0,0) {$\AB$};
+	\node[] (A_1B_1) at (2,0) {$\ABb$};
+	\node[] (A'B') at (4,0) {$\ABp$};
+	\draw[->] (AB) -- (A_1B_1)
+	node [midway, above] {$\Lc_1$}
+	node [midway, below] {O$_1$};
+	\draw[->] (A_1B_1) -- (A'B')
+	node [midway, above] {$\Lc_2$}
+	node [midway, below] {O$_2$};
+	\node[below=0.3, Purple!70] (AB) at (AB) {$-\infty$};
+	\node[below=0.3, color=brandeisblue] (A1B1b) at (A_1B_1) {$\rm A_1 = F'_1$};
+	\node[below=0.3, ForestGreen] (A1B1bb) at (A1B1b) {$\rm A_1 = F_2$};
+	\node[below=0.3, orange!70] (A'B'b) at (A'B') {$\rm A' = +\infty$};
+	\draw[->, Purple!70] (AB) to[bend right] (A1B1b.west);
+	\draw[->, orange!70] (A'B'b) to[bend left] (A1B1bb.east);
+\end{tikzpicture}
+\end{document}

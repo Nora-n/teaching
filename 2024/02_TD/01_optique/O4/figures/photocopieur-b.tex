@@ -1,0 +1,110 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+    % % Sens de comptage
+    % \node[] (Cp) at (-2.5,2) {$\oplus$};
+    % \draw[<->] (Cp.north west) |- (Cp.south east);
+    % % Sens de comptage
+    % \node[] (Cp) at (2.5,2) {$\oplus$};
+    % \circledarrow{black}{(Cp)}{0.3}
+    % Axe optique
+    \draw[dashed, ->](-2.04,0)--(1.80,0);
+    % Lentille 
+    \coordinate (O1) at (0,0);
+    \def \fa{-.90}
+    \def \lsiz{2}
+    \coordinate (F) at ($(O1)+(-\fa,0)$);
+    \coordinate (Fp) at ($(O1)+(\fa,0)$);
+
+    \foreach \x/\z in {O1/\fa}{
+        \node[] at (\x) {$\times$};
+        \node[above right] at (\x) {$O_1$};
+        %\node[] at ([shift={(\z,0)}]\x) {$\times$};
+        %\node[above right] at ([shift={(\z,0)}]\x) {$F'_1$};
+        %\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+        %\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+    }
+
+    \draw[shift={(O1)}, thick, >-<, >=latex, name path=L1]
+        (0,-\lsiz) coordinate (L1b) --
+        (0,\lsiz) coordinate (L1t) node[above right]{$\Lc_{1}$};
+
+    % Lentille 2
+    \coordinate (O) at (-0.24,0);
+    \def \fa{-.90}
+    \def \lsiz{2}
+    \coordinate (F) at ($(O1)+(-\fa,0)$);
+    \coordinate (Fp) at ($(O1)+(\fa,0)$);
+
+    \foreach \x/\z in {O/\fa}{
+        \node[] at (\x) {$\times$};
+        \node[above left] at (\x) {$O'$};
+        %\node[] at ([shift={(\z,0)}]\x) {$\times$};
+        %\node[above right] at ([shift={(\z,0)}]\x) {$F'_1$};
+        %\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+        %\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+    }
+
+    \draw[shift={(O)}, thick, -, >=latex, name path=L]
+        (0,-\lsiz) coordinate (Lb) --
+        (0,\lsiz) coordinate (Lt) node[above left]{$\Lc_{}$};
+        
+    % Écran
+    \def\ecsiz{4}
+    \coordinate (Ap) at (1.8,0)
+        node [above left] at (Ap) {$A'$}
+        node at (Ap) {$\times$};
+    \draw[ultra thick]
+        ([shift={(0,-\ecsiz/2)}]Ap) coordinate (Apb)
+        --++ (0,\ecsiz) coordinate (Apt)
+        node [midway, below, sloped] {r\'ecepteur};
+    % document
+    \def\ecsiz{4}
+    \coordinate (A) at (-2.04,0)
+        node [above right] at (A) {$A$}
+        node at (A) {$\times$};
+    \draw[ultra thick]
+        ([shift={(0,-\ecsiz/2)}]A) coordinate (Ab)
+        --++ (0,\ecsiz) coordinate (At)
+        node [midway, above, sloped] {document};
+    % Points infini
+    % \coordinate (At) at (-2.5,1.5);
+    % \coordinate (Ab) at (-2.5,-1.5);
+    % % Intersections lentille
+    % \draw[Purple!70, simple]
+    %     (At) --
+    %     ($(Lvb)!(At)!(Lvt)$)
+    %     coordinate (It)
+    %     node [midway, below] {$-\infty$};
+    % \draw[Purple!70, double]
+    %     (Ab) --
+    %     ($(Lvb)!(Ab)!(Lvt)$)
+    %     coordinate (Ib);
+    % % Émergents
+    % \draw[orange!70, simple, shorten >=-0.5cm]
+    %     (It) -- (Fp);
+    % \draw[orange!70, double, shorten >=-0.5cm]
+    %     (Ib) -- (Fp);
+    % Grandeurs
+    \node[above=0.1, inner sep=0] (L1tg) at (L1t) {};
+    \node[above=0.1, inner sep=0] (Aptg) at (Apt) {};
+    \draw[|<->|, ForestGreen] (L1tg) --
+    node[above, midway, sloped]{\scriptsize $\SI{180}{mm}$} (Aptg);
+    % Grandeurs
+    \node[above=0.1, inner sep=0] (Ltg) at (Lt) {};
+    \node[above=0.1, inner sep=0] (Atg) at (At) {};
+    \draw[|<->|, ForestGreen] (Ltg) --
+    node[above, midway, sloped]{\scriptsize $\SI{180}{mm}$} (Atg);
+    % Grandeurs
+    \node[below=0.1, inner sep=0] (Apbg) at (Apb) {};
+    \node[below=0.1, inner sep=0] (Abg) at (Ab) {};
+    \draw[|<->|, ForestGreen] (Apbg) --
+    node[below, midway, sloped]{\scriptsize $\SI{384}{mm}$} (Abg);
+\end{tikzpicture}
+
+\end{document}
+
+
+

@@ -1,0 +1,69 @@
+\documentclass[../DS04.tex]{subfiles}
+\graphicspath{{./figures/}}
+
+\prblm[30]{Question ouverte~: piège LASER}
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/interaction_lumiere_matiere/}{sujet.tex}
+\enonce{Grâce à des faisceaux laser, les physiciens savent aujourd’hui piéger et contrôler des atomes un à un.
+Nous nous intéressons aux interactions d’un atome de rubidium avec une onde électromagnétique dans le modèle de l’électron élastiquement lié.
+
+On considère que chaque atome est soumis à un champ électrique homogène, créé par un laser, du type
+
+\centers{$\vec{E}=E_0\cos{\left(\omega t\right)\vec{u_x}}$}
+
+\noindent
+On néglige tout phénomène magnétique.
+L’atome de rubidium ($Z = 37$, masse $M$) est modélisé sous sa forme hydrogénoïde si bien que l’on considère que les 36 électrons de c\oe ur restent au voisinage du noyau et que seul l’électron de valence de masse $m_e$ et de charge $-e$ est sensible au champ électrique extérieur et \og voit \fg un noyau de charge $+e$.
+
+On admet que l’on peut modéliser le mouvement de cet électron de valence par un oscillateur harmonique amorti dont l’équation du mouvement (charge élastiquement liée) est :
+
+\centers{$\frac{\dd^2x}{{\dd t}^2}+\gamma \frac{\dd x}{\dd t}+{\omega_0}^2 \, x=- \frac{e}{m_e} E_0\cos{(\omega t)}$}
+
+\noindent
+La pulsation $\omega_0$ est caractéristique de l’atome, $\gamma$ est le coefficient d’amortissement.
+On prendra $\gamma = \SI{6,2e7}{s^{-1}}$. On suppose que  $\gamma\ll\omega_0$.
+On cherche la solution sous forme sinusoïdale et on pose
+
+\centers{$x\left(t\right)=X_0\cos{(\omega t+\varphi)}$}
+
+Dans ces conditions, on admet que lorsque la fréquence du laser est égale à la fréquence propre ${\omega_0}/{(2\pi)}$ , l’absorption est résonante. }
+
+\QR
+{Déterminer, dans le cas résonant, l’expression réelle du déplacement $x(t)$ et de la vitesse $v(t)$ de l’électron.
+On précisera, dans chaque cas (déplacement et vitesse), l’amplitude et la phase du signal avec attention. }
+{
+\noindent
+\underline{Analyse préalable} :
+Il faut déterminer l’amplitude complexe $\underline{X}(j\omega)$ , puis se placer à la résonance et en déduire le module et l’argument à la résonance.
+
+\noindent
+\underline{Réaliser} :
+On reprend l’équation différentielle fournie :
+
+\centers{$\frac{\dd^2x}{{ \dd t}^2}+\gamma\frac{\dd x}{\dd t}+{\omega_0}^2x=-\frac{e}{m_e}E_0\cos{(\omega t)}$}
+
+\leftcenters{et on passe en complexes :}  {$\underline{x}=\underline{X}e^{j\omega t}$}
+
+\noindent
+avec $\underline{X}=X_0e^{+j\varphi}$.
+L’équation différentielle devient donc, en grandeurs complexes,
+
+\centers{$-\omega^2\underline{x}+j\gamma\omega\underline{x}+\omega_0^2\underline{x}=-\frac{e}{m}E_0e^{j\omega t}$ }
+
+
+\leftcenters{Puis en amplitudes complexes : } {$-\omega^2\underline{X}+j\gamma\omega\underline{X}{+\omega}_{0}^2\underline{X}=-\frac{e}{m}E_0$}
+
+
+\leftcenters{On factorise par $\underline{X}$,}{ $\underline{X}(j\omega)=-\frac{\frac{e}{m}E_0}{j\gamma\omega-\omega^2{+\omega}_0^2}$}
+
+\noindent
+On se place à la résonance, en $\omega=\omega_0$. Alors,
+
+\centers{ $\underline{X}(j\omega_0)=-\frac{\frac{e}{m}E_0}{j\gamma\omega_0}=+j\frac{eE_0}{m\gamma\omega_0} \quad \text{ainsi} \quad X_0=\left|\underline{X}\right|=\frac{eE_0}{m\gamma\omega_0} \quad  \text{et} \quad \varphi=+\frac{\pi}{2}$}
+
+\leftcenters{D’où : }{$x\left(t\right)=\frac{eE_0}{m\gamma\omega_0}\cos{\left(\omega t+\frac{\pi}{2}\right)}=-\frac{eE_0}{m\gamma\omega_0}\,\sin{\left(\omega t\right)}$}
+
+
+\leftencadre{Alors} {$v\left(t\right)=\dot{x}\left(t\right)=-\frac{eE_0}{m\gamma} \, \cos{\left(\omega t\right)}$}
+
+Remarque : L’interaction lumière-matière telle que modélisée ici correspond à un filtre passe-bas du second ordre pour la position $x\left(t\right)$. En toute rigueur, la résonance n’est donc pas obtenue pour $\omega=\omega_0$. Néanmoins, l’amortissement étant faible (hypothèse $\gamma\ll\omega_0$), cette approximation est possible. Tel que l’énoncé était formulé, vous n’aviez de toute façon pas cette réflexion existentielle à formuler !
+}

@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    % Bottom line
+    \draw[name path=ED] (-2,0) -- (2,0)
+        node [pos=0.25] (Ep) {$\bullet$}
+        node [pos=0.75] (Dp) {$\bullet$};
+    % Points
+    \node[below] at (Ep) {$E$};
+    \coordinate (E) at (Ep);
+    \node[below] at (Dp) {$D$};
+    \coordinate (D) at (Dp);
+    % Top line
+    \draw[yshift=2cm] (-2,0) -- (2,0) node [midway] (Ip) {$\bullet$};
+    \node[above left] at (Ip) {$I$};
+    \coordinate (I) at (Ip);
+    % Milieux
+    \begin{scope}[on background layer]
+        \filldraw[fill=SkyBlue!30] (-2,0) -- (-2,2) -- (2,2) -- (2,0) -- cycle;
+    \end{scope}
+    % Norm at I
+    \draw[dashed, shorten <=-0.5cm, shorten >=-0.5cm, name path=normI]
+        (Ip) --++ (0,-2);
+    % Define intersection
+    \path[name intersections={of=ED and normI, by=H}];
+    \node[left=1cm] (nverre) at ($(I)!0.5!(H)$) {$n_{\rm verre}$};
+    \node[above=1cm] (nair) at (nverre) {$n_{\rm air}$};
+    % RL incident
+    \draw[brandeisblue, simple] (E) -- (I);
+    % Draw angles
+    \pic[angle radius=1.2cm, angle eccentricity=1.3,
+    draw, <-, brandeisblue,
+    "$i$" alias=i]
+    {angle=E--I--H};
+\end{tikzpicture}
+\end{document}

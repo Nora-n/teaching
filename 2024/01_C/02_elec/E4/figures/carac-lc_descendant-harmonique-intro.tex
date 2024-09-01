@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\def\E{3}
+	\def\wo{2*pi*5}
+	\def\w{\wo*sqrt(1-1/(4*\Q^2))}
+	\def\Q{10}
+	\def\xmax{30}
+	\begin{axis}[
+			xmin=-2, xmax=\xmax,
+			ymin=-3.2, ymax=3.2,
+			xlabel=$t$, ylabel=\textcolor{Red}{$u_C$},
+			axis lines=center,
+			xtick=\empty, ytick=\empty,
+			extra y ticks={0},
+			y tick label style={yshift={(\tick==0)*-.5em},
+					xshift={(\tick==0)*.25em}},
+			x label style={at={(current axis.right of origin)}, anchor=north, below},
+			y label style={at={(current axis.above origin)}, anchor=east, left},
+			clip=false]
+		\addplot[thick,
+			domain=-2:0,
+			samples=100,
+			Red!70]
+		{\E};
+		\addplot[thick,
+			domain=0.0:\xmax,
+			samples=1000,
+			Red!70]
+		{\E*cos(\wo*\x)};
+		% \node[cornflowerblue, anchor=west, right] (itext) at (current axis.above
+		% origin) {$i$};
+		% \addplot[thick,
+		% domain=-2:0,
+		% samples=100,
+		% cornflowerblue]
+		% {0};
+		% \addplot[thick,
+		% domain=0.0:\xmax,
+		% samples=1000,
+		% cornflowerblue]
+		% {-0.7*\E*sin(\wo*\x)};
+	\end{axis}
+\end{tikzpicture}
+\end{document}

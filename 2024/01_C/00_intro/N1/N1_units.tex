@@ -1,0 +1,501 @@
+\documentclass[../main/main.tex]{subfiles}
+
+\makeatletter
+\renewcommand{\@chapapp}{Introduction -- chapitre}
+\makeatother
+
+% \toggletrue{student}
+% \HideSolutionstrue
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\begin{document}
+\setcounter{chapter}{0}
+
+\chapter{Unit\'es et analyse dimensionnelle}
+
+\vfill
+
+\begin{prgm}
+	\begin{tcb}*(ror)"how"{Savoir-faire}
+		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+			\item Conduire une analyse dimensionnelle.
+		\end{itemize}
+	\end{tcb}
+\end{prgm}
+
+\vfill
+\minitoc
+\vfill
+
+\newpage
+
+En sciences physiques, il faut opérer la distinction entre~:
+\begin{enumerate}
+	\item \textbf{Le phénomène}~: \psw{
+		      du domaine de la sensation («~il fait chaud~»)
+		      ou de l'observation («~une lumière blanche traversant un prisme sort en
+		      arc-en-ciel~»)~;
+	      }
+	\item \textbf{La grandeur physico-chimique}~: \psw{
+		      quantité mesurable (directement ou
+		      indirectement) et rendant compte du phénomène (par exemple, la
+		      température). Elle est représentée par un \textbf{symbole} ($T$ dans le
+		      même exemple) qui intervient dans les équations mathématiques
+		      caractérisant le phénomène physique, et est caractérisée par sa
+		      \textbf{dimension} traduisant sa nature~;
+	      }
+	\item \textbf{La valeur} de la grandeur~: \psw{
+		      résultant d'une mesure et associée
+		      à une \textbf{unité} ($K$ ou $\degreeCelsius$)~; la valeur change selon
+		      l'unité utilisée et contient un certain nombre de \textbf{chiffres
+			      significatifs}.
+	      }
+\end{enumerate}
+
+Ces notions sont la fondation de tout raisonnement scientifique qui repose sur
+la précision et l'objectivité.
+
+\section{Systèmes d'unités}
+\subsection{Grandeurs de base}
+
+Les grandeurs physiques sont \textbf{reliées} entre elles, soit par des
+\textbf{définitions} (surface d'un carré = carré d'un côté) soit par des
+\textbf{lois} physiques ($U = RI$ en électronique). Par souci de concision, il
+est pratique de choisir des grandeurs de base à partir desquelles nous
+exprimerons toutes les autres~: en mécanique par exemple, nous utilisons la
+longueur, la masse et le temps. Ce choix n'est pas unique mais pratique.
+
+À partir de grandeurs de base choisies, nous leur associons donc des unités «~de
+base~». Le bureau international des poids et mesures
+(BIPM\footnote{\href{https://www.bipm.org/fr/measurement-units/}
+	{https://www.bipm.org/fr/measurement-units/}}) a défini le \textbf{système
+	international (SI)}, et se réunit tous les 4 ans pour discuter de leurs
+définitions et de leurs choix.
+
+\subsection{Définition du SI}
+
+\begin{tcb}[label=def:si](defi){Grandeurs, dimensions et unités de base du SI}
+	\begin{center}
+		\begin{tabular}{lclc}
+			\toprule
+			Grandeur             & Dimension      & Unité            & Symbole de l'unité \\
+			\midrule
+			Longueur             & \psw{L}        & \psw{mètre}      & \psw{m}            \\
+			Masse                & \psw{M}        & \psw{kilogramme} & \psw{kg}           \\
+			Temps                & \psw{T}        & \psw{seconde}    & \psw{s}            \\
+			Intensité électrique & \psw{I}        & \psw{Ampère\fnm} & \psw{A}            \\
+			Température          & \psw{$\Theta$} & \psw{Kelvin\fnm} & \psw{K}            \\
+			Quantité de matière  & \psw{N}        & \psw{mole}       & \psw{mol}          \\
+			Intensité lumineuse  & \psw{J\fnm}    & \psw{candela}    & \psw{cd}           \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{tcb}
+
+\footnotetext[2]{Du nom du physicien André-Marie \textsc{Ampère}
+	(\textsc{xviii-xix}\ieme), précurseur de la mathématisation de la physique
+	et créateur du vocabulaire tenant à l'électricité.\label{fn:amp}}
+\footnotetext[3]{Du nom du physicien William
+	\textsc{Thomson} (\textsc{xix}\ieme), anobli en Lord \textsc{Kelvin}, à
+	l'origine de la thermodynamique.\label{fn:kel}}
+\footnotetext[4]{Ne pas confondre avec l'unité des énergies en joules…\label{fn:can}}
+On remarquera que les unités provenant d'un nom propre s'écrivent avec une
+majuscule, et leur symbole l'est également.
+
+\begin{tcb}(nota){Notation}
+	On utilisera $\dim{X}$ pour dénoter la dimension de $X$, et $[X]$ son unité.
+\end{tcb}
+
+\subsection{Opérations sur les grandeurs}
+D'une manière générale, vous étudierez les dimensions de vos équations
+directement \textit{via} les opérateurs qui la composent. Il faut donc savoir
+déduire les dimensions dans les cas suivants~:
+% \begin{enumerate}
+% 	\bitem{Somme et différence}~: \psw{
+% 		tous les termes d'une somme ou d'une différence ont la même dimension, et le
+% 		résultat également
+% 	}
+% 	\bitem{Produit et quotient}~: \psw{
+% 		on peut multiplier ou diviser des grandeurs de n'importe quelles dimensions.
+% 		La dimension d'un produit est le produit des dimensions, de même pour les
+% 		quotients et puissances.
+% 	}
+% 	\bitem{Dérivation}~: \psw{
+% 		la dimension d'une dérivée est le rapport des dimensions de la grandeur
+% 		dérivée et de la grandeur dérivante.
+% 	}
+% 	\bitem{Intégration}~: \psw{
+% 		la dimension d'une intégrale est le produit des dimensions de la grandeur
+% 		intégrée et de la grandeur intégrante.
+% 	}
+% 	\bitem{Fonction transcendantes}\ftn{Fonctions type exponentielle, logarithme,
+% 		cosinus.}~: \psw{
+% 		une fonction transcendante est adimensionnée, donc son argument également
+% 	}
+% \end{enumerate}
+\begin{tcbraster}[raster equal height=rows]
+	\begin{tcb}(prop){Opérations}
+		\begin{enumerate}
+			\bitem{Dérivation}~: \psw{
+				la dimension d'une dérivée est le rapport des dimensions de la grandeur
+				dérivée et de la grandeur dérivante.
+			}
+			\bitem{Intégration}~: \psw{
+				la dimension d'une intégrale est le produit des dimensions de la grandeur
+				intégrée et de la grandeur intégrante.
+			}
+			\bitem{Fonction transcendantes}\ftn{Fonctions type exponentielle, logarithme,
+				cosinus.}~: \psw{
+				une fonction transcendante est adimensionnée, donc son argument également
+			}
+		\end{enumerate}
+	\end{tcb}
+	\begin{tcb}(exem)'r'{Exemples}
+		\begin{enumerate}
+			\bitem{Dérivation}~:
+			\psw{
+				\[
+					v_z =
+					\dv{z}{t} \Ra \dim{v_z} =
+					\frac{\dim{z}}{\dim{t}} =
+					\rm L \cdot T^{-1}
+				\]
+			}
+			\vspace*{-10pt}
+			\bitem{Intégration}~:
+			\psw{
+				\[
+					\Ec = \int_{t_1}^{t_2} \Pc(t)\dd{t} \Ra \dim{\Ec} = \dim{\Pc} \times \dim{t}
+				\]
+			}
+			\vspace*{-10pt}
+			\bitem{Fonctions transcendantes}~:
+			\psw{
+				\[
+					[\exp(-t/\tau)] = 1 \Lra \dim{\tau} = \dim{t}
+				\]
+			}
+			\vspace*{-10pt}
+		\end{enumerate}
+	\end{tcb}
+\end{tcbraster}
+
+\subsection{Grandeurs dérivées}
+
+Les grandeurs exprimées à partir des grandeurs de bases \textit{via} des
+équations physiques sont appelées «~grandeurs dérivées~». Leurs dimensions sont
+écrites sous la forme de produits de puissances des dimensions de base~: d'une
+manière générique, une grandeur $G$ a pour dimension
+
+\psw{
+	\[
+		\boxed{\dim{G} = \rm L^\alpha M^\beta T^\gamma I^\delta \Theta^\epsilon N^\xi
+			J^\eta}
+	\]
+}
+où les lettres grecques sont les \textbf{exposants dimensionnels}, qui peuvent
+être nuls. S'ils sont tous nuls, la grandeur et dite \textbf{adimensionnée}.
+
+\begin{tcb}[label=exem:grandeurs](exem){Grandeurs dérivées}
+	\begin{center}
+		\begin{tabular}{lcll}
+			\toprule
+			Grandeurs dérivées & Symbole  & Équation aux dimensions                  & Unités SI dérivées                      \\
+			\midrule
+			Surface            & $S$      & $\dim{S}      = \psw{\si{L^2}}$          & $ [S]      = \psw{\si{m^2}}           $ \\
+			Volume             & $V$      & $\dim{V}      = \psw{\si{L^3}}$          & $ [V]      = \psw{\si{m^3}}           $ \\
+			Angle              & $\alpha$ & $\dim{\alpha} = \psw{\si{1}}$            & $ [\alpha] = \psw{\si{rad}}           $ \\
+			Vitesse            & $\vf$    & $\dim{v}      = \psw{\si{L.T^{-1}}}$     & $ [v]      = \psw{\si{m.s^{-1}}}      $ \\
+			Accélération       & $\af$    & $\dim{a}      = \psw{\si{L.T^{-2}}}$     & $ [a]      = \psw{\si{m.s^{-2}}}      $ \\
+			Masse volumique    & $\rho$   & $\dim{\rho}   = \psw{\si{M.L^{-3}}}$     & $ [\rho]   = \psw{\si{kg.m^{-3}}}     $ \\
+			Force              & $\Ff$    & $\dim{F}      = \psw{\si{M.L.T^{-2}}}$   & $ [F]      = \psw{\si{kg.m.s^{-2}}}   $ \\
+			Charge électrique  & $q$      & $\dim{q}      = \psw{\si{I.T}}$          & $ [q]      = \psw{\si{A.s}}           $ \\
+			Énergie            & $\Ec$    & $\dim{E}      = \psw{\si{M.L^2.T^{-2}}}$ & $ [E]      = \psw{\si{kg.m^2.s^{-2}}} $ \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{tcb}
+\begin{tcb}(rema){Remarque}
+	Certaines de ces unités dérivées portent des noms usuels~: le newton N
+	($\SI{1}{N} = \SI{1}{kg.m.s^{-2}}$) pour la force, le coulomb C ($\SI{1}{C} =
+		\SI{1}{A.s}$) pour la charge électrique, ou l'énergie en joules\footnote{Du
+		physicien James \textsc{Joule} (\textsc{XIX}\ieme), contemporain de
+		\textsc{Kelvin}.} J ($\SI{1}{J} = \SI{1}{kg.m^2.s^{-2}}$)
+\end{tcb}
+
+% \subsection{Préfixes multiplicatifs}
+%
+% Suivant la valeur d'une grandeur, il est commode de l'exprimer \textit{via}
+% l'ajout d'un préfixe à l'unité. Ils s'expriment en puissances de 10 et ont
+% également un symbole et un nom~:
+% \begin{center}
+% 	\begin{tabular}{lcclcc}
+% 		\toprule
+% 		\multicolumn{3}{c}{Sous-multiples} & \multicolumn{3}{c}{Multiples}                                               \\
+% 		\cmidrule(lr){1-3} \cmidrule(lr){4-6}
+% 		Préfixe                            & Puissance                     & Symbole     & Préfixe & Puissance & Symbole \\
+% 		\midrule
+% 		yocto                              & \num{e-24}                    & y           & déca    & \num{e1}  & da      \\
+% 		zepto                              & \num{e-21}                    & z           & hecto   & \num{e2}  & h       \\
+% 		atto                               & \num{e-18}                    & a           & kilo    & \num{e3}  & k       \\
+% 		femto                              & \num{e-15}                    & f           & méga    & \num{e6}  & M       \\
+% 		pico                               & \num{e-12}                    & p           & giga    & \num{e9}  & G       \\
+% 		nano                               & \num{e-9}                     & n           & téra    & \num{e12} & T       \\
+% 		micro                              & \num{e-6}                     & \si{\micro} & péta    & \num{e15} & P       \\
+% 		milli                              & \num{e-3}                     & m           & exa     & \num{e18} & E       \\
+% 		centi                              & \num{e-2}                     & c           & zetta   & \num{e21} & Z       \\
+% 		déci                               & \num{e-1}                     & d           & yotta   & \num{e24} & Y       \\
+% 		\bottomrule
+% 	\end{tabular}
+% \end{center}
+
+\section{Analyse dimensionnelle}
+
+À l'aide de ces outils, nous pouvons effectuer des actions sur les
+équations-mêmes pour en extraire les dimensions. Pour qu'une équation
+mathématique ait un sens physique, elle doit suivre un principe fondamental et
+naturel~: le \textbf{principe d'homogénéité}.
+
+\subsection{Homogénéité}
+
+\begin{tcb}(prop){Homogénéité}
+	Dans une équation ou dans l'expression d'une loi physique, les deux
+	membres de chaque côté du signe égal doivent être de \textbf{même
+		nature}\footnote{Scalaire, vecteur, matrice, tenseur…} et avoir la
+	\textbf{même dimension}, quel que soit le système d'unités. Une telle
+	formule est alors dite \textbf{homogène}.
+\end{tcb}
+\begin{tcb}[cnt](coro){Corollaire~: natures des équations}
+	\bfseries Il serait ainsi \textit{barbare} d'égaliser un vecteur d'un côté
+	avec un scalaire de l'autre, ou d'additionner ou soustraire
+	des mètres à des secondes, etc.
+\end{tcb}
+
+\subsection{Écrire un résultat}
+
+Un objectif récurrent des sujets de physique-chimie est d'obtenir la
+\textbf{valeur numérique} d'une grandeur physico-chimique. Elle découle alors
+d'une équation, forcément homogène, mais doit également être calculée avec les
+bonnes unités au sein des dimensions. Ainsi, \textbf{tout résultat numérique}
+devra être rédigé sous la forme suivante~:
+\begin{tcb}(impo){Règle d'application numérique}
+	\vspace*{-10pt}
+	\begin{minipage}{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\xul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+	\smallbreak
+	Avec ces règles de mise en page doivent venir des réflexes~:
+	\smallbreak
+	\begin{isd}
+		\tcbsubtitle{\fatbox{Encadrer}}
+		Encadrer implique d'avoir vérifié~:
+		\begin{enumerate}
+			\item La cohérence mathématique~;
+			\item L'homogénéité de la formule proposée.
+		\end{enumerate}
+		\tcblower
+		\tcbsubtitle{\fatbox{Souligner}}
+		Souligner implique d'avoir vérifié~:
+		\begin{enumerate}
+			\item La cohérence physique de la grandeur~;
+			\item Les chiffres significatifs à utiliser.
+		\end{enumerate}
+	\end{isd}
+\end{tcb}
+
+\begin{tcb}*(coro)"bulb"{Effectuer un changement d'unités}
+	Il est très commun de se tromper d'unité lors d'une conversion, et ce pour
+	deux raisons~: à cause d'une unité mise à une puissance, ou à cause d'un
+	rapport de deux grandeurs. Il suffit d'appliquer le processus suivant~:
+	\begin{enumerate}
+		\item Écrire la valeur numérique actuelle de la grandeur avec son unité sous
+		      forme de \textbf{fraction explicite}~;
+		\item Convertir les unités concernées \textbf{en y mettant des
+			      parenthèses}~;
+		\item Recondenser le calcul.
+	\end{enumerate}
+\end{tcb}
+
+\begin{tcb}[sidebyside](exem){Exemples}
+	\vspace*{-10pt}
+	\psw{
+		\begin{gather*}
+			\SI{1}{m.s^{-1}} =
+			1 \frac{\si{m}}{\si{s}} =
+			1 \frac{\SI{e-3}{km}}{\SI[parse-numbers=false]{\frac{1}{3600}}{h}} =
+			\SI{3.6e-3}{km.h^{-1}}
+		\end{gather*}
+	}
+	\vspace*{-10pt}
+	\tcblower
+	\psw{
+		\begin{gather*}
+			\SI{1}{L} = 1\,\si{dm}^{3} = 1\,(\num{e-1}\si{m})^{3} = \SI{1e-3}{m^{3}}
+		\end{gather*}
+	}
+	\vspace*{-10pt}
+\end{tcb}
+
+\subsection{Application}
+
+Le principe d'homogénéité permet alors une analyse des dimensions des grandeurs
+mises en jeu dans une loi ou une équation. C'est un outil particulièrement
+puissant à bien des égards, que nous voyons ci-après.
+
+\subsubsection{Rechercher des unités}
+
+En connaissant une expression que l'on sait vraie, nous pouvons déduire les
+unités d'autres grandeurs (cf.\ les unités usuelles comme le Newton).
+
+\begin{tcb}(exem){Recherche d'unités}
+	La force de rappel élastique exercée par un ressort s'écrit
+	\[\Ff_{\rm el} = -k(\ell-\ell_0)\ux\]
+	avec $k$ la constante de raideur du ressort, et $\ux$ un vecteur adimensionné.
+	Quelle est la dimension de $k$~? Quelle serait une manière simple d'exprimer
+	son unité~?
+	\tcblower
+	\vspace*{-9pt}
+	\begin{isd}
+		\psw{
+			\begin{gather*}
+				\dim{k} =
+				\frac{\dim{F}}{\dim(\ell-\ell_0)\dim{u_x}} =
+				\frac{\rm M\cancel{\rm L}T^{-2}}{\cancel{\rm L}}
+				\\ \Lra
+				\boxed{\dim{k} = \si{M.T^{-2}}}
+			\end{gather*}
+		}
+		\tcblower
+		\psw{
+			Ainsi, on peut écrire
+			\begin{gather*}
+				[k] = \si{kg.s^{-2}}
+				\\\Lra
+				[k] = \si{N.m^{-1}}
+			\end{gather*}
+		}
+	\end{isd}
+	\vspace*{-20pt}
+\end{tcb}
+
+\subsubsection{Détecter des erreurs}
+
+Par simple analyse dimensionnelle, il est aisé d'affirmer qu'un résultat est
+nécessairement faux~: si les deux parties mises en jeu n'ont pas la même
+dimension, elle ne peuvent être égales entre elles~!
+
+\begin{tcb}(exem){Détecter des erreurs}
+	En résolvant un exercice, vous trouvez l'expression suivante pour l'énergie
+	potentielle d'une masse $m$ accrochée à un ressort vertical de raideur $k$
+	et sous pesanteur $g$~:
+	\[\Ec_{\rm p} (z) = \frac{1}{2}kz^2 + mgz^2\]
+	avec $z$ la hauteur de la masse. Cette expression est-elle homogène~?
+	\tcblower
+	\vspace*{-9pt}
+	\begin{isd}[lefthand ratio=.4]
+		\psw{
+			\begin{gather*}
+				[kz^2] = \si{N.m^{-1}.m^2} = \si{N.m}
+				\\
+				[mgz^2] = \si{N.m^2}
+			\end{gather*}
+		}
+		\tcblower
+		\psw{
+			Cette expression n'est pas homogène~! Elle est forcément fausse. Ici,
+			c'est le terme d'énergie potentielle gravitationnelle, qui vaut $mgz$.
+		}
+	\end{isd}
+	\vspace*{-20pt}
+\end{tcb}
+
+\subsubsection{Rechercher des lois physiques}
+D'autre part, à partir de phénomènes que nous voudrions relier entre eux, il est
+possible d'établir des lois les reliant entre eux grâce au principe
+d'homogénéité.
+
+\begin{tcb}(exem){Recherche de loi}
+	Donnez, par analyse dimensionnelle, la période $T$ des oscillations d'un
+	pendule simple.
+	\tcblower
+	\psw{
+		Il faut commencer par identifier les variables propices d'intervenir dans le
+		problème. Une pendule simple est constitué d'une masse plongée dans un champ
+		de pesanteur et reliée par un fil de longueur $\ell$ à un point pivot. En
+		négligeant les frottements, on en déduit que les variables possibles sont
+		$\ell$, $g$ et $m$~; ainsi, il nous faudrait avoir
+	}
+	\begin{isd}
+		\psw{
+			\begin{gather*}
+				T = \ell^{\alpha}g^{\beta}m^{\gamma}
+				\\\Lra
+				[T] = [\ell]^{\alpha}[g]^{\beta}[m]^{\gamma}
+				\\\Lra
+				\si{s} = \si{m^{\alpha}.m^{\beta}.s^{-2\beta}.kg^{\gamma}}
+				\\\Lra
+				\left\{
+				\begin{array}{rcl}
+					\si{s} & = & \si{s}^{-2 \beta}
+					\\
+					1      & = & \si{m}^{\alpha+\beta}
+					\\
+					1      & = & \si{kg}^{\gamma}
+				\end{array}
+				\right.
+				\Lra
+				\left\{
+				\begin{array}{rcl}
+					\beta  & = & - \frac{1}{2}
+					\\
+					\alpha & = & \frac{1}{2}
+					\\
+					\gamma & = & 0
+				\end{array}
+				\right.
+			\end{gather*}
+		}
+		\tcblower
+		\psw{
+			Autrement dit, on aurait tendance à écrire
+			\[
+				\boxed{T = \sqrt{\frac{\ell}{g}}}
+			\]
+			Ce qui serait effectivement homogène~! Mais pourtant faux… L'étude
+			complète du système donne un \textbf{facteur} $\mathbf{2\pi}$ avant la
+			racine.
+		}
+	\end{isd}
+	\vspace*{-20pt}
+\end{tcb}
+
+\begin{tcb}[cnt, bld](impo){Limites implicites}
+	Une loi trouvée par analyse dimensionnelle ne saurait permettre de donner les
+	bons termes multiplicatifs~!
+\end{tcb}
+
+\end{document}

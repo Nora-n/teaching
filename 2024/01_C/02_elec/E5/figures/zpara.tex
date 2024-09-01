@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	node {$\bullet$}
+	node [left] (A) {A}
+	to[short, name=R0, i<_=$\xul{i}\ind{para}$, !vi]
+	(1,0) --
+	(1,0.5) to[R, name=R1, v^>=$\xul{u}_1$, i<_=$\xul{i}_1$, !vi]
+	(3,0.5) --
+	(3,0) --
+	(4,0)
+	node {$\bullet$}
+	node [right] (B) {B};
+	\draw (1,0) --
+	(1,-0.5) to[R, name=R2, v^>=$\xul{u}_2$, i<_=$\xul{i}_2$, !vi]
+	(3,-0.5) --
+	(3,0);
+	\foreach \n in {0, ..., 2}{
+			\iarronly{R\n}
+			;}
+	\foreach \n in {1, ..., 2}{
+			\varronly{R\n}
+			\node[] at (R\n.center) {$\xul{Z}_\n$};
+			;}
+	\coordinate (T) at (2,-1);
+	\draw[color=red!70] (B|-T) -- (A|-T)
+	node [midway, below] {$\xul{u}$}
+	node[currarrow, pos=0] {} ;
+	\node[below=.8cm] (E) at (R2.south) {$\equiv$};
+	\draw[shift=(E), xshift=-2cm, yshift=-1cm]
+	(0,0)
+	node {$\bullet$}
+	node [left] (A) {A}
+	to[R, name=R3, v^>=$\xul{u}$, i<_=$\xul{i}\ind{para}$, !vi]
+	(4,0)
+	node {$\bullet$}
+	node [right] (B) {B};
+	\node[] at (R3.center) {$\xul{Z}\ind{para}$};
+	\varronly{R3} \iarronly{R3}
+\end{circuitikz}
+
+\end{document}

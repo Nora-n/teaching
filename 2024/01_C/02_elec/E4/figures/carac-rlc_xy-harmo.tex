@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\usepackage{xfp}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\def\E{5}
+	\def\R{100}
+	\def\L{0.043}
+	\def\C{0.00000002}
+	\def\Q{(1/\R)*sqrt(\L/\C)}
+	\def\wo{sqrt(1/(\L*\C))}
+	\def\w{\wo*sqrt(1-1/(4*\Q^2))}
+	% \def\Q{14.66}
+	% \def\wo{34100}
+	% \def\w{\wo*sqrt(1-1/(4*\Q^2))}
+	\begin{axis}[
+			xmin=-5, xmax=5.2,
+			ymin=-0.004, ymax=0.004,
+			xlabel=$\color{red}u_C$, ylabel=$\color{cornflowerblue}i$,
+			axis lines=center,
+			axis line style=ultra thick,
+			x axis line style={Red},
+			y axis line style={cornflowerblue},
+			xtick=\empty, ytick=\empty,
+			clip=false]
+		\addplot[thick,
+			domain=0:0.00019,
+			samples=750,
+			black,
+			thick,
+			fleche={0.1}{>},
+			fleche={0.6}{>}]
+		({\E*(cos(\wo*\x r)},
+		{-\C*\E*\wo*sin(\wo*\x r)})
+		% node[pos=0.1, sloped] {\arrow[scale=1.5,>=stealth]{>}}
+		;
+		% Sens variation
+		% \node at (axis cs:)
+		% \draw[->] (B.east) to[in=0, out=-90] (B.south);
+	\end{axis}
+\end{tikzpicture}
+\end{document}

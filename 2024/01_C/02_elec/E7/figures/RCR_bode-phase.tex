@@ -1,0 +1,37 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{semilogxaxis}[
+			xmin=1e-2, xmax=1e2,
+			ymin=-.2, ymax=1.8,
+			xlabel={$x=\DS\frac{\w}{\w_c}$}, ylabel=$\f$ (rad),
+			ytick={0, 0.5, 1},
+			extra y ticks={0.78539, 1.57079},
+			extra y tick labels={$\DS\frac{\pi}{4}$, $\DS\frac{\pi}{2}$},
+			extra y tick style={grid=none},
+			axis lines=left,
+			grid=both,
+			major grid style={black!50},
+			minor grid style={gray!25},
+			clip=true]
+		\addplot[
+			domain=1e-2:1e2,
+			smooth, thick, red]
+		%{log10(\x)};
+		{pi/2 - atan(\x)*pi/180};
+		\addplot[
+			domain=1e-2:2,
+			smooth, red, dashed, thick]
+		{pi/2};
+		\addplot[
+			domain=6e-1:1e2,
+			smooth, red, dashed, thick]
+		{0};
+		\draw[dashed, thick]
+		(axis cs:1e-2,pi/4) -|
+		(axis cs:1e0,-.5);
+	\end{semilogxaxis}
+\end{tikzpicture}
+\end{document}

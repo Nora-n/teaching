@@ -1,0 +1,274 @@
+\documentclass[a4paper, 11pt]{book}
+\usepackage{/home/nora/Documents/Enseignement/Prepa/bpep/fichiers_utiles/preambule}
+
+\makeatletter
+\renewcommand{\@chapapp}{Kh\^olles MPSI3 -- semaine}
+\makeatother
+
+\toggletrue{corrige}
+
+\begin{document}
+
+\resetQ
+\newpage
+
+\chapter{Sujet 1\siCorrige{\!\!-- corrigé}}
+\section{Étude d'un rétroprojecteur}
+\noindent
+\begin{minipage}[c]{.6\linewidth}
+	Un rétroprojecteur est un ensemble lentille-miroir, avec un miroir plan
+	incliné à \ang{45;;} par rapport à la lentille. L'ensemble lentille-miroir est
+	réglable en hauteur ($h$). On étudie un rétroprojecteur dont la lentille a une
+	vergence de $\SI{2.0}{\delta}$, avec une distance lentille-miroir $d =
+		\SI{10}{cm}$.
+
+	On désire projeter un objet transparent AB sur un écran placé à $D =
+		\SI{3.0}{m}$ de l'axe optique de la lentille.
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.35\linewidth}
+	~
+	\begin{center}
+		\includegraphics[width=\linewidth]{retroproj}
+		\label{fig:retro}
+	\end{center}
+\end{minipage}
+
+\QR{Déterminer la distance $h$ permettant d'obtenir une image nette sur
+	l'écran.
+}{
+	On a $\AB \opto{\Lc}{\Or} \ABb \opto{M}{\rm H} \ABp$, avec H le point
+	d'intersection entre le miroir plan et l'axe optique de la lentille.
+	L'image finale A' donnée par le miroir plan est telle que
+	\[
+		\boxed{\obar{\rm HA'} = \obar{\rm HA_1} = D}
+	\]
+	On a donc pour la lentille
+	\begin{empheq}[box=\fbox]{align*}
+		\obar{\rm OA_1} &= \obar{\rm OH} + \obar{\rm HA_1}
+		\\\Lra
+		\obar{\rm OA_1} &= d+D
+	\end{empheq}
+	On utilise la relation de conjugaison des lentilles minces en nommant
+	$V$ la vergence de la lentille~:
+	\begin{equation*}
+		V = \frac{1}{d+D} - \frac{1}{-h}
+		\Lra
+		\boxed{h = \frac{d+D}{V(d+D)-d}}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			d & = & \SI{10e-2}{m}    \\
+			D & = & \SI{3.0}{m}      \\
+			V & = & \SI{2.0}{m^{-1}}
+		\end{array}
+		\right.
+	\end{equation*}
+	Et l'application numérique donne
+	\begin{equation*}
+		\xul{h = \SI{60}{cm}}
+	\end{equation*}
+}
+\QR{Calculer le grandissement.}{
+	Le miroir plan a un grandissement de 1, donc le grandissement du
+	système est celui de la lentille~: on a $\gamma = \DS
+		\frac{\ABb}{\AB} = \frac{\obar{\rm OA_1}}{\OA}$, soit
+	\begin{empheq}[box=\fbox]{align*}
+		\gamma &= \frac{d+D}{-h}\\
+		\gamma &= \num{-5.2}
+	\end{empheq}
+}
+
+\resetQ
+\newpage
+
+\chapter{Sujet 2\siCorrige{\!\!-- corrigé}}
+\section{Grenouille intelligente}
+
+Pour se cacher des prédateurs, une grenouille s'est accrochée sous un nénuphar
+qui flotte sur l'étang. La grenouille a une hauteur $h = \SI{10}{cm}$ et le
+nénuphar un rayon $R$ et une épaisseur très faible.
+
+\QR{Quel doit être le rayon minimal $R_0$ du nénuphar pour que les pieds de la
+	grenouille ne soient pas visibles par un prédateur situé en-dehors de l'eau?}{
+	\begin{tcbraster}[raster columns=7, raster equal height=rows]
+		\begin{tcb}[raster multicolumn=4](data){Données}
+			Pour une hauteur de grenouille fixée, il y a une taille de
+			nénuphar permettant à tous les rayons partant de la grenouille de ne
+			pas traverser le dioptre.\smallbreak
+			\begin{center}
+				\includegraphics{../figures/grenouille_plain}
+			\end{center}
+		\end{tcb}
+		\begin{tcolorbox}[blankest, raster multicolumn=3, space to=\myspace]
+			\begin{tcbraster}[raster columns=1]
+				\begin{tcb}(ques)'r'{But à atteindre}
+					Origine physique de ce phénomène et traduction mathématique.
+				\end{tcb}
+				\begin{tcb}(tool)'r'{Outils du cours}
+					Loi de Snell-Descartes :
+					\[ n_1\sin i_1 = n_2\sin i_2\]
+					et \underline{angle limite} de réfraction, tel que
+					\[ n_1\sin i_\ell = n_2\sin \ang{90;;} = n_2\]
+					qui indique que pour $n_1 > n_2$, il y a un angle d'incidence à
+					partir duquel il n'y a pas de rayon réfracté (les rayons
+					réfractés font un angle de 90° avec la normale et sont donc
+					parallèles au dioptre).
+				\end{tcb}
+			\end{tcbraster}
+		\end{tcolorbox}
+	\end{tcbraster}
+	\begin{tcb}[breakable](appl){Application}
+		Pour que les pieds de la grenouille ne soient pas visibles par un prédateur
+		situé en-dehors de l'eau, c'est-à-dire au-dessus du dioptre, il faut
+		simplement qu'il n'y ait pas de rayon partant de ses pieds et qui puissent
+		sortir de l'eau : il faut que tous les rayons avec un angle d'incidence plus
+		faible que cet angle limite soient bloqués par le nénuphar. C'est possible
+		puisqu'on est dans une situation où le rayon passe dans un milieu
+		\textbf{moins réfringent}, i.e. $n_2 < n_1$. En effet, dans cette situation
+		il y a une inclinaison du rayon incident qui implique que le rayon émergent
+		est parallèle à la surface, et tous les rayons au-delà de cet angle limite
+		sont tous réfléchis. Un beau, grand schéma avec toutes les données reportées
+		dessus mène naturellement à l'utilisation de formules trigonométriques de
+		4\ieme.
+		\begin{center}
+			\vspace*{-2.5cm}
+			\includegraphics{../figures/grenouille_full}
+		\end{center}
+		On voit ici qu'une simple fonction $\tan$ permet d'exprimer $R_0$ :
+		\begin{empheq}[box=\fbox]{align}\label{eq:tan}
+			\tan i_1 = \frac{R_0}{h}
+		\end{empheq}
+		Seulement on n'a pas encore la valeur de $i_1$. Or, on a déterminé que pour
+		fonctionner l'astuce de la grenouille est d'avoir $i_1 = i_\ell$, et d'après
+		le cours :
+		\begin{empheq}{align}
+			n\eau\sin i_\ell       & = n\air\\
+			\Leftrightarrow i_\ell & = \asin \frac{n\air}{n\eau}\label{eq:ilim}
+		\end{empheq}
+		On peut donc écrire, avec \ref{eq:tan} et \ref{eq:ilim} :
+		\begin{empheq}[box=\fbox]{equation}
+			R_0 = h\times\tan\left(\asin \frac{n\air}{n\eau}\right)
+			\quad \text{avec}
+			\left\{
+			\begin{array}{rcl}
+				h              & = & \SI{10.0}{cm} \\
+				n_\mathrm{air} & = & \num{1.00}    \\
+				n_\mathrm{eau} & = & \num{1.33}
+			\end{array}
+			\right.
+		\end{empheq}
+		et finalement,
+		\begin{empheq}[box=\fbox]{equation}
+			R_0 = \SI{11.4}{cm}
+		\end{empheq}
+	\end{tcb}
+}
+
+%\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/Colle/Capteur_de_niveau_d_eau/}{sujet.tex}
+
+\resetQ
+\newpage
+
+\chapter{Sujet 3\siCorrige{\!\!-- corrigé}}
+\section{Prisme rectangle}
+
+\QR{On utilise un prisme de verre d'indice $n=\num{1.5}$. Sa section principale
+	est un triangle ABC rectangle en A tel que l'angle en B soit égal à
+	\ang{70;;}. Un rayon lumineux dans le plan ABC rencontre le prisme en I
+	sur le côté AB perpendiculairement à AB. Sachant que le rayon incident
+	est dans l'air, étudier la marche de la lumière jusqu'à la sortie du
+	prisme.}{
+	\begin{tcbraster}[raster columns=3, raster equal height=rows]
+		\begin{tcb}[raster multicolumn=2](data){Schéma}
+			\begin{center}
+				\includegraphics[width=\linewidth]{../figures/prisme_rectangle}
+				\begin{tikzpicture}[]
+					\node[] (A) at (0,0) {A};
+					\node[] (B) at (2,0) {B};
+					\node[] (C) at (4,0) {C};
+					\node[] (D) at (6,0) {D};
+					\node[] (E) at (8,0) {E};
+					\draw[->] (A) -- (B)
+					node [midway, above] {DP}
+					node [midway, below] {$I$};
+					\draw[->] (B) -- (C)
+					node [midway, above] {DP}
+					node [midway, below] {$J$};
+					\draw[->] (C) -- (D)
+					node [midway, above] {DP}
+					node [midway, below] {$K$};
+					\draw[->] (D) -- (E)
+					node [midway, above] {DP}
+					node [midway, below] {$L$};
+				\end{tikzpicture}
+			\end{center}
+		\end{tcb}
+		\begin{tcolorbox}[blankest, raster multicolumn=1, space to=\myspace]
+			\begin{tcbraster}[raster columns=1]
+				\begin{tcb}[](ques)'r'{Résultat attendu}
+					On cherche à suivre le chemin du rayon indiqué dans l'énoncé. Il
+					faut pour cela savoir ce qui peut arriver au rayon. Dans le cas
+					du passage par un dioptre plan, il peut y avoir traversée du
+					dioptre avec Snell-Descartes, ou réflexion dans le cas $n_2 <
+						n_1$.
+				\end{tcb}
+				\begin{tcb}(tool)'r'{Outils du cours}
+					Loi de Snell-Descartes :
+					\[ n_1\sin i = n_2\sin r\]
+					et pour $n_2 < n_1$, $i_\ell$ :
+					\[ n_1\sin i_\ell = n_2\sin \ang{90;;} = n_2\]
+					tel que $i_1 > i_\ell$ est réfléchi.
+				\end{tcb}
+			\end{tcbraster}
+		\end{tcolorbox}
+	\end{tcbraster}
+	\begin{tcb}[sidebyside](appl){Application}
+		Ici, l'angle limite de réflexion à l'intérieur du prisme est : \[i_\ell =
+			\arcsin \frac{1}{n} = \boxed{ \ang{41.8;;}}\]
+		\begin{description}
+			\item[I] : $\boxed{i_1 = \ang{0;;}}$ donc
+				$\boxed{r_1 = \ang{0;;}}$ ;
+			\item[J] : Ici, on doit voir que $\alpha = \ang{20;;}$ puisque
+				dans le triangle BIJ, la somme des angles doit valoir $\ang{180;;}$
+				et qu'on a un angle droit + un angle de \ang{70;;}.
+				On en déduit que $\boxed{i_2 = \ang{70;;}}$ également, car
+				$i_2 + \alpha = \ang{90;;}$.\smallbreak
+				Comme \underline{$i_2 > i_\ell$}, le rayon ne traverse pas mais est
+				réfléchi, soit $\boxed{r_2 = \ang{70;;}}$.
+		\end{description}
+		\tcblower
+		\begin{description}
+			\item[K] : Pour trouver l'angle en K, on peut par exemple chercher
+				l'angle $\beta$ : en construisant le triangle rectangle JDK, on
+				trouve que l'angle au sommet est $r_2 - \alpha = \ang{50;;}$ ;
+				avec l'angle droit en D, $\beta = \ang{40;;}$, et $\boxed{i_3
+						= \ang{50;;} > i_\ell}$ donc rayon réfléchi $\boxed{r_3 =
+						\ang{50;;}}$.
+			\item[L] : De même qu'en J, tracer LEC indique que $i_4 + \alpha + \beta
+					= \ang{90;;}$, soit $\boxed{i_4 = \ang{30;;} < i_\ell}$
+				: on applique donc Snell-Descartes ici, et on obtient
+				\[\boxed{r_4} = \arcsin (n\times \sin i_4) =
+					\boxed{\ang{48.6;;}}\]
+		\end{description}
+	\end{tcb}
+
+}
+
+\resetQ
+\newpage
+
+\chapter{Sujet 4\siCorrige{\!\!-- corrigé}}
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/Colle/refractometreAbbe/}{sujet.tex}
+
+\resetQ
+\newpage
+\chapter{Sujet 5\siCorrige{\!\!-- corrigé}}
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/Colle/doublet_focal/}{sujet.tex}
+
+\resetQ
+\newpage
+\chapter{Sujet 6\siCorrige{\!\!-- corrigé}}
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/systeme_catadioptrique/}{sujet.tex}
+
+\end{document}

@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\ctikzset{current/distance=.6}
+	\draw[]
+	(0,0)
+	to[sV, name=E, v^>={{{\rotatebox[origin=c]{90}{$e(t) = E_0\cos(\wt)$}}}},
+	% to[sV, name=E, v^>={{{\rotatebox[origin=c]{90}{$\ul{e}(t) = E_0\exr^{\jj\wt}$}}}},
+	!vi]
+	(0,2)
+	to[R, name=R, i^>=$i(t)$, !vi]
+	% to[R, name=R, i^>=$\ul{i}(t)$, !vi]
+	(2,2)
+	coordinate (A)
+	to[L,l^=$L$, name=L, i^>=$i_1$, !vi]
+	% to[R, l^=$\jj L\w$, name=L, !vi]
+	(2,0) --
+	(0,0);
+	\draw[]
+	(A) --
+	(4,2)
+	to[C,l_=$C$, name=C, i^>=$i_2$, v^<=$u_C$, !vi]
+	% to[R,l_=$1/\jj C\w$, name=C, v^<=$\ul{u_C}(t)$, !vi]
+	(4,0) --
+	(2,0)
+	;
+	\varronly{E} \varronly{C}
+	\iarronly{R} \iarronly{L} \iarronly{C}
+	\node[] at (R.center) {$R$};
+\end{circuitikz}
+\end{document}

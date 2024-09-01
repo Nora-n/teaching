@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[V, name=E, V_>=$U_0$, !vi]
+	(0,3)
+	to[short]
+	(1.58,3)
+	node[cute spdt up arrow, name=S, anchor=out 1, rotate=90] (S) {}
+	% (2,3)
+	%%% C
+	(S.in)
+	to[C, name=C, l_=$C$]
+	(2,0)
+	to[short]
+	(0,0)
+	%%% RL
+	(S.out 2)
+	to[short]
+	(4,3)
+	to[R, name=R]%, i>^=$i$, v^<=$u_R$, !vi]
+	(4,1.5)
+	to[L,l_=$L$, name=L]%, i^>=$i$, v^<=$u_L$, !vi]
+	(4,0)
+	to[short]
+	(2,0);
+	\varronly{E}
+	% \iarronly{L} \iarronly{R}
+	% \varronly{L} \varronly{C} \varronly{R}
+	\node[] at (R.center) {$r$};
+	\node[above=.1em] at (C.north west) {$q(t)$};
+	\node[below left] at (S.out 1) {(1)};
+	\node[below right] at (S.out 2) {(2)};
+\end{circuitikz}
+\end{document}

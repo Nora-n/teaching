@@ -1,0 +1,164 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=0.5]
+	\def\xtr{19}
+	\def\ytr{6}
+	\node[] (Cp) at (-5.5,5.5) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (-3.5,5.5) {$\oplus$};
+	\circledarrow{black}{(Cp)}{.5}
+	% grid
+	\draw[lightgray!10, ultra thin, help lines]
+	(-\xtr,-\ytr) grid (8,\ytr);
+	\draw[lightgray!10, ultra thin, help lines, dotted, step=.5cm]
+	(-\xtr,-\ytr) grid (8,\ytr);
+	% Axe optique
+	\draw[thin, ->](-\xtr,0)--(8,0)node[below]{A.O.};
+	% Lentille 1
+	\coordinate (O1) at (-\xtr+3,0);
+	\def \fa{16}
+	\def \lsiz{5}
+	\coordinate (F1) at ($(O1)+(-\fa,0)$);
+	\coordinate (F1p) at ($(O1)+(\fa,0)$);
+
+	\foreach \x/\z in {O1/\fa}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {$O_1$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[below left] at ([shift={(\z,0)}]\x) {$F'_1$};
+			%\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			%\node[below] at ([shift={(-\z,0)}]\x) {$F_1$};
+		}
+
+	\draw[shift={(O1)}, ultra thick,
+		<->, >=latex, name path=L1]
+	(0,-\lsiz) coordinate (L1bot) --
+	(0,\lsiz) coordinate (L1top);
+	% Monture 1
+	\draw[line width=3pt] (L1top) --++ (0,\lsiz/3);
+	\draw[line width=3pt] (L1bot) --++ (0,-\lsiz/3);
+	% Lentille 2
+	\coordinate (O2) at (2,0);
+	\def \fb{2}
+	\def \lsiz{5}
+	\coordinate (F2) at ($(O2)+(-\fb,0)$);
+	\coordinate (F2p) at ($(O2)+(\fb,0)$);
+
+	\foreach \x/\z in {O2/\fb}{
+			\node[] at (\x) {$\times$};
+			\node[below right] at (\x) {$O_2$};
+			\node[] at ([shift={(\z,0)}]\x) {$\times$};
+			\node[below right] at ([shift={(\z,0)}]\x) {$F'_2$};
+			\node[] at ([shift={(-\z,0)}]\x) {$\times$};
+			\node[above right] at ([shift={(-\z,0)}]\x) {$F_2$};
+		}
+
+	\draw[shift={(O2)}, ultra thick,
+		<->, >=latex, name path=L2]
+	(0,-\lsiz) coordinate (L2bot) --
+	(0,\lsiz) coordinate (L2top);
+	% node[above]{$\Lc_{2}$};
+	% Monture 2
+	\draw[line width=3pt] (L2top) --++ (0,\lsiz/3);
+	\draw[line width=3pt, name path=montbot] (L2bot) --++ (0,-\lsiz/3);
+	% Pinceau entrée
+	\coordinate (It) at ([shift={(0,\lsiz)}]O1);
+	\coordinate (Ib) at ([shift={(0,-\lsiz)}]O1);
+	\coordinate (At) at ([shift={(162:5)}]It);
+	\coordinate (Ab) at ([shift={(162:5)}]Ib);
+	\coordinate (Am) at ([shift={(162:5)}]O1);
+	\draw[Purple!70, double, thick] (Am) -- (O1);
+	\draw[Purple!70, simple, thick] (At) -- (It);
+	\draw[Purple!70, triple, thick] (Ab) -- (Ib);
+	% D1
+	% \draw[dashed, <->, >=latex]
+	% ($(Ab)+(1,0)$) --
+	% node[pos=.75, left]{$D_1$} ($(At)+(1,0)$);
+	% Plan focal
+	% \def\pfsiz{15}
+	% \draw[shift={(F1p)}, dashed, ultra thick,
+	% 	gray!70, name path=PF1p] ($(F1p)+(0,-6)$)
+	% --++ (0,10) node[above] {$\pi_1' = \pi_2$};
+	% % Sortie rayon O1
+	% \path[name path=B1path] (O1) --++ ($4*(O1)-4*(Am)$);
+	% % Intersection plan focal
+	% \path[name intersections={of=B1path and PF1p, by=B1F1p}];
+	% \draw[] (B1F1p) node {+};
+	% % Intersection lentille 2
+	% \path[name intersections={of=B1path and montbot, by=I2}];
+	% % Sortie pinceau
+	% \path[name path=Atpath] (It) --++ ($1.15*(B1F1p)-1.15*(It)$);
+	% \path[name path=Abpath] (Ib) --++ ($1.3*(B1F1p)-1.3*(Ib)$);
+	% % Define intersections
+	% \path[name intersections={of=Atpath and montbot, by=It2}];
+	% \path[name intersections={of=Abpath and montbot, by=Ib2}];
+	% % Draw
+	% \draw[brandeisblue, double, thick] (O1) -- (I2);
+	% \draw[brandeisblue, simple, thick] (It) -- (It2);
+	% \draw[brandeisblue, triple, thick] (Ib) -- (Ib2);
+	% Image intermédiaire
+	% \coordinate (A1) at (F1p);
+	% \coordinate (B1) at (B1F1p);
+	% \draw[brandeisblue, thick]
+	% (A1) node [above left] {} --
+	% (B1) node [below left] {};
+	% % Rayons pour objet sur le foyer d'une lentille convergente
+	% % Lengths
+	% \len{(A1)}{(O2)}{\posi}
+	% \len{(A1)}{(B1)}{\size}
+	% \len{(O2)}{(F2)}{\foc}
+	% % Rayon 1
+	% \path[ForestGreen] (B1) -- (O2);
+	% \def \mut{1}
+	% \path[orange!70, name path=OBp]
+	% (O2) --++ ($\mut*(O2)-\mut*(B1)$) coordinate (end);
+	% % Rayon 2
+	% \path[ForestGreen]
+	% (B1) --++ (\posi,0) coordinate (I);
+	% \def \mut{2}
+	% \path[orange!70, name path=IBp]
+	% (I) --++ ($\mut*(F2p)-\mut*(I)$);
+	% % Sortie pinceau final
+	% \def\mut{3}
+	% \draw[Red!70, simple]
+	% (It2) --++
+	% ($\mut*(O2)-\mut*(B1)$) coordinate (Itf);
+	% \draw[Red!70, double]
+	% (Ib2) --++
+	% ($\mut*(O2)-\mut*(B1)$) coordinate (Ibf);
+	% Actual pinceau
+	% \pattern[pattern=north east hatch,
+	% 	hatch distance=0.3cm, hatch thickness=0.5pt,
+	% 	pattern color=Purple!70]
+	% (At) -- (It) -- (Ib) -- (Ab) -- cycle;
+	% \pattern[pattern=north east hatch,
+	% 	hatch distance=0.31cm, hatch thickness=0.5pt,
+	% 	pattern color=brandeisblue]
+	% (It) -- (It2) -- (Ib2) -- (Ib) -- (It);
+	% \pattern[pattern=north east hatch,
+	% 	hatch distance=0.1cm, hatch thickness=0.5pt,
+	% 	pattern color=Red!70]
+	% (It2) -- (Itf) -- (Ibf) -- (Ib2) -- cycle;
+	% Angles
+	% Draw angles
+	% \pic[angle radius=0.5cm, angle eccentricity=1.5,
+	% 	draw, "$\theta'$" alias=thetap1,
+	% 	->, color=Pink]
+	% {angle=F2p--O2--end};
+	% \pic[angle radius=0.5cm, angle eccentricity=1.5,
+	% 	draw, "$\theta'$" alias=thetap2,
+	% 	->, color=Pink]
+	% {angle=F2--O2--B1};
+	% \pic[angle radius=1cm, angle eccentricity=1.2,
+	% 	draw, "$\theta$" alias=theta1,
+	% 	<-, color=Pink]
+	% {angle=B1--O1--F2};
+	\coordinate (O1l) at ([shift={(-3,0)}]O1);
+	\pic[angle radius=1cm, angle eccentricity=1.2,
+		draw, "$\theta$" alias=theta2, <-]
+	{angle=Am--O1--O1l};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=6, yscale=2, declare function={
+				mmin = -0.2;
+				mmax = 0.8;
+				hgth = 0.5;
+				btck = 0.05;
+				mtck = 0.025;
+				stck = 0.015;
+				hfil = 0.10;
+			}]
+	\def\ea{0.08}
+	\def\eb{0.54}
+	% Pka
+	\foreach \A/\DA/\B/\DB/\K/\KN/\P/\PN [count=\i] in {
+			\red{\ce{S2O3^2-}}/draw/\blu{\ce{S4O6^2-}}//\ea/\ea/+/below,
+			\red{\ce{I^-}}//\blu{\ce{I2}}/draw/\eb/\eb/-/above%
+		}{
+			% Acide domain
+			\fill[red!20]
+			(mmin,\P hfil) rectangle (\K,0);
+			% Basic domain
+			\fill[blue!10]
+			(\K,0) rectangle (mmax,\P hfil);
+		}
+	% Common ground
+	% \fill[VioletRed!20]
+	% (\ea,hfil) rectangle (\eb,-hfil);
+	\foreach \A/\DA/\B/\DB/\K/\KN/\P/\PN [count=\i] in {
+			\red{\ce{S2O3^2-}}/draw/\blu{\ce{S4O6^2-}}//\ea/\ea/+/below,
+			\red{\ce{I^-}}//\blu{\ce{I2}}/draw/\eb/\eb/-/above%
+		}{
+			% Pka line
+			\draw[very thick]
+			(\K,0) --++ (0,\P hgth)
+			node[expand style=\DA, thick, midway, left=.1] {\A}
+			node[expand style=\DB, thick, midway, right=.1] {\B};
+			% go through
+			% \draw[very thick, dashed]
+			% (\K,0) --++ (0,-\P hgth);
+			% Plot pka with cross
+			\node[expand style=\PN] at (\K,0) {$\num{\KN}$};
+			\node at (\K,0) {$\times$};
+		}
+	% Scale
+	\draw[very thick, -{Stealth[scale=1.3]}]
+	(mmin,0) --
+	node[at end, right] {$E (\si{V})$}
+	(mmax,0);
+	% \foreach \x in {0, 1, ..., 2}{
+	% 		\draw[thick]
+	% 		(\x,btck) -- (\x,-btck);
+	% 	}
+	% \foreach \x in {-.5, 0, ..., 2}{
+	% 		\draw
+	% 		(\x,mtck) -- (\x,-mtck);
+	% 	}
+	% \foreach \x in {-0.8, -0.7, ..., 2}{
+	% 		\draw
+	% 		(\x,stck) -- (\x,-stck);
+	% 	}
+	% \node[below=.15] at (0,0) {0};
+\end{tikzpicture}
+
+\end{document}

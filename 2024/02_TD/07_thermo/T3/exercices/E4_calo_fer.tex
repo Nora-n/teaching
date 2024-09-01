@@ -1,0 +1,161 @@
+\documentclass[../TDT3.tex]{subfiles}%
+
+\begin{document}
+
+\section[s]"1"{Calorimétrie du fer}
+\enonce{%
+	La calorimétrie consiste en la mesure d’échanges thermiques. On utilise pour
+	cela un calorimètre, dont les parois sont conçues pour minimiser les échanges
+	thermiques entre l’intérieur et l’extérieur du calorimètre. Ces échanges
+	seront considérés comme nuls. Les transformations se font à la pression
+	atmosphérique constante, et sont donc supposées monobares.
+}%
+\begin{blocQR}
+	\item
+	\enonce{%
+	\textbf{Mesure de la capacité thermique $C$ du calorimètre}
+	\smallbreak
+	Le calorimètre contient initialement une masse $m = \SI{100}{g}$ d'eau,
+	l'ensemble étant à la température ambiante $\th_0 =
+		\SI{20.0}{\degreeCelsius}$. On ajoute alors la même masse d'eau à $\th_1 =
+		\SI{80.0}{\degreeCelsius}$. On remue pour homogénéiser le système et on
+	mesure la température $\th_f = \SI{43.6}{\degreeCelsius}$. La capacité
+	thermique massique de l'eau est $c = \SI{4.18}{kJ.K^{-1}.kg^{-1}}$.
+	}%
+	\QR{%
+		Montrer que l'enthalpie du système \{parois + eau\} reste constante au
+		cours de la transformation.
+	}{%
+		On a une transformation monobare, avec un état d'équilibre initial et final.
+		On peut donc appliquer le premier principe enthalpique, avec $W_u = 0$~:
+		$\boxed{\Delta{H} = Q}$. Or, on néglige les échanges thermiques avec
+		l'extérieur, soit $\boxed{Q = 0}$. Ainsi,
+		\[
+			\boxed{\Delta{H} = 0}
+		\]
+	}%
+	\QR{%
+		En déduire la capacité thermique massique $C$ des parois internes du
+		calorimètre.
+	}{%
+		On évalue la variation d'enthalpie en séparant les contributions des
+		différentes parties du système~:
+		\begin{align*}
+			\Delta{H} & =
+			\Delta{H}\ind{eau froide} +
+			\Delta{H}\ind{eau chaude} +
+			\Delta{H}\ind{calo}
+			\\\Lra
+			0         & =
+			mc (T_0 - T_f) + mc (T_1 - T_f) + C (T_0 - T_f)
+			\\\Lra
+			\Aboxed{C & = mc \left( \frac{T_1-T_f}{T_0-T_f} - 1 \right)}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				m   & = & \SI{100e-3}{kg}
+				\\
+				T_0 & = & \SI{293}{K}
+				\\
+				T_1 & = & \SI{353}{K}
+				\\
+				T_f & = & \SI{316.6}{K}
+				\\
+				c   & = & \SI{4.18}{kJ.K^{-1}.kg^{-1}}
+			\end{array}
+			\right.                                                      \\
+			\makebox[0pt][l]{$\phantom{\AN}\xul{\phantom{C = \SI{226}{J.K^{-1}}}}$}
+			\AN
+			C         & = \SI{226}{J.K^{-1}}
+		\end{align*}
+	}%
+	\QR{%
+		Quelle est la masse en eau $m_0$ du calorimètre~?
+	}{%
+		\leavevmode\vspace*{-15pt}\relax
+		\begin{gather*}
+			C = m_0c \Lra \boxed{ m_0 = \frac{C}{c}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				C & = & \SI{226}{J.K^{-1}}
+				\\
+				c & = & \SI{4.18}{J.kg^{-1}.K^{-1}}
+			\end{array}
+			\right.\\
+			\AN
+			\xul{
+				m_0 = \SI{54}{g}
+			}
+		\end{gather*}
+	}%
+	\QR{%
+		Pourquoi ne faut-il pas trop attendre pour mesurer la température finale~?
+		Quelle serait sa valeur si on attendait un temps très long~?
+	}{%
+		En réalité, $Q \neq 0$, il y a des fuites thermiques. Ainsi, si on attend
+		longtemps, on ne peut plus considérer le système comme isolé, et la
+		température finale sera la température extérieure~:
+		\[
+			\boxed{T_f \opto{}{t\to \infty} T_0}
+		\]
+	}%
+	\item
+	\enonce{%
+		\textbf{Mesure de la capacité thermique massique du fer}
+		\smallbreak
+		On considère l'état initial où une masse $m = \SI{100}{g}$ d'eau et une
+		masse $m_f = \SI{140}{g}$ de fer sont dans le calorimètre. Une résistance
+		électrique de masse négligeable est aussi immergée dans le liquide.
+		Lensemble est initialement à la température $\th_0 =
+			\SI{20.0}{\degreeCelsius}$. Pendant une durée $\tau = \SI{30}{s}$, un
+		générateur électrique fourni à la résistance une puissance $\Pc =
+			\SI{350}{W}$. On homogénéise la solution et on mesure la température $\th_f'
+			= \SI{34.8}{\degreeCelsius}$.
+	}%
+	\resetQ
+	\QR{%
+		Exprimer la variation d'enthalpie du système \{parois + eau + fer +
+		résistance\} au cours de la transformation précédente.
+	}{%
+		On peut toujours appliquer le premier principe enthalpique, mais cette fois
+		on a $W_u \neq 0$~:
+		\begin{align*}
+			\Delta{H} = W_u + \underbracket[1pt]{Q}_{=0}
+			          & \Lra
+			\boxed{\Delta{H}    = W\ind{géné}}
+			\\
+			\beforetext{Or,}
+			\Pc = \frac{W\ind{géné}}{\tau}
+			          & \Lra
+			\boxed{W\ind{géné} = \Pc \tau}
+			\\
+			\beforetext{De plus}
+			\Delta{H} & =
+			\Delta{H}\ind{eau} +
+			\Delta{H}\ind{fer}
+			\Delta{H}\ind{calo}
+			\\\Lra
+			\Pc\tau   & = (T_f' - T_0) (mc + m_fc_f + C)
+			\\\Lra
+			m_fc_f    & = \frac{\Pc\tau}{T_f' - T_0} - mc - C
+			\\\Lra
+			\Aboxed{
+			c_f       & =
+				\frac{\Pc\tau}{m_f (T_f'-T_0)} - c \frac{m}{m_f} - \frac{C}{m_f}
+			}
+		\end{align*}
+	}%
+	\QR{%
+		En déduire l'expression puis la valeur de la capacité thermique massique du
+		fer $c_{\ce{Fe}}$.
+	}{%
+		\leavevmode\vspace*{-20pt}\relax
+		\begin{gather*}
+			\beforetext{On effectue l'application numérique~:}
+			\xul{c_f = \SI{467}{J.K^{-1}.kg^{-1}}}
+		\end{gather*}
+	}%
+\end{blocQR}
+
+\end{document}

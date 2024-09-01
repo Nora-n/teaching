@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+    \draw
+    (0,0)
+        node [fourport] (F) {}
+    (F.port1) --++ (-.5,0) node [pos=.8] (bleft) {}
+    (F.port4) --++ (-.5,0) node [pos=.8] (tleft) {}
+    (F.port2) --++ (.5,0) node [pos=.8] (bright) {}
+    (F.port3) --++ (.5,0) node [pos=.8] (tright) {};
+    \draw[color=red!70]
+    (bleft) --
+        node [left] {$e(t)$}
+    (tleft)
+        node[currarrow, sloped, anchor=tip, pos=1, allow upside down] {}
+    (bright) --
+        node [right] {$s(t)$}
+    (tright)
+        node[currarrow, sloped, anchor=tip, pos=1, allow upside down] {}
+    ;
+    \node[] at (F.center) {Filtre};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        xmin=-2, xmax=11,
+        ymin=-6, ymax=0.5,
+        xlabel=$t$, ylabel=$i(t)$,
+        xtick=\empty, ytick=\empty,
+        extra y ticks={0},
+        y tick label style={yshift={(\tick==0)*-.5em},
+                            xshift={(\tick==0)*.25em}},
+        axis lines=center,
+        tangent/.style={
+            add node at x={#1}{5},
+        },
+        clip=false]
+        \addplot[
+            domain=-2:0,
+            smooth, thick,
+            cornflowerblue]
+        {0};
+        \addplot[
+            domain=0:10,
+            smooth, thick,
+            cornflowerblue]
+        {-5/1*(exp(-\x/2)} node [pos=0, left] {$-E/R$};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

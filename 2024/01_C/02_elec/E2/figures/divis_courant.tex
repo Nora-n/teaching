@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+  \draw
+  (0,2) 
+  node (Ao) {$\bullet$}
+  node [left] {A}
+  to[short, name=I, i^>=$I_{\rm parr}$, !vi]
+  (1,2) coordinate (Itl)
+  to[R, name=R1, i>_=$I_1$,
+      v^<={{{{\rotatebox[origin=c]{90}{$U_{1}$}}}}}, !vi]
+  (1,0) coordinate (Ibl) --
+  (0,0)
+  node (Bo) {$\bullet$}
+  node [left] {B};
+  \draw[]
+  (Itl) --
+  (2,2) coordinate (Itr);
+  % (3,2) node [right] (A) {A};
+  \draw[]
+  (Ibl) --
+  (2,0) coordinate (Ibr);
+  % (3,0) node [right] (B) {B};
+  \draw[color=red!70]
+  (Ao) -- node[below, midway, rotate=90] {$U_{AB}$} node [currarrow, pos=0,
+  rotate=90] {}
+  (Bo);
+  \draw[]
+  (Itr)
+  to[R, name=R2, i>_=$I_2$,
+      v^<={{{{\rotatebox[origin=c]{90}{$U_{2}$}}}}}, !vi]
+  (Ibr);
+  \varronly{R1} \varronly{R2}
+  \iarronly{I} \iarronly{R1} \iarronly{R2}
+  \node[] at (R1.center) {$R_1$};
+  \node[] at (R2.center) {$R_2$};
+\end{circuitikz} 
+
+\end{document}

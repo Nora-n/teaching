@@ -1,0 +1,68 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+	% Sens de comptage
+	\node[] (Cp) at (-2.5,2) {$\oplus$};
+	\draw[<->] (Cp.north west) |- (Cp.south east);
+	% Sens de comptage
+	\node[] (Cp) at (2.5,2) {$\oplus$};
+	\circledarrow{black}{(Cp)}{0.3}
+	% Axe optique
+	\draw[thin, ->](-3,0)--(3,0)node[below]{A.O.};
+	% ---------------------------------------------------------------------
+	% Lentille 
+	\coordinate (O) at (0,0);
+	\def \fa{2}
+	\def \lsiz{2}
+	\coordinate (F) at ($(O)+(-\fa,0)$);
+	\coordinate (Fp) at ($(O)+(\fa,0)$);
+
+	\foreach \x/\z in {O/\fa}{
+	\draw[shift={(\x)}] (0,0)
+	node[below right] {O$_{}$};
+	\draw[shift={(\x)}] (\z,2pt) --++ (0,-4pt)
+	node[below right] {F$'_{}$};
+	\draw[shift={(\x)}] ({-\z},2pt) --++ (0,-4pt)
+	node[below left] {F$_{}$};
+	}
+
+	\draw[shift={(O)}, thick, <->, >=latex] (0,-\lsiz)--(0,\lsiz)
+	node[above]{$\Lc_{}$};
+	% ---------------------------------------------------------------------
+	% Objet
+	\def \pos{-2}
+	\def \siz{1}
+	\coordinate (A1) at ($(O)+(\pos,0)$);
+	\coordinate (B1) at ($(A1)+(0,\siz)$);
+	% Objet
+	\def \pos{-2}
+	\def \siz{1.25}
+	\coordinate (A2) at ($(O)+(\pos,0)$);
+	\coordinate (B2) at ($(A2)+(0,\siz)$);
+	% Objet
+	\def \pos{-2}
+	\def \siz{1.5}
+	\coordinate (A3) at ($(O)+(\pos,0)$);
+	\coordinate (B3) at ($(A3)+(0,\siz)$);
+	% Rayons pour objet avant foyer d'une lentille convergente
+	\len{(A1)}{(O)}{\posi}
+	\draw[brandeisblue, simple] (B1) --++ (\posi,0) coordinate (I);
+	\def \mut{1.2}
+	\draw[orange!70, simple] (I) --++ ($\mut*(Fp)-\mut*(I)$);
+	% Rayons pour objet avant foyer d'une lentille convergente
+	\len{(A2)}{(O)}{\posi}
+	\draw[brandeisblue, simple] (B2) --++ (\posi,0) coordinate (I);
+	\def \mut{1.2}
+	\draw[orange!70, simple] (I) --++ ($\mut*(Fp)-\mut*(I)$);
+	% Rayons pour objet avant foyer d'une lentille convergente
+	\len{(A3)}{(O)}{\posi}
+	\draw[brandeisblue, simple] (B3) --++ (\posi,0) coordinate (I);
+	\def \mut{1.2}
+	\draw[orange!70, simple] (I) --++ ($\mut*(Fp)-\mut*(I)$);
+	% ---------------------------------------------------------------------
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[xscale=.7, yscale=1]
+	\tikzmath{
+		\wdth = 8;
+		\hgth = 1;
+		\emin = -0.85;
+		\emax = 1.4;
+		\phmax = 8;
+		\tick = 0.025;
+		\ct = 0.01;
+		\pt = 1;
+		\pke = 14;
+		\phlimab = \wdth/2;
+	}
+	% 0
+	\coordinate (O) at (0,0);
+	\coordinate (Z) at (\phmax,0);
+	% place values
+	\coordinate (A) at (0,\hgth);
+	\coordinate (B) at (\phmax,\hgth);
+	\coordinate (C) at (0, 2*\hgth);
+	\coordinate (D) at (\phlimab, 2*\hgth);
+	\coordinate (E) at (\phmax, 2*\hgth);
+	\coordinate (F) at (0, 3*\hgth);
+	\coordinate (G) at (\phlimab, 3*\hgth);
+	\coordinate (H) at (\phmax, 3*\hgth);
+	% Plot nodes
+	% \foreach \N in {1, ..., 10}{
+	% 		\node[draw] at (\AlphAlph{\N}) {\AlphAlph{\N}};
+	% 	}
+	% Place elements
+	\node (CL) at (barycentric cs:O=1,Z=1,A=1,B=1) {$\ce{{Cl}^-_{\rm(aq)}}$};
+	\node (CL2) at (barycentric cs:A=1,B=1,C=1,E=1) {$\ce{{Cl_2}_{\rm(aq)}}$};
+	\node (HCLO) at (barycentric cs:C=1,D=1,F=1,G=1) {$\ce{{HClO}_{\rm(aq)}}$};
+	\node (CLO) at (barycentric cs:D=1,E=1,H=1,G=1) {$\ce{{ClO}^-_{\rm(aq)}}$};
+	% Verti
+	% LR
+	\draw[thick]
+	(O) -- (A) node[midway, left] {-\myRoman{1}};
+	\draw[thick]
+	(A) -- (C) node[midway, left] {0};
+	\draw[thick]
+	(C) -- (F) node[midway, left] {+\myRoman{1}};
+	\draw[thick]
+	(Z) -- (H);
+	% Inner
+	\draw[thick]
+	(D) -- (G);
+	% Horiz
+	\draw[thick]
+	(A) -- (B);
+	\draw[thick]
+	(C) -- (E);
+	\draw[thick]
+	(F) -- (H);
+	% Scale
+	\draw[very thick, -{Stealth}]
+	(0,0) --
+	node[at end, right] {$\pH$}
+	(\wdth+1,0);
+	\draw[very thick, -{Stealth}]
+	(0,0) --
+	node[at end, left] {n.o.}
+	(0,3*\hgth+.5);
+\end{tikzpicture}
+
+\end{document}

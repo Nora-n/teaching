@@ -19,14 +19,14 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.002pt
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{1}
 
-% \settype{book}
-% \settype{prof}
-% \settype{stud}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
 \chapter{Mesures et incertitudes}
 
@@ -255,7 +255,7 @@ les suivants :
 	\end{itemize}
 \end{tcb*}
 
-\begin{tcb*}(appl)<lftt>{Application}
+\begin{tcb*}(appl)<lftt>{Présenter un résultat numérique}
 	Corriger la présentation des valeurs suivantes, indiquer leur nombre de
 	chiffres significatifs et calculer leurs incertitudes relatives $u_r$~:
 	\[
@@ -266,7 +266,7 @@ les suivants :
 		V = (14 \pm \num{0.0015})\,\si{mL}
 	\]
 	\tcblower
-	\psw{
+	\psw{%
 		On trouve
 		\[
 			\lambda = \SI{589\pm11}{nm}
@@ -275,7 +275,8 @@ les suivants :
 			\qquad
 			V = \SI{14.0000 \pm 0.0015}{mL}
 		\]
-		avec respectivement 3, 2 et 6 chiffres significatifs. Pour les $u_r$, on trouve
+		avec respectivement 3, 2 et 6 chiffres significatifs. Pour les $u_r$, on
+		trouve
 		\[
 			u_r(\lambda) = 1.9\%
 			\qquad
@@ -425,7 +426,7 @@ fois plus faible, il faut 100 fois plus de mesures~!
 	\end{isd}
 \end{tcb*}
 
-\begin{tcb*}(appl){Incertitude de type A}
+\begin{tcb*}(appl)<lftt>{Incertitude de type A}
 	On a obtenu par dosage rédox le degré d'alcool d'un vin à 8 reprises. Les
 	mesures ont donné~:
 	\begin{center}
@@ -448,13 +449,13 @@ fois plus faible, il faut 100 fois plus de mesures~!
 	exprimer le résultat de ces mesures ainsi que son incertitude.
 	\tcblower
 	\begin{python}
-		import numpy as np
+import numpy as np
 
-		vals = np.array([11.9, 12.5, 13.1, 12.4, 12.9, 12.6, 12.8, 12.6])
-		mean = np.mean(vals)
-		ecarttype = np.std(vals, ddof=1)
-		incertype = ecarttype/np.sqrt(len(vals))
-		print(f'D = {mean:.2f} +- {incertype:.2f}')
+vals = np.array([11.9, 12.5, 13.1, 12.4, 12.9, 12.6, 12.8, 12.6])
+mean = np.mean(vals)
+ecarttype = np.std(vals, ddof=1)
+incertype = ecarttype/np.sqrt(len(vals))
+print(f'D = {mean:.2f} +- {incertype:.2f}')
 	\end{python}
 	On trouve
 	\[
@@ -553,13 +554,13 @@ connaissances du comportement ou des propriétés des instruments utilisés.
 	\end{enumerate}
 \end{tcb}
 
-\begin{tcb*}(appl)<lftt>{Application}
+\begin{tcb*}(appl)<lftt>{Incertitudes de type B}
 	Évaluer les incertitudes et donnez les résultats des expériences suivantes~:
 	\begin{enumerate}
 		\item Mesure de la position $d$ d'un écran sur un banc optique. L'image
 		      semble nette pour des positions allant de \num{29.7} à \SI{30.5}{cm}.
 		      \smallbreak
-		      \psw{
+		      \psw{%
 			      On a
 			      \[
 				      \obar{x} = \SI{30.1}{cm}
@@ -568,46 +569,56 @@ connaissances du comportement ou des propriétés des instruments utilisés.
 				      \qdc
 				      \xul{d = \SI{30.10 \pm 0.23}{cm}}
 			      \]
-		      }
+		      }%
 		      \vspace*{-20pt}
 		\item Mesure d'une longueur $\ell = \SI{13}{cm}$ avec une règle graduée au
 		      \si{mm}.
 		      \smallbreak
-		      \psw{
+		      \psw{%
 			      Largeur = \SI{1}{mm} = \SI{0.1}{cm}, donc
 			      \[
 				      \xul{\ell = \SI{13.000 \pm 0.058}{cm}}
 			      \]
-		      }
+		      }%
 		      \vspace*{-20pt}
 		\item Utilisation d'un multimètre pour mesurer une tension $U$. Il affiche
 		      \SI{2.5462}{V} et la notice indique \textit{Accuracy=0.3\% rdg + 2
-			      digits}, autrement dit de \num{0.3}\% de la valeur lue (\textit{rdg} =
-		      \textit{reading}) auquel on ajoute 2 fois la valeur du dernier chiffre.
+			      digits}, autrement dit de \num{0.3}\% de la valeur lue (\textit{rdg}
+		      = \textit{reading}) auquel on ajoute 2 fois la valeur du dernier
+		      chiffre.
 		      \smallbreak
-		      \psw{
+		      \psw{%
 			      On trouve $u(U) = \SI{0.0080}{V}$, d'où
 			      \[
 				      \xul{U = \SI{2.5462 \pm 0.0080}{V}}
 			      \]
-		      }
+		      }%
 		      \vspace*{-20pt}
 	\end{enumerate}
 \end{tcb*}
 
 \subsection{Incertitudes composées}
-Dans de très nombreuses situations, on est amené-e à calculer la valeur d'une
-grandeur à partir de valeurs mesurées, et donc possédant des incertitudes.
-Comment exprimer alors l'incertitude sur ce calcul en fonction de celles sur les
-données utilisées ?
+Dans de très nombreuses situations, on est amené-e à \textbf{calculer} la valeur
+d'une grandeur à partir de valeurs mesurées, et donc possédant des incertitudes.
+Comment exprimer alors l'\textbf{incertitude sur ce calcul} en fonction de
+celles sur les données utilisées ?
 
 \subsubsection{Calcul à partir d'une seule valeur mesurée}
-\[
-	\boxed{y\ind{calc} = f(x\ind{mes}) \Ra u(y\ind{calc}) =
-		\abs{\dv{f}{x}(x\ind{mes})}u(x\ind{mes})}
-\]
+L'incertitude sur le calcul dépend de la manière dont la fonction varie selon
+la grandeur mesurée~: si on souhaite calculer $y\ind{calc} = 3*x\ind{exp}$, alors l'incertitude sur
+$y\ind{calc}$ est 3 fois plus importante que celle sur $x\ind{exp}$~! D'une
+manière générale, le lien se fait grâce à la \textbf{tangente à la fonction},
+c'est-à-dire sa dérivée au point de calcul~:
+\begin{tcb*}(ror){Incertitudes composées à 1 variable}
+	\psw{%
+		\[
+			\boxed{y\ind{calc} = f(x\ind{mes}) \Ra u(y\ind{calc}) =
+				\abs{\dv{f}{x}(x\ind{mes})}u(x\ind{mes})}
+		\]
+	}%
+\end{tcb*}
 
-\begin{tcb*}[breakable](appl){Application}
+\begin{tcb*}[breakable](appl)<lftt>{Incertitude composée à une variable}
 	On envoie une impulsion laser de la Terre sur la Lune. On mesure son
 	aller-retour en $t = \SI{2.57 \pm 0.02}{s}$. Sachant que la célérité de la
 	lumière dans le vide est exactement $c = \SI{299792458}{m.s^{-1}}$, déterminer
@@ -629,7 +640,7 @@ données utilisées ?
 			\begin{gather*}
 				d = \SI{385344308.5 \pm 2997924.58}{m}
 				\\\Ra
-				\xul{d = \SI{3.853 \pm 0.030e5}{km}}
+				\xul{d = \SI{3.853 \pm 0.030e8}{m}}
 				\\\Ra
 				\xul{d= \SI{385.3 \pm 3.0e3}{km}}
 			\end{gather*}
@@ -638,30 +649,30 @@ données utilisées ?
 	\end{isd}
 \end{tcb*}
 
-\subsubsection{Calcul avec deux valeurs mesurées (\textit{à connaître})}
+\subsubsection{Calcul avec deux valeurs mesurées}
 \begin{tcb*}(ror){Incertitudes composées à 2 variables}
 	\tcbsubtitle{\fatbox{Somme ou différence}}
 	\[
 		\boxed{
-			y = x_1 \pm x_2
+			y = \alpha x_1 \pm \beta x_2
 			\qquad \Ra \qquad
-			u(y) = \sqrt{(u(x_1))^{2} + (u(x_2))^{2}}}
+			u(y) = \sqrt{(\alpha u(x_1))^{2} + (\beta u(x_2))^{2}}}
 	\]
 	\tcblower
 	\tcbsubtitle{\fatbox{Produit de puissances}}
 	\[
 		\boxed{
-		y = x_1^{\alpha_1}x_2^{\alpha_2}
+		y = a\,x_1^{\alpha_1}x_2^{\alpha_2}
 		\qquad \Ra \qquad
 		\frac{u(y)}{y} = \sqrt{
-			\abs{\alpha_1}\left(\frac{u(x_1)}{x_1}\right)^{2} +
-			\abs{\alpha_2}\left(\frac{u(x_2)}{x_2}\right)^{2}
+			\left(\alpha_1\frac{u(x_1)}{x_1}\right)^{2} +
+			\left(\alpha_2\frac{u(x_2)}{x_2}\right)^{2}
 		}
 		}
 	\]
 \end{tcb*}
 
-\begin{tcb*}(appl){Application}
+\begin{tcb*}[breakable](appl)<lftt>{Incertitude composée à 2 variables}
 	On mesure la distance $d = x_2 - x_1$ entre deux points repérés avec la même
 	incertitude $u(x_1) = u(x_2) = \SI{1}{mm}$. Quelle est l'incertitude sur $d$~?
 	\smallbreak
@@ -685,12 +696,15 @@ données utilisées ?
 \end{tcb*}
 
 \subsubsection{Incertitudes-types composées quelconques}
-Seules les deux formules précédentes sont à connaître, pour tous les autres cas,
+Seuls les cas simples et multiples sont à connaître. Pour tous les autres cas,
 nous allons revenir à la définition des incertitudes puis, à l'aide d'une
 simulation informatique comportant une part d'aléatoire, calculer
-l'incertitude-type. Une fiche y sera consacrée.
-\begin{tcb*}(defi){Définition}
+l'incertitude-type.
+
+\begin{tcb}(defi){Simulations \textsc{Monte-Carlo}}
 	Un algorithme utilisant la variabilité d'une mesure pour simuler un calcul
 	d'incertitude fait parti des algorithmes de type \textsc{Monte-Carlo}.
-\end{tcb*}
+\end{tcb}
+
+Une fiche y sera consacrée.
 \end{document}

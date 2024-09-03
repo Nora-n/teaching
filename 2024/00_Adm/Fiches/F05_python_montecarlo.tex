@@ -1,156 +1,111 @@
 \documentclass[a4paper, 12pt, garamond]{book}
 \usepackage{cours-preambule}
+% \graphicspath{{./figures/}}
+
+\usepackage{relsize}
 
 \dominitoc
 \faketableofcontents
+
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
+\setlength{\mtcindent}{-10pt}
+\mtcsetoffset{minitoc}{-10pt}
 
 \makeatletter
 \renewcommand{\@chapapp}{Fiches -- numéro}
 \makeatother
 
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
+
 \begin{document}
-\setcounter{chapter}{5}
+\setcounter{chapter}{4}
+
+% \settype{book}
+% \settype{prof}
+% \settype{stud}
 
 \chapter{Python et incertitudes par simulation \textsc{Monte-Carlo}}
 
-\vfill
+% \vspace*{\fill}
 
-\begin{prgm}
-	\begin{tcb}*(ror)"how"{Savoir-faire}
-		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Simuler, à l’aide d’un langage de programmation ou d’un tableur, un
-			      processus aléatoire permettant de caractériser la variabilité de la
-			      valeur d’une grandeur composée.
-			\item Simuler, à l’aide d’un langage de programmation ou d’un tableur, un
-			      processus aléatoire de variation des valeurs expérimentales de l’une des
-			      grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer l’incertitude
-			      sur les paramètres du modèle.
-		\end{itemize}
-	\end{tcb}
-\end{prgm}
+\begin{tcn}(appl)<ctc>"somm"'t'{Sommaire}
+	\let\item\olditem
+	\vspace{-15pt}
+	\minitoc
+	\vspace{-25pt}
+\end{tcn}
 
-\vfill
-\minitoc
-\vfill
+\begin{tcn}(appl)<ctb>"how"'t'{Capacités exigibles}
+  \begin{itemize}[label=\rcheck]
+      \item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
+            processus aléatoire permettant de caractériser la variabilité de la
+            valeur d’une grandeur composée.
+      \item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
+            processus aléatoire de variation des valeurs expérimentales de
+            l'une des grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer
+            l'incertitude sur les paramètres du modèle.
+  \end{itemize}
+\end{tcn}
 
-\newpage
+% \vspace*{\fill}
+% \newpage
 
 \section{Survivre en \texttt{Python}}
 \subsection{Les bases}
 \subsubsection{Calcul et affichage basiques}
-\begin{python}
-# Ce qui est après un # est un commentaire, et non traité dans le code
-
-a = 2       # affecte la valeur 2 à la variable globale a
-b = 3*a     # b vaut 3*2 = 6. Si on change la valeur de a, on devra recalculer b
-c = a**3    # ** indique une puissance, ici puissance 3 (donc c = 8)
-d = 5.5e-3  # eNBRE est un raccourci pour 10^(NBRE). Ici, d = 0.0055.
-\end{python}
+\begin{tcb}(code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-1.py}
+\end{tcb}
 
 \subsubsection{Fonctions basiques}
-\begin{python}
-print(d)               # affiche la valeur de d
-print(f'd = {d}')      # affiche "d = 0.0055"
-print(f'd = {d:.2f}')  # affiche "d = 0.01" : décimal 2 chiffres après ','
-print(f'd = {d:.2e}')  # affiche "d = 5.50e-03" : scientifique 2 décimales
-
-type(a)   # donne le type d'objet de la variable a : int (entier)
-type(d)   # donne le type d'objet de la variable d : float (décimal)
-
-abs(-3)         # donne la valeur absolue d'un nombre : 3
-
-len([1, 2, 3])  # donne la longueur d'une liste : 3
-min([1, 2, 3])  # donne la valeur minimale d'une liste : 1
-max([1, 2, 3])  # donne la valeur maximale d'une liste : 3
-\end{python}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+  % \inputpygments[fontsize=\relsize{-2}]{python}{F05_python_base-2.py}
+  \small
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-2.py}
+\end{tcb}
 
 \subsection{Gestion de données}
 \subsubsection{Listes}
-
-\begin{python}
-L = [1, 2, 3]  # créé la liste L contenant les valeurs 1, 2 et 3
-print(L[0])    # extrait la première valeur de L : 1
-print(L[-1])   # extrait la dernière valeur de L : 3
-print(L[:2])   # extrait les deux premières valeurs de L : 1 et 2
-print(L[1:])   # extrait toutes les valeurs à partir de la deuxième : 2 et 3
-
-L.append(42)    # ajoute l'élément 42 à la fin de la liste
-L2 = L + [5, 6] # concatène la liste L et la liste [5, 6] dans une nouvelle
-print(L2)       # [1, 2, 3, 42, 5, 6]
-\end{python}
+\begin{tcb}(code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-1.py}
+\end{tcb}
 
 \subsubsection{Tableaux et \texttt{numpy}}
-\begin{python}
-import numpy as np
-
-tab = np.array([1, 2, 3])  # créé le tableau [1, 2, 3]
-tab+1                      # ajoute 1 à toutes les valeurs de tab
-tab*2e-3                   # multiplie toutes les valeurs de tab par 0.002
-np.sqrt(tab)               # applique racine carré à tous les éléments de tab
-np.exp(tab)                # exponentielle
-np.log(tab)                # logarithme NÉPÉRIEN (ln français)
-np.log10(tab)              # logarithme décimal (log français)
-
-np.linspace(min, max, nbre) # découpe [min, max] en nbre parties égales
-np.mean(tab)                # donne la valeur moyenne de tab
-np.std(tab, ddof=1)         # donne l'écart-type de tab
-
-np.polyfit(X, Y, 1)         # donne les coefficients a et b de Y = a*X+b
-\end{python}
+\begin{tcb}(code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-2.py}
+\end{tcb}
 
 \subsection{Automatisation}
+% \vspace{-10pt}
 \subsubsection{Fonctions personnelles}
-\begin{python}
-def puissance(arg1, arg2): # définit la fonction puissance de 2 arguments
-resultat = arg1**arg2  # variable locale de calcul
-return(resultat)       # fin de la fonction, résultat final
+\vspace{-10pt}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-1.py}
+\end{tcb}
 
-print(puissance(2, 3))     # donne le résultat du calcul : 8
-
-def comparaison(x,y):
-if x > y:                                    # condition d'exécution
-print("argument 1 supérieur au second")  # si oui, exécute
-elif x < y:                                  # sinon, autre condition
-print("argument 1 inférieur au second")  # si oui, exécute
-else:                                        # pour tous les autres cas,
-print("argument 1 égal au second")       # exécute
-
-print(comparaison(1,2))    # "argument 1 inférieur au second"
-\end{python}
-
+\vspace{-25pt}
 \subsubsection{Boucles \texttt{for}}
-\begin{python}
-for i in range(10):   # créé i qui commence à 0, terminera à 9, et augmente
-# de 1 à chaque réalisation des lignes en-dessous
-print(i)          # affichera 0, puis 1, puis 2, et jusqu'à 9
+\begin{tcb}(code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-2.py}
+\end{tcb}
 
-L = []                # liste vide
-for i in range(3):    # exécute la suite 3 fois : i=0, puis 1, puis 2
-L.append(3*i)     # ajoute 3*i à la fin de la liste
-print(L)              # [0, 3, 6]
-
-for i, k in enumerate(L):  # i compte à partir de 0, k prend les valeurs de L
-print(f'L[{i}] = {k}') # L[0] = 0, L[1] = 3, L[2] = 6
-
-L2 = [3*i for i in range(3)] # créé L d'une manière plus compacte
-print(L2)                    # même résultat
-\end{python}
-
+\vspace{-15pt}
 \subsection{Tracé de graphiques}
-\subsubsection{Minimal}
-\begin{python}
-import matplotlib.pyplot as plt
+\subsubsection{Minimal (Figure~\ref{fig:mini})}
+\begin{tcb}(code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-1.py}
+\end{tcb}
 
-abscisse = np.linspace(0, 10, 8) # définit les abscisses qu'on tracera
-ordonnee = abscisse**2           # et les ordonnées
-
-plt.plot(abscisse, ordonnee)     # place les points, les relie par des segments
-plt.xlabel('t (s)')              # nomme l'abscisse
-plt.ylabel('x (m)')              # nomme l'ordonnée
-
-plt.show()                       # obligé pour afficher
-\end{python}
-
+\noindent
 \begin{minipage}[t]{.48\linewidth}
 	~
 	\begin{center}
@@ -169,49 +124,10 @@ plt.show()                       # obligé pour afficher
 	\end{center}
 \end{minipage}
 
-\subsubsection{Total}
-\begin{python}
-X = np.linspace(0, 10, 8)
-Y = X**2
-
-plt.figure(figsize=(8, 6))     # dimension horizontale, verticale
-plt.grid()                     # affiche un quadrillage de lecture
-plt.xticks(fontsize=20)        # affiche les nombres de l'axe x plus grand
-plt.yticks(fontsize=20)        # affiche les nombres de l'axe y plus grand
-plt.xlabel('$x$ en cm',        # Donne le nom de l'axe x, $ pour le mode math
-           fontsize=20)        # en grand
-plt.ylabel('$y$ en cm',        # Donne le nom de l'axe y, $ pour le mode math
-           fontsize=20)        # en grand
-
-plt.scatter(X, Y,              # nuage de points X en abscisse et Y en ordonnée
-            marker='x', s=100, # possibilité de customiser le tracé
-            color='blue',      # pour la couleur
-            label='Données')   # pour la légende
-
-plt.errorbar(X+1, Y+1,         # nuage de points X abscisse et Y ordonnée
-             xerr=.5,          # incertitude en x
-             yerr=5,           # incertitude en y
-             capsize=3,        # indique la limite des erreurs
-             color='orange',   # pour la couleur
-             label='Avec incertitudes')
-
-plt.plot(X-1, Y-1,             # graphique relié
-         color="g",            # couleur
-         marker="^",           # marker
-         markersize=10,        # taille marker
-         linestyle="dotted",   # type de ligne
-         linewidth=2,          # épaisseur
-         label="Courbe verte diamant pointillés")
-
-plt.title('Présentation des options de tracé',
-          fontsize=20)
-plt.legend(fontsize=15)
-
-plt.tight_layout()             # évite les débordements ou rognages
-plt.xlim(min(X)-.1, max(X)+2)  # pour les limites d'affichage en abscisse
-plt.ylim(min(Y)-6, max(Y)+10)  # pour les limites d'affichage en ordonnée
-plt.show()
-\end{python}
+\subsubsection{Complexe (Figure~\ref{fig:cplx})}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-2.py}
+\end{tcb}
 
 \section{Simulations \textsc{Monte-Carlo}}
 \subsection{Principe}

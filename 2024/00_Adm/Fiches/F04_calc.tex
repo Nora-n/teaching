@@ -1,24 +1,37 @@
-\documentclass[../main/main.tex]{subfiles}
+\documentclass[a4paper, 12pt, garamond]{book}
+\usepackage{cours-preambule}
+% \graphicspath{{./figures/}}
+
+\dominitoc
+\faketableofcontents
+
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
+\setlength{\mtcindent}{-10pt}
+\mtcsetoffset{minitoc}{-10pt}
 
 \makeatletter
-\renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\@chapapp}{Fiches -- numéro}
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
 
 \begin{document}
-\setcounter{chapter}{-1}
+\setcounter{chapter}{3}
 
-\chapter*{Utiliser la calculatrice pour analyser des donn\'ees}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
-\section{Objectifs}
-
-\begin{itemize}
-	\item Utiliser les fonctions usuelles de sa calculatrice~;
-	\item Comprendre l'intérêt et savoir mettre en place une régression linéaire
-	      pour vérifier un modèle.
-\end{itemize}
+\chapter{Utiliser la calculatrice pour analyser des donn\'ees}
 
 \section{Fonctions de base}
 
@@ -84,32 +97,32 @@ calculatrice.
 et les radians par \si{rad}, mais ça ne sera pas à écrire dans la calculatrice~!
 
 \begin{tcbraster}[raster columns=3, raster equal height=rows]
-	\begin{tcb}(expe)<itc>{Casio}
+	\begin{tcn}(expe)<itc>{Casio}
 		Dans le mode \texttt{RUN}, on choisit entre degrés et radians en allant dans
 		le mode \texttt{SET UP}.
-	\end{tcb}
-	\begin{tcb}*(expe)<itc>{TI}
+	\end{tcn}
+	\begin{tcn}(expe)<itc>""{TI}
 		Dans le menu \texttt{MODE}, on choisit entre degrés et radians en allant sur
 		la troisième ligne.
-	\end{tcb}
-	\begin{tcb}*(expe)<itc>{Numworks}
+	\end{tcn}
+	\begin{tcn}(expe)<itc>""{Numworks}
 		Dans le menu \texttt{Paramètres}, on choisit entre degrés et radians en
 		choisissant l'unité de l'angle.
-	\end{tcb}
+	\end{tcn}
 \end{tcbraster}
 
 \begin{enumerate}
 	\item Mettez-vous en radians. Vérifier alors que
 	      \[
-		      \cos(\SI{\pi}{rad}) = -1
+		      \cos(\SI[parse-numbers=false]{\pi}{rad}) = -1
 		      \qet
 		      \cos(\ang{180}) \approx -\num{0.5985}
 	      \]
 	\item Mettez-vous en degrés. Vérifier alors que
 	      \[
-		      \cos(\SI{\pi}{rad}) \approx \num{0.9985}
+		      \cos(\SI[parse-numbers=false]{\pi}{rad}) \approx \num{0.9985}
 		      \qet
-		      \cos(\ang{180}) =-1
+		      \cos(\ang{180}) = -1
 	      \]
 	\item Faire les applications numériques suivantes~:
 	      \begin{align*}
@@ -146,9 +159,28 @@ et les radians par \si{rad}, mais ça ne sera pas à écrire dans la calculatric
 	      \end{gather*}
 \end{enumerate}
 
+\subsection{Stockage et utilisation de valeurs}
+Lorsqu'une expression mathématique est lourde à taper, il peut devenir
+indispensable d'utiliser les caractères alphabétiques pour stocker des valeurs.
+Ainsi, la lecture des valeurs est claire, comme pour les A.N.\ écrites, la
+modification d'une d'entre elle également, et il en est de même pour
+l'expression en elle-même.
+
+\begin{tcn}[sidebyside](coro)"bulb"{Astuce~: stockage de valeurs (toutes
+	calculatrices)}
+	Depuis le menu de calculs de base, entrer une valeur suivie d'une flèche $\ra$
+	et d'une lettre, accessible par \texttt{ALPHA} puis une touche.
+	\tcblower
+	\texttt{\num{5.85}$\times \pi$/180$\ra$D}
+	\smallbreak
+	\texttt{$\pi/3\ra$A}
+	\smallbreak
+	\texttt{sin((D+A)/2)/sin(A/2)$\ra$n}
+\end{tcn}
+
 \subsection{R\'esolution des équations d'ordre 2}
 
-\begin{tcb}(expe)<itc>{Casio}
+\begin{tcn}(expe)<itc>{Casio}
 	Dans le mode \texttt{EQUA}, on sélectionne le type de l'équation à résoudre.
 	Il y a~:
 	\begin{itemize}
@@ -164,21 +196,37 @@ et les radians par \si{rad}, mais ça ne sera pas à écrire dans la calculatric
 	rentrer les coefficients $a$, $b$ et $c$ de l'équation $ax^2+bx+c=0$. Une fois
 	cela fait, presser \texttt{SOLV} (bouton \texttt{F1}). On obtient alors les
 	deux solutions de l'équation.
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(expe)<itc>{TI}
+\begin{tcn}(expe)<itc>{TI}
 	Aller dans \texttt{Apps}. Choisir \texttt{PlySmlt2} (bouton 4) puis
 	\texttt{Poly Root Finder} (bouton 1). Choisir ensuite l'ordre 2 et presser
 	\texttt{ENTER} et \texttt{NEXT}. L'équation s'affiche alors sous la forme
 	$a2*x^2+a1*x+a0=0$. Renseigner alors les coefficients $a2$, $a1$ et $a0$.
 	Presser \texttt{SOLVE} pour obtenir les deux solutions de l'équation.
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(expe)<itc>{Numworks}
+\begin{tcn}(expe)<itc>{Numworks}
 	Aller dans le menu \texttt{Équations}. Ajouter une équation, et choisir le
 	modèle d'équation voulu. Compléter les coefficients. Choisir \texttt{résoudre
 		l'équation}.
-\end{tcb}
+\end{tcn}
+
+Pour résoudre une équation aux racines complexes~:
+
+\begin{tcbraster}[raster columns=3, raster equal height=rows]
+	\begin{tcn}(expe)<itc>{Casio}
+		Dans le menu polynômial \texttt{POLY}, degré $? \rightarrow
+			2$ puis $\texttt{shift} \rightarrow \texttt{setup} \rightarrow
+			\texttt{complex mode a+ib}$.
+	\end{tcn}
+	\begin{tcn}(expe)<itc>""{TI}
+		Dans le menu où l'on choisit l'ordre, sélectionner $\texttt{a+ib}$.
+	\end{tcn}
+	\begin{tcn}(expe)<itc>""{Numworks}
+		Dans les paramètres, mettre la forme complexe en algébrique.
+	\end{tcn}
+\end{tcbraster}
 
 Donner les solutions des équations suivantes~:
 \begin{gather*}
@@ -202,40 +250,6 @@ Donner les solutions des équations suivantes~:
 		}
 	\end{array}
 \end{gather*}
-
-Pour résoudre une équation aux racines complexes~:
-
-\begin{tcbraster}[raster columns=3, raster equal height=rows]
-	\begin{tcb}(expe)<itc>{Casio}
-		Dans le menu polynômial \texttt{POLY}, degré $? \rightarrow
-			2$ puis $\texttt{shift} \rightarrow \texttt{setup} \rightarrow
-			\texttt{complex mode a+ib}$.
-	\end{tcb}
-	\begin{tcb}*(expe)<itc>{TI}
-		Dans le menu où l'on choisit l'ordre, sélectionner $\texttt{a+ib}$.
-	\end{tcb}
-	\begin{tcb}*(expe)<itc>{Numworks}
-		Dans les paramètres, mettre la forme complexe en algébrique.
-	\end{tcb}
-\end{tcbraster}
-
-\subsection{Stockage et utilisation de valeurs}
-Lorsqu'une expression mathématique est lourde à taper, il peut devenir
-indispensable d'utiliser les caractères alphabétiques pour stocker des valeurs.
-Ainsi, la lecture des valeurs est claire, comme pour les A.N.\ écrites, la
-modification d'une d'entre elle également, et il en est de même pour
-l'expression en elle-même.
-
-\begin{tcb}[sidebyside](expe)<itc>{Casio}
-	Depuis le menu \texttt{RUN}, entrer une valeur suivie d'une flèche $\ra$ et
-	d'une lettre, accessible par \texttt{ALPHA} puis une touche.
-	\tcblower
-	\texttt{\num{5.85}x$\pi$/180$\ra$D}
-	\smallbreak
-	\texttt{$\pi/3\ra$A}
-	\smallbreak
-	\texttt{sin((D+A)/2)/sin(A/2)$\ra$n}
-\end{tcb}
 
 \section{Régression linéaire}
 
@@ -351,11 +365,11 @@ linéaire, il convient de «~linéariser~» (rendre linéaire) les données.
 		      = 1/c_0$.
 \end{enumerate}
 
-\begin{tcb}(rema){Remarque}
+\begin{tcn}(rema){Remarque}
 	Il est possible d'effectuer directement des opérations sur les listes avec les
-	calculatrices (voir la fiche pratique «~régression linéaire~») pour avoir de
-	l'aide.
-\end{tcb}
+	calculatrices (voir la fiche pratique «~régression linéaire~») pour aller plus
+	vite.
+\end{tcn}
 
 \subsubsection{Application}
 La concentration $c(t)$ d'une espèce chimique est mesurée dans la solution au
@@ -387,7 +401,7 @@ cours du temps. On obtient les données suivantes~:
 
 Résultats attendus~:
 
-\begin{tcb}*[aide](expe)<itc>{Aide}
+\begin{tcn}*[aide](expe)<itc>{Aide}
 	\begin{enumerate}
 		\item $c = f(t)$~: $c = -\num{1,8}.10^{-6} t + \num{0,0003}$; $r^2 =
 			      \num{0,89}$ et $r = - \num{0,94}$.
@@ -396,6 +410,6 @@ Résultats attendus~:
 		\item $1/c = f(t)$~: $1/c = \num{80,185} t + \num{1993,6}$; $r^2 =
 			      \num{0,999991}$ et $r = - \num{0,999995}$.
 	\end{enumerate}
-\end{tcb}
+\end{tcn}
 
 \end{document}

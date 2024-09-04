@@ -2,6 +2,8 @@
 \usepackage{cours-preambule}
 % \graphicspath{{./figures/}}
 
+\setpythontexfv{fontsize=\small}
+
 \dominitoc
 \faketableofcontents
 
@@ -18,18 +20,18 @@
 \makeatother
 
 % \toggletrue{student}
-% \toggletrue{corrige}
-% \renewcommand{\mycol}{black}
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{2}
 
-\settype{book}
-\settype{prof}
-\settype{stud}
+% \settype{book}
+% \settype{prof}
+% \settype{stud}
 
 \chapter{Régression linéaire}
 
@@ -44,18 +46,18 @@
 
 \begin{tcn}(appl)<ctb>"how"'t'{Capacités exigibles}
 	\begin{itemize}[label=\rcheck]
-    \item Analyser les résultats obtenus à l'aide d'une procédure de
-          validation~: analyse graphique intégrant les barres d'incertitude ou
-          analyse des écarts normalisés.
-    \item Utiliser un logiciel de régression linéaire afin d'obtenir les
-          valeurs des paramètres du modèle.
-    \item Utiliser la fonction \texttt{polyfit} de la bibliothèque
-          \texttt{numpy} (sa spécification étant fournie) pour exploiter des
-          données.
-    % \item Simuler, à l'aide d'un langage de programmation ou d'un tableur, un
-    %       processus aléatoire de variation des valeurs expérimentales de l'une
-    %       des grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer
-    %       l'incertitude sur les paramètres du modèle.
+		\item Analyser les résultats obtenus à l'aide d'une procédure de
+		      validation~: analyse graphique intégrant les barres d'incertitude ou
+		      analyse des écarts normalisés.
+		\item Utiliser un logiciel de régression linéaire afin d'obtenir les
+		      valeurs des paramètres du modèle.
+		\item Utiliser la fonction \texttt{polyfit} de la bibliothèque
+		      \texttt{numpy} (sa spécification étant fournie) pour exploiter des
+		      données.
+		      % \item Simuler, à l'aide d'un langage de programmation ou d'un tableur, un
+		      %       processus aléatoire de variation des valeurs expérimentales de l'une
+		      %       des grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer
+		      %       l'incertitude sur les paramètres du modèle.
 	\end{itemize}
 \end{tcn}
 
@@ -91,8 +93,8 @@ avec $a$ et $b$ des coefficients propres à la relation~:
 \end{itemize}
 
 La régression linéaire\ftn{Il faudrait en toute rigueur parler de régression
-  \textit{affine} et non linéaire.} vise à \textbf{tester l'accord entre mesure
-  et théorie}, et le cas échéant à \textbf{estimer les coefficients} et leurs
+	\textit{affine} et non linéaire.} vise à \textbf{tester l'accord entre mesure
+	et théorie}, et le cas échéant à \textbf{estimer les coefficients} et leurs
 incertitudes. Elle repose sur la détermination de la meilleure droite qui serait
 susceptible de représenter le nuage de points donné en deux dimensions par $x$
 et $y$, en l'occurrence en minimisant la somme des distances au carré entre
@@ -101,10 +103,10 @@ caractérisé par un coefficient de corrélation, noté $r$, ou de régression, 
 $r^{2}$, et compris entre 0 (nul) et 1 (parfait).
 
 \begin{tcn}(defi){Régression linéaire}
-  Une régression linéaire est une \textbf{opération mathématique} entre des
-  points de mesure $x_i$ et $y_i$ qui consiste à trouver les meilleurs
-  coefficients $a$ et $b$ tels que les valeurs $ax_i+b$ soient les plus proches
-  en moyenne des points de mesures $y_i$.
+	Une régression linéaire est une \textbf{opération mathématique} entre des
+	points de mesure $x_i$ et $y_i$ qui consiste à trouver les meilleurs
+	coefficients $a$ et $b$ tels que les valeurs $ax_i+b$ soient les plus proches
+	en moyenne des points de mesures $y_i$.
 \end{tcn}
 
 Cette régression peut être faite à la main, mais la détermination des
@@ -175,88 +177,30 @@ une régression \textit{via} un logiciel.
 \end{tcn}
 
 \begin{tcn}[breakable](expe)<itc>{Numworks}
-  \begin{itemize}
-    \item Aller dans le mode \texttt{Régressions}
-    \item Rentrer les séries de données en \texttt{X1} et \texttt{Y1}.
-    \item Aller dans le menu \texttt{Graphiques}, puis \texttt{Régression} (à
-      côté de \texttt{Naviguer} en haut de la fenêtre)
-    \item Choisir le modèle \texttt{Affine} (ou \texttt{Linéaire})
-    \item Observer la droite, puis vous avez deux choix~:
-      \begin{enumerate}
-        \item Retourner dans \texttt{Régression} et lire l'équation de la
-          droite, en déduire $a$ et $b$ \textbf{si la régression est validée}
-          (voir plus loin)~;
-        \item Aller dans le menu \texttt{Stats} à côté de \texttt{Graphique}, et
-          déplacer le curseur sur la liste \texttt{Y1} puis vers le bas pour une
-          meilleure lecture des paramètres.
-      \end{enumerate}
-  \end{itemize}
+	\begin{itemize}
+		\item Aller dans le mode \texttt{Régressions}
+		\item Rentrer les séries de données en \texttt{X1} et \texttt{Y1}.
+		\item Aller dans le menu \texttt{Graphiques}, puis \texttt{Régression} (à
+		      côté de \texttt{Naviguer} en haut de la fenêtre)
+		\item Choisir le modèle \texttt{Affine} (ou \texttt{Linéaire})
+		\item Observer la droite, puis vous avez deux choix~:
+		      \begin{enumerate}
+			      \item Retourner dans \texttt{Régression} et lire l'équation de la
+			            droite, en déduire $a$ et $b$ \textbf{si la régression est validée}
+			            (voir plus loin)~;
+			      \item Aller dans le menu \texttt{Stats} à côté de \texttt{Graphique}, et
+			            déplacer le curseur sur la liste \texttt{Y1} puis vers le bas pour une
+			            meilleure lecture des paramètres.
+		      \end{enumerate}
+	\end{itemize}
 \end{tcn}
 
 \subsection{En \texttt{Python}}
-\begin{python}
-# =========================================================================== #
-#                                   Imports                                   #
-# =========================================================================== #
-
-import numpy as np               # pour les tableaux et la gestion des données
-import matplotlib.pyplot as plt  # pour les graphiques, l'affichage des données
-
-# =========================================================================== #
-#                            Données expérimentales                           #
-# =========================================================================== #
-
-X = np.array([0, 2, 4, 6, 8, 10])            # À modifier + écrire unité
-uX = 0.1*np.ones(len(X))                     # À modifier + écrire unité
-Y = np.array([0.5, 7.9, 11, 17.5, 26, 31.8]) # À modifier + écrire unité
-uY = 0.1*np.ones(len(Y))                     # À modifier + écrire unité
-
-# =========================================================================== #
-#                                  Régression                                 #
-# =========================================================================== #
-
-# Donne a le coefficient directeur et b l'ordonnée à l'origine
-a, b = np.polyfit(X, Y, 1)
-# Affiche a et b. .3f pour 3 valeurs après la virgule
-print(f"a = {a:.3f}, b = {b:.2f}")
-
-# =========================================================================== #
-#                                 Utilisation                                 #
-# =========================================================================== #
-
-# Liste fine des abscisses à tracer
-# découpe l'intervalle [min(X), max(X)] en 100 points
-xliste = np.linspace(min(X), max(X), 100)
-
-# Fonction qui à `abscisse`, `coeff_dir`, `ord_ori` associe y
-def yfunc(abscisse, coeff_dir, ord_ori):
-    return coeff_dir*abscisse + ord_ori
-
-# Liste des points y_i obtenus par régression
-yliste = yfunc(xliste, a, b)
-
-# =========================================================================== #
-#                                    Tracé                                    #
-# =========================================================================== #
-
-plt.figure(figsize=(8, 6))
-plt.grid()
-plt.xticks(fontsize=10)
-plt.yticks(fontsize=10)
-plt.xlabel('$grandeur$ en UNITÉ', fontsize=20)
-plt.ylabel('$grandeur$ en UNITÉ', fontsize=20)
-
-plt.errorbar(X, Y,
-             xerr=uX, yerr=uY,
-             linestyle='None', capsize=3,
-             color='b', label='Mesures')
-plt.plot(xliste, yliste,
-         'r', label='Régression linéaire')
-
-plt.title('Titre efficace et descriptif', fontsize=20)
-plt.legend(fontsize=15)
-plt.show()
-\end{python}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_mont-2.py}
+	\vspace{-15pt}
+\end{tcb}
 
 \section{Pertinence du modèle}
 Une fois la régression effectuée, il faut juger de sa validité. En effet,
@@ -280,42 +224,42 @@ où \texttt{x} représente le premier chiffre autre qu'un 9, il est loin d'être
 \textit{suffisant} et c'est la vérification visuelle qui prévaut.
 
 \begin{tcn}(ror){Ma régression est-elle valide~?}
-  Le modèle sera validé sous deux conditions~:
-  \begin{enumerate}
-    \item les points de mesure sont \textbf{bien alignés} entre eux (pas de
-          courbure visible à l'œil)~;
-    \item la \textbf{droite} de régression passe le \textbf{plus proche de tous
-          les points} possibles, en \textbf{incluant leurs incertitudes-type}.
-  \end{enumerate}
+	Le modèle sera validé sous deux conditions~:
+	\begin{enumerate}
+		\item les points de mesure sont \textbf{bien alignés} entre eux (pas de
+		      courbure visible à l'œil)~;
+		\item la \textbf{droite} de régression passe le \textbf{plus proche de tous
+			      les points} possibles, en \textbf{incluant leurs incertitudes-type}.
+	\end{enumerate}
 \end{tcn}
 
 \begin{tcn}[breakable](appl)<lftt>{Application~: quel modèle est validé~?}
-  On présente ci-après des données et leur régression associée. Pour chaque
-  modèle, dire si la régression est validée ou non, et expliquer pourquoi.
-  \begin{center}
-    \includegraphics[width=\linewidth]{figures/reglin}
-    \captionof{figure}{Exemples de régressions linéaires.}
-    \label{fig:reglin}
-  \end{center}
-  \tcblower
-  \begin{enumerate}[label=\Alph*)]
-    \item \psw{%
-      \textbf{Non validée}~: barres d'erreurs ok, mais données clairement
-      courbées.
-    }%
-    \item \psw{%
-      \textbf{Validé}~: barres d'erreurs ok, pas de nette tendance.
-    }%
-    \item \psw{%
-      \textbf{Non validé}~: barres d'erreurs non respectées, et une tendance de
-      fonction sinus.
-    }%
-    \item \psw{%
-      \textbf{Validé mais douteux}~: barres d'erreurs ok et pas de tendance
-      particulière, mais incertitudes probablement surestimées. Conclusion peu
-      fiable.
-    }%
-  \end{enumerate}
+	On présente ci-après des données et leur régression associée. Pour chaque
+	modèle, dire si la régression est validée ou non, et expliquer pourquoi.
+	\begin{center}
+		\includegraphics[width=\linewidth]{figures/reglin}
+		\captionof{figure}{Exemples de régressions linéaires.}
+		\label{fig:reglin}
+	\end{center}
+	\tcblower
+	\begin{enumerate}[label=\Alph*)]
+		\item \psw{%
+			      \textbf{Non validée}~: barres d'erreurs ok, mais données clairement
+			      courbées.
+		      }%
+		\item \psw{%
+			      \textbf{Validé}~: barres d'erreurs ok, pas de nette tendance.
+		      }%
+		\item \psw{%
+			      \textbf{Non validé}~: barres d'erreurs non respectées, et une tendance de
+			      fonction sinus.
+		      }%
+		\item \psw{%
+			      \textbf{Validé mais douteux}~: barres d'erreurs ok et pas de tendance
+			      particulière, mais incertitudes probablement surestimées. Conclusion peu
+			      fiable.
+		      }%
+	\end{enumerate}
 \end{tcn}
 
 \section{Autres cas}
@@ -338,24 +282,24 @@ milieux d'indice optique $n_1$ et $n_2$~:
 Avec des mesures de $i_1$ et de $i_2$, il n'est pas possible d'obtenir
 directement une droite. Il faut dans ce cas tracer~:
 \psw{%
-  \[
-    y\tikzmark{yn} = a\tikzmark{an}x\tikzmark{xn}
-  \]
-  \tikz[remember picture, overlay]
-  \draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
-  (pic cs:yn) --++ (-10pt,-10pt)
-  node[anchor=north east] {$\sin(i_1)$}
-  ;
-  \tikz[remember picture, overlay]
-  \draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
-  (pic cs:an) --++(-5pt,-10pt)
-  node[anchor=north] {$n_2/n_1$}
-  ;
-  \tikz[remember picture, overlay]
-  \draw[-stealth, transform canvas={xshift=5pt, yshift=-6pt}]
-  (pic cs:xn) --++(15pt,-10pt)
-  node[anchor=north] {$\sin(i_2)$}
-  ;
+	\[
+		y\tikzmark{yn} = a\tikzmark{an}x\tikzmark{xn}
+	\]
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
+	(pic cs:yn) --++ (-10pt,-10pt)
+	node[anchor=north east] {$\sin(i_1)$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
+	(pic cs:an) --++(-5pt,-10pt)
+	node[anchor=north] {$n_2/n_1$}
+	;
+	\tikz[remember picture, overlay]
+	\draw[-stealth, transform canvas={xshift=5pt, yshift=-6pt}]
+	(pic cs:xn) --++(15pt,-10pt)
+	node[anchor=north] {$\sin(i_2)$}
+	;
 }%
 \vspace{15pt}
 
@@ -363,33 +307,33 @@ L'adaptation en \texttt{Python} est relativement directe grâce à la librairie
 \texttt{numpy} (voir fiche \texttt{Python}), mais il faut apprendre à maîtriser
 les opérations sur des listes \textit{via} les calculatrices.
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
-  \begin{tcn}(expe)<itc>{TI 83+}
-    \begin{itemize}[leftmargin=10pt]
-      \item Aller sur la case \texttt{L3}, puis \texttt{ENTER}
-      \item Entrer la formule (\texttt{L3=sin(L2)} ici), puis \texttt{ENTER}
-    \end{itemize}
-  \end{tcn}
-  \begin{tcn}(expe)<itc>'r'{Casio 35+}
-    \begin{itemize}[leftmargin=10pt]
-      \item Dans menu \texttt{RUN}, touche \texttt{OPTN} et \texttt{LIST}
-      \item Entrer la formule (\texttt{sin(List2) $\ra$ List3} ici), puis
-            \texttt{EXE}
-    \end{itemize}
-  \end{tcn}
+	\begin{tcn}(expe)<itc>{TI 83+}
+		\begin{itemize}[leftmargin=10pt]
+			\item Aller sur la case \texttt{L3}, puis \texttt{ENTER}
+			\item Entrer la formule (\texttt{L3=sin(L2)} ici), puis \texttt{ENTER}
+		\end{itemize}
+	\end{tcn}
+	\begin{tcn}(expe)<itc>'r'{Casio 35+}
+		\begin{itemize}[leftmargin=10pt]
+			\item Dans menu \texttt{RUN}, touche \texttt{OPTN} et \texttt{LIST}
+			\item Entrer la formule (\texttt{sin(List2) $\ra$ List3} ici), puis
+			      \texttt{EXE}
+		\end{itemize}
+	\end{tcn}
 \end{tcbraster}
 
 \begin{tcn}(expe)<itc>{Numworks}
 	\begin{itemize}
-	  \item Aller sur le nom de la liste à modifier, par exemple \texttt{Y2}.
-    \item Appuyer sur \texttt{OK} puis \texttt{Remplir avec une formule}.
-    \item Choisir \texttt{Vide}, puis écrire \texttt{sin(Y1)} à l'aide des
-      touches \texttt{shift} et \texttt{alpha}, puis \texttt{OK}.
-      \begin{center}
-        \begin{tcn}[width=.8\linewidth](impo)"bomb"{Attention~!}
-          N'allez pas trop vite, vous risqueriez de finir par trier une liste,
-          qui sera ensuite impossible à «~dé-trier~»~!
-        \end{tcn}
-      \end{center}
+		\item Aller sur le nom de la liste à modifier, par exemple \texttt{Y2}.
+		\item Appuyer sur \texttt{OK} puis \texttt{Remplir avec une formule}.
+		\item Choisir \texttt{Vide}, puis écrire \texttt{sin(Y1)} à l'aide des
+		      touches \texttt{shift} et \texttt{alpha}, puis \texttt{OK}.
+		      \begin{center}
+			      \begin{tcn}[width=.8\linewidth](impo)"bomb"{Attention~!}
+				      N'allez pas trop vite, vous risqueriez de finir par trier une liste,
+				      qui sera ensuite impossible à «~dé-trier~»~!
+			      \end{tcn}
+		      \end{center}
 	\end{itemize}
 \end{tcn}
 \vspace{-15pt}

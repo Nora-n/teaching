@@ -2,7 +2,7 @@
 \usepackage{cours-preambule}
 % \graphicspath{{./figures/}}
 
-\usepackage{relsize}
+\setpythontexfv{fontsize=\small}
 
 \dominitoc
 \faketableofcontents
@@ -45,66 +45,96 @@
 \end{tcn}
 
 \begin{tcn}(appl)<ctb>"how"'t'{Capacités exigibles}
-  \begin{itemize}[label=\rcheck]
-      \item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
-            processus aléatoire permettant de caractériser la variabilité de la
-            valeur d’une grandeur composée.
-      \item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
-            processus aléatoire de variation des valeurs expérimentales de
-            l'une des grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer
-            l'incertitude sur les paramètres du modèle.
-  \end{itemize}
+	\begin{itemize}[label=\rcheck]
+		\item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
+		      processus aléatoire permettant de caractériser la variabilité de la
+		      valeur d’une grandeur composée.
+		\item Simuler, à l'aide d’un langage de programmation ou d’un tableur, un
+		      processus aléatoire de variation des valeurs expérimentales de
+		      l'une des grandeurs – simulation \textsc{Monte-Carlo} – pour évaluer
+		      l'incertitude sur les paramètres du modèle.
+	\end{itemize}
 \end{tcn}
 
 % \vspace*{\fill}
 % \newpage
 
 \section{Survivre en \texttt{Python}}
+\subsection{Bonnes pratiques}
+\begin{tcn}(ror){À retenir}
+	\begin{enumerate}
+		\item Choisir des noms de variables cohérents et logiques.
+		\item Écrire les unités des valeurs.
+		\item Comme sur les copies, on ne fait \textbf{pas de calcul numérique}
+		      (\pyv{0.1/35.5} par exemple)\ftn{Vous pouvez bien sûr en faire au
+			      «~brouillon~» dans des cellules vides par exemple, mais le risque
+			      est de se tromper dans les unités.}. Les calculs se font sur les
+		      variables.
+		\item Les \pyv{2.7*10**(-3)} sont à \textbf{absolument} proscrire. Il existe
+		      \pyv{2.7e-3} pour cela. Pareil pour les tableaux, voir plus loin.
+		\item On n'\textbf{importera pas \texttt{math}} en physique.
+		\item On n'\textbf{importera jamais avec \texttt{*}}
+		      (\pyv{from numpy import *}). Il faut connaître l'origine des fonctions
+		      et écrire explicitement \pyv{np.pi} si on veut utiliser $\pi$.
+	\end{enumerate}
+\end{tcn}
+
 \subsection{Les bases}
 \subsubsection{Calcul et affichage basiques}
 \begin{tcb}(code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-1.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-1.py}
 \end{tcb}
 
+\vspace{-20pt}
 \subsubsection{Fonctions basiques}
 \begin{tcb}[breakable](code)<lfnt>{Code}
-  % \inputpygments[fontsize=\relsize{-2}]{python}{F05_python_base-2.py}
-  \small
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-2.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_base-2.py}
 \end{tcb}
 
+\vspace{-25pt}
 \subsection{Gestion de données}
 \subsubsection{Listes}
 \begin{tcb}(code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-1.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-1.py}
 \end{tcb}
 
+\vspace{-25pt}
 \subsubsection{Tableaux et \texttt{numpy}}
-\begin{tcb}(code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-2.py}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_data-2.py}
 \end{tcb}
 
+\vspace{-25pt}
 \subsection{Automatisation}
 % \vspace{-10pt}
 \subsubsection{Fonctions personnelles}
-\vspace{-10pt}
+% \vspace{-10pt}
 \begin{tcb}[breakable](code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-1.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-1.py}
 \end{tcb}
 
 \vspace{-25pt}
 \subsubsection{Boucles \texttt{for}}
 \begin{tcb}(code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-2.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_auto-2.py}
 \end{tcb}
 
-\vspace{-15pt}
+\vspace*{-20pt}
 \subsection{Tracé de graphiques}
 \subsubsection{Minimal (Figure~\ref{fig:mini})}
 \begin{tcb}(code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-1.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-1.py}
+	\vspace*{-20pt}
 \end{tcb}
 
+\vspace{-15pt}
 \noindent
 \begin{minipage}[t]{.48\linewidth}
 	~
@@ -126,7 +156,8 @@
 
 \subsubsection{Complexe (Figure~\ref{fig:cplx})}
 \begin{tcb}[breakable](code)<lfnt>{Code}
-  \inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-2.py}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_plot-2.py}
 \end{tcb}
 
 \section{Simulations \textsc{Monte-Carlo}}
@@ -142,10 +173,10 @@ série de calculs avec des valeurs légèrement modifiées. On pourra alors
 finalement prendre la moyenne des valeurs calculées et leur écart-type pour
 avoir la propagation des incertitudes~!
 
-\begin{tcb}(ror){Cœur de la simulation}
+\begin{tcn}(ror){Cœur de la simulation}
 	Finalement, le cœur de la simulation revient (presque) à réaliser une estimation
 	d'incertitude de type A sur les valeurs calculées~!
-\end{tcb}
+\end{tcn}
 
 \subsection{Application~: mesure d'une distance focale}
 On peut mesurer la focale d'une lentille convergente par la méthode de
@@ -159,48 +190,38 @@ analytique ici, il peut être plus rapide de réaliser une propagation des
 incertitudes des valeurs $d$ et $D$ sur la valeur calculée de $f'$.
 
 Pour cela,
-\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-	\item On note les valeurs extrêmes de $d$ dans une liste \texttt{d\_xtr}~;
-	\item On note les valeurs extrêmes de $D$ dans une liste \texttt{D\_xtr}~;
+\begin{itemize}
+	\item On détermine les demi-largeurs $\Delta_d$ et $\Delta_D$. Si on possède
+	      des incertitudes-types, on aura $\Delta_d = u(d)\sqrt{3}$. Sinon, c'est
+	      la demi-largeur de la plage des mesures possibles.
 	\item On créé une liste \texttt{liste\_f} vide qui accueillera les valeurs de
 	      $f'$ calculées~;
 	\item On fixe $N \gtrsim \num{e4}$ le nombre de simulations~;
 	\item Pour $i$ allant de 0 à $N-1$~:
-	      \begin{itemize}[label=$\triangleright$, leftmargin=10pt]
+	      \begin{itemize}
 		      \item On tire aléatoirement une valeur de $d$ dans l'intervalle
-		            \texttt{D\_d}~;
+		            $[d-\Delta_d, d+\Delta_d]$. On appelle cette valeur
+		            \texttt{d\_simu}~;
 		      \item On tire aléatoirement une valeur de $D$ dans l'intervalle
-		            \texttt{D\_D}~;
+		            $[D-\Delta_D, D+\Delta_D]$. On appelle cette valeur
+		            \texttt{D\_simu}~;
 		      \item On calcule $f'$ avec ces données \textbf{simulées}~;
 		      \item On ajoute cette valeur simulée à la liste des valeurs de $f'$.
 	      \end{itemize}
-	\item On calcule alors la valeur moyenne des $f'$, qui sera la valeur la plus
-	      probable, et l'écart-type de la liste des $f'$, qui sera son
-	      incertitude-type.
+	\item On a alors $N$ valeurs de $f'$. La valeur la plus probable
+	      sera la moyenne, et son incertitude-type est l'écart-type de
+	      la liste des $f'$ simulés.
 \end{itemize}
-\texttt{np.random.uniform(min, max)} est la fonction \texttt{Python} qui permet
-de tirer aléatoirement une valeur entre \texttt{min} et \texttt{max}. Ainsi, en
-\texttt{Python}~:
-\begin{python}
-d = 12               # cm
-Delta_d = 0.1        # cm
-d_xtr = [11.9, 12.1] # cm
-D = 50               # cm
-Delta_D = 0.5        # cm
-D_xtr = [49.5, 50.5] # cm
+\begin{tcn}(defi)<lftt>"info"{Tirage aléatoire}
+	\texttt{np.random.uniform(min, max)} est la fonction \texttt{Python} qui permet
+	de tirer aléatoirement une valeur entre \texttt{min} et \texttt{max}.
+\end{tcn}
 
-N = 100000
-liste_f = []
-for i in range(0, N):
-d_simu = np.random.uniform(d_xtr[0], d_xtr[1])
-D_simu = np.random.uniform(D_xtr[0], D_xtr[1])
-f_simu = D_simu/4 - d_simu**2/(4*D_simu)
-liste_f.append(f_simu)
-
-fmoy = np.mean(liste_f)
-uf = np.std(liste_f, ddof=1)
-print(f'f = {fmoy:.2f} +- {uf:.2f}')
-\end{python}
+Ainsi, en \texttt{Python}~:
+\begin{tcb}[breakable](code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_mont-1.py}
+\end{tcb}
 
 \subsection{Application~: régression linéaire}
 Prenons l'exemple de la régression linéaire~:
@@ -208,28 +229,38 @@ Prenons l'exemple de la régression linéaire~:
 	y = ax+b
 \]
 On a mesuré $x$ et $y$, et on obtient $a$ et $b$ avec \texttt{np.polyfit(x, y,
-	1)}. Mais ce calcul ne donne pas l'incertitude sur $a$ et $b$. Les deux valeurs
-étant interdépendantes, on n'a pas d'expression analytique pour les
+	1)}. Mais ce calcul ne donne pas l'incertitude sur $a$ et $b$. Les deux
+valeurs étant interdépendantes, on n'a pas d'expression analytique pour les
 déterminer~: on va donc les simuler.
 
-Chaque valeur de $x$ est comprise dans un certain intervalle $x \pm \Delta_x$,
-et de même pour $y$. Plutôt que de prendre la valeur centrale et de calculer $a$
-et $b$ avec ces valeurs, on peut essayer de calculer $a$ et $b$ pour des valeurs
-de $x$ et de $y$ légèrement modifiées. On va donc réaliser un grand nombre de
-régressions linéaires en modifiant les valeurs de $x$ et $y$, et on prendra la
-moyenne des $a$ et $b$ comme étant la valeur centrale et leur écart-type pour
-leur incertitude.
+Chaque valeur des $x_i$ est comprise dans un certain intervalle $[x \pm
+			\Delta_x]$, et de même pour $y$. Plutôt que de prendre la valeur centrale et de
+calculer $a$ et $b$ avec ces valeurs, on peut essayer de calculer $a$ et $b$
+pour des valeurs de $x_i$ et de $y_i$ légèrement modifiées, à l'interieur de
+l'intervalle des valeurs possibles.
+
+On va donc réaliser un \textbf{grand nombre de régressions linéaires} en
+\textbf{prenant des valeurs $x_i$ et $y_i$ «~simulées~»}. On obtient une liste
+de valeurs possibles de $a$ et de $b$~; la moyenne des $a$ et $b$ sont alors la
+valeur moyenne de la liste, et l'incertitude-type sera l'écart-type de la liste.
 
 \subsection{En pratique}
-\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-	\item On détermine les demi-largeurs $\Delta_x$ et $\Delta_y$. Si ce sont des
-        incertitudes-types, on aura $\Delta_x = u(x)\sqrt{3}$. Sinon, c'est la
-        demi-largeur de la plage des mesures valables.
+\begin{itemize}
+	\item On détermine les demi-largeurs $\Delta_x$ et $\Delta_y$. Si on possède
+	      des incertitudes-types, on aura $\Delta_x = u(x)\sqrt{3}$. Sinon, c'est
+	      la demi-largeur de la plage des mesures possibles.
+	      \begin{center}
+		      \begin{tcn}[cnt](prop)"bomb"{Attention~!!}
+			      \Large Pour la régression linéaire, les $\Delta_x$ et $\Delta_y$
+			      doivent être des listes~! Il doit y avoir autant de valeurs de
+			      $\Delta$ que de valeurs de $x$~!
+		      \end{tcn}
+	      \end{center}
 	\item On fixe un nombre $N$ très grand.
 	\item On créé des listes vides \texttt{liste\_a} et \texttt{liste\_b} pour y
 	      stocker les futures valeurs des $a$ et des $b$ calculés.
 	\item Pour chaque $i$ compris entre $0$ et $N-1$~:
-	      \begin{itemize}[label=$\triangleright$]
+	      \begin{itemize}
 		      \item on prend \texttt{x\_simu} dans l'intervalle $[x-\Delta_x,
 					            x+\Delta_x]$~;
 		      \item on prend \texttt{y\_simu} dans l'intervalle $[y-\Delta_y,
@@ -239,38 +270,14 @@ leur incertitude.
 		      \item on les stocke dans \texttt{liste\_a} et \texttt{liste\_b}.
 	      \end{itemize}
 	\item On a alors $N$ valeurs de $a$ et de $b$~: les valeurs les plus probables
-	      sont les moyennes, et leurs incertitudes-types sont les les écarts-types des
+	      sont les moyennes, et leurs incertitudes-types sont les écarts-types des
 	      listes de $a$ et de $b$.
 \end{itemize}
 
 Ainsi, en \texttt{Python}~:
-\begin{python}
-x = np.array([0,1,2,3,4, 5,6,7,8,9,10])
-ux = 0.1*np.ones(len(x))   # incertitude de 0.1 sur chaque valeur
-
-y = np.array([2.20,2.00,1.60,1.55,1.16, 1.00,0.95,0.60,0.36,0.36,0.18])
-uy = 0.12*np.ones(len(y))  # incertitude de 0.12 sur chaque valeur
-
-Delta_x = ux*np.sqrt(3)    # demi-largeur x
-Delta_y = uy*np.sqrt(3)    # demi-largeur y
-
-N = 10000                  # nombre de régressions à effectuer
-
-liste_a, liste_b = [], []  # création des listes vides pour stocker les valeurs
-for i in range(N):
-x_simu = x + np.random.uniform(-Delta_x, Delta_x)
-y_simu = y + np.random.uniform(-Delta_y, Delta_y)
-
-a_simu, b_simu = np.polyfit(x_simu, y_simu, 1)
-
-liste_a.append(a_simu)
-liste_b.append(b_simu)
-
-a_moy, b_moy = np.mean(liste_a), np.mean(liste_b)
-ua, ub = np.std(liste_a, ddof=1), np.std(liste_b, ddof=1)
-
-print(f'Coef.directeur = {a_moy:.3e} +- {ua:.3e}')
-print(f"Ordonnée à l'origine = {b_moy:.3e} +- {ub:.3e}")
-\end{python}
+\begin{tcb}[breakable](code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{F05_python_mont-2.py}
+\end{tcb}
 
 \end{document}

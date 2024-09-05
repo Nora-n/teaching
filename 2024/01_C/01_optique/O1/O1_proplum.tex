@@ -19,16 +19,18 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{0}
 
-% \settype{book}
-% \settype{prof}
-% \settype{stud}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
 \chapter{Propagation de la lumi\`ere}
+
+\vspace*{\fill}
 
 \begin{tcn}(appl)<ctc>"somm"'t'{Sommaire}
 	\let\item\olditem
@@ -62,11 +64,11 @@
 	% \begin{tcn}(rapp)<ctc>'t'{Rappels}
 	% 	\tcblistof[\paragraph*]{rapp}{\hspace*{4.8pt}}
 	% \end{tcn}
-	% \begin{tcn}(prop)<ctc>'t'{Propriétés}
-	% 	\tcblistof[\paragraph*]{prop}{\hspace*{4.8pt}}
-	% 	\tcblistof[\paragraph*]{loi}{\hspace*{4.8pt}}
-	% 	% \tcblistof[\paragraph*]{theo}{\hspace*{4.8pt}}
-	% \end{tcn}
+	\begin{tcn}(prop)<ctc>'t'{Propriétés}
+		\tcblistof[\paragraph*]{prop}{\hspace*{4.8pt}}
+		\tcblistof[\paragraph*]{loi}{\hspace*{4.8pt}}
+		% \tcblistof[\paragraph*]{theo}{\hspace*{4.8pt}}
+	\end{tcn}
 	% \begin{tcn}(coro)<ctc>'t'{Corollaires}
 	%   \tcblistof[\paragraph*]{coro}{\hspace*{4.8pt}}
 	% \end{tcn}
@@ -77,18 +79,18 @@
 	% \begin{tcn}(inte)<ctc>'t'{Interprétations}
 	% 	\tcblistof[\paragraph*]{inte}{\hspace*{4.8pt}}
 	% \end{tcn}
-	% \begin{tcn}(impl)<ctc>'t'{Implications}
-	% 	\tcblistof[\paragraph*]{impl}{\hspace*{4.8pt}}
-	% \end{tcn}
+	\begin{tcn}(impl)<ctc>'t'{Implications}
+		\tcblistof[\paragraph*]{impl}{\hspace*{4.8pt}}
+	\end{tcn}
 	% \begin{tcn}(tool)<ctc>'t'{Outils}
 	% 	\tcblistof[\paragraph*]{tool}{\hspace*{4.8pt}}
 	% \end{tcn}
 	% \begin{tcn}(nota)<ctc>'t'{Notations}
 	%   \tcblistof[\paragraph*]{nota}{\hspace*{4.8pt}}
 	% \end{tcn}
-	\begin{tcn}(appl)<ctc>'t'{Applications}
-		\tcblistof[\paragraph*]{appl}{\hspace*{4.8pt}}
-	\end{tcn}
+	% \begin{tcn}(appl)<ctc>'t'{Applications}
+	% 	\tcblistof[\paragraph*]{appl}{\hspace*{4.8pt}}
+	% \end{tcn}
 	% \begin{tcn}(rema)<ctc>'t'{Remarques}
 	%   \tcblistof[\paragraph*]{rema}{\hspace*{4.8pt}}
 	% \end{tcn}
@@ -132,12 +134,12 @@
 	% \begin{tcn}(nota)<ctc>'t'{Notations}
 	%   \tcblistof[\paragraph*]{nota}{\hspace*{4.8pt}}
 	% \end{tcn}
-	% \begin{tcn}(odgr)<ctc>'t'{Ordres de grandeur}
-	% 	\tcblistof[\paragraph*]{odgr}{\hspace*{4.8pt}}
-	% \end{tcn}
-	% \begin{tcn}(appl)<ctc>'t'{Applications}
-	% 	\tcblistof[\paragraph*]{appl}{\hspace*{4.8pt}}
-	% \end{tcn}
+	\begin{tcn}(odgr)<ctc>'t'{Ordres de grandeur}
+		\tcblistof[\paragraph*]{odgr}{\hspace*{4.8pt}}
+	\end{tcn}
+	\begin{tcn}(appl)<ctc>'t'{Applications}
+		\tcblistof[\paragraph*]{appl}{\hspace*{4.8pt}}
+	\end{tcn}
 	% \begin{tcn}(rema)<ctc>'t'{Remarques}
 	%   \tcblistof[\paragraph*]{rema}{\hspace*{4.8pt}}
 	% \end{tcn}
@@ -152,7 +154,9 @@
 	\end{tcn}
 \end{tcn}
 
-% \newpage
+\vspace*{\fill}
+
+\newpage
 
 \section{L'onde lumineuse}
 
@@ -198,21 +202,21 @@ En tant qu'onde électromagnétique, la lumière n'est pas une onde mécanique
 nécessitant un milieu matériel pour se propager\footnote{À la différence d'une
 	vague sur l'eau ou d'une corde de guitare qui se propagent sur un milieu
 	matériel.}.
-\begin{tcb*}(defi){Définition}
+\begin{tcb*}(defi){Célérité de la lumière}
 	Nous appelons \textit{célérité} de la lumière \textbf{dans le vide}, et
 	la notons $c$, la vitesse de l'onde lumineuse.
 \end{tcb*}
-\begin{tcb*}[sidebyside](odgr){Valeur}
+\begin{tcb*}[sidebyside](odgr)<lftt>{Célérité de la lumière}
 	La valeur de $c$ est fixée par définition\footnote{Elle n'est donc
 		théoriquement plus mesurable, puisque les mesures de distances se basent sur
-		la valeur de la célérité de la lumière}, telle que
+		la valeur de la célérité de la lumière.}, telle que
 	\[c = \SI{2.99792458e8}{m.s^{-1}}\]
 	\tcblower
 	Nous utiliserons et retiendrons cependant la valeur
 	\[
-		\bsw{
+		\psw{%
 			\boxed{c = \SI{3.00e8}{m.s^{-1}}}
-		}
+		}%
 	\]
 \end{tcb*}
 
@@ -222,81 +226,80 @@ Elle peut cependant se propager dans certains milieux matériels transparents,
 comme l'air, l'eau, le verre… Dans le cadre de la physique de cette année, nous
 étudierons des milieux particuliers~:
 
-\begin{tcb*}(defi){Définition~: milieu transparent linéaire homogène isotrope (TLHI)}
+\begin{tcb*}[list entry={\lte Milieu TLHI}](defi){Milieu transparent linéaire homogène isotrope (TLHI)}
 	\begin{itemize}[leftmargin=66pt]
-		\item[\textbf{Transparent}] : \bsw{
-				qui laisse passer la lumière~;
-			}
-		\item[\textbf{Linéaire}] : \bsw{
-				dont les sorties sont proportionnelles aux
-				entrées~;
-			}
-		\item[\textbf{Homogène}] : \bsw{
-				dont les propriétés physiques sont
-				constantes en tout point du milieu~;
-			}
-		\item[\textbf{Isotrope}] : \bsw{
-				dont les propriétés physiques ne
-				dépendent pas de la direction de la lumière dans le milieu.
-			}
+		\olditem[\textbf{Transparent}] : \psw{%
+			qui laisse passer la lumière~;
+		}%
+		\olditem[\textbf{Linéaire}] : \psw{%
+			dont les sorties sont proportionnelles aux
+			entrées~;
+		}%
+		\olditem[\textbf{Homogène}] : \psw{%
+			dont les propriétés physiques sont
+			constantes en tout point du milieu~;
+		}%
+		\olditem[\textbf{Isotrope}] : \psw{%
+			dont les propriétés physiques ne
+			dépendent pas de la direction de la lumière dans le milieu.
+		}%
 	\end{itemize}
 \end{tcb*}
 
 Lorsque la lumière passe dans un tel milieu, sa vitesse \textbf{diminue}. Nous
 caractérisons cette diminution \textit{via} la définition de l'indice optique~:
 
-\begin{tcb*}[sidebyside](defi){Définition~: indice optique}
+\begin{tcb*}[sidebyside](defi){Indice optique}
 	Nous appelons \textit{indice optique} la grandeur associée à un milieu
 	transparent et caractérisant la \textbf{vitesse de la lumière en son sein},
 	telle que~:
 	\[
-		\bsw{
+		\psw{%
 			\boxed{n = \frac{c}{v}}
-		}
+		}%
 	\]
 	\tcblower
 	\tcbsubtitle{\fatbox{Unités}}
 
-	\bsw{
+	\psw{%
 		En tant que rapport de deux grandeurs de même unité, l'indice optique
 		n'a pas d'unité.
-	}
+	}%
 \end{tcb*}
 
-\begin{tcb*}[lfnt](rema){Remarque}
+\begin{tcb}[lfnt](rema)<lftt>{Valeur minimale d'indice optique}
 	Étant donné que la vitesse de la lumière \textbf{dans le vide} est
 	absolue et indépassable, la vitesse de la lumière dans un milieu
 	transparent ne peut qu'être plus petite, et donc
 	\begin{center}
-		\bsw{
+		\psw{%
 			\fbox{
 				\textbf{l'indice optique est toujours > 1}
-			}
-		}
+			}%
+		}%
 	\end{center}
-\end{tcb*}
+\end{tcb}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
-
-	\begin{tcb*}(impl){Implication}
+	\begin{tcb}(impl){Vitesse et indice}
 		Par la définition de l'indice optique, nous déduisons l'expression de la
 		vitesse de la lumière dans un milieu par~:
 		\[
-			\bsw{
+			\psw{%
 				\boxed{v = \frac{c}{n}}
-			}
+			}%
 		\]
-	\end{tcb*}
-	\begin{tcb*}(odgr)'r'{Ordre de grandeur}
+	\end{tcb}
+	\begin{tcb*}(odgr)'r'{$n$, $v$}
 		\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lS[table-format=1.2]S[table-format=1.2e1]@{}}
 			\toprule
 			Milieu  & $n$  & $v [\si{m.s^{-1}}]$ \\
 			\midrule
-			Vide    & \bsw{\num{1}}    & \bsw{\num{3.00e8}} \\
-			Air     & \bsw{\num{1.00}} & \bsw{\num{3.00e8}} \\
-			Eau     & \bsw{\num{1.33}} & \bsw{\num{2.30e8}} \\
-			Verre   & \bsw{\num{1.5}}  & \bsw{\num{2.00e8}} \\
-			Diamant & \bsw{\num{2.4}}  & \bsw{\num{1.25e8}} \\
+			Vide    & \psw{\num{1}}    & \psw{\num{3.00e8}} \\
+			Air     & \psw{\num{1.00}} & \psw{\num{3.00e8}} \\
+			Eau     & \psw{\num{1.33}} & \psw{\num{2.30e8}} \\
+			Verre   & \psw{\num{1.5}}  & \psw{\num{2.00e8}} \\
+			Diamant & \psw{\num{2.4}}  & \psw{\num{1.25e8}} \\
 			\bottomrule
 		\end{tabular*}
 	\end{tcb*}
@@ -314,51 +317,55 @@ d'autres phénomènes.
 
 \subsection{Longueur d'onde d'une onde sinusoïdale}
 
-\begin{tcb*}(defi){Définition~: onde sinusoïdale}
-	\bsw{
+\begin{tcb*}(defi){Onde sinusoïdale}
+	\psw{%
 		Une onde sinusoïdale est une onde \textbf{monochromatique}, ce qui
 		signifie «~une seule couleur~». Elle est donc décrite par une unique
 		valeur de longueur d'onde ou de fréquence, et non pas comme une
 		superposition.
-	}
+	}%
 \end{tcb*}
 
-\begin{tcb*}(exem){Exemples}
-	Une lumière rouge est monochromatique, et est décrite par une onde lumineuse
-	de longueur d'onde $\approx \SI{700}{nm}$. Une lumière \textbf{blanche} ne
-	l'\textbf{est pas}, c'est une \textit{superposition} d'ondes sinusoïdales sur
-	le domaine du visible.
-\end{tcb*}
+\begin{tcb}(exem)<lftt>{Ondes monochromatiques ou non}
+	\begin{itemize}
+		\item Une lumière rouge est monochromatique, et est décrite par une onde
+		      lumineuse de longueur d'onde $\approx \SI{700}{nm}$.
+		\item Une lumière \textbf{blanche} ne
+		      l'\textbf{est pas}, c'est une \textit{superposition} d'ondes
+		      sinusoïdales sur le domaine du visible.
+	\end{itemize}
+\end{tcb}
 
-\begin{tcb*}(prop){Propriété}
+\begin{tcb*}(prop){Couleur d'une onde}
 	Une onde lumineuse se caractérise par sa fréquence, appelée $f$ ou
 	$\nu$\footnote{Se lit «~nu~».}. En effet, \textbf{la fréquence d'une
-		onde est indépendante du milieu traversé}. En revanche, sa
-	\textbf{longueur d'onde en dépend}.
+		onde est indépendante du milieu traversé}.
+	\smallbreak
+	En revanche, sa \textbf{longueur d'onde en dépend}.
 \end{tcb*}
 
-\begin{tcb*}[sidebyside](impl){Implication}
+\begin{tcb*}[sidebyside](impl){Longueurs d'onde $\lambda$ et $\lambda_0$}
 	Avec l'analyse dimensionnelle, on trouve directement qu'une longueur
 	d'onde $\lambda$ doit s'écrire
-	\bsw{
+	\psw{%
 		\[
 			\lambda = \frac{v_{\rm onde}}{f_{\rm onde}}
 		\]
-	}
+	}%
 	\tcblower
 	Or, dans le vide $v_{\rm onde} = c$, et dans un milieu TLHI d'indice
 	optique $n$, $v_{\rm onde} = \frac{c}{n}$~; ainsi avec $\lambda_0$ dans
 	le vide~:
-	\bsw{
+	\psw{%
 		\[
 			\boxed{\lambda_0 = \frac{c}{f}}
 			\quad\text{et}\quad
 			\boxed{\lambda = \frac{c}{n\times f} = \frac{\lambda_0}{n}}
 		\]
-	}
+	}%
 \end{tcb*}
 
-\begin{tcb*}(ror){À retenir}
+\begin{tcb*}[cnt, fontupper=\large](ror){Couleur d'une onde lumineuse}
 	Ainsi, quand on parle de la longueur d'onde d'une couleur, on parle en réalité
 	de sa longueur d'onde \textit{dans le vide}.
 \end{tcb*}
@@ -370,12 +377,12 @@ d'autres phénomènes.
 	\label{fig:lambda_vis}
 \end{figure}
 
-\begin{tcb*}(exem){Exercice}
+\begin{tcb*}(appl)<lftt>{Laser rouge dans du verre}
 	Un laser rouge émet un rayonnement de longueur d'onde dans le vide
 	$\lambda_0 = \SI{633}{nm}$. Déterminer sa longueur d'onde $\lambda$ dans du
 	verre, d'indice optique $n = \num{1.5}$. Sa couleur change-t-elle~?
 	\tcblower
-	\bsw{
+	\psw{%
 		D'après ce qui précède, on a
 		\begin{gather*}
 			\boxed{\lambda = \frac{\lambda_0}{n}}
@@ -390,11 +397,11 @@ d'autres phénomènes.
 			\mathrm{A.N.~:}\enskip
 			\xul{
 				\lambda = \SI{422}{nm}
-			}
+			}%
 		\end{gather*}
 		Cependant, \textbf{sa couleur ne change pas} puis qu'\xul{une onde est
 			caracétrisée par sa fréquence}, qui ne change pas.
-	}
+	}%
 \end{tcb*}
 
 \section{Sources lumineuses primaires}
@@ -412,15 +419,15 @@ fréquence (ou longueur d'onde dans le vide).
 Les sources primaires sont classées selon leur contenu spectral
 qui découle du type de processus d'émission lumineuse~:
 \begin{itemize}[leftmargin=120pt]
-	\item[\textbf{Sources thermiques}] : \bsw{
-			agitation thermique des atomes~;
-		}
-	\item[\textbf{Sources spectrales}] : \bsw{
-			excitation électrique des atomes~;
-		}
-	\item[\textbf{Sources LASER}] : \bsw{
-			optimisation de l'émission stimulée de photons.
-		}
+	\olditem[\textbf{Sources thermiques}] : \psw{%
+		agitation thermique des atomes~;
+	}%
+	\olditem[\textbf{Sources spectrales}] : \psw{%
+		excitation électrique des atomes~;
+	}%
+	\olditem[\textbf{Sources LASER}] : \psw{%
+		optimisation de l'émission stimulée de photons.
+	}%
 \end{itemize}
 
 \subsection{Les sources thermiques}
@@ -429,18 +436,18 @@ L'agitation thermique des atomes émet un rayonnement électromagnétique dépen
 de sa température~: c'est le type de rayonnement du Soleil ou des ampoules à
 incandescence (chauffage d'un métal qui brille).
 
-\begin{tcb*}(defi){Caractéristiques du rayonnement d'un corps chaud}
-	\bsw{
+\begin{tcb*}(defi){Rayonnement d'un corps chaud}
+	\psw{%
 		Le spectre d'émission d'une source thermique est une courbe
 		\textbf{continue}, étalée autour d'une longueur d'onde d'émission maximale
 		$\lambda_{\max}$. Plus la température augmente, plus le spectre se déplace
 		vers une fréquence élevée (ou longueur d'onde faible)~: une étoile bleue est
 		bien plus chaude qu'une étoile rouge.
-	}
+	}%
 
 \end{tcb*}
 
-\begin{tcb*}[sidebyside, lefthand ratio=.5](exem){Exemples}
+\begin{tcb}[sidebyside, lefthand ratio=.5](exem)<lftt>{Rayonnements de corps chauds}
 	\begin{itemize}
 		\item À température ambiante ($T \approx \SI{300}{K}$), un corps émet
 		      dans l'infrarouge (c'est le principe d'une caméra infrarouge)~;
@@ -468,7 +475,7 @@ incandescence (chauffage d'un métal qui brille).
 			températures.}
 		\label{fig:cps_chaud}
 	\end{center}
-\end{tcb*}
+\end{tcb}
 
 \subsection{Les sources spectrales}
 
@@ -479,16 +486,16 @@ fondamental, ils émettent des photons à une énergie précise correspondant à
 différence des niveaux d'énergie quantiques de l'élément ($f = \frac{\Delta
 		E}{h}$~; voir chapitre introduction à la physique quantique).
 
-\begin{tcb*}(defi){Caractéristiques du rayonnement spectral}
-	\bsw{
+\begin{tcb*}(defi){Rayonnement spectral}
+	\psw{%
 		Le spectre d'émission d'un rayonnement spectral est composé de
 		\textbf{pics d'intensités} faiblement élargis. Les longueurs d'onde de ces
 		pics sont \textbf{caractéristiques de l'élément} excité~; c'est de cette
 		manière qu'on peut déterminer la composition atmosphérique des exoplanètes
 		ou caractériser les étoiles.
-	}
+	}%
 \end{tcb*}
-\begin{tcb*}[sidebyside, righthand width=.5\linewidth](exem){Exemples}
+\begin{tcb}[sidebyside, righthand width=.5\linewidth](exem)<lftt>{Sources spectrales}
 	On trouve des lampes au néon, de couleur rouge~; des lampes au mercure, de
 	couleur bleue~; des lampes à sodium, dans l'orange… On utilisera
 	principalement ces deux dernières en laboratoire.
@@ -505,7 +512,7 @@ différence des niveaux d'énergie quantiques de l'élément ($f = \frac{\Delta
 		\captionof{figure}{Spectre d'émission d'une lampe à vapeur de mercure.}
 		\label{fig:lamp_spec}
 	\end{center}
-\end{tcb*}
+\end{tcb}
 
 \subsection{Le LASER}
 LASER est l'acronyme de \textit{Light Amplification by Stimulated Emission of
@@ -518,37 +525,38 @@ La lumière passe au travers du milieu qui réémet de la lumière sans atténue
 première, et grâce au miroir le tout est réfléchi pour permettre de nombreux
 aller-retours, amplifiant l'intensité lumineuse à chaque passage.
 
-\begin{tcb*}(defi){Caractéristiques du rayonnement LASER}
-	\bsw{
+\begin{tcb*}(defi){Rayonnement LASER}
+	\psw{%
 		Le spectre du laser ne contient qu'\textbf{une seule raie extrêmement
 			fine}, bien plus fine que celle des sources spectrales. C'est l'exemple le
 		plus proche d'une réelle source monochromatique.
-	}
+	}%
 \end{tcb*}
 
-\begin{tcb*}[sidebyside, righthand width=.5\linewidth](exem){Exemple}
+\begin{tcb}[sidebyside, righthand width=.5\linewidth](exem)<lftt>{Spectre d'un
+			LASER}
 	Un laser hélium-néon donne un faisceau rouge de longueur d'onde dans le vide
 	$\lambda_0 = \SI{632.8}{nm}$.
 	\tcblower
 	\begin{center}
 		\pgfspectra[lines={632.8},
-		axis, axis color=white, axis font color=black,
-		axis ticks=4, axis unit precision=2,
+		axis, axis color=white, axis font color=black, axis ticks=4, axis unit
+		precision=2,
 		axis label text={Longueur d'onde [$\si{nm}$]},
-		back=white,
-		label, label position=north west,
+		back=white, label, label position=north west,
 		label before text=Spectre d'émission d'un laser \ce{He-Ne}]
 		\captionof{figure}{Spectre d'émission d'un laser hélium-néon.}
 		\label{fig:laser_spec}
 	\end{center}
-\end{tcb*}
-\begin{tcb*}(impo){Attention}
+\end{tcb}
+\begin{tcb*}(impo){LASER en TP}
 	Si la puissance totale du faisceau est communément assez faible ($P \approx
 		\SI{1}{mW}$), sa surface l'est également ($S \approx \SI{1}{mm^2}$). La
 	puissance \textit{surfacique} est donc en réalité très grande, et
-	particulièrement dangereuse pour l'œil. On veillera donc à ne jamais le
-	diriger vers un œil, mais aussi à éviter toute réflexion involontaire
-	(notamment sur tout métal~: bijou, tige de support…).
+	particulièrement dangereuse pour l'œil.
+	\smallbreak
+	On veillera donc à ne jamais le diriger vers un œil, mais aussi à éviter toute
+	réflexion involontaire (notamment sur tout métal~: bijou, tige de support…).
 \end{tcb*}
 
 \end{document}

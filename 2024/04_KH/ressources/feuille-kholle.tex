@@ -34,15 +34,15 @@
 \newcommand{\watermark}[3]{
 	\setlength{\unitlength}{1pt}
 	\begin{picture}(0,0)
-		\put(#1,#2){\textcolor{gray!10!white}{#3}}
+		\put(#1,#2){\textcolor{gray!20!white}{#3}}
 	\end{picture}
 }
 
 %%% circled
 \usepackage{tikz}
 \newcommand*\circled[1]{%
-	\tikz[]{%
-		\node[shape=circle, draw, inner sep=1pt, scale=10, anchor=center] (char) {#1};
+	\tikz[baseline=(char.base)]{%
+		\node[shape=circle, draw, inner sep=1pt, scale=1, anchor=center] (char) {#1};
 	}%
 }
 \begin{document}
@@ -51,7 +51,7 @@
 			\begin{tabularx}{\linewidth}{|Y*{11}{|Y}}\hline
 				\rowcolor{lightgray!40}
 				\mcl{3}{|}{X|}{
-					Semaine~:
+					Kh.\ \circled{\n}, sem.~:
 				} &
 				\mcl{6}{}{X|}{
 					Interrogataire~:
@@ -81,7 +81,7 @@
 				} &
 				\mcl{8}{}{X|}{
 					\underline{Commentaires}~:
-					\watermark{-60}{-40}{\circled{\n}}
+					% \watermark{-130}{125}{\circled{\n}}
 				}   \\[2.6cm]\hline
 
 				\mcl{6}{|}{X|}{

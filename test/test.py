@@ -175,12 +175,29 @@ import matplotlib.pyplot as plt
 # print(f"t_egal = {t_egal/60:.2e} min")
 
 # TDN1 Taylor
-R = 70  # m
-t = 5.0e-3  # s
-rho = 1.2  # kg.m⁻³
-E = R**5 * t**-2 * rho
-print(f"E = {E:.2e} J")
-conv = 4.18e9  # J/T
-E_david = 7.7e13  # J
-print(f"E en T TNT = {E/conv:.2e} T de TNT")
-print(f"E_david en T TNT = {E_david/conv:.2e} T de TNT")
+# R = 70  # m
+# t = 5.0e-3  # s
+# rho = 1.2  # kg.m⁻³
+# E = R**5 * t**-2 * rho
+# print(f"E = {E:.2e} J")
+# conv = 4.18e9  # J/T
+# E_david = 7.7e13  # J
+# print(f"E en T TNT = {E/conv:.2e} T de TNT")
+# print(f"E_david en T TNT = {E_david/conv:.2e} T de TNT")
+
+# TDO3 œil réduit
+OA = -1.0  # m
+OAp = 22.3e-3  # m
+V = (OA - OAp) / (OAp * OA)
+print(f"V = {V:.2e} m⁻¹")
+gamma = OAp / OA
+print(f"gamma = {gamma:.2e}")
+AB = 10  # cm
+ABp = gamma * AB
+print(f"A'B' = {ABp:.2f} cm")
+
+# TDO3 vidéoproj
+OAp = 4.0  # m
+OFp = 5.0e-2  # m
+OA = (OAp * OFp) / (OFp - OAp)
+print(f"OA = {OA:.3f} m")

@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	node {$\bullet$}
+	node [left] (A) {A}
+	to[R, name=R1, v^>=$U_1$, i^<=$I$, !vi]
+	(2,0) coordinate (C)
+	to[R, name=R2, v^>=$U_2$, !vi]
+	(4,0)
+	node {$\bullet$}
+	node [right] (B) {B};
+	\node[] at (R1.center) {$R_1$};
+	\node[] at (R2.center) {$R_2$};
+	\coordinate (T) at (2,-.5);
+	\draw[color=red!70] (B|-T) -- (A|-T)
+	node [midway, below] {$U\ind{brch}$}
+	node[currarrow, pos=0] {} ;
+	\foreach \n in {1, 2}{
+			\varronly{R\n}
+			;}
+	\iarronly{R1}
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}
+	\draw
+	(0,0)
+	to[R, name=r, i>_=$i$, v^<=$ri$, !vi]
+	(2,0)
+	to[L, l_=$L$, name=L, v^<=$L \dv{i}{t}$, !vi]
+	(4,0);
+	\varronly{r} \varronly{L}
+	\iarronly{r}
+	\node[] at (r.center) {$r$};
+	\draw[color=red!70]
+	(0,-.5) -- (4,-.5)
+	node [midway, below] {$u = L \dv{i}{t} + ri$}
+	node [currarrow, pos=0, rotate=180] {};
+\end{circuitikz}
+\end{document}

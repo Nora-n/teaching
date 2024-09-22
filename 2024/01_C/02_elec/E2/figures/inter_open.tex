@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	% node {$\bullet$}
+	node [left] (A) {A}
+	to[R, name=R1]
+	(2,0)
+	% node {$\bullet$}
+	node [right] (B) {B};
+	\node[] at (R1.center) {$\infty$};
+	% \node[] at (R2.center) {$R_2$};
+	% \draw[dashed, ForestGreen]
+	% ([shift={(0.25,0.25)}]A.east) rectangle
+	% ([shift={(-0.25,-0.25)}]B.west);
+	\node[right=1em] (E) at (B) {$\equiv$};
+	\draw[shift={($(E)+(2em,0)$)}]
+	(0,0)
+	% node {$\bullet$}
+	node [left] (A) {A}
+	to[cosw, name=R3, v_<={$U \neq 0$}, i^>={$i = 0$}, !vi]
+	(2,0)
+	% node {$\bullet$}
+	node [right] (B) {B};
+	% \node[] at (R3.center) {$R_{\rm eq}$};
+	% \foreach \n in {1, ..., 3}{
+	\varronly{R3}
+	% ;}
+	% \foreach \n in {1, 3}{
+	\iarronly{R3}
+	% ;}
+\end{circuitikz}
+\end{document}

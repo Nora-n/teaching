@@ -17,16 +17,16 @@
 % \toggletrue{student}
 % \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
 
 \hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{1}
 
-% \settype{book}
-% \settype{prof}
-% \settype{stud}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
 \chapter{Dipôles et associations}
 
@@ -163,12 +163,12 @@
 	% \begin{tcn}[nsp](exem)<ctc>'t'{Exemples}
 	% 	\tcblistof[\paragraph*]{exem}{\hspace*{4.8pt}}
 	% \end{tcn}
-	\begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
-		\tcblistof[\paragraph*]{ror}{\hspace*{4.8pt}}
-	\end{tcn}
-	% \begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
-	% 	\tcblistof[\paragraph*]{impo}{\hspace*{4.8pt}}
+	% \begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
+	% 	\tcblistof[\paragraph*]{ror}{\hspace*{4.8pt}}
 	% \end{tcn}
+	\begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
+		\tcblistof[\paragraph*]{impo}{\hspace*{4.8pt}}
+	\end{tcn}
 \end{tcn}
 
 \vspace*{\fill}
@@ -199,19 +199,20 @@
 	\begin{tcb}[label=exem:dipcara](exem)<rgtt>'r'{}
 		\begin{center}
 			\sswitch{%
-				\includegraphics[width=\linewidth, draft=true]{carac_gen}
+				\includegraphics[width=.8\linewidth, draft=true]{carac_gen}
 			}{%
-				\includegraphics[width=\linewidth]{carac_gen}
+				\includegraphics[width=.8\linewidth]{carac_gen}
 			}%
+			\captionof{figure}{}
 		\end{center}
 	\end{tcb}
 \end{tcbraster}
 
+\vspace{-10pt}
 \subsection{Classification de dipôles}
-\begin{tcb*}[label=def:actifpassif,
-		tabularx={Y|Y|Y}]
+\begin{tcb*}[label=def:actifpassif, fontupper=\small, tabularx={Y|Y|Y}]
 	(defi){Vocabulaire des caractéristiques}
-	\vspace{15pt}
+	\vspace{10pt}
 	\tcbsubtitle{\fatbox{Passif}}
 	\begin{itemize}
 		\item \psw{%
@@ -220,22 +221,22 @@
 		\item \psw{%
 			      \textbf{Passe par (0,0)}.
 		      }%
-		      % \item \psw{%
-		      % 	      Convention \textbf{récepteur}.
-		      %       }%
 	\end{itemize}
 	&
+	\vspace{-10pt}
 	\tcbsubtitle{\fatbox{Linéaire}}
 	\psw{%
 		Un dipôle est dit \textbf{linéaire} si sa caractéristique est une
 		\textbf{droite}.
 	}%
 	&
+	\vspace{-10pt}
 	\tcbsubtitle{\fatbox{Symétrique}}
 	\psw{%
 		\textbf{Symétrique} $\Lra$ \textbf{impaire}. \fbox{Symétrique $\Ra$ passif}.
 	}%
 	\\
+	\vspace{-10pt}
 	\tcbsubtitle{\fatbox{Actif}}
 	\begin{itemize}
 		\item \psw{%
@@ -244,17 +245,16 @@
 		\item \psw{%
 			      \textbf{Passe pas par (0,0)}.
 		      }%
-		      % \item \psw{%
-		      % 	      Convention \textbf{générateur}.
-		      %       }%
 	\end{itemize}
 	&
+	\vspace{-10pt}
 	\tcbsubtitle{\fatbox{Non-linéaire}}
 	\psw{%
-		Un dipôle est dit \textbf{non-linéaire} si sa caractéristique n'est
+		\textbf{Non-linéaire} si sa caractéristique n'est
 		\textbf{pas une droite}.
 	}%
 	&
+	\vspace{-10pt}
 	\tcbsubtitle{\fatbox{Asymétrique}}
 	\psw{%
 		\textbf{Asymétrique} si sa caractéristique n'est \textbf{pas impaire}.
@@ -292,6 +292,12 @@
 		      }%
 	\end{itemize}
 \end{tcb*}
+
+\begin{tcb*}[cnt, bld](impo)"bomb"{Relation courant-tension}
+	En convention \textbf{générateur}, il faut donc prendre \textbf{l'opposé} de
+	la relation~!
+\end{tcb*}
+
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
 	\begin{tcb*}[label=impl:resistance](impl){Puissance de $R$}
 		En utilisant la caractéristique de la résistance et l'expression de la
@@ -330,27 +336,30 @@ La valeur de la résistance permet de quantifier à quel poin le courant
 circule ou non. Il y a alors deux situations extrêmes, celle pour $R = 0$ et
 celle pour $R = +\infty$, qui correspondent à deux dipôles.
 
-\begin{tcb*}[sidebyside](defi){Interrupteurs ouvert et fermé}
-	\tcbsubtitle{\fatbox{\textbf{Interrupteur ouvert}}}
-	\psw{%
-		\[
-			\boxed{R = +\infty}
-		\]
-	}%
-	\vspace{-15pt}
-	\tcblower
-	\tcbsubtitle{\fatbox{\textbf{Interrupteur fermé}}}
-	\psw{%
-		\[
-			\boxed{R = 0}
-		\]
-	}%
-	\vspace{-15pt}
-\end{tcb*}
+% \begin{tcb*}[sidebyside](defi){Interrupteurs ouvert et fermé}
+% 	\tcbsubtitle{\fatbox{\textbf{Interrupteur ouvert}}}
+% 	\psw{%
+% 		\[
+% 			\boxed{R = +\infty}
+% 		\]
+% 	}%
+% 	\vspace{-15pt}
+% 	\tcblower
+% 	\tcbsubtitle{\fatbox{\textbf{Interrupteur fermé}}}
+% 	\psw{%
+% 		\[
+% 			\boxed{R = 0}
+% 		\]
+% 	}%
+% 	\vspace{-15pt}
+% \end{tcb*}
 
 \begin{tcb*}[sidebyside](prop){Interrupteurs ouvert et fermé}
 	\tcbsubtitle{\fatbox{\textbf{Interrupteur ouvert}}}
 	\begin{itemize}
+		\item \psw{%
+			      $R = +\infty$
+		      }%
 		\item \psw{%
 			      $i = 0$~: un interrupteur ouvert \textbf{ne laisse pas passer le courant}.
 		      }%
@@ -359,14 +368,21 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 			      \textbf{tension non nulle}.
 		      }%
 	\end{itemize}
+	\vspace{-10pt}
+	\noindent
+	\hdashrule[0.5ex]{1\linewidth}{.5pt}{1mm}
 	\sswitch{%
 		\includegraphics[width=\linewidth, draft=true]{inter_open}
 	}{%
 		\includegraphics[width=\linewidth]{inter_open}
 	}%
+	\captionof{figure}{}
 	\tcblower
 	\tcbsubtitle{\fatbox{\textbf{Interrupteur fermé}}}
 	\begin{itemize}
+		\item \psw{%
+			      $R = 0$
+		      }%
 		\item \psw{%
 			      $i \neq 0$~: un interrupteur fermé \textbf{laisse passer le courant}.
 		      }%
@@ -375,11 +391,15 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 			      \textbf{tension est nulle}.
 		      }%
 	\end{itemize}
+	\vspace{-10pt}
+	\noindent
+	\hdashrule[0.5ex]{1\linewidth}{.5pt}{1mm}
 	\sswitch{%
 		\includegraphics[width=\linewidth, draft=true]{inter_close}
 	}{%
 		\includegraphics[width=\linewidth]{inter_close}
 	}%
+	\captionof{figure}{}
 \end{tcb*}
 
 \vspace{-10pt}
@@ -402,6 +422,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 			\includegraphics[width=\linewidth, draft=true]{rserie}
 		}{%
 			\includegraphics[width=\linewidth]{rserie}
+			\captionof{figure}{}
 		}%
 	\end{center}
 \end{tcb*}
@@ -443,6 +464,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		}{%
 			\includegraphics[width=\linewidth]{rpara}
 		}%
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 \begin{tcb*}[label=demo:rpara, sidebyside](demo){Association en parallèle}
@@ -463,6 +485,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 			\boxed{\dfrac{1}{R_{\equ}} = \dfrac{1}{R_1} + \dfrac{1}{R_2}}
 			\Lra
 			\boxed{R_{\equ} = \frac{R_1R_2}{R_1 + R_2}}
+			\qed
 		\]
 	}%
 \end{tcb*}
@@ -513,7 +536,9 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		}{%
 			\includegraphics[width=\linewidth]{exer_rasso}
 		}%
+		\captionof{figure}{}
 	\end{center}
+	\vspace{-30pt}
 \end{tcb*}
 
 \subsection{Les ponts diviseurs}
@@ -543,17 +568,19 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		}{%
 			\includegraphics[width=\linewidth]{rserie_divtens}
 		}%
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 \begin{tcb*}[label=demo:divtens](demo){Pont diviseur de tension}
-	On part de ce qui est constant dans le circuit, ici l'intensité~:
+	On part de ce qui est partagé dans le circuit, ici l'intensité~:
 	\psw{%
 		\begin{gather*}
 			I = \frac{U\ind{brch}}{R\ind{brch}}
-			\qor
+			\qet
 			I = \frac{U_k}{R_k}
 			\qqso
 			\boxed{U_k = \frac{R_k}{R\ind{brch}U\ind{brch}}}
+			\qed
 		\end{gather*}
 	}%
 	\vspace{-15pt}
@@ -561,7 +588,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 
 \subsubsection{Pont diviseur de courant}
 
-\begin{tcb*}[label=prop:divcour, sidebyside, righthand ratio=.3](prop){Pont diviseur de courant}
+\begin{tcb*}[label=prop:divcour, sidebyside, righthand ratio=.4](prop){Pont diviseur de courant}
 	Soit une maille parallèle d'intensité totale $I\ind{para}$ connue, de tension
 	$U\ind{para}$. Les branches parallèles sont composées de
 	résistances $R_k$. On cherche l'intensité $I_k$ d'une des résistances $R_k$ de
@@ -581,17 +608,19 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		}{%
 			\includegraphics[width=\linewidth]{divis_courant}
 		}%
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 \begin{tcb*}[label=demo:divcour](demo){Pont diviseur de courant}
-	On part de ce qui est constant dans le circuit, ici la tension~:
+	On part de ce qui est partagé dans le circuit, ici la tension~:
 	\psw{%
 		\begin{gather*}
 			U\ind{parr} = R\ind{parr}I\ind{parr}
-			\qor
+			\qet
 			U\ind{parr} = R_kI_k
 			\qqso
 			\boxed{I_k = \frac{R\ind{parr}}{R_k}I\ind{parr}}
+			\qed
 		\end{gather*}
 	}%
 	\vspace{-15pt}
@@ -607,12 +636,15 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 	du circuit électrique. Il est dit \textbf{idéal} si la tension imposée est
 	\textbf{constante}, quel que soit le courant débité.
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
 		\sswitch{%
-			\includegraphics[width=.8\linewidth, draft=true]{gconvg}
+			\includegraphics[width=.7\linewidth, draft=true]{gconvg}
 		}{%
-			\includegraphics[width=.8\linewidth]{gconvg}
+			\includegraphics[width=.7\linewidth]{gconvg}
 		}%
+		\vspace{-10pt}
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 
@@ -627,14 +659,15 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 	On parle de \textbf{générateur de Thévenin}, et $E_0$ est la \textbf{force
 		électromotrice}.
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
-		% \rotatebox{90}{%
 		\sswitch{%
-			\includegraphics[width=\linewidth, draft=true]{thevenin}
+			\includegraphics[width=.8\linewidth, draft=true]{thevenin}
 		}{%
-			\includegraphics[width=\linewidth]{thevenin}
+			\includegraphics[width=.8\linewidth]{thevenin}
 		}%
-		% }%
+		\vspace{-10pt}
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 
@@ -673,12 +706,15 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		\[ \boxed{r \ll R}\]
 	}%
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
 		\sswitch{%
-			\includegraphics[width=\linewidth, draft=true]{rsortie}
+			\includegraphics[width=.9\linewidth, draft=true]{rsortie}
 		}{%
-			\includegraphics[width=\linewidth]{rsortie}
+			\includegraphics[width=.9\linewidth]{rsortie}
 		}%
+		\vspace{-10pt}
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 \begin{tcb*}[label=demo:rsortie](demo){Résistance de sortie}
@@ -690,6 +726,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		\]
 		$U \neq E_0$ en général, mais si $R \gg r$ on a tout de même $U \approx
 			E_0$.
+		\hqed
 	}%
 \end{tcb*}
 
@@ -701,8 +738,15 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 	reste du circuit électrique. Il est dit \textbf{idéal} si le courant débité
 	est constant quelle que soit la tension à ses bornes.
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
-		\includegraphics[width=.8\linewidth]{gcourg}
+		\sswitch{%
+			\includegraphics[width=.7\linewidth, draft=true]{gcourg}
+		}{%
+			\includegraphics[width=.7\linewidth]{gcourg}
+		}%
+		\vspace{-10pt}
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 
@@ -716,12 +760,14 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 	}%
 	On parle de \textbf{générateur de Norton}.
 	\tcblower
+	\vspace{-15pt}
 	\begin{center}
 		\sswitch{%
-			\includegraphics[width=\linewidth, draft=true]{norton}
+			\includegraphics[width=.9\linewidth, draft=true]{norton}
 		}{%
-			\includegraphics[width=\linewidth]{norton}
+			\includegraphics[width=.9\linewidth]{norton}
 		}%
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 
@@ -758,12 +804,14 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		\[ \boxed{r_N \gg R}\]
 	}%
 	\tcblower
+	\vspace{-15pt}
 	\begin{center}
 		\sswitch{%
 			\includegraphics[width=.8\linewidth, draft=true]{rsortie_intens}
 		}{%
 			\includegraphics[width=.8\linewidth]{rsortie_intens}
 		}%
+		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 \begin{tcb*}[label=demo:rsortie](demo){Résistance de sortie}
@@ -773,6 +821,7 @@ celle pour $R = +\infty$, qui correspondent à deux dipôles.
 		\[ I = \frac{r_N}{r_N + R}I\]
 		$I \neq I_0$ en général, mais si $R \ll r_N$ on a tout de même $I \approx
 			I_0$.
+		\hqed
 	}%
 \end{tcb*}
 
@@ -886,7 +935,7 @@ pour les schémas suivants.
 	\end{isd}
 \end{tcb*}
 
-\begin{tcb*}[label=impo:ponts](ror){Utilisation des ponts}
+\begin{tcb*}[label=impo:ponts](impo){Utilisation des ponts}
 	\textbf{Attention} aux conditions d'application de ces formules~: résistances
 	\textbf{en série} pour le pont diviseur de \textbf{tension}, et en
 	\textbf{parallèle} pour le pont diviseur de \textbf{courant}.
@@ -906,10 +955,8 @@ utilisé dans les circuits les plus divers : microprocesseurs, mémoires, horlog
 
 \begin{tcb*}[label=def:condens, sidebyside, righthand ratio=.3](defi){Condensateur}
 	Un condensateur est un composant constitué de deux \textbf{surfaces
-		conductrices}\footnote{Ce sont souvent des plaques, parfois des demi-sphères
-		ou d'autres formes.} appelées \textit{armatures} et séparées par un
-	\textbf{matériau isolant}\footnote{Par exemple l'air ou du polyéthylène.}.
-	Son symbole est représenté ci-contre.
+		conductrices} appelées \textit{armatures} et séparées par un
+	\textbf{matériau isolant}. Son symbole est représenté ci-contre.
 	\tcblower
 	\begin{center}
 		\sswitch{%
@@ -925,24 +972,26 @@ utilisé dans les circuits les plus divers : microprocesseurs, mémoires, horlog
 Quand un courant traverse le condensateur, des charges s'accumulent sur
 les plaques~: si l'une est chargée $q$, l'autre est chargée $-q$.
 \begin{tcb*}[label=prop:Ccondens, sidebyside, righthand ratio=.3](prop){Charge et capacité}
-	\begin{isd}[righthand ratio=.3, sidebyside align=top]
-		La \textbf{tension à ses bornes} est \textbf{proportionnelle à $q$}, et on
-		appelle ce coefficient de proportionnalité sa \textbf{capacité} notée $C$.
-		On a donc
+	La \textbf{tension à ses bornes} est \textbf{proportionnelle à $q$}, et on
+	appelle ce coefficient de proportionnalité sa \textbf{capacité} notée $C$.
+	On a donc
+	\smallbreak
+	\begin{isd}[sidebyside align=top]
 		\psw{%
 			\[\boxed{q = Cu}\]
 		}%
-		\vspace*{-15pt}
-		\tcblower
-		\tcbsubtitle[before skip=\baselineskip,
-			colback=red!80!black,
-			colframe=red!80!black]{\fatbox{Unité}}
-		\psw{%
-			$C$ en Farad (F)
-		}%
 		\vspace{-15pt}
+		\tcblower
+		\vspace{-10pt}
+		\[
+			\text{Unité~:~}
+			\psw{%
+				\text{$C$ en Farad (F)}
+			}%
+		\]
 	\end{isd}
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
 		\sswitch{%
 			\includegraphics[width=.8\linewidth, draft=true]{condens_q}
@@ -950,10 +999,11 @@ les plaques~: si l'une est chargée $q$, l'autre est chargée $-q$.
 			\includegraphics[width=.8\linewidth]{condens_q}
 		}%
 		\captionof{figure}{}
+		\vspace{-10pt}
 	\end{center}
 \end{tcb*}
 
-\begin{tcb*}(odgr){Ordre de grandeur}
+\begin{tcb*}(odgr)<lftt>{Valeurs de capacités}
 	Le Farad est une «~grande~» unité~: on trouvera des valeurs entre le \si{mF}
 	(\SI{e-3}{F}) et le \si{pF} (\SI{e-12}{F})~:
 	\begin{itemize}
@@ -963,176 +1013,212 @@ les plaques~: si l'une est chargée $q$, l'autre est chargée $-q$.
 	\end{itemize}
 \end{tcb*}
 
-Pour caractériser le fonctionnement d'une capacité, on s'intéresse au lien entre
-son courant et sa tension, comme on le fait pour une résistance ($U = RI$). On
-remarque que~:
+Pour \textbf{caractériser} le fonctionnement d'une capacité, on s'intéresse au
+\textbf{lien} entre son \textbf{courant} et sa \textbf{tension}, comme on le
+fait pour une résistance ($U = RI$). On remarque que~:
 \begin{itemize}
-	\item si $i > 0$, des charges arrivent sur l'armature de gauche, la charge
-	      augmente donc la tension aussi~;
-	\item si $i < 0$, des charges repartent, la charge diminue donc la tension
-	      aussi~;
-	\item si $i = 0$, aucune charge ne bouge, la quantité de charge sur
-	      l'armature de gauche ne varie pas, la tension est constante.
+	\item si $i > 0$, \psw{%
+		      des charges arrivent sur l'armature de gauche, la charge
+		      augmente donc la tension aussi~;
+	      }%
+	\item si $i < 0$, \psw{%
+		      des charges repartent, la charge diminue donc la tension
+		      aussi~;
+	      }%
+	\item si $i = 0$, \psw{%
+		      aucune charge ne bouge, la quantité de charge sur l'armature
+		      de gauche ne varie pas, la tension est constante.
+	      }%
 \end{itemize}
 
-Cette relation entre le \textbf{signe de $i$} et la \textbf{variation de $u$}
-suggère que $i$ est relié à la dérivée de $u$. On a alors~:
+% Cette relation entre le \textbf{signe de $i$} et la \textbf{variation de $u$}
+% suggère que $i$ est relié à la dérivée de $u$. On a alors~:
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=prop:Ccarac](prop){Relation courant-tension}
-		Pour un condensateur \textbf{en convention récepteur}, l'intensité que
-		le traverse s'exprime par
-		\psw{%
-			\[\boxed{i = C \dv{u_C}{t}}\]
-		}%
-		\vspace{-15pt}
-	\end{tcb*}
-	\begin{tcb*}[label=demo:Ccarac](demo)'r'{Relation courant-tension}
-		Par définition de $i$ et de la charge,
-		\psw{%
-			\begin{DispWithArrows*}
-				i & = \dv{q}{t}
-				\Arrow{$q=Cu_C$}
-				\\
-				i & = C \dv{u_C}{t}
-			\end{DispWithArrows*}
-		}%
-		\vspace{-15pt}
-	\end{tcb*}
-\end{tcbraster}
+\begin{tcb*}[label=prop:Ccarac](prop){Relation courant-tension de $C$}
+	Pour un condensateur \textbf{en convention récepteur}, l'intensité que
+	le traverse s'exprime par
+	\psw{%
+		\[\boxed{i = C \dv{u_C}{t}}\]
+	}%
+	\vspace{-15pt}
+\end{tcb*}
+\begin{tcb*}[label=demo:Ccarac](demo){Relation courant-tension de $C$}
+	Par définition de $i$ et de la charge,
+	\psw{%
+		\begin{DispWithArrows*}
+			i & = \dv{q}{t}
+			\Arrow{$q=Cu_C$}
+			\\\Lra
+			i & = C \dv{u_C}{t}
+			\qed
+		\end{DispWithArrows*}
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
-\subsubsection{Cas particuliers}
+\subsubsection{Conditions limites}
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=impl:continuité](impl){Continuité}
-		Si $u_C$ présente une variation brusque, alors $ \dv{u_C}{t}$ devrait
-		être infini. Or, comme $i = C \dv{u_C}{t}$, ceci n'est pas possible
-		puisque ça impliquerait que le courant le soit. Ainsi,
-		\begin{framed}
-			\psw{%
-				La tension $u_C(t)$ aux bornes d'un condensateur ne peut pas
-				varier instantanément, c'est une fonction continue.
-			}%
-		\end{framed}
-	\end{tcb*}
-	\begin{tcb*}*[label=impl:permanent](impl)"limp"'r'{Régime permanent}
-		En régime permanent (continu), les tensions et courants ne dépendent pas
-		du temps. Alors $i = C \dv{u_C}{t} = 0$, ainsi
-		\begin{framed}
-			\psw{%
-				En régime permanent, le condensateur se comporte comme un
-				interrupteur ouvert et bloque le courant.
-			}%
-		\end{framed}
-	\end{tcb*}
-\end{tcbraster}
+\begin{tcb*}(prop){Conditions limites pour $C$}
+	\begin{enumerate}
+		\item La \textbf{tension} aux bornes d'un \textbf{condensateur} est
+		      \textbf{continue}~;
+		\item En régime \textbf{permanent}, le condensateur \textbf{bloque le
+			      courant}.
+	\end{enumerate}
+\end{tcb*}
+\begin{tcb*}(demo){Conditions limites pour $C$}
+	\begin{enumerate}
+		\item \psw{%
+			      Si $u_C$ présente une variation brusque, alors $\dv{u_C}{t}$
+			      devrait être infini. Or, comme $i = C \dv{u_C}{t}$, ceci n'est pas
+			      possible puisque ça impliquerait que le courant le soit.
+		      }%
+		\item \psw{%
+			      En régime permanent (continu), les tensions et courants ne dépendent
+			      pas du temps. Alors $i = C \dv{u_C}{t} = 0$~: c'est un
+			      \textbf{interrupteur ouvert}.
+		      }%
+	\end{enumerate}
+\end{tcb*}
+
+% \begin{tcbraster}[raster columns=2, raster equal height=rows]
+% 	\begin{tcb*}[label=impl:continuité](impl){Continuité}
+% 		\begin{framed}
+% 			\psw{%
+% 				La tension $u_C(t)$ aux bornes d'un condensateur ne peut pas
+% 				varier instantanément, c'est une fonction continue.
+% 			}%
+% 		\end{framed}
+% 	\end{tcb*}
+% 	\begin{tcb*}*[label=impl:permanent](impl)"limp"'r'{Régime continu}
+% 		En régime permanent (continu), les tensions et courants ne dépendent pas
+% 		du temps. Alors $i = C \dv{u_C}{t} = 0$, ainsi
+% 		\begin{framed}
+% 			\psw{%
+% 				En régime permanent, le condensateur se comporte comme un
+% 				interrupteur ouvert et bloque le courant.
+% 			}%
+% 		\end{framed}
+% 	\end{tcb*}
+% \end{tcbraster}
 
 \subsubsection{Associations}
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=prop:cserie](prop){Association en série}
-		Deux condensateurs $C_1$ et $C_2$ en série forment un dipôle équivalent de
-		capacité
-		\psw{%
-			\[
-				\boxed{\dfrac{1}{C_{\rm eq}} = \dfrac{1}{C_1} + \dfrac{1}{C_2}}
-			\]
+\begin{tcb*}[label=prop:cserie, sidebyside](prop){Association $C$ en série}
+	Deux condensateurs $C_1$ et $C_2$ en série forment un dipôle équivalent de
+	capacité
+	\psw{%
+		\[
+			\boxed{\dfrac{1}{C\ind{eq}} = \dfrac{1}{C_1} + \dfrac{1}{C_2}}
+		\]
+	}%
+	On dit qu'\textbf{en série, l'inverse des capacités s'ajoutent}.
+	\tcblower
+	\begin{center}
+		\sswitch{%
+			\includegraphics[width=.8\linewidth, draft=true]{cserie}
+		}{%
+			\includegraphics[width=.8\linewidth]{cserie}
 		}%
-		On dit qu'\textbf{en série, l'inverse des capacités s'ajoutent}.
-		\tcblower
-		\begin{center}
-			\sswitch{%
-				\includegraphics[width=\linewidth, draft=true]{cserie}
-			}{%
-				\includegraphics[width=\linewidth]{cserie}
-			}%
-			\captionof{figure}{}
-		\end{center}
-	\end{tcb*}
-	\begin{tcb*}[label=demo:cserie](demo)'r'{Association en série}
-		\psw{%
-			Entre les deux condensateurs se situe un fil. Or, il n'y a pas de
-			différence de potentiel sur un fil~: les deux points C et D sont au même
-			potentiel. On déduit ainsi
-			\begin{gather*}
-				u_{CD} = u_{C} - u_{D} = 0 \Lra q_2 - q_1 = 0
-				\\\Lra
-				\boxed{q_2 = q_1 = q}
-			\end{gather*}
-			et les condensateurs en série portent la même charge $q$. Ainsi,
-			\begin{DispWithArrows*}
-				u & = u_1 + u_2
-				\Arrow{$q=Cu$}
-				\\\Lra
-				u & = \frac{q}{C_1} + \frac{q}{C_2}
-				\\\Lra
-				u & = \left(\frac{1}{C_1} + \frac{1}{C_2}\right)q
-			\end{DispWithArrows*}
-			On a bien l'expression d'un unique condensateur de capacité
-			\fbox{$\frac{1}{C_{\rm eq}} = \frac{1}{C_1} + \frac{1}{C_2}$}
-		}%
-	\end{tcb*}
-\end{tcbraster}
+		\captionof{figure}{}
+	\end{center}
+\end{tcb*}
+\begin{tcb*}[label=demo:cserie](demo){Association $C$ en série}
+	On part ici de l'additivité des tensions~:
+	\psw{%
+		\begin{DispWithArrows*}
+			u & = u_1 + u_2
+			\CArrow{$\dv{t}\/(\cdot)$}
+			\\\Lra
+			\dv{u}{t} & = \dv{u_1}{t} + \dv{u_2}{t}
+			\Arrow{$\dv{u}{t} = \frac{i}{C\ind{eq}}$}
+			\\\Lra
+			\frac{i}{C\ind{eq}} & = \left(\frac{1}{C_1} + \frac{1}{C_2}\right)i
+			\Arrow{$\forall i$}
+			\\\Lra
+			\Aboxed{\frac{1}{C\ind{eq}} & = \frac{1}{C_1} + \frac{1}{C_2}}
+			\qed
+		\end{DispWithArrows*}
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=prop:cpara](prop){Association en parallèle}
-		Deux condensateurs $C_1$ et $C_2$ en dérivation forment un dipôle
-		équivalent de capacité
-		\psw{%
-			\[
-				\boxed{C_{\rm eq} = C_1 + C_2}
-			\]
+\begin{tcb*}[label=prop:cpara, sidebyside](prop){Association $C$ en parallèle}
+	Deux condensateurs $C_1$ et $C_2$ en dérivation forment un dipôle
+	équivalent de capacité
+	\psw{%
+		\[
+			\boxed{C\ind{eq} = C_1 + C_2}
+		\]
+	}%
+	On dit qu'\textbf{en parallèle, les capacités s'ajoutent}.
+	\tcblower
+	\begin{center}
+		\sswitch{%
+			\includegraphics[width=\linewidth, draft=true]{cpara}
+		}{%
+			\includegraphics[width=\linewidth]{cpara}
 		}%
-		On dit qu'\textbf{en parallèle, les capacités s'ajoutent}.
-		\tcblower
-		\begin{center}
-			\sswitch{%
-				\includegraphics[width=.7\linewidth, draft=true]{cpara}
-			}{%
-				\includegraphics[width=.7\linewidth]{cpara}
-			}%
-			\captionof{figure}{}
-		\end{center}
-	\end{tcb*}
-	\begin{tcb*}[label=demo:cpara](demo)'r'{Association en parallèle}
-		\psw{%
-			\[i = i_1+i_2\]
-			On utilise ensuite la relation courant-tension~:
-			\[
-				C_{\rm eq} \dv{u}{t} = C_1 \dv{u}{t} + C_2 \dv{u}{t}
-			\]
-			On a bien l'expression d'un unique condensateur de capacité
-			\[
-				\boxed{C_{\rm eq} = C_1 + C_2}
-			\]
-		}%
-	\end{tcb*}
-\end{tcbraster}
+		\captionof{figure}{}
+	\end{center}
+\end{tcb*}
+\begin{tcb*}[label=demo:cpara](demo){Association $C$ en parallèle}
+	On part ici de l'additivité des courants~:
+	\psw{%
+		\begin{DispWithArrows*}[]
+			i &= i_1 + i_2
+			\Arrow{$i = C\ind{eq}\dv{u}{t}$}
+			\\\Lra
+			C\ind{eq} \dv{u}{t} &= C_1 \dv{u}{t} + C_2 \dv{u}{t}
+			\Arrow{$\forall u$}
+			\\\Lra
+			\Aboxed{C\ind{eq} &= C_1 + C_2}
+			\qed
+		\end{DispWithArrows*}
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
+\vspace{-15pt}
 \subsubsection{Condensateur réel}
 
-\noindent
-\begin{minipage}[t]{.69\linewidth}
-	Dans la réalité, un condensateur possède des effets résistifs.
-	Les deux armatures d'un condensateur réel sont séparés par un matériau
-	qui conduit très légèrement le courant. Ainsi, un condensateur réel se
-	modélise par un condensateur idéal en parallèle avec une résistance $R_f$,
-	nommée résistance de fuite.
-	\smallbreak
-	L'ordre de grandeur de $R_f$ est de $\SI{e7}{\Omega}$
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.30\linewidth}
-	~
-	\vspace{-40pt}
+\begin{tcb*}[sidebyside, righthand ratio=.3](defi){Condensateur réel}
+	Dans la réalité, un condensateur possède des \textbf{effets résistifs}.
+	Les deux armatures d'un condensateur réel sont séparés par un matériau qui
+	conduit très légèrement le courant. Ainsi, un condensateur réel se
+	modélise par un \textbf{condensateur idéal} en \textbf{parallèle avec une
+		résistance} $R_f$, nommée résistance de fuite, avec
+	\psw{%
+		\[
+			\xul{R_f \approx \SI{e7}{\ohm}}
+		\]
+	}%
+	\vspace{-15pt}
+	\tcblower
 	\begin{center}
-		\includegraphics[width=\linewidth]{creel}
+		\sswitch{%
+			\includegraphics[width=\linewidth, draft=true]{creel}
+		}{%
+			\includegraphics[width=\linewidth]{creel}
+		}%
+		\vspace{-15pt}
 		\captionof{figure}{}
 		\label{fig:creel}
 	\end{center}
-\end{minipage}
+\end{tcb*}
 
+\vspace{-15pt}
 \subsubsection{Énergie stockée dans un condensateur}
-\begin{tcb*}(demo)<lfnt>{}
+
+\begin{tcb*}[label=prop:Ec](prop){Énergie stockée dans $C$}
+	\psw{%
+	\[
+		\boxed{\Ec_C(t) = \frac{1}{2}C u_C{}^2(t)}
+	\]
+	}%
+	\vspace{-10pt}
+\end{tcb*}
+
+\begin{tcb*}(demo){Énergie stockée dans $C$}
 	\textbf{En convention récepteur}, la puissance \textbf{reçue} est
 	\psw{%
 		\begin{DispWithArrows*}
@@ -1146,25 +1232,18 @@ suggère que $i$ est relié à la dérivée de $u$. On a alors~:
 	\leftcenters{\hspace{-12pt}Or, $\forall f$ fonction dérivable,}
 	{\psw{$\DS\boxed{f\times f' = \left( \frac{1}{2}f^2 \right)'}$}}
 	\smallbreak
-	Ainsi,
-	\psw{%
-		\[
+	\begin{gather*}
+		\beforetext{Ainsi,}
+		\psw{%
 			\Pc_{C} = \dv{t} \left( \frac{1}{2} Cu_C{}^2 \right)
 			\Rightarrow \Ec_C(t) = \frac{1}{2}C u_C(t)^2
-		\]
-	}%
+			\qed
+		}%
+	\end{gather*}
 	\vspace{-15pt}
 \end{tcb*}
 
-\begin{tcb*}[label=prop:Ec](prop){Énergie stockée dans un condensateur}
-	\psw{%
-	\[
-		\boxed{\Ec_C(t) = \frac{1}{2}C u_C{}^2(t)}
-	\]
-	}%
-	\vspace{-10pt}
-\end{tcb*}
-\begin{tcb*}[label=rema:genrec, sidebyside](rema){Condensateur récepteur ou
+\begin{tcb}[label=rema:genrec, sidebyside](rema)<lftt>{Condensateur récepteur ou
 			générateur}
 	Par l'étude de la relation précédente,
 	\psw{%
@@ -1183,7 +1262,7 @@ suggère que $i$ est relié à la dérivée de $u$. On a alors~:
 	}%
 	ainsi, le condensateur cède en réalité de l'énergie au reste du circuit,
 	autrement dit \textbf{il peut se comporter comme générateur}~!
-\end{tcb*}
+\end{tcb}
 
 \subsection{Présentation de la bobine}
 \subsubsection{Composition}
@@ -1207,158 +1286,188 @@ encombrantes, elles sont plus rares en électronique.
 	\end{center}
 \end{tcb*}
 
+\vspace{-15pt}
 \subsubsection{Relation courant-tension}
 
-\begin{tcb*}[label=prop:Lcarac, sidebyside, righthand ratio=.3](prop){Relation courant-tension}
-	\begin{isd}[righthand ratio=.3, sidebyside align=top]
-		Quand un courant traverse la bobine, une tension apparaît à ses bornes.
-		\textbf{En convention récepteur}, celle-ci s'exprime par
+\begin{tcb*}[label=prop:Lcarac, sidebyside, righthand ratio=.3](prop){Relation
+			courant-tension}
+	Quand un courant traverse la bobine, une \textbf{tension apparaît} à ses
+	bornes. \textbf{En convention récepteur}, celle-ci s'exprime, avec $L$
+	l'\textbf{inductance}~:
+	\smallbreak
+	\begin{isd}[sidebyside align=top]
 		\psw{%
 			\[\boxed{u_L = L\dv{i}{t}}\]
 		}%
+		\vspace{-15pt}
 		\tcblower
-		on appelle $L$ l'\textbf{inductance} de la bobine.
-		\tcbsubtitle{\fatbox{Unité}}
-		\psw{%
-			$L$ en Henry (H)
-		}%
+		\vspace{-10pt}
+		\[
+			\text{Unité~:~}
+			\psw{%
+				\text{$L$ en Henry (H)}
+			}%
+		\]
 	\end{isd}
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
 		\sswitch{%
 			\includegraphics[width=.8\linewidth, draft=true]{bobine_u}
 		}{%
 			\includegraphics[width=.8\linewidth]{bobine_u}
 		}%
+		\vspace{-10pt}
 		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
 
-\begin{tcb*}(odgr){Ordre de grandeur}
-	Le Henry est également un peu grande comme unité~: on trouvera des valeurs
+\begin{tcb*}(odgr)<lftt>{Valeurs d'inductances}
+	Le Henry est également une grande unité~: on trouvera des valeurs
 	entre le \si{H} et le \si{\micro H} (\SI{e-6}{H}).
 \end{tcb*}
 
-\subsubsection{Cas particuliers}
+\vspace{-25pt}
+\subsubsection{Conditions limites}
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=impl:continuité](impl){Continuité}
-		Si $i$ présente une variation brusque, alors $ \dv{i}{t}$ devrait
-		être infini. Or, comme $u_L = L\dv{i}{t}$, ceci n'est pas possible
-		puisque ça impliquerait que la tension le soit. Ainsi,\vspace*{-10pt}
-		\begin{framed}
-			\psw{%
-				Le courant $i$ traversant une bobine ne peut pas
-				varier instantanément, c'est une fonction continue.
-			}%
-		\end{framed}
-	\end{tcb*}
-	\begin{tcb*}*[label=impl:permanent](impl)"limp"'r'{Régime permanent}
-		En régime permanent (continu), les tensions et courants ne dépendent pas
-		du temps. Alors $u_L = L \dv{i}{t} = 0$, ainsi
-		\begin{framed}
-			\psw{%
-				En régime permanent, la bobine se comporte comme un
-				fil et la tension à ses bornes est nulle
-			}%
-		\end{framed}
-	\end{tcb*}
-\end{tcbraster}
+\begin{tcb*}(prop){Conditions limites pour $L$}
+	\begin{enumerate}
+		\item L'\textbf{intensité} traversant une \textbf{bobine} est
+		      \textbf{continue}~;
+		\item En régime \textbf{permanent}, la bobine \textbf{laisse passer le
+			      courant}.
+	\end{enumerate}
+\end{tcb*}
+\begin{tcb*}(demo){Conditions limites pour $L$}
+	\begin{enumerate}
+		\item \psw{%
+			      Si $i$ présente une variation brusque, alors $ \dv{i}{t}$ devrait
+			      être infini. Or, comme $u_L = L\dv{i}{t}$, ceci n'est pas possible
+			      puisque ça impliquerait que la tension le soit.
+		      }%
+		\item \psw{%
+			      En régime permanent (continu), les tensions et courants ne dépendent
+			      pas du temps. Alors $u_L = L \dv{i}{t} = 0$~: c'est \textbf{un fil}.
+		      }%
+	\end{enumerate}
+\end{tcb*}
 
+\vspace{-15pt}
 \subsubsection{Associations}
-\begin{tcb*}[label=prop:bserie, sidebyside, righthand ratio=.3](prop){Association en série}
+\begin{tcb*}[label=prop:bserie, sidebyside, righthand ratio=.4]
+	(prop){Association $L$ en série}
 	Deux bobines $L_1$ et $L_2$ en série forment un dipôle équivalent
 	d'inductance
 	\psw{%
 		\[
-			\boxed{L_{\rm eq} = L_1 + L_2}
+			\boxed{L\ind{eq} = L_1 + L_2}
 		\]
 	}%
 	On dit qu'\textbf{en série, les inductances s'ajoutent}.
 	\tcblower
+	\vspace{-10pt}
 	\begin{center}
 		\sswitch{%
-			\includegraphics[width=\linewidth, draft=true]{bserie}
+			\includegraphics[width=.8\linewidth, draft=true]{bserie}
 		}{%
-			\includegraphics[width=\linewidth]{bserie}
+			\includegraphics[width=.8\linewidth]{bserie}
 		}%
+		\vspace{-10pt}
 		\captionof{figure}{}
 	\end{center}
 \end{tcb*}
-\begin{tcb*}[label=demo:bserie](demo)'r'{Association en série}
+\begin{tcb*}[label=demo:bserie](demo){Association $L$ en série}
+	On part de l'additivité des tensions~:
 	\psw{%
 		\vspace{-15pt}
 		\begin{DispWithArrows*}
 			u & = u_1 + u_2
 			\Arrow{$u_L = L \dv{i}{t}$}
 			\\\Lra
-			L_{\rm eq} \dv{i}{t} & = L_{1} \dv{i}{t} + L_{2} \dv{i}{t}
+			L\ind{eq} \dv{i}{t} & = L_{1} \dv{i}{t} + L_{2} \dv{i}{t}
+			\Arrow{$\forall i$}
+			\\\Lra
+			\Aboxed{L\ind{eq} &= L_1 + L_2}
+			\qed
 		\end{DispWithArrows*}
-		On a bien l'expression d'une unique bobines d'inductance
-		$\boxed{L_{\rm eq} = L_1 + L_2}$
 	}%
 \end{tcb*}
 
-\begin{tcbraster}[raster columns=2, raster equal height=rows]
-	\begin{tcb*}[label=prop:bpara](prop){Association en parallèle}
-		Deux bobines $L_1$ et $L_2$ en dérivation forment un dipôle
-		équivalent d'inductance
-		\psw{%
-			\[
-				\boxed{\dfrac{1}{L_{\rm eq}} = \dfrac{1}{L_1} + \dfrac{1}{L_2}}
-			\]
+\begin{tcb*}[label=prop:bpara, sidebyside](prop){Association $L$ en parallèle}
+	Deux bobines $L_1$ et $L_2$ en dérivation forment un dipôle
+	équivalent d'inductance
+	\psw{%
+		\[
+			\boxed{\dfrac{1}{L\ind{eq}} = \dfrac{1}{L_1} + \dfrac{1}{L_2}}
+		\]
+	}%
+	On dit qu'\textbf{en parallèle, l'inverse des inductances s'ajoutent}.
+	\tcblower
+	\begin{center}
+		\sswitch{%
+			\includegraphics[width=\linewidth, draft=true]{bpara}
+		}{%
+			\includegraphics[width=\linewidth]{bpara}
 		}%
-		On dit qu'\textbf{en parallèle, l'inverse des inductances s'ajoutent}.
-		\tcblower
-		\begin{center}
-			\sswitch{%
-				\includegraphics[width=.7\linewidth, draft=true]{bpara}
-			}{%
-				\includegraphics[width=.7\linewidth]{bpara}
-			}%
-			\captionof{figure}{}
-		\end{center}
-	\end{tcb*}
-	\begin{tcb*}[label=demo:bpara](demo)'r'{Association en parallèle}
-		\psw{%
-			\begin{DispWithArrows*}[]
-				i &= i_1+i_2
-				\Arrow{$\dv{t}(~)$}
-				\\\Ra
-				\dv{i}{t} &= \dv{i_1}{t} + \dv{i_2}{t}
-				\Arrow{$u_L = L \dv{i}{t}$}
-				\\\Lra
-				\frac{u}{L_{\rm eq}} &= \frac{u}{L_1} + \frac{u}{L_2}
-			\end{DispWithArrows*}
-			On a bien l'expression d'une unique bobine d'inductance
-			\[
-				\boxed{\dfrac{1}{L_{\rm eq}} = \dfrac{1}{L_1} + \dfrac{1}{L_2}}
-			\]
-		}%
-	\end{tcb*}
-\end{tcbraster}
+		\captionof{figure}{}
+	\end{center}
+\end{tcb*}
+\begin{tcb*}[label=demo:bpara](demo){Association $L$ en parallèle}
+	On part de l'additivité des courants~:
+	\psw{%
+		\begin{DispWithArrows*}[]
+			i &= i_1+i_2
+			\Arrow{$\dv{t}(~)$}
+			\\\Ra
+			\dv{i}{t} &= \dv{i_1}{t} + \dv{i_2}{t}
+			\Arrow{$u_L = L \dv{i}{t}$}
+			\\\Lra
+			\frac{u}{L\ind{eq}} &= \frac{u}{L_1} + \frac{u}{L_2}
+			\Arrow{$\forall u$}
+			\\\Lra
+			\Aboxed{\frac{1}{L\ind{eq}} &= \frac{1}{L_1} + \frac{1}{L_2}}
+			\qed
+		\end{DispWithArrows*}
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
 \subsubsection{Bobine réelle}
 
-\noindent
-\begin{minipage}[t]{.69\linewidth}
-	Dans la réalité, le fil de cuivre enroulé possède une résistance non nulle.
-	Une bobine réelle se modélise donc par l'association en série d'une bobine
-	idéale et d'une résistance électrique $r$.
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.30\linewidth}
-	~
-	\vspace{-40pt}
+\begin{tcb*}[sidebyside, righthand ratio=.3](defi){Bobine réelle}
+	Dans la réalité, le fil de cuivre enroulé possède une \textbf{résistance non
+		nulle}. Une bobine réelle se modélise donc par une \textbf{bobine idéale}
+	\textbf{en série avec une résistance} électrique $r$, avec
+	\psw{%
+		\[
+			\xul{r \approx \SI{10}{\ohm}}
+		\]
+	}%
+	\vspace{-15pt}
+	\tcblower
 	\begin{center}
-		\includegraphics[width=\linewidth]{breel}
+		\sswitch{%
+			\includegraphics[width=\linewidth, draft=true]{breel}
+		}{%
+			\includegraphics[width=\linewidth]{breel}
+		}%
+		\vspace{-15pt}
 		\captionof{figure}{}
 		\label{fig:breel}
 	\end{center}
-\end{minipage}
+\end{tcb*}
 
 \subsubsection{Énergie stockée dans une bobine}
-\begin{tcb*}(demo)<lfnt>{}
+\begin{tcb*}[label=prop:El](prop){Énergie stockée dans une bobine}
+	\psw{%
+		\[
+			\boxed{\Ec_L(t) = \frac{1}{2}L i{}^2(t)}
+		\]
+	}%
+	\vspace{-10pt}
+\end{tcb*}
+
+\begin{tcb*}(demo){Énergie stockée dans une bobine}
 	\textbf{En convention récepteur}, la puissance \textbf{reçue} est
 	\psw{%
 		\begin{DispWithArrows*}
@@ -1372,25 +1481,18 @@ encombrantes, elles sont plus rares en électronique.
 	\leftcenters{\hspace{-12pt}Or, $\forall f$ fonction dérivable,}
 	{\psw{$\DS\boxed{f\times f' = \left( \frac{1}{2}f^2 \right)'}$}}
 	\smallbreak
-	Ainsi,
-	\psw{%
-		\[
+	\begin{gather*}
+		\beforetext{Ainsi,}
+		\psw{%
 			\Pc_{L} = \dv{t} \left( \frac{1}{2} Li{}^2 \right)
 			\Rightarrow \Ec_C(t) = \frac{1}{2}L i(t)^2
-		\]
-	}%
+			\qed
+		}%
+	\end{gather*}
 	\vspace{-15pt}
 \end{tcb*}
 
-\begin{tcb*}[label=prop:El](prop){Énergie stockée dans une bobine}
-	\psw{%
-		\[
-			\boxed{\Ec_L(t) = \frac{1}{2}L i{}^2(t)}
-		\]
-	}%
-	\vspace{-10pt}
-\end{tcb*}
-\begin{tcb*}[label=rema:genrec, sidebyside](rema){Bobine réceptrice ou
+\begin{tcb}[label=rema:genrec, sidebyside](rema)<lftt>{Bobine réceptrice ou
 			génératrice}
 	Par l'étude de la relation précédente,
 	\psw{%
@@ -1409,6 +1511,6 @@ encombrantes, elles sont plus rares en électronique.
 	}%
 	ainsi, la bobine cède en réalité de l'énergie au reste du circuit,
 	autrement dit \textbf{elle peut se comporter comme un générateur}~!
-\end{tcb*}
+\end{tcb}
 
 \end{document}

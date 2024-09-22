@@ -2,7 +2,7 @@
 \usepackage{mintikz}
 
 \begin{document}
-\begin{circuitikz}
+\begin{circuitikz}[line width=.7pt]
 	\draw
 	(0,2)
 	node (Ao) {$\bullet$}
@@ -32,10 +32,22 @@
 	to[R, name=R2, i>_=$I_2$,
 	v^<={{{{\rotatebox[origin=c]{90}{$U_{2}$}}}}}, !vi]
 	(Ibr);
-	\varronly{R1} \varronly{R2}
-	\iarronly{I} \iarronly{R1} \iarronly{R2}
+	\node[right=2em] (E) at (R2) {$\equiv$};
+	\draw[shift={($(E)+(.5,-1)$)}]
+	(0,2)
+	node {$\bullet$}
+	node [left] (A) {A}
+	to[R, name=R3,
+	v^<={{{{\rotatebox[origin=c]{90}{$U\ind{para}$}}}}},
+	i>_=$I\ind{para}$, !vi]
+	(0,0)
+	node {$\bullet$}
+	node [right] (B) {B};
+	\varronly{R1} \varronly{R2} \varronly{R3}
+	\iarronly{I} \iarronly{R1} \iarronly{R2} \iarronly{R3}
 	\node[] at (R1.center) {$R_1$};
 	\node[] at (R2.center) {$R_2$};
+	\node[rotate=90] at (R3.center) {$R\ind{para}$};
 \end{circuitikz}
 
 \end{document}

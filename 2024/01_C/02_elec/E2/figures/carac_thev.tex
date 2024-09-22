@@ -1,22 +1,24 @@
 \documentclass{standalone}
 \usepackage{mintikz}
 
+\tikzset{every picture/.style={thick}}
+
 \begin{document}
 \begin{tikzpicture}[scale=.6]
-    \begin{axis}[
-        axis lines=center,
-        xmin=-.5, xmax=4,
-        ymin=0, ymax=4,
-        xlabel=$I$, ylabel=$U$,
-        clip=false]
-        \addplot[
-            domain=-.5:4,
-            smooth,
-            color=firebrick]
-        {3.5-.5*\x} node [midway] (A) {};
-        % \addlegendentry{$U_R = RI$}
-    \draw[->] (A) --++ (70:1) node [anchor=west] {pente $-r$};
-    \end{axis}
+	\begin{axis}[
+			axis lines=center,
+			xmin=-.5, xmax=4,
+			ymin=0, ymax=4,
+			xlabel=$I$, ylabel=$U$,
+			clip=false]
+		\addplot[
+			domain=0:4,
+			smooth,
+			color=firebrick]
+		{3.5-.5*\x} node [midway] (A) {};
+		% \addlegendentry{$U_R = RI$}
+		\draw[->] (A) --++ (70:1) node [anchor=west] {pente $-r$};
+	\end{axis}
 \end{tikzpicture}
 \end{document}
 

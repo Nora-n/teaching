@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[R, name=R, !vi]
+	(0,2) --
+	(2,2) coordinate (A)
+	to[V, name=E, V_>=$E$, !vi]
+	(2,0) coordinate (B)
+	to[R, name=R2, v^<=$U_2$, !vi]
+	(0,0)
+	;
+	\draw
+	(A) --
+	(3,2)
+	to[R, name=R3, !vi]
+	(3,0) --
+	(B);
+	\varronly{R2} \varronly{E}
+	\node[] at (R.center) {$R$};
+	\node[] at (R2.center) {$2R$};
+	\node[] at (R3.center) {$R$};
+\end{circuitikz}
+\end{document}

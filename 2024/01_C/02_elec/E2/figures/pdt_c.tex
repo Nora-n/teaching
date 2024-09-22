@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[V, name=E, V^>=$E$, !vi]
+	(0,2) --
+	(1,2)
+	coordinate (A)
+	node {$\bullet$}
+	node [above] {A}
+	to[R, name=R, v^<=$U_{AB}$, !vi]
+	(1,0)
+	coordinate (B)
+	node {$\bullet$}
+	node [below] {B} --
+	(0,0)
+	;
+	\draw
+	(A)
+	to[R, name=R2, !vi]
+	(3,2)
+	to[R, name=R3, !vi]
+	(3,0)
+	to[R, name=R4, v^>=$U_3$, !vi]
+	(B);
+	\varronly{R4} \varronly{E} \varronly{R}
+	\node[] at (R.center) {$R$};
+	\node[] at (R2.center) {$2R$};
+	\node[] at (R3.center) {$R$};
+	\node[] at (R4.center) {$2R$};
+\end{circuitikz}
+\end{document}

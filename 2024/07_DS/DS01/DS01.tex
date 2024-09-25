@@ -20,21 +20,21 @@
 % \renewcommand{\mycol}{gray}
 
 \makeatletter
-\renewcommand{\@chapapp}{MPSI3 -- 12 avril 2024 -- Devoir surveillé}
+\renewcommand{\@chapapp}{MPSI3 -- 27 septembre 2024 -- Devoir surveillé}
 \makeatother
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \counterwithin*{equation}{section}
 
 \begin{document}
-\setcounter{chapter}{7}
+\setcounter{chapter}{0}
 
 \settype{enon}
 \settype{solu_prof}
 \settype{solu_stud}
 
-\chapter{\cswitch{Correction du DS}{Transformations de la matière}}
-\label{ch:ds08}
+\chapter{\cswitch{Correction du DS}{Optique géométrique}}
+\label{ch:ds01}
 
 \enonce{
 \begin{center}
@@ -45,10 +45,9 @@
 	\smallbreak
 	\xul{Les calculatrices sont \textit{autorisées}}
 \end{center}
-\begin{tcn}*[cnt, bld](ror)<itc>{Au programme}
+\begin{tcn}[cnt, bld](ror)<itc>""{Au programme}
 	\large
-	Toute la chimie sauf la cinétique~: acide-base, précipitation,
-	oxydoréduction et diagrammes $E-\pH$
+	Toute l'optique.
 \end{tcn}
 
 {
@@ -100,35 +99,36 @@ fond~:
 	\end{minipage}
 \end{tcn}
 
-% \begin{tcb}(impo){Exemple application numérique}
-% 	\vspace*{-10pt}
-% 	\begin{minipage}[c]{0.45\linewidth}
-% 		\begin{gather*}
-% 			\boxed{n = \frac{PV}{RT}}
-% 			\qav
-% 			\left\{
-% 			\begin{array}{rcl}
-% 				p & = & \SI{1.0e5}{Pa}                \\
-% 				V & = & \SI{1.0e-3}{m^3}              \\
-% 				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
-% 				T & = & \SI{300}{K}
-% 			\end{array}
-% 			\right.\\
-% 			\mathrm{A.N.~:}\quad
-% 			\xul{n = \SI{5.6e-4}{mol}}
-% 		\end{gather*}
-% 	\end{minipage}
-% 	\hfill
-% 	\cancel{\bcancel{
-% 			\begin{minipage}[c]{0.45\linewidth}
-% 				\begin{gather*}
-% 					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
-% 					= 0.56
-% 				\end{gather*}
-% 			\end{minipage}
-% 		}}
-% \end{tcb}
-\vfill
+\begin{tcn}(impo){Exemple application numérique}
+	\vspace*{-10pt}
+	\begin{minipage}[c]{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\xul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}[c]{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+\end{tcn}
+
+% \vfill
 \newpage
 }
 \iftoggle{corrige}{}{
@@ -140,7 +140,7 @@ fond~:
 	\end{center}
 	\begin{enumerate}
 		\item Inscrire sur votre copie une remarque \textbf{pertinente} issue du
-		      devoir précédent.
+		      devoir de l'année précédente.
 	\end{enumerate}
 }
 
@@ -172,11 +172,42 @@ fond~:
 \resetQ
 \subfile{P1/P1.tex}
 
-% \iftoggle{corrige}{}{%
-% 	\clearpage
-% }
+\iftoggle{corrige}{}{%
+	\clearpage
+}
 
 \resetQ
 \subfile{P2/P2.tex}
+
+\enonce{%
+	\newpage
+	\chapter*{Annexe~: problème 2}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west, align=left] at ([shift={(1.5cm,0)}]current page.north west)
+		{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
+		\node[anchor=south east, align=right] at ([shift={(-1.25cm,1.5cm)}]current page.south east)
+		{\Large\bfseries Copie\hspace{.75cm}/\hspace{.75cm}};
+	\end{tikzpicture}
+
+	\vfill
+
+	\begin{center}
+		% \subimport{images/}{#1}
+		\subimport{P2/figures/}{fig_diffraction.pdf_tex}
+	\end{center}
+	\vspace{-4mm}
+	\captionof{figure}{Tracé de rayons lors de la diffraction par le diaphragme d'ouverture $D$.\label{annexe:diffraction}}
+
+	\vfill
+
+	\begin{center}
+		% \subimport{images/}{#1}
+		\subimport{P2/figures/}{fig_demiboule.pdf_tex}
+	\end{center}
+	\vspace{-4mm}
+	\captionof{figure}{Modèle de la lentille demi-boule.\label{annexe:demiboule}}
+
+	\vfill
+}%
 
 \end{document}

@@ -1,176 +1,213 @@
 \documentclass[a4paper, 10pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \graphicspath{{./figures/}}
+\addto\captionsfrench{\renewcommand{\figurename}{Fig.}}
 
 \makeatletter
 \renewcommand{\@chapapp}{Contr\^ole de connaissances}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{2}
 
+\settype{enon}
+\settype{solu}
+
 \chapter{Électrocinétique~: ARQS et résistances}
 
-\ifstudent{
+\begin{enumerate}[label=\sqenumi, leftmargin=10pt]
+	\item[n]{4} %
+	Démontrer la relation de conjugaison de \textsc{Newton}. Un schéma
+	est attendu.
+	\smallbreak
+	\begin{isd}[righthand ratio=.3]
+		\psw{%
+			On utilise le théorème de \textsc{Thalès} dans les triangles F$'$OH et
+			F$'$A$'$B$'$, en remarquant que $\obarr{OH} = \AB$, et les
+			triangles FAB et FOH' pour avoir
+			\begin{gather*}
+				\frac{\obarr{A'B'}}{\obarr{OH}} = \frac{\ABp}{\AB} \stm{=}
+				\frac{\obarr{F'A'}}{\obarr{F'O}}
+				\qqet
+				\frac{\obarr{OH'}}{\obarr{AB}} = \frac{\ABp}{\AB} \stm{=}
+				\frac{\obarr{FO}}{\obarr{FA}}
+				% \\\Lra
+				% \boxed{\gamma = \frac{\obarr{F'A'}}{\obarr{F'O}}}
+				% \qqet
+				% \boxed{\gamma = - \frac{\OF}{\obarr{FA}}}
+			\end{gather*}
+			En les combinant on obtient
+			\[
+				\boxed{\OFp\times\OF = \obarr{F'A'}\obarr{FA}}
+				\hspace{12pt}
+				\pt{1}
+			\]
+		}%
+		\vspace{-10pt}
+		\tcblower
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=\linewidth, draft=true]{lent_conv-demo}
+			}{%
+				\includegraphics[width=\linewidth]{lent_conv-demo}
+			}%
+			\vspace{-30pt}
+			\captionof{figure}{Schéma \protect \pt{1}}
+			\label{fig:lent_rc}
+		\end{center}
+	\end{isd}
+	\item[n]{3} %
+	Établir les liens entre les courants et tensions en \textbf{nommant les
+		nœuds et les mailles sur le schéma}.
+	\smallbreak
+	% \vspace{-30pt}
+	\begin{isd}[interior hidden, lefthand ratio=.4]
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=\linewidth]{exer_ldnm_plain}
+			}{%
+				\includegraphics[width=\linewidth]{exer_ldnm}
+			}%
+			\vspace{-15pt}
+			\captionof{figure}{Schéma \protect\pt{1}}
+		\end{center}
+		\vspace{-30pt}
+		\tcblower
+		\begin{isd}[sidebyside align=top]
+			\vspace{-15pt}
+			\tcbsubtitle{\fatbox{Lois des nœuds} \pt{1}}
+			\psw{%
+				\begin{itemize}
+					\item $I_2 = I_3$ par unicité à droite~;
+					\item $I_0 = I_1 + I_5$ par LdN 1~;
+					\item $I_1 = I_2 + I_6$ par LdN 2~;
+					\item $I_3 + I_6 = I_4$ par LdN 3.
+				\end{itemize}
+			}%
+			\vspace{-15pt}
+			\tcblower
+			\vspace{-15pt}
+			\tcbsubtitle{\fatbox{Lois des mailles} \pt{1}}
+			\psw{%
+				\begin{itemize}
+					\item $U_4 + U_6 + U_1 = U_5$ par LdM 1 ;
+					\item $U_3 + U_2 = U_6$ par LdM 2 ;
+				\end{itemize}
+			}%
+			\vspace{-15pt}
+		\end{isd}
+	\end{isd}
+	\item[n]{5} %
+	Représenter et flécher deux résistances $R_1$ et $R_2$ en série,
+	puis démontrer l'expression de la résistance équivalente $R_{\rm eq}$.
+	\smallbreak
+	\begin{isd}[lefthand ratio=.3]
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=\linewidth, draft=true]{rserie}
+			}{%
+				\includegraphics[width=\linewidth]{rserie}
+			}%
+			\vspace{-15pt}
+			\captionof{figure}{$R$ série \protect\pt{1}\psw{+}\protect\pt{1}}
+		\end{center}
+		\vspace{-15pt}
+		\tcblower
+		\vspace{-15pt}
+		\psw{%
+			\begin{align*}
+				U                 & \stm{=} U_1 + U_2
+				\\\Lra
+				U                 & \stm{=} R_1I + R_2I
+				\\\Lra
+				U                 & = (R_1 + R_2)I
+				\\\Lra
+				\Aboxed{R\ind{eq} & \stm{=} R_1 + R_2}
+				\qed
+			\end{align*}
+		}%
+		\vspace{-15pt}
+	\end{isd}
+	\item[n]{5} %
+	Représenter et flécher deux résistances $R_1$ et $R_2$ en parallèle, puis
+	démontrer l'expression de $R_{\rm eq}$.
+	\smallbreak
+	\begin{isd}[lefthand ratio=.3]
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=.7\linewidth, draft=true]{rpara}
+			}{%
+				\includegraphics[width=.7\linewidth]{rpara}
+			}%
+			% \vspace{-15pt}
+			\captionof{figure}{$R$ parallèle \protect\pt{1}\psw{+}\protect\pt{1}}
+		\end{center}
+		\vspace{-15pt}
+		\tcblower
+		\vspace{-15pt}
+		\psw{%
+			\begin{align*}
+				I                   & \stm{=}
+				I_1 + I_2 =
+				\left( \frac{1}{R_1} + \frac{1}{R_2} \right)U
+				\\\Lra
+				\frac{1}{R\ind{eq}} & \stm{=}
+				\left( \frac{1}{R_1} + \frac{1}{R_2} \right)
+				\\\Lra
+				\Aboxed{R_{\rm eq}  & \stm{=}
+					\frac{R_1R_2}{R_1+R_2}}
+			\end{align*}
+		}%
+		\vspace{-15pt}
+	\end{isd}
+	\item[n]{4} %
+	Représenter un pont diviseur de tension avec 2 résistances et démontrer la
+	relation associée pour $k$ résistances.
+	\smallbreak
+	\begin{isd}[lefthand ratio=.30]
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=\linewidth, draft=true]{rserie_divtens}
+			}{%
+				\includegraphics[width=\linewidth]{rserie_divtens}
+			}%
+			\vspace{-15pt}
+			\captionof{figure}{PdT \protect\pt{1}\psw{+}\protect\pt{1}}
+		\end{center}
+		\tcblower
+		\psw{%
+			On part de ce qui est partagé dans le circuit, ici l'intensité~:
+			\begin{gather*}
+				I = \frac{U\ind{brch}}{R\ind{brch}}
+				\stm{\qet}
+				I = \frac{U_k}{R_k}
+				\qqso
+				\boxed{U_k \stm{=} \frac{R_k}{R\ind{brch}U\ind{brch}}}
+				\qed
+			\end{gather*}
+		}%
+		\vspace{-15pt}
+	\end{isd}
+\end{enumerate}
+\vspace{-30pt}
+
+\ifstudent{%
 	\begin{tikzpicture}[remember picture, overlay]
 		\node[anchor=north west, align=left]
-      at ([shift={(1.4cm,0)}]current page.north west)
+		at ([shift={(1.4cm,0)}]current page.north west)
 		{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
 		\node[anchor=north east, align=right]
-      at ([shift={(-1.5cm,-17pt)}]current page.north east)
-		{\Large\bfseries Note~:\hspace{1cm}/10};
+		at ([shift={(-1.5cm,-17pt)}]current page.north east)
+		{\Large\bfseries Note~:\hspace{1cm}/20};
 	\end{tikzpicture}
-}
-
-\begin{enumerate}[label=\sqenumi, leftmargin=10pt]
-	\nitem{2} Donner les quatre propriétés de la charge électrique.
-  \smallbreak
-  \wsw{
-    $Q$ est algébrique ($\lessgtr 0$), additive ($Q = \sum_i q_i$), quantifiée
-    ($Q = k \times e$ avec $k \in \Zb$), et $Q$ est conservée si le système est
-    isolé.
-  }
-	% \nitem{2} Réprésenter deux dipôles en série avec toutes les tensions et
-	% intensités, fléchées en convention récepteur. Quelle caractéristique des
-	% dipôles en série partagent-ils~? Même question pour des dipôles en parallèle.
-	% \begin{isd}
-	%   \tcbsubtitle{\fatbox{En série}}
-	%   \begin{center}
-	%     \switch{
-	%             \includegraphics[width=\linewidth, draft=true]{serie_rec}
-	%     }{
-	%     \includegraphics[width=\linewidth]{serie_rec}
-	%     }
-	%   \end{center}
-	%   Deux dipôles en série partagent la même intensité.
-	%   \tcblower
-	%   \tcbsubtitle{\fatbox{En parallèle}}
-	%   \begin{center}
-	%     \switch{
-	%             \includegraphics[width=\linewidth, draft=true]{serie_rec}
-	%     }{
-	%     \includegraphics[width=\linewidth]{serie_rec}
-	%     }
-	%   \end{center}
-	%   Deux dipôles en série partagent la même intensité.
-	% \end{isd}
-	\nitem{2}
-  \begin{minipage}[t]{0.50\linewidth}
-    % \vspace{5cm}
-		Pour le circuit ci-contre, établir les liens entre les différents
-		courants et les différentes tensions.
-    \begin{center}
-      \switch{
-        \includegraphics[width=\linewidth]{exer_ldnm_plain}
-      }{
-        \includegraphics[width=\linewidth]{exer_ldnm}
-      }
-      \captionof{figure}{}
-    \end{center}
-	\end{minipage}
-  \hfill
-  \begin{minipage}[t]{.5\linewidth}
-    ~
-    \vspace{-20pt}
-      \begin{tcolorbox}[blankest]
-        \begin{center}
-          \fbox{Lois des nœuds}
-        \end{center}
-        \vspace{-15pt}
-      \wsw{
-        \begin{itemize}
-          \item $I_2 = I_3$ par unicité à droite ;
-          \item $I_0 = I_1 + I_5$ par LdN 1 ;
-          \item $I_1 = I_2 + I_6$ par LdN 2 ;
-          \item $I_3 + I_6 = I_4$ par LdN 3.
-        \end{itemize}
-      }
-      \tcblower
-        \begin{center}
-          \fbox{Lois des mailles}
-        \end{center}
-        \vspace{-15pt}
-      \wsw{
-        \begin{itemize}
-          \item $U_4 + U_6 + U_1 = U_5$ par LdM 1 ;
-          \item $U_3 + U_2 = U_6$ par LdM 2 ;
-        \end{itemize}
-      }
-    \end{tcolorbox}
-  \end{minipage}
-  \nitem{2} Représenter deux résistances $R_1$ et $R_2$ en série. Démontrer
-  l'expression $R_{\rm eq}$ de la résistance équivalente à $R_1$ et $R_2$.
-  \begin{isd}[lefthand ratio=.3]
-		\begin{center}
-			\switch{
-				\includegraphics[width=\linewidth, draft=true]{rserie}
-			}{
-				\includegraphics[width=\linewidth]{rserie}
-			}
-      \captionof{figure}{}
-		\end{center}
-    \tcblower
-    \wsw{
-          Comme elles sont en série, elles partagent $I$.
-          \begin{align*}
-            U & = U_1 + U_2    \\
-            U & = R_1I + R_2I  \\
-            U & = (R_1 + R_2)I
-          \end{align*}
-          D'où $R_{\rm eq} = R_1+R_2$.
-    }
-  \end{isd}
-  \nitem{2} Représenter deux résistances $R_1$ et $R_2$ en parallèle. Démontrer
-  l'expression $R_{\rm eq}$ de la résistance équivalente à $R_1$ et $R_2$.
-  \begin{isd}[lefthand ratio=.3]
-		\begin{center}
-			\switch{
-				\includegraphics[width=.5\linewidth, draft=true]{rpara}
-			}{
-				\includegraphics[width=.5\linewidth]{rpara}
-			}
-      \captionof{figure}{}
-		\end{center}
-    \tcblower
-		\wsw{
-    Comme elles sont en parallèle, elles partagent $U$.
-      \begin{DispWithArrows*}[]
-        I &= I_1 + I_2
-        \Arrow{$I = GU$}
-        \\\Lra
-        G_{\rm eq}U &= (G_1+G_2)U
-        \\\Lra
-        R_{\rm eq} &= \frac{R_1R_2}{R_1+R_2}
-      \end{DispWithArrows*}
-		}
-  \end{isd}
-  \nitem{2} Donner et démontrer la relation du pont diviseur de tension pour
-  deux résistances $R_1$ et $R_2$ en série.\\
-  \begin{isd}[lefthand ratio=.15]
-		\begin{center}
-			\switch{
-				\includegraphics[width=\linewidth, draft=true]{divis_tension}
-			}{
-				\includegraphics[width=\linewidth]{divis_tension}
-			}
-      \captionof{figure}{}
-  \vspace*{-15pt}
-		\end{center}
-    \tcblower
-		\wsw{
-		Avec une loi des mailles et la loi d'Ohm pour les résistances, on trouve
-		\[
-			I = \frac{U_{\rm brch}}{R_1+R_2}
-		\]
-		En réappliquant la loi d'Ohm pour $R_k$, on trouve
-		\[
-			U_{k} = R_kI = \frac{R_k}{R_1+R_2}U_{\rm brch}
-		\]
-		}
-	\end{isd}
-  \vspace*{-15pt}
-\end{enumerate}
+}%
 \end{document}

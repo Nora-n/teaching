@@ -1,6 +1,8 @@
 \documentclass{standalone}
 \usepackage{mintikz}
 
+\tikzset{every picture/.style={thick}}
+
 \begin{document}
 \begin{tikzpicture}[]
     \def\TAU{1}
@@ -15,6 +17,7 @@
         y tick label style={yshift={(\tick==0)*-.5em},
                             xshift={(\tick==0)*.25em}},
         axis lines=center,
+        % tangent=0.05,
         tangent/.style={
             add node at x={#1}{4.8},
         },
@@ -22,9 +25,7 @@
         \addplot[
             domain=-2:0,
             smooth, thick,
-            cornflowerblue,
-            name path=uc,
-            tangent=0.001]
+            cornflowerblue]
         {\E};
         \addplot[
             domain=0:10,
@@ -42,6 +43,7 @@
         \draw[dashed] (A) -- (\TAUdraw,0) node [below] {$\tau$};
         % RP
         \coordinate (T) at (5*\TAUdraw,0);
+        % \draw (pic cs:$(T)+(0,.1)$) -- (pic cs:$(T)+(0,-.1)$);
         \node[below] at (T) {$5\tau$};
         \node[below=8pt] (Og) at (O) {};
         \node[below=8pt] (Tg) at (T) {};
@@ -53,7 +55,6 @@
         \draw[|<->|] (Tg) --
         node[below, midway, sloped]
         {\small R\'egime permanent} (Ig);
-        
     \end{axis}
 \end{tikzpicture}
 

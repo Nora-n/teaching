@@ -1,20 +1,51 @@
-\documentclass[a4paper, 12pt, garamond]{book}
+\documentclass[a4paper, 11pt, garamond]{book}
 \usepackage{cours-preambule}
 
 \dominitoc
 \faketableofcontents
 
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
+\setlength{\mtcindent}{-10pt}
+\mtcsetoffset{minitoc}{-10pt}
+
 \makeatletter
 \renewcommand{\@chapapp}{Fiches -- numéro}
 \makeatother
 
-\begin{document}
-\setcounter{chapter}{6}
+% \toggletrue{student}
+\toggletrue{corrige}
+\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
 
-\chapter{\'Equations diff\'erentielles en sciences physiques}
+\hfuzz=5.002pt
+
+\begin{document}
+\setcounter{chapter}{5}
+
+% \settype{book}
+% \settype{prof}
+% \settype{stud}
+
+\chapter{Équations différentielles en sciences physiques}
+
+% \vspace*{\fill}
+
+\begin{tcn}(appl)<ctb>"somm"'t'{Sommaire}
+	\let\item\olditem
+	\vspace{-15pt}
+	\minitoc
+	\vspace{-15pt}
+\end{tcn}
+
+% \vspace*{\fill}
+% \newpage
 
 \section{Introduction}
-\begin{tcb}(defi){Définition}
+\begin{tcn}(defi){Définition}
 	Une équation différentielle\ftn{Notée ED dans la suite.} sur la fonction $y(t)$
 	est une équation liant $y(t)$ à ses \textbf{dérivées}. Elle est dite
 	\textit{linéaire}\ftn{Notée donc EDL dans la suite.} (on ne verra pas le cas
@@ -28,9 +59,9 @@
   Avec $f_{i \in [1,N]}(t)$ et $g(t)$ des fonctions dépendantes de la variable
 	$t$\ftn{Attention, cette variable n'est pas \textit{que} le temps. Ça peut
 		être une dimension d'espace, par exemple $x$.}.
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}[sidebyside, sidebyside align=top](exem){Exemples}
+\begin{tcn}[sidebyside, sidebyside align=top](exem){Exemples}
 	\tcbsubtitle{\fatbox{Exemple}}
 	\begin{itemize}
 		\item $f_0(t) = t$, $f_1(t) = 1$ et $f_{i \geq 2}(t) = 0$~;
@@ -52,31 +83,31 @@
 		4y(t) +
 		\xunderbracket{y(t) \cdot \dv{y(t)}{t}}_{\mathclap{\text{non-linéaire}}} = 0
 	\]
-\end{tcb}
+\end{tcn}
 
 Dans la pratique, on rencontrera des équations différentielles très
 particulières en sciences physiques. On les caractérise par~:
 \begin{itemize}
-	\bitem{Leur ordre}~: c'est le rang maximum de la dérivation portant sur
+	\item[b]{Leur ordre}~: c'est le rang maximum de la dérivation portant sur
 	$y(t)$. Cette année, on s'intéresse à des équations d'ordre 1 et 2 seulement.
-	\bitem{Leurs coefficients}~: les $f_i(t)$ sont des fonctions, mais la plupart
+	\item[b]{Leurs coefficients}~: les $f_i(t)$ sont des fonctions, mais la plupart
 	du temps ce seront des constantes. On dit alors que l'équation différentielle
 	est à \textit{coefficients constants}\ftn{Notée EDC dans la suite.}.
-	\bitem{Leur second membre}~: dans l'écriture d'une ED, on met tous les termes
+	\item[b]{Leur second membre}~: dans l'écriture d'une ED, on met tous les termes
 	qui dépendent de $y$ à gauche du signe «~$=$~», et tout le reste à droite,
 	c'est le $g(t)$ de la définition. On l'appelle \textit{second membre}.
 \end{itemize}
 
-\begin{tcb}(defi){Équation homogène}
+\begin{tcn}(defi){Équation homogène}
 	On appelle \textbf{équation homogène} une équation différentielle \textbf{sans
 		second membre}~: $g(t) = 0$
 	\[
 		\sum_{i} f_i(t) \dv[i]{y(t)}{t} = \fbox{0}
 	\]
-\end{tcb}
+\end{tcn}
 
 \begin{tcb*}[label=prop:lin](prop){Linéarité pour une EDL homogène}
-	Soient $y_1$ et $y_2$ deux solutions d'une même EDL homogène\ftn{notée EDLH
+	Soient $y_1$ et $y_2$ deux solutions d'une même EDL homogène\ftn{Notée EDLH
 		dans la suite.}. Alors, toute combinaison de ces deux solutions est également
 	solution de l'EDLH~:
 	\[
@@ -91,16 +122,16 @@ particulières en sciences physiques. On les caractérise par~:
 	\]
 \end{tcb*}
 
-\begin{tcb}(ror){Solution générale avec second membre}
+\begin{tcn}(ror){Solution générale avec second membre}
 	Pour une EDL avec second membre (non homogène), \textit{une} \textbf{solution
 		générale} s'obtient par somme de la \textbf{solution homogène} $y_h$ et d'une
 	\textbf{solution particulière} $y_p$~:
 	\[
 		\boxed{y(t) = y_h(t) + y_p(t)}
 	\]
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(impo){Attention}
+\begin{tcn}(impo){Attention}
 	\begin{enumerate}
 		\item Ici, c'est bien la \textbf{somme} de $y_h$ et $y_p$ qui est solution,
 		      et pas toute autre combinaison $\alpha_1 y_h + \alpha_2 y_p$.
@@ -108,9 +139,9 @@ particulières en sciences physiques. On les caractérise par~:
 		      solution. Pour obtenir l'\textbf{unique} solution, on aura besoin de
 		      \textbf{condition initiales}.
 	\end{enumerate}
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(tool){Solution particulière pour une EDLC à second membre
+\begin{tcn}(tool){Solution particulière pour une EDLC à second membre
 			constant}
 	Dans le cas où $f_i(t) = a_i$ et $g(t) = b$ avec $a_i$ et $b$ des
 	constantes, on cherche $y_p (t) = \lambda$ également une constante. Ainsi,
@@ -124,12 +155,12 @@ particulières en sciences physiques. On les caractérise par~:
 		\\\Lra
 		\Aboxed{y_p (t) = \lambda         & = \frac{b}{a_0}}
 	\end{align*}
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(rema)<lfnt>{}
+\begin{tcn}(rema)<lfnt>{}
 	Une autre manière de tenir compte d'un second membre constant est de réaliser
 	un changement de variable pour se ramener à une EDLH.
-\end{tcb}
+\end{tcn}
 
 \section{Résolution d'EDLHC}
 \subsection{Premier ordre}
@@ -140,63 +171,153 @@ On s'intéresse à une EDLHC\ftn{Équation Différentielle Linéaire Homogène �
 	\label{eq:edlhc1}
 \end{equation}
 avec $\tau \in \Rb$ une constante homogène à $t$.
-\begin{tcb}(nota){Vocabulaire}
+\begin{tcn}(nota){Vocabulaire}
 	Si $t$ désigne bien le temps, comme souvent en physique, alors par rapide
 	analyse d'homogénéité, $\tau$ s'exprime en secondes et s'appelle la
 	\textbf{constante de temps}.
-\end{tcb}
+\end{tcn}
 
-\begin{tcb}(ror){Solution d'EDLHC d'ordre 1}
-	La solution \textbf{générale} de \eqref{eq:edlhc1} s'écrit, avec $A \in \Rb$
+Le fonctionnement complet derrière la résolution sera extensivement développé en
+mathématiques. Cependant, on peut retenir l'idée suivante~: les fonction
+exponentielles sont des fonctions clés pour les ED, et on peut logiquement
+chercher $y_h(t) = K\exr^{rt}$ avec $r \in \Cb$ à déterminer. C'est ce qu'on
+injecte dans~\eqref{eq:edlhc1}~:
+
+\begin{tcn}(tool){Méthode de résolution pour EDLHC d'ordre 1}
+  \begin{DispWithArrows*}
+    \dv{y_h(t)}{t} + \frac{1}{\tau} y_h(t) &= 0
+    \Arrow{$y_h(t) = K \exr^{rt}$}
+    \\\Ra 
+    r \times \cancel{K\exr^{rt}} + \frac{\cancel{K\exr^{rt}}}{\tau} &= 0
+    \Arrow{On simplifie}
+    \\\Lra
+    \Aboxed{r = -\frac{1}{\tau}}
+  \end{DispWithArrows*}
+\end{tcn}
+
+\begin{tcn}(nota){Vocabulaire}
+  L'équation portant sur la variable $r$ s'appelle le \textbf{polynôme
+  caractéristique}. Dans le cas précédent, c'est un polynôme de degré 1, donc la
+  solution est évidente. Dans la suite, on aura un polynôme de degré 2.
+\end{tcn}
+
+\begin{tcn}(ror){Solution d'EDLHC d'ordre 1}
+	La solution \textbf{générale} de \eqref{eq:edlhc1} s'écrit, avec $K \in \Rb$
 	la constante d'intégration~:
 	\[
-		\boxed{y_h(t) = A\exr^{-t/\tau}}
+		\boxed{y_h(t) = K\exr^{-t/\tau}}
 	\]
 	On obtient \textbf{la} solution spécifique à l'aide des \textbf{conditions
-		initiales}\ftn{Notées CI dans la suite.} du système étudié, qui fixera $A$.
-\end{tcb}
+		initiales}\ftn{Notées CI dans la suite.} du système étudié, qui fixera $K$.
+\end{tcn}
 
-\subsection{Second ordre}
+\subsection{Second ordre harmonique}
+Soit une EDLHC d'ordre 2. On l'appelle \textbf{harmonique} si elle ne contient
+\textbf{pas de terme d'ordre 1}, seulement 0 et 2. Elle peut se mettre sous la
+forme suivante, avec $\w_0,Q \in \Rb$ une constante~:
+\begin{equation}
+	\dv[2]{y_h(t)}{t} + \w_0{}^{2} y_h(t) = 0
+	\label{eq:edlhc2h}
+\end{equation}
+
+\begin{tcn}(nota){Vocabulaire}
+  Si $t$ désigne bien le temps, alors $\w_0$ est l'\textbf{inverse} d'un temps
+  et s'appelle la \textbf{pulsation propre}, exprimée en $\si{rad.s^{-1}}$~;
+\end{tcn}
+
+\begin{tcn}[breakable](tool){Méthode pour EDLHC d'ordre 2 harmonique}
+  Pour résoudre~\eqref{eq:edlhc2h}, on injecte également $y_h(t) = K\exr^{rt}$
+  pour retrouver le \textbf{polynôme caractéristique} et le résoudre pour $r$~:
+  \begin{DispWithArrows*}
+    \dv[2]{y_h(t)}{t} + \w_0{}^2 y_h(t) &= 0
+    \Arrow{$y_h(t) = K \exr^{rt}$}
+    \\\Ra 
+    r^2 \times \cancel{K\exr^{rt}} + \w_0{}^2\cancel{K\exr^{rt}} &= 0
+    \Arrow{On simplifie}
+    \\\Lra
+    r^2 &= -\w_0{}^2
+    \Arrow{$(\cdot)^{\frac{1}{2}}$}
+    \\\Lra
+    \Aboxed{r_{\pm} = -\jw_0}
+  \end{DispWithArrows*}
+\end{tcn}
+
+\begin{tcn}(ror){EDLHC d'ordre 2 harmonique}
+  La solution \textbf{générale} de \eqref{eq:edlhc2h} est la \textbf{somme} des
+  deux fonctions générales correspondant chacune à \textbf{solution} de
+  $r_{\pm}$, avec une constante $K$ différente pour \textbf{chaque choix} (par
+  linéarité, propriété~\ref{prop:lin}).
+  \smallbreak
+  Avec $(A,B) \in \Rb^{2}$ les constantes d'intégrations~:
+  \[
+		y_h(t) = A\exr^{r_+t} + B\exr^{r_-t}
+    \Lra
+		y_h(t) = A\exr^{\jw_0t} + B\exr^{-\jw_0t}
+  \]
+  Or, les exponentielles complexes peuvent être exprimées en fonctions cosinus
+  et sinus. Par une astuce mathématique\ftn{Pour le détail, voir la
+  Section~\ref{ssec:democos}.} pour trouver un \textbf{résultat
+  réel}, on obtient enfin la forme de solution générale~:
+	\[
+		\boxed{
+			y_h(t) = A\cos(\w_0t) + B\sin(\w_0t)
+		}
+	\]
+\end{tcn}
+
+\subsection{Second ordre amorti}
+
 Soit une EDLHC d'ordre 2. Elle peut se mettre sous la forme suivante, avec
 $(\w_0,Q) \in \Rb^{2}$ des constantes~:
 \begin{equation}
 	\dv[2]{y_h(t)}{t} + \frac{\w_0}{Q}\dv{y_h(t)}{t} + \w_0{}^{2} y_h(t) = 0
 	\label{eq:edlhc2}
 \end{equation}
-\begin{tcb}(nota){Vocabulaire}
+
+\begin{tcn}(nota){Vocabulaire}
 	Si $t$ désigne bien le temps, alors~:
 	\begin{itemize}
-		\item $\w_0$ est l'\textbf{inverse} d'un temps et s'appelle la
+		\item $\w_0$ est toujours l'inverse d'un temps et s'appelle la
 		      \textbf{pulsation propre}, exprimée en $\si{rad.s^{-1}}$~;
 		\item $Q$ est \textbf{adimensionné} et s'appelle le \textbf{facteur de
 			      qualité}.
 	\end{itemize}
-\end{tcb}
-Le fonctionnement complet derrière la résolution sera extensivement développé en
-mathématiques. Cependant, on peut retenir l'idée suivante~: les fonction
-exponentielles sont des fonctions clés pour les ED, et on peut logiquement
-chercher $y_h(t) = K\exr^{rt}$ avec $r \in \Cb$ à déterminer. C'est ce qu'on
-injecte dans~\eqref{eq:edlhc2}~:
-\begin{tcb}(tool){Méthode pour EDLHC d'ordre 2}
-	Pour résoudre~\eqref{eq:edlhc2}, on introduit le \textbf{polynôme
-		caractéristique}~:
-	\begin{equation}
-		r^{2} + \frac{\w_0}{Q}r + \w_0^{2} = 0
+\end{tcn}
+
+\begin{tcn}[breakable](tool){Méthode pour EDLHC d'ordre 2}
+  Pour résoudre~\eqref{eq:edlhc2}, on injecte la forme générique de solution
+  $y_h(t) = K \exr^{rt}$ pour obtenir le \textbf{polynôme caractéristique} et le
+  résoudre~:
+  \begin{DispWithArrows}
+    \dv[2]{y_h(t)}{t} +
+    \frac{\w_0}{Q}y_h(t) +
+    \w_0{}^2 y_h(t) &= 0
+    \Arrow{$y_h(t) = K \exr^{rt}$}
+    \notag
+    \\\Ra 
+    r^2 \times \cancel{K\exr^{rt}} +
+    \frac{\w_0}{Q}r \cancel{K\exr^{rt}} +
+    \w_0{}^2\cancel{K\exr^{rt}} &= 0
+    \Arrow{On simplifie}
+    \notag
+    \\\Lra
+    r^{2} + \frac{\w_0}{Q}r + \w_0^{2} &= 0
 		\label{eq:polcar}
-	\end{equation}
-	dont le discriminant $\Delta$ s'écrit
+  \end{DispWithArrows}
+  dont le discriminant $\Delta$ s'écrit
 	\[
 		\Delta =
 		\left( \frac{\w_0}{Q} \right)^{2} - 4\w_0{}^{2} =
 		\frac{\w_0{}^{2}}{Q^{2}} \left( 1 -4Q^{2} \right)
 	\]
-\end{tcb}
 La forme des solutions dépend donc des valeurs possibles de $\Delta$, et on
 distinguera trois cas, tous à connaître.
+\end{tcn}
 
-\subsubsection{$\Delta > 0 \Lra Q <1/2$}
-\begin{tcb}(ror){EDLHC d'ordre 2 avec $\Delta > 0 \Lra Q <1/2$}
-	Si $\Delta > 0 \Lra Q < 1/2$, alors~\eqref{eq:polcar} a deux racines~:
+\subsubsection{$\Delta > 0 \Lra Q <1/2$~: régime apériodique}
+\begin{tcn}(ror){EDLHC d'ordre 2 avec $\Delta > 0 \Lra Q <1/2$}
+	Si $\Delta > 0 \Lra Q < 1/2$, alors~\eqref{eq:polcar} a deux racines
+  \textbf{réelles}~:
 	\[
 		r_{\pm} = -\frac{\w_0}{2Q} \pm \frac{\w_0}{2Q} \sqrt{1-4Q^{2}}
 	\]
@@ -206,28 +327,29 @@ distinguera trois cas, tous à connaître.
 		\boxed{y_h(t) = A\exr^{r_+t} + B\exr^{r_-t}}
 	\]
 	par linéarité (propriété~\ref{prop:lin}).
-\end{tcb}
+\end{tcn}
 
-\subsubsection{$\Delta = 0 \Lra Q=1/2$}
-\begin{tcb}(ror){EDLHC d'ordre 2 avec $\Delta = 0 \Lra Q=1/2$}
-	Si $\Delta = 0 \Lra Q = 1/2$, alors~\eqref{eq:polcar} a une racine double~:
+\subsubsection{$\Delta = 0 \Lra Q=1/2$~: régime critique}
+\begin{tcn}(ror){EDLHC d'ordre 2 avec $\Delta = 0 \Lra Q=1/2$}
+  Si $\Delta = 0 \Lra Q = 1/2$, alors~\eqref{eq:polcar} a une racine réelle
+  double~:
 	\[
 		r = -\frac{\w_0}{2Q} = -\w_0
 	\]
-	et la solution \textbf{générale} de~\eqref{eq:edlhc2} s'écrit, avec $(A,B) \in
-		\Rb^{2}$ les constantes d'intégrations~:
+  et la solution \textbf{générale} de~\eqref{eq:edlhc2} s'écrit, avec $(A,B) \in
+    \Rb^{2}$ les constantes d'intégrations~:
 	\[
 		\boxed{y_h(t) = (At + B)\exr^{-\w_0t}}
 	\]
-\end{tcb}
+\end{tcn}
 
-\subsubsection{$\Delta < 0 \Lra Q>1/2$}
-\begin{tcb}(ror){EDLHC d'ordre 2 avec $\Delta < 0 \Lra Q>1/2$}
+\subsubsection{$\Delta < 0 \Lra Q>1/2$~: régime pseudo-périodique}
+\begin{tcn}(ror){EDLHC d'ordre 2 avec $\Delta < 0 \Lra Q>1/2$}
 	Si $\Delta < 0 \Lra Q > 1/2$, alors~\eqref{eq:polcar} a deux racines complexes
 	conjugées~:
 	\[
 		r_{\pm} =
-		-\frac{\w_0}{2Q} \pm \jj \frac{w_0}{2Q} \sqrt{4Q^{2}-1} =
+		-\frac{\w_0}{2Q} \pm \jj \frac{\w_0}{2Q} \sqrt{4Q^{2}-1} =
 		-\frac{\w_0}{2Q} \pm \jj \Omega
 	\]
 	et la solution \textbf{générale} de~\eqref{eq:edlhc2} s'écrit, avec $(A,B) \in
@@ -239,14 +361,56 @@ distinguera trois cas, tous à connaître.
 		}
 	\]
 	par linéarité (propriété~\ref{prop:lin}).
-\end{tcb}
+\end{tcn}
+
+\begin{tcn}[breakable](inte){Interprétation et intuition du résultat}
+  La solution du polynôme caractéristique s'écrit alors comme la \textbf{somme
+  de la solution d'ordre 1 et de la solution harmonique}~:
+  \begin{gather*}
+		r_{\pm} =
+		\xunderbracket{-\frac{\w_0}{2Q}}_{\equiv -\frac{1}{\tau}}
+    \pm
+    \xunderbracket{\jj \Omega}_{\equiv \jw}
+    \\
+    \beforetext{soit}
+    \boxed{r_{\pm} = r\ind{ordre 1} + r\ind{ordre 2 harmonique}}
+  \end{gather*}
+  Ceci n'est pas très étonnant puisque l'EDLHC d'ordre 2 amortie est la somme
+  d'une EDLHC d'ordre 2 harmonique et d'une EDLHC d'ordre 1.
+  \tcblower
+  Avec les propriétés de l'exponentielle ($\exr^{a+b} = \exr^{a}\exr^{b}$), il
+  est donc naturel que la solution amortie soit le \textbf{produit} des
+  solutions d'ordre 1 et d'ordre 2~:
+	\begin{gather*}
+			y_h(t) =
+      \xunderbracket{\exp\left( -\frac{\w_0}{2Q}t \right)}_{\equiv
+      \exr^{-t/\tau}}
+			\xunderbracket{%
+        \left[A\cos(\Omega t) + B\sin(\Omega t)\right]%
+      }_{\equiv A\cos(\w_0t) + B\sin(\w_0t)}
+		\\
+    \beforetext{soit}
+    \boxed{%
+      y_h(t) = y_{h, \text{ordre 1}} \times y_{h, \text{ordre 2 harmonique}}
+    }
+	\end{gather*}
+\end{tcn}
+
+\begin{tcn}(impo){Attention~!}
+  Pour une EDLHC amortie, dans le cas pseudo-périodique \textbf{la pulsation
+  n'est plus égale à la pulsation propre}~:
+  \[
+    \boxed{\w_0 \neq \W}
+  \]
+\end{tcn}
 
 \subsubsection{Cas particulier~: $Q \ra +\infty$}
 Si $Q \ra +\infty$, alors l'Équation~\eqref{eq:edlhc2} se simplifie en~:
 \[
 	\dv[2]{y_h(t)}{t} + \w_0{}^{2}y_h(t) = 0
 \]
-Et la solution est celle pour $\Delta < 0 \Lra Q>1/2$ avec $Q \ra +\infty$, soit
+Et on retrouve la solution harmonique. Elle correspond alors avec la solution
+amortie pour $\Delta < 0 \Lra Q>1/2$ avec $Q \ra +\infty$, soit
 \[
 	\boxed{y_h(t) = A \cos(\w_0t) + B\sin(\w_0t)}
 \]
@@ -258,14 +422,14 @@ mais une famille de solutions. Pour que la solution représente le système
 étudiée, il faut trouver les valeurs des constantes d'intégrations. On
 s'intéresse ici aux EDLC avec second membre constant.
 
-\begin{tcb}[cnt](impo){Important}
+\begin{tcn}[cnt](impo){Important}
 	Rien de cette section n'est à retenir par cœur~! Seule la \textbf{méthode} est
 	à comprendre.
-\end{tcb}
-\begin{tcb}*[cnt, bld, fontupper=\Large](prop)"bomb"{Attention}
+\end{tcn}
+\begin{tcn}*[cnt, bld, fontupper=\Large](prop)"bomb"{Attention}
 	La détermination des constantes d'intégrations se fait bien sur la
 	\textbf{solution générale}, pas uniquement sur l'équation homogène~!
-\end{tcb}
+\end{tcn}
 
 \subsection{EDLC d'ordre 1}
 Soit une EDLC dont le second membre vaut $K$, une constante connue.
@@ -336,14 +500,14 @@ D'où la solution
 			\right]
 	}
 \]
-\begin{tcb}(rema)<lfnt>{Remarque}
+\begin{tcn}(rema)<lfnt>{Remarque}
 	Pas d'inquiétude face à cette solution, encore une fois seule la
 	\textbf{méthode} est à comprendre. Dans la pratique, les systèmes ont des
 	propriétés élégantes et simples $y_0 = 0, v_0 = 0$ par exemple.
-\end{tcb}
+\end{tcn}
 
 \section{Conclusion~: méthode de résolution}
-\begin{tcb}(ror){Résolution EDLC second membre constant}
+\begin{tcn}(ror){Résolution EDLC second membre constant}
 	Pour résoudre une équation différentielle linéaire à
 	coefficients constants et second membre constant~:
 	\begin{enumerate}[label=\sqenumi]
@@ -357,14 +521,14 @@ D'où la solution
 		      solution particulière et de la forme générale~: $y(t) = y_h(t) + y_p$
 		\item On détermine la constante à l'aide des \textbf{conditions initiales}.
 	\end{enumerate}
-\end{tcb}
+\end{tcn}
 
 Toute tentative de détermination de CI d'une EDLC sur $y_h$ et non sur $y$
 causera la mort instantanée d'un innocent et mignon petit chaton.
 
 \section{Complément~: démonstrations}
 \subsection{Linéarité pour EDLH}
-\begin{tcb}(demo)<lfnt>{}
+\begin{tcn}(demo)<lfnt>{}
 	Soit une EDLH
 	\[
 		\sum_{i} f_i(t) \dv[i]{y(t)}{t} = 0
@@ -380,10 +544,12 @@ causera la mort instantanée d'un innocent et mignon petit chaton.
 		\sum_{i} f_i(t) \dv[i]{y_2(t)}{t} = 0
 		\qed
 	\end{gather*}
-\end{tcb}
+\end{tcn}
 
 \subsection{$y_h(t)$ pour $\Delta < 0 \Lra Q > 1/2$}
-\begin{tcb}[breakable](demo)<lfnt>{}
+\label{ssec:democos}
+
+\begin{tcn}[breakable](demo)<lfnt>{}
 	En effet, avec ces deux solutions on trouve
 	\[
 		y_+(t) = \exr^{\left(-\frac{\w_0}{2Q} + \jj \Omega\right)t}
@@ -437,6 +603,6 @@ causera la mort instantanée d'un innocent et mignon petit chaton.
 		}
 		\qed
 	\end{align*}
-\end{tcb}
+\end{tcn}
 
 \end{document}

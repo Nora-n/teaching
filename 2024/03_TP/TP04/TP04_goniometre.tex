@@ -3,27 +3,34 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{3}
 
-\chapter{Goniom\`etre \`a r\'eseau~: spectrom\'etrie}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
 
-\ifstudent{
-	\begin{prgm}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
+\chapter{Goniomètre à réseau~: spectrométrie}
+
+\enonce{
+	\begin{tcn}(exem)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}
 				\item Utiliser des vis micrométriques et un réticule pour
               tirer parti de la précision affichée de l'appareil utilisé.
         \item Mesurer une longueur d'onde optique à l'aide d'un goniomètre à
           réseau.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -35,7 +42,6 @@
     \item Utiliser un réseau pour déterminer les longueurs d'onde émises par une
         lampe spectrale après étalonnage du réseau.
 	\end{itemize}
-}
 
 \section{S'approprier}
 \subsection{Les réseaux de diffraction}
@@ -76,7 +82,7 @@ que dans quelques directions, dont la direction incidente (pas de déviation,
 $i=0$). L'examen de la formule des réseaux montre que $k$ est «~petit~»~: il ne
 dépasse pas 2 ou 3 en général.
 
-\begin{tcb}(impl){Implication}
+\begin{tcb}(impl){}
   Si la lumière incidente est polychromatique, pour un ordre $k$ donné, l'angle
   $i_{k}'$ dépend de $\lambda$~: les différentes radiations sont donc
   angulairement séparées (sauf pour $k = 0$ où toutes les couleurs se
@@ -103,7 +109,7 @@ Un \textbf{goniomètre} est un appareil qui sert à \textbf{mesurer des angles}
 avec une précision d'une minute d'angle. C'est donc un appareil adapté pour
 évaluer les déviations de rayons lumineux par un réseau (ou un prisme).
 
-\begin{tcb}(rapp){Rappel}
+\begin{tcb}(rapp){Conversion d'angles}
   \begin{center}
       $\ang{;60;} = \ang{1;;}$.
       Ainsi, on a donc~: $\ang{1.2;;}= \ang{1;12;}$ (par exemple).
@@ -129,7 +135,7 @@ Un exemple de goniomètre est proposé ci-dessous. Il comporte~:
         horizontal à l'aide de trois vis de réglage.
 \end{itemize}
 
-\begin{tcb}*(prop)"bomb"{}
+\begin{tcb}(impo)"bomb"{}
   Puisqu'on cherche à effectuer des mesures précises, il est nécessaire de
   régler \textbf{parfaitement} l'appareil grâce à la démarche donnée ci-après.
   Cette démarche est longue et demande beaucoup de précisions. Soyez
@@ -197,7 +203,7 @@ platine sans que celui-ci ne soit nécessairement vertical.
   \end{center}
 \end{minipage}
 
-\begin{tcb}(expe){}
+\begin{tcb}(expe)<itc>{Horizontalité de la lunette}
   \begin{enumerate}
   \item Poser le miroir sans tain sur le plateau de façon à ce qu'elle soit
   approximativement parallèle à l'axe $V_2-V_3$. Viser à la lunette pour
@@ -223,9 +229,11 @@ platine sans que celui-ci ne soit nécessairement vertical.
 
   \end{enumerate}
 
-\begin{tcb}*[bld, cnt](prop)"bomb"{}
-  Ne plus toucher par la suite aux vis de réglages de la lunette~!
-\end{tcb}
+  \begin{center}
+    \begin{tcb}[bld, cnt, width=.9\linewidth](impo)"bomb"{}
+    Ne plus toucher par la suite aux vis de réglages de la lunette~!
+  \end{tcb}
+  \end{center}
 
 \begin{enumerate}[resume]
   \item Retirer ensuite le miroir sans tain du plateau. Basculer la lame
@@ -241,7 +249,7 @@ platine sans que celui-ci ne soit nécessairement vertical.
 \subsection{Réglage du tirage du collimateur}
 
 Le collimateur doit donner de la fente une \textbf{image à l'infini}.
-\begin{tcb}(expe){}
+\begin{tcb}(expe)<itc>{Réglage du collimateur}
   \begin{enumerate}
     \item Diriger la lunette vers le collimateur $K$. Ouvrir la fente de
       $\SI{0,5}{mm}$ environ et l'éclairer par la source qui sera utilisée dans
@@ -266,9 +274,13 @@ Le collimateur doit donner de la fente une \textbf{image à l'infini}.
     \item Refermer ensuite légèrement la fente, l'œil restant derrière l'oculaire
       de la lunette, de manière à observer un trait lumineux de faible largeur.
   \end{enumerate}
-  \begin{tcb}*[bld, cnt](prop)"bomb"{}
-    Ne plus toucher par la suite aux vis de réglages du tirage du collimateur~!
-  \end{tcb}
+
+  \begin{center}
+      \begin{tcb}[bld, cnt, width=.9\linewidth](impo)"bomb"{}
+      Ne plus toucher par la suite aux vis de réglages du collimateur~!
+    \end{tcb}
+  \end{center}
+
   \begin{enumerate}[resume]
     \item Viser la position angulaire de la fente en superposant l'axe vertical
       de votre réticule sur la fente. Lire l'angle associé que l'on notera
@@ -278,7 +290,7 @@ Le collimateur doit donner de la fente une \textbf{image à l'infini}.
 
 \subsection{Réglage de l'horizontalité du plateau (suite et fin)}
 
-\begin{tcb}(expe){}
+\begin{tcb}(expe)<itc>{Horizontalité de la lunette, bis}
   \begin{enumerate}
     \item Poser le réseau au centre de la plate-forme,
       \textbf{perpendiculairement à la position du miroir sans tain que vous
@@ -301,12 +313,15 @@ Le collimateur doit donner de la fente une \textbf{image à l'infini}.
       ouvrir légèrement la fente du collimateur, les mesures peuvent commencer.
   \end{enumerate}
 \end{tcb}
+}
 
+\setcounter{section}{3}
 \section{Réaliser~: Utiliser le goniomètre comme un spectromètre}
 
 \subsection{Relevé des valeurs de déviation}
 
-La première étape consiste à étalonner le goniomètre en déterminant la position
+\enonce{%
+  La première étape consiste à étalonner le goniomètre en déterminant la position
 angulaire des raies spectrales de la lampe à vapeur de mercure. Tout d'abord,
 nous allons positionner le réseau afin de se placer en indidence normale sur le
 réseau. Pour ce faire, 
@@ -374,11 +389,12 @@ mercure. Il est possible que vous ne parveniez pas à toutes les observer.
   \end{tabular}
   \label{tab:raiesint}
 \end{table}
+}%
 
-\begin{enumerate}[label=\sqenumi]
-  \item À partir de vos mesures, recopiez sur votre copie puis complétez le
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR{%
+  À partir de vos mesures, recopiez sur votre copie puis complétez le
     tableau suivant.
-\end{enumerate}
 \begin{table}[htbp]
   \centering
   \caption{Données à relever}
@@ -408,41 +424,61 @@ mercure. Il est possible que vous ne parveniez pas à toutes les observer.
       \bottomrule
   \end{tabular}}
   \begin{tablenotes}[flushleft]
-  \bitem{Notes.} $^\dag$On rappelle que $i_1 = \abs{\alpha-\alpha_0}$.
+  \item[b]{Notes.} $^\dag$On rappelle que $i_1 = \abs{\alpha-\alpha_0}$.
   \end{tablenotes}
   \end{threeparttable}
 \end{table}
+}{%
+  En cours…
+}%
 
 \subsection{Tracé de la courbe d'étalonnage}
 
-\begin{enumerate}[label=\sqenumi, start=2]
-  \item À l'aide de la méthode de votre choix (LatisPro, Regressi,
+\QR{%
+  À l'aide de la méthode de votre choix (LatisPro, Regressi,
     Python\ftn{Activité \texttt{Capytale}~:
     \url{https://capytale2.ac-paris.fr/web/c/5d1d-1973717}}…), répresenter
     $\sin(i_1)$ en fonction de $\lambda$ puis montrer que la courbe est
     modélisable par une droite linéaire dont vous déterminerez le coefficient
     directeur et le coefficient de corrélation.
-\end{enumerate}
+}{%
+  En cours…
+}%
 
 \section{Valider~: Résolution du doublet jaune du sodium}
 Changer de lampe et prendre dorénavant la lampe à vapeur de sodium.
 
-\begin{enumerate}[label=\sqenumi, resume]
-  \item Pour chacune des deux raies du doublet jaune du sodium, déterminer
+\QR{%
+  Pour chacune des deux raies du doublet jaune du sodium, déterminer
     l'angle de déviation correspondant à l'ordre 1.
 
-  \item En déduire alors les longueurs d'onde correspondantes à partir de la
+}{%
+  En cours…
+}%
+
+\QR{%
+  En déduire alors les longueurs d'onde correspondantes à partir de la
     régression de la courbe d'étalonnage précédemment établie (vous donnerez vos
     résultats avec 4 chiffres significatifs). 
 
   Les valeurs tabulées pour le doublet du sodium sont $\lambda_1 =
   \SI{589,00}{nm}$ et $\lambda_2 = \SI{589,59}{nm}$.
 
-  \item Calculer les écarts normalisés avec les valeurs trouvées
-    expérimentalement. 
+}{%
+  En cours…
+}%
 
-  \item Que pensez-vous de la précision de cet appareil~? Le prix d'achat est-il
+\QR{%
+  Calculer les écarts normalisés avec les valeurs trouvées expérimentalement.
+}{%
+  En cours…
+}%
+
+\QR{%
+  Que pensez-vous de la précision de cet appareil~? Le prix d'achat est-il
     justifié~?
-\end{enumerate}
+}{%
+  En cours…
+}%
 
 \end{document}

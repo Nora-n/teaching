@@ -1,0 +1,64 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\tikzset{every picture/.style={thick}}
+
+\tikzset{gradient/.style={
+    postaction={
+        decorate,
+        decoration={
+            markings,
+            mark=between positions 0 and \pgfdecoratedpathlength step 0.5pt with {
+                \pgfmathsetmacro\myval{multiply(divide(
+                    \pgfkeysvalueof{/pgf/decoration/mark info/distance from start}, \pgfdecoratedpathlength),100)};
+                \pgfsetfillcolor{red!\myval!blue};
+                \pgfpathcircle{\pgfpointorigin}{#1};
+                \pgfusepath{fill};}
+}}}}
+\def\muty{1}
+\def\mutx{1}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{axis}[
+			xmin=-3, xmax=3,
+			ymin=-2, ymax=2,
+			xlabel=$u_C(t)$, ylabel=$i(t)$,
+			axis lines=center,
+			xtick=\empty, ytick=\empty,
+			every axis x label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=west,
+				},
+			every axis y label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=south,
+				},
+			clip=false]
+		\path[gradient=.5pt, flch={pos=0.4}]
+		(0,-1) arc(270:90:2.5cm and 1.5cm)
+		node[pos=0.485] (xlef) {$\times$};
+		\path[gradient=.5pt, flch={pos=0.4,type={stealth reversed}}]
+		(0,-1) arc(270:90:-2.5cm and 1.5cm)
+		node[pos=0] (vbot) {$\times$}
+		node[pos=0.485] (xrig) {$\times$}
+		% node[pos=.3] (B) {$\bullet$}
+		node[pos=1] (vtop) {$\times$};
+		% Projection
+		% \coordinate (H) at ($(0,0)!(B)!(1,0)$);
+		% \coordinate (I) at ($(0,0)!(B)!(0,1)$);
+		% \draw[dashed, gray!70] (B) -- (H);
+		% \draw[dashed, gray!70] (B) -- (I);
+		% Points
+		\node[above right] (vttex) at (vtop.center) {$i\ind{max}$};
+		\node[below right] (vbtex) at (vbot.center) {$i\ind{min}$};
+		\node[below right] (xrtex) at (xrig.center) {$E_0$};
+		\node[above left] (xltex) at (xlef.center) {$-E_0$};
+		\node[] (xmid) at (0,0) {$\times$};
+		\node[below left]  at (xmid.center) {0};
+		\node[above left]  at (xmid.center) {0};
+		% Sens variation
+		% \draw[->] (B.east) to[in=0, out=-90] (B.south);
+	\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -3,37 +3,43 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
+% \toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{5}
 
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
 \chapter{Oscilloscope et trac\'e de caract\'eristiques}
 
-\ifstudent{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoirs}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Préciser la perturbation induite par l'appareil de mesure sur le
-				      montage et ses limites (bande passante, résistance d'entrée)~;
-				\item Définir la nature de la mesure effectuée (valeur efficace, valeur
-				      moyenne, amplitude, valeur crête à crête, etc.)~;
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Mesurer une tension au voltmètre ou à l'oscilloscope~;
-				\item Gérer, dans un circuit électronique, les contraintes liées à la
-				      liaison entre les masses.
-				\item Obtenir un signal de valeur moyenne, de forme, d’amplitude et de
-				      fréquence données.
-				\item Mettre en œuvre une méthode de mesure de fréquence ou de période.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+\enonce{
+	\begin{tcn}[sidebyside](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Préciser la perturbation induite par l'appareil de mesure sur le
+			      montage et ses limites (bande passante, résistance d'entrée)~;
+			\item Définir la nature de la mesure effectuée (valeur efficace, valeur
+			      moyenne, amplitude, valeur crête à crête, etc.)~;
+			\item Mesurer une tension au voltmètre ou à l'oscilloscope~;
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Gérer, dans un circuit électronique, les contraintes liées à la
+			      liaison entre les masses.
+			\item Obtenir un signal de valeur moyenne, de forme, d’amplitude et de
+			      fréquence données.
+			\item Mettre en œuvre une méthode de mesure de fréquence ou de période.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -44,12 +50,12 @@
 		\item Tracer une caractéristique de dipôle en utilisant un transformateur
 		      d'isolement.
 	\end{itemize}
-}
 
-\begin{tcb}[cnt](impo){}
-	Vous prendrez soin de refaire tous les schémas des circuits mis en place ou
-	étudiés.
-\end{tcb}
+	\begin{tcn}[cnt, bld](impo){}
+		Vous prendrez soin de refaire tous les schémas des circuits mis en place ou
+		étudiés.
+	\end{tcn}
+}
 
 \section{S'approprier}
 \subsection{Résistances d'entrée et de sortie}
@@ -60,225 +66,346 @@
 
 \subsubsection{Résistance de sortie du générateur basse fréquence (GBF)}
 
-\begin{tcb}[sidebyside, righthand ratio=.35](defi){Résistance d'entrée}
-	Le GBF est un générateur réel pouvant être modélisé comme une association
-	série d'un générateur idéal de tension de force électromotrice $e$ associé à
-	une résistance de sortie $r_{s}$ (modèle de \textsc{Thévenin}). Comme vu en
-	cours, on branche le GBF sur une résistance variable $R'$ puis on mesure la
-	tension $U_1$ aux bornes de $R'$.
-	\tcblower
-	\begin{center}
-		\includegraphics[width=\linewidth]{res_entree}
-		\captionof{figure}{}
-	\end{center}
-\end{tcb}
+\enonce{%
+	\begin{tcb}[sidebyside, righthand ratio=.35](defi){Résistance de sortie}
+		Le GBF est un générateur réel pouvant être modélisé comme une association
+		série d'un générateur idéal de tension de force électromotrice $e$ associé à
+		une résistance de sortie $r_{s}$ (modèle de \textsc{Thévenin}). Comme vu en
+		cours, on branche le GBF sur une résistance variable $R'$ puis on mesure la
+		tension $U_1$ aux bornes de $R'$.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{res_entree}
+			\captionof{figure}{}
+		\end{center}
+	\end{tcb}
+}%
 
-\begin{enumerate}[label=\clenumi]
-	\item Montrer que lorsque $U_1 = e/2$, alors $R' = r_{s}$.
-	\item En déduire une méthode simple de mesure expérimentale de $r_{s}$.
-\end{enumerate}
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR{%
+	Montrer que lorsque $U_1 = e/2$, alors $R' = r_{s}$.
+}{%
+	Par un pont diviseur de tension,
+	\begin{gather*}
+		U_1 = \frac{R'}{R'+r_s}e
+		\\\beforetext{donc}
+		U_1 = \frac{e}{2}
+		\Lra
+		\frac{R'}{R'+r_s} = \frac{1}{2}
+		\Lra
+		\boxed{R' = r_s}
+	\end{gather*}
+}%
 
-\begin{tcb}(expe){Aide}
-	Afin de mesurer $U_1$, l'oscilloscope se branche entre la masse (reliée à la
-	borne noire de l'oscilloscope) et le nœud $Y_1$ (relié à la borne rouge de
-	l'oscilloscope). Notez que dans un circuit, \textbf{la masse est un nœud
-		commun à tous les appareils branchés}.
-	\smallbreak
-	Par conséquent, la borne noire du GBF ainsi que les deux bornes noires de
-	l'oscilloscope doivent être impérativement reliées entre elles. Si ce n'est
-	pas le cas, votre montage ne fonctionnera pas.
-\end{tcb}
+\QR{%
+	En déduire une méthode simple de mesure expérimentale de $r_{s}$.
+}{%
+	On mesure la tension à vide du GBF en branchant un voltmètre directement
+	dessus. On branche ensuite une résistance variable à ses bornes et le
+	voltmètre par-dessus. On fait varier la résistance entre
+	\SIrange{1}{100}{\ohm}. Lorsque la tension lue est la moitié de la tension à
+	vide, on relève la valeur de $R'$~: c'est la valeur de $r_s$.
+}%
 
 \subsubsection{Résistance d'entrée de l'oscilloscope}
 
-\begin{tcb}[sidebyside, righthand ratio=.35](defi){Résistance de sortie}
-	L'entrée d'un oscilloscope est assimilable à une résistance d'entrée $R_{e}$
-	en dérivation avec une capacité $C_{e}$. À \textbf{basse fréquence}, le
-	condensateur est assimilable à un \textbf{interrupteur ouvert}, si bien que
-	l'on peut dans un tel régime négligé sa présence.
-	\tcblower
-	\begin{center}
-		\includegraphics[width=\linewidth]{res_sortie}
-		\captionof{figure}{}
-	\end{center}
-\end{tcb}
+\enonce{%
+	\begin{tcb}[sidebyside, righthand ratio=.35](defi){Résistance d'entrée}
+		L'entrée d'un oscilloscope est assimilable à une résistance d'entrée $R_{e}$
+		en dérivation avec une capacité $C_{e}$. À \textbf{basse fréquence}, le
+		condensateur est assimilable à un \textbf{interrupteur ouvert}.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{res_sortie}
+			\captionof{figure}{}
+		\end{center}
+	\end{tcb}
 
-\begin{enumerate}[label=\clenumi, start=3]
-	\item Montrer alors, en vous aidant du schéma, que la tension $U_2$, mesurée
-	      par l'oscilloscope (modélisée par une résistance et une capacité en
-	      parallèle), est égale à $U_{e}/2$ lorsque $R' = R_{e}$.
-	\item En déduire une méthode simple de mesure expérimentale de $R_{e}$.
-\end{enumerate}
+	\begin{tcb}(rema)<lfnt>{}
+		Remarquez que, contrairement à ce qui est fait dans le cours, la résistance de
+		sortie du GBF n'apparaît pas. Elle est en réalité très faible devant les
+		autres résistances $R_{e}$ et $R'$ et sera donc négligée.
+	\end{tcb}
+}%
 
-\begin{tcb}(rema)<lfnt>{}
-	Remarquez que, contrairement à ce qui est fait dans le cours, la résistance de
-	sortie du GBF n'apparaît pas. Elle est en réalité très faible devant les
-	autres résistances $R_{e}$ et $R'$ et sera donc négligée.
-\end{tcb}
+\QR{%
+	Montrer alors, en vous aidant du schéma, que la tension $U_2$ mesurée
+	par l'oscilloscope (modélisée par une résistance et une capacité en
+	parallèle) est égale à $U_{e}/2$ lorsque $R' = R_{e}$.
+}{%
+	Avec $C_e$ un interrupteur ouvert, aucune intensité ne passe dans la branche
+	de la capacité. On se retrouve donc avec un autre pont diviseur de tension,
+	avec
+	\begin{gather*}
+		U_2 = \frac{R_e}{R_e + R'}U_e
+		\\\beforetext{donc}
+		U_2 = \frac{U_e}{2}
+		\Lra
+		\frac{R_e}{R_e + R'} = \frac{1}{2}
+		\Lra
+		\boxed{R' = R_e}
+	\end{gather*}
+}%
 
-\subsection{Mesures avec un oscilloscope}
+\QR{%
+	En déduire une méthode simple de mesure expérimentale de $R_{e}$.
+}{%
+	Avec un $U_e$ connu, par exemple, $U_e = \SI{5}{V}$ constant, on branche
+	l'oscilloscope et on oberve la tension mesurée. On fait varier $R'$ jusqu'à ce
+	que l'oscilloscope affiche une tension moitié celle du GBF. Alors, $R' = R_e$.
+}%
 
-À partir du menu mesure, l'oscilloscope est capable de réaliser des mesures
-automatiques des principales caractéristiques des signaux électriques. Vous
-pourrez en particulier afficher~:
+\enonce{%
+	\subsection{Mesures avec un oscilloscope}
 
-\begin{itemize}
-	\item la période et la fréquence du signal~;
-	\item la tension crête-crête $U_{\rm pp}$ du signal (valeur mesurée entre le
-	      maximum et le minimum du signal)~;
-	\item la tension efficace $U_{\rm eff}$ définie par
-	      \encadre{$S_{\rm eff} = \sqrt{ \left\langle s^2(t) \right\rangle}
-			      = \sqrt{\frac{1}{T}\int_{t_0}^{t_0+T} s^2(t) \dt}$}
-\end{itemize}
-\vspace{-10pt}
-\begin{tcb}[sidebyside](defi){Amplitude et tensions}
-	L'amplitude $A$ d'un signal (qui intervient dans l'expression d'un signal
-	sinusoïdal selon $s(t) = A \cos(\omega t + \varphi)$) est liée à $U_{\rm
-				pp}$ selon
-	\[
-		\boxed{A = U_{\rm pp}/2}
-	\]
-	\tcblower
-	Par ailleurs, pour un signal sinusoïdal, \textbf{et uniquement pour un
-		signal sinusoïdal} la tension efficace s'écrit~:
-	\[
-		\boxed{U_{\rm eff} = U_{\rm pp}/\sqrt{2} = \sqrt{2} A}
-	\]
-\end{tcb}
+	À partir du menu mesure, l'oscilloscope est capable de réaliser des mesures
+	automatiques des principales caractéristiques des signaux électriques. Vous
+	pourrez en particulier afficher~:
 
-\begin{tcb}*[cnt, bld](prop)"bomb"{Attention}
-	Pour toute mesure, vérifier que la source du menu mesure correspond bien à
-	la courbe sur laquelle vous faites des mesures.
-\end{tcb}
+	\begin{itemize}
+		\item la période et la fréquence du signal~;
+		\item la tension crête-crête $U_{\rm pp}$ du signal (valeur mesurée entre le
+		      maximum et le minimum du signal)~;
+		\item la tension efficace $U_{\rm eff}$ définie par
+		      \encadre{$S_{\rm eff} = \sqrt{ \left\langle s^2(t) \right\rangle}
+				      = \sqrt{\frac{1}{T}\int_{t_0}^{t_0+T} s^2(t) \dt}$}
+	\end{itemize}
+	\vspace{-10pt}
+	\begin{tcb}[sidebyside](defi){Amplitude et tensions}
+		L'amplitude $U\ind{max}$ d'un signal (qui intervient dans l'expression d'un signal
+		sinusoïdal selon $s(t) = U\ind{max} \cos(\omega t + \varphi)$) est liée à $U_{\rm
+					pp}$ selon
+		\[
+			\boxed{U\ind{max} = U_{\rm pp}/2}
+		\]
+		\tcblower
+		Par ailleurs, pour un signal sinusoïdal, \textbf{et uniquement pour un
+			signal sinusoïdal} la tension efficace s'écrit~:
+		\[
+			\boxed{U_{\rm eff} = \frac{U\ind{max}}{\sqrt{2}} = \frac{U\ind{pp}}{2 \sqrt{2}}}
+		\]
+	\end{tcb}
 
-\subsection{Utilisation des oscilloscopes}
-\subsubsection{Imprimer une courbe avec un oscilloscope \texttt{Rigol}}
+	\begin{tcb}*[cnt, bld](impo)"bomb"{Attention}
+		Pour toute mesure, vérifier que la source du menu mesure correspond bien à
+		la courbe sur laquelle vous faites des mesures.
+	\end{tcb}
 
-\begin{enumerate}
-	\item Allumer l'ordinateur et se connecter au réseau.
-	\item Puis, programme, discipline, physique-chimie, physique, oscillo
-	      \texttt{rigol}.
-	\item \texttt{Tools}, \texttt{connect to oscillo}, puis \texttt{refresh}.
-	\item Passer en noir et blanc (\texttt{B \& W}) et enfin \texttt{print}.
-\end{enumerate}
+	\begin{tcb}(rapp){Incertitudes composées à 2 variables~: somme ou différence}
+		\[
+			\boxed{
+				y = x_1 \pm x_2
+				\qquad \Ra \qquad
+				u(y) = \sqrt{(u(x_1))^{2} + (u(x_2))^{2}}}
+		\]
+	\end{tcb}
 
-\subsubsection{Imprimer une courbe avec un oscilloscope \texttt{Tektronix}}
+	% \subsection{Utilisation des oscilloscopes}
+	% \subsubsection{Imprimer une courbe avec un oscilloscope \texttt{Rigol}}
+	%
+	% \begin{enumerate}
+	%   \item Allumer l'ordinateur et se connecter au réseau.
+	%   \item Puis, programme, discipline, physique-chimie, physique, oscillo
+	%         \texttt{rigol}.
+	%   \item \texttt{Tools}, \texttt{connect to oscillo}, puis \texttt{refresh}.
+	%   \item Passer en noir et blanc (\texttt{B \& W}) et enfin \texttt{print}.
+	% \end{enumerate}
+	%
+	% \subsubsection{Imprimer une courbe avec un oscilloscope \texttt{Tektronix}}
+	%
+	% \begin{enumerate}
+	%   \item Ouvrir \texttt{Open Choice Desktop}. Sélectionner \texttt{instrument
+	%           USB} puis \texttt{Afficher écran}.
+	%   \item Copier vers le presse-papier. Ouvrir \texttt{paint} et coller.
+	%   \item Puis cliquer droit, inverser les couleurs.
+	%   \item Sélection rectangulaire, pour ne garder que les oscillogrammes et les
+	%         réglages de l'oscilloscope.
+	%   \item Copier~; Basculer dans \texttt{libre-office} ou \texttt{word} et
+	%         Coller~;
+	%   \item Faire une belle mise en page et mettre des titres et commentaires
+	%         éventuels. Puis imprimer.
+	% \end{enumerate}
+	%
+	% \subsubsection{Incertitudes de lecture}
+	% \begin{tcb}(rapp){Incertitudes composées à 2 variables~: somme ou différence}
+	%   \[
+	%     \boxed{
+	%       y = x_1 \pm x_2
+	%       \qquad \Ra \qquad
+	%       u(y) = \sqrt{(u(x_1))^{2} + (u(x_2))^{2}}}
+	%   \]
+	% \end{tcb}
 
-\begin{enumerate}
-	\item Ouvrir \texttt{Open Choice Desktop}. Sélectionner \texttt{instrument
-		      USB} puis \texttt{Afficher écran}.
-	\item Copier vers le presse-papier. Ouvrir \texttt{paint} et coller.
-	\item Puis cliquer droit, inverser les couleurs.
-	\item Sélection rectangulaire, pour ne garder que les oscillogrammes et les
-	      réglages de l'oscilloscope.
-	\item Copier~; Basculer dans \texttt{libre-office} ou \texttt{word} et
-	      Coller~;
-	\item Faire une belle mise en page et mettre des titres et commentaires
-	      éventuels. Puis imprimer.
-\end{enumerate}
-
-\subsubsection{Incertitudes de lecture}
-\begin{tcb}(rapp){Incertitudes composées à 2 variables~: somme ou différence}
-	\[
-		\boxed{
-			y = x_1 \pm x_2
-			\qquad \Ra \qquad
-			u(y) = \sqrt{(u(x_1))^{2} + (u(x_2))^{2}}}
-	\]
-\end{tcb}
+}%
 
 \section{Réaliser}
+\enonce{%
+	\begin{tcn}(inte){Branchements et masse}
+		Afin de mesurer $U_1$, l'oscilloscope se branche entre la masse (reliée à la
+		borne noire de l'oscilloscope) et le nœud $Y_1$ (relié à la borne rouge de
+		l'oscilloscope). Notez que dans un circuit, \textbf{la masse est un nœud
+			commun à tous les appareils branchés}.
+		\smallbreak
+		Par conséquent, la borne noire du GBF ainsi que les deux bornes noires de
+		l'oscilloscope doivent être impérativement reliées entre elles. Si ce n'est
+		pas le cas, votre montage ne fonctionnera pas.
+	\end{tcn}
+}%
+
 \subsection{Visualisation et mesures de tensions et période du signal}
 % \subsubsection{}
-\begin{tcb}(expe){Mesures de tension et période}
-	\begin{enumerate}
-		\item Brancher le GBF sur la voie 1 de l'oscilloscope~;
-		\item Choisir une fréquence d'environ \SI{1000}{Hz} et une tension
-		      sinusoïdale crête-crête de \SI{2}{V} (bouton DC offset enfoncé)~;
-		\item Affichez la mesure de la tension \textit{via} l'oscilloscope en
-		      sélectionnant $V_{pp}$ de la voie 1 (CH$_1$) dans le menu
-		      \texttt{mesure}~;
-		\item Régler le \textit{level} du GBF, tel que $V_{pp} = \SI{2}{V}$ pour
-		      CH$_1$~;
-		\item Visualiser le signal en réglant les vis d'échelles X et Y~;
-		\item Mesurer la valeur maximale de tension ainsi que la période de la
-		      tension en utilisant les règles de lectures et en règlant les
-		      sensibilités de l'oscilloscope.
-	\end{enumerate}
-\end{tcb}
-\begin{enumerate}[label=\sqenumi]
-	\item Écrire les résultats en \si{mV} et \si{\micro s}. Vous ferez attention à
-	      évaluer les incertitudes.
-	      % \begin{tcb}(rapp)<lfnt>{}
-	      %    Pour rappel, l'incertitude d'une différence ($t_2 - t_1$ par exemple)
-	      %    se calcule par composition.
-	      % \end{tcb}
+\enonce{%
+	\begin{tcb}[breakable](expe)<itc>{Mesures de tension et période}
+		\begin{enumerate}
+			\item Brancher le GBF sur la voie 1 de l'oscilloscope~;
+			\item Choisir une fréquence d'environ \SI{1000}{Hz} et une tension
+			      sinusoïdale crête-crête de \SI{2}{V} (bouton DC offset enfoncé)~;
+			\item Affichez la mesure de la tension \textit{via} l'oscilloscope en
+			      sélectionnant $V_{pp}$ de la voie 1 (CH$_1$) dans le menu
+			      \texttt{mesure}~;
+			\item Régler le \textit{level} du GBF, tel que $V_{pp} = \SI{2}{V}$ pour
+			      CH$_1$~;
+			\item Visualiser le signal en réglant les vis d'échelles X et Y~;
+			\item Mesurer la valeur maximale de tension ainsi que la période de la
+			      tension en utilisant les règles de lectures et en règlant les
+			      sensibilités de l'oscilloscope.
+		\end{enumerate}
+	\end{tcb}
+}%
 
-	\item En déduire la tension efficace ainsi que la fréquence $f$ du signal.
-	\item Dans le mesure \texttt{mesure}, lire directement les valeurs des
-	      tensions $U_{\max}$, $U_{\rm eff}$ (notée $V_{\rm rms}$) et de la
-	      période sur CH$_1$.
-	\item Dans le menu \texttt{Trigger}, changer la source pour CH$_2$~: que
-	      constatez-vous~?
-	\item Revenez à la source 1, modifier le niveau de déclenchement. Quel est le
-	      rôle de ce bouton~?
-\end{enumerate}
+\resetQ
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR{%
+	Écrire les résultats en \si{mV} et \si{\micro s}. Vous ferez attention à
+	évaluer les incertitudes.
+}{%
+	solu
+}%
+
+\QR{%
+	En déduire la tension efficace ainsi que la fréquence $f$ du signal.
+}{%
+	solu
+}%
+
+\QR{%
+	Dans le mesure \texttt{mesure}, lire directement les valeurs des
+	tensions $U_{\max}$, $U_{\rm eff}$ (notée $V_{\rm rms}$) et de la
+	période sur CH$_1$.
+}{%
+	solu
+}%
+
+\QR{%
+	Dans le menu \texttt{Trigger}, changer la source pour CH$_2$~: que
+	constatez-vous~?
+}{%
+	solu
+}%
+
+\QR{%
+	Revenez à la source 1, modifier le niveau de déclenchement. Quel est le
+	rôle de ce bouton~?
+}{%
+	solu
+}%
 
 \subsection{Tracé d'une caractéristique de résistor à l'oscilloscope}
 
-\begin{tcb}[sidebyside, righthand ratio=.5](defi){Transformateur d'isolement}
-	Dans le montage ci-contre, ce qui relie les deux circuits est un
-	\textbf{transformateur d'isolement}. Il permet de reproduire à l'identique une
-	tension sans utiliser de câble, comme présenté sur le schéma ci-contre.
-	\smallbreak
-	On se sert de ce dispositif pour imposer une nouvelle maille au circuit,
-	permettant des mesures impossibles sinon.
-	\tcblower
-	\begin{center}
-		\includegraphics[width=\linewidth]{carac_r_oscillo}
-		\captionof{figure}{}
-		\label{fig:transfo}
-	\end{center}
-\end{tcb}
-\begin{enumerate}[label=\clenumi, start=5]
-	\item Retracer le circuit ci-contre, en enlevant le transformateur. La masse
-	      étant imposée par le générateur, proposer des branchements et
-	      manipulations pour observer $u_{R_p}$ sur la voie 1 et $u_R$ sur la
-	      voie 2.
-	\item Faire de même avec le circuit de la Figure~5.3. Conclure.
-\end{enumerate}
+\enonce{%
+	\begin{tcb}[sidebyside, righthand ratio=.5](defi){Transformateur d'isolement}
+		Dans le montage ci-contre, ce qui relie les deux circuits est un
+		\textbf{transformateur d'isolement}. Il permet de reproduire à l'identique une
+		tension sans utiliser de câble, comme présenté sur le schéma ci-contre.
+		\smallbreak
+		On se sert de ce dispositif pour imposer une nouvelle maille au circuit,
+		permettant des mesures impossibles sinon.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{carac_r_oscillo}
+			\captionof{figure}{}
+			\label{fig:transfo}
+		\end{center}
+	\end{tcb}
+}%
 
-\begin{tcb}(expe){Tracé d'une caractéristique}
-	\begin{enumerate}
-		\item Réaliser le montage précédent en utilisant le GBF, avec $f =
-			      \SI{1}{kHz}$, \texttt{level} $\approx \SIrange{2}{3}{V}$, sans
-		      offset, $R_P = \SI{100}{\omh}$ et $R$ \textit{inconnue}.
-		\item Observer les 2 tensions à l'oscilloscope en centrant les deux voies.
-	\end{enumerate}
-\end{tcb}
-\begin{enumerate}[label=\sqenumi, start=6]
-	\item Visualise-t-on $u_{R_p}$ sans problème~? Que faut-il faire~?
-	\item Imprimer les deux courbes en prenant \textbf{le même gain vertical}, et
-	      \textbf{en déduire $R_{\rm inconnue}$}.
-\end{enumerate}
-\begin{tcb}(expe)<lfnt>{}
-	\begin{enumerate}
-		\item Dans le menu \texttt{horizontal}, passer en mode \texttt{XY}. On
-		      visualise alors \texttt{CH2} en fonction de \texttt{CH1}, soit $u_R$
-		      en fonction de $u_{R_p}$.
-	\end{enumerate}
-\end{tcb}
-\begin{enumerate}[label=\sqenumi, start=8]
-	\item Que représente cette courbe~? La figer avec le bouton \texttt{STOP} et
-	      l'imprimer.
-	\item En déduire la valeur de $R_{\rm inconnue}$ avec une autre méthode que
-	      précédemment.
-	\item Conclure sur leur compatibilité grâce à un écart normalisé.
-\end{enumerate}
-\begin{tcb}(rema)<lfnt>{}
-	Pour prendre l'opposé d'un signal, dans le menu de la voie presser
-	\faIcon{arrow-down}, puis activer \texttt{Inversée}.
-\end{tcb}
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
+\QR<[start=5]>{%
+	Retracer le circuit ci-contre, en enlevant le transformateur. La masse
+	étant imposée par le générateur, proposer des branchements et
+	manipulations pour observer $u_{R_p}$ sur la voie 1 et $u_R$ sur la
+	voie 2.
+}{%
+	solu
+}%
+
+\QR{%
+	Faire de même avec le circuit de la Figure~\ref{fig:transfo}. Conclure.
+}{%
+	solu
+}%
+
+\enonce{%
+	\begin{tcb}(expe)<itc>{Tracé d'une caractéristique}
+		\begin{enumerate}
+			\item Réaliser le montage précédent en utilisant le GBF, avec $f =
+				      \SI{1}{kHz}$, \texttt{level} $\approx \SIrange{2}{3}{V}$, sans
+			      offset, $R_P = \SI{100}{\ohm}$ et $R$ \textit{inconnue}.
+			\item Observer les 2 tensions à l'oscilloscope en centrant les deux voies.
+		\end{enumerate}
+	\end{tcb}
+}%
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\QR<[start=6]>{%
+	Visualise-t-on $u_{R_p}$ sans problème~? Que faut-il faire~?
+}{%
+	solu
+}%
+
+\QR{%
+	Imprimer les deux courbes en prenant \textbf{le même gain vertical}, et
+	\textbf{en déduire $R_{\rm inconnue}$}.
+}{%
+	solu
+}%
+
+\enonce{%
+	\begin{tcb}(expe)<itc>{Mode XY}
+		\begin{itemize}
+			\item Dans le menu \texttt{horizontal}, passer en mode \texttt{XY}. On
+			      visualise alors \texttt{CH2} en fonction de \texttt{CH1}, soit $u_R$
+			      en fonction de $u_{R_p}$.
+		\end{itemize}
+	\end{tcb}
+}%
+
+\QR{%
+	Que représente cette courbe~? La figer avec le bouton \texttt{STOP} et
+	l'imprimer.
+}{%
+	solu
+}%
+
+\QR{%
+	En déduire la valeur de $R_{\rm inconnue}$ avec une autre méthode que
+	précédemment.
+}{%
+	solu
+}%
+
+\QR{%
+	Conclure sur leur compatibilité grâce à un écart normalisé.
+}{%
+	solu
+}%
+
+\enonce{%
+	\begin{tcb}(rema)<lfnt>{}
+		Pour prendre l'opposé d'un signal, dans le menu de la voie presser
+		\faIcon{arrow-down}, puis activer \texttt{Inversée}.
+	\end{tcb}
+}%
 
 % \section{Réaliser~: Résistances d'entrée et de sortie}
 % \subsection{Mesure de la résistance de sortie du GBF}
@@ -325,61 +452,101 @@ pourrez en particulier afficher~:
 \section{Valider} %~: Effets des résistances d'entrée et de sortie}
 \subsection{Effet de la résistance de sortie du GBF}
 
-Brancher l'oscilloscope aux bornes du GBF (toujours réglé à une fréquence de
-$\SI{1}{kHz}$) et régler le \texttt{level} de celui-ci pour obtenir une tension
-crête-crête de $\SI{2}{V}$. Comme précédemment, nous mesurons ici la tension à
-vide $e$ du GBF.
+\enonce{%
+	\noindent
+	\begin{minipage}[c]{.70\linewidth}
+		Brancher l'oscilloscope aux bornes du GBF (toujours réglé à une fréquence de
+		$\SI{1}{kHz}$) et régler le \texttt{level} de celui-ci pour obtenir une tension
+		crête-crête de $\SI{2}{V}$. Comme précédemment, nous mesurons ici la tension à
+		vide $e$ du GBF.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{.25\linewidth}
+		\begin{center}
+			\includegraphics[width=.8\linewidth, rotate=90]{divis_tension}
+			\captionof{figure}{}
+		\end{center}
+	\end{minipage}
+}%
 
-\noindent
-\begin{minipage}[t]{.65\linewidth}
-	\begin{enumerate}[label=\sqenumi, start=10]
-		\item Brancher aux bornes du GBF deux résistances identiques de
-		      $R_1 = R_2 = \SI{47}{\Omega}$ en série. Faire un schéma, puis relever
-		      à l'aide de l'oscilloscope la tension $U_2$ aux bornes de $R_2$.
-		\item En appliquant le principe du pont diviseur de tension, que devrait
-		      valoir $U_2$~? Est-ce la valeur que vous relevez~?
-		\item Expliquez cet écart en considérant la résistance de sortie du GBF.
-		\item Comment choisir $R_1$ et $R_2$ pour que l'on puisse négliger l'effet
-		      de la résistance de sortie du GBF~? Reproduire le montage précédent en
-		      utilisant désormais $R_1 = R_2 = \SI{10}{k\Omega}$. Montrer qu'alors
-		      $U_1$ prend la valeur attendue.
-		\item Pourrait-on brancher l’oscilloscope aux bornes de $R_1$~? Justifier.
-	\end{enumerate}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.35\linewidth}
-	~
-	\vspace{-20pt}
-	\begin{center}
-		\includegraphics[width=.8\linewidth]{divis_tension}
-		\captionof{figure}{}
-	\end{center}
-\end{minipage}
+\QR{%
+	Brancher aux bornes du GBF deux résistances identiques de
+	$R_1 = R_2 = \SI{47}{\Omega}$ en série. Faire un schéma, puis relever
+	à l'aide de l'oscilloscope la tension $U_2$ aux bornes de $R_2$.
+}{%
+	solu
+}%
+
+\QR{%
+	En appliquant le principe du pont diviseur de tension, que devrait
+	valoir $U_2$~? Est-ce la valeur que vous relevez~?
+}{%
+	solu
+}%
+
+\QR{%
+	Expliquez cet écart en considérant la résistance de sortie du GBF.
+}{%
+	solu
+}%
+
+\QR{%
+	Comment choisir $R_1$ et $R_2$ pour que l'on puisse négliger l'effet
+	de la résistance de sortie du GBF~? Reproduire le montage précédent en
+	utilisant désormais $R_1 = R_2 = \SI{10}{k\Omega}$. Montrer qu'alors
+	$U_1$ prend la valeur attendue.
+}{%
+	solu
+}%
+
+\QR{%
+	Pourrait-on brancher l’oscilloscope aux bornes de $R_1$~? Justifier.
+}{%
+	solu
+}%
 
 \subsection{Effet de la résistance d'entrée de l'oscilloscope}
 
-\begin{enumerate}[label=\sqenumi, start=15]
-	\item Brancher l'oscilloscope aux bornes du GBF (toujours réglé à une
-	      fréquence de $\SI{1}{kHz}$) et régler le \texttt{level} de celui-ci
-	      pour obtenir une tension crête-crête de $\SI{4}{V}$. Comme précédemment,
-	      nous mesurons ici la tension à vide $e$ du GBF.
-	\item Brancher aux bornes du GBF deux résistances identiques de $R_1 = R_2 =
-		      \SI{1}{M\Omega}$ en série puis relever à l'aide de l'oscilloscope la
-	      tension $U_1$ aux bornes de l'une d'elle.
-	\item La tension $U_1$ obtenue est-elle conforme à vos attentes~? Expliquez
-	      cet écart en tenant compte de la résistance d'entrée de l'oscilloscope.
-	\item Comment choisir $R_1$ et $R_2$ pour que l'on puisse négliger l'effet
-	      de la résistance d'entrée de l'oscilloscope~? Reproduire le montage
-	      précédent en utilisant désormais $R_1 = R_2 = \SI{10}{k\Omega}$. Montrer
-	      qu'alors $U_1$ prend la valeur attendue.
-\end{enumerate}
+\QR{%
+	Brancher l'oscilloscope aux bornes du GBF (toujours réglé à une
+	fréquence de $\SI{1}{kHz}$) et régler le \texttt{level} de celui-ci
+	pour obtenir une tension crête-crête de $\SI{4}{V}$. Comme précédemment,
+	nous mesurons ici la tension à vide $e$ du GBF.
+}{%
+	solu
+}%
+
+\QR{%
+	Brancher aux bornes du GBF deux résistances identiques de $R_1 = R_2 =
+		\SI{1}{M\Omega}$ en série puis relever à l'aide de l'oscilloscope la
+	tension $U_1$ aux bornes de l'une d'elle.
+}{%
+	solu
+}%
+
+\QR{%
+	La tension $U_1$ obtenue est-elle conforme à vos attentes~? Expliquez
+	cet écart en tenant compte de la résistance d'entrée de l'oscilloscope.
+}{%
+	solu
+}%
+
+\QR{%
+	Comment choisir $R_1$ et $R_2$ pour que l'on puisse négliger l'effet de
+	la résistance d'entrée de l'oscilloscope~? Reproduire le montage
+	précédent en utilisant désormais $R_1 = R_2 = \SI{10}{k\Omega}$. Montrer
+	qu'alors $U_1$ prend la valeur attendue.
+}{%
+	solu
+}%
 
 \section{Conclure}
 
-\begin{enumerate}[label=\sqenumi, start=19]
-	\item Résumer les recommandations pratiques que vous avez pu déduire de ce TP
-	      afin de réaliser des mesures correctes en électricité.
-\end{enumerate}
-
+\QR{%
+	Résumer les recommandations pratiques que vous avez pu déduire de ce TP
+	afin de réaliser des mesures correctes en électricité.
+}{%
+	solu
+}%
 
 \end{document}

@@ -1,0 +1,182 @@
+\documentclass[a4paper, 10pt, garamond]{book}
+\usepackage{cours-preambule}
+\usepackage{tocloft}
+\usepackage{fancybox}
+
+\renewcommand{\mtcSfont}{\Large}
+\setlength{\mtcindent}{5pt}
+\mtcsetoffset{minitoc}{-5pt}
+\addtolength{\cftsecnumwidth}{10pt}
+\setcounter{minitocdepth}{1}
+
+\def\lspace{25}
+
+\dominitoc
+\faketableofcontents
+
+\toggletrue{student}
+\toggletrue{corrige}
+% \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\makeatletter
+\renewcommand{\@chapapp}{MPSI3 -- 18 octobre 2023 -- Devoir surveillé}
+\makeatother
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
+\counterwithin*{equation}{section}
+
+\begin{document}
+\setcounter{chapter}{1}
+
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
+
+\chapter{\cswitch{Correction du DS}{Électrocinétique~: permanent et ordre 1}}
+\label{ch:ds02}
+
+\enonce{
+\begin{center}
+	\Large\bfseries
+	\xul{Tout moyen de communication est interdit}
+	\smallbreak
+	\xul{Les téléphones portables doivent être éteints et rangés dans les sacs}
+	\smallbreak
+	\xul{Les calculatrices sont \textit{interdites}}
+\end{center}
+\begin{tcn}[cnt, bld](ror)<itc>""{Au programme}
+	\large
+	Électrocinétique, résistances et sources, circuits RC et RL
+\end{tcn}
+
+{
+\vfill
+\let\item\olditem
+\minitoc
+\vfill
+}
+
+Les différentes questions peuvent être traitées dans l'ordre désiré.
+\textbf{Cependant}, vous indiquerez le numéro correct de chaque question. Vous
+prendrez soin d'indiquer sur votre copie si vous reprenez une question d'un
+exercice plus loin dans la copie, sous peine qu'elle ne soit ni vue ni
+corrigée.
+\bigbreak
+Vous porterez une attention particulière à la \textbf{qualité de rédaction}.
+Vous énoncerez clairement les hypothèses, les lois et théorèmes utilisés. Les
+relations mathématiques doivent être reliées par des connecteurs logiques.
+\bigbreak
+Vous prendre soin de la \textbf{présentation} de votre copie, notamment au
+niveau de l'écriture, de l'orthographe, des encadrements, de la marge et du
+cadre laissé pour la note et le commentaire. Vous \textbf{encadrerez les
+	expressions littérales}, sans faire apparaître les calculs. Vous ferez
+apparaître cependant le détail des grandeurs avec leurs unités. Vous
+\textbf{soulignerez les applications numériques}.
+\bigbreak
+Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le
+fond~:
+\begin{tcn}*(prop)"bomb"{Malus}
+	\begin{minipage}[t]{0.50\linewidth}
+		\begin{itemize}
+			\item A~: application numérique mal faite~;
+			\item N~: numéro de copie manquant~;
+			\item P~: prénom manquant~;
+			\item E~: manque d'encadrement des réponses~;
+			\item M~: marge non laissée ou trop grande~;
+			\item V~: confusion ou oubli de vecteurs~;
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}[t]{0.50\linewidth}
+		\begin{itemize}
+			\item Q~: question mal ou non indiquée~;
+			\item C~: copie grand carreaux~;
+			\item U~: mauvaise unité (flagrante)~;
+			\item H~: homogénéité non respectée~;
+			\item S~: chiffres significatifs non cohérents~;
+			\item $\f$~: loi physique fondamentale brisée.
+		\end{itemize}
+	\end{minipage}
+\end{tcn}
+
+\begin{tcn}(impo){Exemple application numérique}
+	\vspace*{-10pt}
+	\begin{minipage}[c]{0.45\linewidth}
+		\begin{gather*}
+			\boxed{n = \frac{PV}{RT}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				p & = & \SI{1.0e5}{Pa}                \\
+				V & = & \SI{1.0e-3}{m^3}              \\
+				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+				T & = & \SI{300}{K}
+			\end{array}
+			\right.\\
+			\mathrm{A.N.~:}\quad
+			\xul{n = \SI{5.6e-4}{mol}}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\cancel{\bcancel{
+			\begin{minipage}[c]{0.45\linewidth}
+				\begin{gather*}
+					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+					= 0.56
+				\end{gather*}
+			\end{minipage}
+		}}
+\end{tcn}
+
+\newpage
+}
+\iftoggle{corrige}{}{
+	\begin{center}
+		\begin{framed}
+			\Large\bfseries Remarques antérieures
+		\end{framed}
+	\end{center}
+	\begin{enumerate}
+		\item Inscrire dans le cadre attitré une remarque \textbf{pertinente} issue
+		      du \textbf{DS02} de l'\textbf{année précédente}.
+		\item De même avec une remarque pertinente du \textbf{DS01} de \textbf{cette
+			      année}.
+	\end{enumerate}
+}
+
+\setcounter{section}{0}
+
+\resetQ
+\subfile{E1/E1.tex}
+
+% \iftoggle{corrige}{}{%
+% 	\newpage
+% }
+
+\setcounter{section}{0}
+
+\resetQ
+\subfile{P1/P1.tex}
+
+% \iftoggle{corrige}{}{%
+% 	\clearpage
+% }
+
+% \resetQ
+% \subfile{E3/E3.tex}
+
+\iftoggle{corrige}{}{%
+	\clearpage
+}
+
+\resetQ
+\subfile{P2/P2.tex}
+
+\iftoggle{corrige}{}{%
+	\clearpage
+}
+
+\resetQ
+\subfile{P3/P3.tex}
+
+\end{document}

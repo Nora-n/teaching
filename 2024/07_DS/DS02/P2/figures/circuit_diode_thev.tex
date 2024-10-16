@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[short]
+	(0,1)
+	to[C, name=C, v^>=$u_C$, !vi]
+	(0,3)
+	to[short]
+	(0,4)
+	to[short, name=S, i^>=$i$, !vi]
+	(4,4)
+	coordinate (T)
+	to[R, name=r]
+	(4,2)
+	to[V, name=V, V_<=$U_S$, !vi]
+	(4,0)
+	coordinate (B)
+	to[short]
+	(0,0);
+	\varronly{C} \varronly{V}
+	\iarronly{S}
+	\node at (r.center) {$r$};
+	\draw[color=red!70]
+	([shift={(1,0)}]B) -- ([shift={(1,0)}]T)
+	node [midway, right] {$u_d$}
+	node [currarrow, pos=1, rotate=90] {};
+\end{circuitikz}
+\end{document}

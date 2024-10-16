@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	to[D, name=D, v_<=$u_d$, i^>=$i$, !vi]
+	(2,0);
+	\node[right=4em] (E) at (D.center) {$\equiv$};
+	\varronly{D}
+	\iarronly{D}
+	\draw[shift={($(E)+(2em,0)$)}]
+	(0,0)
+	to[V, name=E, V^<=$U_S$, !vi]
+	(2,0)
+	to[R, name=r, i_>=$i$, v^<=$ri$, !vi]
+	(4,0);
+	\varronly{r} \varronly{E}
+	\iarronly{r}
+	\node[] at (r.center) {$r$};
+	\draw[shift={($(E)+(-2.5em,0)$)}, color=red!70]
+	(4,-.5)
+	--
+	(0,-.5)
+	node [midway, below] {$u_d = U_s + ri$}
+	node [currarrow, pos=1, rotate=180] {};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,304 @@
+\documentclass[../DS02.tex]{subfiles}%
+\graphicspath{{./figures/}}%
+
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/alimentation_train/}{sujet.tex}
+
+\begin{document}%
+\section[47]"P"{Alimentation d'un train}
+
+\enonce{%
+	Les trains fonctionnent maintenant quasiment tous avec des motrices équipées
+	de moteurs électriques. On va étudier les problèmes causés par la longue
+	distance des lignes SNCF.
+
+	Le courant est transmis à la motrice par la caténaire (ligne haute tension)
+	via le pantographe, puis le retour du courant s'effectue par les rails.
+}%
+
+\partie{Alimentation par une seule sous-station}
+
+\enonce{%
+	On appelle sous-station le poste d'alimentation EDF délivrant une tension
+	$E=\SI{1500}{\volt}$.
+	Si toute la ligne SNCF était alimentée par une seule sous-station, on pourrait
+	représenter cela par le schéma suivant, avec $R_c$ la résistance de la
+	caténaire, $R_r$ celle du rail, $M$ la motrice et $E$ la tension
+	d'alimentation.
+
+	\figsvgCap{fig1.pdf_tex}{Schéma électrique avec une sous-station}
+
+	La résistance du rail et celle de la caténaire dépendent de la distance entre
+	la motrice et le poste d'alimentation. On peut écrire
+	\begin{gather*}
+		R_c=\rho_cx\quad ;\quad R_r=\rho_rx
+	\end{gather*}
+	avec $x$ la distance entre la motrice et le poste d'alimentation,
+	$\rho_c=\SI{30}{\micro\ohm\per\meter}$ la résistance linéique de la caténaire
+	et $\rho_r=\SI{20}{\micro\ohm\per\meter}$ celle du rail.
+
+	La motrice peut être modélisée par un dipôle consommant une puissance
+	constante $P=\SI{1,5}{\mega\watt}$. On note $u$ la tension aux bornes de la
+	motrice et $i$ le courant la traversant.
+}
+
+\QR[3]{%
+	Exprimer $u$ en fonction de $i$, $\rho_c$, $\rho_r$, $E$ et $x$.
+	La motrice est un dipôle à caractère récepteur. Définir ce terme.
+}{%
+	Par la loi des mailles et le loi d'Ohm : $\boxed{u \stm{\stm(un){=}} E-(\rho_r+\rho_c)xi}$
+	\smallbreak
+	Pour un dipôle à caractère récepteur, la puissance reçue est positive. \pt{1}
+}
+
+\QR[2]{%
+	Montrer que l'équation polynomiale de degré 2 vérifiée par $u$ s'écrit
+	\begin{equation}\label{eq1}
+		u^2-Eu+(\rho_c+\rho_r)xP=0
+	\end{equation}
+}{%
+	La puissance reçue par la motrice est $P=ui$ ($u$ et $i$ en convention
+	récepteur).
+	\begin{gather*}
+		u \stm{=} E-(\rho_r+\rho_c)xP/u
+		\quad\Leftrightarrow \quad
+		u^2 \stm{=} Eu-(\rho_r+\rho_c)xP
+		\quad \Leftrightarrow \quad
+		\boxed{u^2-Eu+(\rho_c+\rho_r)xP=0}
+	\end{gather*}
+}
+
+\QR[5]{%
+	Donner les solutions réelles de cette équation. Donner un encadrement du
+	discriminant $\Delta$. En déduire un encadrement de $u$.
+}{%
+	Les solutions sont réelles si le discriminant est positif ou nul.
+	\begin{gather*}
+		\Delta \stm{=} E^2-4(\rho_r+\rho_c)xP \stm{\geq} 0
+		\quad \Ra \quad
+		\boxed{u \stm{=} \cfrac{E\pm\sqrt{\Delta}}{2}}
+	\end{gather*}
+
+	Physiquement, quand $x$ augmente, $u$ décroit. Comme $\Delta$ diminue quand
+	$x$ augmente (on rappelle que $P>0$), alors la seule solution physiquement
+	acceptable est $\boxed{u \stm{=} \cfrac{E+\sqrt{\Delta}}{2}}$.
+
+	Comme $0\leq \Delta\leq E^2$, on en déduit $\boxed{E/2\leq u\leq E}$. \pt{1}
+
+	\begin{tcn}(rema)<lftt>{Remarque}
+		Pour $x\rightarrow 0$, $\Delta\rightarrow E^2$, physiquement $u$ est
+		maximale, donc $u_{max}=E$. La solution $u=(E-\sqrt{\Delta})/2=0$ n'est pas
+		physiquement acceptable, car cela impliquerait $i\rightarrow +\infty$ pour
+		avoir $P=ui=cste$.
+	\end{tcn}
+}%
+
+\QR[4]{%
+	Déterminer l'expression $x_{max}$ de $x$ telle que $u$ soit minimale. Exprimer
+	$u_{min}$ la valeur minimale de $u$. Faire les applications numériques.
+}{%
+	$x\ind{max}$ vérifie $\Delta=0$ :
+	\begin{align*}
+		\boxed{x\ind{max}\stm{=}\cfrac{E^2}{4(\rho_c+\rho_r)P}}
+		 & \qet
+		\boxed{u\ind{min}\stm{=}E/2}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			E      & = & \SI{1.5e3}{V}
+			\\
+			\rho_c & = & \SI{30}{\micro\ohm.m^{-1}}
+			\\
+			\rho_r & = & \SI{20}{\micro\ohm.m^{-1}}
+			\\
+			P      & = & \SI{1.5}{MW}
+		\end{array}
+		\right. \\
+		\AN
+		\xul{
+			x\ind{max} \stm{=} \SI{7.5}{km}
+		}
+		 & \qet
+		\xul{u\ind{min} \stm{=} \SI{750}{V}}
+	\end{align*}
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Transformation Thévenin/Norton}
+\enonce{%
+	On veut montrer qu'un générateur de Thévenin de f.e.m. $e_{th}$ et de
+	résistance $r_{th}$ est équivalent à un générateur de Norton de c.e.m. $\eta$
+	et de résistance $r_N$.
+
+	\begin{minipage}{0.45\linewidth}
+		\figsvgCap{geneth.pdf_tex}{Générateur de Thévenin}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\linewidth}
+		\figsvgCap{gene.pdf_tex}{Générateur de Norton}
+	\end{minipage}
+}
+
+\QR[3]{%
+	Pour le générateur de Thévenin, établir l'expression de $u_{th}$ en fonction de
+	$i_{th}$, $e_{th}$ et $r_{th}$. Tracer la caractéristique tension/courant
+	correspondante.
+}{%
+	\smallbreak
+	\vspace{-25pt}
+	\noindent
+	\begin{minipage}[c]{.45\linewidth}
+		\[
+			\boxed{u_{th} \stm{=} e_{th}-r_{th}i_{th}}
+		\]
+	\end{minipage}
+	\begin{minipage}[c]{.45\linewidth}
+		\figsvgCap{carac1.pdf_tex}{\protect\pt{1} + \protect\pt{1}}
+	\end{minipage}
+}
+
+\QR[3]{%
+	Pour le générateur de Norton, établir l'expression de $u_{N}$ en fonction de
+	$i_{N}$, $\eta$ et $r_{N}$. Tracer la caractéristique tension/courant
+	correspondante, $u_N$ en fonction de $i_N$.
+}{%
+	\smallbreak
+	\vspace{-25pt}
+	\noindent
+	\begin{minipage}[c]{.45\linewidth}
+		\[
+			\boxed{u_{N} \stm{=} r_{N}\eta-r_{N}i_{N}}
+		\]
+	\end{minipage}
+	\begin{minipage}[c]{.45\linewidth}
+		\figsvgCap{carac2.pdf_tex}{\protect\pt{1} + \protect\pt{1}}
+	\end{minipage}
+}
+
+\QR[2]{%
+Déterminer les expressions de $\eta$ et $r_N$ en fonction de $e_{th}$ et
+$r_{th}$ afin que les deux générateurs soient équivalents.
+}{%
+Il y a équivalence si les caractéristiques des deux dipôles sont les mêmes, donc
+$\boxed{r_N \stm{=} r_{th}\quad\mbox{et}\quad \eta \stm{=} e_{th}/r_{th}}$
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\partie{Alimentation par plusieurs sous-stations}
+\enonce{%
+	Afin d'alimenter la motrice sur de longues distances, on répartit des
+	sous-stations tout le long de la ligne SNCF. Les sous-stations sont espacées
+	entre elles d'une distance $L$. Le schéma équivalent est le suivant
+
+	\figsvgCap{fig2.pdf_tex}{Schéma électrique avec deux sous-stations\protect\label{fig2}}
+
+	On note $x$ la distance entre la sous-station de gauche et la motrice,
+	$R_{c1}$ la résistance de la caténaire et $R_{r1}$ celle des rails entre la
+	sous-station de gauche et la motrice, $R_{c2}$ la résistance de la caténaire
+	et $R_{r2}$ celle des rails entre la sous-station de droite et la motrice.
+
+	On note $u'$ la tension aux bornes de la motrice et $i'$ le courant la
+	traversant.
+}%
+
+\QR[4]{\label{q:Rtot}%
+	Exprimer les résistances $R_{c1}$, $R_{c2}$, $R_{r1}$ et $R_{r2}$ en fonction
+	de $\rho_c$, $\rho_r$, $L$ et $x$.
+}{%
+	\vspace{-15pt}
+	\begin{tasks}[label=\arabic*)](4)
+		\task $R_{c1} \stm{=} \rho_c x$
+		\task $R_{c2} \stm{=} \rho_c(L-x)$
+		\task $R_{r1} \stm{=} \rho_r x$
+		\task $R_{r2} \stm{=} \rho_r(L-x)$
+	\end{tasks}
+}
+
+\QR[6]{%
+	En utilisant les résultats de la question~\ref{q:Rtot}, exprimer les courants
+	$\eta_1$ et $\eta_2$, ainsi que les résistances $R_1$ et $R_2$ en fonction
+	de $E$, $\rho_c$, $\rho_r$, $x$ et $L$ pour que le schéma de la figure
+	\ref{fig3} soit équivalent à celui de la figure \ref{fig2}.
+
+	\figsvgCap{fig3.pdf_tex}{Schéma équivalent n°1\protect\label{fig3}}
+}{%
+	\begin{align*}
+		\boxed{R_1 \stm{=} R_{c1}+R_{r1} \stm{=} (\rho_c+\rho_r)x}
+		 & \qet
+		\boxed{\eta_1 \stm{=} E/R_1 \stm{=} \cfrac{E}{(\rho_c+\rho_r)x}}
+		\\
+		\boxed{R_2 = R_{c2}+R_{r2} \stm{=} (\rho_c+\rho_r)(L-x)}
+		 & \qet
+		\boxed{\eta_2 = E/R_2 \stm{=} \cfrac{E}{(\rho_c+\rho_r)(L-x)}}
+	\end{align*}
+}
+
+\QR[7]{%
+	Le schéma précédent est équivalent aux schémas ci-dessous. Donner alors les
+	expressions de $\eta_3$ et $R_3$, puis $E'$ et $R_4$ en fonction de $E$,
+	$\rho_c$, $\rho_r$, $x$ et $L$.
+	\smallbreak
+	\noindent
+	\begin{minipage}{0.45\linewidth}
+		\figsvgCap{fig4.pdf_tex}{Schéma équivalent n°2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\linewidth}
+		\figsvgCap{fig5.pdf_tex}{Schéma équivalent n°3}
+	\end{minipage}
+}{%
+	Par association en parallèle de générateurs de Norton~:
+	\begin{gather*}
+		\eta_3 \stm{=}
+		\eta_1+\eta_2 =
+		\cfrac{E}{(\rho_c+\rho_r)}\left ( \frac{1}{x}+\cfrac{1}{L-x} \right )
+		\quad \Leftrightarrow \quad
+		\boxed{\eta_3 \stm{=} \cfrac{EL}{(\rho_c+\rho_r)x(L-x)}}
+	\end{gather*}
+	Par association en parralèle des résistances $R_1$ et $R_2$~:
+	\begin{gather*}
+		\frac{1}{R_3} \stm{=} \frac{1}{R_1} + \frac{1}{R_2}
+		\Lra
+		R_3 = \frac{R_1R_2}{R_1+R_2}
+		\Lra
+		\boxed{R_3 \stm{=} \frac{(\rho_c+\rho_r)x(L-x)}{L}}
+	\end{gather*}
+	Transformation Thévenin/Norton~:
+	$\boxed{E' \stm{=} R_3\eta_3 \stm{=} E
+			\quad ;\quad
+			R_4 \stm{=} R_3 = \cfrac{(\rho_c+\rho_r)x(L-x)}{L}}$
+}%
+
+
+\QR[2]{%
+En utilisant l'équation $\eqref{eq1}$, exprimer l'équation polynomiale de degré
+2 vérifiée par $u'$ en fonction de $P$, $\rho_c$, $\rho_r$, $E$, $L$ et $x$.
+}{%
+On remplace $E$ par $E'$ et $(\rho_c+\rho_r)x$ par $R_4$~:
+$\boxed{u'^{2}-Eu'+P(\rho_c+\rho_r)x(1-x/L)\stm{\stm(un){=}}0}$
+}
+
+\QR[4]{%
+	Quelle est l'équation polynomiale vérifiée par $x$ pour que $u'$ soit
+	minimale~?
+}{%
+	$u'$ admet des solutions réelles si $\Delta \stm{=}
+		E^2-4P(\rho_c+\rho_r)x(L-x)/L \stm{\geq} 0$. On a alors
+	\begin{gather*}
+		u' \stm{=} \frac{E\pm\sqrt{\Delta}}{2} \in[E/2,E]
+	\end{gather*}
+	Ainsi $u'$ est minimale quand $\Delta =0$, soit
+	$\boxed{x^2-xL+\cfrac{LE^2}{4P(\rho_c+\rho_r)} \stm{=} 0}$
+}
+
+\QR[2]{%
+	Déterminer l'expression de $L$ telle que $u'$ soit minimale en $x=L/2$. Faire
+	l'application numérique.
+}{%
+	On remplace $x\ind{max}=L/2$ dans l'équation précédente~:
+	$\boxed{L \stm{=} \cfrac{E^2}{(\rho_c+\rho_r)P}}
+		\qso
+		\xul{L \stm{=} \SI{30}{\kilo\meter}}$
+}%
+
+\end{document}%

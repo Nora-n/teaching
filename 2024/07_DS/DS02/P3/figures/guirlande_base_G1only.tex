@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\draw
+	(0,0)
+	node[ground] {}
+	to[V, name=E, V^>=$E_{}$, !vi]
+	(0,2)
+	to[R, name=r]
+	(0,4)
+	to[short, name=S1, i_>=$i_o$, !vi]
+	(2,4)
+	coordinate(N)
+	to[short]
+	(2,2)
+	to[R, name=G1, i>_=$i_o$, v^<=$U_1$, !vi]
+	(2,0)
+	% coordinate(B)
+	% to[L,l_=$L$, name=L, v^<=$u_L$, !vi]
+	% (2,0)
+	% to[short, name=S, i>_=$i$, !vi]
+	to[short]
+	(0,0);
+	% \draw
+	% (N)
+	% to[short, name=S2, i>_=$i_2$, !vi]
+	% (4,4)
+	% to[ccgsw, l^=$S$]
+	% (4,2)
+	% to[R, name=G2]
+	% (4,0)
+	% to[short]
+	% (2,0);
+	\iarronly{S1} \iarronly{G1}
+	% \iarronly{S2}
+	\varronly{E} \varronly{G1}
+	\node[] at (r.center) {$r$};
+	\node[] at (G1.center) {$G_1$};
+	% \node[] at (G2.center) {$G_2$};
+\end{circuitikz}
+\end{document}

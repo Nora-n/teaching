@@ -4,21 +4,19 @@
 % \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/DS/lentille_app_photo/}{sujet.tex}
 
 \begin{document}%
-\section[65]"P"{Guirlandes électriques}
+\section[71]"P"{Guirlandes électriques}
 
 \enonce{%
 	Dans ce problème, on cherche à optimiser l'alimentation électrique d'un
-	système comportant deux guirlande électriques $G_1$ et $G_2$,
-	chacune étant modélisée par un conducteur ohmique de résistance
-	identique $R_1 = R_2 = R$.
+	système comportant deux guirlande électriques $G_1$ et $G_2$, chacune étant
+	modélisée par un conducteur ohmique de résistance identique $R_1 = R_2 = R$.
 
-	La première guirlande est dédiée à un fonctionnement continu. La seconde
-	est associée avec un interrupteur $S$ en série qui bascule de manière
-	périodique afin de produire un clignotement.
+	La première guirlande est dédiée à un fonctionnement continu. La seconde est
+	associée avec un interrupteur $S$ en série qui bascule de manière périodique
+	afin de produire un clignotement.
 
 	On supposera dans ce problème que la puissance lumineuse fournie par ces
-	guirlandes est proportionnelle à la puissance électrique qu'elles
-	reçoivent.
+	guirlandes est proportionnelle à la puissance électrique qu'elles reçoivent.
 }%
 
 \subsection{Système de base}
@@ -217,10 +215,10 @@
 	stationnaire a été atteint.
 }%
 
-\QR[3]{%
+\QR[3]{\label{q:i1ci}%
 	Déterminer la valeur de $i_1\left(\frac{T}{2}^-\right)$. En déduire
 	la valeur de $i_1\left(\frac{T}{2}^+\right)$.
-}{%
+}{\label{q:i1ci}%
 	Puisque le montge est équivalent à celui de la partie précédente, on sait
 	que~:
 	\[
@@ -280,9 +278,9 @@ temps caractéristique $\tau_o$ en fonction de $L$, $r$ et $R$.
 }{%
 \smallbreak
 \vspace{-25pt}
-\begin{isd}[lefthand ratio=.35, interior hidden]
+\begin{isd}[lefthand ratio=.25, interior hidden]
 	\begin{center}
-		\includegraphics[scale=1]{guirlande_better_open}
+		\includegraphics[width=\linewidth]{guirlande_better_open}
 		\captionof{figure}{\protect\pt{1}}
 	\end{center}
 	\tcblower
@@ -317,9 +315,9 @@ $\left[ \frac{T}{2} ; T\right[$, lorsque l'interrupteur est fermé.}
 }{%
 	\smallbreak
 	\vspace{-25pt}
-	\begin{isd}[lefthand ratio=.3, interior hidden]
+	\begin{isd}[lefthand ratio=.25, interior hidden]
 		\begin{center}
-			\includegraphics[scale=1]{guirlande_better_closed}
+			\includegraphics[width=\linewidth]{guirlande_better_closed}
 			\captionof{figure}{\protect\pt{1}}
 		\end{center}
 		\tcblower
@@ -356,35 +354,81 @@ $\left[ \frac{T}{2} ; T\right[$, lorsque l'interrupteur est fermé.}
 }%
 
 \QR[7]{%
-	Donner la forme générale $i_1(t)$ de la solution de cette équation
-	différentielle. On ne cherchera pas à déterminer la constante
-	intervenant dans la solution.
+	Donner la forme \textbf{générale} $i_1(t)$ de la solution de cette équation
+	différentielle.
 }{%
-	La solution générale est la somme de la solution homogène et de la solution
-	particulière \pt{1}. Or, pour la solution homogène, en injectant $i_{1,h}(t) =
-		A \exr^{rt}$ \pt{1} on obtient~:
+	\smallbreak
+	\vspace{-25pt}
+	\begin{isd}[interior hidden]
+		La solution générale est la somme de la solution homogène et de la solution
+		particulière \pt{1}. Or, pour la solution homogène, en injectant $i_{1,h}(t) =
+			A \exr^{rt}$ \pt{1} on obtient~:
+		\[
+			r + \frac{1}{\tau_f} = 0
+			\Lra
+			\boxed{r \stm{=} -\frac{1}{\tau_f}}
+			\qso
+			i_{1,h}(t) \stm{=} A \exr^{-\frac{t}{\tau_f}}
+		\]
+		\tcblower
+		De plus, avec $i_{1,p}$ la solution particulière constante, on trouve
+		\begin{gather*}
+			\frac{i_{1,p}}{\tau_f} = \frac{E}{L \left( 1+\frac{r}{R} \right)}
+			\Lra
+			i_{1,p} \stm{=}
+			E \frac{
+				\cancel{L} \bcancel{\left( 1+\frac{r}{R} \right)}
+			}{%
+				(2r+R) \cancel{L} \bcancel{\left( 1+\frac{r}{R} \right)}
+			}%
+			\\\Lra
+			\boxed{i_{1,p} \stm{=} \frac{E}{2r+R}}
+			\\\beforetext{Ainsi,}
+			\boxed{i_1(t) \stm{=} A \exr^{-\frac{t}{\tau_f}} + \frac{E}{2r+R}}
+		\end{gather*}
+	\end{isd}
+}%
+
+\QR[6]{%
+	Montrer alors, par calcul de la constante d'intégration, que $i_1(t)$ s'écrit
 	\[
-		r + \frac{1}{\tau_f} = 0
-		\Lra
-		\boxed{r \stm{=} -\frac{1}{\tau_f}}
-		\qso
-		i_{1,h}(t) \stm{=} A \exr^{-\frac{t}{\tau_f}}
+		i_1(t) = \frac{E}{(r+R)(2r+R)}
+		\left( r \exr^{\left( \frac{T}{2}-t \right)/\tau_f} + r + R\right)
 	\]
-	De plus, avec $i_{1,p}$ la solution particulière constante, on trouve
-	\begin{gather*}
-		\frac{i_{1,p}}{\tau_f} = \frac{E}{L \left( 1+\frac{r}{R} \right)}
-		\Lra
-		i_{1,p} \stm{=}
-		E \frac{
-			\cancel{L} \bcancel{\left( 1+\frac{r}{R} \right)}
-		}{%
-			(2r+R) \cancel{L} \bcancel{\left( 1+\frac{r}{R} \right)}
-		}%
-		\\\Lra
-		\boxed{i_{1,p} \stm{=} \frac{E}{2r+R}}
-		\\\beforetext{Ainsi,}
-		\boxed{i_1(t) \stm{=} A \exr^{-\frac{t}{\tau_f}} + \frac{E}{2r+R}}
-	\end{gather*}
+}{%
+	On rappelle (question~\ref{q:i1ci}) la valeur de $i_1(T/2)$~:
+	\smallbreak
+	\begin{isd}
+		\begin{DispWithArrows*}[groups, fleqn, mathindent=0pt]
+			i_1 \left( \frac{T}{2} \right) &\stm{=} \frac{E}{r+R}
+			% \Arrow{On injecte dans la forme générale}
+			\\\Lra
+			A \exr^{-T/(2\tau_f)} + \frac{E}{2r+R} &= \frac{E}{r+R}
+			% \Arrow{On isole}
+			\\\Lra
+			A &\stm{=} E \left( \frac{1}{r+R} - \frac{1}{2r+R} \right)\exr^{T/(2\tau_f)}
+			% \Arrow{Même dénominateur}
+			\\\Lra
+			A &\stm{=} E \left( \frac{\cancel{2}r + \bcancel{R} - (\cancel{r} +
+					\bcancel{R})}{(r+R)(2r+R)} \right)
+			% \Arrow{On simplifie}
+			\\\Lra
+			\Aboxed{
+				A &\stm{=} \frac{Er}{(r+R)(2r+R)}\exr^{T/(2\tau_f)}
+			}
+		\end{DispWithArrows*}
+		\tcblower
+		D'où, dans la forme générale
+		\begin{align*}
+			i_1(t) & \stm{=}
+			\frac{Er}{(r+R)(2r+R)}\exr^{\left( \frac{T}{2}-t \right)/\tau_f} +
+			\frac{E}{2r+R} \times \underbracket[1pt]{\frac{r+R}{r+R}}_{=1}
+			\\\Lra
+			i_1(t) & \stm{=}
+			\frac{E}{(r+R)(2r+R)}
+			\left( r \exr^{\left( \frac{T}{2} - t \right)/\tau_f} + r + R \right)
+		\end{align*}
+	\end{isd}
 }%
 
 \enonce{%

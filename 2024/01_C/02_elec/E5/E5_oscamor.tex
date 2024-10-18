@@ -20,7 +20,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.002pt
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{4}
@@ -768,32 +768,42 @@
 ~ \smallbreak
 
 \begin{tcb*}[label=demo:transipseudo](demo){Régime transitoire pseudo-pér.}
-	L'amplitude varie selon $E\exp \DS \left( -\frac{\w_0}{2Q}t \right)$~; on
-	définit donc $t_{95}$ tel que
+	L'enveloppe est $E\exp \DS \left( -\frac{\w_0}{2Q}t \right) = E
+		\exp \left( -t/\tau \right)$~; d'où $t_{95}$ tel que $u_C (t_{95})
+		= \num{0.05}E$, soit
 	\psw{%
 		\begin{DispWithArrows*}[fleqn, mathindent=10pt]
-			\exp \left(-\frac{\w_0}{2Q}t_{95} \right) &= 0.05
+			\cancel{E}\exp \left(-\frac{t_{95}}{\tau} \right) &= \num{0.05}
+			\cancel{E}
 			\CArrow{$\ln (\cdot)$}
 			\\\Lra
-			- \frac{\w_0}{2Q}t_{95} &= \ln(0.05)
-			\Arrow{$0.05 = 1/20$ et $\ln (a^{b}) = b \ln a$}
+			- \frac{t_{95}}{\tau} &= \ln(\num{0.05})
+			\Arrow{$\num{0.05} = 1/20$ et $\ln (a^{b}) = b \ln a$}
 			\\\Lra
-			\frac{\w_0}{2Q}t_{95} &= \ln(20)
-			\Arrow{On isole et $2 \ln 20 \approx 2\pi$}
+			\frac{t_{95}}{\tau} &= \ln(20)
+			\Arrow{On isole, on remplace et $2 \ln 20 \approx 2\pi$}
 			\\\Lra
-			t_{95} &= 2\ln(20) \frac{Q}{\w_0} \approx \frac{2\pi}{\w_0}Q
+			t_{95} &= \tau \ln (20) = \frac{2\ln(20)}{\w_0} Q \approx \frac{2\pi}{\w_0}Q
+			\qed
 		\end{DispWithArrows*}
 	}%
 \end{tcb*}
 
-\begin{tcb*}[label=prop:transipseudo](prop){Régime transitoire $Q > 1/2$}
-	Le temps de réponse à 95\% est atteint à partir de $t_{95}$ tel que
+\begin{tcb*}[label=prop:transipseudo, sidebyside]
+	(prop){Régime transitoire $Q > 1/2$}
+	Le temps de réponse à 95\% est atteint à~:
 	\psw{%
 		\begin{equation*}
 			\boxed{t_{95} \approx QT_0} \qav \boxed{T_0 = \frac{2\pi}{\w_0}}
 		\end{equation*}
 	}%
 	\vspace{-15pt}
+	\tcblower
+	Ainsi, \textbf{$Q$ correspond au nombre d'oscillations observées}.
+	% \smallbreak
+	% Un calcul précis montre que le régime le plus court est atteint pour $Q
+	% 	\approx \num{0.72}$, mais il y a alors un \textbf{dépassement de la consigne}.
+	% TODO: Figure dépassement ? Mettre dans remarque ?
 \end{tcb*}
 
 \begin{tcb}[label=impl:pseudograndQ](impl){Résultat à grand $Q$}
@@ -939,7 +949,8 @@
 	}%
 	\vspace{-15pt}
 \end{tcb*}
-\begin{tcb*}[label=prop:transicrit](prop){Régime transitoire critique}
+\begin{tcb*}[label=prop:transicrit, sidebyside]
+	(prop){Régime transitoire critique}
 	Le temps de réponse à 95\% est atteint à partir de $t_{95}$ tel que
 	\psw{%
 		\begin{equation*}
@@ -947,6 +958,8 @@
 		\end{equation*}
 	}%
 	\vspace{-15pt}
+	\tcblower
+	C'est le \textbf{régime le plus court \xul{sans dépassement}}.
 \end{tcb*}
 
 \subsubsection{Cas $\D > 0$~: régime apériodique}
@@ -1063,7 +1076,8 @@
 \paragraph{Régime transitoire}
 ~ \smallbreak
 
-\begin{tcb*}[label=demo:transiaper, breakable](demo){Régime transitoire apériodique}
+\begin{tcb*}[label=demo:transiaper, breakable](demo){Régime transitoire
+			apériodique}
 	La décroissance sera guidée par l'exponentielle la «~\textbf{moins
 		décroissante}~». On cherche donc à savoir laquelle, on compare donc $r_-$ et
 	$r_+$.
@@ -1105,7 +1119,8 @@
 				\tau_- &< \tau_+
 			\end{DispWithArrows*}
 		}%
-		On estime alors la durée du régime transitoire à \fbox{$\ln(20)/\abs{r_+}$}.
+		On estime alors la durée du régime transitoire à $\boxed{t_{95} =
+				\tau_+\ln(20)}$.
 	\end{isd}
 	\bigbreak
 	Pour $Q \ll 1$, on utilise \fbox{$\sqrt{1+x} \Sim_{x\ll1} 1+x/2$} pour
@@ -1144,22 +1159,20 @@
 	}%
 \end{tcb*}
 
-\begin{tcb}[label=impl:aperpetitQ](impl){Résultat à faible $Q$}
+\begin{tcb}[label=impl:aperpetitQ](impl)<lftt>{Résultat à faible $Q$}
 	Quand $Q \longrightarrow 0$, on peut négliger le terme d'ordre 2 dans
 	l'équation différentielle~:
-	\psw{%
-		\begin{gather*}
-			\frac{\cancel{\w_0}}{Q}\dv{u_C}{t} +
-			\w_0{}^{\cancel{2}}u_C = R \sqrt{\frac{C}{L}} \dv{u_C}{t} +
-			\frac{1}{\sqrt{LC}}u_C \\
-			=
-			\dv{u_C}{t} + \frac{1}{R}
-			\sqrt{\frac{\bcancel{L}}{\bcancel{L}C^2}} u_C
-			=
-			\boxed{ \dv{u_C}{t} +
-				\frac{1}{RC} u_C}
-		\end{gather*}
-	}%
+	\begin{gather*}
+		\frac{\cancel{\w_0}}{Q}\dv{u_C}{t} +
+		\w_0{}^{\cancel{2}}u_C = R \sqrt{\frac{C}{L}} \dv{u_C}{t} +
+		\frac{1}{\sqrt{LC}}u_C \\
+		=
+		\dv{u_C}{t} + \frac{1}{R}
+		\sqrt{\frac{\bcancel{L}}{\bcancel{L}C^2}} u_C
+		=
+		\boxed{ \dv{u_C}{t} +
+			\frac{1}{RC} u_C}
+	\end{gather*}
 	d'où la décroissance exponentielle. D'autre part, les valeurs de $r_\pm$
 	tendent vers la même valeur $r = - \frac{\w_0}{2Q}$~: en supposant la solution
 	comme la somme des deux racines, on aurait une décroissance~:
@@ -1191,7 +1204,7 @@
 		      }%
 		\item[b]{Repère}:
 		      \psw{%
-			      $(\Or', \ux, \uy)$ (voir schéma)
+			      $(\Or, \ux, \uy)$ (voir schéma)
 		      }%
 		\item[b]{Repérage}:
 		      % \vspace{-15pt}
@@ -1233,7 +1246,8 @@
 					      \textbf{Poids}            & \Pf = m\gf = -mg \uy           \\
 					      \textbf{Réaction support} & \Rf = R\uy                     \\
 					      \textbf{Force rappel}     & \Ff = -k(\ell(t) - \ell_0) \ux \\
-					      \textbf{Force frottement} & \Ff_{\rm frott} = -\alpha\vf
+					      \textbf{Force frottement} & \Ff_{\rm frott} = -\alpha\vf =
+					      -\alpha \dv{\ell}{t} \ux
 				      \end{array}
 			      \]
 		      }%
@@ -1246,17 +1260,17 @@
 	Avec le PFD~:
 	\psw{%
 		\begin{gather*}
-			m\af = \Pf + \vv{R} + \Ff\\
+			m\af = \Pf + \vv{R} + \Ff_f + \Ff_r\\
 			\Lra m\left(
 			\begin{array}{c}
-					\dv[2]{x}{t} \\
+					\dv[2]{\ell}{t} \\
 					0
 				\end{array}
 			\right)
 			=
 			\left(
 			\begin{array}{c}
-					-k (\ell(t) - \ell_0) -\alpha v \\
+					-k (\ell(t) - \ell_0) -\alpha \dv{\ell}{t} \\
 					-mg + R
 				\end{array}
 			\right)
@@ -1349,7 +1363,7 @@
 	\end{tabular}
 \end{tcb}
 
-\subsection{Bilan énergétique}
+\subsection{Bilan de puissance}
 
 \begin{tcbraster}[raster columns=2, raster equal height=rows]
 	\begin{tcb}[label=prop:emecacons,
@@ -1358,24 +1372,31 @@
 		Dans le système masse-ressort horizontal avec frottements fluides,
 		l'énergie mécanique diminue progressivement proportionellement au
 		coefficient de friction $\alpha$~:
-		\psw{%
-			\begin{equation*}
-				\boxed{\dv{\Ec_{m}}{t} = -\alpha v^2}
-			\end{equation*}
-		}%
+		\begin{equation*}
+			\psw{%
+				\boxed{\dv{\Ec_{m}}{t} = -\alpha v^2 < 0}
+			}%
+			\qdc
+			\psw{\Ec_m(t) \searrow}
+		\end{equation*}
 	\end{tcb}
 	\begin{tcb}[label=demo:emecacons
 		list entry={\lte\thedemo~:~Bilan de puissance ressort}
 		](demo)'r'{$\Pc$ ressort}
 		À partir du PFD $\times v$~:
 		\psw{%
-			\begin{gather*}
-				m \dv[2]{x}{t} \dv{x}{t} + \alpha \dv{x}{t} \dv{x}{t} + kx \dv{x}{t} = 0\\
-				\Lra \dv{}{t} \left( \frac{1}{2}m \left( \dv{x}{t} \right)^2 +
-				\frac{1}{2}kx^2 \right) = - \alpha v^2
-			\end{gather*}
+			\begin{DispWithArrows*}[fleqn, mathindent=5pt]
+				m \dv{v}{t} v(t) + \alpha \dv{x}{t} \dv{x}{t} + kx \dv{x}{t} &= 0
+				\Arrow{$f \cdot f'$}
+				\\\Lra
+				\dv{t} \Big(
+				\underbracket[1pt]{\frac{1}{2}m v^2}_{= \Ec_c} +
+				\underbracket[1pt]{\frac{1}{2}kx^2}_{= \Ec_{p,\rm el}}
+				\Big) &=
+				- \alpha v^2
+			\end{DispWithArrows*}
 		}%
-		On a bien $\Ec_m = \Ec_C + \Ec_{p, \rm el}$ qui diminue.
+		% On a bien $\Ec_m = \Ec_C + \Ec_{p, \rm el}$ qui diminue.
 	\end{tcb}
 \end{tcbraster}
 
@@ -1406,7 +1427,7 @@
 		r_\pm = \psw{- \frac{\w_0}{2Q} \pm \jj\W}
 	\end{equation*}
 	\begin{equation*}
-		\W = \psw{\frac{\w_0}{2Q}\sqrt{4Q^{2} - 1}}
+		\W = \psw{\frac{\sqrt{-\Delta}}{2} = \frac{\w_0}{2Q}\sqrt{4Q^{2} - 1}}
 	\end{equation*}
 	&
 	\begin{equation*}
@@ -1433,7 +1454,7 @@
 	\end{gather*}
 	&
 	\begin{gather*}
-		u_C(t) = \psw{\frac{E}{r_+-r_-}\times}
+		u_C(t) = \psw{\frac{QE}{\w_0 \sqrt{1-4Q^2}}\times}
 		\\
 		\psw{\big(r_+\exp(r_-t) - r_-\exp(r_+t) \big)}
 	\end{gather*}

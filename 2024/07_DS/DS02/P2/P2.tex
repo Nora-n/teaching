@@ -3,7 +3,7 @@
 
 \begin{document}%
 
-\section[68]"P"{Étude d'une lampe de secours rechargeable\ifcorrige{~\small\textit{(D'après CCINP TSI 2022)}}}
+\section[66]"P"{Étude d'une lampe de secours rechargeable\ifcorrige{~\small\textit{(D'après CCINP TSI 2022)}}}
 
 \enonce{%
 	Il est recommandé d'avoir sur soi une lampe pour être vu en cas de
@@ -60,7 +60,10 @@
 	Avec une loi des mailles~:
 	\begin{DispWithArrows*}
 		u_C(t) - Ri(t) &\stm{=} 0
-		\Arrow{RCT convention générateur}
+		\Arrow{%
+			RCT C convention générateur\\
+			$i = \boxed{-}C \dv{u_C}{t}$
+		}%
 		\\\Lra
 		u_C(t) + RC \dv{u_C}{t} &\stm{=} 0
 		\Arrow{Forme canonique et $\tau \stm{=} RC$}
@@ -106,7 +109,7 @@
 		\qav
 		\left\{
 		\begin{array}{rcl}
-			t_{99} & = & \SI{20}{minutes} = \SI{240}{s}
+			t_{99} & = & \SI{20}{minutes} = \SI{1200}{s}
 			\\
 			C      & = & \SI{10}{F}
 		\end{array}
@@ -146,7 +149,7 @@
 \enonce{%
 	Pour la suite des questions, on revient au modèle simple ($C$ seul)
 	pour le condensateur, toujours initialement chargé sous une tension
-	$U_0 = 3,3\ \mathrm{V}$.
+	$U_0 = \SI{3.3}{V}$.
 
 	On remplace maintenant le conducteur ohmique de résistance $R$ par une
 	DEL dont les caractéristiques sont les suivantes (Figure~\ref{fig:lampe3} et
@@ -226,12 +229,12 @@
 }%
 
 \QR[14]{%
-	Comment se comporte la DEL lorsque la diode est bloquée (\(u_d <
-	\SI{2.3}{V}\))~?. D'autre part, proposer un modèle électrique équivalent pour
-	la DEL lorsqu'elle est passante ($u_d > \SI{2.3}{V}$), sous forme d'un
-	générateur de Thévenin (valeurs numériques attendues). On fera le schéma
-	électrique correspondant en précisant bien les sens de l'intensité de la
-	tension $u_d$.
+	Par quel dipôle peut-on modéliser la DEL lorsqu'elle est bloquée (\(u_d <
+	\SI{2.3}{V}\))~?. D'autre part, lorsqu'elle est passante ($u_d >
+		\SI{2.3}{V}$), déterminer l'équation de la caractéristique $i(u_d)$ en
+	donnant les valeurs numériques. Proposer alors un modèle électrique équivalent
+	sous forme d'un générateur de \textsc{Thévenin}. On fera le schéma électrique
+	correspondant en précisant bien les sens de l'intensité de la tension $u_d$.
 }{%
 	\ifstudent{%
 		\smallbreak
@@ -249,7 +252,8 @@
 				      \item $a$ est le coefficient directeur~:
 				            \begin{gather*}
 					            \boxed{
-						            a \stm{=} \frac{i\ind{max} - i\ind{min}}{u_{d,\rm max} - u_{d,\rm lim}}
+						            a \stm{=} \frac{i\ind{max} - i\ind{min}}{u_{d,\rm max} -
+							            u_{d,\rm lim}}
 					            }
 					            \qav
 					            \left\{
@@ -272,8 +276,9 @@
 			      \end{itemize}
 			      \tcblower
 			      \begin{itemize}
-				      \item $b$ est l'ordonnée à l'origine, que l'on obtient en connaissant
-				            les coordonnées d'un point. Ici, pour le point limite de blocage, on a
+				      \item $b$ est l'ordonnée à l'origine, que l'on obtient en
+				            connaissant les coordonnées d'un point. Ici, pour le point
+				            limite de blocage, on a
 				            \begin{gather*}
 					            \underbracket[1pt]{i\ind{lim}}_{=0} = a u_{d,\rm lim} + b
 					            \Lra
@@ -284,7 +289,8 @@
 				            \end{gather*}
 			      \end{itemize}
 		      \end{isd}
-		      Pour la modéliser en générateur de \textsc{Thévenin}, il faut écrire sa
+		      Pour la modéliser en générateur de \textsc{Thévenin}, il faut écrire
+		      sa
 		      caractéristique sous la forme $u_d = ri + U_S$ \pt{1}~; on l'isole de
 		      l'équation précédente puis on détermine $a'$ et $b'$ en fonction des
 		      données précédemment trouvées~:
@@ -352,8 +358,8 @@
 
 \QR[8]{%
 	Déterminer la solution $u_c(t)$ de cette nouvelle équation
-	différentielle, avec les mêmes conditions initiales que précédemment.
-	Puis représenter graphiquement l'allure de son évolution en fonction
+	différentielle, avec les mêmes conditions initiales que précédemment,
+	puis représenter graphiquement l'allure de son évolution en fonction
 	du temps, en mettant en évidence les points importants du graphe
 	(valeur et tangente à l'origine ainsi qu'une asymptote éventuelle).
 }{%
@@ -392,8 +398,8 @@
 	\end{minipage}
 }%
 
-\QR[7]{%
-	Déterminer l'expression littérale de $i(t)$. Puis représenter
+\QR[5]{%
+	Déterminer l'expression littérale de $i(t)$, puis représenter
 	graphiquement l'allure de son évolution en fonction du temps, en
 	mettant en évidence les points importants.
 }{%

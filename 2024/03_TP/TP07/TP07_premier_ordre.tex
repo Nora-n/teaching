@@ -3,40 +3,40 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{6}
 
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
+
 \chapter{Circuits du premier ordre en r\'egime transitoire}
 
 \enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoirs}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Distinguer, sur un relevé expérimental, régime
-				      transitoire et régime permanent au cours de l'évolution d'un
-				      système du premier ordre soumis à un échelon de tension.
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Réaliser l'acquisition d'un régime transitoire pour un circuit
-				      linéaire du premier ordre et analyser ses caractéristiques.
-				      Confronter les résultats expérimentaux aux expressions théoriques.
-				\item Capacité numérique : mettre en œuvre la méthode
-				      d'\textsc{Euler} à l'aide d'un langage de programmation pour
-				      simuler la réponse d'un système linéaire du premier ordre à une
-				      excitation de forme quelconque.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+	\begin{tcn}(appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Distinguer, sur un relevé expérimental, régime
+			      transitoire et régime permanent au cours de l'évolution d'un
+			      système du premier ordre soumis à un échelon de tension.
+			\item Réaliser l'acquisition d'un régime transitoire pour un circuit
+			      linéaire du premier ordre et analyser ses caractéristiques.
+			      Confronter les résultats expérimentaux aux expressions théoriques.
+			\item Capacité numérique~: mettre en œuvre la méthode
+			      d'\textsc{Euler} à l'aide d'un langage de programmation pour
+			      simuler la réponse d'un système linéaire du premier ordre à une
+			      excitation de forme quelconque.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -65,7 +65,7 @@
 			      coaxiaux-filaires reliés à l'oscilloscope ou au GBF.
 			\item Enfin, on place alors les fils colorés des câbles de mesure aux
 			      endroits où on désire relever la tension. Vous serez d'ailleurs
-			      également vigilant au choix de couleurs des fils, sinon on se perd
+			      également vigilant-es au choix de couleurs des fils, sinon on se perd
 			      rapidement…
 		\end{itemize}
 		Ces règles sont fondamentales et ne doivent pas être négligées si
@@ -76,8 +76,8 @@
 
 	Un montage est considéré comme \textbf{intégrateur} (on le verra en cours dans
 	quelques semaines) si la tension de sortie (dans notre cas $u_{c}(t)$) est une
-	primitive, à une constante multiplicative $K$ près, de la tension d'entrée (dans
-	notre cas $e(t)$), soit encore
+	primitive, à une constante multiplicative $K$ près, de la tension d'entrée
+	(dans notre cas $e(t)$), soit encore
 
 	\[u_{c}(t) = K \int e(t) \dt\]
 
@@ -135,7 +135,8 @@
 	sont calculées de proche en proche via la formule suivante~:
 	\[\boxed{y_{k+1}=y_k+hf(t_k,y_k)}\]
 	On initialise bien entendu avec $y_0=y(a)$, qui sera la seule valeur
-	«~exacte~» calculée. }
+	«~exacte~» calculée.
+}
 
 \setcounter{section}{2}
 \section{Analyser~: régime transitoire du circuit RC}
@@ -144,10 +145,6 @@
 	\begin{tcb}[cnt, bld](impo){}
 		Vous prendrez soin de refaire tous les schémas des circuits mis en place ou
 		étudiés.
-	\end{tcb}
-	\begin{tcb}*(prop)"bomb"{Attention}
-		Pour ce TP, il vous est demandé de rédiger les réponses préalables sur vos
-		comptes-rendus, \textbf{en amont} du TP.
 	\end{tcb}
 }
 
@@ -158,55 +155,55 @@
 On considère le montage ci-contre de constante de temps $\tau = RC$.
 
 \noindent
-  \QR[2]{%
-  \begin{minipage}[t]{.65\linewidth}
+\QR[2]{%
+	\begin{minipage}[t]{.65\linewidth}
 		Si $e(t)$ est une tension créneau de fréquence $f = \SI{1}{kHz}$,
 		quelle valeur faut-il donner à $\tau$ pour visualiser de façon
 		satisfaisante la totalité du régime transitoire~? Expliquer les raisons
 		de votre choix.
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{.35\linewidth}
-    ~
-    \vspace{-50pt}
-    \begin{center}
-      \includegraphics[width=\linewidth]{circ_rc-start}
-    \end{center}
-  \end{minipage}
-	}{%
-    \noindent
-    \begin{minipage}[t]{.65\linewidth}
-          La tension créneau de fréquence $f$ a pour période $T = 1/f$. Pour
-        visualiser correctement le signal, il faut que le condensateur puisse se
-        charger sur \textbf{une demi-période} $T/2$. Or, un condensateur met
-        $\approx 5\tau$ à se charger~; il nous faut donc
-        \begin{gather*}
-          5\tau \leq \frac{T}{2}
-          \Lra
-          5\tau \leq \frac{1}{2f}
-          \Lra
-          \boxed{\tau \leq \frac{1}{10f}}
-          \qav
-          \left\{
-          \begin{array}{rcl}
-            f & = & \SI{1e3}{Hz}
-          \end{array}
-          \right.\\
-          \AN
-          \xul{
-            \tau \leq \SI{1e-4}{s} = \SI{0.1}{ms}
-          }
-        \end{gather*}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{.35\linewidth}
-      ~
-      \begin{center}
-        \includegraphics[width=\linewidth]{creneau_taugood}
-        \captionof{figure}{}
-      \end{center}
-    \end{minipage}
-	}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.35\linewidth}
+		~
+		\vspace{-50pt}
+		\begin{center}
+			\includegraphics[width=\linewidth]{circ_rc-start}
+		\end{center}
+	\end{minipage}
+}{%
+	\noindent
+	\begin{minipage}[t]{.65\linewidth}
+		La tension créneau de fréquence $f$ a pour période $T = 1/f$. Pour
+		visualiser correctement le signal, il faut que le condensateur puisse se
+		charger sur \textbf{une demi-période} $T/2$. Or, un condensateur met
+		$\approx 5\tau$ à se charger~; il nous faut donc
+		\begin{gather*}
+			5\tau \leq \frac{T}{2}
+			\Lra
+			5\tau \leq \frac{1}{2f}
+			\Lra
+			\boxed{\tau \leq \frac{1}{10f}}
+			\qav
+			\left\{
+			\begin{array}{rcl}
+				f & = & \SI{1e3}{Hz}
+			\end{array}
+			\right.\\
+			\AN
+			\xul{
+				\tau \leq \SI{1e-4}{s} = \SI{0.1}{ms}
+			}
+		\end{gather*}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.35\linewidth}
+		~
+		\begin{center}
+			\includegraphics[width=\linewidth]{creneau_taugood}
+			\captionof{figure}{}
+		\end{center}
+	\end{minipage}
+}
 
 \QR<[start=2]>[1]{%
 	Si $\tau$ est trop grand ou si $\tau$ est trop petit, que se
@@ -214,11 +211,11 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 }{%
 	\begin{itemize}
 		\item Si $\tau$ est \textbf{trop grand}, le condensateur n'aura \textbf{pas
-            le temps de se charger}. On ne verra qu'une portion de
-            l'exponentielle croissante.
+			      le temps de se charger}. On ne verra qu'une portion de
+		      l'exponentielle croissante.
 		\item À l'inverse, si $\tau$ est \textbf{trop petit}, le condensateur se
-          \textbf{charge trop vite}~: on confondra la courbe de sa charge avec
-          celle du créneau.
+		      \textbf{charge trop vite}~: on confondra la courbe de sa charge avec
+		      celle du créneau.
 	\end{itemize}
 }
 
@@ -272,10 +269,10 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 	le cas où $u_{C}(t=0) = 0$. En utilisant un développement limité du
 	terme exponentiel autour de $t = 0$, montrer que le montage est
 	intégrateur (la sortie est une primitive de l'entrée).
-	\begin{tcb}*[aide](expe)<itc>{Aide}
+	\begin{tcn}[aide](expe)<itc>""{Aide}
 		Le développement limité de l'exponentiel s'écrit
 		\[\exr^{x} \Sim_{x \to 0} 1+x\]
-	\end{tcb}
+	\end{tcn}
 }{%
 	L'équation homogène est~:
 	\begin{DispWithArrows*}[]
@@ -304,7 +301,7 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 	Quand $\frac{t}{\tau} \ra 0$, on utilise le développement limité~:
 	\begin{gather*}
 		u_{C}(t) \Sim_{t/\tau \to 0}
-      E \left( 1 - \left( 1 - \frac{t}{\tau} \right) \right)
+		E \left( 1 - \left( 1 - \frac{t}{\tau} \right) \right)
 		\\\Ra
 		\boxed{u_C(t) \Sim_{t/\tau \to 0} \frac{Et}{\tau}}
 	\end{gather*}
@@ -436,21 +433,21 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 	augmenter l'une des deux caractéristiques augmente le temps de charge, coupant
 	la courbe observée~; à l'inverse, baisser l'une des deux réduit le temps de
 	charge et fait se confondre $u_C$ avec $e(t)$.
-  \smallbreak
-  La fréquence va également influencer le signal. En effet, pour que le circuit
-  ait le temps de charger, il faut que la (demi)-période soit suffisamment
-  grande ($T/2 > 5\tau$). Évidemment, augmenter la fréquence diminue la période
-  et on observe plus de créneaux si on ne change pas le calibre horizontal, mais
-  ce qu'il faut observer (après recalibrage) c'est qu'\textbf{augmenter la
-  fréquence empêche la charge totale du RC}. Ça revient à augmenter le temps de
-  charge. Diminuer la fréquence a l'effet inverse.
+	\smallbreak
+	La fréquence va également influencer le signal. En effet, pour que le circuit
+	ait le temps de charger, il faut que la (demi)-période soit suffisamment
+	grande ($T/2 > 5\tau$). Évidemment, augmenter la fréquence diminue la période
+	et on observe plus de créneaux si on ne change pas le calibre horizontal, mais
+	ce qu'il faut observer (après recalibrage) c'est qu'\textbf{augmenter la
+		fréquence empêche la charge totale du RC}. Ça revient à augmenter le temps de
+	charge. Diminuer la fréquence a l'effet inverse.
 }
 
 
 \subsubsection{Cas particulier du circuit intégrateur}
 
 \enonce{%
-	\begin{tcb}*[cnt, bld](prop)"bomb"{Attention}
+	\begin{tcb}*[cnt, bld](impo)"bomb"{Attention}
 		Pour toute mesure, vérifier que la source du menu mesure correspond bien à
 		la courbe sur laquelle vous faites des mesures.
 	\end{tcb}
@@ -460,7 +457,7 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 	\item Ne pas modifier le montage précédent, $e(t)$ est toujours une tension
 	      créneau. Choisir $\tau$ de l'ordre de $5T$ en ajustant la valeur de
 	      $R$ et observer $e(t)$ et $u_{C}(t)$.
-        \QR[0.5]{%
+	      \QR[0.5]{%
 		      Quelle est l'allure de $u_{C}(t)$~? $u_{C}(t)$ est-elle bien la
 		      primitive de $e(t)$ à une constante multiplicative près?
 	      }{%
@@ -475,15 +472,34 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 		      décroissantes quand $e(t) = 0$~: c'est bien une primitive de la
 		      fonction, mais divisée par $\tau$.
 	      }
-        \QR[0.5]{%
+	      \QR[0.5]{%
 		      Déterminer expérimentalement la pente de la courbe $u_{C}(t)$ en
 		      vous aidant des curseurs. Comparer à la valeur théorique.
 	      }{%
 		      On doit trouver une pente de $\frac{E}{\tau}$.
 	      }
 	\item Conserver les valeurs de $\tau$ et $T$. Changer la tension créneau par
+	      une tension sinusoïdale.
+	      \QR[0.5]{%
+		      Quelle est l'allure de $u_{C}(t)$~? Le circuit est-il toujours
+		      intégrateur~?
+	      }{%
+		      $u_C(t)$ ressemble à une fonction sinusoïdale. Le circuit reste
+		      intégrateur, puisqu'on observe une différence de phase d'environ
+		      $\pi/2$ par rapport à l'entrée $e(t)$.
+	      }
+	      \QR[0.5]{%
+		      Quelle est l'expression mathématique (aucun calcul à effectuer)
+		      de la courbe $u_{C}(t)$~?
+	      }{%
+		      \[
+			      \boxed{u_C(t) = K\sin(2\pi ft) = K\sin(2\pi \frac{t}{T})}
+		      \]
+		      puisque $u_C(0) = 0$.
+	      }
+	\item Conserver les valeurs de $\tau$ et $T$. Changer la tension créneau par
 	      une dent de scie.
-        \QR[0.5]{%
+	      \QR[0.5]{%
 		      Quelle est l'allure de $u_{C}(t)$~? Le circuit est-il à priori
 		      toujours intégrateur~?
 	      }{%
@@ -499,7 +515,7 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 		      différence lors du changement de régime qui nous indique qu'on obtient
 		      bien des paraboles~: \fbox{le circuit est toujours intérateur}.
 	      }
-        \QR[0.5]{%
+	      \QR[0.5]{%
 		      Quelle est l'expression mathématique (aucun calcul à effectuer)
 		      de la courbe $u_{C}(t)$~?
 	      }{%
@@ -508,37 +524,20 @@ On considère le montage ci-contre de constante de temps $\tau = RC$.
 			      \boxed{u_C(t) = at^{2}}
 		      \]
 		      pour vérifier $u_C(0) = 0$. On pourait penser avoir un terme linéaire
-          en temps, mais le signal d'entrée semble linéaire et pas affine.
+		      en temps, mais le signal d'entrée semble linéaire et pas affine.
 	      }
-	\item Conserver les valeurs de $\tau$ et $T$. Changer la tension créneau par
-	      une tension sinusoïdale.
-        \QR[0.5]{%
-		      Quelle est l'allure de $u_{C}(t)$~? Le circuit est-il toujours
-		      intégrateur~?
-	      }{%
-		      $u_C(t)$ ressemble à une fonction sinusoïdale. Le circuit reste
-		      intégrateur, puisqu'on observe une différence de phase d'environ
-		      $\pi/2$ par rapport à l'entrée $e(t)$.
-	      }
-        \QR[0.5]{%
-		      Quelle est l'expression mathématique (aucun calcul à effectuer)
-		      de la courbe $u_{C}(t)$~?
-	      }{%
-		      \[
-			      \boxed{u_C(t) = K\sin(2\pi ft) = K\sin(2\pi \frac{t}{T})}
-		      \]
-		      puisque $u_C(0) = 0$.
-	      }
-
+	      \def\lspace{30}
 	\item Augmenter $\tau$.
-        \QR[0.5]{%
+	      \QR[0.5]{%
 		      Quel inconvénient apparaît~? Commenter vos observations.
 	      }{%
-          Si on augmente \textbf{encore} $\tau$, le signal $u_C(t)$ devient trop
-          faible. Le bruit du circuit domine sur la tension, et il devient
-          difficile de bien distinguer sa forme.
+		      Si on augmente \textbf{encore} $\tau$, le signal $u_C(t)$ devient trop
+		      faible. Le bruit du circuit domine sur la tension, et il devient
+		      difficile de bien distinguer sa forme.
 	      }
 \end{enumerate}
+
+\def\lspace{30}
 
 \subsubsection{Tension aux bornes de la résistance $u_R$}
 
@@ -570,6 +569,7 @@ tension créneau pour $e(t)$. Observer à l'oscilloscope $e(t)$ et $u_{R}(t)$.
 % \begin{myverbbox}{\pyb}
 % list_y = euler(f, 0 , 10, 0, n) # list_y est un vecteur des valeurs de y
 % \end{myverbbox}
+\enonce{%
 Effectuez cette étude sur \texttt{Capytale}~:
 \url{https://capytale2.ac-paris.fr/web/c/bc8f-2174341}.
 
@@ -600,18 +600,10 @@ approchées $y_k$ de $y$ aux temps $t_k=a+k \frac{b-a}{n}$, $k\in[\![0,n]\!]$.
 
 % \pya
 
-  \begin{python}
-def euler(f, a, b, y0, n):
-  h = (b-a) / n
-  list_y = [y0]
-  yk = y0
-  tk = a
-  for k in range(n):
-    yk = # à compléter
-    tk = # à compléter
-    list_y.append(yk)
-  return list_y
-  \end{python}
+\begin{tcb}(code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{python/TP07_euler.py}
+\end{tcb}
 
 Il faut ensuite créer la fonction \texttt{f} ainsi que la fonction entrée
 \texttt{e} pour plus de clarté. Vous compléterez la fonction \texttt{f} pour
@@ -634,55 +626,53 @@ On récupére les valeurs $y$ de la solution par~:
 % \pyb
 % tau = 1 # s
 % list_t = np.linspace(0, 10, n+1) # vecteur temps entre t = 0 et t = 10 s
-\begin{python}
-a = 0   # s
-b = 10  # s
-n = 100 # points de calculs
-y0 = 0  # condition initiale
-list_y = euler(f, a , b, y0, n) # list_y est un vecteur des valeurs de y
-\end{python}
+\begin{tcb}(code)<lfnt>{Code}
+	\vspace{-10pt}
+	\inputpygments[numbers=left,xleftmargin=10pt]{python}{python/TP07_val-y.py}
+\end{tcb}
+}%
 
 \setcounter{subsubsection}{1}
 \subsubsection{Test dans un cas analytique}
-\ifcorrige{L'activité corrigée est disponible à
-  \url{https://capytale2.ac-paris.fr/web/c/64ab-2283618}}
-\smallbreak
 \enonce{%
-  Tester votre fonction précédente avec une entrée constante $e(t) = E$ afin de
-résoudre l'équation différentielle sur $u_{C}(t)$. Afficher sur un même
-graphique la solution numérique et la solution analytique obtenue
-question~\ref{q:sol} (avant développement limité). On pourra, par choix et pour
-fixer les idées, sans que cela porte à conséquence prendre~:
+	Tester votre fonction précédente avec une entrée constante $e(t) = E$ afin de
+	résoudre l'équation différentielle sur $u_{C}(t)$. Afficher sur un même
+	graphique la solution numérique et la solution analytique obtenue
+	question~\ref{q:sol} (avant développement limité). On pourra, par choix et pour
+	fixer les idées, sans que cela porte à conséquence prendre~:
 
-\[
-  E = \SI{1}{V}
-  \qquad \qquad
-  \tau = \SI{1}{s}
-  \qquad \qquad
-  u_{C}(t=0) = 0
-\]
+	\[
+		E = \SI{1}{V}
+		\qquad \qquad
+		\tau = \SI{1}{s}
+		\qquad \qquad
+		u_{C}(t=0) = 0
+	\]
 
-Vous afficherez également la fonction erreur au cours du temps, qui est la
-différence entre votre solution numérique et la solution analytique.
+	Vous afficherez également la fonction erreur au cours du temps, qui est la
+	différence entre votre solution numérique et la solution analytique.
 }
 
 \QR[5]{%
-  Quelle est la sensibilité au pas de calcul~? Vous ferez plusieurs essais.
+	Quelle est la sensibilité au pas de calcul~? Vous ferez plusieurs essais.
 }{%
-  Plus le pas est petit ($n$ grand), plus la détermination est fidèle. Avec trop
-  peu de points, l'approximation par une tangente est mauvaise, et on s'écarte
-  du résultat.
+	Plus le pas est petit ($n$ grand), plus la détermination est fidèle. Avec trop
+	peu de points, l'approximation par une tangente est mauvaise, et on s'écarte
+	du résultat.
 }
 
-\enonce{%
-  \subsubsection{Test dans un cas non analytique}
+\ifcorrige{L'activité corrigée est disponible à
+	\url{https://capytale2.ac-paris.fr/web/c/64ab-2283618}}
 
-  Lorsque la solution $u_{C}(t)$ peut être obtenue analytiquement, la solution
-  numérique n'a que peu d'intérêt. Elle prend en revanche tout son sens dans des
-  cas non-analytiques.
-  \smallbreak
-  Testez votre programme pour plusieurs entrées (en changeant le contenu de la
-  fonction \texttt{e(t)})~: sinusoïdale, rampe linéaire, exponentielle…
+\enonce{%
+	\subsubsection{Test dans un cas non analytique}
+
+	Lorsque la solution $u_{C}(t)$ peut être obtenue analytiquement, la solution
+	numérique n'a que peu d'intérêt. Elle prend en revanche tout son sens dans des
+	cas non-analytiques.
+	\smallbreak
+	Testez votre programme pour plusieurs entrées (en changeant le contenu de la
+	fonction \texttt{e(t)})~: sinusoïdale, rampe linéaire, exponentielle…
 }
 
 \end{document}

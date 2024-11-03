@@ -4,7 +4,6 @@
 \section[s]"2"{Circuit de \textsc{Wien}}
 
 \begin{minipage}{0.60\linewidth}
-
 	On réalise le montage suivant. On ferme l'interrupteur à l'instant $t =0$,
 	$C$ traversé par $i'$ étant initialement chargé et $C$ traversé par $i$
 	étant initialement déchargé.\smallbreak
@@ -16,21 +15,22 @@
 	\includegraphics[width=\linewidth]{wien}
 \end{minipage}
 
-\QR{À partir de considérations physiques, préciser les valeurs de la tension $v$
+\QR{%
+	À partir de considérations physiques, préciser les valeurs de la tension $v$
 	lorsque $t = 0$ et $t = \infty$.
-}{
+}{%
 	Le condensateur de tension $v$ est indiqué être initialement déchargé, on a
 	donc $v(0^-) = 0$. Comme un condensateur est de tension continue, on a donc
 	\fbox{$v(0^+) = 0$}. De plus, à $t \longrightarrow \infty$, les deux
 	condensateurs seront forcément déchargés à cause des résistances dissipant
 	l'énergie, il ne peut y avoir conservation~: il seront donc équivalent à des
 	interrupteurs ouverts, et on aura donc notamment \fbox{$v(\infty) = 0$}.
-}
+}%
 
-\QR{
+\QR{%
 	Établir l'équation différentielle du second ordre dont la tension $v$ est
 	solution.
-}{
+}{%
 	Avec une loi des mailles, on a
 	\[ u = v+Ri'\]
 	Or, la RCT du condensateur de gauche \textbf{en convention générateur} est
@@ -53,12 +53,12 @@
 		\Leftrightarrow
 		\boxed{\dv[2]{v}{t} + \frac{3}{\tau} \dv{v}{t} + \frac{v}{\tau^2} = 0}
 	\end{gather*}
-}
+}%
 
-\QR{
+\QR{%
 	En déduire l'expression de $v(t)$ sans chercher à déterminer les
 	constantes d'intégration.
-}{
+}{%
 	On écrit l'équation caractéristique de discriminant $\Delta$~:
 	\begin{gather*}
 		r^2 + \frac{3}{\tau}r + \frac{1}{\tau^2} = 0 \Rightarrow \Delta =
@@ -67,9 +67,11 @@
 	\end{gather*}
 	On a donc un régime apériodique, dont les solutions générales sont
 	\[\boxed{v(t) = A\exr^{r_+t} + B\exr^{r_-t}}\]
-}
+}%
 
-\QR{Donner l'allure du graphe correspondant à $v(t)$.}{
+\QR{%
+	Donner l'allure du graphe correspondant à $v(t)$.
+}{%
 	\begin{minipage}{0.49\linewidth}
 		Le condensateur est initialement chargé. Soit $E$ sa tension initiale.
 		On utilise l'équation~\ref{eq:wieni} pour trouver que $\dv{v}{t} (0) =
@@ -88,5 +90,5 @@
 			\includegraphics[width=\linewidth]{wien_carac}
 		\end{center}
 	\end{minipage}
-}
+}%
 \end{document}

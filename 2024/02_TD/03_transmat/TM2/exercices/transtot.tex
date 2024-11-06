@@ -1,0 +1,255 @@
+\documentclass[../TDTM2.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Transformations totales}
+\enonce{%
+	Compléter les tableaux suivants. Les gaz seront supposés parfaits. Dans la
+	ligne intermédiaire, on demande d'exprimer la quantité de matière en fonction
+	de l'avancement molaire $\xi(t)$ à un instant $t$ quelconque.
+}
+\QR{%
+Réaction de l'oxydation du monoxyde d'azote en phase gazeuse, à $T =
+	\SI{25}{\degreeCelsius}$ dans un volume $V = \SI{10.0}{L}$~:
+\begin{center}
+	\def\rhgt{0.50}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|Y|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}       &
+		$\ldots\ce{NO_{\gaz}}$   & $+$                        &
+		$\ldots\ce{O_2_{\gaz}}$  & $\ra$                      &
+		$\ldots\ce{NO_2_{\gaz}}$ &
+		$n\ind{tot, gaz} $       &
+		$P_{\tot} (\si{bar})$                                                      \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial (\si{mol})       & $\xi = 0$                  &
+		$\num{1.00}$             & \vline                     &
+		$\num{2.00}$             & \vline                     &
+		$\num{0.00}$             &
+		                         &                                                 \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Interm. (\si{mol})       & $\xi$                      &
+		                         & \vline                     &   & \vline &  &  & \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final (\si{mol})         & $\xi_f = \wht{\num{0.50}}$ &
+		                         & \vline                     &   & \vline &  &  & \\
+		\hline
+	\end{tabularx}
+\end{center}
+}{%
+Pour la quantité totale de gaz, il suffit de sommer les quantité de matière de
+chacun des gaz~: ici, initialement on a $n_0(\ce{NO_{\gaz}}) +
+	n_0(\ce{O_2_{\gaz}}) = \SI{3.00}{mol}$ de gaz. Ensuite, pour la pression
+totale
+on utilise l'équation d'état des gaz parfaits~:
+\begin{tcb}(rapp){gaz parfait}
+	\vspace{-15pt}
+	\begin{gather*}
+		\boxed{pV = nRT}
+		\qavec
+		\left\{
+		\begin{array}{ll}
+			p & \text{en Pa }                 \\
+			V & \text{en m}^3                 \\
+			n & \text{en mol}                 \\
+			T & \text{en \textbf{Kelvin} (K)}
+		\end{array}
+		\right.\\
+		\text{et }
+		\boxed{R = \SI{8.314}{J.mol^{-1}.K^{-1}}}\\
+		\text{est la constante des gaz parfaits}
+	\end{gather*}
+\end{tcb}
+Il faut donc convertir le volume en $\si{m^3}$. Pour cela, il suffit
+d'écrire
+\[\SI{10.0}{L} = \SI{10.0}{dm^3} = \num{10.0}(\SI{e-1}{m})^3 =
+	\SI{10.0e-3}{m^3}\]
+Il est très courant d'oublier les puissances sur les conversions du genre~:
+n'oubliez pas les parenthèses. Il nous faut de plus convertir la température en
+Kelvins, attention à ne pas vous tromper de sens~: il
+faut ici \textbf{ajouter} \SI{273.15}{K} à la température en degrés
+Celsius, ce qui donne $T = \SI{298.15}{K}$. On peut donc faire
+l'application numérique pour $P_{\tot}$ initial.
+\bigbreak
+On remplit la deuxième ligne du tableau avec les coefficients stœchiométriques
+algébriques des constituants en facteur de chaque $\xi$, et on somme les
+quantités de matière de gaz pour $n\ind{tot,
+		gaz}$. En réalité, il est plus simple de partir de la valeur totale de
+la première ligne et de compter algébriquement le nombre de $\xi$~: on en perd 3
+avec les réactifs pour en gagner 2 avec les produits, donc en tout la quantité
+de matière totale de gaz décroit de 1$\xi$. On ne peut
+pas calculer précisément la valeur de $P_{\tot}$ ici, il faudrait
+l'exprimer en fonction de $\xi$ (ça viendra dans d'autres exercices).
+\bigbreak
+Enfin, pour trouver le réactif limitant, on résout~:
+\begin{gather*}
+	\left\{
+	\begin{array}{rcl}
+		n_0(\ce{NO_{\gaz}})-2\xi_f & = & 0 \\
+		n_0(\ce{O_2_{\gaz}})-\xi_f & = & 0
+	\end{array}
+	\right.
+	\Lra
+	\left\{
+	\begin{array}{rcl}
+		\xi_f & = & \SI{0.50}{mol}              \\
+		\xi_f & = & \SI{1.00}{mol} > \xi_{\max}
+	\end{array}
+	\right.
+\end{gather*}
+La seule valeur possible est la plus petite, $\xi_f = \SI{0.50}{mol}$~:
+si on prenait \SI{1.00}{mol} on trouverait une quantité négative de
+\ce{NO} à l'état final, ce qui, vous en conviendrez, est une absurdité.
+Même travail qu'initialement pour $n\ind{tot, gaz}$ et $P_{\tot}$.
+D'où le tableau~:
+\begin{center}
+	\def\rhgt{0.50}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|Y|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation}}  &
+		$2\ce{NO_{\gaz}}$   & $+$                  &
+		$\ce{O_2_{\gaz}}$   & $\ra$                &
+		$2\ce{NO_2_{\gaz}}$ &
+		$n\ind{tot, gaz} $  &
+		$P_{\tot} (\si{bar})$                        \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial (\si{mol})  & $\xi = 0$            &
+		$\num{1.00}$        & \vline               &
+		$\num{2.00}$        & \vline               &
+		$\num{0.00}$        &
+		$\num{3.00}$        &
+		$\num{7.40}$                                 \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Interm. (\si{mol})  & $\xi$                &
+		$\num{1.00} - 2\xi$ & \vline               &
+		$\num{2.00} - \xi$  & \vline               &
+		$2\xi$              &
+		$\num{3.00} - \xi$  &
+		--                                           \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final (\si{mol})    & $\xi_f = \num{0.50}$ &
+		\num{0.00}          & \vline               &
+		\num{1.50}          & \vline               &
+		\num{1.00}          &
+		\num{2.50}          &
+		\num{6.20}                                   \\
+		\hline
+	\end{tabularx}
+\end{center}
+}
+\QR{%
+Réaction de combustion de l'éthanol dans l'air. Les réactifs sont introduits
+dans les proportions stœchiométriques. Le dioxygène provient
+de l'air, qui contient 20\% de $\ce{O2}$ et 80\% de $\ce{N2}$ en
+fraction molaire.
+\begin{center}
+	\def\rhgt{0.50}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|Y|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation} (\si{mol})} &
+		$\ce{C_2H_5OH_{\liq}}$        & $+$                        &
+		$3\ce{O_2_{\gaz}}$            & $\ra$                      &
+		$2\ce{CO_2_{\gaz}}$           & $+$                        &
+		$3\ce{H_2O_{\gaz}}$           &
+		$n_{\ce{N_2}}$                &
+		$n\ind{tot, gaz}$                                                                                         \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                       & $\xi = 0$                  &
+		$\num{2.00}$                  & \vline                     &
+		                              & \vline                     &   & \vline &  &        &                     \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Interm.                       & $\xi$                      &   & \vline &  & \vline &   & \vline &   &  &
+		\\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final                         & $\xi_f = \wht{\num{2.00}}$ &
+		                              & \vline                     &   & \vline &  & \vline &   &        &        \\
+		\hline
+	\end{tabularx}
+\end{center}
+}{%
+Pour une réaction $a{\ce{A}} + b{\ce{B}} = c{\ce{C}} + d{\ce{D}}$, le fait
+que les réactifs soient introduits dans les proportions stœchiométriques se
+traduit par
+\[
+	\frac{n_{\ce{A},0}}{a} = \frac{n_{\ce{B},0}}{b}
+	\Lra
+	n_{\ce{B},0} = \frac{b}{a}n_{\ce{A},0}
+\]
+Ici, on a donc $n_{\ce{O2},0} = 3n_{\ce{C2H2OH},0}$, c'est-à-dire
+$n_{\ce{O2},0} = \SI{6.00}{mol}$. On peut donc remplir cette
+case.
+\bigbreak
+On suppose qu'on commence sans $\ce{CO2}$ ou $\ce{H2O}$ initialement,
+puisque rien n'est indiqué~; en revanche, on sait qu'il y a déjà du diazote dans
+le milieu puis que le dioxygène vient de l'air, comme c'est
+indiqué. Comme il y a 80\% de \ce{N2} pour 20\% de \ce{O2}, cela veut
+dire qu'il y a 4 fois plus de diazote que de dioxygène, donc
+\SI{24.00}{mol}. Ici, la colonne $n\ind{tot, gaz}$ n'a pas grande
+utilité puisqu'il n'y a qu'un gaz, mais c'est une bonne pratique à ne pas
+oublier.
+\bigbreak
+Le reste du remplissage est le même que pour la question 1. On trouve
+évidemment $\xi_f = \SI{2.00}{mol}$ avec les deux réactifs limitant,
+c'est le principe des proportions stœchiométriques.
+\begin{center}
+	\def\rhgt{0.50}
+	\centering
+	\begin{tabularx}{\linewidth}{|l|c||YdYdYdY||Y|Y|}
+		\hline
+		\multicolumn{2}{|c||}{
+			$\xmathstrut{\rhgt}$
+		\textbf{Équation} (\si{mol})} &
+		$\ce{C_2H_5OH_{\liq}}$        & $+$                  &
+		$3\ce{O_2_{\gaz}}$            & $\ra$                &
+		$2\ce{CO_2_{\gaz}}$           & $+$                  &
+		$3\ce{H_2O_{\gaz}}$           &
+		$n_{\ce{N_2}}$                &
+		$n\ind{tot, gaz}$                                               \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Initial                       & $\xi = 0$            &
+		$\num{2.00}$                  & \vline               &
+		$\num{6.00}$                  & \vline               &
+		$\num{0.00}$                  & \vline               &
+		$\num{0.00}$                  &
+		$\num{24.00}$                 &
+		$\num{30.00}$                                                   \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Interm.                       & $\xi$                &
+		$\num{2.00} - \xi$            & \vline               &
+		$\num{6.00} - 3\xi$           & \vline               &
+		$2\xi$                        & \vline               & $3\xi$ &
+		$\num{24.00}$                 &
+		$\num{30.00} + 2\xi$                                            \\
+		\hline
+		$\xmathstrut{\rhgt}$
+		Final                         & $\xi_f = \num{2.00}$ &
+		$\num{0.00}$                  & \vline               &
+		$\num{0.00}$                  & \vline               &
+		$\num{4.00}$                  & \vline               &
+		$\num{6.00}$                  &
+		$\num{24.00}$                 &
+		$\num{34.00}$                                                   \\
+		\hline
+	\end{tabularx}
+\end{center}
+}
+\end{document}

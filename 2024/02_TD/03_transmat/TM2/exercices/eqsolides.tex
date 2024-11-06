@@ -1,0 +1,130 @@
+\documentclass[../TDTM2.tex]{subfiles}%
+
+\begin{document}
+\section[s]"2"{Équilibre avec des solides}
+\enonce{%
+	La chaux vive, solide blanc de formule $\ce{CaO_{\sol}}$, est un des produits
+	de chimie industrielle les plus communs. Utilisée depuis l'Antiquité,
+	notamment dans le domaine de la construction, elle est aujourd'hui utilisée
+	comme intermédiaire en métallurgie. Elle est obtenue industriellement par
+	dissociation thermique du calcaire dans un four à $T = \SI{1100}{K}$. On
+	modélise cette transformation par la réaction d'équation~:
+
+	\centersright{%
+		$\ce{CaCO3_{\sol} = CaO_{\sol} + CO2 _{\gaz}}$
+	}{%
+		$K^\circ(\SI{1100}{K}) = \num{0.358}$
+	}
+}
+
+\QR{%
+	Dans un récipient de volume $V = \SI{10}{L}$ préalablement vide, on
+	introduit \SI{10}{mmol} de calcaire à température constante $T =
+		\SI{1100}{K}$. Déterminer le sens d'évolution du système chimique.
+}{%
+	Comme on ne part que de calcaire, la réaction \textbf{ne peut avoir
+		lieu que dans le sens direct}. On vérifie cette intuition en calculant
+	$Q_{r,0}$ pour le comparer à $K$, sachant qu'on part d'un récipient vide
+	de gaz au début~:
+	\[\boxed{Q_{r,0} = \frac{p_{\ce{CO2}, 0}}{p^\circ} = 0 < K^\circ}\]
+	La réaction se fait bien dans le sens direct.
+}
+
+\QR{%
+	Supposons que l'état final est un état d'équilibre. Déterminer la
+	quantité de matière de calcaire qui devrait avoir réagi. Conclure sur
+	l'hypothèse faite.
+}{%
+	Si l'état final est un état d'équilibre, alors avec l'équation
+	précédente on aura
+	\begin{gather*}
+		p_{\ce{CO2}, \eql}
+		= K^\circ p^\circ\\
+		\Lra
+		n_{\ce{O2}, \eql}
+		= \frac{p_{\ce{O2},\eql}V}{RT}
+		= \frac{K^\circ p^\circ V}{RT}
+	\end{gather*}
+	Or, un tableau d'avancement donne que $n_{\ce{O2}, \eql} = \xi_{\eql}$~; on
+	trouve donc
+	\begin{gather*}
+		\boxed{\xi_{\eql} = \frac{K^\circ p^\circ V}{RT}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			K^\circ & = & \num{0.358}              \\
+			V       & = & \SI{10e-3}{m^3}          \\
+			T       & = & \SI{1100}{K}             \\
+			p^\circ & = & \SI{1}{bar}              \\
+			R       & = & \SI{8.314}{J.mol.K^{-1}}
+		\end{array}
+		\right.\\
+		\mathrm{A.N.~:}\quad
+		\xul{\xi_{\eql} = \SI{39}{mmol}}
+	\end{gather*}
+	Pour savoir si cette valeur est réalisable, on calcule $\xi_{\max}$ que
+	l'on trouverait si le calcaire était limitant, c'est-à-dire en résolvant
+	$\num{10} - \xi_{\max} = 0$~: on trouve naturellement \xul{$\xi_{\max}
+			= \SI{10}{mmol}$}.
+	\bigbreak
+	On sait que la valeur de $\xi_f$ est la plus petite valeur absolue entre
+	$\xi_{\eql}$ et $\xi_{\max}$. Or, ici on trouve $\xi_{\eql} >
+		\xi_{\max}$, ce qui veut dire que \textbf{l'équilibre ne peut être
+		atteint} et qu'on aura ainsi
+	\[\xul{\xi_f = \xi_{\max} = \SI{10}{mmol}}\]
+	c'est-à-dire que \textbf{la réaction est totale}. On peut donc remplir
+	la dernière ligne du tableau d'avancement.
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}   &
+			$\ce{CaCO_3_{\sol}}$ & $=$                  &
+			$\ce{CaO_{\sol}}$    & $+$                  &
+			$\ce{CO_2_{\gaz}}$   &
+			$n\ind{tot, gaz}$                             \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial (\si{mmol})  & $\xi = 0$            &
+			$10$                 & \vline               &
+			$0$                  & \vline               &
+			$0$                  &
+			$0$                                           \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Interm. (\si{mmol})  & $\xi$                &
+			$10 - \xi$           & \vline               &
+			$\xi$                & \vline               &
+			$\xi$                &
+			$\xi$                                         \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final  (\si{mmol})   & $\xi_f = \xi_{\max}$ &
+			$0$                  & \vline               &
+			$10$                 & \vline               &
+			$10$                 &
+			$10$                                          \\
+			\hline
+		\end{tabularx}
+	\end{center}
+}
+\QR{%
+Si on part de \SI{50}{mmol} de calcaire, quelle est la quantité de chaux
+obtenue~? Comment faire pour augmenter la quantité de chaux produite~?
+}{%
+En ne partant que de calcaire, dès que $\xi_f$ atteint $\xi_{\eql}$ la réaction
+s'arrêtera puisqu'on aura atteint l'équilibre. Mettre plus de calcaire ne
+formera pas plus de chaux, l'excédent de réactif initial ne réagira simplement
+pas. Ainsi, \textbf{la quantité de matière de calcaire maximale qui puisse
+	être transformée est de $\xi_{\max} = \SI{39}{mmol}$}.
+\bigbreak
+Pour déplacer l'équilibre dans le sens direct, il faut diminuer la quantité de
+$\ce{CO_2_{\gaz}}$~: on diminue alors $Q_r$ qui peut repasser en-dessous de
+$K^\circ$. Il suffit pour ça de \textbf{travailler en volume ouvert} ou
+\textbf{d'aspirer le $\ce{CO_2_{\gaz}}$}.
+}
+
+\end{document}

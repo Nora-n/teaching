@@ -1,0 +1,115 @@
+\documentclass[../TDTM2.tex]{subfiles}%
+
+\begin{document}
+\section[s]"2"{Coefficient de dissociation}
+\enonce{%
+	On considère l'équilibre de l'eau en phase gazeuse~:
+	\[
+		\ce{2H2O = 2H2_{\gaz} + O2_{\gaz}}
+	\]
+}
+
+\QR{%
+	On se place à \SI{400}{K} sous une pression constante $P = \SI{1.00}{bar}$.
+	Sous quelle forme se trouve l'eau~?
+}{%
+	Pour connaître l'état de l'eau, on détermine la température en degrés
+	pour interpréter par des connaissances élémentaires si elle est solide
+	(glace), liquide, ou vapeur~: \SI{400}{K} = \SI{127}{\degreeCelsius}, et
+	la pression est de \SI{1}{bar}, c'est-à-dire presque la pression
+	habituelle. À cette température, l'eau est sous forme vapeur.
+}
+\QR{%
+	La valeur de la constante vaut $K^\circ(\SI{400}{K}) = \num{3.12e-59}$. Conclure
+	sur la stabilité de l'eau dans ces conditions.
+}{%
+	La constante est extrêmement petite~: $K^\circ \ll 10^{\num{-4}}$, donc la
+	réaction est \textbf{quasi-nulle} dans ce sens~: l'eau ne se dissocie
+	pratiquement pas de cette manière et est par conséquent très stable.
+}
+\QR{%
+	En supposant que l'on introduit de l'eau pure, calculer le coefficient
+	de dissociation de l'eau.\\
+	\textit{Rappel}~: le coefficient de dissociation $\alpha$ est
+	égal au rapport de la quantité ayant été dissociée sur la quantité
+	initiale.
+}{%
+	Si on introduit de l'eau pure, on n'a pas les autres composants au
+	départ. Soit $n_0$ la quantité de matière d'eau pure introduite~: on
+	dresse le tableau d'avancement~:
+	\begin{center}
+		\def\rhgt{0.35}
+		\centering
+		\begin{tabularx}{\linewidth}{|l|c||YdYdY||Y|}
+			\hline
+			\multicolumn{2}{|c||}{
+				$\xmathstrut{\rhgt}$
+			\textbf{Équation}}  &
+			$2\ce{H_2O_{\gaz}}$ & $=$                  &
+			$2\ce{H_2_{\gaz}}$  & $+$                  &
+			$\ce{O_2_{\gaz}}$   &
+			$n\ind{tot, gaz}$                            \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Initial             & $\xi = 0$            &
+			$n_0$               & \vline               &
+			$0$                 & \vline               &
+			$0$                 &
+			$n_0$                                        \\
+			\hline
+			$\xmathstrut{\rhgt}$
+			Final               & $\xi_f = \xi_{\eql}$ &
+			$n_0 - 2\xi_{\eql}$ & \vline               &
+			$2\xi_{\eql}$       & \vline               &
+			$\xi_{\eql}$        &
+			$n_0 + \xi_{\eql}$                           \\
+			\hline
+		\end{tabularx}
+	\end{center}
+	Le coefficient de dissociation correspond à la quantité d'eau
+	transformée sur la quantité initiale, c'est-à-dire
+	\[\alpha = \frac{2\xi_{\eql}}{n_0}\]
+	On va donc exprimer la constante d'équilibre en fonction des quantités
+	de matière pour introduire $\xi_{\eql}$ et faire apparaître $\alpha$, à l'aide
+	de l'activité d'un gaz, de la loi de \textsc{Dalton} puis de la
+	définition de la fraction molaire~:
+	\begin{gather*}
+		K^\circ = \frac{p_{\ce{H2}}{}^2p_{\ce{O2}}}
+		{p_{\ce{H2O}}{}^2p^\circ}
+		\Lra
+		K^\circ = \frac{n_{\ce{H2}}{}^2n_{\ce{O2}}}
+		{n_{\ce{H2O}}{}^2n\ind{tot, gaz}}
+		\overbracket[1pt]{\frac{p}{p^\circ}}^{=1}
+		\\\Lra
+		K^\circ = \frac{4\xi_{\eql}^3}{(n_0-2\xi_{\eql})^2(n_0+\xi_{\eql})}
+		\Lra
+		K^\circ = \underbracket[1pt]{\cancel{\frac{n_0{}^2}{n_0{}^3}}}_{=1}
+		\frac{4 \left(\frac{\xi_{\eql}}{n_0}\right)^3}
+		{\left( 1- \frac{2\xi_{\eql}}{n_0} \right)^2
+			\left( 1+ \frac{\xi_{\eql}}{n_0} \right)}
+		\\\Lra
+		K^\circ = \frac{4 \left(\frac{\alpha}{2}\right)^3}
+		{\left( 1- \alpha \right)^2
+			\left( 1+ \frac{\alpha}{2} \right)}
+		\Lra
+		\boxed{
+			K^\circ = \frac{\alpha^3}
+			{\left( 1- \alpha \right)^2
+				\left( 2+ \alpha \right)}
+		}
+	\end{gather*}
+	Une résolution numérique (\texttt{Python} ou calculatrice) donne
+	\[\boxed{\alpha = \num{3.97e-20} \ll 1}\]
+	Ceci est en accord avec le très faible avancement de la réaction.
+}
+\QR{%
+	À \SI{3000}{K}, toujours sous une pression de \SI{1}{bar}, le coefficient de
+	dissociation vaut $\alpha = \num{0.30}$. Calculer $K^\circ(\SI{3000}{K})$.
+	Conclure sur la stabilité de l'eau dans ces conditions.
+}{%
+	En prenant $\alpha = \num{0.30}$, cela veut dire que 30\% de l'eau se dissocie,
+	l'eau ne serait plus stable dans ces conditions. La valeur de $K^\circ$
+	correspondant est $K^\circ = \num{2.4e-2}$, ce qui est peu favorisé dans le
+	sens direct mais pas quasi-nulle.
+}
+\end{document}

@@ -3,32 +3,36 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{7}
+
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
 
 \chapter{\cswitch{Correction du TP}{Oscillateurs amortis en \'electricit\'e et
 	  m\'ecanique}}
 
 \enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Mettre en évidence la similitude des comportements des
-				      oscillateurs mécanique et électronique.
-				\item Réaliser l’acquisition d’un régime transitoire pour
-				      un système linéaire du deuxième ordre et analyser ses
-				      caractéristiques.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+	\begin{tcn}(appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Mettre en évidence la similitude des comportements des
+			      oscillateurs mécanique et électronique.
+			\item Réaliser l’acquisition d’un régime transitoire pour
+			      un système linéaire du deuxième ordre et analyser ses
+			      caractéristiques.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -42,25 +46,25 @@
 		      domaines.
 		\item Établir un tableau des analogies entre la mécanique et l'électricité.
 	\end{itemize}
-}
+}%
+
+\section{S'approprier}
+
+%\subsection{Définition générale d'une trajectoire de phase (hors-programme)}
+%
+%Définition~: On peut décrire l'évolution d'un système quelconque (mécanique ou
+%électrique), pour des conditions initiales données, par la trajectoire dans
+%l'\textbf{espace des phases} $(x \, ; \dot{x})$  ou $(u_{C} \, ; \dot{u_{C}})$
+%ou  plus généralement (variable~; dérivée de la variable) appelée
+%\textbf{trajectoire de phase}. L'ensemble des trajectoires de phase, pour
+%toutes les conditions initiales possibles, est appelé \textbf{portrait de
+%phase}. 
+
+\subsection{Rappel concernant l'oscillateur mécanique vertical}
+
+\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
 
 \enonce{
-	\section{S'approprier}
-
-	%\subsection{Définition générale d'une trajectoire de phase (hors-programme)}
-	%
-	%Définition~: On peut décrire l'évolution d'un système quelconque (mécanique ou
-	%électrique), pour des conditions initiales données, par la trajectoire dans
-	%l'\textbf{espace des phases} $(x \, ; \dot{x})$  ou $(u_{C} \, ; \dot{u_{C}})$
-	%ou  plus généralement (variable~; dérivée de la variable) appelée
-	%\textbf{trajectoire de phase}. L'ensemble des trajectoires de phase, pour
-	%toutes les conditions initiales possibles, est appelé \textbf{portrait de
-	%phase}. 
-
-	\subsection{Rappel concernant l'oscillateur mécanique vertical}
-
-	\setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
-
 	\noindent
 	\begin{minipage}[t]{.45\linewidth}
 		Soit un oscillateur mécanique vertical (cf.\ Figure~\ref{fig:OH}), constitué
@@ -112,19 +116,21 @@
 	non indiqué.
 }
 
-\enonce{
-\begin{tcb}(rema){Remarque}
-	$z$ est une variable bien choisie pour qu'on ait à l'équilibre $z=0$. C'est
-	la raison pour laquelle le poids ainsi que la longueur à vide du ressort
-	n'apparaissent pas explicitement dans l'expression.
-\end{tcb}
+\enonce{%
+	\begin{tcn}(rema){Remarque}
+		$z$ est une variable bien choisie pour qu'on ait à l'équilibre $z=0$. C'est
+		la raison pour laquelle le poids ainsi que la longueur à vide du ressort
+		n'apparaissent pas explicitement dans l'expression.
+	\end{tcn}
+}
 
 \subsection{Décrément logarithmique}
+\enonce{%
 Pour un régime pseudo-périodique de pulsation $\Omega$, l'amplitude des
 oscillations décroît de manière exponentielle~:
 \[
 	u(t) = u_{\infty} +
-	\exr^{- \frac{\w_0}{2Q}t} \times
+	\exr^{- \frac{\w_0}{2Q}t}
 	\left( A \cos(\Wt) + B\sin(\Wt) \right)
 \]
 On peut accéder au facteur de
@@ -136,7 +142,8 @@ qualité en étudiant le \textbf{décrément logarithmique} $\delta$~:
 	}
 \]
 avec $n$ le nombre de périodes sélectionnées.
-}
+}%
+
 \QR{%
 	Déterminer la relation entre $\delta$, $\w_0$, $Q$ et $T$ d'abord, puis la
 	relation entre $\delta $ et $Q$ uniquement ensuite.
@@ -238,9 +245,9 @@ avec $n$ le nombre de périodes sélectionnées.
 	En vous basant sur la Section~II.A., quelle régression linéaire peut-on
 	étudier pour obtenir le facteur de qualité~? Exprimer le coefficient directeur
 	en fonction de $a$.
-	\begin{tcb}*[aide](expe)<itc>{Aide}
+	\begin{tcn}[aide](expe)<itc>""{Aide}
 		La variable $x$ doit être $nT$.
-	\end{tcb}
+	\end{tcn}
 }{%
 	On peut tracer
 	\[
@@ -278,19 +285,19 @@ avec $n$ le nombre de périodes sélectionnées.
 
 \subsection{Étude expérimentale du régime pseudo-périodique du RLC}
 
-Réaliser le montage vu précédemment dans l'analyse en prenant les mêmes valeurs
-de $e(t)$, $C$ et $L$ que ci-dessus.
+\enonce{%
+	Réaliser le montage vu précédemment dans l'analyse en prenant les mêmes valeurs
+	de $e(t)$, $C$ et $L$ que ci-dessus.
+}%
 
 \subsubsection{Visualisation et mesure de la pseudo-période}
 
-\begin{tcb}(expe){}
-	\begin{enumerate}
-		\item Faire varier $R$ de façon à observer un régime pseudo-périodique très
-		      peu amorti. Il faut observer au moins une dizaine de maxima successifs
-		      sur l'oscillogramme.
-	\end{enumerate}
-\end{tcb}
 \enonce{%
+	\begin{tcb}(expe){}
+		Faire varier $R$ de façon à observer un régime pseudo-périodique très
+		peu amorti. Il faut observer au moins une dizaine de maxima successifs
+		sur l'oscillogramme.
+	\end{tcb}
 	Dans le cas d'un amortissement très faible, on peut assimiler la
 	pseudo-période des oscillations $T$ à la période propre $T_0$ du
 	circuit.
@@ -347,9 +354,10 @@ de $e(t)$, $C$ et $L$ que ci-dessus.
 
 \subsubsection{Décroissance exponentielle de l'amplitude}
 
-Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
-\begin{tcb}(expe){}
-	\begin{isd}[righthand ratio=.35]
+\enonce{%
+	Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
+
+	\begin{tcb}[sidebyside, righthand ratio=.25](expe){}
 		\begin{enumerate}
 			\item Grâce au curseur horizontal de l'oscilloscope, déterminer
 			      $u_{\infty}$ et relever les valeurs des amplitudes successives
@@ -361,6 +369,7 @@ Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
 			\item Créer la variable nécessaire et effectuer la régression linéaire
 			      déterminée à la question~\ref{q:reglin}. Tracer la régression.
 		\end{enumerate}
+		\vspace{-15pt}
 		\tcblower
 		\begin{center}
 			\captionof{table}{}
@@ -378,9 +387,8 @@ Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
 				\bottomrule
 			\end{tabular}
 		\end{center}
-	\end{isd}
-
-\end{tcb}
+	\end{tcb}
+}%
 
 \QR{%
 	Quel est le coefficient directeur $a_{\exp}$ de la droite obtenue~? Quel est
@@ -421,56 +429,60 @@ Activité \texttt{Capytale} disponible\ftn{3e47-2247217}.
 
 \subsection{Étude expérimentale d'oscillations mécaniques amorties}
 
-\subsubsection{Montage expérimental}
+\enonce{%
+	\subsubsection{Montage expérimental}
 
-Le montage est schématisé dans la partie S'approprier, et est déjà réalisé. On
-mesure une tension sur la voie $EA0$ qui est proportionnelle à l'ordonnée $z$ du
-point matériel de masse $m$.
-\begin{tcb}[cnt, bld](impo){}
-	La masse $m$ ne doit pas toucher à l'eau de l'éprouvette.
-\end{tcb}
+	Le montage est schématisé dans la partie S'approprier, et est déjà réalisé. On
+	mesure une tension sur la voie $EA0$ qui est proportionnelle à l'ordonnée $z$ du
+	point matériel de masse $m$.
+	\begin{tcn}[cnt, bld](impo){}
+		La masse $m$ ne doit pas toucher à l'eau de l'éprouvette.
+	\end{tcn}
+	\vspace{-10pt}
 
-\subsubsection{Réglages de l'ordinateur}
+	\subsubsection{Réglages de l'ordinateur}
 
-\begin{tcb}[breakable](expe){}
-	\begin{enumerate}
-		\item Avant tout réglage~: brancher l'interface SYSAM et l'alimentation
-		      stabilisée sur $\SI{7}{V}$.
-		\item Ouvrir latispro (programmes $\ra$ discipline $\ra$ physique-chimie
-		      $\ra$ eurosmart $\ra$ latispro).
-		\item Pour faire une acquisition~: bouton
-		      \includegraphics[width=0.05\textwidth]{bouton_acq}
-		\item Pour activer la voie $EA0$~:
-		      \begin{itemize}
-			      \item Dans le cadre \textit{entrées analogiques}, cliquer sur les
-			            boutons des entrées à activer.
-			      \item Cliquer droit et choisir \textit{trait}.
-		      \end{itemize}
-		\item Pour paramétrer l'acquisition~:
-		      \begin{itemize}
-			      \item Dans le cadre acquisition, onglet temporel, mode normal,
-			            entrer le nombre de points de mesure et la durée totale de
-			            l'acquisition.
-			      \item Acquisition temporelle~; durée~: $\SI{30}{s}$~; nombre de
-			            points~: 2000.
-		      \end{itemize}
-		\item Fin des réglages~! Vous êtes prêt-es à faire vos enregistrements.
-	\end{enumerate}
-\end{tcb}
+	\begin{tcb}[breakable](expe){}
+		\begin{enumerate}
+			\item Avant tout réglage~: brancher l'interface SYSAM et l'alimentation
+			      stabilisée sur $\SI{7}{V}$.
+			\item Ouvrir latispro (programmes $\ra$ discipline $\ra$ physique-chimie
+			      $\ra$ eurosmart $\ra$ latispro).
+			\item Pour faire une acquisition~: bouton
+			      \includegraphics[width=0.05\textwidth]{bouton_acq}
+			\item Pour activer la voie $EA0$~:
+			      \begin{itemize}
+				      \item Dans le cadre \textit{entrées analogiques}, cliquer sur les
+				            boutons des entrées à activer.
+				      \item Cliquer droit et choisir \textit{trait}.
+			      \end{itemize}
+			\item Pour paramétrer l'acquisition~:
+			      \begin{itemize}
+				      \item Dans le cadre acquisition, onglet temporel, mode normal,
+				            entrer le nombre de points de mesure et la durée totale de
+				            l'acquisition.
+				      \item Acquisition temporelle~; durée~: $\SI{30}{s}$~; nombre de
+				            points~: 2000.
+			      \end{itemize}
+			\item Fin des réglages~! Vous êtes prêt-es à faire vos enregistrements.
+		\end{enumerate}
+	\end{tcb}
 
-\subsubsection{Mesures}
+	\subsubsection{Mesures}
 
-\begin{tcb}(expe){}
-	\begin{enumerate}
-		\item Lorsque la position est à sa position d'équilibre, le bout du fil doit
-		      être au milieu du bécher. Si ce n'est pas le cas, modifier la hauteur du
-		      point d'attache du ressort.
-		\item Étirer légèrement le ressort sans qu'il ne touche au fond du bécher.
-		\item Lorsque les oscillations paraissent régulières, lancer l'acquisition
-		      en cliquant sur \includegraphics[width=0.03\textwidth]{bouton_go}.
-	\end{enumerate}
-\end{tcb}
+	\begin{tcb}(expe){}
+		\begin{enumerate}
+			\item Lorsque la position est à sa position d'équilibre, le bout du fil doit
+			      être au milieu du bécher. Si ce n'est pas le cas, modifier la hauteur du
+			      point d'attache du ressort.
+			\item Étirer légèrement le ressort sans qu'il ne touche au fond du bécher.
+			\item Lorsque les oscillations paraissent régulières, lancer l'acquisition
+			      en cliquant sur \includegraphics[width=0.03\textwidth]{bouton_go}.
+		\end{enumerate}
+	\end{tcb}
+}%
 
+\setcounter{subsubsection}{3}
 \subsubsection{Exploitation des résultats}
 
 \enonce{%
@@ -486,21 +498,23 @@ point matériel de masse $m$.
 	solu
 }
 
-\begin{tcb}(expe){}
-	\begin{enumerate}
-		\item Grâce au réticule (lié à la courbe pour plus de facilité), relever les
-		      valeurs des amplitudes successives $u_{\max}$ en fonction du nombre de
-		      périodes $nT$ (environ 15 mesures)~; cliquer droit, puis calibrage pour
-		      modifier l'échelle.
+\enonce{%
+	\begin{tcb}(expe){}
+		\begin{enumerate}
+			\item Grâce au réticule (lié à la courbe pour plus de facilité), relever les
+			      valeurs des amplitudes successives $u_{\max}$ en fonction du nombre de
+			      périodes $nT$ (environ 15 mesures)~; cliquer droit, puis calibrage pour
+			      modifier l'échelle.
 
-		\item Créer le tableau de valeurs $(nT~; u_{\max})$ correspondant
-		      (cf.\ Tableau~\ref{tab:deltauc}), que vous recopierez sur vos copies.
+			\item Créer le tableau de valeurs $(nT~; u_{\max})$ correspondant
+			      (cf.\ Tableau~\ref{tab:deltauc}), que vous recopierez sur vos copies.
 
-		\item Créer la variable nécessaire de façon à vérifier que l'amplitude
-		      des oscillations décroit de façon exponentielle, et la modéliser par une
-		      droite.
-	\end{enumerate}
-\end{tcb}
+			\item Créer la variable nécessaire de façon à vérifier que l'amplitude
+			      des oscillations décroit de façon exponentielle, et la modéliser par une
+			      droite.
+		\end{enumerate}
+	\end{tcb}
+}%
 
 \QR{%
 	Quel est le coefficient directeur $a_{\exp}$ de la droite obtenue~?

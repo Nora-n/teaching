@@ -1,51 +1,175 @@
 \documentclass[../../main/main.tex]{subfiles}
 \graphicspath{{./figures/}}
 
-\setlength{\mtcindent}{-10pt}
-\mtcsetoffset{minitoc}{-10pt}
-
 \dominitoc
 \faketableofcontents
 
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
 \makeatletter
 \renewcommand{\@chapapp}{\'Electrocin\'etique -- chapitre}
+\renewcommand{\chaplett}{E}
+\renewcommand{\thefigure}{\chaplett\arabic{figure}}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{student}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
 
 \begin{document}
-\setcounter{chapter}{4}
+\setcounter{chapter}{5}
 
-\chapter{Circuits \'electriques en r\'egime sinuso\"idal forc\'e}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
-\vfill
+\chapter{Circuits électriques en régime sinusoïdal forcé}
 
-\begin{prgm}
-	\begin{tcb}*(ror)"know"{Savoirs}
-		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Établir et connaître l'impédance d'une résistance, d'un
-			      condensateur, d'une bobine.
-			\item Oscillateur électrique ou mécanique soumis à une excitation
-			      sinusoïdale.
-		\end{itemize}
-	\end{tcb}
+\vspace*{\fill}
 
-	\begin{tcb}*(ror)"how"{Savoir-faire}
-		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Remplacer une association série ou parallèle de deux impédances par
-			      une impédance équivalente.
-			\item Utiliser la représentation complexe pour étudier le régime forcé.
-		\end{itemize}
-	\end{tcb}
-\end{prgm}
+\begin{tcn}(appl)<ctc>"somm"'t'{Sommaire}
+	\let\item\olditem
+	\vspace{-15pt}
+	\minitoc
+	\vspace{-25pt}
+\end{tcn}
 
-\vfill
-\minitoc
-\vfill
+\begin{tcn}[sidebyside](appl)<ctb>"how"'t'{Capacités exigibles}
+	\begin{itemize}[label=\rcheck]
+		\item Établir et connaître l'impédance d'une résistance, d'un
+		      condensateur, d'une bobine.
+		\item Oscillateur électrique ou mécanique soumis à une excitation
+		      sinusoïdale.
+	\end{itemize}
+	\tcblower
+	\begin{itemize}[label=\rcheck]
+		\item Remplacer une association série ou parallèle de deux impédances par
+		      une impédance équivalente.
+		\item Utiliser la représentation complexe pour étudier le régime forcé.
+	\end{itemize}
+\end{tcn}
+
+\vspace*{\fill}
+\newpage
+\vspace*{\fill}
+
+%\vspace{-15pt}
+\begin{tcn}[%
+		sidebyside, fontupper=\small, fontlower=\small
+	](appl)<ctb>"chek"'t'{L'essentiel}
+	\begin{tcn}[nsp](defi)<ctc>'t'{Définitions}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{defi}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](rapp)<ctc>'t'{Rappels}
+	% 	\tcblistof[\subsubsection*]{rapp}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](prop)<ctc>'t'{Propriétés}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{prop}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{theo}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](loi)<ctc>'t'{Lois}
+	% 	\tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](coro)<ctc>'t'{Corollaires}
+	%   \tcblistof[\subsubsection*]{coro}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](demo)<ctc>'t'{Démonstrations}
+	% 	\tcblistof[\subsubsection*]{demo}{\hspace*{4.8pt}}
+	% 	\tcblistof[\subsubsection*]{prev}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](inte)<ctc>'t'{Interprétations}
+	% 	\tcblistof[\subsubsection*]{inte}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](impl)<ctc>'t'{Implications}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{impl}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](tool)<ctc>'t'{Outils}
+	% 	\tcblistof[\subsubsection*]{tool}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](nota)<ctc>'t'{Notations}
+	% 	\tcblistof[\subsubsection*]{nota}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](appl)<ctc>'t'{Applications}
+	% 	\tcblistof[\subsubsection*]{appl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](rema)<ctc>'t'{Remarques}
+	%   \tcblistof[\subsubsection*]{rema}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](exem)<ctc>'t'{Exemples}
+	%   \tcblistof[\subsubsection*]{exem}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
+	%   \tcblistof[\subsubsection*]{ror}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
+	%   \tcblistof[\subsubsection*]{impo}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\tcblower
+	% \begin{tcn}[nsp](defi)<ctc>'t'{Définitions}
+	%   \tcblistof[\subsubsection*]{defi}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](rapp)<ctc>'t'{Rappels}
+	%   \tcblistof[\subsubsection*]{rapp}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](prop)<ctc>'t'{Propriétés}
+	% \tcblistof[\subsubsection*]{prop}{\hspace*{4.8pt}}
+	% \tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+	% \tcblistof[\subsubsection*]{theo}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](coro)<ctc>'t'{Corollaires}
+	%   \tcblistof[\subsubsection*]{coro}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](inte)<ctc>'t'{Interprétations}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{inte}{\hspace*{4.8pt}}
+	\end{tcn}
+	\begin{tcn}[nsp](demo)<ctc>'t'{Démonstrations}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{demo}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{prev}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](inte)<ctc>'t'{Interprétations}
+	% 	\tcblistof[\subsubsection*]{inte}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](impl)<ctc>'t'{Implications}
+	% 	\tcblistof[\subsubsection*]{impl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](tool)<ctc>'t'{Outils}
+	%   \tcblistof[\subsubsection*]{tool}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](nota)<ctc>'t'{Notations}
+	% 	\tcblistof[\subsubsection*]{nota}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](odgr)<ctc>'t'{Ordres de grandeur}
+	% 	\tcblistof[\subsubsection*]{odgr}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](appl)<ctc>'t'{Applications}
+	% 	\tcblistof[\subsubsection*]{appl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](rema)<ctc>'t'{Remarques}
+	%   \tcblistof[\subsubsection*]{rema}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](exem)<ctc>'t'{Exemples}
+	% 	\tcblistof[\subsubsection*]{exem}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{ror}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
+	% 	\tcblistof[\subsubsection*]{impo}{\hspace*{4.8pt}}
+	% \end{tcn}
+\end{tcn}
+
+\vspace*{\fill}
 
 \newpage
 
@@ -61,12 +185,12 @@ concentre sur la réponse du système une fois le régime permanent établi. On
 définit donc
 
 \begin{tcb}[label=def:rsf](defi){Régime sinusoïdal forcé}
-	On appelle \textbf{régime sinusoïdal forcé} le régime permanent d'un circuit
-	électrique soumis à une entrée sinusoïdale.
+	On appelle \textbf{régime sinusoïdal forcé} le \textbf{régime permanent} d'un
+	circuit électrique soumis à une \textbf{entrée sinusoïdale}.
 	\smallbreak
 	Dans tout le chapitre, on supposera donc que l'entrée est allumée depuis une
-	durée suffisamment longue pour considérer que le régime transitoire est
-	terminé.
+	durée suffisamment longue pour considérer que le \textbf{régime transitoire
+		est terminé}.
 	\begin{center}
 		\sswitch{
 			\includegraphics[width=.7\linewidth, draft=true]{rsf_transi}

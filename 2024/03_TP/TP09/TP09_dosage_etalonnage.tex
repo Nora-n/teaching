@@ -3,49 +3,52 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
 
-\usepackage{pdfpages}
+% \usepackage{pdfpages}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{8}
 
-\chapter{Dosage par \'etalonnage~: spectrophotom\'etrie et conductim\'etrie}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
+\chapter{\cswitch{Correction du TP}{Dosage par \'etalonnage~: spectrophotom\'etrie et conductim\'etrie}}
 
 \enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoirs}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Effectuer des tests qualitatifs
-				\item Réaliser des dosages par étalonnage.
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Proposer ou mettre en œuvre, à partir d’informations fournies, des
-				      tests qualitatifs préalables à l’élaboration d’un protocole.
-				\item Déterminer une concentration en exploitant la mesure de grandeurs
-				      physiques caractéristiques de l’espèce ou en construisant et en
-				      utilisant une courbe d’étalonnage.
-				\item Déterminer une concentration ou une quantité de matière par
-				      spectrophotométrie UV-Visible.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+	\begin{tcn}[sidebyside, sidebyside align=top](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Effectuer des tests qualitatifs
+			\item Réaliser des dosages par étalonnage.
+			\item Proposer ou mettre en œuvre, à partir d’informations fournies, des
+			      tests qualitatifs préalables à l’élaboration d’un protocole.
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Déterminer une concentration en exploitant la mesure de grandeurs
+			      physiques caractéristiques de l’espèce ou en construisant et en
+			      utilisant une courbe d’étalonnage.
+			\item Déterminer une concentration ou une quantité de matière par
+			      spectrophotométrie UV-Visible.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
 		\item Revoir le protocole de dilution (niveau lycée).
 		\item Revoir la technique de spectrophotométrie.
-		\item Vérifier la loi de \textsc{Beer-Lambert}.
+		\item Utiliser la loi de \textsc{Beer-Lambert}.
 		\item Revoir le protocole expérimental de conductimétrie~;
-		\item Vérifier la loi de \textsc{Kohlrausch}.
+		\item Utiliser la loi de \textsc{Kohlrausch}.
 	\end{itemize}
 }
 
@@ -147,9 +150,13 @@ La conductivité $\sigma$ de la solution peut alors s'exprimer par la \textbf{lo
 \end{tcb}
 
 En supposant que l'on ne fait varier que d'une unique espèce ionique (et donc
-conductrice) dans la solution, on pourra noter $c = [\ce{X}_i]$ la concentration de cette espèce.
-La \textbf{courbe d'étalonnage} est alors la représentation graphique de $\sigma = f(c)$ obtenue avec l'ensemble des points de coordonnées $(c_i~; \sigma_i)$ où $\sigma_i$ sont les conductivités des différentes solutions étalons $S_i$ de concentration $c_i$. Connaissant la conductivité $\sigma_0$ de la solution $S_0$ inconnue, on en déduit grâce à la courbe d'étalonnage la concentration molaire $c_0$ de la solution $S_0$.
-
+conductrice) dans la solution, on pourra noter $c = [\ce{X}_i]$ la concentration
+de cette espèce. La \textbf{courbe d'étalonnage} est alors la représentation
+graphique de $\sigma = f(c)$ obtenue avec l'ensemble des points de coordonnées
+$(c_i~; \sigma_i)$ où $\sigma_i$ sont les conductivités des différentes
+solutions étalons $S_i$ de concentration $c_i$. Connaissant la conductivité
+$\sigma_0$ de la solution $S_0$ inconnue, on en déduit grâce à la courbe
+d'étalonnage la concentration molaire $c_0$ de la solution $S_0$.
 
 \subsection{Le principe de la dilution}
 
@@ -175,12 +182,12 @@ d'où le résultat.
 \subsection{Préliminaire sur la solution de permanganate de potassium}
 
 \enonce{%
-	Le permanganate de potassium solide $\ce{KMNO4\sol{}}$, est un antiseptique
+	Le permanganate de potassium solide $\ce{KMNO4_{\sol}}$, est un antiseptique
 	utilisé pour désinfecter des plaies, les fruits ou légumes, traiter les eaux… Il
 	se vend en pharmacie sous forme de sachet~: la notice indique que le sachet
-	contient $\SI{0.25}{g}$ de $\ce{KMNO4\sol{}}$ à dissoudre dans $\SI{2.5}{L}$
+	contient $\SI{0.25}{g}$ de $\ce{KMNO4_{\sol}}$ à dissoudre dans $\SI{2.5}{L}$
 	d'eau. C'est ainsi qu'une solution aqueuse $S_0$ de permanganate de potassium
-	$\ce{K^{+}\aqu{} + MNO4^{-}\aqu{}}$ a été obtenue. Il s'agit ici de
+	$\ce{K^{+}_{\aqu} + MNO4^{-}_{\aqu}}$ a été obtenue. Il s'agit ici de
 	vérifier, par deux méthodes différentes, l'indication de masse portée sur le
 	sachet.
 
@@ -193,7 +200,7 @@ d'où le résultat.
 \QR{%
 	Pourquoi peut-on suivre le dosage du permanganate par spectrophotométrie~?
 }{%
-	Le permanganate est une solution colorée, permettant de déterminer sa
+	Le permanganate est la seule espèce colorée, permettant de déterminer sa
 	concentration par analyse de l'aborption.
 }
 \QR{%
@@ -308,7 +315,7 @@ d'où le résultat.
 \section{Réaliser et valider}
 
 \enonce{%
-	\begin{tcb}*[bld, cnt](prop)"bomb"{Attention}
+	\begin{tcb}[bld, cnt](impo)"bomb"{Protection en TP}
 		Le port de la blouse fermée et des lunettes est obligatoire durant
 		l'ensemble du TP. Les cheveux longs doivent être attachés.
 	\end{tcb}
@@ -328,48 +335,53 @@ d'où le résultat.
 
 	\begin{tcb}(expe)<itc>{Spectre d'absorption}
 		\begin{itemize}
-			\bitem{Calibration du spectrophotomètre}~:
-			\begin{enumerate}
-				\item Calibrer~; Appuyer sur \boxed{0/1} puis   *cuve vide~: valid. et *
-				      imprime~: escape.
-				\item Quand le calibrage est terminé~: le spectro affiche~:
-				      «~absorbance~», etc
-				\item Arrêter l'appareil~: \boxed{0/1}.
-			\end{enumerate}
-			\bitem{Redémarrer le spectrophotomètre sous contrôle de l'ordinateur}~:
-			\begin{enumerate}
-				\item Ouvrir Regressi
-				\item Dans Fichier $\ra$ nouveau choisir S250
-				\item Choisir dans le menu du spectro le protocole de communication~:
-				      \textbf{S 250 I/PC}.
-				\item Cliquer sur le bouton correspondant au spectro éteint. Le spectro se
-				      rallume alors (il faut quelques secondes~!).
-			\end{enumerate}
-			\bitem{Tracé des spectres}~:
-			\begin{enumerate}
-				\item Utiliser «~spectre paramétrable $\SIrange{335}{900}{nm}$~»
-				\item Choisir des longueurs d'ondes variant de $400$ à $\SI{700}{nm}$ avec
-				      un pas de $\SI{6}{nm}$.
-				\item Effectuer le zéro avec une cuve remplie d'eau distillée en cliquant
-				      sur \texttt{BLANC}. Le spectro trace une ligne (bleue) de zéro pour
-				      toutes les longueurs d'ondes.
-				\item Puis réaliser le spectre du permanganate de potassium en remplissant
-				      la cuve au $3/4$ de sa hauteur avec la solution $S_3$, puis en
-				      cliquant sur \texttt{SPECTRE}.
-			\end{enumerate}
+			\item[b]{Calibration du spectrophotomètre}~:
+			      \begin{enumerate}
+				      \item Calibrer~; Appuyer sur \boxed{0/1} puis \texttt{cuve vide~?}~:
+				            \fbox{\texttt{VAL}}. et \texttt{imprimer~?}~: \fbox{\texttt{ESC}}.
+				      \item Quand le calibrage est terminé~: le spectro affiche~:
+				            \texttt{absorbance}, etc
+				      \item Arrêter l'appareil~: \boxed{0/1}.
+			      \end{enumerate}
+			\item[b]{Redémarrer le spectrophotomètre sous contrôle de l'ordinateur}~:
+			      \begin{enumerate}
+				      \item Ouvrir Regressi
+				      \item Dans Fichier $\ra$ nouveau choisir S250
+				      \item Choisir dans le menu du spectro le protocole de communication~:
+				            \textbf{S 250 I/PC}.
+				      \item Cliquer sur le bouton correspondant au spectro éteint. Le spectro se
+				            rallume alors (il faut quelques secondes~!).
+			      \end{enumerate}
+			\item[b]{Tracé des spectres}~: \texttt{spectre paramétrable $\SIrange{335}{900}{nm}$}~:
+			      \begin{enumerate}
+				      \item Choisir des longueurs d'ondes variant de $400$ à $\SI{700}{nm}$ avec
+				            un pas de $\SI{6}{nm}$.
+				      \item Effectuer le zéro avec une cuve remplie d'eau distillée en cliquant
+				            sur \texttt{BLANC}. Le spectro trace une ligne (bleue) de zéro pour
+				            toutes les longueurs d'ondes.
+				      \item Puis réaliser le spectre du permanganate de potassium en remplissant
+				            la cuve au $3/4$ de sa hauteur avec la solution $S_3$, puis en
+				            cliquant sur \texttt{SPECTRE}.
+			      \end{enumerate}
 		\end{itemize}
 	\end{tcb}
 
 	\begin{tcb}[cnt, bld](impo){Manipulation des cuves}
-		Vous prendrez soin de placer les cuves dans le bon sens (face transparente
-		dans le passage du faisceau lumineux), en évitant de poser vos doigts sur les
-		faces par lesquelles le faisceau passe.
+		\begin{itemize}
+			\item Vous prendrez soin de placer les cuves dans le bon sens (face transparente
+			      dans le passage du faisceau lumineux), en évitant de poser vos doigts sur les
+			      faces par lesquelles le faisceau passe.
+			\item
+			      Il faut utiliser la même cuve pour \textbf{toutes} vos
+			      mesures au spectrophotomètre. Il faut alors la rincer à chaque fois.
+		\end{itemize}
 	\end{tcb}
 
 	\begin{tcb}(expe)<itc>{Exploitation du graphe}
 		\begin{enumerate}
-			\item Basculer dans Regressi~: clic sur \texttt{Sauver} du logiciel
-			      du spectro, et remplir le nom de la grandeur ($A$).
+			\item Basculer dans Regressi~: clic sur \texttt{Sauver} et \texttt{Vers
+				      régressi} du logiciel du spectro, et remplir le nom de la grandeur
+			      ($A$).
 			\item Grâce au réticule, pointer la longueur d'onde de la valeur maximale.
 		\end{enumerate}
 	\end{tcb}
@@ -379,23 +391,22 @@ d'où le résultat.
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR{%
 	Imprimer la courbe après avoir retiré le zéro en $x$ et relié les points
-	grâce à un lissage d'ordre 3 (dans le menu Coordonnées, décocher «~zéro
-	inclus~»).
+	grâce à un lissage d'ordre 3 (dans le menu \texttt{Coordonnées}, décocher
+	«~zéro inclus~»).
 }{%
-	\begin{figure}[htbp!]
-		\centering
+	\begin{center}
 		\includegraphics[width=.8\linewidth]{absorbance}
-		\caption{Résultat de Regressi.}
+		\captionof{figure}{Résultat de Regressi.}
 		\label{fig:absorbance}
-	\end{figure}
+	\end{center}
 }
 \QR{%
-	À quelle longueur d'onde doit-on travailler ensuite pour avoir un
-	maximum de précision sur la mesure de l'absorbance~?
+	À quelle longueur d'onde doit-on travailler ensuite pour avoir un maximum de
+	précision sur la mesure de l'absorbance~?
 }{%
-	Pour augmenter la précision de l'appareil et limiter l'incertitude sur
-	les mesures, on se place à la longueur d'onde pour laquelle le
-	coefficient d'absorption molaire de la substance est maximum.
+	Pour augmenter la précision de l'appareil et limiter l'incertitude sur les
+	mesures, on se place à la longueur d'onde pour laquelle le coefficient
+	d'absorption molaire de la substance est maximum.
 }
 
 \setcounter{subsection}{2}
@@ -403,17 +414,21 @@ d'où le résultat.
 \subsubsection{Tracé de la courbe d'étalonnage}
 
 \enonce{%
-	\begin{tcb}[cnt](impo){Attention}
-		Il faut utiliser la même cuve pour \textbf{toutes} vos
-		mesures au spectrophotomètre. Il faut alors la rincer à chaque fois.
-	\end{tcb}
-
+	% \begin{tcb}[cnt](impo){Attention}
+	% \end{tcb}
+	%
 	\begin{tcb}(expe)<itc>{Tracé de la courbe d'étalonnage}
 		\begin{enumerate}
 			\item Déconnecter le spectrophotomètre de l'ordinateur en le débranchant
-			      salement (mais proprement), puis le rallumer manuellement.
-			\item Le spectro va de nouveau se calibrer.
-			\item Choisir la longueur d'onde de travail~: $\lambda = ………\si{nm}$.
+			      salement (mais proprement), puis le rallumer manuellement. Suivez
+			      les instructions~: il vous donnera alors les mesures.
+			\item Le spectrophotomètre va de nouveau se calibrer.
+			\item Choisir la longueur d'onde de travail~: $\lambda = \cswitch{%
+					      \SI{526}{nm}
+				      }{%
+					      ……… \si{nm}
+				      }%
+			      $.
 			\item Pour une solution d'eau distillée (ou «~blanc~»), fixer $A = 0$.
 		\end{enumerate}
 	\end{tcb}
@@ -436,7 +451,7 @@ d'où le résultat.
 		\end{tabularx}
 	\end{center}
 }{%
-	On relève $\lambda\ind{\max} \approx \SI{526}{nm}$. On rentre cette valeur sur
+	On relève $\lambda\ind{max} \approx \SI{526}{nm}$. On rentre cette valeur sur
 	le spectrophotomètre.
 	\begin{center}
 		\renewcommand{\arraystretch}{1.3}
@@ -487,7 +502,9 @@ d'où le résultat.
 	Vos mesures peuvent-elles être décrites par la loi de
 	\textsc{Beer-Lambert}~? Justifier votre réponse \textbf{précisément}.
 }{%
-	solu
+	Oui, c'est bien une solution avec une unique espèce colorée, et elle est
+	suffisamment peu concentrée pour avoir une absorbance linéaire en fonction de
+	la concentration.
 }
 
 \subsubsection{Exploitation de la courbe}
@@ -502,21 +519,27 @@ d'où le résultat.
 	Déterminer la concentration molaire $c_0$ de la solution $S_0$ en
 	expliquant votre démarche.
 }{%
-	solu
+	On mesure $A_0 = \num{1.410}$. On se reporte alors sur la courbe d'étalonnage,
+	et on relève $c_0 = \SI{595.5e-3}{mmol.L^{-1}}$.
 }
 
 \QR{%
 	En déduire la masse de permanganate de potassium contenue dans un
 	sachet commercial, \textbf{ainsi que son incertitude}.
 }{%
-	solu
+	On obtient $m_0 = \SI{0.24}{g}$
+	% TODO: démonstration
+	Avec $u(c_0) = \SI{1e-3}{mmol.L^{-1}}$, on obtient $u(m_0) = …$ soit
+	\[
+		\boxed{m_0 = \SI{1\pm1}{g}}
+	\]
 }
 
 \QR{%
 	Déterminer l'écart normalisé entre la valeur obtenue et la valeur du
 	fabricant. Conclure.
 }{%
-	solu
+	$E_N = 17$~?
 }
 
 \subsection{Dosage par conductimétrie}
@@ -532,11 +555,14 @@ d'où le résultat.
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
 \QR<[start=5]>{%
 	Proposer (par analogie avec le protocole d'étalonnage suivi en
-	spectrophotométrie) un protocole permettant de vérifier la loi de
-	\textbf{Kohlrausch} dans le cas d'une solution aqueuse préparée avec un
+	spectrophotométrie) un protocole permettant d'utiliser la loi de
+	\textsc{Kohlrausch} dans le cas d'une solution aqueuse préparée avec un
 	unique soluté ionique.
 }{%
-	solu
+	On réalise une mesure de la conductivité pour différentes concentrations
+	connues, on réalise la régression linéaire correspondante~; on utilise alors
+	l'étalonnage précédent pour déterminer la concentration de la solution voulue
+	en mesurant sa conductivité.
 }
 
 \begin{tcb}(expe)<lfnt>{}
@@ -544,9 +570,9 @@ d'où le résultat.
 \end{tcb}
 \begin{tcb}(impo){Attention}
 	\begin{itemize}
-		\item Vous ferez attention à mesurer la conductivité des
-		      différentes solutions de la plus diluée à la plus concentrée pour ne pas
-		      polluer les solutions avec votre électrode.
+		\item Vous ferez attention à mesurer la conductivité des différentes
+		      solutions de la plus diluée à la plus concentrée pour ne pas polluer les
+		      solutions avec votre électrode.
 		\item La cellule du conductimètre doit être conservée dans un grand bécher
 		      contenant de l'eau distillée.
 	\end{itemize}
@@ -556,7 +582,35 @@ d'où le résultat.
 \QR<[start=9]>{%
 	Présenter vos conclusions dans un tableau de valeurs.
 }{%
-	solu
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabularx}{\linewidth}{|Y*{6}{|Y}|}\hline
+			Solution               &
+			$S_2$                  &
+			$S_3$                  &
+			$S_4$                  &
+			$S_5$                  &
+			$S_1$                  &
+			$S_0$
+			\\\hline
+			$c (\si{mmol.L^{-1}})$ &
+			\num{0.2}              &
+			\num{0.4}              &
+			\num{0.6}              &
+			\num{0.8}              &
+			\num{1.0}              &
+			\num{0.60}
+			\\\hline
+			$\sigma$               &
+			\num{27.04}            &
+			\num{46.9}             &
+			\num{72.6}             &
+			\num{95.0}             &
+			\num{121.0}            &
+			\num{75.5}
+			\\\hline
+		\end{tabularx}
+	\end{center}
 }
 
 \subsubsection{Exploitation de la courbe d'étalonnage}
@@ -566,7 +620,8 @@ d'où le résultat.
 	Proposer un protocole permettant de déterminer la concentration molaire de la
 	solution $S_0$. Vous expliciterez clairement votre démarche.
 }{%
-	solu
+	On mesure $\sigma_0 = \num{75.5}$. On se reporte alors sur la courbe d'étalonnage,
+	et on relève $c_0 = \SI{222}{mmol.L^{-1}}$.
 }
 
 \begin{tcb}(expe)<lfnt>{}

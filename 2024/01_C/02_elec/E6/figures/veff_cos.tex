@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{tikzpicture}[]
+    \begin{axis}[
+        xmin=0, xmax=15,
+        ymin=-2, ymax=3,
+        xtick={\empty},
+        ytick={\empty},
+        extra y ticks={0},
+        xlabel=$t$, ylabel=$s(t)$,
+        axis lines=center,
+        clip=false]
+        \addplot[
+        domain=-3:15, samples=500,
+        smooth, blue, thick]
+        {2*cos(deg(\x))};
+        \addplot[
+        domain=-3:15, thick,
+        smooth, black, dashed]
+        {2/sqrt(2)};
+        \node[anchor=south] at (axis cs:3.1415, 1.414) {$s_{\rm eff}$};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

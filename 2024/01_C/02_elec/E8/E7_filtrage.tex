@@ -91,138 +91,138 @@ signaux périodiques.
 
 \newpage
 
-\section{Signaux périodiques}
-\subsection{Période}
-\begin{tcb*}(defi){Période}
-	\psw{
-		\[
-			s(t) \quad \text{périodique}
-			\Lra
-			\exists T~: \forall t \in \Rb^{+}, s(t+T) = s(t)
-		\]
-	}
-	\vspace{-15pt}
-\end{tcb*}
-\begin{tcb*}(appl)<lfnt>{Périodicité}
-	Montrer que le signal $s(t) = A \sin(\wt)$ a une période $T =
-		\frac{2\pi}{\w}$.
-	\tcblower
-	\psw{
-		\[
-			s \left( t + \frac{2\pi}{\w} \right) =
-			A \left( \w \left( t + \frac{2\pi}{\w} \right) \right) =
-			A \sin(\wt + 2\pi) = A \sin(\wt)
-			\qed
-		\]
-	}
-	\vspace{-15pt}
-\end{tcb*}
-
-\subsection{Moyenne}
-\begin{tcb*}(defi){Valeur moyenne}
-	Pour un \textbf{signal périodique} $s(t)$, on définit sa valeur moyenne
-	$\moy{s(t)}$ par
-	\psw{
-		\[
-			\moy{s(t)} = \frac{1}{T}\int _{0}^{T} s(t) \dd{t}
-		\]
-	}
-	\vspace{-15pt}
-\end{tcb*}
-
-\begin{tcb*}[sidebyside, lefthand ratio=.4](appl){Moyenne d'un cosinus décalé}
-	Calculer la valeur moyenne du signal
-	\[
-		s(t) = S_0 + A\cos(\wt)
-	\]
-	\begin{center}
-		\includegraphics[width=\linewidth]{moy_cos-S0}
-		\captionof{figure}{$s(t) = S_0 + A\cos(\wt)$}
-	\end{center}
-	\tcblower
-	\psw{
-		\begin{align*}
-			\moy{s(t)}         & =
-			\frac{1}{T} \int_{0}^{T} (S_0 + A\cos(\wt))\dd{t}
-			\\&=
-			\frac{1}{T} \left( \int_{0}^{T} S_0 \dd{t} +
-			\int_{0}^{T} A \cos(\wt)\dd{t} \right)
-			\\&=
-			\frac{1}{T} \left( [S_0t]_0^{T} +
-			\left[ \frac{A}{\w} \sin(\wt) \right]_0^{T} \right)
-			\\&=
-			\frac{1}{T} \left( S_0(T-0) +
-			\underbracket[1pt]{\frac{A}{\w} \left( \sin(\w T) - \sin(\w \times 0) \right)}_{=0} \right)
-			\\&=
-			\frac{1}{T} S_0T
-			\\\Lra
-			\Aboxed{\moy{s(t)} & = S_0}
-			\qed
-		\end{align*}
-	}
-	\vspace{-15pt}
-\end{tcb*}
-\begin{tcb*}[cnt, bld](ror){Moyenne d'un signal sinusoïdal}
-	Un signal purement sinusoïdal a une moyenne nulle.
-\end{tcb*}
-
-\subsection{Valeur efficace}
-Ainsi, si on envoie une tension sinusoïdale dans un circuit et qu'on mesure la
-moyenne de la tension reçue, on trouvera une tension nulle. Pourtant, l'énergie
-transmise n'est pas nulle~! C'est parce que les électrons réagissent à la fois
-aux tensions positives et négatives du signal, et ce pourquoi on obtient $\Ec_C
-	= \frac{1}{2}Cu_C{}^{2}$~: l'\textbf{énergie est propotionnelle au carré des
-	signaux}.
-\begin{tcb*}(defi){Valeur efficace}
-	On définit la valeur efficace d'un signal \textbf{périodique} par
-	\psw{
-		\[
-			s \ind{eff} = \sqrt{\moy{s^{2}(t)}}
-		\]
-	}
-	\vspace{-15pt}
-\end{tcb*}
-Ainsi, $s \ind{eff}^{2}$ représente l'énergie moyenne. Notamment, la valeur de
-\SI{230}{V} pour la tension secteur est la valeur \textit{efficace}~: c'est une
-tension sinusoïdale qui oscille entre des valeurs de $\SI{\pm 325}{V}$.
-
-\begin{tcb*}[sidebyside, lefthand ratio=.4](appl){Calcul de valeur efficace}
-	Calculer la valeur efficace du signal
-	\[
-		s(t) = A \cos(\wt)
-	\]
-	\begin{center}
-		\includegraphics[width=\linewidth]{veff_cos}
-		\captionof{figure}{$s \ind{eff}$ de $A\cos(\wt)$.}
-	\end{center}
-	\tcblower
-	\psw{
-		\begin{align*}
-			\moy{s^{2}(t)}      & =
-			\frac{1}{T} \int_{0}^{T} \left( A^{2}\cos^{2}(\wt) \right) \dd{t}
-			\\ &=
-			\frac{A^{2}}{T} \left( \int_{0}^{T} \frac{1}{2} \dd{t} +
-			\int_{0}^{T} \frac{\cos(2\wt)}{2} \dd{t}\right)
-			\\ &=
-			\frac{A^{2}}{T}
-			\Bigg(
-			\underbracket[1pt]{\left[ \frac{1}{2}t \right]_0^{T}}_{=\frac{T}{2}} +
-			\underbracket[1pt]{\left[ \frac{1}{2} \frac{A}{2\w} \sin(2\wt) \right]_0^{T}}_{=0}
-			\Bigg)
-			\\[-18pt] &=
-			\frac{A^{2}}{2}
-			\\\Lra
-			\Aboxed{s \ind{eff} & = \frac{A}{\sqrt{2}}}
-			\qed
-		\end{align*}
-	}
-\end{tcb*}
-
-\begin{tcb*}(impo)<lfnt>{Rapport $\sqrt{2}$}
-	Il n'y a pas toujours de rapport $\sqrt{2}$ entre amplitude et valeur
-	efficace~! Pour un signal triangle, la valeur efficace est $A/\sqrt{3}$, et
-	pour un créneau pur sa valeur efficace est son amplitude $A$.
-\end{tcb*}
+% \section{Signaux périodiques}
+% \subsection{Période}
+% \begin{tcb*}(defi){Période}
+% 	\psw{
+% 		\[
+% 			s(t) \quad \text{périodique}
+% 			\Lra
+% 			\exists T~: \forall t \in \Rb^{+}, s(t+T) = s(t)
+% 		\]
+% 	}
+% 	\vspace{-15pt}
+% \end{tcb*}
+% \begin{tcb*}(appl)<lfnt>{Périodicité}
+% 	Montrer que le signal $s(t) = A \sin(\wt)$ a une période $T =
+% 		\frac{2\pi}{\w}$.
+% 	\tcblower
+% 	\psw{
+% 		\[
+% 			s \left( t + \frac{2\pi}{\w} \right) =
+% 			A \left( \w \left( t + \frac{2\pi}{\w} \right) \right) =
+% 			A \sin(\wt + 2\pi) = A \sin(\wt)
+% 			\qed
+% 		\]
+% 	}
+% 	\vspace{-15pt}
+% \end{tcb*}
+%
+% \subsection{Moyenne}
+% \begin{tcb*}(defi){Valeur moyenne}
+% 	Pour un \textbf{signal périodique} $s(t)$, on définit sa valeur moyenne
+% 	$\moy{s(t)}$ par
+% 	\psw{
+% 		\[
+% 			\moy{s(t)} = \frac{1}{T}\int _{0}^{T} s(t) \dd{t}
+% 		\]
+% 	}
+% 	\vspace{-15pt}
+% \end{tcb*}
+%
+% \begin{tcb*}[sidebyside, lefthand ratio=.4](appl){Moyenne d'un cosinus décalé}
+% 	Calculer la valeur moyenne du signal
+% 	\[
+% 		s(t) = S_0 + A\cos(\wt)
+% 	\]
+% 	\begin{center}
+% 		\includegraphics[width=\linewidth]{moy_cos-S0}
+% 		\captionof{figure}{$s(t) = S_0 + A\cos(\wt)$}
+% 	\end{center}
+% 	\tcblower
+% 	\psw{
+% 		\begin{align*}
+% 			\moy{s(t)}         & =
+% 			\frac{1}{T} \int_{0}^{T} (S_0 + A\cos(\wt))\dd{t}
+% 			\\&=
+% 			\frac{1}{T} \left( \int_{0}^{T} S_0 \dd{t} +
+% 			\int_{0}^{T} A \cos(\wt)\dd{t} \right)
+% 			\\&=
+% 			\frac{1}{T} \left( [S_0t]_0^{T} +
+% 			\left[ \frac{A}{\w} \sin(\wt) \right]_0^{T} \right)
+% 			\\&=
+% 			\frac{1}{T} \left( S_0(T-0) +
+% 			\underbracket[1pt]{\frac{A}{\w} \left( \sin(\w T) - \sin(\w \times 0) \right)}_{=0} \right)
+% 			\\&=
+% 			\frac{1}{T} S_0T
+% 			\\\Lra
+% 			\Aboxed{\moy{s(t)} & = S_0}
+% 			\qed
+% 		\end{align*}
+% 	}
+% 	\vspace{-15pt}
+% \end{tcb*}
+% \begin{tcb*}[cnt, bld](ror){Moyenne d'un signal sinusoïdal}
+% 	Un signal purement sinusoïdal a une moyenne nulle.
+% \end{tcb*}
+%
+% \subsection{Valeur efficace}
+% Ainsi, si on envoie une tension sinusoïdale dans un circuit et qu'on mesure la
+% moyenne de la tension reçue, on trouvera une tension nulle. Pourtant, l'énergie
+% transmise n'est pas nulle~! C'est parce que les électrons réagissent à la fois
+% aux tensions positives et négatives du signal, et ce pourquoi on obtient $\Ec_C
+% 	= \frac{1}{2}Cu_C{}^{2}$~: l'\textbf{énergie est propotionnelle au carré des
+% 	signaux}.
+% \begin{tcb*}(defi){Valeur efficace}
+% 	On définit la valeur efficace d'un signal \textbf{périodique} par
+% 	\psw{
+% 		\[
+% 			s \ind{eff} = \sqrt{\moy{s^{2}(t)}}
+% 		\]
+% 	}
+% 	\vspace{-15pt}
+% \end{tcb*}
+% Ainsi, $s \ind{eff}^{2}$ représente l'énergie moyenne. Notamment, la valeur de
+% \SI{230}{V} pour la tension secteur est la valeur \textit{efficace}~: c'est une
+% tension sinusoïdale qui oscille entre des valeurs de $\SI{\pm 325}{V}$.
+%
+% \begin{tcb*}[sidebyside, lefthand ratio=.4](appl){Calcul de valeur efficace}
+% 	Calculer la valeur efficace du signal
+% 	\[
+% 		s(t) = A \cos(\wt)
+% 	\]
+% 	\begin{center}
+% 		\includegraphics[width=\linewidth]{veff_cos}
+% 		\captionof{figure}{$s \ind{eff}$ de $A\cos(\wt)$.}
+% 	\end{center}
+% 	\tcblower
+% 	\psw{
+% 		\begin{align*}
+% 			\moy{s^{2}(t)}      & =
+% 			\frac{1}{T} \int_{0}^{T} \left( A^{2}\cos^{2}(\wt) \right) \dd{t}
+% 			\\ &=
+% 			\frac{A^{2}}{T} \left( \int_{0}^{T} \frac{1}{2} \dd{t} +
+% 			\int_{0}^{T} \frac{\cos(2\wt)}{2} \dd{t}\right)
+% 			\\ &=
+% 			\frac{A^{2}}{T}
+% 			\Bigg(
+% 			\underbracket[1pt]{\left[ \frac{1}{2}t \right]_0^{T}}_{=\frac{T}{2}} +
+% 			\underbracket[1pt]{\left[ \frac{1}{2} \frac{A}{2\w} \sin(2\wt) \right]_0^{T}}_{=0}
+% 			\Bigg)
+% 			\\[-18pt] &=
+% 			\frac{A^{2}}{2}
+% 			\\\Lra
+% 			\Aboxed{s \ind{eff} & = \frac{A}{\sqrt{2}}}
+% 			\qed
+% 		\end{align*}
+% 	}
+% \end{tcb*}
+%
+% \begin{tcb*}(impo)<lfnt>{Rapport $\sqrt{2}$}
+% 	Il n'y a pas toujours de rapport $\sqrt{2}$ entre amplitude et valeur
+% 	efficace~! Pour un signal triangle, la valeur efficace est $A/\sqrt{3}$, et
+% 	pour un créneau pur sa valeur efficace est son amplitude $A$.
+% \end{tcb*}
 
 \section{Décomposition en série de \textsc{Fourier}}
 Le traitement de signal complexe a pu émerger grâce à un des théorèmes les plus

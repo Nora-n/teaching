@@ -1,0 +1,102 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\settype{prof}
+\settype{stud}
+
+\tikzset{every picture/.style={thick}}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{axis}[
+			axis lines=center,
+			axis equal image,
+			xtick=\empty, ytick=\empty,
+			enlargelimits=true,
+			xlabel=$\Re$, ylabel=$\Im$,
+			every axis x label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=west,
+				},
+			every axis y label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=south,
+				},
+			clip=false,
+		]
+		\coordinate (O) at (0,0);
+		\coordinate (X) at (1,0);
+		\coordinate (Y) at (0,1);
+		\coordinate (F) at ({cos(deg(pi/12))},{sin(deg(pi/12))});
+		\coordinate (T) at ({cos(deg(pi/6))},{sin(deg(pi/6))});
+		\coordinate (P) at ({cos(deg(9*pi/10))},{sin(deg(9*pi/10))});
+
+		\ifprof{%
+			\draw[dashed] (T) -- (T|-X) coordinate(TX);
+			\draw[dashed] (T) -- (T-|Y) coordinate(TY);
+			\draw[dashed] (P) -- (P|-X) coordinate(PX);
+		}%
+
+		\addplot[data cs=polar,
+			domain=0:360,
+			samples=360,
+			smooth,
+			% flch={pos=0.1}
+		]
+		(x,{cos(x)^2+sin(x)^2});
+		\draw[-Stealth, \sswitch{white}{black}]
+		(0,0) -- (T)
+		node[midway, above, sloped] {$\abs{\xul{Y}}$}
+		node[at end, above right] {$\xul{Y}$}
+		;
+		\draw[-Stealth, dashed, \sswitch{white}{black}]
+		(0,0) -- (P)
+		node[midway, above, sloped] {$\abs{\xul{y}(t)}$}
+		node[at end, above left] {$\xul{y}(t)$}
+		;
+		% Draw angles
+		\pic[angle radius=1.7cm, angle eccentricity=1.0,
+			\sswitch{white}{limegreen}, anchor=west,
+			draw, ->, "$\varphi = \arg{\xul{Y}}$",
+		]
+		{angle=X--O--T};
+		% \pic[angle radius=1cm, angle eccentricity=1.5,
+		% 	draw, ->, "$\arg{\xul{Y}}$"]
+		% {angle=X--O--T};
+		\pic[angle radius=1.7cm, angle eccentricity=1.0,
+			\sswitch{white}{cornflowerblue}, dashed, anchor=south east,
+			draw, ->, "$\wt$" alias=test]
+		{angle=T--O--P};
+		% \draw (test) circle [radius=5pt];
+		% \pic[angle radius=2.5cm, angle eccentricity=1.1,
+		% 	limegreen,
+		% 	draw, ->, "$\f_0$"]
+		% {angle=X--O--F};
+		% \pic[angle radius=2.5cm, angle eccentricity=1.1,
+		% 	cornflowerblue,
+		% 	draw, ->, "$\wt$"]
+		% {angle=F--O--T};
+		\ifprof{%
+			% Grandeurs
+			\node[below=0.15cm, inner sep=0] (Oo) at (O) {};
+			\node[below=0.15cm, inner sep=0] (TXo) at (TX) {};
+			\draw[<->, firebrick] (Oo) --
+			node[below, midway, sloped]{$\Re(\xul{Y})$}
+			(TXo);
+			% Grandeurs
+			\node[inner sep=0] (Oo) at (O) {};
+			\node[inner sep=0] (TYo) at (TY) {};
+			\draw[<->, firebrick] (Oo) --
+			node[above=0.1cm, midway, sloped,
+				fill=white, fill opacity=.7, text opacity=1]{$\Im(\xul{Y})$}
+			(TYo);
+			% Grandeurs
+			\node[below=0.15cm, inner sep=0] (Oo) at (O) {};
+			\node[below=0.15cm, inner sep=0] (PXo) at (PX) {};
+			\draw[<->, firebrick, dashed] (Oo) --
+			node[below, midway, sloped, dashed]{$\Re(\xul{y}(t))$}
+			(PXo);
+		}%
+	\end{axis}
+\end{tikzpicture}
+\end{document}

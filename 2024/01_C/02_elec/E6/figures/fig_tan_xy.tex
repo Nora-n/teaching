@@ -1,0 +1,103 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\settype{prof}
+\settype{stud}
+
+\tikzset{every picture/.style={thick}}
+
+\begin{document}
+\begin{tikzpicture}[]
+	\begin{axis}[
+			axis lines=center,
+			axis equal image,
+			xtick=\empty, ytick=\empty,
+			enlargelimits=true,
+			xlabel=$\Re$, ylabel=$\Im$,
+			every axis x label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=west,
+				},
+			every axis y label/.style={
+					at={(ticklabel* cs:1.01)},
+					anchor=south,
+				},
+			clip=false,
+		]
+		\coordinate (O) at (0,0);
+		\coordinate (X) at (1,0);
+		\coordinate (MX) at (-1,0);
+		\coordinate (Y) at (0,1);
+		\coordinate (MY) at (0,-1);
+		\coordinate (F) at ({cos(deg(pi/12))},{sin(deg(pi/12))});
+		\coordinate (RT) at ({cos(deg(pi/6))},{sin(deg(pi/6))});
+		\coordinate (LT) at ({cos(deg(pi/6+pi-2*pi/6))},{sin(deg(pi/6+pi-2*pi/6))});
+		\coordinate (RB) at ({cos(deg(-pi/6))},{sin(deg(-pi/6))});
+		\coordinate (LB) at ({cos(deg(-pi/6-pi+2*pi/6))},{sin(deg(-pi/6-pi+2*pi/6))});
+
+		% \ifprof{%
+		% 	\draw[dashed] (RT) -- (RT|-X) coordinate(RTX);
+		% 	\draw[dashed] (RT) -- (RT-|Y) coordinate(RTY);
+		% 	\draw[dashed] (P) -- (P|-X) coordinate(PX);
+		% }%
+
+		\addplot[data cs=polar,
+			domain=0:360,
+			samples=360,
+			smooth,
+			% flch={pos=0.1}
+		]
+		(x,{cos(x)^2+sin(x)^2});
+		% \draw[-Stealth, \sswitch{white}{cornflowerblue}]
+		% (0,0) -- (RT)
+		% ;
+		% \draw[-Stealth, \sswitch{white}{limegreen}]
+		% (0,0) -- (LT)
+		% ;
+		% \draw[-Stealth, \sswitch{white}{cornflowerblue}]
+		% (0,0) -- (RB)
+		% ;
+		% \draw[-Stealth, \sswitch{white}{firebrick}]
+		% (0,0) -- (LB)
+		% ;
+		% Draw angles
+		% \pic[angle radius=1.2cm, angle eccentricity=1.0,
+		% 	\sswitch{white}{cornflowerblue}, anchor=west,
+		% 	draw, ->, "$\varphi_0$",
+		% ]
+		% {angle=X--O--RT};
+		\ifprof{%
+			% Fill angles
+			\pic[angle radius=2.38cm, angle eccentricity=1.5,
+				cornflowerblue, fill, opacity=0.3]
+			{angle=MY--O--Y};
+			\pic[angle radius=2.38cm, angle eccentricity=1.5,
+				limegreen, fill, opacity=0.3]
+			{angle=Y--O--MX};
+			\pic[angle radius=2.38cm, angle eccentricity=1.5,
+				firebrick, fill, opacity=0.3]
+			{angle=MX--O--MY};
+			\node[fill=white, text=limegreen, anchor=center] at (-.45, .45) {$+\pi$};
+			\node[fill=white, text=firebrick, anchor=center] at (-.45, -.45) {$-\pi$};
+		}%
+		% Draw angles
+		% \pic[angle radius=1.2cm, angle eccentricity=1.0,
+		% 	\sswitch{white}{cornflowerblue}, anchor=west,
+		% 	draw, ->, "$\varphi_0$",
+		% ]
+		% {angle=X--O--RT};
+		% Draw angles
+		% \pic[angle radius=1.0cm, angle eccentricity=1.0,
+		% 	\sswitch{white}{limegreen}, anchor=south east,
+		% 	draw, ->, " " alias=plus,
+		% ]
+		% {angle=LT--O--RB};
+		% \pic[angle radius=0.5cm,
+		% 	\sswitch{white}{firebrick},
+		% 	draw, <-, " " alias=moins,
+		% ]
+		% {angle=RT--O--LB};
+		% \node[fill=white] (moins) {Test};
+	\end{axis}
+\end{tikzpicture}
+\end{document}

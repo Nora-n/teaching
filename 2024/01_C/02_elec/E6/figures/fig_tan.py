@@ -77,9 +77,9 @@ lbls = [
     # "$\\displaystyle\\bigg] \\frac{\\pi}{2}, \\frac{3\\pi}{2} \\bigg[$",
 ]
 
+# empty style for students
 for k, tt, cc, ll in zip(range(len(th)), th, clrs, lbls):
-    ax.plot(tt, np.tan(tt), color=cc, label=ll, lw=2, zorder=4)
-    # ax.scatter()
+    ax.plot(tt, np.tan(tt), color=cc, label=ll, lw=2, zorder=4, ls="none")
 
 th_alph = [
     np.linspace(-inn * 3 * np.pi / 2, -np.pi, 200),
@@ -87,7 +87,35 @@ th_alph = [
 ]
 
 for k, tt, cc in zip(range(len(th_alph)), th_alph, ["firebrick", "limegreen"]):
+    ax.plot(tt, np.tan(tt), color=cc, lw=2, alpha=0.5, zorder=4, ls="none")
+
+ax.legend(
+    fontsize=10,
+    ncol=3,
+    columnspacing=2,
+    loc="lower center",
+    bbox_to_anchor=(0.5, -0.15),
+)
+
+fig.savefig("./fig_tan_stud.pdf", bbox_inches="tight")
+
+# not empty for prof
+for line in ax.lines:
+    line.set_label(s="")
+
+for k, tt, cc, ll in zip(range(len(th)), th, clrs, lbls):
+    ax.plot(tt, np.tan(tt), color=cc, label=ll, lw=2, zorder=4)
+
+for k, tt, cc in zip(range(len(th_alph)), th_alph, ["firebrick", "limegreen"]):
     ax.plot(tt, np.tan(tt), color=cc, lw=2, alpha=0.5, zorder=4)
+
+ax.legend(
+    fontsize=10,
+    ncol=3,
+    columnspacing=2,
+    loc="lower center",
+    bbox_to_anchor=(0.5, -0.15),
+)
 
 tplt_inf0 = [-np.pi / 3, 2 * np.pi / 3]
 crls_inf0 = ["cornflowerblue", "limegreen"]
@@ -105,6 +133,65 @@ for x, y, cc, txt in zip(tplt_sup0, np.tan(tplt_sup0), crls_sup0, txt_sup0):
     ax.scatter(x, y, s=100, c=cc, zorder=4)
     ax.text(x - 0.2, y, s=txt, ha="right", va="bottom", fontsize=15)
 
+fig.savefig("./fig_tan_prof.pdf", bbox_inches="tight")
+
+################### ARCTAN ###################
+
+fig = plt.figure(figsize=(5, 5))
+ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
+
+tan = np.linspace(-10, 10, 300)
+
+for mut in [-3, -1, 1, 3]:
+    ax.axhline(mut * np.pi / 2, ls="--", color="k", lw=1, zorder=1)
+
+ax.set_xlim(-10, 10)
+ax.set_ylim(-3 * np.pi / 2, 3 * np.pi / 2)
+
+ax.set_xlabel("$x$", fontsize=15)
+ax.xaxis.set_label_coords(1.05, 0.52)
+ax.set_ylabel("$\\arctan(x)$", fontsize=15, rotation=0)
+ax.yaxis.set_label_coords(0.5, 1.02)
+
+ax.set_xticks([])
+ax.set_yticks([-3 * np.pi / 2, -np.pi, -np.pi / 2, np.pi / 2, np.pi, 3 * np.pi / 2])
+ax.set_yticklabels(
+    [
+        "$-\\frac{3\\pi}{2}$",
+        "$-\\pi$",
+        "$-\\frac{\\pi}{2}$",
+        "$\\frac{\\pi}{2}$",
+        "$\\pi$",
+        "$\\frac{3\\pi}{2}$",
+    ],
+)
+
+for axe in ["left", "bottom"]:
+    ax.spines[axe].set_position("center")
+    ax.spines[axe].set_linewidth(2)
+
+for axe in ["top", "right"]:
+    ax.spines[axe].set_visible(False)
+
+ax.plot(0, 1, "^k", lw=2, ms=5, transform=ax.get_xaxis_transform(), clip_on=False)
+ax.plot(1, 0, ">k", lw=2, ms=5, transform=ax.get_yaxis_transform(), clip_on=False)
+
+for tick in [0, 2, 3, 5]:
+    ax.get_yticklabels()[tick].set_backgroundcolor("white")
+    ax.get_yticklabels()[tick].set_zorder(3)
+
+# empty style for stud
+for k, cc, ll in zip(range(len(clrs)), clrs, lbls):
+    ax.plot(
+        tan,
+        np.atan(tan) + (k - 1) * (np.pi),
+        color=cc,
+        label=ll,
+        lw=2,
+        ls="none",
+        zorder=4,
+    )
+
 ax.legend(
     fontsize=10,
     ncol=3,
@@ -113,14 +200,11 @@ ax.legend(
     bbox_to_anchor=(0.5, -0.15),
 )
 
-fig.savefig("./fig_tan.pdf", bbox_inches="tight")
+fig.savefig("./fig_atan_stud.pdf", bbox_inches="tight")
 
-################### ARCTAN ###################
-
-fig = plt.figure(figsize=(5, 5))
-ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
-
-tan = np.linspace(-10, 10, 300)
+# not empty for prof
+for line in ax.lines:
+    line.set_label(s="")
 
 for k, cc, ll, lss in zip(range(len(clrs)), clrs, lbls, ["--", "-", "--"]):
     ax.plot(
@@ -132,6 +216,14 @@ for k, cc, ll, lss in zip(range(len(clrs)), clrs, lbls, ["--", "-", "--"]):
         ls=lss,
         zorder=4,
     )
+
+ax.legend(
+    fontsize=10,
+    ncol=3,
+    columnspacing=2,
+    loc="lower center",
+    bbox_to_anchor=(0.5, -0.15),
+)
 
 tplt_inf0 = [-np.pi / 3, 2 * np.pi / 3]
 crls_inf0 = ["cornflowerblue", "limegreen"]
@@ -199,20 +291,27 @@ ax.text(
     zorder=5,
 )
 
-for mut in [-3, -1, 1, 3]:
-    ax.axhline(mut * np.pi / 2, ls="--", color="k", lw=1, zorder=1)
+fig.savefig("./fig_atan_prof.pdf", bbox_inches="tight")
 
-ax.set_xlim(-10, 10)
+################### ARCTANTAN ###################
+
+fig = plt.figure(figsize=(5, 5))
+ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
+
+for mut in [-3, -1, 1, 3]:
+    ax.axvline(mut * np.pi / 2, ls="--", color="k", lw=1, zorder=1)
+
+ax.set_xlim(-3 * np.pi / 2, 3 * np.pi / 2)
 ax.set_ylim(-3 * np.pi / 2, 3 * np.pi / 2)
 
-ax.set_xlabel("$x$", fontsize=15)
+ax.set_xlabel("$\\theta$", fontsize=15)
 ax.xaxis.set_label_coords(1.05, 0.52)
-ax.set_ylabel("$\\arctan(x)$", fontsize=15, rotation=0)
+ax.set_ylabel("$\\arctan(\\tan(\\theta))$", fontsize=15, rotation=0)
 ax.yaxis.set_label_coords(0.5, 1.02)
 
-ax.set_xticks([])
-ax.set_yticks([-3 * np.pi / 2, -np.pi, -np.pi / 2, np.pi / 2, np.pi, 3 * np.pi / 2])
-ax.set_yticklabels(
+ax.set_yticks([])
+ax.set_xticks([-3 * np.pi / 2, -np.pi, -np.pi / 2, np.pi / 2, np.pi, 3 * np.pi / 2])
+ax.set_xticklabels(
     [
         "$-\\frac{3\\pi}{2}$",
         "$-\\pi$",
@@ -234,23 +333,8 @@ ax.plot(0, 1, "^k", lw=2, ms=5, transform=ax.get_xaxis_transform(), clip_on=Fals
 ax.plot(1, 0, ">k", lw=2, ms=5, transform=ax.get_yaxis_transform(), clip_on=False)
 
 for tick in [0, 2, 3, 5]:
-    ax.get_yticklabels()[tick].set_backgroundcolor("white")
-    ax.get_yticklabels()[tick].set_zorder(3)
-
-ax.legend(
-    fontsize=10,
-    ncol=3,
-    columnspacing=2,
-    loc="lower center",
-    bbox_to_anchor=(0.5, -0.15),
-)
-
-fig.savefig("./fig_atan.pdf", bbox_inches="tight")
-
-################### ARCTANTAN ###################
-
-fig = plt.figure(figsize=(5, 5))
-ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
+    ax.get_xticklabels()[tick].set_backgroundcolor("white")
+    ax.get_xticklabels()[tick].set_zorder(3)
 
 ext = 1.05
 inn = 0.98
@@ -271,9 +355,39 @@ lbls = [
     # "$\\displaystyle\\bigg] \\frac{\\pi}{2}, \\frac{3\\pi}{2} \\bigg[$",
 ]
 
+# empty style for students
+for k, tt, cc, ll in zip(
+    range(len(th)),
+    th,
+    clrs,
+    lbls,
+):
+    ax.plot(tt, np.atan(np.tan(tt)), color=cc, label=ll, lw=2, ls="none", zorder=4)
+
+ax.legend(
+    fontsize=10,
+    ncol=3,
+    columnspacing=2,
+    loc="lower center",
+    bbox_to_anchor=(0.5, -0.15),
+)
+
+fig.savefig("./fig_atantan_stud.pdf", bbox_inches="tight")
+
+# not empty for prof
+for line in ax.lines:
+    line.set_label(s="")
+
 for k, tt, cc, ll, lss in zip(range(len(th)), th, clrs, lbls, ["--", "-", "--"]):
     ax.plot(tt, np.atan(np.tan(tt)), color=cc, label=ll, lw=2, ls=lss, zorder=4)
-    # ax.scatter()
+
+ax.legend(
+    fontsize=10,
+    ncol=3,
+    columnspacing=2,
+    loc="lower center",
+    bbox_to_anchor=(0.5, -0.15),
+)
 
 tplt_inf0 = [-np.pi / 3, 2 * np.pi / 3]
 crls_inf0 = ["cornflowerblue", "limegreen"]
@@ -363,50 +477,4 @@ ax.text(
     zorder=5,
 )
 
-for mut in [-3, -1, 1, 3]:
-    ax.axvline(mut * np.pi / 2, ls="--", color="k", lw=1, zorder=1)
-
-ax.set_xlim(-3 * np.pi / 2, 3 * np.pi / 2)
-ax.set_ylim(-3 * np.pi / 2, 3 * np.pi / 2)
-
-ax.set_xlabel("$\\theta$", fontsize=15)
-ax.xaxis.set_label_coords(1.05, 0.52)
-ax.set_ylabel("$\\arctan(\\tan(\\theta))$", fontsize=15, rotation=0)
-ax.yaxis.set_label_coords(0.5, 1.02)
-
-ax.set_yticks([])
-ax.set_xticks([-3 * np.pi / 2, -np.pi, -np.pi / 2, np.pi / 2, np.pi, 3 * np.pi / 2])
-ax.set_xticklabels(
-    [
-        "$-\\frac{3\\pi}{2}$",
-        "$-\\pi$",
-        "$-\\frac{\\pi}{2}$",
-        "$\\frac{\\pi}{2}$",
-        "$\\pi$",
-        "$\\frac{3\\pi}{2}$",
-    ],
-)
-
-for axe in ["left", "bottom"]:
-    ax.spines[axe].set_position("center")
-    ax.spines[axe].set_linewidth(2)
-
-for axe in ["top", "right"]:
-    ax.spines[axe].set_visible(False)
-
-ax.plot(0, 1, "^k", lw=2, ms=5, transform=ax.get_xaxis_transform(), clip_on=False)
-ax.plot(1, 0, ">k", lw=2, ms=5, transform=ax.get_yaxis_transform(), clip_on=False)
-
-for tick in [0, 2, 3, 5]:
-    ax.get_xticklabels()[tick].set_backgroundcolor("white")
-    ax.get_xticklabels()[tick].set_zorder(3)
-
-ax.legend(
-    fontsize=10,
-    ncol=3,
-    columnspacing=2,
-    loc="lower center",
-    bbox_to_anchor=(0.5, -0.15),
-)
-
-fig.savefig("./fig_atantan.pdf", bbox_inches="tight")
+fig.savefig("./fig_atantan_prof.pdf", bbox_inches="tight")

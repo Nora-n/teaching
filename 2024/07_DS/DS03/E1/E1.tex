@@ -1,0 +1,273 @@
+\documentclass[../DS03.tex]{subfiles}%
+\graphicspath{{./figures/}}%
+
+\begin{document}%
+\section[31]"E"{Synthèse de l'ammoniac\ifcorrige{~\small\textit{(CCP TSI 2013)}}}
+
+\enonce{%
+	L’ammoniac \ce{NH_3(g)} est un intermédiaire important dans l’industrie
+	chimique qui l’utilise comme précurseur pour la production d’engrais,
+	d’explosifs et de polymères.
+	\smallbreak
+	En 2010, sa production mondiale était d’environ 130 millions de tonnes. La
+	production de telles quantités de ce gaz a été rendue possible par
+	l’apparition du procédé HaberBosch qui permet la synthèse de l’ammoniac à
+	partir du diazote, présent en abondance dans l’atmosphère, et du dihydrogène,
+	obtenu par reformage du méthane à la vapeur d’eau, selon la réaction :
+	\begin{gather*}
+		\ce{N_2_{\gaz} + 3 H_2_{\gaz} = 2 NH_3_{\gaz}}
+		\tag*{\makebox[0pt][r]{$K^\circ(\SI{723}{K}) = \num{2.8e-5}$}}
+	\end{gather*}
+	Cette transformation chimique étant lente, on utilise un catalyseur à base de
+	fer pour l’accélérer.
+	\smallbreak
+	Les réactifs de la synthèse, diazote et dihydrogène, sont introduits en
+	proportions stœchiométriques dans le réacteur qui est maintenu, tout au
+	long de la synthèse, à une pression totale $P = \num{300}P^\circ$ et à une
+	température $T$ de \SI{723}{K}.
+	\smallbreak
+	On notera $n_0$ la quantité de matière initiale de diazote introduit dans le
+	réacteur.
+}
+
+\QR[5]{%
+  Réaliser un tableau d’avancement pour les lignes initiales et intermédiaires.
+  Laissez la ligne équilibre vide pour la compléter après.
+}{%
+  On dresse le tableau d'avancement~:
+  \begin{center}
+    \def\rhgt{0.50}
+    \centering
+    \begin{tabularx}{.7\linewidth}{|l|c||YdYdY||Y|}
+      \hline
+      \multicolumn{2}{|c||}{
+        $\xmathstrut{\rhgt}$
+      \textbf{Équation}} \pt{1}+\pt{1} &
+      $\ce{N_2_{\gaz}}$ & $+$       &
+      $3\ce{H_2_{\gaz}}$ & $=$       &
+      $2\ce{NH_3_{\gaz}}$ &
+      $n\ind{tot,gaz}$
+          \pt{1} \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Initial & $\xi = 0$ & $n_0$ & \vline    & $3n_0$ & \vline    & $0$ &
+      $4n_0$ 
+          \tikzmark{MA} \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Interm.             & $\xi$ & $n_0 - \xi$ & \vline    & $3n_0 - 3\xi$ &
+      \vline    & $2\xi$ & $4n_0 - 2\xi$ 
+          \tikzmark{MB} \\
+      \hline
+      $\xmathstrut{\rhgt}$
+      Équilib.            & $\xi$ & $n_0(1-\rho)$ & \vline    & $3n_0(1-\rho)$ &
+      \vline    & $2\rho n_0$ & $2n_0 (2-\rho)$
+          \tikzmark{MC} \\
+      \hline
+    \end{tabularx}
+  \end{center}
+  \tikz[remember picture, overlay]
+  \node[above right=-8pt and 35pt of pic cs:MA] {\pt{1}}
+  ; \tikz[remember picture, overlay]
+  \node[above right=-8pt and 24pt of pic cs:MB] {\pt{1}}
+  ; \tikz[remember picture, overlay]
+  \node[above right=-8pt and 18pt of pic cs:MC] {\fgr{+1 Q2}}
+  ;
+}
+
+\QR[4]{%
+	Rappeler la définition du rendement. Exprimer le rendement à l'équilibre
+	$\rho$ de la synthèse en fonction de $n_0$ et $\xi\ind{eq}$.
+	En déduire les expressions des quantités de matière en fonction de
+	$n_0$ et $\rho$ en complétant le tableau précédent.
+}{%
+	On cherche $\xi\ind{max}$~: les réactifs étant introduits dans les proportions
+	stœchiométriques, on trouve $\xi\ind{max}$ à partir de l'un des deux
+	réactifs~:
+	\begin{gather*}
+		n_0 - \xi\ind{max} = 0 \Lra \boxed{\xi\ind{max} \stm[-1]{=} n_0}
+		\\\beforetext{Ainsi,}
+		\rho \stm{=} \frac{\xi\ind{eq}}{\xi\ind{max}}
+		\Lra
+		\boxed{\rho \stm{=} \frac{\xi\ind{eq}}{n_0}}
+	\end{gather*}
+  d'où la dernière ligne du tableau précédent.
+}
+
+% \QR{%
+% }{%
+% 	\begin{center}
+% 		\def\rhgt{0.50}
+% 		\centering
+% 		\begin{tabularx}{.7\linewidth}{|l|c||YdYdY||Y|}
+% 			\hline
+% 			\multicolumn{2}{|c||}{
+% 				$\xmathstrut{\rhgt}$
+% 			\textbf{Équation}}  &
+% 			$\ce{N_2_{\gaz}}$   & $+$       &
+% 			$3\ce{H_2_{\gaz}}$  & $=$       &
+% 			$2\ce{NH_3_{\gaz}}$ &
+% 			$n\ind{tot,gaz}$              \\
+% 			\hline
+% 			$\xmathstrut{\rhgt}$
+% 			Initial             & $\xi = 0$ &
+% 			$n_0$               & \vline    &
+% 			$3n_0$              & \vline    &
+% 			$0$                 &
+% 			$4n_0$                            \\
+% 			\hline
+% 			$\xmathstrut{\rhgt}$
+% 			Équilib.            & $\xi$     &
+% 			$n_0(1-\rho)$       & \vline    &
+% 			$3n_0(1-\rho)$      & \vline    &
+% 			$2\rho n_0$         & 
+% 			$2n_0 (2-\rho)$
+% 		      \tikzmark{MC}                                  \\
+% 			\hline
+% 		\end{tabularx}
+% 	\end{center}
+% }
+
+\QR[5]{%
+	Donner la définition du quotient réactionnel pour cette équation. Relier
+	alors la constante d’équilibre $K^\circ$ aux pressions partielles à
+	l’équilibre des différents constituants du système et à la pression standard
+	$P^\circ$.
+}{%
+	\begin{DispWithArrows*}
+		Q_r &\stm{=}
+		\frac{a(\ce{NH3})^2}{a(\ce{N2})a(\ce{H2})^3}
+		\Arrow{$K^\circ \stm[-1]{=} Q_{r,\ind{eq}}$}
+		\\\Ra
+		K^\circ &\stm{=}
+		\frac{a(\ce{NH3})\ind{eq}^2}{a(\ce{N2})\ind{eq}a(\ce{H2})\ind{eq}^3}
+		\Arrow{$a(X_{\gaz}) \stm{=} \frac{P_X}{P^\circ}$}
+		\\\Lra
+		\Aboxed{%
+			K^\circ &\stm{=}
+			\frac{%
+        P(\ce{NH3})\ind{eq}^2(P^\circ)^2
+      }{%
+        P(\ce{N2})\ind{eq}P(\ce{H2})\ind{eq}^3}
+		}
+	\end{DispWithArrows*}
+}
+
+\QR[2]{%
+	Relier la constante d’équilibre $K^\circ$ aux quantités de matière à
+	l’équilibre des différents constituants du système, à la quantité de matière
+	totale à l’équilibre $n\ind{tot}$, à la pression totale $P$ et à la pression
+	standard $P^\circ$.
+}{%
+	\vspace{-25pt}
+	\begin{gather*}
+		\beforetext{Loi de \textsc{Dalton}~:}
+		P(\ce{NH3})\ind{eq} \stm{=}
+		\cfrac{n(\ce{NH3})\ind{eq}}{n\ind{tot}}\times P
+		\\\Lra
+		\boxed{%
+			K^\circ \stm{=}
+			\cfrac{%
+				n(\ce{NH3})\ind{eq}^2n\ind{tot}^2
+			}{%
+				n(\ce{N2})\ind{eq}n(\ce{H2})\ind{eq}^3
+			}
+			\times
+			\pa{\cfrac{P^\circ}{P}}^2
+		}
+	\end{gather*}
+}
+
+\QR[2]{%
+	En déduire alors la relation entre $K^\circ$, $\rho$, $P$ et $P^\circ$.
+}{%
+	On injecte les expressions des quantités de matière à l'équilibre :
+	\begin{align*}
+		K^\circ & \stm{=}
+		\cfrac{\pa{2n_0\rho}^2\pa{2n_0(2-\rho)}^2}{n_0(1-\rho)\times\pa{3n_0(1-\rho)}^3}\times \pa{\cfrac{P^\circ}{P}}^2
+		\\\Lra
+		\Aboxed{%
+		K^\circ & \stm{=}
+			\cfrac{16\rho^2(2-\rho)^2}{27(1-\rho)^4}\times \pa{\cfrac{P^\circ}{P}}^2
+		}
+	\end{align*}
+}
+
+\QR[10]{%
+	Montrer que $\rho$ est solution d'un polynôme de degré 2, de la forme
+	\[
+		C\rho^{2} - 2C\rho + C-4 = 0
+	\]
+	avec $C$ une constante à exprimer en fonction de $K^\circ$
+	\textbf{uniquement}. Donner alors l'expression analytique de $\rho$ en
+	fonction de $C$. Application numérique.
+}{%
+		\begin{DispWithArrows*}[fleqn, mathindent=0pt, groups]
+			K^\circ &=
+			\cfrac{16\rho^2(2-\rho)^2}{27(1-\rho)^4}\times \pa{\cfrac{P^\circ}{P}}^2
+			\CArrow{$\sqrt{(\cdot)}$}
+			\\\Lra
+			\sqrt{K^\circ} &\stm{=}
+			\frac{4\rho(2-\rho)}{3 \sqrt{3}(1-\rho)^2}
+			\underbracket[1pt]{\frac{P^\circ}{P}}_{=1/300}
+			\Arrow{On rassemble}
+			\\\Lra
+			300 \sqrt{K^\circ}\cdot 3 \sqrt{3} (1-\rho)^2 &\stm{=} 4\rho(2-\rho)
+			\Arrow{On développe}
+			\\\Lra
+			900 \sqrt{3K^\circ} (1-2\rho + \rho^2) &\stm{=} 8\rho - 4\rho^2
+			\Arrow{On factorise}
+			\\\Lra
+			\rho^2 (900 \sqrt{3K^\circ} + 4) - 2\rho (900 \sqrt{3K^\circ}+4) + 900
+			\sqrt{3K^\circ} &\stm{=} 0
+			\Arrow{On identifie}
+			\\\Lra
+			\Aboxed{C\rho^{2} - 2C\rho + C-4 &= 0}
+			\qav
+			\boxed{C \stm{=} 900 \sqrt{3K^\circ} + 4}
+      % \Arrow{Discriminant}
+		\end{DispWithArrows*}
+    \begin{isd}[lefthand ratio=.3]
+      \vspace{-15pt}
+      \begin{DispWithArrows*}[]
+			\\\Ra
+			\Delta &= 4C^2 - 4C(C-4)
+			\\\Lra
+			\Aboxed{\Delta &\stm{=} 16C}
+      \end{DispWithArrows*}
+      \tcblower
+      \vspace{-15pt}
+      \begin{DispWithArrows*}[]
+              \\\qso
+                  \rho_{\pm } &\stm{=} \frac{2C \pm 4 \sqrt{C}}{2C}
+                  \\\Lra
+                  \Aboxed{\rho_{\pm} &\stm{=} 1 \pm \frac{2}{\sqrt{C}}}
+                       \qav
+                           \left\{
+                           \begin{array}{rcl}
+                             C       & = & 900 \sqrt{3K^\circ} + 4
+                             \\
+                             K^\circ & = & \num{2.8e-5}
+                           \end{array}
+                           \right.
+                     \\
+                  \AN
+                  \makebox[0pt][l]{$\xul{\phantom{\rho_+ = \num{1.57}}} \phantom{\qou} \xul{\phantom{\rho_- = \num{0.43}}}$}
+                  \rho_+ &= \num{1.57} \stm{\qou} \rho_- = \num{0.43}
+      \end{DispWithArrows*}
+    \end{isd}
+		Le rendement ne pouvant être supérieur à 1, on obtient alors $\boxed{\rho =
+				\num{0.43}}$ \pt{1}
+}%
+
+\QR[3]{%
+	Partant d'un état d'équilibre, on diminue la pression totale $P$ à température
+	constante. Comment évolue le rendement $\rho$ ?
+}{%
+	En diminuant $P$, on augmente le quotient réactionnel \pt{1} par rapport à une
+	situation d'équilibre où $Q=K^\circ$. La température étant constante, la
+	constante d'équilibre reste la même \pt{1}. Donc $Q>K^\circ$, donc la réaction
+	évolue dans le sens indirect ce qui a pour effet de diminuer le rendement.
+	\pt{1}
+}
+\end{document}

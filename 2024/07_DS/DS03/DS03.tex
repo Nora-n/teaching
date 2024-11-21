@@ -1,7 +1,6 @@
 \documentclass[a4paper, 10pt, garamond]{book}
 \usepackage{cours-preambule}
 \usepackage{tocloft}
-\usepackage{fancybox}
 
 \renewcommand{\mtcSfont}{\Large}
 \setlength{\mtcindent}{5pt}
@@ -20,21 +19,24 @@
 % \renewcommand{\mycol}{gray}
 
 \makeatletter
-\renewcommand{\@chapapp}{MPSI3 -- 18 octobre 2024 -- Devoir surveillé}
+\renewcommand{\@chapapp}{MPSI3 -- 22 novembre 2024 -- Devoir surveillé}
 \makeatother
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \counterwithin*{equation}{section}
 
+\hfuzz=5.003pt
+
 \begin{document}
-\setcounter{chapter}{1}
+\setcounter{chapter}{2}
 
 \settype{enon}
 \settype{solu_prof}
 \settype{solu_stud}
 
-\chapter{\cswitch{Correction du DS}{Électrocinétique~: permanent et ordre 1}}
-\label{ch:ds02}
+\chapter{\cswitch{Correction du DS}{Oscillateurs et transformation de la
+	  matière}}
+\label{ch:ds03}
 
 \enonce{
 \begin{center}
@@ -43,11 +45,12 @@
 	\smallbreak
 	\xul{Les téléphones portables doivent être éteints et rangés dans les sacs}
 	\smallbreak
-	\xul{Les calculatrices sont \textit{interdites}}
+	\xul{Les calculatrices sont \textit{autorisées}}
 \end{center}
 \begin{tcn}[cnt, bld](ror)<itc>""{Au programme}
 	\large
-	Électrocinétique, résistances et sources, circuits RC et RL
+	Oscillateurs harmonique et amortis (mécanique et électricité),
+	transformation et équilibre chimique.
 \end{tcn}
 
 {
@@ -60,8 +63,7 @@
 Les différentes questions peuvent être traitées dans l'ordre désiré.
 \textbf{Cependant}, vous indiquerez le numéro correct de chaque question. Vous
 prendrez soin d'indiquer sur votre copie si vous reprenez une question d'un
-exercice plus loin dans la copie, sous peine qu'elle ne soit ni vue ni
-corrigée.
+exercice plus loin dans la copie, sous peine qu'elle ne soit ni vue ni corrigée.
 \bigbreak
 Vous porterez une attention particulière à la \textbf{qualité de rédaction}.
 Vous énoncerez clairement les hypothèses, les lois et théorèmes utilisés. Les
@@ -74,8 +76,7 @@ cadre laissé pour la note et le commentaire. Vous \textbf{encadrerez les
 apparaître cependant le détail des grandeurs avec leurs unités. Vous
 \textbf{soulignerez les applications numériques}.
 \bigbreak
-Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le
-fond~:
+Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le fond~:
 \begin{tcn}*(prop)"bomb"{Malus}
 	\begin{minipage}[t]{0.50\linewidth}
 		\begin{itemize}
@@ -99,37 +100,47 @@ fond~:
 	\end{minipage}
 \end{tcn}
 
-\begin{tcn}(impo){Exemple application numérique}
-	\vspace*{-10pt}
-	\begin{minipage}[c]{0.45\linewidth}
-		\begin{gather*}
-			\boxed{n = \frac{PV}{RT}}
-			\qav
-			\left\{
-			\begin{array}{rcl}
-				p & = & \SI{1.0e5}{Pa}                \\
-				V & = & \SI{1.0e-3}{m^3}              \\
-				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
-				T & = & \SI{300}{K}
-			\end{array}
-			\right.\\
-			\mathrm{A.N.~:}\quad
-			\xul{n = \SI{5.6e-4}{mol}}
-		\end{gather*}
-	\end{minipage}
-	\hfill
-	\cancel{\bcancel{
-			\begin{minipage}[c]{0.45\linewidth}
-				\begin{gather*}
-					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
-					= 0.56
-				\end{gather*}
-			\end{minipage}
-		}}
+% \begin{tcb}(impo){Exemple application numérique}
+% 	\vspace*{-10pt}
+% 	\begin{minipage}[c]{0.45\linewidth}
+% 		\begin{gather*}
+% 			\boxed{n = \frac{PV}{RT}}
+% 			\qav
+% 			\left\{
+% 			\begin{array}{rcl}
+% 				p & = & \SI{1.0e5}{Pa}                \\
+% 				V & = & \SI{1.0e-3}{m^3}              \\
+% 				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+% 				T & = & \SI{300}{K}
+% 			\end{array}
+% 			\right.\\
+% 			\mathrm{A.N.~:}\quad
+% 			\xul{n = \SI{5.6e-4}{mol}}
+% 		\end{gather*}
+% 	\end{minipage}
+% 	\hfill
+% 	\cancel{\bcancel{
+% 			\begin{minipage}[c]{0.45\linewidth}
+% 				\begin{gather*}
+% 					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+% 					= 0.56
+% 				\end{gather*}
+% 			\end{minipage}
+% 		}}
+% \end{tcb}
+\vfill
+
+\begin{tcn}[cnt, bld](impo){Attention}
+  \large
+  Au moins un exercice de transformation de la matière et un exercice
+  d'oscillateurs doivent être traités~!
 \end{tcn}
+
+\vfill
 
 \newpage
 }
+
 \iftoggle{corrige}{}{
 	\begin{center}
 		\begin{framed}
@@ -138,8 +149,8 @@ fond~:
 	\end{center}
 	\begin{enumerate}
 		\item Inscrire dans le cadre attitré une remarque \textbf{pertinente} issue
-		      du \textbf{DS02} de l'\textbf{année précédente}.
-		\item De même avec une remarque pertinente du \textbf{DS01} de \textbf{cette
+		      du \textbf{DS03} de l'\textbf{année précédente}.
+		\item De même avec une remarque pertinente du \textbf{DS02} de \textbf{cette
 			      année}.
 	\end{enumerate}
 }
@@ -153,17 +164,24 @@ fond~:
 	\clearpage
 }
 
+\resetQ
+\subfile{E2/E2.tex}
+
+\iftoggle{corrige}{}{%
+	\newpage
+}
+
+\resetQ
+\subfile{E3/E3.tex}
+
 \setcounter{section}{0}
+
+\iftoggle{corrige}{}{%
+	\newpage
+}
 
 \resetQ
 \subfile{P1/P1.tex}
-
-% \iftoggle{corrige}{}{%
-% 	\clearpage
-% }
-
-% \resetQ
-% \subfile{E3/E3.tex}
 
 \iftoggle{corrige}{}{%
 	\clearpage
@@ -171,12 +189,5 @@ fond~:
 
 \resetQ
 \subfile{P2/P2.tex}
-
-\iftoggle{corrige}{}{%
-	\clearpage
-}
-
-\resetQ
-\subfile{P3/P3.tex}
 
 \end{document}

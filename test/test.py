@@ -186,18 +186,40 @@ import matplotlib.pyplot as plt
 # print(f"E_david en T TNT = {E_david/conv:.2e} T de TNT")
 
 # TDO3 œil réduit
-OA = -1.0  # m
-OAp = 22.3e-3  # m
-V = (OA - OAp) / (OAp * OA)
-print(f"V = {V:.2e} m⁻¹")
-gamma = OAp / OA
-print(f"gamma = {gamma:.2e}")
-AB = 10  # cm
-ABp = gamma * AB
-print(f"A'B' = {ABp:.2f} cm")
+# OA = -1.0  # m
+# OAp = 22.3e-3  # m
+# V = (OA - OAp) / (OAp * OA)
+# print(f"V = {V:.2e} m⁻¹")
+# gamma = OAp / OA
+# print(f"gamma = {gamma:.2e}")
+# AB = 10  # cm
+# ABp = gamma * AB
+# print(f"A'B' = {ABp:.2f} cm")
 
 # TDO3 vidéoproj
-OAp = 4.0  # m
-OFp = 5.0e-2  # m
-OA = (OAp * OFp) / (OFp - OAp)
-print(f"OA = {OA:.3f} m")
+# OAp = 4.0  # m
+# OFp = 5.0e-2  # m
+# OA = (OAp * OFp) / (OFp - OAp)
+# print(f"OA = {OA:.3f} m")
+
+# DS03 2024 ammoniac rendement
+# K = 2.8e-5
+# C = 900 * np.sqrt(3 * K) + 4
+# rdm_coeff = [C, -2 * C, C - 4]
+#
+# rdm_mano = 1-2/np.sqrt(C)
+# print(rdm_mano)
+#
+# rdm_solv = np.roots(rdm_coeff)
+# print(rdm_solv)
+
+# TDE5, dec log
+uinf = 3 # V
+u1 = 4.9 # V
+u2 = 3.3 # V
+dlt = 0.5*np.log((u1-uinf)/(u2-uinf))
+print(f"delta = {dlt:.2f}")
+
+T = 387e-6 # s
+lbd = dlt/T
+print(f"lambda = {lbd:.3e} s⁻¹")

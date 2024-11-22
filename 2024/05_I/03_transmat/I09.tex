@@ -1,132 +1,182 @@
 \documentclass[a4paper, 10pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \graphicspath{{./figures/}}
+\addto\captionsfrench{\renewcommand{\figurename}{Fig.}}
 
 \makeatletter
-\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\renewcommand{\@chapapp}{Contrôle de connaissances}
 \makeatother
 
-\toggletrue{student}
-% \HideSolutionstrue
+% \toggletrue{student}
 % \toggletrue{corrige}
-\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{black}
+\renewcommand{\mycol}{gray}
 
 \begin{document}
-\setcounter{chapter}{7}
+\setcounter{chapter}{8}
 
-\chapter{Cinétique chimique \ifstudent{ (10')}}
+\settype{enon}
+\settype{solu}
+
+\chapter{Cinétique chimique et circuits en RSF\ifstudent{~(15')}}
 
 \begin{enumerate}[label=\sqenumi, leftmargin=10pt]
-	\nitem{1}%
-	\leavevmode\vspace*{-\dimexpr\baselineskip+\abovedisplayskip\relax-10pt}
-	\begin{gather*}
-		\beforetext{Soit}
-		\ce{\alpha_1R_1 + \alpha_2R_2} +…
-		=
-		\ce{\beta_1P_1 +\beta_2P_2}+…
-		\Lra
-		0 = \sum_{i}^{N}\nu_i \ce{X_i}
-	\end{gather*}
-	Donne l'expression de la vitesse de réaction, la vitesse de formation d'un
-	produit et de disparition d'un réactif, et donner le lien entre vitesse de
-	réaction et la concentration d'un constituant quelconque $[\ce{X_i}]$.
-	\smallbreak
-	\vspace{-15pt}
-	\wsw{
-		\begin{gather*}
-			\boxed{v = \dv{x}{t}}
-			\qquad ; \qquad
-			\boxed{v_{f,\ce{P}} = \dv{[\ce{P}]}{t}}
-			\qet
-			\boxed{v_{f,\ce{R}} = -\dv{[\ce{R}]}{t}}
-			\qquad \Ra \qquad
-			\boxed{v = \frac{1}{\nu_i} \dv{[\ce{X}_i]}{t}}
-		\end{gather*}
-	}
-	\nitem{2}%
-	Qu'est-ce qu'une réaction admettant un ordre~? Donne un exemple pour une
-	réaction $\ce{aA + bB -> cC + dD}$. Détailler les termes de vocabulaire
-	nécessaires. Définir en une phrase ce qu'est une réaction simple. Que se
-	passe-t-il pour si la réaction précédente est simple~?
-	\smallbreak
-	\wsw{
-	Une réaction admet un ordre si sa vitesse peut s'écrire sous la forme
-	\[
-		\boxed{v = k[\ce{A}]^p[\ce{B}]^q}
-	\]
-	avec $k$ la constante de vitesse, $p$ et $q$ sont les \textbf{ordres partiels}
-	de la réaction, $m = p + q$ est \textbf{l'ordre global} de la réaction.
-	\smallbreak
-	Une réaction est simple si elle décrit un unique acte chimique. Dans ce cas,
-	les ordres partiels de la réaction sont les coefficients stœchiométriques
-	arithmétiques~:
-	\[
-		\boxed{v = k [\ce{A}]^{a} [\ce{B}]^{b}}
-	\]
-	}
-	\nitem{5}%
-	Décrire en une phrase ce qu'est la dégénérescence de l'ordre. Démontrer son
-	intérêt pour l'étude d'une loi de vitesse sur l'exemple $\ce{aA + bB -> cC +
-			dD}$. Démontrer l'intérêt de mettre les réactifs en proportions
-	stœchiométriques.
-	\smallbreak
-	\wsw{
-	La dégénérescence de l'ordre consiste à mettre tous les réactifs en excès
-	sauf un. Par exemple, si \ce{A} est en excès, alors $[\ce{A}](t) \approx
-		[\ce{A}]_0$~; ainsi
-	\[
-		\boxed{
-		v =
-		k[\ce{A}]^{p}[\ce{B}]^{q} =
-		\underbracket[1pt]{k[\ce{A}]_0{}^{p}}_{= \cte}[\ce{B}]^{q} =
-		k\ind{app}[\ce{B}]^{q}
-		}
-	\]
-	et on peut trouver l'ordre partiel en \ce{B}. Si les réactifs sont en
-	proportions stœchiométriques, on aura
-	\[
-		[{\ce{A}}]_0 = ac_0
-		\qet
-		[{\ce{B}}]_0 = bc_0
-		\Ra
-		\boxed{
-			[{\ce{A}}] = a (c_0 - x)
-			\qet
-			[{\ce{B}}] = b (c_0 - x)
-		}
-	\]
-	On peut donc factoriser la loi de vitesse~:
-	\begin{gather*}
-		v =
-		k \left( a (c_0 - x)\right)^{p}\left( b (c_0 - x)\right)^{q}
-		\Lra
-		v =
-		ka^{p}b^{q} \left(c_0 - x\right)^{p + q}
-		\Lra
-		\boxed{v = k_{\rm app} (c_0 -x)^{m}}
-	\end{gather*}
-	avec $m = p + q$ l'ordre global, et $k\ind{app} = ka^{p}b^{q}$ la constante
-	apparente. On a donc accès à l'ordre global.
-	}
-	\vfill
-	\nitem{2}%
-	Donner l'équation différentielle d'une réaction $\ce{aA + bB -> cC + dD}$
-	d'ordre 2 par rapport au réactif \ce{A}. La résoudre sous la forme
-	$1/[\ce{A}]$.
-	\smallbreak
-	\vspace{-15pt}
-	\wsw{
-		\begin{gather*}
-			\dv{[{\ce{A}}]}{t} = -av
-			\Lra
-			\boxed{\dv{[{\ce{A}}]}{t} = -ka[{\ce{A}}]^2}
-			\\\Lra
-			- \frac{\dd{[\ce{A}]}}{[{\ce{A}}]^2} = ka \dd{t}
-			\Ra
-			\frac{1}{[{\ce{A}}]} = kat + \frac{1}{[\ce{A}]_0}
-		\end{gather*}
-	}
+	\item[n]{7}%
+	      Décrire en une phrase ce qu'est la dégénérescence de l'ordre. Démontrer
+	      l'expression de la loi de vitesse sur l'exemple $\ce{aA + bB -> cC +
+			      dD}$ dans ce cas, et donner l'expression de $k\ind{app}$ dans ce
+	      cas. De même avec les proportions stœchiométriques.
+	      \smallbreak
+	      \psw{%
+	      La dégénérescence de l'ordre consiste à mettre tous les réactifs en
+	      excès sauf un \pt{1}. Par exemple, si \ce{A} est en excès, alors
+	      $[\ce{A}](t) \approx
+		      [\ce{A}]_0$~; ainsi
+	      \[
+		      \boxed{
+		      v \stm(un){=}
+		      k[\ce{A}]^{p}[\ce{B}]^{q} =
+		      \underbracket[1pt]{k[\ce{A}]_0{}^{p}}_{= \cte}[\ce{B}]^{q} \stm(un){=}
+		      k\ind{app}[\ce{B}]^{q}
+		      }
+	      \]
+	      et on peut trouver l'ordre partiel en \ce{B}. Si les réactifs sont en
+	      proportions stœchiométriques, on aura
+	      \[
+		      [{\ce{A}}]_0 = ac_0
+		      \stm{\qet}
+		      [{\ce{B}}]_0 = bc_0
+		      \quad \Ra \quad
+		      \boxed{
+			      [{\ce{A}}] = a (c_0 - x)
+			      \qet
+			      [{\ce{B}}] = b (c_0 - x)
+		      }
+		      \hspace{12pt}
+		      \pt{1}
+	      \]
+	      On peut donc factoriser la loi de vitesse~:
+	      \begin{gather*}
+		      v =
+		      k \left( a (c_0 - x)\right)^{p}\left( b (c_0 - x)\right)^{q}
+		      \Lra
+		      v =
+		      ka^{p}b^{q} \left(c_0 - x\right)^{p + q}
+		      \Lra
+		      \boxed{v = k_{\rm app} (c_0 -x)^{m}}
+		      \pt{1}
+	      \end{gather*}
+	      avec $m = p + q$ l'ordre global, et $k\ind{app} = ka^{p}b^{q}$ \pt{1} la
+	      constante apparente. On a donc accès à l'ordre global.
+	      }%
+	\item[n]{8}%
+	      Donner l'équation différentielle d'une réaction $\ce{aA + bB -> cC +
+			      dD}$
+	      d'ordre 2 par rapport au réactif \ce{A}. La résoudre sous la forme
+	      $1/[\ce{A}]$. Déterminer alors l'expression du temps de demi-réaction.
+	      \smallbreak
+	      \vspace{-15pt}
+	      \psw{
+		      \begin{enumerate}
+			      \item[b]{Équation différentielle}:
+			            \leavevmode\vspace*{-25pt}\relax
+			            \[
+				            v \stm{=} \frac{1}{-\abs{\nu_{\ce{A}}}} \dv{[\ce{A}]}{t}
+				            \quad \ste{\Longleftrightarrow}{v \stm{=} k[\ce{A}]^2} \quad
+				            \boxed{\dv{[\ce{A}]}{t} \stm{=} -\abs{\nu_{\ce{A}}} k [\ce{A}]^2}
+			            \]
+			      \item[b]{Résolution}:
+			            on \textbf{sépare les variables} et on utilise la dérivée de
+			            la fonction inverse~:
+			            \begin{DispWithArrows*}
+				            % \dv{[{\ce{A}}]}{t} &= -\abs{\nu_{\ce{A}}}k[{\ce{A}}]^2
+				            % \Arrow{Séparation des variables}
+				            % \\\Lra
+				            - \frac{\dd{[\ce{A}]}}{[{\ce{A}}]^2} &\stm{=}
+				            \abs{\nu_{\ce{A}}}k \dd{t}
+				            \Arrow{%
+					            $\DS\int$ et
+					            $\DS\left( \frac{1}{f} \right)' = - \frac{f'}{f^2}$
+				            }
+				            % \\\Lra
+				            % \int_{[\ce{A}]_0}^{[\ce{A}]}
+				            % -\frac{\dd{[\ce{A}]}}{[{\ce{A}}]^2}
+				            % &=
+				            % \int_{t=0}^{t} \abs{\nu_{\ce{A}}}k \dd{t}
+				            % \Arrow{$\DS\left( \frac{1}{f} \right)' = - \frac{f'}{f^2}$}
+				            \\\Lra
+				            \int_{[\ce{A}]_0}^{[\ce{A}](t)}
+				            \dd{\left( \frac{1}{[\ce{A}](t)} \right)}
+				            &\stm{=}
+				            \abs{\nu_{\ce{A}}}k \cdot \int_{t=0}^{t} \dd{t}
+				            \Arrow{$\int_a^b \dd{(\cdot )} = [(\cdot )]_a^b$}
+				            \\\Lra
+				            \frac{1}{[{\ce{A}}]} - \frac{1}{[\ce{A}]_0} &=
+				            \abs{\nu_{\ce{A}}}k \cdot t
+				            \\\Lra
+				            \Aboxed{\frac{1}{[{\ce{A}}]} &\stm{=}
+					            \frac{1}{[\ce{A}]_0} + \abs{\nu_{\ce{A}}}kt}
+			            \end{DispWithArrows*}
+			      \item[b]{Temps de demi-réaction}: par définition, $[\ce{A}](t_{1/2})
+				            =
+				            \frac{[\ce{A}]_0}{2}$, soit~:
+			            \begin{gather*}
+				            \frac{1}{[\ce{A}](t_{1/2})} \stm{=} \frac{2}{[\ce{A}]_0} =
+				            \frac{1}{[\ce{A}]_0} + \abs{\nu_{\ce{A}}}k \cdot t_{1/2}
+				            \Lra
+				            \boxed{%
+					            t_{1/2} \stm{=}
+					            \frac{1}{\abs{\nu_{\ce{A}}}k \cdot [\ce{A}]_0}
+				            }
+			            \end{gather*}
+		      \end{enumerate}
+	      }
+	\item[n]{5}%
+	      Sous quelle forme mathématique s'exprime le signal d'un système en
+	      RSF~? Présenter alors le passage en complexes et l'intérêt de cette
+	      forme pour la dérivation et l'intégration.
+	      \smallbreak
+	      \begin{isd}
+		      \vspace{-15pt}
+		      \psw{%
+			      \begin{DispWithArrows*}[groups]
+				      y(t) &\stm{=} Y_0 \cos(\wt+\f)
+				      \Arrow{Passage $\Cb$}
+				      \\\Lra
+				      \yu(t) &\stm{=} Y_0 \exr^{\jj (\wt+\f)}
+				      \Arrow{Séparation de $t$}
+				      \\\Lra
+				      \yu(t) &= \underbracket[1pt]{Y_0\exr^{\jj \f}}_{=\cte}\cdot\exr^{\jwt}
+				      \Arrow{Réécriture}
+				      \\\Lra
+				      \Aboxed{\yu(t) &\stm{=} \Yu\exr^{\jwt}}
+				      \\\text{avec} \quad
+				      \Aboxed{\Yu &= Y_0\exr^{\jj \f}}
+				      \Ra
+				      \left\{
+				      \begin{array}{ll}
+					      Y_0 & = \abs{\Yu}
+					      \\
+					      \f  & = \arg*{\Yu}
+				      \end{array}
+				      \right.
+			      \end{DispWithArrows*}
+		      }%
+		      \tcblower
+		      \psw{%
+			      \begin{gather*}
+				      \dv{\yu}{t} = \dv{\Yu\exr^{\jwt}}{t} = \jw \cdot \Yu\exr^{\jwt}
+				      \Lra
+				      \boxed{\dv{\yu}{t} \stm{=} \jw \yu(t)}
+				      \\
+				      \int \yu = \int \Yu\exr^{\jwt} = \frac{\Yu\exr^{\jwt}}{\jw}
+				      \Lra
+				      \boxed{\int \yu(t) \stm{=} \frac{\yu(t)}{\jw}}
+			      \end{gather*}
+		      }%
+	      \end{isd}
 \end{enumerate}
+% \vspace{-15pt}
 
 \ifstudent{
 	\begin{tikzpicture}[remember picture, overlay]
@@ -135,7 +185,7 @@
 		{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
 		\node[anchor=north east, align=right]
 		at ([shift={(-1.5cm,-17pt)}]current page.north east)
-		{\Large\bfseries Note~:\hspace{1cm}/10};
+		{\Large\bfseries Note~:\hspace{1cm}/20};
 	\end{tikzpicture}
 }
 

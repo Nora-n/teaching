@@ -4,24 +4,26 @@
 \begin{document}
 \section[29]"E"{RLC échelon montant}
 
-\begin{tcn}[cnt, bld](impo)<lftt>{}
-	Indiquer la ou les bonnes réponses en justifiant tout votre raisonnement.
-\end{tcn}
+\enonce{%
+	\begin{tcn}[cnt, bld](impo)<lftt>{}
+		Indiquer la ou les bonnes réponses en justifiant tout votre raisonnement.
+	\end{tcn}
 
-On considère un circuit RLC série, alimenté par une source idéale de tension de
-force électromotrice $E$ constante comme schématisé ci-contre. Le condensateur
-peut être court-circuité lorsque l'interrupteur $K$ est fermé. On note $i(t)$
-l'intensité du courant qui traverse la bobine et $u_C(t)$ la tension aux bornes
-du condensateur C.
+	On considère un circuit RLC série, alimenté par une source idéale de tension de
+	force électromotrice $E$ constante comme schématisé ci-contre. Le condensateur
+	peut être court-circuité lorsque l'interrupteur $K$ est fermé. On note $i(t)$
+	l'intensité du courant qui traverse la bobine et $u_C(t)$ la tension aux bornes
+	du condensateur C.
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=.5\linewidth]{rlc_montant_switch}
-\end{figure}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=.5\linewidth]{rlc_montant_switch}
+	\end{figure}
 
-Le condensateur est mis en court-circuit par un interrupteur $K$ depuis une durée
-suffisamment longue, pour que le régime permanent soit établi. À l'instant pris
-comme origine des temps, on ouvre l'interrupteur $K$.
+	Le condensateur est mis en court-circuit par un interrupteur $K$ depuis une durée
+	suffisamment longue, pour que le régime permanent soit établi. À l'instant pris
+	comme origine des temps, on ouvre l'interrupteur $K$.
+}%
 
 \QR[5]{\label{q:1}%
 	Que valent l'intensité $i\left(0^+\right)$ et la tension $u_C(0^+)$ à
@@ -33,7 +35,7 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 		\task $u_C\left(0^+\right)=0$
 		\task $u_C\left(0^+\right)=E$
 	\end{tasks}%
-}{%
+}{\label{q:1}%
 	Intéressons-nous d'abord au circuit à $t<0$. L'interrupteur est alors fermé si
 	bien que $u_C$ est une tension aux bornes d'un fil donc
 	\[
@@ -77,32 +79,34 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 	RLC série pour lequel on cherche à établir l'équation différentielle du second
 	ordre sur la variable $u_C(t)$. Appliquons la loi des mailles en notant $u_R$
 	et $u_L$ les tensions respectivement aux bornes du résistor et de la bobine.
-	\begin{DispWithArrows*}
-		u_L + u_R = u_C &\stm{=} E
-		\Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
-		\\\Lra
-		L \dv{i}{t} + Ri + u_C &\stm{=} E
-		\Arrow{$i = C \dv{u_C}{t}$}
-		\\\Lra
-		LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C &\stm{=} E
-		\Arrow{forme\\canonique}
-		\\
-		\Lra \dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &\stm{=}
-		\frac{E}{LC}
-	\end{DispWithArrows*}
-	\begin{gather*}
-		\beforetext{Par identification, on a alors :}
-		{\w_0}^2 = \frac{1}{LC}
-		\qqMath{et}
-		\frac{\w_0}{Q} = \frac{R}{L}
-		\\\beforetext{Ainsi}
-		\boxed{\w_0 \stm{=} \frac{1}{\sqrt{LC}}}
-		\qqMath{et}
-		Q = \frac{L\w_0}{R} = \frac{L}{R}\frac{1}{\sqrt{LC}}
-		\Lra
-		\boxed{Q \stm{=} \frac{1}{R}\sqrt{\frac{L}{C}}}
-	\end{gather*}
-	Réponses \fbox{A} et \fbox{D}.
+	\smallbreak
+	\begin{isd}
+		\begin{DispWithArrows*}[fleqn, mathindent=2pt]
+			u_L + u_R = u_C &\stm{=} E
+			\Arrow{$u_L = L \dv{i}{t}$\\et $u_R = Ri$}
+			\\\Lra
+			L \dv{i}{t} + Ri + u_C &\stm{=} E
+			\Arrow{$i = C \dv{u_C}{t}$}
+			\\\Lra
+			LC \dv[2]{u_C}{t} + RC \dv{u_C}{t} + u_C &\stm{=} E
+			\Arrow{forme\\canonique}
+			\\
+			\Lra \dv[2]{u_C}{t} + \frac{R}{L} \dv{u_C}{t} + \frac{1}{LC}u_C &\stm{=}
+			\frac{E}{LC}
+		\end{DispWithArrows*}
+		\tcblower
+		Par identification, on a alors :
+		\begin{gather*}
+			{\w_0}^2 = \frac{1}{LC} \Lra \boxed{\w_0 \stm{=} \frac{1}{\sqrt{LC}}}
+			\qMath{et}
+			\frac{\w_0}{Q} = \frac{R}{L}
+			\\\Lra
+			Q = \frac{L\w_0}{R} = \frac{L}{R}\frac{1}{\sqrt{LC}}
+			\Lra
+			\boxed{Q \stm{=} \frac{1}{R}\sqrt{\frac{L}{C}}}
+		\end{gather*}
+		Réponses \fbox{A} et \fbox{D}.
+	\end{isd}
 }
 
 \QR[1]{%
@@ -114,11 +118,13 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 		\task $\alpha= {\w_0}^2 \, E$
 	\end{tasks}
 }{%
-	En poursuivant l'identification on constate encore que :
-	\[
-		\boxed{\alpha = \frac{E}{LC} \stm{=} {\w_0}^2E}
-	\]
-	Réponse \fbox{D}.
+	\leftcentersright{%
+		En poursuivant l'identification~:
+	}{%
+		$\boxed{\alpha = \frac{E}{LC} \stm{=} {\w_0}^2E}$
+	}{%
+		Réponse \fbox{D}
+	}%
 }
 
 \QR[1]{%
@@ -163,13 +169,17 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 	\end{tasks}
 }{%
 	On cherche la valeur de $R$ pour obtenir $Q=10$ à $L$ et $C$ fixé.
-	On isole alors $R$ dans l'expression de $Q$ :
-	\[
-		\boxed{R \stm{=} \frac{1}{Q}\sqrt{\frac{L}{C}}}
-		\Ra
-		\xul{R = \SI{5}{\ohm}} \pt{1}
-	\]
-	Réponse \fbox{C}.
+	On isole alors $R$ dans l'expression de $Q$~:
+	\smallbreak
+	\centersright{%
+		$\DS\boxed{%
+				R \stm{=} \frac{1}{Q}\sqrt{\frac{L}{C}}}
+			\Ra
+			\xul{R = \SI{5}{\ohm}
+			} \pt{1}$
+	}{%
+		Réponse \fbox{C}.
+	}%
 }
 
 \enonce{%
@@ -193,27 +203,35 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 }{%
 	Le polynôme caractéristique associé à l'équation différentielle canonique
 	s'écrit~:
-	\begin{gather*}
-		r^2+\frac{\w_0}{Q}r+{\w_0}^2 \stm{=} 0
-		\\\beforetext{De discriminant}
-		\Delta =
-		\left(\frac{\w_0}{Q}\right)^2-4{\w_0}^2 \stm{=}
-		{{\w}_0}^2\left(\frac{1}{Q^2}-4\right) \stm{<} 0
-		\qMath{car}
-		Q = 10 > \frac{1}{2}
-		\\\beforetext{D'où les racines}
-		r_\pm \stm{=}
-		-\frac{\w_0}{2Q}\pm j \frac{\sqrt{-\Delta}}{2} =
-		-\frac{\w_0}{2Q}\pm j \w_0 \sqrt{1-\frac{1}{4Q^2}}
-		\intertext{%
-			Que l'on peut identifier avec la forme des racines proposée par l'énoncé pour
-			être en cohérence avec l'expression de $u_C\left(t\right)$~:
-		}
-		r_\pm \stm{=} -\frac{1}{\tau}\pm j\W
-		\\\Lra
-		\boxed{\tau \stm{=} \frac{2Q}{\w_0}}
-	\end{gather*}
-	Réponse \fbox{B}.
+	\smallbreak
+	\begin{isd}
+    \vspace{-15pt}
+		\begin{gather*}
+			r^2+\frac{\w_0}{Q}r+{\w_0}^2 \stm{=} 0
+			\\\Ra
+			\Delta =
+			\left(\frac{\w_0}{Q}\right)^2-4{\w_0}^2 \stm{=}
+			{{\w}_0}^2\left(\frac{1}{Q^2}-4\right) \stm{<} 0
+			\\\beforetext{car}
+			Q = 10 > \frac{1}{2}
+		\end{gather*}
+		\tcblower
+    \vspace{-15pt}
+		\begin{gather*}
+			\Ra
+			r_\pm \stm{=}
+			-\frac{\w_0}{2Q}\pm j \frac{\sqrt{-\Delta}}{2} =
+			-\frac{\w_0}{2Q}\pm j \w_0 \sqrt{1-\frac{1}{4Q^2}}
+			\intertext{%
+				Que l'on identifie en cohérence avec $u_C\left(t\right)$~:
+			}
+			r_\pm \stm{=} -\frac{1}{\tau}\pm j\W
+			\Lra
+			\boxed{\tau \stm{=} \frac{2Q}{\w_0}}
+		\end{gather*}
+		Réponse \fbox{B}.
+	\end{isd}
+	\vspace{-15pt}
 }
 
 \QR[1]{%
@@ -228,12 +246,13 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 		\task $\W=\frac{\w_0}{\sqrt{1-\frac{1}{4Q^2}}}$
 	\end{tasks}
 }{%
-	\begin{gather*}
-		\beforetext{De même, par identification,}
-		\W = \frac{\sqrt{-\Delta}}{2} \stm{=} \w_0\sqrt{1-\frac{1}{4Q^2}}
-	\end{gather*}
-	\medskip
-	Réponse \fbox{A}.
+	\leftcentersright{%
+		De même, par identification,
+	}{%
+		$\DS\W = \frac{\sqrt{-\Delta}}{2} \stm{=} \w_0\sqrt{1-\frac{1}{4Q^2}}$
+	}{%
+		Réponse \fbox{A}.
+	}%
 }
 
 \QR[1]{%
@@ -253,11 +272,10 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 		\frac{\w_0}{Q} \underbracket[1pt]{\dv{u_{C,p}}{t}}_{=0} +
 		\w_0{}^2 u_{C,p}(t) =
 		\w_0{}^2 E
-		\\\Lra
+		\Lra
 		\boxed{u_{C,p} \stm{=} E}
+		\tag*{Réponse \fbox{A}}
 	\end{gather*}
-	\medskip
-	Réponse \fbox{A}.
 }
 
 \QR[1]{%
@@ -269,14 +287,18 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 		\task $A=E/2$
 	\end{tasks}
 }{%
-	Exprimons la constante d'intégration $A$ à l'aide des conditions
-	initiales déterminées à la question~\ref{q:1}~:
-	\begin{gather*}
-		u_C\left(t=0^+\right)=0=\exp(-0/\tau)\left[A\cos{\left(0\right)}+B\sin{\left(0\right)}\right]+E
-		\\\Lra
-		\boxed{A \stm{=} -E}
-	\end{gather*}
-	Réponse \fbox{B}.
+	Exprimons la constante d'intégration $A$ à l'aide des conditions initiales
+	déterminées à la question~\ref{q:1}~:
+	\smallbreak
+	\centersright{%
+		$u_C\left(t=0^+\right) =
+			0 =
+			\exp(-0/\tau)\left[A\cos{\left(0\right)}+B\sin{\left(0\right)}\right] + E
+			\Lra
+			\boxed{A \stm{=} -E}$
+	}{%
+		Réponse \fbox{B}.
+	}%
 }
 
 \QR[5]{%
@@ -305,25 +327,29 @@ comme origine des temps, on ouvre l'interrupteur $K$.
 			\left[-A\sin(\Wt)+B\cos(\Wt)\right]
 			\\\Ra
 			\eval{\dv{u_C}{t}}_{0^+} &\stm{=} -\frac{A}{\tau}+\W B=\frac{E}{RC}
-			\\\Lra
-			\W B &= \frac{E}{RC}+\frac{A}{\tau}
-			\Arrow{$A = -E$}
-			\\
-			\Aboxed{B &\stm{=} \frac{E}{\W}\left(\frac{1}{RC}-\frac{1}{\tau}\right)}
 		\end{DispWithArrows*}
-		Réponse \fbox{A}.
 		\tcblower
+		\begin{DispWithArrows}[]
+			\Lra
+			\W B &= \frac{E}{RC}+\frac{A}{\tau}
+			\notag
+			\Arrow{$A = -E$}
+			\\\Lra
+			\Aboxed{B &\stm{=} \frac{E}{\W}\left(\frac{1}{RC}-\frac{1}{\tau}\right)}
+			\tag*{Réponse A}
+		\end{DispWithArrows}
+		\vspace{-15pt}
 		\begin{gather*}
 			\beforetext{De plus,}
 			\tau = \frac{2Q}{\w_0} = \frac{2}{R}\sqrt{\frac{L}{R}}\times\sqrt{LC}
 			\Lra
 			\boxed{\tau \stm{=} \frac{2L}{R}}
 		\end{gather*}
-		Donc $\tau$ ne s'exprime pas en fonction de $R$ et $C$ uniquement. Ainsi, la
-		réponse B est fausse. De même, $RC$ ne peut pas s'exprimer simplement en
-		fonction de $\tau$ donc la réponse D est fausse.
 	\end{isd}
-	\vspace{-15pt}
+	Donc $\tau$ ne s'exprime pas en fonction de $R$ et $C$ uniquement. Ainsi, la
+	réponse B est fausse. De même, $RC$ ne peut pas s'exprimer simplement en
+	fonction de $\tau$ donc la réponse D est fausse.
+	% \vspace{-15pt}
 }
 
 \end{document}

@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\draw
+	(0,0)
+	to[sV, name=E, v^>={$\Eu$}, !vi]
+	(0,2)
+	to[R, name=R, i>_={$\Iu = 0$}, v^<={$\Uu_R = 0$}, !vi]
+	(3,2)
+	% to[C,l_=$C$, name=C, i>^=$i$, v^<=$u_C$, !vi]
+	to[cosw, name=L, v^<={$\Uu = \Eu$}, !vi]
+	(3,0) --
+	(0,0)
+	;
+	\iarronly{R}
+	\varronly{R} \varronly{L} \varronly{E}
+	\node[] at (R.center) {$R$};
+\end{circuitikz}
+\end{document}

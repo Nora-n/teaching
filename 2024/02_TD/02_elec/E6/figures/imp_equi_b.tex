@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\def\slen{0.5}
+	\def\mlen{2}
+	\def\heig{2}
+	\draw
+	(0,-\heig)
+	coordinate (B)
+	to[open, name=E, v^>=$\Uu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=Rg, i>^=$\Iu$, !vi]
+	(\mlen, 0)
+	to[R, name=Cg, !vi]
+	(2*\mlen, 0)
+	coordinate (Atop)
+	node {$\bullet$}
+	node[above] {A}
+	to[R, name=Rd]
+	(2*\mlen, -\heig)
+	coordinate (Abot)
+	node {$\bullet$}
+	node[below] {B}
+	to[short]
+	(B)
+	;
+	\draw[]
+	(Atop)
+	to[short]
+	(3*\mlen,0)
+	node {$\bullet$}
+	node[above] {A}
+	to[R, name=Cd, !vi]
+	(3*\mlen,-\heig)
+	node {$\bullet$}
+	node[below] {B}
+	to[short]
+	(Abot);
+	\iarronly{Rg} \varronly{E}
+	\node[] at (Rg.center) {$R$};
+	\node[] at (Rd.center) {$R$};
+	\node[] at (Cg.center) {$1/\jcw$};
+	\node[rotate=90] at (Cd.center) {$1/\jcw$};
+	% Second
+	\node[right=1em] (E) at (Cd) {$\equiv$};
+	\draw[shift={($(E)+(2em,+\heig/2)$)}]
+	(0,-\heig)
+	coordinate (B)
+	to[open, name=E, v^>=$\Uu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=Rg, i>^=$\Iu$, !vi]
+	(\mlen, 0)
+	to[R, name=Cg, !vi]
+	(2*\mlen, 0)
+	node {$\bullet$}
+	node[above] {A}
+	coordinate (Atop)
+	to[R, name=Z1]
+	(2*\mlen, -\heig)
+	node {$\bullet$}
+	node[below] {B}
+	coordinate (Abot)
+	to[short]
+	(B)
+	;
+	\iarronly{Rg} \varronly{E}
+	\node[] at (Rg.center) {$R$};
+	\node[] at (Cg.center) {$1/\jcw$};
+	\node[rotate=90] at (Z1.center) {$\Zu\ind{eq,1}$};
+	% Third
+	\node[right=1em] (E) at (Z1) {$\equiv$};
+	\draw[shift={($(E)+(3em,+\heig/2)$)}]
+	(0,-\heig)
+	coordinate (B)
+	to[R, name=Zeq, v^>=$\Uu$, i_<=$\Iu$, !vi]
+	(0,0)
+	coordinate (A)
+	;
+	\iarronly{Zeq} \varronly{Zeq}
+	\node[rotate=90] at (Zeq.center) {$\Zu\ind{eq}$};
+\end{circuitikz}
+\end{document}

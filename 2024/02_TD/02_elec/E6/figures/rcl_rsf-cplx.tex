@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\draw
+	(0,0)
+	to[sV, name=E, v^>={$\Eu$}, !vi]
+	(0,2)
+	to[R, name=R, i>_=$\Iu$, v^<=$\Uu_R$, !vi]
+	(2,2)
+	to[R, name=C, v^<=$\Uu_C$, !vi]
+	(4,2)
+	to[R, name=L, v^<=$\Uu$, !vi]
+	% to[R, name=C, i^>=$i$, v^<=$\ul{u_C}$, !vi]
+	(4,0) --
+	(0,0)
+	;
+	\varronly{L} \varronly{E} \varronly{R} \varronly{C}
+	\iarronly{R}
+	% \iarronly{C}
+	\node[] at (R.center) {$R$};
+	\node[] at (C.center) {$1/\jcw$};
+	\node[rotate=90] at (L.center) {$\jlw$};
+\end{circuitikz}
+\end{document}

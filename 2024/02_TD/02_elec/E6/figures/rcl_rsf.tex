@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\draw
+	(0,0)
+	to[sV, name=E, v^>={$e(t)$}, !vi]
+	(0,2)
+	to[R, name=R, !vi]
+	(2,2)
+	to[C, l^=$C$, name=C, !vi]
+	(4,2)
+	to[L, l_=$L$, name=L, v^<=$u(t)$, !vi]
+	% to[R, name=C, i^>=$i$, v^<=$\ul{u_C}$, !vi]
+	(4,0) --
+	(0,0)
+	;
+	\varronly{L} \varronly{E}
+	% \iarronly{C}
+	\node[] at (R.center) {$R$};
+\end{circuitikz}
+\end{document}

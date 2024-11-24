@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\def\slen{0.5}
+	\def\mlen{2}
+	\def\heig{2}
+	\draw
+	(0,-\heig)
+	coordinate (B)
+	to[open, name=E, v^>=$\Uu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[C, l^=$C_1$, name=C1, i>^=$\Iu$, !vi]
+	(\mlen, 0)
+	coordinate (Atop)
+	to[L,l^=$L$, name=L]
+	(\mlen, -\heig)
+	coordinate (Abot)
+	to[short]
+	(0, -\heig)
+	;
+	\draw[]
+	(Atop)
+	to[short]
+	(2*\mlen,0)
+	to[C,l^=$C_2$, name=C2, !vi]
+	(2*\mlen,-\heig)
+	to[short]
+	(Abot);
+	\iarronly{C1} \varronly{E}
+\end{circuitikz}
+\end{document}

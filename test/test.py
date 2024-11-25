@@ -214,12 +214,18 @@ import matplotlib.pyplot as plt
 # print(rdm_solv)
 
 # TDE5, dec log
-uinf = 3 # V
-u1 = 4.9 # V
-u2 = 3.3 # V
-dlt = 0.5*np.log((u1-uinf)/(u2-uinf))
-print(f"delta = {dlt:.2f}")
+# uinf = 3 # V
+# u1 = 4.9 # V
+# u2 = 3.3 # V
+# dlt = 0.5*np.log((u1-uinf)/(u2-uinf))
+# print(f"delta = {dlt:.2f}")
+#
+# T = 387e-6 # s
+# lbd = dlt/T
+# print(f"lambda = {lbd:.3e} s⁻¹")
 
-T = 387e-6 # s
-lbd = dlt/T
-print(f"lambda = {lbd:.3e} s⁻¹")
+# E7 test
+Q = 3
+x = np.linspace(1e-3,5, 1000)
+plt.plot(x, -np.arctan(x/(Q*(1-x**2))))
+plt.show()

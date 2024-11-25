@@ -1,0 +1,103 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\def\slen{0.5}
+	\def\mlen{2}
+	\def\heig{3}
+	\sVrot{0}
+	\draw
+	(0,-\heig)
+	coordinate (B)
+	to[sV, name=E, v^>=$\Eu$, i^>=$\Iu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=R1, !vi]
+	(\mlen, 0)
+	coordinate (Atop)
+	node {$\bullet$}
+	node[above] {A}
+	to[R, name=C]
+	(\mlen, -\heig)
+	coordinate (Abot)
+	node {$\bullet$}
+	node[below] {B}
+	to[short]
+	(B)
+	;
+	\draw[]
+	(Atop)
+	to[short]
+	(2*\mlen,0)
+	node {$\bullet$}
+	node[above] {A}
+	to[R, name=L, !vi]
+	(2*\mlen,-\heig/2)
+	to[R, name=R2, !vi]
+	(2*\mlen,-\heig)
+	node {$\bullet$}
+	node[below] {B}
+	to[short]
+	(Abot);
+	\iarronly{E} \varronly{E}
+	\node at (R1.center) {$R_1$};
+	\node at (R2.center) {$R_2$};
+	\node[rotate=90] at (L.center) {$\jlw$};
+	\node at (C.center) {\tiny$\frac{1}{\jcw}$};
+	% Second
+	\node[right=7em] (E) at (C) {$\equiv$};
+	\draw[shift={($(E)+(4em,+\heig/2)$)}]
+	(0,-\heig)
+	coordinate (B)
+	to[sV, name=E, v^>=$\Eu$, i^>=$\Iu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=R1, !vi]
+	(\mlen, 0)
+	node {$\bullet$}
+	node[above] {A}
+	coordinate (Atop)
+	to[R, name=C]
+	(\mlen, -\heig)
+	node {$\bullet$}
+	node[below] {B}
+	coordinate (Abot)
+	to[short]
+	(B)
+	% Next
+	(Atop)
+	to[short]
+	(2*\mlen,0)
+	node {$\bullet$}
+	node[above] {A}
+	to[R, name=Z1, !vi]
+	(2*\mlen,-\heig)
+	node {$\bullet$}
+	node[below] {B}
+	to[short]
+	(Abot);
+	\iarronly{E} \varronly{E}
+	\node at (R1.center) {$R_1$};
+	\node at (C.center) {\tiny$\frac{1}{\jcw}$};
+	\node[rotate=90] at (Z1.center) {$\Zu\ind{eq,1}$};
+	% Third
+	\node[right=1.5em] (E) at (Z1) {$\equiv$};
+	\draw[shift={($(E)+(4em,+\heig/2)$)}]
+	(0,-\heig)
+	coordinate (B)
+	to[sV, name=E, v^>=$\Eu$, i^>=$\Iu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=R1]
+	(\mlen, 0)
+	to[R, name=Z2, !vi]
+	(\mlen,-\heig)
+	to[short]
+	(B)
+	;
+	\iarronly{E} \varronly{E}
+	\node at (R1.center) {$R_1$};
+	\node[rotate=90] at (Z2.center) {$\Zu\ind{eq}$};
+\end{circuitikz}
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\def\slen{0.5}
+	\def\mlen{2}
+	\def\heig{4}
+	\sVrot{0}
+	\draw
+	(0,-\heig)
+	coordinate (B)
+	to[sV, name=E, v^>=$e(t)$, i^>=$i(t)$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=R1, !vi]
+	(\mlen, 0)
+	coordinate (Atop)
+	% node {$\bullet$}
+	% node[above] {A}
+	to[C, l^=$C$, name=C]
+	(\mlen, -\heig)
+	coordinate (Abot)
+	% node {$\bullet$}
+	% node[below] {B}
+	to[short]
+	(B)
+	;
+	\draw[]
+	(Atop)
+	to[short]
+	(2*\mlen,0)
+	% node {$\bullet$}
+	% node[above] {A}
+	to[L, l^=$L$, name=L, !vi]
+	(2*\mlen,-\heig/2)
+	to[R, name=R2, !vi]
+	(2*\mlen,-\heig)
+	% node {$\bullet$}
+	% node[below] {B}
+	to[short]
+	(Abot);
+	\iarronly{E} \varronly{E}
+	\node at (R1.center) {$R_1$};
+	\node at (R2.center) {$R_2$};
+\end{circuitikz}
+\end{document}

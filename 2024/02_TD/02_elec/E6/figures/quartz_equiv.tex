@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\def\slen{0.5}
+	\def\mlen{4}
+	\def\heig{0.7}
+	\draw
+	(0,0) --
+	(\slen,0)
+	coordinate (A) --
+	(\slen, \heig)
+	coordinate (Atop)
+	to[R, name=C0, !vi]
+	(\mlen+\slen,\heig)
+	coordinate (Btop) --
+	(\mlen+\slen, 0)
+	coordinate (B) --
+	(\mlen+2*\slen,0)
+	coordinate(R)
+	% Bottom
+	(A) --
+	(\slen,-\heig)
+	coordinate (Abot)
+	to[R, name=C, !vi]
+	(\mlen/2+\slen,-\heig)
+	to[R, name=L, !vi]
+	(\mlen+\slen,-\heig)
+	coordinate (Bbot) --
+	(B);
+	\node at (C0.center) {$1/\jj C_0 \w$};
+	\node at (C.center) {$1/\jj C_ \w$};
+	\node at (L.center) {$\jlw$};
+	% second
+	\def\mlen{2}
+	\node[right=1.5em] (E) at (R) {$\equiv$};
+	\draw[shift={($(E)+(2em,0)$)}]
+	(0,0) --
+	(\slen,0)
+	coordinate (A) --
+	(\slen, \heig)
+	coordinate (Atop)
+	to[R, name=C0, !vi]
+	(\mlen+\slen,\heig)
+	coordinate (Btop) --
+	(\mlen+\slen, 0)
+	coordinate (B) --
+	(\mlen+2*\slen,0)
+	coordinate(R)
+	% Bottom
+	(A) --
+	(\slen,-\heig)
+	coordinate (Abot)
+	to[R, name=Z1, !vi]
+	(\mlen+\slen,-\heig)
+	coordinate (Bbot) --
+	(B);
+	\node at (C0.center) {$1/\jj C_0 \w$};
+	\node at (Z1.center) {$\Zu\ind{eq,1}$};
+	% third
+	\node[right=1.5em] (E) at (R) {$\equiv$};
+	\draw[shift={($(E)+(2em,0)$)}]
+	(0,0)
+	to[R, name=Zeq]
+	(\mlen, 0)
+	;
+	\node at (Zeq.center) {$\Zu\ind{eq}$};
+\end{circuitikz}
+\end{document}

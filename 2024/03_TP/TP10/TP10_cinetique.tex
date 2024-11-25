@@ -3,45 +3,47 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{student}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{9}
 
-\chapter{Suivi cin\'etique par spectrophotom\'etrie~: d\'ecoloration de
-  l'\'erythrosine}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
+\chapter{\cswitch{Correction du TP}{Suivi cin\'etique par spectrophotom\'etrie~: d\'ecoloration de l'\'erythrosine}}
 
 \enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoirs}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Relever les indications sur le risque associé au prélèvement, au
-				      mélange et au stockage des produits chimiques et adopter une attitude
-				      responsable lors de leur utilisation.
-				\item Suivi cinétique de transformations chimiques
-				\item Suivi en continu d'une grandeur physique.
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Établir une loi de vitesse à partir du suivi temporel d’une
-				      grandeur physique.
-				\item Exploiter les résultats d’un suivi temporel de concentration pour
-				      déterminer les caractéristiques cinétiques d’une réaction.
-				\item Proposer et mettre en œuvre des conditions expérimentales
-				      permettant la simplification de la loi de vitesse.
-				\item Pratiquer une démarche expérimentale pour déterminer une
-				      concentration ou une quantité de matière par spectrophotométrie
-				      UV-Visible.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+	\begin{tcn}[sidebyside, sidebyside align=top](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Relever les indications sur le risque associé au prélèvement, au
+			      mélange et au stockage des produits chimiques et adopter une attitude
+			      responsable lors de leur utilisation.
+			\item Suivi cinétique de transformations chimiques.
+			\item Pratiquer une démarche expérimentale pour déterminer une
+			      concentration ou une quantité de matière par spectrophotométrie
+			      UV-Visible.
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Établir une loi de vitesse à partir du suivi temporel d’une
+			      grandeur physique.
+			\item Exploiter les résultats d’un suivi temporel de concentration pour
+			      déterminer les caractéristiques cinétiques d’une réaction.
+			\item Proposer et mettre en œuvre des conditions expérimentales
+			      permettant la simplification de la loi de vitesse.
+			\item Suivi en continu d'une grandeur physique.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -121,7 +123,7 @@
 
 	\subsubsection{Matériel et données}
 
-	\begin{tcb}*(defi)"mate"{Données}
+	\begin{tcn}(defi)"mate"{Données}
 		\begin{itemize}
 			\item Solution d'érythrosine de concentration massique $c_m (\ce{E}) =
 				      \SI{30}{mg.L^{-1}}$.
@@ -130,7 +132,7 @@
 				      \SI{0,24}{mol.L^{-1}}$.
 			\item Masse molaire de l'érythrosine~: $M(\ce{E}) = \SI{880}{g.mol^{-1}}$.
 		\end{itemize}
-	\end{tcb}
+	\end{tcn}
 }
 
 \setcounter{subsubsection}{2}
@@ -145,10 +147,9 @@
 }
 
 \QR{%
-	Écrire la loi de vitesse de réaction. On appellera $v$ cette
-	vitesse, $p$ l'ordre partiel par rapport à l'érythrosine
-	$q$ celui par rapport à $\ce{ClO^-}$ et $k$ la constante de
-	vitesse de la réaction.
+	Écrire la loi de vitesse de réaction. On appellera $v$ cette vitesse, $p$
+	l'ordre partiel par rapport à l'érythrosine, $q$ celui par rapport à
+	$\ce{ClO^-}$ et $k$ la constante de vitesse de la réaction.
 }{%
 	\[
 		v = k[\ce{E}]^{p}[\ce{ClO-}]^{q}
@@ -293,34 +294,36 @@ une concentration en ions hydroxydes $[\ce{ClO^-}]_{02}=[\ce{ClO^-}]_{01}/2$.
 
 	\begin{tcb}[breakable](expe)<itc>{Spectre d'absorption}
 		\begin{itemize}
-			\bitem{Calibration du spectrophotomètre}~:
-			\begin{enumerate}
-				\item Calibrer~; Appuyer sur \boxed{0/1} puis \texttt{cuve vide~?}~:
-				      \fbox{\texttt{VAL}}. et \texttt{imprimer~?}~: \fbox{\texttt{ESC}}.
-				\item Quand le calibrage est terminé~: le spectro affiche~:
-				      \texttt{absorbance}, etc
-				\item Arrêter l'appareil~: \boxed{0/1}.
-			\end{enumerate}
-			\bitem{Redémarrer le spectrophotomètre sous contrôle de l'ordinateur}~:
-			\begin{enumerate}
-				\item Ouvrir Regressi
-				\item Dans Fichier $\ra$ nouveau choisir S250
-				\item Choisir dans le menu du spectro le protocole de communication~:
-				      \textbf{S 250 I/PC}.
-				\item Cliquer sur le bouton correspondant au spectro éteint. Le spectro se
-				      rallume alors (il faut quelques secondes~!).
-			\end{enumerate}
-			\bitem{Tracé du spectre~: \texttt{spectre paramétrable $\SIrange{335}{900}{nm}$}}~:
-			\begin{enumerate}
-				\item Choisir des longueurs d'ondes variant de $400$ à $\SI{600}{nm}$ avec
-				      un pas de $\SI{3}{nm}$.
-				\item Effectuer le zéro avec une cuve remplie d'eau distillée en cliquant
-				      sur \texttt{BLANC}. Le spectro trace une ligne (bleue) de zéro pour
-				      toutes les longueurs d'ondes.
-				\item Puis réaliser le spectre de l'érythrosine en remplissant
-				      la cuve au $3/4$ de sa hauteur avec la solution, puis en
-				      cliquant sur \texttt{SPECTRE}.
-			\end{enumerate}
+			\item[b]{Calibration du spectrophotomètre}~:
+			      \begin{enumerate}
+				      \item Calibrer~; Appuyer sur \boxed{0/1} puis \texttt{cuve
+					            vide~?}~: \fbox{\texttt{VAL}}. et \texttt{imprimer~?}~:
+				            \fbox{\texttt{ESC}}.
+				      \item Quand le calibrage est terminé~: le spectro affiche~:
+				            \texttt{absorbance}, etc
+				      \item Arrêter l'appareil~: \boxed{0/1}.
+			      \end{enumerate}
+			\item[b]{Redémarrer le spectrophotomètre sous contrôle de l'ordinateur}~:
+			      \begin{enumerate}
+				      \item Ouvrir Regressi
+				      \item Dans Fichier $\ra$ nouveau choisir S250
+				      \item Choisir dans le menu du spectro le protocole de
+				            communication~: \textbf{S 250 I/PC}.
+				      \item Cliquer sur le bouton correspondant au spectro éteint. Le
+				            spectro se rallume alors (il faut quelques secondes~!).
+			      \end{enumerate}
+			\item[b]{Tracé du spectre~: \texttt{spectre paramétrable
+				      $\SIrange{335}{900}{nm}$}}~:
+			      \begin{enumerate}
+				      \item Choisir des longueurs d'ondes variant de $400$ à
+				            $\SI{600}{nm}$ avec un pas de $\SI{3}{nm}$.
+				      \item Effectuer le zéro avec une cuve remplie d'eau distillée en
+				            cliquant sur \texttt{BLANC}. Le spectro trace une ligne (bleue)
+				            de zéro pour toutes les longueurs d'ondes.
+				      \item Puis réaliser le spectre de l'érythrosine en remplissant la
+				            cuve au $3/4$ de sa hauteur avec la solution, puis en cliquant
+				            sur \texttt{SPECTRE}.
+			      \end{enumerate}
 		\end{itemize}
 	\end{tcb}
 
@@ -376,40 +379,44 @@ une concentration en ions hydroxydes $[\ce{ClO^-}]_{02}=[\ce{ClO^-}]_{01}/2$.
 \enonce{%
 	\begin{tcb}[breakable](expe)<itc>{Suivi cinétique}
 		\begin{enumerate}
-			\item Déconnecter le spectrophotomètre de l'ordinateur en le débranchant
-			      salement (mais proprement), puis le rallumer manuellement. Fermer
-			      Régressi complètement.
+			\item Éteignez le spectrophotomètre en le débranchant salement (mais
+			      proprement), puis le rallumer manuellement. Fermer Régressi
+			      complètement.
 			\item Allumer de nouveau le spectro en le rebranchant et en appuyant sur
 			      \boxed{0/1}. Aller jusqu'au bout de la procédure de calibration.
 			\item Eteindre le spectro en appuyant sur \boxed{0/1}. Le rallumer sous
-			      contrôle de l'ordinateur comme vu précédemment. Et choisir cette fois
-			      \textbf{suivi cinétique}.
+			      contrôle de l'ordinateur comme vu précédemment. Et choisir cette
+			      fois \textbf{suivi cinétique}.
 			\item Indiquer la valeur de $\lambda_{\max}$ pour déterminer la longueur
 			      d'onde à laquelle vous allez étudier l'évolution de l'intensité
 			      lumineuse.
-			\item Faire le zéro avec une cuve remplie d'eau distillée en cliquant sur
-			      «~Z~».
-			\item Choisir ensuite 80 points, $\delta t=\SI{4}{s}$, pour obtenir une durée
-			      d'expérience de 5 min environ. Valider. Puis refaire le blanc avec la
-			      cuve d'eau distillée en cliquant sur \texttt{mettre le solvant avec la
-				      solution puis cliquer ici}.
+			\item Mettre la cuve avec le solvant puis appuyez \texttt{cliquer ici}.
+			\item Effectuer le zéro avec une cuve remplie d'eau distillée en cliquant
+			      sur \texttt{BLANC}. Le spectro trace une ligne (bleue) de zéro pour
+			      toutes les longueurs d'ondes.
+			\item Choisir ensuite 80 points, $\delta t=\SI{4}{s}$, pour obtenir une
+			      durée d'expérience de 5 min environ. Valider. Puis refaire le blanc
+			      avec la cuve d'eau distillée en cliquant sur \texttt{BLANC}
+			      % \texttt{mettre le solvant avec la solution puis cliquer ici}.
 			      % \begin{tcb}[cnt, bld](impo){}
-			      %  La suite de la manipulation doit être effectuée rapidement pour
-			      %  obtenir les premiers points, car dès le mélange entre l'érythrosine et
-			      %  l'eau de Javel, la cinétique démarre.
+			      % La suite de la manipulation doit être effectuée rapidement pour
+			      % obtenir les premiers points, car dès le mélange entre
+			      % l'érythrosine et
+			      % l'eau de Javel, la cinétique démarre.
 			      % \end{tcb}
 			\item Prélever à la finnpipette~: $\SI{1,2}{mL}$ d'eau de Javel,
-			      \SI{1.2}{mL} d'eau distillée et $\SI{1,2}{mL}$ d'érythrosine que vous
-			      déposerez successivement dans une cuve. Recouvrir de \textit{Parafilm}
-			      puis mélanger \textbf{rapidement}. Déposer cette dernière dans le spectro
-			      (dans le bon sens~!) et lancer l'acquisition en cliquant sur
+			      \SI{1.2}{mL} d'eau distillée et $\SI{1,2}{mL}$ d'érythrosine que
+			      vous déposerez successivement dans une cuve. Recouvrir de
+			      \textit{Parafilm}
+			      puis mélanger \textbf{rapidement}. Déposer cette dernière dans le
+			      spectro (dans le bon sens~!) et lancer l'acquisition en cliquant sur
 			      \texttt{mettre la cuve avec la solution puis cliquer ici}.
-			\item Une fois l'acquisition terminée, transférer les données sous Regressi en
-			      cliquant sur l'icône prévue à cet effet. Créer les variables calculées
-			      nécessaires, puis effectuer les régressions linéaires trouvées précédemment~;
-			      les superposer avec deux échelles~: une échelle à gauche pour $lnA = \ln(A)$
-			      et une échelle à droite pour $invA = 1 / A$. Supprimer les zéros en ordonnées
-			      (menu coordonnées).
+			\item Une fois l'acquisition terminée, transférer les données sous
+			      Regressi en cliquant sur l'icône prévue à cet effet. Créer les variables
+			      calculées nécessaires, puis effectuer les régressions linéaires trouvées
+			      précédemment~; les superposer avec deux échelles~: une échelle à gauche
+			      pour $lnA = \ln(A)$ et une échelle à droite pour $invA = 1 / A$.
+			      Supprimer les zéros en ordonnées (menu coordonnées).
 		\end{enumerate}
 	\end{tcb}
 }
@@ -520,11 +527,11 @@ une concentration en ions hydroxydes $[\ce{ClO^-}]_{02}=[\ce{ClO^-}]_{01}/2$.
 }
 
 \enonce{%
-	\begin{tcb}*[cnt, bld](prop)"bomb"{Important}
+	\begin{tcn}[cnt, bld](prop)"bomb"{Important}
 		En fin de séance, nettoyez votre paillasse, débranchez le
 		spectrophotomètre et ne pas oublier d'enlever la cuve à l'intérieur du
 		spectrophotomètre.
-	\end{tcb}
+	\end{tcn}
 }
 
 % \begin{programme}{}

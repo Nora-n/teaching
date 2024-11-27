@@ -5,7 +5,7 @@
 \begin{circuitikz}[line width=.7pt]
 	\sVrot{0}
 	\def\slen{0.5}
-	\def\mlen{2}
+	\def\mlen{1.5}
 	\def\heig{2}
 	\draw
 	(0,-\heig)
@@ -13,28 +13,32 @@
 	to[sV, name=E, v^>=$\Eu$, !vi]
 	(0,0)
 	coordinate (A)
-	to[R, name=R, i>_=$\Iu$, v^<=$\Uu_R$, !vi]
+	to[R, name=R, i^>=$\Iu$, !vi]
 	(\mlen, 0)
+	to[R, name=C]
+	(2*\mlen,0)
 	coordinate (Atop)
-	to[R, name=2C, i_>=$\Iu_1$, v^<=$\Uu'$, !vi]
-	(\mlen, -\heig)
+	to[R, name=2R]
+	(2*\mlen, -\heig)
 	coordinate (Abot)
 	to[short]
 	(0, -\heig)
 	;
 	\draw[]
 	(Atop)
-	to[R, name=2R, i^>=$\Iu_2$, v^<=$\Uu_{2R}$, !vi]
-	(2*\mlen,0)
-	to[R, name=C, v^<=$\Uu$, !vi]
-	(2*\mlen,-\heig)
+	to[short]
+	(3*\mlen,0)
+	to[R, name=Cr, v^<=$\Uu$, !vi]
+	(3*\mlen,-\heig)
 	to[short]
 	(Abot);
 	\node at (R.center) {$R$};
-	\node[rotate=90] at (2C.center) {$1/2\jcw$};
-	\node at (2R.center) {$2R$};
-	\node[rotate=90] at (C.center) {$1/\jcw$};
-	\varronly{E} \varronly{C} \varronly{2C} \varronly{R} \varronly{2R}
-	\iarronly{2C} \iarronly{R} \iarronly{2R}
+	\node at (2R.center) {$R$};
+	\node at (C.center) {$1/\jcw$};
+	\node at (Cr.center) {\tiny$\frac{1}{\jcw}$};
+	\iarronly{R}
+	\varronly{E}
+	% \ctikzset{voltage/straight from node=1}
+	\varronly{Cr}
 \end{circuitikz}
 \end{document}

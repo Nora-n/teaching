@@ -32,25 +32,25 @@
 	~
 	\smallbreak
 	\vspace{-18pt}
-	\begin{minipage}{0.43\linewidth}
+	\begin{minipage}{0.50\linewidth}
 		\begin{itemize}
 			\item[b]{Système} : masse~;
 			\item[b]{Référentiel} : $\Rc_{\rm sol} (O,x,y,t)$~;
-			\item[b]{Position de la masse} : $\OM = x\ux$~;
-			\item[b]{Longueur ressort 1} : $x(t) - x_0(t)$~;
-			\item[b]{Longueur ressort 2} : $L-x(t)$.
+			\item[b]{Position de la masse} : $\OM = x(t)\ux$~;
+			\item[b]{Longueur ressort 1} : $\ell_1(t) = x(t) - x_0(t)$~;
+			\item[b]{Longueur ressort 2} : $\ell_2(t) = L-x(t)$.
 		\end{itemize}
 	\end{minipage}
 	\hfill
-	\begin{minipage}{0.57\linewidth}
+	\begin{minipage}{0.50\linewidth}
 		\textbf{Bilan des forces}~:
 		\begin{enumerate}
 			\item Poids $\Pf = -mg\uy$~;
 			\item Réaction du support $\vv{R} = R\uy$~;
 			\item Rappel du ressort 1
-			      $\vv*{F}{1} = -k_1(\ell_1 - \ell_{10})\ux$~;
+			      $\vv*{F}{1} = -k_1(\ell_1(t) - \ell_{10})\ux$~;
 			\item Rappel du ressort 2
-			      $\vv*{F}{2} = k_2(\ell_2 - \ell_{20})\ux$~;
+			      $\vv*{F}{2} = k_2(\ell_2(t) - \ell_{20})\ux$~;
 			\item Force de frottement fluide $\vv{f} = -h\vf =
 				      -h\dot{x}\ux$.
 		\end{enumerate}
@@ -59,12 +59,13 @@
 
 \QR{%
 	Déterminer la position d'équilibre $x\ind{eq}$ de $M$ lorsque la paroi
-	de gauche est immobile en $x = 0$.
+	de gauche est immobile en $x_0 = 0$.
 }{%
 	Avec le PFD, on trouve
 	\begin{gather*}
-		m\af = \Pf + \vv{R} + \Ff_{1} + \Ff_{2} + \vv{f}\\
-		\Leftrightarrow m\left(
+		m\af = \Pf + \vv{R} + \Ff_{1} + \Ff_{2} + \vv{f}
+		\\\Lra
+		m\left(
 		\begin{array}{c}
 				\DS\dv[2]{x}{t} \\
 				0
@@ -73,7 +74,7 @@
 		=
 		\left(
 		\begin{array}{c}
-				-k_1(\ell_1 - \ell_{10}) +k_2(\ell_2 - \ell_{20}) -h v \\
+				-k_1(\ell_1(t) - \ell_{10}) +k_2(\ell_2(t) - \ell_{20}) -h v \\
 				-mg + R
 			\end{array}
 		\right)
@@ -82,18 +83,18 @@
 	Sur l'axe $\ux$ on trouve
 	\begin{gather*}
 		\boxed{m \dv[2]{x}{t} + h \dv{x}{t}
-			= -k_1(\ell_1 - \ell_{10}) +k_2(\ell_2 - \ell_{20})}
+			= -k_1(\ell_1(t) - \ell_{10}) +k_2(\ell_2(t) - \ell_{20})}
 	\end{gather*}
 	En développant les longueurs comme indiqué question 1, on a
 	\begin{gather*}
 		\boxed{m \dv[2]{x}{t} + h \dv{x}{t} =
 			-k_1(x(t) -x_0(t) -\ell_{10}) + k_2(L - x(t) - \ell_{20})}
 	\end{gather*}
-	À l'équilibre les dérivées de $x$ sont nulles, d'où
+	À l'équilibre les dérivées de $x(t)$ sont nulles, d'où
 	\begin{gather*}
 		0 = -k_1(x(t) - x_0(t) - \ell_{10}) + k_2(L-x(t) -\ell_{20})
 	\end{gather*}
-	Ainsi, avec $x_{0, \equ}(t) = 0$ et $L = \ell_{10}+\ell_{20}$ (d'après
+	Ainsi, avec $x_{0, \eql}(t) = 0$ et $L = \ell_{10}+\ell_{20}$ (d'après
 	l'énoncé) puis $x(t) = x\ind{eq}$ (par définition), on a
 	\begin{gather*}
 		0 = -k_1(x\ind{eq} -0 - \ell_{10}) + k_2(\ell_{10} +
@@ -106,26 +107,26 @@
 }
 
 \QR{%
-	On introduit $X = x - x\ind{eq}$. Établir l'équation différentielle
-	vérifiée par $X$ lorsque la paroi bouge.
+	On introduit $X(t) = x(t) - x\ind{eq}$. Établir l'équation différentielle
+	sur $X(t)$ lorsque la paroi bouge.
 }{%
 	Cette fois-ci, on garde $x_0(t)$ dans l'équation. Il vient alors
 	\begin{gather*}
-		m\ddot{x} + h\dot{x} + (k_1+k_2)(x-x\ind{eq})  = k_1x_0(t)
+		m\ddot{x} + h\dot{x} + (k_1+k_2)(x(t)-x\ind{eq})  = k_1x_0(t)
 	\end{gather*}
-	et en effectuant le changement de variable $X = x-x\ind{eq}$, on trouve
+	et en effectuant le changement de variable $X(t) = x(t)-x\ind{eq}$, on trouve
 	l'équation habituelle
 	\begin{gather*}
-		\boxed{m \ddot{X} + h \dot{X} + kX = KX_{0m}\cos(\wt)}
+		\boxed{m \ddot{X} + h \dot{X} + kX(t) = KX_{0m}\cos(\wt)}
 	\end{gather*}
 	avec $k = k_1+k_2$.
 }
 
 \enonce{%
 	Pour étudier le régime sinusoïdal forcé, on introduit les grandeurs
-	complexes $\xul{x}_0(t) = X_{0m} \exp(\jwt)$, $X(t) = X_m \exp(\jj(\wt +
-			\f))$ et $v(t) = V_m \exp(\jj(\wt + \phi))$ associées à $x_0(t)$, $X(t)$ et
-	$v(t) = \dot X(t)$.
+	complexes $\xul{x}_0(t) = X_{0m} \exp(\jwt)$, $\Xu(t) = X_m \exp(\jj(\wt +
+			\f))$ et $\xul{v}(t) = V_m \exp(\jj(\wt + \phi))$ associées à $x_0(t)$, $X(t)$
+	et $v(t) = \dot X(t)$.
 }
 
 \QR{%

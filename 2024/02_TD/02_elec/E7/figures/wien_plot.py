@@ -36,7 +36,7 @@ def H(w):
     return H0 / (1 + 1j * Q * (x - 1 / x))
 
 
-fig = plt.figure(figsize=(5, 5))
+fig = plt.figure(figsize=(5, 2.5))
 ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
 
 for axe in ["left", "bottom"]:
@@ -91,7 +91,7 @@ fig.savefig("./wien_ampl.pdf", bbox_inches="tight")
 # wlist = np.linspace(0, 5 * wc, 1000)
 # xmin, xmax = [min(wlist), max(wlist)]
 
-fig = plt.figure(figsize=(5, 5))
+fig = plt.figure(figsize=(5, 2.5))
 ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
 
 for axe in ["left", "bottom"]:

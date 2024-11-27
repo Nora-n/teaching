@@ -65,7 +65,7 @@ ax.plot(1, 0, ">k", lw=2, ms=5, transform=ax.transAxes, clip_on=False)
 
 ax.plot(wlist, ampl_list, color="firebrick")
 
-fig.savefig("./rcPl_Ul_ampl_prof.pdf", bbox_inches="tight")
+fig.savefig("./rlc_r-s-LC-parr_Ul_ampl.pdf", bbox_inches="tight")
 
 ################### ARGUMENT ###################
 
@@ -141,4 +141,4 @@ ax.plot(1, 0.5, ">k", lw=2, ms=5, transform=ax.transAxes, clip_on=False)
 
 ax.plot(wloglist, arg_list, color="limegreen")
 
-fig.savefig("./rcPl_Ul_arg_prof.pdf", bbox_inches="tight")
+fig.savefig("./rlc_r-s-LC-parr_Ul_arg.pdf", bbox_inches="tight")

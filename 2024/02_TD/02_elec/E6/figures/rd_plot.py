@@ -42,7 +42,7 @@ def vfunc(t):
 u = np.vectorize(ufunc, otypes=[np.float64])
 v = np.vectorize(vfunc, otypes=[np.float64])
 
-fig = plt.figure(figsize=(7.5, 5))
+fig = plt.figure(figsize=(7.5, 3))
 ax = fig.add_axes((0.10, 0.10, 0.8, 0.8))
 
 for axe in ["left", "bottom"]:
@@ -56,7 +56,7 @@ u_list = u(tlist)
 v_list = v(tlist)
 ymin, ymax = [min(u_list), max(u_list)]
 
-ax.plot(tlist, u_list, color="cornflowerblue", label="$u(t)$")
+ax.plot(tlist, u_list, color="firebrick", label="$u(t)$")
 ax.plot(tlist, v_list, ls="--", color="firebrick", label="$v(t)$")
 # ax.axvline(Vlim, c="k", ls="--", lw=1)
 

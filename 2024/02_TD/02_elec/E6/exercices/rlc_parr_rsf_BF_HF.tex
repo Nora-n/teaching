@@ -11,7 +11,7 @@
 	\hfill
 	\begin{minipage}{0.35\linewidth}
 		\begin{center}
-			\includegraphics[width=\linewidth]{exo4_plain}
+			\includegraphics[width=\linewidth]{rlc_r-s-LC-parr}
 		\end{center}
 	\end{minipage}
 }
@@ -40,13 +40,15 @@
 	Établir l'expression de $\Uu$ en fonction de $E_m$, $R$, $L$,
 	$C$ et $\w$.
 }{%
-
 	S'il n'y avait pas la capacité, on pourrait facilement utiliser un pont
 	diviseur de tension pour exprimer $\xul{u}$ en fonction de $\xul{e}$,
 	$\Zu_R$ et $\Zu_L$. Pour se ramener à la situation du pont diviseur de
 	tension, on détermine donc une première impédance équivalente issue de
 	l'association en parallèle de $L$ et $C$, après les avoir converties en
-	complexes. \bigbreak
+	complexes.
+	\begin{center}
+		\includegraphics[scale=1]{rlc_r-s-LC-parr_cplx}
+	\end{center}
 	On peut déterminer $\Zu\ind{eq, 1}$ avec les admittances $\Yu_L = 1/\jj
 		L \w$ et $\Yu_C = \jj C\w$, et utiliser le pont diviseur de tension
 	directement avec l'amplitude complexe~: $\Uu =
@@ -70,43 +72,64 @@
 }
 
 \QR{%
-	En déduire les expressions de $U_m$ et de $\f$ en fonction de
-	$E_m$, $R$, $L$, $C$ et $\w$.
+	En déduire les expressions de $U_m$ et de $\f$ en fonction de $E_m$, $R$, $L$,
+	$C$ et $\w$. Indiquer le domaine de d'existence de $\f(\w)$, puis tracer son
+	allure.
 }{%
-	On trouve l'amplitude réelle en prenant le module de l'amplitude
-	complexe, et la phase en en prenant l'argument~:
+	On trouve l'amplitude réelle en prenant le module de l'amplitude complexe, et
+	la phase en en prenant l'argument~:
 	\begin{gather*}
 		U_m
 		= \abs{ \Uu }
 		\Lra
 		\boxed{U_m
 			= \frac{E_m}{\sqrt{1 + \left( RC\w - \dfrac{R}{L\w} \right)^2}}
-		}\\
-		\f
-		= \underbracket[1pt]{\cancel{\arg{E_m}}}_{=0}
-		- \arg*{1 + \jj \left( RC\w - \dfrac{R}{L\w} \right)}
-		\Lra
-		\tan\f = - \frac{RC\w - \dfrac{R}{L\w}}{1}\\
-		\Lra
-		\boxed{\f = \arctan \left( RC\w - \frac{R}{L\w} \right)}
+		}
 	\end{gather*}
+	\begin{isd}
+		\begin{gather*}
+			\f
+			= \underbracket[1pt]{\cancel{\arg{E_m}}}_{=0}
+			- \arg*{
+			\underbracket[1pt]{1}_{\mathclap{\Re > 0}} +
+			\jj \left( RC\w - \dfrac{R}{L\w} \right)
+			}
+			\\\Lra
+			\tan\f = - \frac{RC\w - \dfrac{R}{L\w}}{1}
+			\\\Lra
+			\boxed{\f = \arctan \left( RC\w - \frac{R}{L\w} \right)}
+			\\\qav
+			\boxed{\f \in \left] -\frac{\pi}{2}\,;\frac{\pi}{2} \right[}
+		\end{gather*}
+		car la partie réelle de l'argument calculé est positive.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{rlc_r-s-LC-parr_Ul_arg}
+		\end{center}
+	\end{isd}
 }
 
 \QR{%
-	Déterminer les valeurs limites de $U_m$ à très basse et très haute
-	fréquence. Ces résultats étaient-ils prévisibles par une analyse
-	qualitative du montage~?
+	Déterminer les valeurs limites de $U_m$ à très basse et très haute fréquence.
+	Tracer alors l'allure de $U_m(\w)$. Ces résultats étaient-ils prévisibles par
+	une analyse qualitative du montage~?
 }{%
-	À très haute fréquence, i.e.\ $\w\ra\infty$, le dénominateur
-	de l'amplitude réelle tend vers l'infini à cause du terme $RC\w$, donc
-	l'amplitude vers 0~; c'est la même chose à très basse fréquence, i.e.\
-	$\w\ra0^+$~: le dénominateur tend vers l'infini et l'amplitude
-	vers 0, mais cette fois à cause du terme en $\dfrac{R}{L\w}$. On a donc
-	\[
-		\boxed{U_m \xrightarrow[\w\ra\infty]{} 0}
-		\qet
-		\boxed{U_m \xrightarrow[\w\ra0^+]{} 0}
-	\]
+	\begin{isd}[righthand ratio=.4]
+		À très haute fréquence, i.e.\ $\w\ra\infty$, le dénominateur de l'amplitude
+		réelle tend vers l'infini à cause du terme $RC\w$, donc l'amplitude vers 0~;
+		c'est la même chose à très basse fréquence, i.e.\ $\w\ra0^+$~: le dénominateur
+		tend vers l'infini et l'amplitude
+		vers 0, mais cette fois à cause du terme en $\dfrac{R}{L\w}$. On a donc
+		\[
+			\boxed{U_m \xrightarrow[\w\ra\infty]{} 0}
+			\qet
+			\boxed{U_m \xrightarrow[\w\ra0^+]{} 0}
+		\]
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{rlc_r-s-LC-parr_Ul_ampl}
+		\end{center}
+	\end{isd}
 	On pouvait prévoir ces résultats par l'étude directe du montage et des
 	impédances en jeu~: en effet,
 	\begin{align*}
@@ -123,9 +146,19 @@
 		 & \qet
 		\abs{\Zu_L} \xrightarrow[\w\ra\infty]{} \infty
 	\end{align*}
-	Dans les deux cas, le circuit équivalent est l'association en série
-	d'une résistance avec une association en parallèle d'un interrupteur
-	ouvert et d'un fil, c'est-à-dire un fil~: or, la tension d'un fil est
-	nulle.
+	\begin{isd}
+		\tcbsubtitle{\fatbox{$\w\to 0$}}
+		\begin{center}
+			\includegraphics[scale=1]{rlc_r-s-LC-parr_bf}
+		\end{center}
+		\tcblower
+		\tcbsubtitle{\fatbox{$\w\to \infty$}}
+		\begin{center}
+			\includegraphics[scale=1]{rlc_r-s-LC-parr_hf}
+		\end{center}
+	\end{isd}
+	Dans les deux cas, le circuit équivalent est l'association en série d'une
+	résistance avec une association en parallèle d'un interrupteur ouvert et d'un
+	fil, c'est-à-dire un fil~: or, la tension d'un fil est nulle.
 }
 \end{document}

@@ -11,7 +11,7 @@
 	\hfill
 	\begin{minipage}{0.35\linewidth}
 		\begin{center}
-			\includegraphics[width=\linewidth]{exo2_plain}
+			\includegraphics[width=\linewidth]{rl_rsf}
 		\end{center}
 	\end{minipage}
 }
@@ -27,26 +27,47 @@
 	respectivement un fil et un interrupteur ouvert. En effet, l'impédance
 	étant homogène à une résistance, une impédance nulle est semblable à une
 	résistance nulle (un fil), et une impédance infinie est semblable à une
-	résistance infinie (un interrupteur ouvert). \bigbreak
-	Or, la tension d'un fil est nul, donc
-	\[\boxed{u \xrightarrow[\w\ra0]{} 0}\]
-	Le courant ne peut traverser un interrupteur, donc en faisant la loi des
-	mailles dans le circuit équivalent, on a $u_R = Ri = 0$, et forcément
-	\[\boxed{u \xrightarrow[\w\ra\infty]{} E}\]
+	résistance infinie (un interrupteur ouvert).
+	\smallbreak
+	\noindent
+	\begin{isd}
+		\tcbsubtitle{\fatbox{\textbf{$\w\to 0$}}}
+		\begin{center}
+			\includegraphics[scale=1]{rl_rsf-bf}
+		\end{center}
+		Or, la tension d'un fil est nul, donc
+		\[\boxed{u \xrightarrow[\w\ra0]{} 0}\]
+		\tcblower
+		\tcbsubtitle{\fatbox{\textbf{$\w\to \infty$}}}
+		\begin{center}
+			\includegraphics[scale=1]{rl_rsf-hf}
+		\end{center}
+		Le courant ne peut traverser un interrupteur, donc en faisant la loi des
+		mailles dans le circuit équivalent, on a $u_R = Ri = 0$, et forcément
+		\[\boxed{u \xrightarrow[\w\ra\infty]{} E}\]
+	\end{isd}
 }
 
 \QR{%
 	Exprimer l'amplitude complexe $\Uu$ de $u(t)$ en fonction de $E$,
 	$R$, $L$ et $\w$.
 }{%
-	Pour cela, on utilise la relation du pont diviseur de tension~:
-	\begin{gather*}
-		\Uu
-		= \frac{\Zu_L}{\Zu_L + \Zu_R}E
-		\Lra
-		\boxed{\Uu
-			= \frac{\jj L\w}{R + \jj L \w}E}
-	\end{gather*}
+	\smallbreak
+	\noindent
+	\begin{isd}
+		\begin{center}
+			\includegraphics[scale=1]{rl_rsf-cplx}
+		\end{center}
+		\tcblower
+		Pour cela, on utilise la relation du pont diviseur de tension~:
+		\begin{gather*}
+			\Uu
+			= \frac{\Zu_L}{\Zu_L + \Zu_R}E
+			\Lra
+			\boxed{\Uu
+				= \frac{\jj L\w}{R + \jj L \w}E}
+		\end{gather*}
+	\end{isd}
 }
 
 \QR{%
@@ -56,10 +77,9 @@
 }{%
 	La phase de $e(t)$ est nulle par construction. On calcule donc la
 	phase de $u$ en prenant l'argument de son amplitude complexe~:
-
 	\begin{gather*}
-		\arg(\Uu)
-		= \arg(\jj L\w E) - \arg(R + \jj L \w)
+		\arg*{\Uu}
+		= \arg*{\jj L\w E} - \arg{\underbracket[1pt]{R}_{\mathclap{\Re > 0}} + \jj L \w}
 		= \frac{\pi}{2} - \arctan \left( \frac{L\w}{R} \right)
 	\end{gather*}
 	où on peut prendre l'arctangente parce que la partie réelle est
@@ -68,7 +88,7 @@
 		\item Signaux en phase
 		      \begin{gather*}
 			      \Lra
-			      \arg(\Uu) = 0
+			      \arg*{\Uu} = 0
 			      \Lra
 			      \arctan \left( \frac{L\w}{R} \right) = \frac{\pi}{2}
 			      \Lra
@@ -79,7 +99,7 @@
 		\item Signaux en opposition de phase
 		      \begin{gather*}
 			      \Lra
-			      \arg(\Uu) = \pi
+			      \arg*{\Uu} = \pi
 			      \Lra
 			      \arctan \left( \frac{L\w}{R} \right) = -\frac{\pi}{2}
 			      \Lra
@@ -91,7 +111,7 @@
 		\item Signaux en quadrature de phase
 		      \begin{gather*}
 			      \Lra
-			      \arg(\Uu) = \frac{\pi}{2}
+			      \arg*{\Uu} = \frac{\pi}{2}
 			      \Lra
 			      \arctan \left( \frac{L\w}{R} \right) = 0
 			      \Lra
@@ -104,5 +124,15 @@
 		      donc pas vraiment de sens ici, la sortie est constamment nulle
 		      quand l'entrée est à son maximum.
 	\end{enumerate}
+	\noindent
+	\begin{isd}
+		\begin{center}
+			\includegraphics[width=\linewidth]{rl_Ul_ampl_prof}
+		\end{center}
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{rl_Ul_arg_prof}
+		\end{center}
+	\end{isd}
 }
 \end{document}

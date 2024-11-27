@@ -20,7 +20,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{6}
@@ -42,15 +42,15 @@
 
 \begin{tcn}[sidebyside](appl)<ctc>"how"'t'{Capacités exigibles}
 	\begin{itemize}[label=\rcheck]
-		\item Relier l'acuité d’une résonance au facteur de qualité.
 		\item Oscillateur électrique ou mécanique soumis à une excitation
 		      sinusoïdale.
+		\item Utiliser la représentation complexe pour étudier le régime forcé.
 	\end{itemize}
 	\tcblower
 	\begin{itemize}[label=\rcheck]
+		\item Relier l'acuité d'une résonance au facteur de qualité.
 		\item Déterminer la pulsation propre et le facteur de qualité à partir de
 		      graphes expérimentaux d’amplitude et de phase.
-		\item Utiliser la représentation complexe pour étudier le régime forcé.
 	\end{itemize}
 \end{tcn}
 
@@ -378,7 +378,7 @@ maximale~: c'est ce qu'on appelle la \textbf{résonance}.
 	La fréquence correspondante est appelée \textbf{fréquence de
 		résonance} $f_r$ (ou $\w_r$ ou $x_r$).
 	\smallbreak
-	Soit, pour une amplitude complexe $\Xu(\w)$,
+	Soit, pour une amplitude réelle $X(\w)$,
 	\psw{%
 		\begin{gather*}
 			\exists
@@ -392,18 +392,19 @@ maximale~: c'est ce qu'on appelle la \textbf{résonance}.
 
 La représentation de l'amplitude en fonction de la pulsation est donc piquée
 autour de son maximum $X_{\max}$ à la pulsation de résonance $\w_r$. Ce pic peut
-être plus ou moins fin, ce que l'on caractérise par la \textbf{bande passante}
-\begin{tcb}[sidebyside, righthand ratio=.4](defi){Bande passante}
+être plus ou moins fin, ce que l'on caractérise par la \textbf{bande passante}.
+\begin{tcb*}[sidebyside, righthand ratio=.4](defi){Bande passante}
 	C'est le domaine de pulsations du forçage défini par~:
 	\psw{
 		\[
 			\text{bande passante}
 			\triangleq
-			\{\w ~|~ X(\w) \geq X\ind{max, eff} = \frac{X\ind{max}}{\sqrt{2}}\}
+			\left\{%
+			\w ~|~ X(\w) \geq X\ind{max, eff} = \frac{X\ind{max}}{\sqrt{2}}\right
+			\}
 			% \boxed{X(\w) > X\ind{max, eff} = \frac{X\ind{max}}{2}}
 		\]
 	}
-	On définit alors~:
 	\begin{itemize}
 		\item $\w_1$ et $\w_2$ les \textbf{pulsations de coupure}, telles que
 		      \psw{%
@@ -423,15 +424,15 @@ autour de son maximum $X_{\max}$ à la pulsation de résonance $\w_r$. Ce pic pe
 	\end{itemize}
 	\tcblower
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{bandepass_moche}
-		}{
-			\includegraphics[width=\linewidth]{bandepass_moche}
-		}
+		\sswitch{%
+			\includegraphics[width=.8\linewidth]{bande_pass_stud}
+		}{%
+			\includegraphics[width=.8\linewidth]{bande_pass_prof}
+		}%
 		\vspace{-15pt}
-		\captionof{figure}{Bande passante et pic de résonance.}
+		\captionof{figure}{Bande passante.}
 	\end{center}
-\end{tcb}
+\end{tcb*}
 
 \subsubsection{Comportements à la résonance}
 
@@ -626,15 +627,35 @@ qu'à déterminer la bande passante.
 			      La \textbf{phase à la résonance} est \textbf{nulle}.
 		      }%
 	\end{itemize}
-	\begin{center}
-		\sswitch{
-			\includegraphics[width=.8\linewidth, draft=true]{rlc_i-ampphase}
-		}{
-			\includegraphics[width=.8\linewidth]{rlc_i-ampphase}
-		}
-		\captionof{figure}{Amplitude et phase en fonction de $Q$ pour $\Iu$ en RLC
-			série.}
-	\end{center}
+	\begin{isd}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[height=7.5cm]{rlc_I_ampl_stud}
+			}{%
+				\includegraphics[height=7.5cm]{rlc_I_ampl_prof}
+			}%
+			\captionof{figure}{$\abs{\Iu}$ selon $Q$.}
+		\end{center}
+		\tcblower
+		\begin{center}
+			\sswitch{%
+				\includegraphics[height=7.5cm]{rlc_I_arg_stud}
+			}{%
+				\includegraphics[height=7.5cm]{rlc_I_arg_prof}
+			}%
+			\vspace{-15pt}
+			\captionof{figure}{$\arg*{\Iu}$ selon $Q$.}
+		\end{center}
+	\end{isd}
+	% \begin{center}
+	% 	\sswitch{
+	% 		\includegraphics[width=.8\linewidth, draft=true]{rlc_i-ampphase}
+	% 	}{
+	% 		\includegraphics[width=.8\linewidth]{rlc_i-ampphase}
+	% 	}
+	% 	\captionof{figure}{Amplitude et phase en fonction de $Q$ pour $\Iu$ en RLC
+	% 		série.}
+	% \end{center}
 \end{tcb}
 
 \subsection{Étude de la tension $u_C$}
@@ -798,6 +819,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 	\tcbsubtitle{\fatbox{\textbf{Condition de résonance}}}
 	On trouve le maximum de l'amplitude quand le dénominateur est
 	\textbf{non nul} et minimal, c'est-à-dire
+	\vspace{-15pt}
 	\psw{
 		\begin{gather*}
 			U(x_r) = U_{\max}
@@ -849,7 +871,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 				\\\Lra
 				f(X_r) &=
 				\left( \frac{1}{2Q^{2}} \right)^{2} + \frac{1}{Q^{2}} - \frac{1}{2Q^{4}}
-				\Arrow{Même dénominateur}
+				\Arrow{Même dénom.}
 				\\\Lra
 				f(X_r) &=
 				\frac{1}{4Q^{2}} - \frac{2}{4Q^{4}} + \frac{1}{Q^{2}}
@@ -865,6 +887,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 				}
 			\end{DispWithArrows*}
 		}
+		\vspace{-15pt}
 		\tcblower
 		Dans $U(x)$~:
 		\psw{%
@@ -907,15 +930,36 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 				      -\frac{\pi}{2}$~;
 		      }%
 	\end{itemize}
-	\begin{center}
-		\sswitch{
-			\includegraphics[width=.8\linewidth, draft=true]{rlc_u-ampphase}
-		}{
-			\includegraphics[width=.8\linewidth]{rlc_u-ampphase}
-		}
-		\captionof{figure}{Amplitude et phase en fonction de $Q$ pour $\Iu$ en RLC
-			série.}
-	\end{center}
+	\begin{isd}
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[height=7cm]{rlc_Uc_ampl_stud}
+			}{%
+				\includegraphics[height=7cm]{rlc_Uc_ampl_prof}
+			}%
+			\captionof{figure}{$\abs{\Uu}$ selon $Q$.}
+		\end{center}
+		\tcblower
+		\vspace{-15pt}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[height=7cm]{rlc_Uc_arg_stud}
+			}{%
+				\includegraphics[height=7cm]{rlc_Uc_arg_prof}
+			}%
+			\captionof{figure}{$\arg*{\Uu}$ selon $Q$.}
+		\end{center}
+	\end{isd}
+	% \begin{center}
+	% 	\sswitch{
+	% 		\includegraphics[width=.8\linewidth, draft=true]{rlc_u-ampphase}
+	% 	}{
+	% 		\includegraphics[width=.8\linewidth]{rlc_u-ampphase}
+	% 	}
+	% 	\captionof{figure}{Amplitude et phase en fonction de $Q$ pour $\Iu$ en RLC
+	% 		série.}
+	% \end{center}
 \end{tcb}
 
 \section{Exemple d'un oscillateur mécanique en RSF}
@@ -1044,7 +1088,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 	\vspace{-15pt}
 \end{tcb}
 
-\begin{tcb}(impo)<lftt>{Attention notation~!}
+\begin{tcb}(impo)<lftt>{Notations $x$}
 	Il peut arriver très vite de confondre $x(t)$ la position et $x = \w/\w_0$ la
 	pulsation réduite… faites attention.
 \end{tcb}
@@ -1091,7 +1135,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 \subsubsection{Comportements à la résonance}
 
 \begin{tcb*}[breakable](prop){Résonance en élongation}
-	La résonance en tension n'\textbf{existe pas toujours}~:
+	La résonance en élongation n'\textbf{existe pas toujours}~:
 	\begin{itemize}[leftmargin=60pt]
 		\item{}[$\mathbf{Q \leq 1/\sqrt{2}}$] :
 		      \textbf{pas de résonance}, l'amplitude est maximale pour
@@ -1248,30 +1292,28 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 	\\\hline
 	\textbf{Courbes d'amplitude} &
 	\sswitch{
-		\includegraphics[width=.6\linewidth, draft=true]{rlc_i-amp}
+		\includegraphics[width=.75\linewidth]{rlc_I_ampl_stud}
 	}{
-		\includegraphics[width=.6\linewidth]{rlc_i-amp}
+		\includegraphics[width=.75\linewidth]{rlc_I_ampl_prof}
 	}
-
 	&
 	\sswitch{
-		\includegraphics[width=.6\linewidth, draft=true]{rlc_u-amp}
+		\includegraphics[width=.75\linewidth]{rlc_Uc_ampl_stud}
 	}{
-		\includegraphics[width=.6\linewidth]{rlc_u-amp}
+		\includegraphics[width=.75\linewidth]{rlc_Uc_ampl_prof}
 	}
-
 	\\\hdashline
 	\textbf{Courbes de phase} &
 	\sswitch{
-		\includegraphics[width=.6\linewidth, draft=true]{rlc_i-phase}
+		\includegraphics[width=.75\linewidth]{rlc_I_arg_stud}
 	}{
-		\includegraphics[width=.6\linewidth]{rlc_i-phase}
+		\includegraphics[width=.75\linewidth]{rlc_I_arg_prof}
 	}
 	&
 	\sswitch{
-		\includegraphics[width=.6\linewidth, draft=true]{rlc_u-phase}
+		\includegraphics[width=.75\linewidth]{rlc_Uc_arg_stud}
 	}{
-		\includegraphics[width=.6\linewidth]{rlc_u-phase}
+		\includegraphics[width=.75\linewidth]{rlc_Uc_arg_prof}
 	}
 \end{tcb}
 \vspace{-15pt}

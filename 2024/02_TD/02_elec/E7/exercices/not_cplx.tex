@@ -1,0 +1,43 @@
+\documentclass[../TDE7_ocrsf.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Notation complexe}
+
+\enonce{%
+	Écrire, sous forme complexe, les équations différentielles suivantes~:
+}
+
+\QR{%
+	\[\tau \dv{u}{t} + u(t) = E_0\sin\wt\]
+}{%
+	Pour passer aux formes complexes, il faut s'assurer que \textbf{les
+		grandeurs soient toutes exprimées en cosinus}, puisque c'est bien le
+	cosinus la partie réelle d'une exponentielle complexe. Or, $\sin\theta =
+		\cos(\pi/2-\theta) = \cos(\theta-\pi/2)$, donc on a~:
+	\begin{align*}
+		\tau \dv{u}{t} + u(t)     & = E_0\cos(\wt - \pi/2)                           \\
+		\Leftrightarrow
+		\tau \dv{\uu}{t} + \uu(t) & = E_0\exr^{-\jj\pi/2}\exr^{\jwt}                 \\
+		\Leftrightarrow
+		(1+\jwt)\uu               & = E_0\exr^{-\jj\pi/2}\exr^{\jwt}                 \\
+		\Leftrightarrow
+		\Aboxed{\uu               & = \frac{E_0\exr^{-\jj\pi/2}\exr^{\jwt}}{1+\jwt}}
+	\end{align*}
+	grâce au fait qu'en complexes, dériver revient à multiplier par $\jw$.
+}
+\QR{%
+	\[\ddot{x} +  2\lambda \dot x + \w_0^2 x(t) =F_0\cos\wt\]
+}{%
+	Ici, rien de particulier~: on souligne $x$ d'abord, puis on dérive en
+	multipliant par $\jw$.
+	\begin{align*}
+		\ddot{x} +  2\lambda \dot x + \w_0^2 x(t)               & = KI_m\cos\wt                              \\
+		\Leftrightarrow
+		(\jw)^2\xul{x} + 2\lambda\jw \xul{x} + \w_0{}^2 \xul{x} & =
+		KI_m\exr^{\jwt}                                                                                      \\
+		\Leftrightarrow
+		\Aboxed{\xul{x}                                         & = \frac{KI_m\exr^{\jwt}}{\w_0{}^2 - \w^2 +
+				2\lambda\jw}}
+	\end{align*}
+}
+\end{document}

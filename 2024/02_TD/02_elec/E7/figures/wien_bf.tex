@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+\begin{circuitikz}[line width=.7pt]
+	\sVrot{0}
+	\def\slen{0.5}
+	\def\mlen{1.5}
+	\def\heig{2}
+	\ctikzset{current/distance = 1.2}
+	\draw
+	(0,-\heig)
+	coordinate (B)
+	to[sV, name=E, v^>=$\Eu$, !vi]
+	(0,0)
+	coordinate (A)
+	to[R, name=R, i_>=~, !vi]
+	(\mlen, 0)
+	to[cosw, name=C]
+	(2*\mlen,0)
+	coordinate (Atop)
+	to[R, name=2R, v_<=$\Uu$, !vi]
+	(2*\mlen, -\heig)
+	coordinate (Abot)
+	to[short]
+	(0, -\heig)
+	;
+	\draw[]
+	(Atop)
+	to[short]
+	(3*\mlen,0)
+	to[cosw, name=C, v^<=${\Uu = 0}$, !vi]
+	(3*\mlen,-\heig)
+	to[short]
+	(Abot);
+	\node at (R.center) {$R$};
+	\node at (2R.center) {$R$};
+	\node[below=3mm, anchor=center, brandeisblue] at (Rcurrent) {$\Iu = 0$};
+	\iarronly{R}
+	\varronly{E}
+	\varronly{2R}
+	% \ctikzset{voltage/straight from node=1}
+	\varronly{C}
+\end{circuitikz}
+\end{document}

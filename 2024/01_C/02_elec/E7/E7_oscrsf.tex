@@ -20,7 +20,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.002pt
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{6}
@@ -964,7 +964,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 
 \section{Exemple d'un oscillateur mécanique en RSF}
 \subsection{Présentation}
-\begin{tcb}(defi){Ressort amorti en RSF}
+\begin{tcb*}(defi){Ressort amorti en RSF}
 	\begin{itemize}
 		\item[b]{Système} : point matériel $M$ de masse $m$ relié à un ressort
 		      horizontal \textbf{idéal}.
@@ -1011,7 +1011,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 			\captionof{figure}{Schéma du ressort en RSF.}
 		\end{center}
 	\end{isd}
-\end{tcb}
+\end{tcb*}
 
 \subsection{Étude de l'élongation}
 \subsubsection{Amplitude complexe $\Xu$}
@@ -1022,11 +1022,11 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 		\psw{%
 			\boxed{
 				\Xu =
-				\frac{F_0/k}{1 - x ^2 + \jj\dfrac{x}{Q}}
+				\frac{F_0/k}{1 - u ^2 + \jj\dfrac{x}{Q}}
 			}
 		}%
 		\qav
-		\psw{\boxed{x = \frac{\w}{\w_0}}}
+		\psw{\boxed{u = \frac{\w}{\w_0}}}
 		\qet
 		\psw{\boxed{\w_0 = \sqrt{\frac{k}{m}}}}
 		\qet
@@ -1034,7 +1034,7 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 	\]
 \end{tcb}
 
-\begin{tcb}[breakable](demo){Amplitude complexe $\Xu_C$}
+\begin{tcb*}[breakable](demo){Amplitude complexe $\Xu_C$}
 	Avec le PFD~:
 	\leavevmode\vspace*{-25pt}\relax
 	\psw{%
@@ -1077,28 +1077,31 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 			\pa{(\jw)^2 + \frac{\w_0}{Q}\jw + \w_0{}^2}\Xu &= \frac{F_0}{m}
 			\CArrow{$\mdiv \w_0{}^2$}
 			\\\Lra
-			\pa{-\frac{\w}{\w_0}^2 + \jj \frac{\w}{\w_0Q} + 1}\Xu &=
+			\pa{-\pa{\frac{\w}{\w_0}}^2 + \jj \frac{\w}{\w_0Q} + 1}\Xu &=
 			\frac{F_0}{\w_0{}^2m}
-			\Arrow{$m\w_0{}^2 = k$\\$x = \w/\w_0$}
+			\Arrow{$m\w_0{}^2 = k$\\$u = \w/\w_0$}
 			\\\Lra
-			\Aboxed{\Xu &= \frac{F_0/k}{1 - x^2 + \jj \frac{x}{Q}}}
+			\Aboxed{\Xu &= \frac{F_0/k}{1 - u^2 + \jj \frac{u}{Q}}}
 			\qed
 		\end{DispWithArrows*}
 	}%
 	\vspace{-15pt}
-\end{tcb}
+\end{tcb*}
 
-\begin{tcb}(impo)<lftt>{Notations $x$}
+\begin{tcb}(impo)<lftt>{Notations de pulsation réduites}
 	Il peut arriver très vite de confondre $x(t)$ la position et $x = \w/\w_0$ la
-	pulsation réduite… faites attention.
+	pulsation réduite, d'où la notation proposée de $u = \w/\w_0$, à ne
+	pas confondre avec la tension. Soyez vigilant-es.
+	\vspace{-10pt}
 \end{tcb}
 
+\vspace{-15pt}
 \subsubsection{Solution réelle}
 \begin{tcb}(prop){$x(t)$ ressort amorti en RSF}
 	\leftcenters{%
 		L'élongation réelle s'écrit donc
 	}{%
-		$x(t) = X \cdot \cos(\wt + \f_u)$
+		$x(t) = X(u) \cdot \cos(\wt + \f_x(u))$
 	}%
 	\smallbreak
 	\begin{isd}[interior hidden, sidebyside align=top](prop)
@@ -1107,10 +1110,10 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 		\psw{%
 			\[
 				\boxed{
-					X(x)
+					X(u)
 					= \abs{\Xu}
 					= \frac{F_0/k}{
-						\sqrt{ \pa{1 - x^2} ^2 + \pa{\dfrac{x}{Q}}^2}}
+						\sqrt{ \pa{1 - u^2} ^2 + \pa{\dfrac{u}{Q}}^2}}
 				}
 			\]
 		}%
@@ -1120,12 +1123,12 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 		\vspace{-15pt}
 		\begin{gather*}
 			\psw{%
-				\boxed{\tan(\f_x(x)) = - \frac{x}{Q \pa{1 - x^2}}}
+				\boxed{\tan(\f_x(u)) = - \frac{u}{Q \pa{1 - u^2}}}
 			}%
 			\\\text{avec}
 			\quad
 			\psw{%
-			\f_u \in \left] -\pi\,; 0 \right[
+			\f_x \in \left] -\pi\,; 0 \right[
 			}%
 		\end{gather*}
 		\vspace{-15pt}
@@ -1140,16 +1143,16 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 		\item{}[$\mathbf{Q \leq 1/\sqrt{2}}$] :
 		      \textbf{pas de résonance}, l'amplitude est maximale pour
 		      \psw{%
-			      \[\boxed{x = 0 \qet X(0) = \frac{F_0}{k}}\]
+			      \[\boxed{u = 0 \qet X(0) = \frac{F_0}{k}}\]
 		      }%
 		      \vspace{-15pt}
 		\item{}[$\mathbf{Q > 1/\sqrt{2}}$] :
 		      La résonance existe, l'amplitude est maximale pour
 		      \psw{%
 			      \[
-				      \boxed{x_r = \frac{1}{Q} \sqrt{Q^{2} - \frac{1}{2}} < 1}
+				      \boxed{u_r = \frac{1}{Q} \sqrt{Q^{2} - \frac{1}{2}} < 1}
 				      \qet
-				      \boxed{X(x_r) = \frac{QF_0/k}{\sqrt{1 - \frac{1}{4Q^{2}}}}}
+				      \boxed{X(u_r) = \frac{QF_0/k}{\sqrt{1 - \frac{1}{4Q^{2}}}}}
 			      \]
 		      }%
 		      \vspace{-15pt}
@@ -1157,11 +1160,11 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 		      \leavevmode\vspace*{-15pt}\relax
 		      \psw{%
 			      \[
-				      \boxed{x_r \approx 1}
+				      \boxed{u_r \approx 1}
 				      \Lra
 				      \boxed{\w_r \approx \w_0}
 				      \qet
-				      \boxed{X(x_r) \approx Q\frac{F_0}{k}}
+				      \boxed{X(u_r) \approx Q\frac{F_0}{k}}
 			      \]
 		      }%
 		      \vspace{-15pt}
@@ -1179,10 +1182,10 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 	\begin{gather*}
 		\psw{
 			\boxed{
-				\Vu(x) = \frac{F_0/\alpha}{1 + \jj Q \left( x - \dfrac{1}{x} \right)}}
+				\Vu(u) = \frac{F_0/\alpha}{1 + \jj Q \left( u - \dfrac{1}{u} \right)}}
 		}
 		\qav
-		\psw{\boxed{x = \frac{\w}{\w_0}}}
+		\psw{\boxed{u = \frac{\w}{\w_0}}}
 		\qet
 		\psw{\boxed{\w_0 = \sqrt{\frac{k}{m}}}}
 		\qet
@@ -1199,20 +1202,20 @@ $\eu(t) = E\exr^{\jwt}$, et on applique le pont diviseur de tension.
 			\Lra
 			\Vu &= \jw\Xu
 			\\\Lra
-			\Vu &= \frac{F_0}{k} \frac{\jw}{1-x^2 + \jj \frac{x}{Q}}
+			\Vu &= \frac{F_0}{k} \frac{\jw}{1-u^2 + \jj \frac{u}{Q}}
 			\Arrow{$\times \frac{\jj }{\jj }$\\$\w = x \w_0$}
 			\\\Lra
-			\Vu &= - \frac{F_0}{k} \frac{x\w_0}{\jj - \jj x^2 - \frac{x}{Q}}
-			\Arrow{Factorise par $x$}
+			\Vu &= - \frac{F_0}{k} \frac{u\w_0}{\jj - \jj u^2 - \frac{u}{Q}}
+			\Arrow{Factorise par $u$}
 			\\\Lra
-			\Vu &= \frac{F_0}{k}\cdot \cancel{\frac{x}{x}} \cdot
-			\frac{\w_0}{\frac{1}{Q} - \jj \pa{\frac{1}{x} - 1}}
+			\Vu &= \frac{F_0}{k}\cdot \cancel{\frac{u}{u}} \cdot
+			\frac{\w_0}{\frac{1}{Q} - \jj \pa{\frac{1}{u} - 1}}
 			\CArrow{$\times \frac{Q}{Q}$}
 			\\\Lra
-			\Vu &= \frac{F_0}{k} \cdot \frac{Q\w_0}{1+ \jj Q \pa{x - \frac{1}{x}}}
+			\Vu &= \frac{F_0}{k} \cdot \frac{Q\w_0}{1+ \jj Q \pa{u - \frac{1}{u}}}
 			\Arrow{$\frac{Q\w_0}{k} = \frac{1}{\alpha}$}
 			\\
-			\Aboxed{\Vu(x) &= \frac{F_0/\alpha}{1 + \jj Q \left( x - \dfrac{1}{x} \right)}}
+			\Aboxed{\Vu(u) &= \frac{F_0/\alpha}{1 + \jj Q \left( u - \dfrac{1}{u} \right)}}
 			\qed
 		\end{DispWithArrows*}
 	}%

@@ -278,8 +278,8 @@ ax.yaxis.set_label_coords(0, 1.02)
 
 # ax.xaxis.set_major_locator(plt.FixedLocator([1e3, 1e4, 1e5, 1e6]))
 
-ax.set_xticks([wr, w0])
-ax.set_xticklabels(["$\\omega_r$", "$\\omega_0$"])
+ax.set_xticks([w0])
+ax.set_xticklabels(["$\\omega_0$"])
 ax.set_yticks([np.pi * (k / 4) for k in range(-2, 3, 1)])
 ax.set_yticklabels(
     [

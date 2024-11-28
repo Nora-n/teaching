@@ -225,7 +225,9 @@ import matplotlib.pyplot as plt
 # print(f"lambda = {lbd:.3e} s⁻¹")
 
 # E7 test
-Q = 3
-x = np.linspace(1e-3,5, 1000)
-plt.plot(x, -np.arctan(x/(Q*(1-x**2))))
+Qlist = np.linspace(1.1 / np.sqrt(2), 3, 10)
+xlist = np.sqrt(1 - 1 / (2 * Qlist**2))
+Ulist = Qlist / np.sqrt(1 - 1 / (4 * Qlist**2))
+plt.scatter(xlist, Ulist, s=100, c="firebrick")
+plt.scatter([1 for Q in Qlist], Qlist, s=100, c="cornflowerblue")
 plt.show()

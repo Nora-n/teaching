@@ -3,42 +3,45 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
-\toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{student}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{10}
 
-\chapter{Cin\'etique d'une r\'eaction de saponification par conductim\'etrie}
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
+\chapter{\cswitch{Correction du TP}{Cin\'etique d'une réaction de saponification par conductim\'etrie}}
 
 \enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoirs}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Relever les indications sur le risque associé au prélèvement, au
-				      mélange et au stockage des produits chimiques et adopter une attitude
-				      responsable lors de leur utilisation.
-				\item Suivi cinétique de transformations chimiques.
-				\item Suivi en continu d'une grandeur physique.
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-				\item Établir une loi de vitesse à partir du suivi temporel d’une
-				      grandeur physique.
-				\item Exploiter les résultats d’un suivi temporel de concentration pour
-				      déterminer les caractéristiques cinétiques d’une réaction.
-				\item Proposer et mettre en œuvre des conditions expérimentales
-				      permettant la simplification de la loi de vitesse.
-				\item Déterminer la valeur d’une énergie d’activation.
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+	\begin{tcn}[sidebyside, sidebyside align=top](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Relever les indications sur le risque associé au prélèvement, au
+			      mélange et au stockage des produits chimiques et adopter une attitude
+			      responsable lors de leur utilisation.
+			      % \item Suivi cinétique de transformations chimiques.
+			\item Suivi en continu d'une grandeur physique.
+			\item Déterminer la valeur d’une énergie d’activation.
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Établir une loi de vitesse à partir du suivi temporel d’une
+			      grandeur physique.
+			\item Exploiter les résultats d’un suivi temporel de concentration pour
+			      déterminer les caractéristiques cinétiques d’une réaction.
+			\item Proposer et mettre en œuvre des conditions expérimentales
+			      permettant la simplification de la loi de vitesse.
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -88,7 +91,7 @@
 
 	La conductivité $\sigma$ de la solution peut s'exprimer par la \textbf{loi
 		de Kohlrausch}, exprimée sous une forme avec la chage de l'ion~:
-	\begin{tcb}(prop)'l'{Loi de \textsc{Kohlrausch}}
+	\begin{tcb}(loi)'l'{de \textsc{Kohlrausch}}
 		\[\boxed{\sigma = \sum_{i} \lambda_i \left|z_i\right| [{\rm X}_i]}\]
 		\begin{itemize}
 			\item $\lambda_i$ la conductivité molaire ionique de l'ion ${\rm X}_i$ (en
@@ -98,12 +101,12 @@
 		\end{itemize}
 	\end{tcb}
 
-	\begin{tcb}(impo)'l'{Important}
+	\begin{tcb}(impo)'l'{Conductimétrie}
 		\begin{center}
 			\bfseries
 			La conductivité $\sigma$ de la solution prend en compte tous les ions
 			présents dans la solution. Il faut donc faire l'inventaire des ions en
-			solution avec soin.
+			prenant en compte les éventuels ions spectateurs.
 		\end{center}
 	\end{tcb}
 
@@ -122,7 +125,7 @@
 \enonce{%
 	\subsection{Données numériques utiles}
 
-	\begin{tcb}(data)<lfnt>'l'{Données}
+	\begin{tcn}(data)<lfnt>'l'{Données}
 		\begin{minipage}{0.50\linewidth}
 			\centering
 			\begin{tabular}{lccc}
@@ -156,7 +159,7 @@
 			\item Densité de l'éthanoate d'éthyle pur~: $d = \num{0.90}$~;
 			\item Constante des gaz parfaits~: $R = \SI{8.314}{J.K^{-1}.mol^{-1}}$
 		\end{itemize}
-	\end{tcb}
+	\end{tcn}
 }
 \setcounter{subsection}{1}
 
@@ -314,6 +317,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	tracer, connaissant $x(t)$, pour vérifier que la réaction est bien
 	d'ordre 2~?
 }{%
+	\vspace{-15pt}
 	\label{q:reglin}
 	\begin{align*}
 		v = k (c_0-x)^{2}            & = - \dv{(c_0-x)}{t} = \dv{x}{t}
@@ -391,7 +395,9 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 }
 
 \QR{%
-	Exprimer en fonction des concentrations des différentes espèces X$_i$
+	Dresser un tableau à 3 colonnes recensant la concentration des ions présents
+	en solution à l'instant $t=0$, $t$ quelconque et $t\to\infty$. Exprimer alors
+	en fonction des concentrations des différentes espèces X$_i$
 	et de leurs conductivités molaires ioniques $\lambda_i$, la
 	conductivité $\sigma_0$ de la solution à l'instant initial, celle
 	$\sigma_\infty$ à un temps infini, et enfin $\sigma$ à l'instant $t$.
@@ -400,50 +406,47 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	\[
 		\boxed{\sigma = \sum_{i} \lambda_i [\ce{X}_i]}
 	\]
-	\begin{itemize}
-		\item À $t=0$, on a
-		      \begin{table}[h]
-			      \centering
-			      \caption{Espèces présentes.}
-			      \begin{tabularx}{\linewidth}{YYYYYY}
-				      \toprule
-				      \multicolumn{2}{c}{$t=0$} &
-				      \multicolumn{2}{c}{$t$}   &
-				      \multicolumn{2}{c}{$t \ra \infty$}
-				      \\
-				      \cmidrule(lr){1-2}
-				      \cmidrule(lr){3-4}
-				      \cmidrule(lr){5-6}
-				      \ce{Na+}                  & $c_0$     &
-				      \ce{Na+}                  & $c_0$     &
-				      \ce{Na+}                  & $c_0$
-				      \\
-				      \ce{HO-}                  & $c_0$     &
-				      \ce{HO-}                  & $c_0 - x$ &
-				      \ce{HO-}                  & 0
-				      \\
-				      \ce{RCOO-}                & 0         &
-				      \ce{RCOO-}                & $x$       &
-				      \ce{RCOO-}                & $c_0$
-				      \\
-				      \midrule
-				      \multicolumn{2}{c}{
-					      $\sigma_0 =
-						      (\lambda_{\ce{HO-}} + \lambda_{\ce{Na+}})c_0$
-				      }                         &
-				      \multicolumn{2}{c}{
-					      $\sigma(t) =
-						      \sigma_0 + (\lambda_{\ce{RCOO-}} - \lambda_{\ce{HO-}})x$
-				      }                         &
-				      \multicolumn{2}{c}{
-					      $\sigma_{\infty} =
-						      (\lambda_{\ce{RCOO-}} + \lambda_{\ce{Na+}})c_0$
-				      }                                       \\
-				      \bottomrule
-			      \end{tabularx}
-			      \label{tab:sigma}
-		      \end{table}
-	\end{itemize}
+	\begin{table}[h]
+		\centering
+		\caption{Espèces présentes.}
+		\begin{tabularx}{\linewidth}{YYYYYY}
+			\toprule
+			\multicolumn{2}{c}{$t=0$} &
+			\multicolumn{2}{c}{$t$}   &
+			\multicolumn{2}{c}{$t \ra \infty$}
+			\\
+			\cmidrule(lr){1-2}
+			\cmidrule(lr){3-4}
+			\cmidrule(lr){5-6}
+			\ce{Na+}                  & $c_0$     &
+			\ce{Na+}                  & $c_0$     &
+			\ce{Na+}                  & $c_0$
+			\\
+			\ce{HO-}                  & $c_0$     &
+			\ce{HO-}                  & $c_0 - x$ &
+			\ce{HO-}                  & 0
+			\\
+			\ce{RCOO-}                & 0         &
+			\ce{RCOO-}                & $x$       &
+			\ce{RCOO-}                & $c_0$
+			\\
+			\midrule
+			\multicolumn{2}{c}{
+				$\sigma_0 =
+					(\lambda_{\ce{HO-}} + \lambda_{\ce{Na+}})c_0$
+			}                         &
+			\multicolumn{2}{c}{
+				$\sigma(t) =
+					\sigma_0 + (\lambda_{\ce{RCOO-}} - \lambda_{\ce{HO-}})x$
+			}                         &
+			\multicolumn{2}{c}{
+				$\sigma_{\infty} =
+					(\lambda_{\ce{RCOO-}} + \lambda_{\ce{Na+}})c_0$
+			}                                       \\
+			\bottomrule
+		\end{tabularx}
+		\label{tab:sigma}
+	\end{table}
 }
 
 \QR{%
@@ -575,7 +578,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 			      \end{minipage}
 			\item Conductimètre.
 			\item Agitateur magnétique.
-			\item Thermomètre, chronomètre, ordinateur avec regressi.
+			\item Thermomètre, chronomètre, ordinateur avec Regressi.
 		\end{itemize}
 	\end{tcb}
 }
@@ -591,10 +594,10 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 }
 
 \enonce{%
-	\begin{tcb}(rapp){Rappel}
+	\begin{tcb}(impo){Agitation}
 		\centering
 		Il est préférable de faire des mesures de conductimétrie sans
-		agitation. Mais ici ce n'est pas possible car il faut que les
+		agitation, mais ici ce n'est pas possible car il faut que les
 		concentrations soient uniformes en solution. Pour que la
 		perturbation soit moindre, il ne faut pas changer la vitesse
 		d'agitation au cours de la réaction.
@@ -666,7 +669,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 
 \enonce{%
 	Activité \texttt{Capytale}\ftn{\href{https://capytale2.ac-paris.fr/web/c/1d22-2446511}{1d22-2446511}} disponible.
-	\begin{tcb}[breakable](expe){}
+	\begin{tcb}[breakable](expe){Suivi cinétique}
 		\begin{enumerate}
 			\item Prélever $\SI{50}{mL}$ de soude mesurés avec une fiole jaugée et
 			      mettre en place le dispositif d'agitation et le  régler pour que la

@@ -1,199 +1,217 @@
 \documentclass[a4paper, 10pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \graphicspath{{./figures/}}
-% \newcommand{\splus}{\raisebox{.2\height}{\scalebox{.8}{+}}}
-% \newcommand{\sminu}{\raisebox{.4\height}{\scalebox{.8}{-}}}
+\addto\captionsfrench{\renewcommand{\figurename}{Fig.}}
 
 \makeatletter
-\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\renewcommand{\@chapapp}{Contrôle de connaissances}
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
 % \toggletrue{corrige}
 \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
 
 \begin{document}
 \setcounter{chapter}{9}
 
-\chapter{Électrocinétique en RSF \ifstudent{ (12')}}
+\settype{enon}
+\settype{solu}
+
+\chapter{Électrocinétique en RSF\ifstudent{~(15')}}
 
 \begin{enumerate}[label=\sqenumi]
-	\nitem{1}%
-	Convertir les signaux suivants en complexes sous la forme «~amplitude complexe
-	$\times$ exponentielle temporelle~»~:
-	\begin{DispWithArrows*}[format=rLlCl]
-		e(t) = E_0\cos(\wt)
-		\quad & ; \quad
-		s(t) = S\cos(\wt + \f)
-		\quad & ; \quad
-		u(t) = U\sin(\wt)
-		\\
-		\wsw{
-			\eu(t) = E_0\exr^{\jwt}
-		}
-		\quad & ; \quad
-		\wsw{
-			\xul{s}(t) = S\exr^{\jj (\wt+\f)} = \xul{S}\exr^{\jwt}
-		}
-		\quad & ; \quad
-		\wsw{
-			\uu(t) = U\exr^{\jj (\wt - \frac{\pi}{2})} = \Uu\exr^{\jwt}
-		}
-		\\
-		&
-		\wsw{
-			\qav \xul{S} = S\exr^{\jj \f}
-		}
-		&
-		\wsw{
-			\qav \Uu = U\exr^{-\jj \frac{\pi}{2}}
-		}
-	\end{DispWithArrows*}
-	\nitem{2}%
-	Donner et démontrer la relation du pont diviseur de tension pour
-	deux impédances $\Zu_1$ et $\Zu_2$ en série d'une part, et la relation du pont
-	diviseur de courant pour deux impédances en parallèle d'autre part.\\
-	\begin{isd}[]
-		\begin{center}
-			\sswitch{
-				\includegraphics[height=3cm, draft=true]{zserie}
-			}{
-				\includegraphics[height=3cm]{zserie}
-			}
-			\captionof{figure}{Association série}
-		\end{center}
-		\wsw{
-			\[
-				\Iu = \frac{\Uu}{\Zu\ind{brch}} = \frac{\Uu_k}{\Zu_k}
-				\Lra
-				\boxed{
-					\Uu_k = \frac{\Zu_k}{\Zu\ind{brch}}\Uu\ind{brch}
-				}
-			\]
-		}
-		\tcblower
-		\begin{center}
-			\sswitch{
-				\includegraphics[height=3cm, draft=true]{zpara}
-			}{
-				\includegraphics[height=3cm]{zpara}
-			}
-			\captionof{figure}{Association parallèle}
-		\end{center}
-		\wsw{
-			\[
-				\Uu = \Zu\ind{para}\Iu\ind{para} = \Zu_1\Iu_1
-				\Lra
-				\boxed{
-					\Iu_k = \frac{\Zu\ind{para}}{\Zu_k}\Iu\ind{para}
-				}
-			\]
-		}
-	\end{isd}
-	\nitem{3}%
-	% \noindent
-	\begin{minipage}[t]{.65\linewidth}
-		Pour un système excité par un signal d'entrée $e(t) = E_0\cos(\wt)$,
-		indiquer ce qu'est le RSF et la forme réelle des signaux de sortie $s(t)$.
-		Application au circuit RC série en RSF~: transformez-le en RSF, puis
-		déterminer $\Uu_C(\w)$ \textbf{par un pont diviseur de tension} et en
-		déduire $U_C(\w)$ et $\f_C(\w)$.
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{.30\linewidth}
-		\vspace{-12pt}
-		\begin{center}
-			\sswitch{
-				\includegraphics[width=.8\linewidth]{rc_rsf}
-			}{
-				\includegraphics[width=.8\linewidth]{rc_rsf-cplx}
-			}
-			\vspace{-10pt}
-			\captionof{figure}{RC en RSF.}
-		\end{center}
-	\end{minipage}
-	\\
-	\wsw{
-		Le régime sinusoïdal forcé correspond au régime temporel pour lequel le
-		système est décrit par la solution \textbf{particulière} de son équation
-		différentielle, après que la solution homogène soit nulle. On suppose alors
-		\[
-			s(t) = S\cos(\wt + \f)
-		\]
-		Sur le RC série, on applique un PdT sur les amplitudes complexes~:
-		\begin{gather*}
-			\Uu_C =
-			\frac{\frac{1}{\jcw}}{R + \frac{1}{\jcw}}E_0 =
-			\frac{1}{1 + \jj RC\w}E_0
-			% \Ra
-			\\\Ra
-			U_C = \abs{\Uu_C}
-			\Lra
-			\boxed{
-				U_C = \frac{E_0}{\sqrt{1+(RC\w)^2}}
-			}
-			\Ra
-			% \\\Ra
-			\f_C = \arg{\Uu_C}
-			\Lra
-			\boxed{
-				\f_C = -\arctan(RC\w)
-			}
-			\quad \text{car} \Re(1 + \jj RC\w) > 0
-		\end{gather*}
-	}
-	\nitem{4}%
-	Définir ce qu'est la résonance avec vos propres mots. Citer sans détailler un
-	exemple du quotidien \textbf{autre que la balançoire}. Indiquer comment se
-	définit mathématiquement la résonance pour un système, et définissez
-	mathématiquement ce qu'est la bande passante en donnant les mots de
-	vocabulaire nécessaires et à l'aide d'un schéma.
-	\smallbreak
-	\begin{isd}[righthand ratio=.3]
-		\wsw{
-			La résonance survient lorsqu'un système extérieur apporte de l'énergie
-			à un système oscillant à sa fréquence «~naturelle~», dite «~de
-			résonance~». Le système oscillant a alors une amplitude de variation
-			maximale. Exemple~: instrument à vent. Avec $X(\w)$ l'amplitude réel du
-			signal excité, on a
-			\begin{align*}
-				\text{résonance}
-				\quad & \Lra \quad
-				\exists \w_r \neq (0,+\infty)~:~ X(\w_r) = X_{\max}
-				\\
-				\text{bande passante}
-				\quad & \triangleq \quad
-				\{\w ~|~ X(\w) \geq X_{\max}/\sqrt{2}\}
-			\end{align*}
-			\begin{itemize}
-				\item $\w_1$ et $\w_2$ les \textbf{pulsations de coupure}~;
-				\item $\D\w = \abs{\w_2 - \w_1}$ la \textbf{bande passante}~;
-				\item $\w_r/\D\w$ l'\textbf{acuité de la résonance}.
-			\end{itemize}
-		}
-		\vspace{-15pt}
-		\tcblower
-		\begin{center}
-			\sswitch{
-				\includegraphics[width=\linewidth, draft=true]{bandepass_moche}
-			}{
-				\includegraphics[width=\linewidth]{bandepass_moche}
-			}
-			\vspace{-15pt}
-			\captionof{figure}{Bande passante}
-		\end{center}
-	\end{isd}
-	\vspace*{-30pt}
-	\ifstudent{
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[anchor=north west, align=left]
-			at ([shift={(1.4cm,0)}]current page.north west)
-			{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
-			\node[anchor=north east, align=right]
-			at ([shift={(-1.5cm,-17pt)}]current page.north east)
-			{\Large\bfseries Note~:\hspace{1cm}/10};
-		\end{tikzpicture}
-	}
+	\item[n]{5}%
+	      Sous quelle forme mathématique s'exprime le signal d'un système en RSF~?
+	      Présenter alors le passage en complexes et l'intérêt de cette forme pour
+	      la dérivation et l'intégration.
+	      \smallbreak
+	      \begin{isd}
+		      \vspace{-15pt}
+		      \psw{%
+			      \begin{DispWithArrows*}[groups]
+				      y(t) &\stm{=} Y_0 \cos(\wt+\f)
+				      % \Arrow{Passage $\Cb$}
+				      \\\Lra
+				      \yu(t) &\stm{=} Y_0 \exr^{\jj (\wt+\f)}
+				      % \Arrow{Séparation de $t$}
+				      % \\\Lra
+				      % \yu(t) &= \underbracket[1pt]{Y_0\exr^{\jj
+				      % \f}}_{=\cte}\cdot\exr^{\jwt}
+				      % \Arrow{Réécriture}
+				      \\\Lra
+				      \Aboxed{\yu(t) &\stm{=} \Yu\exr^{\jwt}}
+				      \quad \text{avec} \quad
+				      \boxed{\Yu = Y_0\exr^{\jj \f}}
+				      % \Ra
+				      % \left\{
+				      % \begin{array}{ll}
+				      % Y_0 & = \abs{\Yu}
+				      % \\
+				      % \f & = \arg*{\Yu}
+				      % \end{array}
+				      % \right.
+			      \end{DispWithArrows*}
+		      }%
+		      \vspace{-15pt}
+		      \tcblower
+		      \psw{%
+			      \begin{gather*}
+				      \dv{\yu}{t} = \dv{\Yu\exr^{\jwt}}{t} = \jw \cdot \Yu\exr^{\jwt}
+				      \Lra
+				      \boxed{\dv{\yu}{t} \stm{=} \jw \yu(t)}
+				      \\
+				      \int \yu = \int \Yu\exr^{\jwt} = \frac{\Yu\exr^{\jwt}}{\jw}
+				      \Lra
+				      \boxed{\int \yu(t) \stm{=} \frac{\yu(t)}{\jw}}
+			      \end{gather*}
+		      }%
+		      \vspace{-15pt}
+	      \end{isd}
+	\item[n]{6}%
+	      Après avoir fait les schémas correspondant, démontrer la relation du
+	      pont diviseur de tension pour deux impédances $\Zu_1$ et $\Zu_2$ en
+	      série d'une part, et la relation du pont diviseur de courant pour deux
+	      impédances en parallèle d'autre part.
+	      \smallbreak
+	      \begin{isd}[]
+		      \begin{center}
+			      \sswitch{%
+				      \includegraphics[height=3cm, draft=true]{zserie}
+			      }{%
+				      \includegraphics[height=3cm]{zserie}
+			      }%
+			      \captionof{figure}{Association série \protect\pt{1}}
+		      \end{center}
+		      \psw{%
+			      \[
+				      \Iu \stm{=} \frac{\Uu\ind{brch}}{\Zu\ind{brch}} = \frac{\Uu_k}{\Zu_k}
+				      \Lra
+				      \boxed{
+					      \Uu_k \stm{=} \frac{\Zu_k}{\Zu\ind{brch}}\Uu\ind{brch}
+				      }%
+			      \]
+		      }%
+		      \tcblower
+		      \begin{center}
+			      \sswitch{%
+				      \includegraphics[height=3cm, draft=true]{zpara}
+			      }{%
+				      \includegraphics[height=3cm]{zpara}
+			      }%
+			      \captionof{figure}{Association parallèle \protect\pt{1}}
+		      \end{center}
+		      \psw{%
+			      \[
+				      \Uu \stm{=} \Zu\ind{para}\Iu\ind{para} = \Zu_1\Iu_1
+				      \Lra
+				      \boxed{
+					      \Iu_k \stm{=} \frac{\Zu\ind{para}}{\Zu_k}\Iu\ind{para}
+				      }%
+			      \]
+		      }%
+	      \end{isd}
+	\item[n]{9}%
+	      ~
+	      \smallbreak
+	      \vspace{-25pt}
+	      \begin{isd}[righthand ratio=.25, interior hidden, sidebyside align=top]
+		      On étudie un circuit RLC série, soumis à une tension sinusoïdale
+		      $e(t) = E_0 \cos(\wt)$. \textbf{Représenter le circuit} en complexes,
+		      puis déterminer l'\textbf{amplitude complexe} $\Iu$ et la mettre sous
+		      la forme $\Iu = \frac{E_0/R}{1+\jj Q \pa{x-\frac{1}{x}}}$, où $x =
+			      \w/\w_0$ est la pulsation réduite, et $\w_0$ et $Q$ des constantes
+		      \textbf{à identifier} et exprimer en fonction de $R$, $L$ et $C$.
+		      Donner son \textbf{amplitude réelle}. Déterminer sa \textbf{pulsation
+			      de résonance}.
+		      \tcblower
+		      \begin{center}
+			      \sswitch{%
+				      \includegraphics[width=\linewidth, draft=true]{rlc_cplx}
+			      }{%
+				      \includegraphics[width=\linewidth]{rlc_cplx}
+			      }%
+			      \captionof{figure}{Circuit RLC \protect\pt{1}}
+		      \end{center}
+		      \vspace{-15pt}
+	      \end{isd}
+	      \smallbreak
+	      \noindent
+	      \begin{isd}[sidebyside align=top]
+		      \psw{%
+			      \begin{DispWithArrows*}[fleqn, mathindent=0pt]
+				      E_0 & \stm{=}
+				      \bigg( R + \jlw + \frac{1}{\jcw} \bigg)\Iu
+				      \Arrow{Isole\\$1/\jj = -\jj$}
+				      \\\Lra
+				      \Iu & =
+				      \frac{E_0}{R + \jj \left( L\w - \dfrac{1}{C\w} \right)}
+				      \Arrow{Forme\\canonique}
+				      \\\Lra
+				      \Iu & \stm{=} \frac{E_0/R
+				      }{
+					      1 + \jj \bigg(
+					      \underbracket[1pt]{\dfrac{L}{R}}_{\mathclap{=
+							      \frac{Q}{\w_0}\pt{1}}}\w
+					      -
+					      \underbracket[1pt]{\dfrac{1}{RC}}_{\mathclap{= Q\w_0}}
+					      \dfrac{1}{\w}
+					      \bigg)
+				      }
+				      \\\Lra
+				      \frac{\frac{1}{RC}}{\frac{L}{R}} =
+				      \frac{Q\w_0}{\frac{Q}{\w_0}}
+				      \quad & \stm{\text{et}} \quad
+				      \frac{L}{R} \times \frac{1}{RC} = Q^2
+			      \end{DispWithArrows*}
+		      }%
+		      \tcblower
+		      \psw{%
+			      \begin{align*}
+				      % \Lra
+				      % \frac{\frac{1}{RC}}{\frac{L}{R}} =
+				      % \frac{Q\w_0}{\frac{Q}{\w_0}}
+				      % \quad & \stm{\text{et}} \quad
+				      % \frac{L}{R} \times \frac{1}{RC} = Q^2
+				      % \\\Lra
+				      % \w_0{}^2 = \frac{1}{LC}
+				      % \quad & \text{et} \quad
+				      % Q^2 = \frac{1}{R^2} \frac{L}{C}
+				      \Lra
+				      \boxed{\w_0 = \frac{1}{\sqrt{LC}}}
+				      \quad & \stm{\text{et}} \quad
+				      \boxed{Q = \frac{1}{R}\sqrt{\frac{L}{C}}}
+				      \\\Ra
+				      \boxed{\Iu = \frac{E_0/R}{1+\jj Q \pa{x-\frac{1}{x}}}}
+				      \quad & \stm{\text{et}} \quad
+				      \boxed{I = \frac{E_0/R}{\sqrt{1 + Q^2 \pa{x-\frac{1}{x}}^2}}}
+				      \\\Ra
+				      I(x_r) \stm{=} I_{\max}
+				            & \Lra
+				      1 + \underbracket[1pt]{Q^2\left( x_r - \frac{1}{x_r} \right)^2}_{\geq 0}
+				      \quad \text{minimal}
+				      \\\Lra
+				      Q^2\left( x_r - \frac{1}{x_r} \right)^2 = 0
+				            & \Lra
+				      x_r = \frac{1}{x_r}
+				      \\\Lra
+				      \boxed{x_r = 1}
+				      \quad & \text{ou} \quad
+				      \boxed{\w_r = \w_0} \quad \pt{1}
+			      \end{align*}
+		      }%
+	      \end{isd}
+	      % \vspace*{-30pt}
+	      \ifstudent{
+		      \begin{tikzpicture}[remember picture, overlay]
+			      \node[anchor=north west, align=left]
+			      at ([shift={(1.4cm,0)}]current page.north west)
+			      {\\[5pt]\Large\bfseries \textsc{Nom}~:\\[10pt]\Large\bfseries
+				      Prénom~:};
+			      \node[anchor=north east, align=right]
+			      at ([shift={(-1.5cm,-17pt)}]current page.north east)
+			      {\Large\bfseries Note~:\hspace{1cm}/20};
+		      \end{tikzpicture}
+	      }%
 \end{enumerate}
 \end{document}

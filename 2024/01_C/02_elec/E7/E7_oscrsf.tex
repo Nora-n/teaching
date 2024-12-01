@@ -224,26 +224,37 @@ place d'importance par l'émergence d'une propriété remarquable~: celle de la
 	\vspace{-15pt}
 \end{tcb}
 
+% TODO: Démo modifiée pour être plus explicite sur l'identification, vérifier
+%  que ça passe.
+
 \begin{tcb*}[breakable](demo){Amplitude complexe $\Iu$}
 	Pour étudier le comportement de l'intensité, on va comme d'habitude se
 	ramener à une seule maille avec une impédance équivalente
 	% \[\Zu\ind{eq} = \Zu_R + \Zu_L + \Zu_C\]
 	\smallbreak
+	\vspace{-15pt}
 	\begin{isd}[righthand ratio=.30]
-		\psw{
+		\psw{%
 			\begin{DispWithArrows*}[fleqn, mathindent=5pt]
 				E_0 = \Zu\ind{eq}\Iu & =
 				\left( R + \jlw + \frac{1}{\jcw} \right)\Iu
-				\Arrow{$1/\jj = -\jj$}
+				\Arrow{Isole\\$1/\jj = -\jj$}
 				\\\Lra
 				\Iu                    & =
 				\frac{E_0}{R + \jj \left( L\w - \dfrac{1}{C\w} \right)}
 				\Arrow{Forme canonique}
 				\\\Lra
 				\Iu                    & =
-				\frac{E_0/R}{1 + \jj \left( \dfrac{L}{R}\w  - \dfrac{1}{RC\w}\right)}
+				\frac{E_0/R
+				}{
+					1 + \jj
+					\bigg(
+					\underbracket[1pt]{\dfrac{L}{R}}_{\mathclap{= \frac{Q}{\w_0}}}\w -
+					\underbracket[1pt]{\dfrac{1}{RC}}_{\mathclap{=Q\w_0}} \dfrac{1}{\w}
+					\bigg)
+				}
 			\end{DispWithArrows*}
-		}
+		}%
 		\vspace{-15pt}
 		\tcblower
 		\begin{center}
@@ -257,31 +268,27 @@ place d'importance par l'émergence d'une propriété remarquable~: celle de la
 		\end{center}
 	\end{isd}
 	\vspace{-15pt}
-	\begin{gather*}
-		\beforetext{On identifie alors~:}
-		\psw{
+	\psw{%
+		\begin{align*}
+			% \beforetext{On identifie alors~:}
 			\frac{L}{R} = \frac{Q}{\w_0}
-			\qet
+			\quad & \text{et} \quad
 			\frac{1}{RC} = Q\w_0
-		}
-		\\\Lra
-		\psw{%
+			\\\Lra
 			\frac{\frac{1}{RC}}{\frac{L}{R}} =
 			\frac{Q\w_0}{\frac{Q}{\w_0}}
 			\Lra
 			\w_0{}^2 = \frac{1}{LC}
-			\qet
+			\quad & \text{et} \quad
 			\frac{L}{R} \times \frac{1}{RC} = Q^2
 			\Lra
 			Q^2 = \frac{1}{R^2} \frac{L}{C}
-		}
-		\\\Lra
-		\psw{%
+			\\\Lra
 			\boxed{\w_0 = \frac{1}{\sqrt{LC}}}
-			\qqet
+			\quad & \text{et} \quad
 			\boxed{Q = \frac{1}{R}\sqrt{\frac{L}{C}}}
-		}
-	\end{gather*}
+		\end{align*}
+	}%
 	D'où le résultat.
 	\hqed
 \end{tcb*}

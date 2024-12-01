@@ -2,30 +2,28 @@
 \usepackage{/home/nora/Documents/Enseignement/Prepa/bpep/fichiers_utiles/preambule}
 
 \makeatletter
-\renewcommand{\@chapapp}{Kh\^olles MPSI -- semaine}
-\makeatother
+\renewcommand{\@chapapp}{Khôlles MPSI -- semaine}
 \renewcommand\thechapter{10}
+\makeatother
 
-% \toggletrue{corrige}  % décommenter pour passer en mode corrigé
+% \toggletrue{student}
+% \toggletrue{corrige}
 
 \begin{document}
+
+\settype{enon}
+\settype{solu}
 
 \chapter{Sujet 1\siCorrige{\!\!-- corrig\'e}}
 
 \resetQ
-% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance/}{sujet.tex}
 \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/circuit_RSF_2/}{sujet.tex}
 
 \chapter{Sujet 2\siCorrige{\!\!-- corrig\'e}}
 
-\resetQ
-% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/Colle/circuit_RSF_2/}{sujet.tex}
-\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/circuit_RSF_3/}{sujet.tex}
-
-\chapter{Sujet 3\siCorrige{\!\!-- corrig\'e}}
-
-\resetQ
+% \resetQ
 % \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance_equivalente/}{sujet.tex}
+\resetQ
 \section{Oscillateur à quartz}
 \enonce{%
 	\begin{minipage}{0.60\linewidth}
@@ -47,35 +45,46 @@
 }{%
 	On calcule l'association en série de $C$ et $L$ d'abord, puis on fait
 	l'association en parallèle de ce dipôle avec $C_0$~:
-	\begin{gather*}
-		\Zu\ind{eq, 1} = \frac{1}{\jj C\w} + \jj L \w
-	\end{gather*}
-	D'où
-	\begin{align*}
-		\Zu
-		 & = \frac{1}{\Yu_{C_0} + \Yu\ind{eq, 1}}                         \\
-		\Lra
-		\Zu
-		 & = \frac{1}{\jj C_0\w + \dfrac{1}{\frac{1}{\jj C\w} + \jj L\w}}
-		\times
-		\frac{\frac{1}{\jj C\w} + \jj L\w}{\frac{1}{\jj C\w} + \jj
-		L\w}                                                              \\
-		\Lra
-		\Zu
-		 & = \frac{\frac{1}{\jj C\w} + \jj L\w}{1 + \frac{C_0}{C} -
-			LC_0\w^2}
-		\times
-		\frac{\jj C\w}{\jj C\w}                                           \\
-		\Lra
-		\Zu
-		 & = \frac{1 - LC\w^2}{\jj C\w + \jj C_0\w -\jj LCC_0\w^3}        \\
-		\Lra
-		\Zu
-		 & = -\jj \frac{1 - LC\w^2}{(C+C_0)\w - LCC_0\w^3}                \\
-		\Lra
-		\Aboxed{\Zu
-		 & = \jj \frac{LC\w^2 - 1}{\w\left((C+C_0) - LCC_0\w^2\right)}}
-	\end{align*}
+	\begin{center}
+		\includegraphics[width=\linewidth]{quartz_equiv}
+	\end{center}
+	\begin{isd}
+		\vspace{-25pt}
+		\begin{align*}
+			\Zu\ind{eq, 1} & = \frac{1}{\jj C\w} + \jj L \w
+			\\\beforetext{D'où}
+			\Zu
+			               & = \frac{1}{\Yu_{C_0} + \Yu\ind{eq, 1}}
+			\\\Lra
+			\Zu
+			               & = \frac{1}{\jj C_0\w + \dfrac{1}{\frac{1}{\jj C\w} + \jj L\w}}
+			\times
+			\frac{\frac{1}{\jj C\w} + \jj L\w}{\frac{1}{\jj C\w} + \jj
+				L\w}
+			\\\Lra
+			\Zu
+			               & = \frac{\frac{1}{\jj C\w} + \jj L\w}{1 + \frac{C_0}{C} -
+				LC_0\w^2}
+			\times
+			\frac{\jj C\w}{\jj C\w}
+		\end{align*}
+		\tcblower
+		\vspace{-25pt}
+		\begin{align*}
+			\Lra
+			\Zu
+			    & = \frac{1 - LC\w^2}{\jj C\w + \jj C_0\w -\jj LCC_0\w^3}
+			\\\Lra
+			\Zu
+			    & = -\jj \frac{1 - LC\w^2}{(C+C_0)\w - LCC_0\w^3}
+			\\\Lra
+			\Aboxed{%
+			\Zu & =
+				\jj \frac{LC\w^2 - 1}{\w\left((C+C_0) - LCC_0\w^2\right)}
+			}%
+		\end{align*}
+	\end{isd}
+	\vspace{-25pt}
 }
 
 \QR{%
@@ -96,14 +105,14 @@
 	$C_0$ (les inverses des capacités s'ajoutent en série). \smallbreak
 	À cette pulsation (dite «~de résonance~», cf.\ chapitre suivant), la
 	bobine et les condensateurs se chargent et déchargent alternativement,
-	l'énergie arrivant dans le dipôle est piégée et n'a pas transmise au
+	l'énergie arrivant dans le dipôle est piégée et n'est pas transmise au
 	reste du circuit, comme le fait un interrupteur ouvert.
 }
 
 \QR{%
 	Tracer l'allure de $\abs{\Zu(\w)}$.
 }{%
-	\begin{minipage}{0.60\linewidth}
+	\begin{minipage}[t]{0.55\linewidth}
 		On regarde les cas limites à très haute et très basse fréquence~:
 		\begin{gather*}
 			\abs{\Zu} \xrightarrow[\w\ra\infty]{} 0
@@ -116,7 +125,8 @@
 		donc l'impédance totale est celle d'un fil~: 0.
 	\end{minipage}
 	\hfill
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}[t]{0.45\linewidth}
+		\vspace{-10pt}
 		\begin{center}
 			\includegraphics[width=\linewidth]{exo8_solve-clean}
 		\end{center}
@@ -132,12 +142,25 @@
 	figure précédente.
 }
 
+\chapter{Sujet 3\siCorrige{\!\!-- corrig\'e}}
+
+% \resetQ
+% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/Colle/circuit_RSF_2/}{sujet.tex}
+\resetQ
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/circuit_RSF_3/}{sujet.tex}
+
 \chapter{Sujet 4\siCorrige{\!\!-- corrig\'e}}
 
 \resetQ
 \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/circuits_equivalents_en_RSF/}{sujet.tex}
-% \resetQ
-% \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance_2/}{sujet.tex}
+
+\chapter{Sujet 5\siCorrige{\!\!-- corrig\'e}}
+
+\resetQ
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance_2/}{sujet.tex}
+
+\resetQ
+\subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance/}{sujet.tex}
 
 % \resetQ
 % \subimport{/home/nora/Documents/Enseignement/Prepa/bpep/exercices/TD/impedance_reellee/}{sujet.tex}

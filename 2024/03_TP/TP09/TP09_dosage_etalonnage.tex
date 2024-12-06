@@ -140,14 +140,14 @@ La conductivité $\sigma$ de la solution peut alors s'exprimer par la \textbf{lo
 	\end{itemize}
 \end{tcb}
 
-\begin{tcb}(impo){Attention}
+\begin{tcn}(impo){Attention}
 	\begin{center}
 		\bfseries
 		La conductivité $\sigma$ de la solution prend en compte tous les ions
 		présents dans la solution. Il faut donc faire l'inventaire des ions en
 		solution avec soin.
 	\end{center}
-\end{tcb}
+\end{tcn}
 
 En supposant que l'on ne fait varier que d'une unique espèce ionique (et donc
 conductrice) dans la solution, on pourra noter $c = [\ce{X}_i]$ la concentration
@@ -201,7 +201,7 @@ d'où le résultat.
 	Pourquoi peut-on suivre le dosage du permanganate par spectrophotométrie~?
 }{%
 	Le permanganate est la seule espèce colorée, permettant de déterminer sa
-	concentration par analyse de l'aborption.
+	concentration par analyse de l'absorption.
 }
 \QR{%
 	\noindent
@@ -262,6 +262,7 @@ d'où le résultat.
 		\end{tabularx}
 	\end{center}
 }{%
+	\leavevmode\vspace*{-15pt}\relax
 	\begin{center}
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabularx}{\linewidth}{|Y|*{4}{|Y}|}\hline
@@ -294,11 +295,11 @@ d'où le résultat.
 	On conserve la quantité de matière pendant la dilution, mais le volume change.
 	Pour avoir $V_1$ et $c_2$ à partir de $c_1$, on aura
 	\[
-		c_1v_1 = c_2V
+		c_1V_1 = c_2V
 		\Lra
 		\boxed{V_1 = \frac{C_2V}{C_1}}
 		\Ra
-		\xul{V_1 = \SI{20}{mL}}
+		\xul{V_1 = \SI{10}{mL}}
 	\]
 	\begin{enumerate}
 		\item Verser le contenu du grand récipient de solution $S_1$ dans le bécher
@@ -402,7 +403,8 @@ d'où le résultat.
 }
 \QR{%
 	À quelle longueur d'onde doit-on travailler ensuite pour avoir un maximum de
-	précision sur la mesure de l'absorbance~?
+	précision sur la mesure de l'absorbance~? Indiquer le tracé sur vos courbes
+	imprimées.
 }{%
 	Pour augmenter la précision de l'appareil et limiter l'incertitude sur les
 	mesures, on se place à la longueur d'onde pour laquelle le coefficient
@@ -478,7 +480,7 @@ d'où le résultat.
 			\num{1.313}            &
 			\num{1.729}            &
 			\num{2.2}              &
-			\num{1.410}
+			\num{1.391}
 			\\\hline
 		\end{tabularx}
 	\end{center}
@@ -517,38 +519,65 @@ d'où le résultat.
 
 \QR{%
 	Déterminer la concentration molaire $c_0$ de la solution $S_0$ en
-	expliquant votre démarche.
+	expliquant votre démarche. Indiquer le tracé sur votre courbe imprimée.
 }{%
-	On mesure $A_0 = \num{1.410}$. On se reporte alors sur la courbe d'étalonnage,
-	et on relève $c_0 = \SI{595.5e-3}{mmol.L^{-1}}$.
+	On mesure $A_0 = \num{1.391}$. On se reporte alors sur la courbe d'étalonnage,
+	et on relève $c_0 = \SI{637e-6}{mmol.L^{-1}}$.
 }
 
 \QR{%
 	En déduire la masse de permanganate de potassium contenue dans un
 	sachet commercial, \textbf{ainsi que son incertitude}.
 }{%
-	On obtient $m_0 = \SI{0.24}{g}$
-	% TODO: démonstration
-	Avec $u(c_0) = \SI{1e-3}{mmol.L^{-1}}$, on obtient $u(m_0) = …$ soit
-	\[
-		\boxed{m_0 = \SI{1\pm1}{g}}
-	\]
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		\boxed{m_0 = c_0MV}
+		\qav
+		\left\{
+		\begin{array}{rcl}
+			c_0 & = & \SI{637e-6}{mol.L^{-1}}
+			\\
+			M   & = & \SI{158}{g.mol^{-1}}
+			\\
+			V   & = & \SI{2.5}{L}
+		\end{array}
+		\right.\\
+		\AN
+		\xul{
+			m_0 = \SI{0.251}{g}
+		}
+		\\\beforetext{Or,}
+		u (m_0) = u (c_0) VM
+		\qav
+		u (c_0) = \SI{57e-5}{mol.L^{-1}}
+		\quad \text{par estimation graphique}
+		\\\AN
+		\xul{u (m_0) = \SI{0.020}{g}}
+		\\\beforetext{Ainsi,}
+		\xul{m_0 = \SI{0.251 \pm 0.020}{g}}
+	\end{gather*}
 }
 
 \QR{%
 	Déterminer l'écart normalisé entre la valeur obtenue et la valeur du
 	fabricant. Conclure.
 }{%
-	$E_N = 17$~?
+	\leavevmode\vspace*{-15pt}\relax
+	\[
+		\boxed{E_N = \frac{\abs{m_0 - m\ind{theo}}}{u (m_0)}}
+		\qquad \AN
+		\xul{E_N = \num{0.05}} < 2
+		\quad \text{donc la mesure et l'annonce sont cohérentes}
+	\]
 }
 
 \subsection{Dosage par conductimétrie}
 \subsubsection{Tracé de la courbe d'étalonnage}
 
 \enonce{%
-	La cellule conductimétrique est constituée de deux lames planes, parallèles, en
-	platine. Le conductimètre mesure la résistance $R$ ou la conductance $G$ de la
-	colonne de solution qui est directement proportionnelle à la conductivité
+	La cellule conductimétrique est constituée de deux lames planes, parallèles,
+	en platine. Le conductimètre mesure la résistance $R$ ou la conductance $G$ de
+	la colonne de solution qui est directement proportionnelle à la conductivité
 	$\sigma$ (notre grandeur d'intérêt).
 }
 
@@ -582,31 +611,32 @@ d'où le résultat.
 \QR<[start=9]>{%
 	Présenter vos conclusions dans un tableau de valeurs.
 }{%
+	\leavevmode\vspace*{-15pt}\relax
 	\begin{center}
 		\renewcommand{\arraystretch}{1.3}
 		\begin{tabularx}{\linewidth}{|Y*{6}{|Y}|}\hline
-			Solution               &
-			$S_2$                  &
-			$S_3$                  &
-			$S_4$                  &
-			$S_5$                  &
-			$S_1$                  &
+			Solution                         &
+			$S_2$                            &
+			$S_3$                            &
+			$S_4$                            &
+			$S_5$                            &
+			$S_1$                            &
 			$S_0$
 			\\\hline
-			$c (\si{mmol.L^{-1}})$ &
-			\num{0.2}              &
-			\num{0.4}              &
-			\num{0.6}              &
-			\num{0.8}              &
-			\num{1.0}              &
+			$c (\si{mmol.L^{-1}})$           &
+			\num{0.2}                        &
+			\num{0.4}                        &
+			\num{0.6}                        &
+			\num{0.8}                        &
+			\num{1.0}                        &
 			\num{0.60}
 			\\\hline
-			$\sigma$               &
-			\num{27.04}            &
-			\num{46.9}             &
-			\num{72.6}             &
-			\num{95.0}             &
-			\num{121.0}            &
+			$\sigma (\si{\micro S.cm^{-1}})$ &
+			\num{27.04}                      &
+			\num{46.9}                       &
+			\num{72.6}                       &
+			\num{95.0}                       &
+			\num{121.0}                      &
 			\num{75.5}
 			\\\hline
 		\end{tabularx}
@@ -620,8 +650,8 @@ d'où le résultat.
 	Proposer un protocole permettant de déterminer la concentration molaire de la
 	solution $S_0$. Vous expliciterez clairement votre démarche.
 }{%
-	On mesure $\sigma_0 = \num{75.5}$. On se reporte alors sur la courbe d'étalonnage,
-	et on relève $c_0 = \SI{222}{mmol.L^{-1}}$.
+	On mesure $\sigma_0 = \SI{75.5}{\micro S.cm^{-1}}$. On se reporte alors sur la
+	courbe d'étalonnage, et on relève $c_0 = \SI{613e-3}{mmol.L^{-1}}$.
 }
 
 \begin{tcb}(expe)<lfnt>{}
@@ -633,13 +663,20 @@ d'où le résultat.
 	En déduire la masse de permanganate de potassium contenue dans un sachet,
 	\textbf{ainsi que son incertitude}.
 }{%
-	solu
+	Comme précédemment, on obtient
+	\[
+		\xul{m_0 = \SI{0.242 \pm 0.020}{g}}
+	\]
 }
 
 \QR{%
 	Déterminer l'écart normalisé sur la mesure et conclure.
 }{%
-	solu
+	Idem~:
+	\[
+		E_N = \num{0.4} < 2
+	\]
+	Les deux valeurs sont bien compatibles.
 }
 
 \section{Conclure}
@@ -647,7 +684,9 @@ d'où le résultat.
 \QR{%
 	Laquelle des deux méthodes vous semble-t-elle la plus précise pour ce dosage~?
 }{%
-	solu
+	Sur cette mesure, la conductimétrie a donné un résultat moins précis~;
+	cependant, il n'est pas clair de conclure quant à la précision de la méthode
+	précisément~: une seule expérience ne peut remplacer une étude sérieuse.
 }
 
 % \section{Complément~: fiche sécurité}

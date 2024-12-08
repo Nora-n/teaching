@@ -225,9 +225,34 @@ import matplotlib.pyplot as plt
 # print(f"lambda = {lbd:.3e} s⁻¹")
 
 # E7 test
-Qlist = np.linspace(1.1 / np.sqrt(2), 3, 10)
-xlist = np.sqrt(1 - 1 / (2 * Qlist**2))
-Ulist = Qlist / np.sqrt(1 - 1 / (4 * Qlist**2))
-plt.scatter(xlist, Ulist, s=100, c="firebrick")
-plt.scatter([1 for Q in Qlist], Qlist, s=100, c="cornflowerblue")
+# Qlist = np.linspace(1.1 / np.sqrt(2), 3, 10)
+# xlist = np.sqrt(1 - 1 / (2 * Qlist**2))
+# Ulist = Qlist / np.sqrt(1 - 1 / (4 * Qlist**2))
+# plt.scatter(xlist, Ulist, s=100, c="firebrick")
+# plt.scatter([1 for Q in Qlist], Qlist, s=100, c="cornflowerblue")
+# plt.show()
+
+Qlist = [0.6, 1 / np.sqrt(2), 1.1 / np.sqrt(2), 1.5, 3]
+xlist = np.linspace(0, 1.5, 100)
+xrdict = {}
+for Q in Qlist:
+    if Q <= 1 / np.sqrt(2):
+        xrdict[Q] = 0
+    else:
+        xrdict[Q] = np.sqrt(Q**2 - 0.5) / Q
+
+
+def f(x: float, Q: float) -> float:
+    X = x**2
+    return (1 - X) ** 2 + X / (Q**2)
+
+
+fdict = {Q: f(xlist, Q) for Q in Qlist}
+ucls = ["firebrick", "orange", "limegreen", "cornflowerblue", "violet"]
+
+for Q, cl in zip(Qlist, ucls):
+    plt.plot(xlist, fdict[Q], color=cl, label=f"$Q = {Q:.2f}$")
+    plt.scatter(xrdict[Q], f(xrdict[Q], Q), color=cl, s=100)
+
+plt.legend()
 plt.show()

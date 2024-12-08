@@ -1,144 +1,212 @@
 \documentclass[a4paper, 10pt, final, garamond]{book}
 \usepackage{cours-preambule}
 \graphicspath{{./figures/}}
+\addto\captionsfrench{\renewcommand{\figurename}{Fig.}}
 
 \makeatletter
-\renewcommand{\@chapapp}{Contr\^ole de connaissances}
+\renewcommand{\@chapapp}{Contrôle de connaissances}
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
 % \toggletrue{corrige}
 \renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{10}
 
-\chapter{Électrocinétique en RSF~: oscillateurs\ifstudent{ (12')}}
+\settype{enon}
+\settype{solu}
+
+\chapter{Électrocinétique en RSF~: oscillateurs et filtrage\ifstudent{~(15')}}
 
 \begin{enumerate}[label=\sqenumi]
-	\nitem{20}%
-	Étude de la résonance en intensité pour le circuit RLC série en RSF~:
-	établir l'expression de $\Iu$, donner son amplitude réelle $I(\w)$.
-	Déterminer sa pulsation de résonance. Étudier sa
-	phase. Tracer $I(\w)$ et $\arg*{\Iu(\w)}$ pour plusieurs facteurs de qualité
-	(au moins 2).
-	\smallbreak
-	\noindent
-	\begin{minipage}[]{\linewidth}
-		\centering
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{rlc_sinu_zeq}
-		}{
-			\includegraphics[width=\linewidth]{rlc_sinu_zeq}
-		}
-		\vspace{-15pt}
-		\captionof{figure}{Circuit RLC série et équivalences.}
-	\end{minipage}
-	\begin{isd}[sidebyside align=top]
-		\tcbsubtitle{\fatbox{Amplitudes complexe et réelle}}
-		\wsw{
-			\begin{DispWithArrows*}[fleqn, mathindent=2pt]
-				E_0 = \Zu\ind{eq}\Iu & =
-				\left( R + \jlw + \frac{1}{\jcw} \right)\Iu
-				\Arrow{On isole}
-				\\\Lra
-				\Iu                    & =
-				\frac{E_0}{R + \jj \left( L\w - \dfrac{1}{C\w} \right)}
-				\Arrow{On factorise par $R$}
-				\\\Lra
-				\Iu                    & =
-				\frac{E_0/R}{1 + \jj \left( \dfrac{L}{R}\w  - \dfrac{1}{RC\w}\right)}
-			\end{DispWithArrows*}
-			De plus,
-			\begin{gather*}
-				\boxed{\frac{L}{R} = \frac{Q}{\w_0}}
-				\qet
-				Q\w_0 = \frac{1}{R} \sqrt{\frac{\cancel{L}}{C}} \frac{1}{\sqrt{\cancel{L}C}}
-				\Lra
-				\boxed{ \frac{1}{RC} = Q\w_0}
-				\\\Ra
-				\Iu = \frac{E_0/R}{1 + \jj \left( \dfrac{Q\w}{\w_0} - \dfrac{Q\w_0}{\w}
-					\right)}
-				\Lra
-				\boxed{
-					\Iu = \frac{E_0/R}{1 + \jj Q \left(
-						\dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}
-						\right)}}
-				\\\Ra
-				\boxed{
-					I(\w)
-					= \abs{\Iu}
-					= \frac{E_0/R}{\sqrt{1 + Q^2\left( \dfrac{\w}{\w_0} - \dfrac{\w_0}{\w}
-							\right)^2}}
-				}
-			\end{gather*}
-		}
-		\vspace{-15pt}
-		\tcblower
-		\tcbsubtitle{\fatbox{Pulsation de résonance et phase}}
-		\wsw{
-			On trouve le maximum de cette amplitude quand le dénominateur est minimal,
-			c'est-à-dire
-			\begin{gather*}
-				I(\w_r) = I_{\max}
-				\Lra
-				1 + Q^2\left( \frac{\w_r}{\w_0} - \frac{\w_0}{\w_r} \right)^2 \text{minimal}\\
-				\Lra
-				Q^2\left( \frac{\w_r}{\w_0} - \frac{\w_0}{\w_r} \right)^2 = 0
-				\Lra
-				\boxed{\w_r = \w_0}
-			\end{gather*}
-			Pour la phase~:
-			\begin{gather*}
-				\f_i
-				= \underbrace{\cancel{\arg*{E_0/R}}}_{=0}
-				- \arg*{1 + \jj Q \left(
-					\frac{\w}{\w_0} - \frac{\w_0}{\w}
-					\right)}
-				\\\Lra
-				\boxed{\tan\f_i = -Q\left( \frac{\w}{\w_0} - \frac{\w_0}{\w} \right)}
-				\qavec
-				\boxed{\f_i \in \left] - \frac{\pi}{2}\,; \frac{\pi}{2} \right[}
-			\end{gather*}
-			puisque $\cos\f_i > 0$ (la partie réelle est positive).
-			\begin{align*}
-				\tan\f_i \xrightarrow[\w\to0^+]{} +\infty
-				\Ra &
-				\boxed{\f_i \xrightarrow[\w\to0^+]{} +\frac{\pi}{2}}
-				\\
-				\tan(\f_i(\w_0)) =0
-				\Ra &
-				\boxed{\f_i(\w_0) = 0}
-				\\
-				\tan\f_i \xrightarrow[\w\to+\infty]{} -\infty
-				\Ra &
-				\boxed{\f_i \xrightarrow[\w\to0^+]{} - \frac{\pi}{2}}
-			\end{align*}
-		}
-		\vspace{-15pt}
-	\end{isd}
-	\noindent
-	\begin{minipage}[]{\linewidth}
-		\centering
-		\sswitch{
-			\includegraphics[width=.8\linewidth, draft=true]{rlc_i-ampphase}
-		}{
-			\includegraphics[width=.8\linewidth]{rlc_i-ampphase}
-		}
-		\captionof{figure}{Amplitude et phase en fonction de $Q$ pour $\Iu$ en RLC
-			série.}
-	\end{minipage}
-	\vspace*{-30pt}
-	\ifstudent{
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[anchor=north west, align=left]
-			at ([shift={(1.4cm,0)}]current page.north west)
-			{\\[5pt]\Large\bfseries Nom~:\\[10pt]\Large\bfseries Prénom~:};
-			\node[anchor=north east, align=right]
-			at ([shift={(-1.5cm,-17pt)}]current page.north east)
-			{\Large\bfseries Note~:\hspace{1cm}/10};
-		\end{tikzpicture}
-	}
+	\item[n]{10} %
+	      À partir de $U(x) = \frac{E_0}{\sqrt{\pa{1-x^2}^2 + \pa{\frac{x}{Q}}^2}}$,
+	      démontrer la condition de résonance ainsi que l'amplitude à la résonance.
+	      \vspace{-15pt}
+	      \begin{tcb}(demo)<non>""{Résonance en tension du RLC série}
+		      \begin{center}
+			      \fatbox{\textbf{Condition de résonance}}
+		      \end{center}
+		      \vspace{-15pt}
+		      \begin{isd}[interior hidden]
+			      \psw{%
+				      \begin{DispWithArrows*}[groups, fleqn, mathindent=-25pt]
+					      U(x_r) &\stm{=} U_{\max}
+					      \Arrow{$X=x^2$}
+					      \\\Lra
+					      f(X_r) &\stm{=} \left(1 - X_r \right)^2 + \dfrac{X_r}{Q^2}
+					      \quad
+					      \text{min.}
+					      % \Arrow{$X=x^2$\\$f(X) = \pa{1-X}^2 + \frac{X}{Q^2}$}
+					      \\\Lra
+					      f'(X_r) &= 0
+					      \Arrow[new-group]{On dérive}
+					      \\\Lra
+					      -2 \left( 1-X_r \right) + \frac{1}{Q^2} &\stm{=} 0
+				      \end{DispWithArrows*}
+			      }%
+			      \tcblower
+			      \psw{%
+				      \begin{DispWithArrows*}[groups]
+					      \Lra
+					      X_r-1 = - \frac{1}{2Q^2}
+					      & \Lra
+					      X_r = 1 - \frac{1}{2Q^2}
+					      \Arrow{$X_r = x^{2}$}
+					      \\\Lra
+					      x_r = \sqrt{1 - \frac{1}{2Q^2}}
+					      & \Lra
+					      \boxed{
+						      x_r \stm{=} \frac{1}{Q} \sqrt{Q^{2} - \frac{1}{2}}
+					      }
+					      \Arrow{$x_r \in \Rb$}
+					      \\\Ra
+					      x_r > 0 & \Lra \boxed{Q \stm{>} \frac{1}{\sqrt{2}}}
+				      \end{DispWithArrows*}
+			      }
+		      \end{isd}
+		      \tcblower
+		      \begin{center}
+			      \fatbox{\textbf{Amplitude de résonance}}
+		      \end{center}
+		      \noindent
+		      \begin{isd}[righthand ratio=.4]
+			      \vspace{-15pt}
+			      \psw{%
+				      \begin{DispWithArrows*}[fleqn, mathindent=5pt, groups]
+					      f(X_r) &\stm{=}
+					      \left( \cancel{1} -
+					      \left( \cancel{1} - \frac{1}{2Q^{2}} \right)
+					      \right)^{2} +
+					      \frac{1}{Q^{2}} \left( 1 - \frac{1}{2Q^{2}} \right)
+					      % \Arrow{On simplifie et développe}
+					      \\\Lra
+					      f(X_r) &=
+					      \left( \frac{1}{2Q^{2}} \right)^{2} + \frac{1}{Q^{2}} -
+					      \frac{1}{2Q^{4}}
+					      \Arrow{Même dénom.}
+					      \\\Lra
+					      f(X_r) &\stm{=}
+					      \frac{1}{4Q^{2}} - \frac{2}{4Q^{4}} + \frac{1}{Q^{2}}
+					      \Arrow{On calcule}
+					      \\\Lra
+					      f(X_r) &=
+					      \frac{1}{Q^{2}} - \frac{1}{4Q^{4}}
+					      \Arrow{On factorise}
+					      \\\Lra
+					      \Aboxed{%
+						      f(X_r) &\stm{=}
+						      \frac{1}{Q^{2}}\left( 1 - \frac{1}{4Q^{2}} \right)
+					      }
+				      \end{DispWithArrows*}
+			      }
+			      \vspace{-15pt}
+			      \tcblower
+			      \vspace{-15pt}
+			      \psw{%
+				      \begin{DispWithArrows*}[fleqn, mathindent=5pt]
+					      \Ra
+					      U(x_r) &\stm{=} \frac{E_0}{\sqrt{f(X_r)}}
+					      \CArrow{$\sqrt{(\cdot)}$}
+					      \\\Lra
+					      U(x_r) &= \frac{E_0}{
+						      \frac{1}{Q}\sqrt{1 - \frac{1}{4Q^{2}}}
+					      }
+					      \Arrow{Simplifie}
+					      \\\Lra
+					      \Aboxed{
+						      U(x_r) &\stm{=} \frac{QE_0}{\sqrt{1 - \frac{1}{4Q^{2}}}}
+					      }
+				      \end{DispWithArrows*}
+			      }
+		      \end{isd}
+		      \vspace{-15pt}
+	      \end{tcb}
+	      \vspace*{\fill}
+	\item[n]{5} %
+	      Montrer que diviser l'amplitude par 10 revient à réduire le gain en
+	      décibel de \SI{20}{dB}. Montrer ensuite qu'on trouve la bande passante
+	      d'un filtre en trouvant les $\w$ tels que $G\ind{dB}(\w) \geq
+		      G\ind{dB,max} - \SI{3}{dB}$.
+	      \smallbreak
+	      \noindent
+	      \begin{isd}
+		      \vspace{-15pt}
+		      \psw{%
+			      \begin{align*}
+				      \abs{\Hu(\w_2)}                        & \stm{=} \frac{\abs{\Hu(\w_1)}}{10}
+				      \\\Lra
+				      20 \log \left( \abs{\Hu(\w_2)} \right) & =
+				      20 \log (\frac{\abs{\Hu(\w_1)}}{10})
+				      \\\Lra
+				      20 \log \left( \abs{\Hu(\w_2)} \right) & =
+				      20 \log (\abs{\Hu(\w_1)}) - 20 \log (10)
+				      \\\Lra
+				      G\ind{dB}(\w_2)                        & \stm{=} G\ind{dB}(\w_1) - \SI{20}{dB}
+				      \qed
+			      \end{align*}
+		      }%
+		      \vspace{-15pt}
+		      \tcblower
+		      \vspace{-15pt}
+		      \psw{%
+			      \small
+			      \begin{align*}
+				      \abs{\Hu(\w)}           & \stm{\geq} \frac{\abs{\Hu}_{\max}}{\sqrt{2}}
+				      \\\Lra
+				      20 \log (\abs{\Hu(\w)}) & \geq 20 \log (\frac{\abs{\Hu}_{\max}}{\sqrt{2}})
+				      \\\Lra
+				      G\ind{dB}(\w)           & \stm{\geq}
+				      \underbracket[1pt]{20 \log (\abs{\Hu}_{\max})}_{= G\ind{dB, max}} -
+				      \underbracket[1pt]{20 \log (\sqrt{2})}_{\approx \SI{3}{dB} \pt{1}}
+				      \qed
+			      \end{align*}
+			      \vspace{-15pt}
+		      }%
+	      \end{isd}
+	\item[n]{5} %
+	      À partir de $\Hu(x) = \frac{1}{1+\jx}$, déterminer les asymptotes de
+	      $G\ind{dB}(x)$ et $\f(x)$.
+	      \smallbreak
+	      \vspace{-15pt}
+	      \psw{%
+		      \begin{DispWithArrows*}[fleqn, mathindent=40pt]
+			      \Hu(x) \Sim_{x\to 0}^{\pt{1}} \frac{1}{1 + 0} = 1
+			      \quad & \text{et} \quad
+			      \Hu(x) \Sim_{x\to \infty}^{\pt{1}} \frac{1}{\jx}
+			      \Arrow{$G\ind{dB}(x) = 20 \log \abs{\Hu(x)}$}
+			      \Arrow[jump=2,tikz-code=
+					      {\draw
+						      (#1) --++
+						      (4.0cm, 0) |-
+						      node[pos=0.75, anchor=south] {#3}
+						      (#2) ;
+					      }]{$\f(x) = \arg*{\Hu(x)}$}
+			      \\\Ra
+			      G\ind{dB}(x) \Sim_{x\to 0}^{\pt{1}} 20 \log (1) = 0
+			      \quad & \text{et} \quad
+			      G\ind{dB}(x) \Sim_{x\to\infty}^{\pt{1}}
+			      20 \log \abs{\frac{1}{\jx}} = -20 \log x
+			      \\\Ra
+			      \f(x) \Sim_{x\to 0} \arg*{1} = 0
+			      \quad & \stm{\text{et}} \quad
+			      \f(x) \Sim_{x\to \infty} \arg*{\frac{1}{\jx}} = -\frac{\pi}{2}
+		      \end{DispWithArrows*}
+	      }%
 \end{enumerate}
+
+\ifstudent{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west, align=left]
+		at ([shift={(1.4cm,0)}]current page.north west)
+		{\\[5pt]\Large\bfseries \textsc{Nom}~:\\[10pt]\Large\bfseries Prénom~:};
+		\node[anchor=north east, align=right]
+		at ([shift={(-1.5cm,-17pt)}]current page.north east)
+		{\Large\bfseries Note~:\hspace{1cm}/20};
+	\end{tikzpicture}
+}
 \end{document}

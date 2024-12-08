@@ -1,6 +1,8 @@
 \documentclass{standalone}
 \usepackage{mintikz}
 
+\tikzset{every picture/.style={thick}}
+
 \def\A{0.25}
 \def\Q{6}
 \def\wo{1e3}
@@ -8,37 +10,37 @@
 
 \begin{document}
 \begin{tikzpicture}[]
-    \begin{semilogxaxis}[
-        xmin=1e-1, xmax=1e2,
-        % xticklabels={\num{e-1}, \num{e3}, \num{e4}},
-        % extra x ticks={5e2, 5e3},
-        % extra x tick labels={\num{5e2}, \num{5e3}},
-        % extra x tick style={grid=minor, grid style={gray!25}, font=\tiny},
-        ymin=-40, ymax=5,
-        %ytick={-55, -50, ..., -10},
-        xlabel={$x = \DS\frac{\w}{\w_0}$}, ylabel=$G_{\dB}$ (dB),
-        axis lines=left,
-        grid=both,
-        minor grid style={gray!25},
-        major grid style={black!50},
-        % width=10cm,
-        % height=7cm,
-        clip=false]
-        \addplot[
-        domain=1e-1:1e2,
-        smooth, samples=500, red, thick]
-        {20*log10(\x^2/(sqrt((1 - \x^2)^2 + 9*\x^2)))};
-        \addplot[thick,
-        domain=1e-1:1.2,
-        smooth, dashed]
-        {40*log10(\x)};
-        \addplot[thick,
-        domain=0.7:1e2,
-        smooth, dashed]
-        {0};
-        \draw[thick, dashed]
-        (axis cs:1e-1,-9.5) -|
-        (axis cs:1,-40);
-    \end{semilogxaxis}
+	\begin{semilogxaxis}[
+			xmin=1e-1, xmax=1e2,
+			% xticklabels={\num{e-1}, \num{e3}, \num{e4}},
+			% extra x ticks={5e2, 5e3},
+			% extra x tick labels={\num{5e2}, \num{5e3}},
+			% extra x tick style={grid=minor, grid style={gray!25}, font=\tiny},
+			ymin=-40, ymax=5,
+			%ytick={-55, -50, ..., -10},
+			xlabel={$x = \DS\frac{\w}{\w_0}$}, ylabel=$G_{\dB}$ (dB),
+			axis lines=left,
+			grid=both,
+			minor grid style={gray!25},
+			major grid style={black!50},
+			% width=10cm,
+			% height=7cm,
+			clip=false]
+		\addplot[
+			domain=1e-1:1e2,
+			smooth, samples=500, red, thick]
+		{20*log10(\x^2/(sqrt((1 - \x^2)^2 + 9*\x^2)))};
+		\addplot[thick,
+			domain=1e-1:1.2,
+			smooth, dashed]
+		{40*log10(\x)};
+		\addplot[thick,
+			domain=0.7:1e2,
+			smooth, dashed]
+		{0};
+		\draw[thick, dashed]
+		(axis cs:1e-1,-9.5) -|
+		(axis cs:1,-40);
+	\end{semilogxaxis}
 \end{tikzpicture}
 \end{document}

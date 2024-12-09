@@ -1,68 +1,200 @@
 \documentclass[../../main/main.tex]{subfiles}
 \graphicspath{{./figures/}}
 
-\setlength{\mtcindent}{-10pt}
-\mtcsetoffset{minitoc}{-10pt}
-
 \dominitoc
 \faketableofcontents
 
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
 \makeatletter
 \renewcommand{\@chapapp}{Ondes -- chapitre}
+\renewcommand{\chaplett}{ON}
+\renewcommand{\thefigure}{\chaplett\thechapter.\arabic{figure}}
 \makeatother
 
 % \toggletrue{student}
-% \HideSolutionstrue
 \toggletrue{corrige}
-\renewcommand{\mycol}{black}
+% \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{0}
 
+% \settype{book}
+% \settype{prof}
+% \settype{stud}
+
 \chapter{Ondes progressives}
 
-\vfill
+\vspace*{\fill}
 
-\begin{prgm}
-	\begin{tcb}*(ror)"know"{Savoirs}
-		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Identifier les grandeurs physiques correspondant à
-			      des signaux acoustiques, électriques, électromagnétiques.
-			\item Propagation d'un signal dans un milieu illimité, non dispersif et
-			      transparent.
-			\item Onde progressive dans le cas d'une propagation unidimensionnelle non
-			      dispersive.
-			\item Modèle de l'onde progressive sinusoïdale unidimensionnelle. Vitesse
-			      de phase, déphasage, double périodicité spatiale et temporelle.
-			\item Définir un milieu dispersif. Citer des exemples de situations de
-			      propagation dispersive et non dispersive.
-			\item Citer quelques ordres de grandeur de fréquences dans les domaines
-			      acoustique, mécanique et électromagnétique.
-		\end{itemize}
-	\end{tcb}
-	\begin{tcb}*(ror)"how"{Savoir-faire}
-		\begin{itemize}[label=$\diamond$, leftmargin=10pt]
-			\item Écrire les signaux sous la forme $f(x-ct)$ ou $g(x+ct)$, et
-			      sous la forme $f(t-x/c)$ ou $g(t+x/c)$.
-			\item Prévoir, dans le cas d'une onde progressive, l'évolution temporelle
-			      à position fixée et l'évolution spatiale à différents instants.
-			\item Établir la relation entre la fréquence, la longueur d'onde et la
-			      vitesse de phase.
-			\item Relier le déphasage entre les signaux perçus en deux points
-			      distincts au retard dû à la propagation.
-		\end{itemize}
-	\end{tcb}
-\end{prgm}
+\begin{tcn}(appl)<ctc>"somm"'t'{Sommaire}
+	\let\item\olditem
+	\vspace{-15pt}
+	\minitoc
+	\vspace{-25pt}
+\end{tcn}
 
-\vfill
-
-\newpage
+\begin{tcn}[sidebyside,
+		fontupper=\footnotesize, fontlower=\footnotesize
+	](appl)<ctb>"how"'t'{Capacités exigibles}
+	\begin{itemize}[label=\rcheck]
+		\item Identifier les grandeurs physiques correspondant à
+		      des signaux acoustiques, électriques, électromagnétiques.
+		\item Propagation d'un signal dans un milieu illimité, non dispersif et
+		      transparent.
+		\item Onde progressive dans le cas d'une propagation unidimensionnelle non
+		      dispersive.
+		\item Modèle de l'onde progressive sinusoïdale unidimensionnelle. Vitesse
+		      de phase, déphasage, double périodicité spatiale et temporelle.
+		\item Définir un milieu dispersif. Citer des exemples de situations de
+		      propagation dispersive et non dispersive.
+	\end{itemize}
+	\tcblower
+	\begin{itemize}[label=\rcheck]
+		\item Citer quelques ordres de grandeur de fréquences dans les domaines
+		      acoustique, mécanique et électromagnétique.
+		\item Écrire les signaux sous la forme $f(x-ct)$ ou $g(x+ct)$, et
+		      sous la forme $f(t-x/c)$ ou $g(t+x/c)$.
+		\item Prévoir, dans le cas d'une onde progressive, l'évolution temporelle
+		      à position fixée et l'évolution spatiale à différents instants.
+		\item Établir la relation entre la fréquence, la longueur d'onde et la
+		      vitesse de phase.
+		\item Relier le déphasage entre les signaux perçus en deux points
+		      distincts au retard dû à la propagation.
+	\end{itemize}
+\end{tcn}
 
 \vspace*{\fill}
-% \vfill
-\minitoc
-% \vfill
+\newpage
+\vspace*{\fill}
+
+%\vspace{-15pt}
+\begin{tcn}[%
+		sidebyside, fontupper=\small, fontlower=\small
+	](appl)<ctb>"chek"'t'{L'essentiel}
+	\begin{tcn}[nsp](defi)<ctc>'t'{Définitions}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{defi}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](rapp)<ctc>'t'{Rappels}
+	% 	\vspace{-25pt}
+	% 	\tcblistof[\subsubsection*]{rapp}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](prop)<ctc>'t'{Propriétés}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{prop}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{theo}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](prop)<ctc>'t'{Théorèmes}
+	% 	\vspace{-25pt}
+	% 	% \tcblistof[\subsubsection*]{prop}{\hspace*{4.8pt}}
+	% 	% \tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+	% 	\tcblistof[\subsubsection*]{theo}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](loi)<ctc>'t'{Lois}
+	% 	\tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](coro)<ctc>'t'{Corollaires}
+	%   \tcblistof[\subsubsection*]{coro}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](demo)<ctc>'t'{Démonstrations}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{demo}{\hspace*{4.8pt}}
+		% \tcblistof[\subsubsection*]{prev}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](inte)<ctc>'t'{Interprétations}
+	% 	\tcblistof[\subsubsection*]{inte}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](impl)<ctc>'t'{Implications}
+	% 	\vspace{-25pt}
+	% 	\tcblistof[\subsubsection*]{impl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](tool)<ctc>'t'{Outils}
+	% 	\tcblistof[\subsubsection*]{tool}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](nota)<ctc>'t'{Notations}
+	% 	\tcblistof[\subsubsection*]{nota}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](appl)<ctc>'t'{Applications}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{appl}{\hspace*{4.8pt}}
+	\end{tcn}
+	% \begin{tcn}[nsp](rema)<ctc>'t'{Remarques}
+	%   \tcblistof[\subsubsection*]{rema}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](exem)<ctc>'t'{Exemples}
+	%   \tcblistof[\subsubsection*]{exem}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
+	%   \tcblistof[\subsubsection*]{ror}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
+	%   \tcblistof[\subsubsection*]{impo}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\tcblower
+	% \begin{tcn}[nsp](defi)<ctc>'t'{Définitions}
+	%   \tcblistof[\subsubsection*]{defi}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](rapp)<ctc>'t'{Rappels}
+	%   \tcblistof[\subsubsection*]{rapp}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](prop)<ctc>'t'{Propriétés}
+	% \tcblistof[\subsubsection*]{prop}{\hspace*{4.8pt}}
+	% \tcblistof[\subsubsection*]{loi}{\hspace*{4.8pt}}
+	% \tcblistof[\subsubsection*]{theo}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](coro)<ctc>'t'{Corollaires}
+	%   \tcblistof[\subsubsection*]{coro}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](demo)<ctc>'t'{Démonstrations}
+	% 	\vspace{-25pt}
+	% 	\tcblistof[\subsubsection*]{demo}{\hspace*{4.8pt}}
+	% 	% \tcblistof[\subsubsection*]{prev}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](inte)<ctc>'t'{Interprétations}
+	% 	\tcblistof[\subsubsection*]{inte}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](impl)<ctc>'t'{Implications}
+	% 	\tcblistof[\subsubsection*]{impl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](tool)<ctc>'t'{Outils}
+	% 	\vspace{-25pt}
+	% 	\tcblistof[\subsubsection*]{tool}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](nota)<ctc>'t'{Notations}
+	% 	\tcblistof[\subsubsection*]{nota}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](odgr)<ctc>'t'{Ordres de grandeur}
+	% 	\tcblistof[\subsubsection*]{odgr}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](appl)<ctc>'t'{Applications}
+	% 	\vspace{-25pt}
+	% 	\tcblistof[\subsubsection*]{appl}{\hspace*{4.8pt}}
+	% \end{tcn}
+	% \begin{tcn}[nsp](rema)<ctc>'t'{Remarques}
+	%   \tcblistof[\subsubsection*]{rema}{\hspace*{4.8pt}}
+	% \end{tcn}
+	\begin{tcn}[nsp](exem)<ctc>'t'{Exemples}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{exem}{\hspace*{4.8pt}}
+	\end{tcn}
+	\begin{tcn}[nsp](ror)<ctc>"hart"'t'{Points importants}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{ror}{\hspace*{4.8pt}}
+	\end{tcn}
+	\begin{tcn}[nsp](impo)<ctc>'t'{Erreurs communes}
+		\vspace{-25pt}
+		\tcblistof[\subsubsection*]{impo}{\hspace*{4.8pt}}
+	\end{tcn}
+\end{tcn}
+
 \vspace*{\fill}
 
 \newpage
@@ -71,17 +203,17 @@
 
 \section{Introduction}
 \subsection{Signal}
-\begin{tcb}(defi)<lft>'l'{\tiny Définition}
+\begin{tcn}(defi)<lfnt>{\tiny Définition}
 	On appelle \textbf{signal} une grandeur physique mesurable pouvant varier
 	dans le temps et qui transporte une information.
-\end{tcb}
-\begin{tcb}(exem)<lft>'l'{Exemples}
+\end{tcn}
+\begin{tcn}(exem)<lfnt>{Exemples}
 	\begin{itemize}
 		\item Signal \textbf{sonore}~: voix, instrument de musique~;
 		\item Signal sismique~;
 		\item Signal électrique…
 	\end{itemize}
-\end{tcb}
+\end{tcn}
 À noter que la notion de signal ou d'information \textbf{dépend de
 	l'observation}. Les ondes radio servent bien sûr à écouter la radio, mais au
 départ leur découverte était perturbée par le premier signal lumineux de
@@ -90,24 +222,24 @@ est fondamental dans la cosmologie, mais peut être parasite selon l'objectif.
 
 \subsection{Perturbation}
 
-\begin{tcb}(defi)<lft>'l'{\tiny Définition}
+\begin{tcn}(defi)<lfnt>{\tiny Définition}
 	Une \textbf{perturbation} est une modification locale et temporaire des
 	propriétés d'un milieu.
-\end{tcb}
-\begin{tcb}(exem)<lft>'l'{Exemples}
+\end{tcn}
+\begin{tcn}(exem)<lfnt>{Exemples}
 	\begin{itemize}
 		\item Jet d'un caillou dans un lac~;
 		\item Séisme~;
 		\item Déplacement de la membrane d'un haut-parleur…
 	\end{itemize}
-\end{tcb}
+\end{tcn}
 Une perturbation, quand elle est créée, se propage autour d'elle de proche en
 proche~: chaque point impacté va subir des modifications temporaires similaires
 à celle de la source. Après le passage de cette perturbation, chaque point
 retrouve sa position initiale.
 
 \subsection{Onde}
-\begin{tcb}(defi){Définition}
+\begin{tcb}(defi){Onde}
 	\psw{
 		On appelle \textbf{onde} la propagation d'une perturbation, dans un milieu
 		matériel ou dans le vide.
@@ -120,7 +252,7 @@ ondes sonores en sont des exemples. Certaines ondes peuvent se propager dans le
 vide, comme les ondes \textbf{électromagnétiques}. Les infrarouges, la lumière
 visible ou les micro-ondes sont des exemples d'ondes électromagnétiques.
 
-\begin{tcb}(exem)<lft>'l'{Exemples}
+\begin{tcb}(exem)<lftt>{Ondes}
 	\begin{itemize}
 		\item Lorsqu'on secoue l'extrémité d'une corde tendue,
 		      les positions des différents points sont modifiées. Une fois l'onde
@@ -141,41 +273,41 @@ visible ou les micro-ondes sont des exemples d'ondes électromagnétiques.
 La perturbation se propageant peut être soit parallèle, soit perpendiculaire à
 la direction de propagation. On distingue donc~:
 
-\begin{tcb}(defi){Définition}
+\begin{tcb*}(defi){Transversale et longitudunale}
 	\begin{itemize}
-		\bitem{Onde transversale}\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/general/onde_transversale.php}}~:
-		\psw{
-			la perturbation est perpendiculaire à la direction de propagation~;
-		}
-		\bitem{Onde longitudunale}\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/general/onde_longitudinale.php}}~:
-		\psw{
-			la perturbation est parallèle à la direction de propagation.
-		}
+		\item[b]{Onde transversale}\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/general/onde_transversale.php}}~:
+		      \psw{
+			      la perturbation est perpendiculaire à la direction de propagation~;
+		      }
+		\item[b]{Onde longitudunale}\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/general/onde_longitudinale.php}}~:
+		      \psw{
+			      la perturbation est parallèle à la direction de propagation.
+		      }
 	\end{itemize}
-\end{tcb}
+\end{tcb*}
 
-\begin{tcb}(exem)<lft>'l'{Exemples}
+\begin{tcb}(exem)<lftt>'l'{Transversales et longitudunales}
 	\begin{minipage}{0.50\linewidth}
 		\begin{itemize}
-			\bitem{Longitudinales}~:
-			\psw{
-				\begin{itemize}
-					\item Certaines ondes sismiques~;
-					\item Contraction-élongation d'un ressort.
-				\end{itemize}
-			}
+			\item[b]{Longitudinales}~:
+			      \psw{
+				      \begin{itemize}
+					      \item Certaines ondes sismiques~;
+					      \item Contraction-élongation d'un ressort.
+				      \end{itemize}
+			      }
 		\end{itemize}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.48\linewidth}
 		\begin{itemize}
-			\bitem{Transversales}~:
-			\psw{
-				\begin{itemize}
-					\item Mouvement d'une corde secouée~;
-					\item Vagues sur l'eau.
-				\end{itemize}
-			}
+			\item[b]{Transversales}~:
+			      \psw{
+				      \begin{itemize}
+					      \item Mouvement d'une corde secouée~;
+					      \item Vagues sur l'eau.
+				      \end{itemize}
+			      }
 		\end{itemize}
 	\end{minipage}
 	\vspace{-15pt}
@@ -183,50 +315,50 @@ la direction de propagation. On distingue donc~:
 
 \section{Onde progressive à une dimension}
 \subsection{Définition}
-\begin{tcb}(defi){Définitions}
+\begin{tcb*}(defi){Onde progressive à une dimension}
 	\begin{itemize}
-		\bitem{Progressive}~:
-		\psw{
-			sa propagation ne se fait que \textbf{dans un seul sens depuis sa source}.
-			À un instant ultérieur, on retrouve la perturbation \textit{à l'identique
-				plus loin}.
-		}
-		\bitem{À une dimension}~:
-		\begin{itemize}
-			\item
-			      \psw{
-				      une onde qui se propage dans un milieu matériel à une dimension~;
-			      }
-			\item
-			      \psw{
-				      ou une onde qui se propage dans un milieu matériel à deux ou trois
-				      dimensions, avec une direction de propagation unique.
-			      }
-		\end{itemize}
+		\item[b]{Progressive}~:
+		      \psw{
+			      sa propagation ne se fait que \textbf{dans un seul sens depuis sa source}.
+			      À un instant ultérieur, on retrouve la perturbation \textit{à l'identique
+				      plus loin}.
+		      }
+		\item[b]{À une dimension}~:
+		      \begin{itemize}
+			      \item
+			            \psw{
+				            une onde qui se propage dans un milieu matériel à une dimension~;
+			            }
+			      \item
+			            \psw{
+				            ou une onde qui se propage dans un milieu matériel à deux ou trois
+				            dimensions, avec une direction de propagation unique.
+			            }
+		      \end{itemize}
 	\end{itemize}
-\end{tcb}
+\end{tcb*}
 
-\begin{tcb}(exem)<lft>'l'{Exemples}
+\begin{tcb}(exem)<lftt>'l'{OPP1D}
 	\begin{itemize}
-		\bitem{1D}~:
-		\psw{
-			onde le long d'une corde, compression le long d'un ressort~;
-		}
-		\bitem{2D}~:
-		\psw{
-			vagues sur l'eau~;
-		}
-		\bitem{3D}~:
-		\psw{
-			son, lumière.
-		}
+		\item[b]{1D}~:
+		      \psw{
+			      onde le long d'une corde, compression le long d'un ressort~;
+		      }
+		\item[b]{2D}~:
+		      \psw{
+			      vagues sur l'eau~;
+		      }
+		\item[b]{3D}~:
+		      \psw{
+			      son, lumière.
+		      }
 	\end{itemize}
 	\vspace{-15pt}
 \end{tcb}
 
 \subsection{Représentation spatiale et célérité des ondes}
 
-\begin{tcb}[sidebyside, lefthand ratio=.45](ror){Définition}
+\begin{tcb}[sidebyside, lefthand ratio=.45](ror){Représentation spatiale}
 	\psw{
 		Dans une représentation \textbf{spatiale}, on regarde à un \textbf{temps
 			fixé} la perturbation dans \textbf{tout l'espace}~; on parle également de
@@ -249,7 +381,7 @@ Lorsqu'une onde se propage, on peut définir une \textbf{vitesse de propagation 
 	perturbation}. Pour la distinguer de la vitesse d'un point matériel, on emploi
 plutôt le terme \textbf{célérité}. Par convention, celle-ci est toujours positive.
 
-\begin{tcb}(defi){Définition}
+\begin{tcb}(defi){Célérité}
 	La célérité $c$ d'une onde est le quotient de la distance $d$ parcourue par la
 	perturbation, sur l'intervalle de temps $\Delta t$ que dure ce parcours~:
 	\psw{
@@ -286,7 +418,7 @@ seulement de la nature et des propriétés du \textbf{milieu}.
 	\end{tabularx}
 \end{table}
 
-\begin{tcb}(appl){Application}
+\begin{tcb*}(appl){Mascaret en représenta$^\circ$ spatiale}
 	% Un mascaret est une vague solitaire remontant un fleuve au voisinage de son
 	% estuaire, et provoqué par une interaction entre son écoulement et la marée
 	% montante.
@@ -321,11 +453,11 @@ seulement de la nature et des propriétés du \textbf{milieu}.
 		}
 		\captionof{figure}{Vague solitaire à $\tau = \SI{1}{min}$}
 	\end{center}
-\end{tcb}
+\end{tcb*}
 
 \subsection{Représentation temporelle et retard}
 
-\begin{tcb}(ror){Définition}
+\begin{tcb}(ror){Représentation temporelle}
 	\psw{Dans une représentation \textbf{temporelle}, on regarde à un
 		\textbf{endroit fixé} la perturbation \textbf{sur sa durée}. Voir cette
 		animation\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/general/evolution_temporelle.php}}.}
@@ -337,14 +469,14 @@ M$_0$, situé à une distance $D$ de M au temps $t_1$ tel que~:
 \psw{\[t_1 = \frac{\rm MM'}{c}\]}
 \vspace{-15pt}
 
-\begin{tcb}(defi){Définition~: retard}
+\begin{tcb}(defi){Retard d'une onde}
 	\psw{
 		La grandeur $\tau$ est le retard du point M' par rapport au point M~:
 		\[\tau = \frac{\rm MM'}{c}\]
 		avec $c$ la célérité de l'onde.}
 \end{tcb}
 
-\begin{tcb}(appl){Application}
+\begin{tcb*}(appl){Mascaret en représenta$^\circ$ temporelle}
 	On reprend l'exemple de la vague précédente.
 	\begin{enumerate}
 		\item À quel instant la vague arrive-t-elle au point d'abscisse $x_1 =
@@ -380,7 +512,7 @@ M$_0$, situé à une distance $D$ de M au temps $t_1$ tel que~:
 		}
 		\captionof{figure}{Vague solitaire en représentation temporelle.}
 	\end{center}
-\end{tcb}
+\end{tcb*}
 
 \subsection{Lien entre les représentations}
 Nous avons vu deux représentations graphiques différentes, une selon l'espace et
@@ -429,22 +561,22 @@ $t$~: c'est la perturbation imposée par la source. On la note alors $g(t) =
 		}\]
 }
 
-\begin{tcb}[sidebyside](ror){Conclusion}
-	La représentation \textbf{spatiale en $\mathbf{t_0}$} est le graphique de la fonction $x
-		\mapsto y(x,t_0)$, soit~:
-	\psw{
+\begin{tcb}[sidebyside](ror){Lien entre représentations}
+	La représentation \textbf{spatiale en $\mathbf{t_0}$} est le graphique de la
+	fonction $x \mapsto y(x,t_0)$, soit~:
+	\psw{%
 		\[x\mapsto f(x-ct_0) = g\left(t_0 - \frac{x}{c}\right)\]
-	}
+	}%
 	\vspace{-15pt}
 	\tcblower
-	La représentation \textbf{temporelle en} $\mathbf{x_0}$ est le graphique de la fonction $t
-		\mapsto y(x_0,t)$, soit~:
-	\psw{
+	La représentation \textbf{temporelle en} $\mathbf{x_0}$ est le graphique de la
+	fonction $t \mapsto y(x_0,t)$, soit~:
+	\psw{%
 		\[t\mapsto f(x_0-ct) = g\left(t - \frac{x_0}{c}\right)\]
-	}
+	}%
 \end{tcb}
 
-\begin{tcb}(impo){Vers la droite ou vers la gauche~?}
+\begin{tcb*}(impo){Vers la droite ou vers la gauche~?}
 	Vous ferez bien attention, à défaut de travailler votre intuition pour
 	comprendre que $f (x-ct)$ est une onde se propageant vers la droite, à ne pas
 	penser «~signe moins donc vers la gauche~»~! Il faudrait refaire le
@@ -465,12 +597,12 @@ $t$~: c'est la perturbation imposée par la source. On la note alors $g(t) =
 			\]
 		}
 	\end{isd}
-\end{tcb}
+\end{tcb*}
 
 \section{Onde progressive sinuso\"idale}
 \subsection{Définition}
 
-\begin{tcb}(defi){Définition~: OPS}
+\begin{tcb}(defi){Onde progressive sinusoïdale}
 	\psw{
 		Une onde progressive est dite \textbf{sinusoïdale} si la source impose une
 		\textbf{perturbation sinusoïdale} au milieu.
@@ -516,7 +648,7 @@ une distance $cT$. L'écart entre deux maximum successifs est la période spatia
 soit~:
 \[\lambda = cT\]
 
-\begin{tcb}(ror){Bilan}
+\begin{tcb}(ror){Longueur d'onde d'une OPS}
 	\psw{
 		Une onde progressive sinusoïdale présente à la fois une périodicité
 		spatiale et une périodicité temporelle. La période temporelle $T$ et la
@@ -552,15 +684,23 @@ $g(t)$ imposée en $x=0$ est un signal sinusoïdal~:
 	\psw{= A\cos\left(\wt - \frac{2\pi}{cT}x +\f\right)}
 \end{align*}
 
-\begin{tcb}(defi){Définition}
+\begin{tcb*}(defi){Vecteur d'onde}
 	Comme pour la fréquence et la pulsation, on relie la longueur d'onde à une
 	autre grandeur permettant une expression simple dans une fonction
 	sinusoïdale~: le \textbf{vecteur d'onde} $k$, tel que
-	\[\psw{\boxed{k = \frac{2\pi}{\lambda} = \frac{\w}{c}}
+	\[
+		\psw{\boxed{k = \frac{2\pi}{\lambda} = \frac{\w}{c}}
 			\qavec
-			k\quad\text{en}\quad\boxed{\si{rad.m^{-1}}}}\]
-\end{tcb}
-\begin{tcb}(prop){Propriété}
+			k\quad\text{en}\quad\boxed{\si{rad.m^{-1}}}}
+	\]
+\end{tcb*}
+
+\begin{tcb*}(impo){Faux-ami}
+	Sous cette forme, le vecteur d'onde n'est pas un vecteur~!! C'est vraiment un
+	vecteur quand on travaille en trois dimensions d'espace.
+\end{tcb*}
+
+\begin{tcb*}(prop){Forme générale d'une OPS}
 	L'expression générale d'une onde progressive sinusoïdale se propageant
 	\textit{vers la droite} sans déformation ni atténuation est~:
 	\psw{
@@ -572,9 +712,9 @@ $g(t)$ imposée en $x=0$ est un signal sinusoïdal~:
 		\end{gather*}
 	}
 	\vspace{-10pt}
-\end{tcb}
+\end{tcb*}
 
-\begin{tcb}(exem)<lft>'l'{Application}
+\begin{tcb*}(appl)<lftt>{Double périodicité d'une OPS}
 	On peut vérifier la double périodicité de l'onde ($T$ et $\lambda$). Vérifer
 	par exemple la périodicité spatiale.~: soit un signal $s (x,t)$
 	double-périodique. Montrer que $s (x+\lambda,t) = s (x,t)$.
@@ -595,7 +735,7 @@ $g(t)$ imposée en $x=0$ est un signal sinusoïdal~:
 			}
 		\end{align*}
 	}\vspace{-20pt}
-\end{tcb}
+\end{tcb*}
 
 \subsection{Vitesse de phase}
 
@@ -607,7 +747,7 @@ phase en $x_2$ à un instant $t_2$ donnés par la \textbf{vitesse de phase}, not
 $v_\f$, telle que~:
 \psw{\[\boxed{v_\f = \frac{x_2-x_1}{t_2-t_1}}\]}
 \vspace{-10pt}
-\begin{tcb}[sidebyside](demo){Démonstration}
+\begin{tcb}[sidebyside](demo){Vitesse de phase}
 	\psw{
 		\begin{gather*}
 			\wt_2-kx_2+\f = \wt_1-kx_1+\f\\
@@ -628,15 +768,16 @@ $v_\f$, telle que~:
 
 \section{Milieux dispersifs}
 
-\begin{tcb}(defi){Définition}
+\begin{tcb*}(defi){Milieu dispersif}
 	Un milieu est dit \textbf{dispersif} si
 	\psw{la célérité $c$ dépend de la fréquence ou de la longueur d'onde.}
 	\bigbreak
 	Si c'est le cas, les différentes composantes spectrales d'un signal ne vont
 	pas à la même vitesse, et donc le signal peut se déformer lors de la
 	propagation.
-\end{tcb}
-\begin{tcb}[breakable](exem){Exemples}
+\end{tcb*}
+
+\begin{tcb}[breakable](exem)<lftt>{Milieux dispersifs ou non}
 	\tcbsubtitle{\fatbox{Propagation non-dispersive}}
 	\begin{itemize}
 		\item
@@ -679,8 +820,8 @@ $v_\f$, telle que~:
 	\vspace{-10pt}
 \end{tcb}
 
-\sidecaptionvpos{figure}{c}
-\begin{SCfigure}[1][h!]
+% \sidecaptionvpos{figure}{c}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=.45\linewidth]{dispersion}
 	%\captionsetup{justification=centering}
@@ -690,6 +831,6 @@ $v_\f$, telle que~:
 		moins grande vitesse que les composantes de basses fréquences. En
 		ordonnée, l'unité de la hauteur d'eau est arbitraire.}
 	\label{fig:disp_eau}
-\end{SCfigure}
+\end{figure}
 
 \end{document}

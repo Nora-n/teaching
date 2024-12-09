@@ -122,6 +122,8 @@
 			\node[raylabel, align=center] at (LABEL_\i) {\label};
 		}
 
+	\node[raylabel, right=0.1em of CONNECTION_3, align=center] {UV};
+
 	% These do not fit the loop and are drawn manually:
 	% \node[raylabel, align=right, anchor=north] at ([yshift=-1em]$(WAVELENGTH_-2)!0.45!(WAVELENGTH_0)$) {Ultra-\\violet};
 	% \node[raylabel, fill=white] at (CONNECTION_5) {Infrarouge};
@@ -129,7 +131,7 @@
 	\node[raylabel, fill=white] at (CONNECTION_7) {Ondes radio};
 	% \node[raylabel, align=center] at (LABEL_6) {Ondes radio};
 
-	\node[raylabel, left=0.1em of CONNECTION_1, align=right] {Rayons\\cosmiques};
+	\node[raylabel, left=0.1em of CONNECTION_1, align=center] {Rayons\\cosmiques};
 
 	\node[
 	draw,
@@ -139,9 +141,13 @@
 	label=above:{\textbf{Spectre visible}}
 	] (FULL_VISIBLE_LIGHT) {%
 	\pgfspectra[width=13em,height=0em]\\%pgfspectra also has a builtin axis which of course much better than this terrible approach, but it is in nanometer
-		{\hspace{1.8em}\num{380} \hspace{1em}\num{480} \hspace{1em}\num{580}\hspace{1em} \num{680} \hspace{1em}\num{780}} [\si{nm}]\\
+		{\hspace{1.8em}\num{380}
+			\hspace{1em}\num{480}
+			\hspace{1em}\num{580}
+			\hspace{1em}\num{680}
+			\hspace{1em}\num{780}} (\si{nm})\\
 	\pgfspectra[width=13em,height=3em]\\%pgfspectra also has a builtin axis which of course much better than this terrible approach, but it is in nanometer
-		{[\SI{e14}{Hz}]~\num{7.9} \hspace{1.3em}\num{6.2} \hspace{1.3em}\num{5.2}\hspace{1.0em} \num{4.4} \hspace{1.5em}\num{3.8}\hspace*{3.5em}~}\\
+		{(\SI{e14}{Hz})~\num{7.9} \hspace{1.3em}\num{6.2} \hspace{1.3em}\num{5.2}\hspace{1.0em} \num{4.4} \hspace{1.5em}\num{3.8}\hspace*{3.5em}~}\\
 	{\hfill\hspace{2em} bleu \hspace{.8em} vert jaune \hfill rouge \hfill}
 	};
 
@@ -156,11 +162,11 @@
 	\draw[draw, thick]
 	(ARROW.after tip 2) --
 	% (ARROW.before head) --
-	(ARROW.before tip 1) node[above right] {$\lambda [\si{nm}]$} --
+	(ARROW.before tip 1) node[above right] {$\lambda (\si{nm})$} --
 	(ARROW.tip 1) --
 	(ARROW.after tip 1) --
 	% (ARROW.after head) --
-	(ARROW.before tip 2) node[below left] {$f [\si{Hz}]$} --
+	(ARROW.before tip 2) node[below left] {$f (\si{Hz})$} --
 	(ARROW.tip 2) -- cycle;
 
 \end{tikzpicture}

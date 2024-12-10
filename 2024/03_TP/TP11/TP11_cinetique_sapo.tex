@@ -11,7 +11,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{10}
@@ -634,7 +634,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	\end{enumerate}
 	On mesure
 	\[
-		\xul{\sigma_0 = \SI{10.58}{mS.cm^{-1}}}
+		\xul{\sigma_0 = \SI{9.83}{mS.cm^{-1}}}
 	\]
 }
 
@@ -661,7 +661,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	\end{enumerate}
 	On mesure
 	\[
-		\xul{\sigma_{\infty} = \SI{3.53}{mS.cm^{-1}}}
+		\xul{\sigma_{\infty} = \SI{3.64}{mS.cm^{-1}}}
 	\]
 }
 
@@ -699,17 +699,48 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 \subsection{Exploitation des mesures}
 
 \QR{%
-	Expliquer l'allure décroissante de la courbe $\sigma = f(t)$.
+	Tracer puis expliquer l'allure décroissante de la courbe $\sigma = f(t)$.
 }{%
-	On perd des ions hydroxyde de grande conductivité pour gagner des \ce{RCOO-}
-	de plus petite conductivité. La pente est décroissante.
+	Corrigé disponible sur \texttt{Capytale}\ftn{\href{https://capytale2.ac-paris.fr/web/c/b344-4889885}{b344-4889885}}.
+	\smallbreak
+	\begin{isd}
+		\begin{center}
+			\includegraphics[width=\linewidth]{TP11_cinetique_sigma_brut.pdf}
+		\end{center}
+		\tcblower
+		On perd des ions hydroxyde de grande conductivité pour gagner des \ce{RCOO-}
+		de plus petite conductivité. La conductivité est donc décroissante.
+	\end{isd}
 }
 \QR{%
 	Tracer le graphe nécessaire à la vérification de l'ordre 2.
 }{%
-	% TODO: graphe
-	En cours…
+	\sswitch{%
+		~
+		\vspace{-25pt}
+		\smallbreak
+	}{%
+		\vspace{-15pt}
+	}%
+	\begin{center}
+		\includegraphics[scale=.5]{TP11_cinetique_sigma_reglin.pdf}
+	\end{center}
 }
+
+\enonce{%
+	\begin{tcb}(rema)<lftt>{Régression}
+		Il est commun d'avoir une régression qui ne passe pas du tout par les points
+		de mesure. La plupart du temps, cela est dû à une mauvaise valeur de
+		$\sigma_{\infty}$. Il peut valoir le coup de refaire une mesure en faisant
+		bien attention à rincer la cellule de conductimétrie.
+		\smallbreak
+		\textbf{Dans le pire des cas}, modifiez la valeur de $\sigma_{\infty}$ de
+		sorte à obtenir $b = 1$ l'ordonnée à l'origine (vous pouvez trouver la
+		valeur de $\sigma_{\infty}$ à l'aide d'une boucle for en affichant $b$ et
+		$\sigma_{\infty}$).
+	\end{tcb}
+}%
+
 \QR{%
 	Conclure quant à l'ordre global de la vitesse de la réaction étudiée.
 }{%
@@ -717,13 +748,16 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	les points sans déviation anormale.
 }
 \QR{%
-En déduire la valeur de la constante de vitesse à la température
-ambiante en précisant son unité.
+	En déduire la valeur de la constante de vitesse à la température
+	ambiante en précisant son unité.
 }{%
-On obtient
-\[
-	\boxed{k \approx \SI{5.0e-4}{mol^{-1}.L.s^{-1}}}
-\]
+	On obtient
+	\begin{gather*}
+		\boxed{k = \frac{a}{c_0}}
+		\qav a\text{ le coefficient directeur}
+		\\\Ra
+		\xul{k \approx \SI{8.78 \pm 0.16e-2}{mol^{-1}.L.s^{-1}}}
+	\end{gather*}
 }
 
 \subsection{Influence de la température~; énergie d'activation}
@@ -734,21 +768,21 @@ On obtient
 	température ont été rapportées dans le tableau suivant, où l'unité de la
 	constante de vitesse $k$ est celle trouvée dans la partie précédente
 	(exploitation des mesures) avec le temps en secondes.
+
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\toprule
+			$\theta$ (\si{\degreeCelsius}) &
+			Ambiante                       & 35          & 40          & 45          \\
+			$k$ (\si{SI})                  &
+			Votre valeur~!                 & \num{0.188} & \num{0.257} & \num{0.356} \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
 }
 
-\begin{center}
-	\begin{tabular}{ccccc}
-		\toprule
-		$\theta$ (\si{\degreeCelsius}) &
-		Ambiante                       & 35          & 40          & 45          \\
-		$k$ (\si{SI})                  &
-		Votre valeur~!                 & \num{0.188} & \num{0.257} & \num{0.356} \\
-		\bottomrule
-	\end{tabular}
-\end{center}
-
 \QR{%
-	Rappeler la loi d'Arrhénius~;
+	Rappeler la loi d'\textsc{Arrhénius}.
 }{%
 	\[\boxed{k(T) = A\exp \left( - \frac{E_a}{RT} \right)}\]
 }
@@ -757,21 +791,22 @@ On obtient
 	d'activation de cette réaction. Préciser son unité.
 }{%
 	~
+	\vspace{-15pt}
 	\smallbreak
 	\noindent
 	\begin{minipage}{0.45\linewidth}
 		\[\ln(k(T)) = \ln A - \frac{E_a}{R}\times \frac{1}{T}\]
-		On trouve une régression de $r^2 = \num{0.994}$, avec $\ln A =
-			\num{15.8}$ et
+		On trouve une régression passant bien par les points avec $\ln A =
+			\num{19.8}$ et
 		\begin{gather*}
-			\frac{E_a}{R} = \SI{5.37e3}{K}\\
-			\Leftrightarrow
-			\boxed{E_a = \SI{4.38e4}{J.mol^{-1}}}
+			\frac{E_a}{R} = \SI{6.62e3}{K}
+			\\\Ra
+			\xul{E_a = \SI{5.5e4}{J.mol^{-1}}}
 		\end{gather*}
 	\end{minipage}
 	\begin{minipage}{0.55\linewidth}
 		\begin{center}
-			\includegraphics[width=\linewidth]{reglin_k}
+			\includegraphics[width=\linewidth]{TP11_cinetique_reglin_Ea.pdf}
 		\end{center}
 	\end{minipage}
 }

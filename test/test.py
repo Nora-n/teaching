@@ -233,32 +233,32 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 # f(X) for demo résonance tension
-Qlist = [0.6, 1 / np.sqrt(2), 1.1 / np.sqrt(2), 1.5, 3, 5]
-xlist = np.linspace(0, 1.5, 100)
-xrdict = {}
-for Q in Qlist:
-    if Q <= 1 / np.sqrt(2):
-        xrdict[Q] = 0
-    else:
-        xrdict[Q] = np.sqrt(Q**2 - 0.5) / Q
-
-
-def f(x: float, Q: float) -> float:
-    X = x**2
-    return (1 - X) ** 2 + X / (Q**2)
-
-
-fdict = {Q: f(xlist, Q) for Q in Qlist}
-ucls = ["firebrick", "orange", "limegreen", "cornflowerblue", "violet", "black"]
-
-for Q, cl in zip(Qlist, ucls):
-    plt.plot(xlist, fdict[Q], color=cl, label=f"$Q = {Q:.2f}$")
-    plt.scatter(xrdict[Q], f(xrdict[Q], Q), color=cl, s=100)
-    # print(f(xrdict[Q], Q))
-
-plt.legend()
-plt.show()
-
+# Qlist = [0.6, 1 / np.sqrt(2), 1.1 / np.sqrt(2), 1.5, 3, 5]
+# xlist = np.linspace(0, 1.5, 100)
+# xrdict = {}
+# for Q in Qlist:
+#     if Q <= 1 / np.sqrt(2):
+#         xrdict[Q] = 0
+#     else:
+#         xrdict[Q] = np.sqrt(Q**2 - 0.5) / Q
+#
+#
+# def f(x: float, Q: float) -> float:
+#     X = x**2
+#     return (1 - X) ** 2 + X / (Q**2)
+#
+#
+# fdict = {Q: f(xlist, Q) for Q in Qlist}
+# ucls = ["firebrick", "orange", "limegreen", "cornflowerblue", "violet", "black"]
+#
+# for Q, cl in zip(Qlist, ucls):
+#     plt.plot(xlist, fdict[Q], color=cl, label=f"$Q = {Q:.2f}$")
+#     plt.scatter(xrdict[Q], f(xrdict[Q], Q), color=cl, s=100)
+#     # print(f(xrdict[Q], Q))
+#
+# plt.legend()
+# plt.show()
+#
 
 # TDE8
 # def H(x):
@@ -269,3 +269,19 @@ plt.show()
 # plt.plot(xlist, np.angle(H(xlist)))
 # plt.xscale("log")
 # plt.show()
+
+# DS04 P1
+v01 = 4.1
+v02 = 6.2
+v03 = 16.4
+C01 = 0.10
+C02 = 0.15
+C03 = 0.10
+C11 = 0.10
+C12 = 0.10
+C13 = 0.20
+
+q = (np.log(v02 / v01)) / (np.log(C02 / C01))
+r = (np.log(v03 / v01)) / (np.log(C13 / C11))
+
+print(f"q = {q:.2f} et r = {r:.2f}")

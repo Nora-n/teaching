@@ -8,119 +8,156 @@
 \addtolength{\cftsecnumwidth}{10pt}
 \setcounter{minitocdepth}{1}
 
+\def\lspace{25}
+
 \dominitoc
 \faketableofcontents
 
-\toggletrue{student}
-\HideSolutionstrue
+% \toggletrue{student}
 \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
 
 \makeatletter
-\renewcommand{\@chapapp}{MPSI3 -- 15 décembre 2023 -- Devoir surveillé}
+\renewcommand{\@chapapp}{MPSI3 -- 13 décembre 2024 -- Devoir surveillé}
 \makeatother
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \counterwithin*{equation}{section}
 
+\hfuzz=5.003pt
+
 \begin{document}
 \setcounter{chapter}{3}
+
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
 \chapter{\cswitch{Correction du DS}{Cinétique chimique et résonances}}
 \label{ch:ds04}
 
 \enonce{
-	\begin{center}
-		\Large\bfseries
-		Tout moyen de communication est interdit
-		\smallbreak
-		Les téléphones portables doivent être éteints et rangés dans les sacs
-		\smallbreak
-		\xul{Les calculatrices sont \textit{interdites}}
-	\end{center}
-	\begin{tcb}*[cnt, bld](ror)<itc>{Au programme}
-		\large
-		Transformations de la matière jusqu'à cinétique chimique, oscillateurs
-		électriques et mécaniques en RSF et résonance, notions élémentaires de
-		fonction de transfert.
-	\end{tcb}
-	\vfill
-	\minitoc
-	\vfill
+\begin{center}
+	\Large\bfseries
+	Tout moyen de communication est interdit
+	\smallbreak
+	Les téléphones portables doivent être éteints et rangés dans les sacs
+	\smallbreak
+	\xul{Les calculatrices sont \textit{interdites}}
+\end{center}
+\begin{tcn}[cnt, bld](ror)<itc>""{Au programme}
+	\large
+	Transformations de la matière jusqu'à cinétique chimique, oscillateurs
+	électriques et mécaniques en RSF et résonance, notions élémentaires de
+	fonction de transfert.
+\end{tcn}
 
-	Les différentes questions peuvent être traitées dans l'ordre désiré.
-	\textbf{Cependant}, vous indiquerez le numéro correct de chaque question. Vous
-	prendrez soin d'indiquer sur votre copie si vous reprenez une question d'un
-	exercice plus loin dans la copie, sous peine qu'elle ne soit ni vue ni
-	corrigée.
-	\bigbreak
-	Vous porterez une attention particulière à la \textbf{qualité de rédaction}.
-	Vous énoncerez clairement les hypothèses, les lois et théorèmes utilisés. Les
-	relations mathématiques doivent être reliées par des connecteurs logiques.
-	\bigbreak
-	Vous prendre soin de la \textbf{présentation} de votre copie, notamment au
-	niveau de l'écriture, de l'orthographe, des encadrements, de la marge et du
-	cadre laissé pour la note et le commentaire. Vous \textbf{encadrerez les
-		expressions littérales}, sans faire apparaître les calculs. Vous ferez
-	apparaître cependant le détail des grandeurs avec leurs unités. Vous
-	\textbf{soulignerez les applications numériques}.
-	\bigbreak
-	Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le
-	fond~:
-	\begin{tcb}*(prop)"bomb"{Malus}
-		\begin{minipage}[t]{0.50\linewidth}
-			\begin{itemize}
-				\item A~: application numérique mal faite~;
-				\item N~: numéro de copie manquant~;
-				\item P~: prénom manquant~;
-				\item E~: manque d'encadrement des réponses~;
-				\item M~: marge non laissée ou trop grande~;
-				\item V~: confusion ou oubli de vecteurs~;
-			\end{itemize}
-		\end{minipage}
-		\begin{minipage}[t]{0.50\linewidth}
-			\begin{itemize}
-				\item Q~: question mal ou non indiquée~;
-				\item C~: copie grand carreaux~;
-				\item U~: mauvaise unité (flagrante)~;
-				\item H~: homogénéité non respectée~;
-				\item S~: chiffres significatifs non cohérents~;
-				\item $\f$~: loi physique fondamentale brisée.
-			\end{itemize}
-		\end{minipage}
-	\end{tcb}
-
-	% \begin{tcb}(impo){Exemple application numérique}
-	% 	\vspace*{-10pt}
-	% 	\begin{minipage}[c]{0.45\linewidth}
-	% 		\begin{gather*}
-	% 			\boxed{n = \frac{PV}{RT}}
-	% 			\qav
-	% 			\left\{
-	% 			\begin{array}{rcl}
-	% 				p & = & \SI{1.0e5}{Pa}                \\
-	% 				V & = & \SI{1.0e-3}{m^3}              \\
-	% 				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
-	% 				T & = & \SI{300}{K}
-	% 			\end{array}
-	% 			\right.\\
-	% 			\mathrm{A.N.~:}\quad
-	% 			\xul{n = \SI{5.6e-4}{mol}}
-	% 		\end{gather*}
-	% 	\end{minipage}
-	% 	\hfill
-	% 	\cancel{\bcancel{
-	% 			\begin{minipage}[c]{0.45\linewidth}
-	% 				\begin{gather*}
-	% 					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
-	% 					= 0.56
-	% 				\end{gather*}
-	% 			\end{minipage}
-	% 		}}
-	% \end{tcb}
-	\vfill
-	\newpage
+{
+\vfill
+\let\item\olditem
+\minitoc
+\vfill
 }
+
+Les différentes questions peuvent être traitées dans l'ordre désiré.
+\textbf{Cependant}, vous indiquerez le numéro correct de chaque question. Vous
+prendrez soin d'indiquer sur votre copie si vous reprenez une question d'un
+exercice plus loin dans la copie, sous peine qu'elle ne soit ni vue ni
+corrigée.
+\bigbreak
+Vous porterez une attention particulière à la \textbf{qualité de rédaction}.
+Vous énoncerez clairement les hypothèses, les lois et théorèmes utilisés. Les
+relations mathématiques doivent être reliées par des connecteurs logiques.
+\bigbreak
+Vous prendrez soin de la \textbf{présentation} de votre copie, notamment au
+niveau de l'écriture, de l'orthographe, des encadrements, de la marge et du
+cadre laissé pour la note et le commentaire. Vous \textbf{encadrerez les
+	expressions littérales}, sans faire apparaître les calculs. Vous ferez
+apparaître cependant le détail des grandeurs avec leurs unités. Vous
+\textbf{soulignerez les applications numériques}.
+\bigbreak
+Ainsi, l'étudiant-e s'expose aux malus suivants concernant la forme et le
+fond~:
+\begin{tcb}*(prop)"bomb"{Malus}
+	\begin{minipage}[t]{0.50\linewidth}
+		\begin{itemize}
+			\item A~: application numérique mal faite~;
+			\item N~: numéro de copie manquant~;
+			\item P~: prénom manquant~;
+			\item E~: manque d'encadrement des réponses~;
+			\item M~: marge non laissée ou trop grande~;
+			\item V~: confusion ou oubli de vecteurs~;
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}[t]{0.50\linewidth}
+		\begin{itemize}
+			\item Q~: question mal ou non indiquée~;
+			\item C~: copie grand carreaux~;
+			\item U~: mauvaise unité (flagrante)~;
+			\item H~: homogénéité non respectée~;
+			\item S~: chiffres significatifs non cohérents~;
+			\item $\f$~: loi physique fondamentale brisée.
+		\end{itemize}
+	\end{minipage}
+\end{tcb}
+
+% \begin{tcb}(impo){Exemple application numérique}
+% 	\vspace*{-10pt}
+% 	\begin{minipage}[c]{0.45\linewidth}
+% 		\begin{gather*}
+% 			\boxed{n = \frac{PV}{RT}}
+% 			\qav
+% 			\left\{
+% 			\begin{array}{rcl}
+% 				p & = & \SI{1.0e5}{Pa}                \\
+% 				V & = & \SI{1.0e-3}{m^3}              \\
+% 				R & = & \SI{8.314}{J.mol^{-1}.K^{-1}} \\
+% 				T & = & \SI{300}{K}
+% 			\end{array}
+% 			\right.\\
+% 			\mathrm{A.N.~:}\quad
+% 			\xul{n = \SI{5.6e-4}{mol}}
+% 		\end{gather*}
+% 	\end{minipage}
+% 	\hfill
+% 	\cancel{\bcancel{
+% 			\begin{minipage}[c]{0.45\linewidth}
+% 				\begin{gather*}
+% 					n = \frac{PV}{RT} = \frac{\num{e5}\cdot\num{1}}{8.32\cdot300}
+% 					= 0.56
+% 				\end{gather*}
+% 			\end{minipage}
+% 		}}
+% \end{tcb}
+\vfill
+
+\begin{tcn}[cnt, bld](impo){Attention}
+	\large
+	Au moins un exercice de transformation de la matière et un exercice
+	d'oscillateurs doivent être traités~!
+\end{tcn}
+
+\vfill
+
+\newpage
+}
+
+\iftoggle{corrige}{}{
+	\begin{center}
+		\begin{framed}
+			\Large\bfseries Remarques antérieures
+		\end{framed}
+	\end{center}
+	\begin{enumerate}
+		\item Inscrire dans le cadre attitré une remarque \textbf{pertinente} issue
+		      du \textbf{DS04} de l'\textbf{année précédente}.
+		\item De même avec une remarque pertinente du \textbf{DS03} de \textbf{cette
+			      année}.
+	\end{enumerate}
+}
+
+
 \setcounter{section}{0}
 \resetQ
 

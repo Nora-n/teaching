@@ -767,11 +767,11 @@ superposition~:
 			      \vspace{-20pt}
 			      \psw{%
 				      \begin{gather*}
-					      G\ind{B} (x) = \log (\abs{\Hu(x)}^2)
+					      G\ind{B} (x) = \log (G(x)^2)
 					      \Ra
-					      G\ind{dB} (x) = 10 \log (\abs{\Hu(x)}^2)
+					      G\ind{dB} (x) = 10 \log (G(x)^2)
 					      \\\Lra
-					      \boxed{G\ind{dB}(x) = 20 \log \abs{\Hu(x)}}
+					      \boxed{G\ind{dB}(x) = 20 \log G(x)}
 				      \end{gather*}
 			      }%
 			      \vspace{-25pt}
@@ -781,11 +781,11 @@ superposition~:
 		      \end{isd}
 		      \vspace*{-20pt}
 		      \begin{itemize}
-			      \item $G\ind{dB}(x) = \SI{0}{dB} \Lra \abs{\Hu(x)} = 1$~: composante
+			      \item $G\ind{dB}(x) = \SI{0}{dB} \Lra G(x) = 1$~: composante
 			            de sortie \textbf{conservée} à cette fréquence.
-			      \item $G\ind{dB}(x) > \SI{0}{dB} \Lra \abs{\Hu(x)} > 1$~: composante
+			      \item $G\ind{dB}(x) > \SI{0}{dB} \Lra G(x) > 1$~: composante
 			            de sortie \textbf{amplifiée} à cette fréquence.
-			      \item $G\ind{dB}(x) < \SI{0}{dB} \Lra \abs{\Hu(x)} < 1$~: composante
+			      \item $G\ind{dB}(x) < \SI{0}{dB} \Lra G(x) < 1$~: composante
 			            de sortie \textbf{atténuée} à cette fréquence.
 		      \end{itemize}
 	\end{enumerate}
@@ -839,15 +839,15 @@ superposition~:
 		      \psw{%
 			      \small
 			      \begin{align*}
-				      \abs{\Hu(\w_2)}                        & = \frac{\abs{\Hu(\w_1)}}{10}
+				      G(\w_2)             & = \frac{G(\w_1)}{10}
 				      \\\Lra
-				      20 \log \left( \abs{\Hu(\w_2)} \right) & =
-				      20 \log (\frac{\abs{\Hu(\w_1)}}{10})
+				      20 \log ( G(\w_2) ) & =
+				      20 \log (\frac{G(\w_1)}{10})
 				      \\\Lra
-				      20 \log \left( \abs{\Hu(\w_2)} \right) & =
-				      20 \log (\abs{\Hu(\w_1)}) - 20 \log (10)
+				      20 \log ( G(\w_2) ) & =
+				      20 \log (G(\w_1)) - 20 \log (10)
 				      \\\Lra
-				      G\ind{dB}(\w_2)                        & = G\ind{dB}(\w_1) - \SI{20}{dB}
+				      G\ind{dB}(\w_2)     & = G\ind{dB}(\w_1) - \SI{20}{dB}
 				      \qed
 			      \end{align*}
 		      }%
@@ -859,12 +859,12 @@ superposition~:
 		      \psw{%
 			      \small
 			      \begin{align*}
-				      \abs{\Hu(\w)}           & \geq \frac{\abs{\Hu}_{\max}}{\sqrt{2}}
+				      G(\w)           & \geq \frac{G_{\max}}{\sqrt{2}}
 				      \\\Lra
-				      20 \log (\abs{\Hu(\w)}) & \geq 20 \log (\frac{\abs{\Hu}_{\max}}{\sqrt{2}})
+				      20 \log (G(\w)) & \geq 20 \log (\frac{G_{\max}}{\sqrt{2}})
 				      \\\Lra
-				      G\ind{dB}(\w)           & \geq
-				      \underbracket[1pt]{20 \log (\abs{\Hu}_{\max})}_{= G\ind{dB, max}} -
+				      G\ind{dB}(\w)   & \geq
+				      \underbracket[1pt]{20 \log (G_{\max})}_{= G\ind{dB, max}} -
 				      \underbracket[1pt]{20 \log (\sqrt{2})}_{\approx \SI{3}{dB}}
 				      \qed
 			      \end{align*}
@@ -897,7 +897,7 @@ superposition~:
 		      \psw{%
 			      \begin{DispWithArrows*}
 				      G\ind{dB}(x) &=
-				      20 \log (\sqrt{1+x^{2}}^{-1}) =
+				      20 \log (\sqrt{1+x^{2}})^{-1} =
 				      20 \log (1+x^{2})^{-1/2}
 				      \Arrow{$\log (a^b) = b \log a$}
 				      \\\Lra
@@ -955,7 +955,7 @@ superposition~:
 	\textit{et quantifier} l'effet d'un filtre sur une fréquence d'entrée. On
 	représente pour cela~:
 	\begin{itemize}
-		\item \textbf{gain en décibels} $G\ind{dB}(x) = 20 \log \abs{\Hu(x)}$~;
+		\item \textbf{gain en décibels} $G\ind{dB}(x) = 20 \log G(x)$~;
 		\item et sa \textbf{phase} $\f(x) = \arg*{{\Hu(x}})$.
 	\end{itemize}
 	\smallbreak
@@ -982,16 +982,16 @@ C'est donc un \xul{\psw{\textbf{passe-bas}}}~!
 	de la décomposition~: pour $e_n(t) = E_n \cos(n\w_et + \f_n)$, la sortie sera
 	\psw{%
 		\[
-			s_n(t) = \abs{\Hu(n\w_e)} E_n \cos(\wt + \f_n + \arg*{\Hu(n\w_e)})
+			s_n(t) = G(n\w_e) E_n \cos(\wt + \f_n + \arg*{\Hu(n\w_e)})
 		\]
 	}
 	On trouve le déphasage par lecture directe, et on trouve le gain à partir du
 	gain en décibel en inversant la formule~:
 	\psw{%
 		\[
-			G\ind{dB}(\w) = 20 \log \abs{\Hu(\w)}
+			G\ind{dB}(\w) = 20 \log G(\w)
 			\Lra
-			\abs{\Hu(\w)} = 10^{G\ind{dB}(\w)/20}
+			G(\w) = 10^{G\ind{dB}(\w)/20}
 		\]
 	}
 	\vspace{-15pt}
@@ -1006,7 +1006,7 @@ C'est donc un \xul{\psw{\textbf{passe-bas}}}~!
 	\begin{enumerate}
 		\item On simplifie $\Hu(x)$ pour $x\to 0$ et $x\to \infty$, en ne gardant
 		      \textbf{que le terme prépondérant} au numérateur et au dénominateur~;
-		\item On calcule $G\ind{dB}$ et $\f$ avec ces limites asymptotiques~;
+		\item On calcule $G$ puis $G\ind{dB}$ et $\f$ avec ces limites asymptotiques~;
 		\item On trace les droites obtenues en les faisant se rejoindre.
 	\end{enumerate}
 \end{tcb*}
@@ -1169,7 +1169,7 @@ C'est donc un \xul{\psw{\textbf{passe-bas}}}~!
 		\begin{gather*}
 			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = e(t)}
 			\\\Ra
-			H(0) = 1
+			\Hu(0) = 1
 			\Lra
 			G\ind{dB}(0) = 0
 			\qet
@@ -1194,7 +1194,7 @@ C'est donc un \xul{\psw{\textbf{passe-bas}}}~!
 		\begin{gather*}
 			\text{Tension d'un fil} \Ra \boxed{s(t) = 0}
 			\\\Ra
-			H(x) \opto{}{\w\to\infty} 0
+			\Hu(x) \opto{}{\w\to\infty} 0
 			\Lra
 			G\ind{dB}(x) \opto{}{\w\to\infty} -\infty
 		\end{gather*}
@@ -1247,7 +1247,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 			\psw{$\DS \frac{H_0}{\jx}$}
 			\\
 			\addlinespace[0.5em]
-			$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+			$\DS G\ind{dB} = 20 \log G$
 			 &
 			\psw{$\DS 20 \log H_0 -10 \log (1+x^{2})$}
 			 &
@@ -1310,9 +1310,9 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 	En hautes fréquences, la fonction de transfert d'un passe-bas est celle d'un intégrateur~:
 	\psw{%
 		\[
-			\Hu(\w) \opto{}{\w\to\infty} \frac{\w_c}{\jw}
+			\Hu(\w) \Sim_{\w\to\infty} \frac{\w_c}{\jw}
 			\Lra
-			\boxed{\Su \opto{}{\w\to\infty} \frac{\w_c}{\jw}\Eu}
+			\boxed{\Su \Sim_{\w\to\infty} \frac{\w_c}{\jw}\Eu}
 		\]
 	}
 \end{tcb*}
@@ -1358,7 +1358,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{Circuit ouvert} \Ra i(t) = 0 \Ra \boxed{s(t) = 0}
 			\\\Ra
-			H(x) \opto{}{\w\to\infty} 0
+			\Hu(x) \opto{}{\w\to\infty} 0
 			\Lra
 			G\ind{dB}(x) \opto{}{\w\to\infty} -\infty
 		\end{gather*}
@@ -1380,7 +1380,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{LdM} \Ra \boxed{s(t) = e(t)}
 			\\\Ra
-			H(0) = 1
+			\Hu(0) = 1
 			\Lra
 			G\ind{dB}(0) = 0
 			\\\qet
@@ -1460,7 +1460,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\psw{$H_0$}
 		\\
 		\addlinespace[0.5em]
-		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		$\DS G\ind{dB} = 20 \log G$
 		 &
 		\psw{$\DS 20 \log \left( \frac{H_0x}{\sqrt{1+x^{2}}} \right)$}
 		 &
@@ -1508,9 +1508,9 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 	En basses fréquences, la fonction de transfert est celle d'un dérivateur~:
 	\psw{%
 		\[
-			\Hu(\w) \opto{}{\w\to\infty} \frac{\jw}{\w_c}
+			\Hu(\w) \Sim_{\w\to\infty} \frac{\jw}{\w_c}
 			\Lra
-			\boxed{\Su \opto{}{\w\to\infty} \frac{\jw}{\w_c}\Eu}
+			\boxed{\Su \Sim_{\w\to\infty} \frac{\jw}{\w_c}\Eu}
 		\]
 	}
 	\vspace{-15pt}
@@ -1560,7 +1560,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = e(t)}
 			\\\Ra
-			H(0) = 1
+			\Hu(0) = 1
 			\Lra
 			G\ind{dB}(0) = 0
 			\qet
@@ -1585,7 +1585,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{Tension d'un fil} \Ra \boxed{s(t) = 0}
 			\\\Ra
-			H(x) \opto{}{\w\to\infty} 0
+			\Hu(x) \opto{}{\w\to\infty} 0
 			\Lra
 			G\ind{dB}(x) \opto{}{\w\to\infty} -\infty
 		\end{gather*}
@@ -1667,7 +1667,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\psw{$\DS - \frac{H_0}{x^{2}}$}
 		\\
 		\addlinespace[0.5em]
-		$\DS G\ind{dB} = 20 \log \abs{\Hu}$
+		$\DS G\ind{dB} = 20 \log G$
 		 &
 		\psw{$\DS 20 \log H_0 -10 \log(\left(1-x^{2}\right)^{2} + \left( \frac{x}{Q} \right)^{2})$}
 		 &
@@ -1758,7 +1758,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = 0}
 			\\\Ra
-			H(x) \opto{}{\w\to\infty} 0
+			\Hu(x) \opto{}{\w\to\infty} 0
 			\Lra
 			G\ind{dB}(x) \opto{}{\w\to\infty} -\infty
 		\end{gather*}
@@ -1781,7 +1781,7 @@ On rappelle les diagrammes de \textsc{Bode}, avec~:
 		\begin{gather*}
 			\text{Circuit ouvert} \Ra i(t) = 0 \Lra \boxed{s(t) = 0}
 			\\\Ra
-			H(x) \opto{}{\w\to\infty} 0
+			\Hu(x) \opto{}{\w\to\infty} 0
 			\Lra
 			G\ind{dB}(x) \opto{}{\w\to\infty} -\infty
 		\end{gather*}
@@ -1991,10 +1991,14 @@ intercaler un montage suiveur entre les deux filtres RC.
 	complexe à chacune des composantes pour reconstituer le signal de sortie~:
 	\begin{gather*}
 		\Su_n = \Eu_n \cdot \Hu(n\w_e) \Ra
-		S_n = E_n \cdot \abs{\Hu(n\w_e)}
-		\qet
-		\psi_n = \f_n + \arg*{\Hu(n\w_e)}
-		\\
+		\left\{
+		\begin{array}{ll}
+			S_n    & = E_n \cdot \abs{\Hu(n\w_e)}
+			\\[1em]
+			\psi_n & = \f_n + \arg*{\Hu(n\w_e)}
+		\end{array}
+		\right.
+		\\[1em]
 		e(t) = \sum_{n=0}^{+\infty} e_n(t) =
 		\left\{
 		\begin{array}{ccccc}

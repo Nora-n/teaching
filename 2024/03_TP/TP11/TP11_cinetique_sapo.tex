@@ -242,7 +242,7 @@
 	Écrire la loi de vitesse correspondante.
 }{%
 	\[
-		v = k [\ce{RCOOR}'][\ce{HO-}]
+		\boxed{v (t) = k [\ce{RCOOR}'](t)[\ce{HO-}](t)}
 	\]
 }
 
@@ -254,9 +254,9 @@ pas encore de produits. Ainsi,
 	[\ce{R}'\ce{OH}]_0 = 0\]
 Simplifier, dans ces conditions, la loi de vitesse précédente.
 }{%
-Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
+Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x (t)$, on a
 \[
-	\boxed{v = k(c_0-x)^{2}}
+	\boxed{v = k(c_0-x (t))^{2}}
 \]
 }
 
@@ -320,53 +320,18 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	\vspace{-15pt}
 	\label{q:reglin}
 	\begin{align*}
-		v = k (c_0-x)^{2}            & = - \dv{(c_0-x)}{t} = \dv{x}{t}
+		v = k (c_0-x(t))^{2}           & = - \dv{(c_0-x)}{t} = \dv{x}{t}
 		% \notag
 		\\\Lra
-		\frac{\dd{x}}{(c_0-x)^{2}}   & = k \dd{t}
+		\frac{\dd{x}}{(c_0-x (t))^{2}} & = k \dd{t}
 		\label{eq:toint}
 		\\\Ra
-		\frac{1}{c_0-x}              & = kt + A
+		\frac{1}{c_0-x}                & = kt + A
 		\\\qor
-		x (0) = \frac{1}{c_0} \Lra A & = \frac{1}{c_0}
+		x (0) = \frac{1}{c_0} \Lra A   & = \frac{1}{c_0}
 		\\\Ra
-		\Aboxed{\frac{1}{c_0-x}      & = kt + \frac{1}{c_0}}
+		\Aboxed{\frac{1}{c_0-x}        & = kt + \frac{1}{c_0}}
 	\end{align*}
-	% On doit, de cette équation, en trouver une primitive. Pour effectuer ce
-	% raisonnement, il est plus simple de partir d'une forme simple à dériver
-	% qui donnerait celle à gauche du signe égal. Or, on sait que pour $u$ une
-	% fonction,
-	% \[(u^{\alpha})' = \alpha u' u^{\alpha-1}\]
-	% Donc si $\alpha = -1$, on aura $u^{-2}$ en dérivant, ce qui correspond à
-	% notre équation à nous. Cependant, il faut faire attention aux constantes
-	% et signes $\pm$ dans de telles situations~: calculons la dérivée en
-	% entier.
-	% \[(u^{-1})' = -1 u' u^{-2}\]
-	% Soit
-	% \begin{gather*}
-	% 	\left.\begin{array}{rcl}
-	% 		u~: \Rb^+ & \rightarrow & \Rb^+   \\
-	% 		x         & \mapsto     & c_0 - x \\
-	% 	\end{array}\right.
-	% 	\Rightarrow
-	% 	\left.\begin{array}{rcl}
-	% 		\dd u : \Rb^+ & \rightarrow & \Rb^+  \\
-	% 		x             & \mapsto     & -\dd x \\
-	% 	\end{array}\right.
-	% \end{gather*}
-	% On a donc
-	% \[\dd((c_0 -x)^{-1}) = -1 (-\dd x) (c_0 - x)^{-2}\]
-	% Et en prenant la primitive de chaque côté,
-	% \[\dcancel{\int\dd}((c_0 -x)^{-1}) = \int -1 (-\dd x) (c_0 - x)^{-2}\]
-	% Ainsi,
-	% \[
-	% \eqref{eq:toint} \Lra
-	% \boxed{\frac{1}{c_0-x} = kt + A}
-	% \]
-	% Par condition initiale évidente, $A = \frac{1}{c_0}$, soit
-	% \[
-	% \boxed{\frac{1}{c_0-x} = kt + \frac{1}{c_0}}
-	% \]
 	On trace donc
 	\[
 		y\tikzmark{yn} = a\tikzmark{an}x\tikzmark{xn} + b\tikzmark{bn}
@@ -451,25 +416,25 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 
 \QR{%
 	\leftcenters{Montrer qu'alors}
-	{$\dfrac{\sigma_0-\sigma_\infty}{\sigma-\sigma_\infty} =
-			\dfrac{c_0}{c_0-x}$}
+	{$\dfrac{\sigma_0-\sigma_\infty}{\sigma(t)-\sigma_\infty} =
+			\dfrac{c_0}{c_0-x(t)}$}
 }{%
 	On calcule~:
 	\begin{align*}
-		\sigma_0 - \sigma_{\infty}                              & =
+		\sigma_0 - \sigma_{\infty}                                 & =
 		(\lambda_{\ce{HO-}} - \lambda_{\ce{RCOO-}})c_0
 		\\\qet
-		\sigma - \sigma_{\infty}                                & =
+		\sigma(t) - \sigma_{\infty}                                & =
 		\sigma_0 - \sigma_{\infty} + (\lambda_{\ce{RCOO-}} - \lambda_{\ce{HO-}})x
 		\\\Ra
-		\frac{\sigma_0-\sigma_{\infty}}{\sigma-\sigma_{\infty}} & =
+		\frac{\sigma_0-\sigma_{\infty}}{\sigma(t)-\sigma_{\infty}} & =
 		\frac{\dcancel{(\lambda_{\ce{HO-}} - \lambda_{\ce{RCOO}'})}c_0}
 		{\dcancel{(\lambda_{\ce{HO-}} - \lambda_{\ce{RCOO}'})}c_0 -
-			\dcancel{(\lambda_{\ce{HO-}} - \lambda_{\ce{RCOO}'})}x}
+			\dcancel{(\lambda_{\ce{HO-}} - \lambda_{\ce{RCOO}'})}x(t)}
 		\\\Lra
 		\Aboxed{
-		\frac{\sigma_0-\sigma_{\infty}}{\sigma-\sigma_{\infty}} & =
-			\frac{c_0}{c_0-x}
+		\frac{\sigma_0-\sigma_{\infty}}{\sigma(t)-\sigma_{\infty}} & =
+			\frac{c_0}{c_0-x(t)}
 		}
 	\end{align*}
 }
@@ -478,19 +443,19 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	En déduire que si la vitesse est bien telle qu'elle a été supposée
 	(c'est-à-dire suivant une loi d'ordre global 2), la relation suivante
 	doit être vérifiée~:
-	\[\dfrac{\sigma_0-\sigma_\infty}{\sigma-\sigma_\infty} = c_0 k t +1\]
+	\[\dfrac{\sigma_0-\sigma_\infty}{\sigma(t)-\sigma_\infty} = c_0 k t +1\]
 }{%
 	D'après~\ref{q:reglin},
 	\begin{DispWithArrows*}[]
-		\frac{1}{c_0-x} &= kt + \frac{1}{c_0}
+		\frac{1}{c_0-x(t)} &= kt + \frac{1}{c_0}
 		\CArrow{$\times c_0$}
 		\\\Lra
-		\frac{c_0}{c_0-x} &=
+		\frac{c_0}{c_0-x(t)} &=
 		c_0kt+1
 		\Arrow{On remplace}
 		\\\Lra
 		\Aboxed{
-			\frac{\sigma_0-\sigma_{\infty}}{\sigma-\sigma_{\infty}} & =
+			\frac{\sigma_0-\sigma_{\infty}}{\sigma(t)-\sigma_{\infty}} & =
 			c_0kt+1
 		}
 	\end{DispWithArrows*}
@@ -501,8 +466,8 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	tracer pour obtenir une droite si l'ordre de la réaction est bien de 2~?
 	Comment pourra-t-on en déduire la constante de vitesse de la réaction~?
 }{%
-	On trace donc $\frac{\sigma_0 - \sigma_{\infty}}{\sigma - \sigma_{\infty}}$,
-	puisque nous n'avons pas accès à $x$. Le modèle à tracer sera
+	On trace donc $\frac{\sigma_0 - \sigma_{\infty}}{\sigma(t) - \sigma_{\infty}}$,
+	puisque nous n'avons pas accès à $x(t)$. Le modèle à tracer sera
 	\[
 		y\tikzmark{ynb} = a\tikzmark{anb}x\tikzmark{xnb} + b\tikzmark{bnb}
 	\]
@@ -615,27 +580,27 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 }
 
 \QR{%
-	Afin de déterminer précisément $\sigma_0$, réaliser une solution
-	équivalente au milieu réactionnel initial mais dont la conductivité
-	n'évolue pas. \textbf{Expliquer votre démarche et votre protocole
-		expérimental}. Réaliser la mesure et noter le résultat obtenu.
+Afin de déterminer précisément $\sigma_0$, réaliser une solution
+équivalente au milieu réactionnel initial mais dont la conductivité
+n'évolue pas. \textbf{Expliquer votre démarche et votre protocole
+	expérimental}. Réaliser la mesure et noter le résultat obtenu.
 }{%
-	Pour simuler la situation initiale sans que la réaction ne commence, on prend
-	le volume de soude demandé et le même volume d'eau, qu'on mélange ensemble~:
-	le tout a bien une concentration en $\ce{HO-\aqu{}}$ similaire à celle qu'on
-	aurait avec le même volume d'éthanoate d'éthyle. Ainsi~:
-	\begin{enumerate}
-		\item Prélever \SI{50}{mL} de soude à $c = \SI{0.100}{mol.L^{-1}}$ dans une
-		      fiole jaugée de \SI{50}{mL}~;
-		\item Les verser dans une fiole jaugée de \SI{100}{mL}~;
-		\item Remplir avec de l'eau distillée jusqu'au trait de jauge~;
-		\item Verser le contenu dans un bécher~;
-		\item Mesurer la conductivité.
-	\end{enumerate}
-	On mesure
-	\[
-		\xul{\sigma_0 = \SI{9.83}{mS.cm^{-1}}}
-	\]
+Pour simuler la situation initiale sans que la réaction ne commence, on prend
+le volume de soude demandé et le même volume d'eau, qu'on mélange ensemble~:
+le tout a bien une concentration en $\ce{HO^-_{\aqu}}$ similaire à celle qu'on
+aurait avec le même volume d'éthanoate d'éthyle. Ainsi~:
+\begin{enumerate}
+	\item Prélever \SI{50}{mL} de soude à $c = \SI{0.100}{mol.L^{-1}}$ dans une
+	      fiole jaugée de \SI{50}{mL}~;
+	\item Les verser dans une fiole jaugée de \SI{100}{mL}~;
+	\item Remplir avec de l'eau distillée jusqu'au trait de jauge~;
+	\item Verser le contenu dans un bécher~;
+	\item Mesurer la conductivité.
+\end{enumerate}
+On mesure
+\[
+	\xul{\sigma_0 = \SI{9.83}{mS.cm^{-1}}}
+\]
 }
 
 \QR{%
@@ -731,13 +696,7 @@ Avec $[\ce{RCOOR}'](t) = [\ce{HO-}](t) = c_0-x$, on a
 	\begin{tcb}(rema)<lftt>{Régression}
 		Il est commun d'avoir une régression qui ne passe pas du tout par les points
 		de mesure. La plupart du temps, cela est dû à une mauvaise valeur de
-		$\sigma_{\infty}$. Il peut valoir le coup de refaire une mesure en faisant
-		bien attention à rincer la cellule de conductimétrie.
-		\smallbreak
-		\textbf{Dans le pire des cas}, modifiez la valeur de $\sigma_{\infty}$ de
-		sorte à obtenir $b = 1$ l'ordonnée à l'origine (vous pouvez trouver la
-		valeur de $\sigma_{\infty}$ à l'aide d'une boucle for en affichant $b$ et
-		$\sigma_{\infty}$).
+		$\sigma_{\infty}$, divisée par 2 alors qu'il ne fallait pas.
 	\end{tcb}
 }%
 

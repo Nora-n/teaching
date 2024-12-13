@@ -166,7 +166,6 @@ concentrations initiales suivantes~:
 		[\ce{BrO^-_3}]_0$. \pt{1} On peut négliger la variation temporelle de la
 	concentration en ions oxonium ainsi que celle en ions bromure. \pt{1} C'est la
 	méthode de la dégénérescence de l'ordre. \pt{1}
-	\bigbreak
 	Dans ces conditions, la loi de vitesse se simplifie~:
 	\[
 		\boxed{%
@@ -190,6 +189,7 @@ concentrations initiales suivantes~:
 	}{%
 		$\DS v(t) \stm{=} - \frac{1}{1} \dv{C}{t}$
 	}%
+	\vspace{-15pt}
 	\smallbreak
 	\noindent
 	\begin{isd}
@@ -263,65 +263,71 @@ concentrations initiales suivantes~:
 			      \vspace{20pt}
 		\end{itemize}
 	\end{isd}
-	\begin{itemize}
-		\item[b]{Ordre 2}~:
-		      \begin{DispWithArrows*}
-			      v(t) &\stm{=} k\ind{app} C(t)^2
-			      \\\Lra
-			      \dv{C}{t} &= - k\ind{app} C(t)^2
-			      \\\Lra
-			      - \frac{\dd{C}}{C^2} &\stm{=} k\ind{app}
-			      \dd{t}
-			      \Arrow{$\DS \int_{0}^{t}$}
-			      \\\Lra
-			      \int_{C_0}^{C}
-			      -\frac{\dd{C}}{C^2}
-			      &=
-			      \int_{t=0}^{t} k\ind{app} \dd{t}
-			      \Arrow{$\DS \dd\left( \frac{1}{f} \right) \stm{=} - \frac{\dd{f}}{f^2}$}
-			      \\\Lra
-			      \int_{C_0}^{C(t)}
-			      \dd{\left( \frac{1}{C(t)} \right)}
-			      &=
-			      k\ind{app} \cdot \int_{t=0}^{t} \dd{t}
-			      \Arrow{$\DS\int_a^b \dd{(\cdot )} = [(\cdot )]_a^b$}
-			      \\\Lra
-			      \frac{1}{C} - \frac{1}{C_0} &=
-			      k\ind{app} \cdot t
-			      \\\Lra
-			      \Aboxed{%
-				      \frac{1}{C} &\stm{=}
-				      \frac{1}{C_0} + k\ind{app}t
-			      }
-		      \end{DispWithArrows*}
-		      On trace donc
-		      \[
-			      y\tikzmark{yn2} \stm{=}
-			      a\tikzmark{an2}x\tikzmark{xn2} + b\tikzmark{bn2}
-		      \]
-		      \tikz[remember picture, overlay]
-		      \draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
-		      (pic cs:yn2) --++ (-20pt,-10pt)
-		      node[anchor=north] {$\frac{1}{C}$}
-		      ; \tikz[remember picture, overlay]
-		      \draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
-		      (pic cs:an2) --++(-5pt,-10pt)
-		      node[anchor=north] {$k\ind{app}$}
-		      ; \tikz[remember picture, overlay]
-		      \draw[-stealth, transform canvas={xshift=0pt, yshift=-6pt}]
-		      (pic cs:xn2) --++(10pt,-10pt)
-		      node[anchor=north] {$t$}
-		      ; \tikz[remember picture, overlay]
-		      \draw[-stealth, transform canvas={xshift=3pt, yshift=-6pt}]
-		      (pic cs:bn2) --++(10pt,-10pt)
-		      node[anchor=north] {$\frac{1}{C_0}$}
-		      ;
-		      \vspace{20pt}
-	\end{itemize}
+	\begin{isd}
+		\begin{itemize}
+			\item[b]{Ordre 2}~:
+			      \begin{DispWithArrows*}
+				      v(t) &\stm{=} k\ind{app} C(t)^2
+				      \\\Lra
+				      \dv{C}{t} &= - k\ind{app} C(t)^2
+				      \\\Lra
+				      - \frac{\dd{C}}{C^2} &\stm{=} k\ind{app}
+				      \dd{t}
+				      \Arrow{$\DS \int_{0}^{t}$}
+				      \\\Lra
+				      \int_{C_0}^{C}
+				      -\frac{\dd{C}}{C^2}
+				      &=
+				      \int_{t=0}^{t} k\ind{app} \dd{t}
+			      \end{DispWithArrows*}
+		\end{itemize}
+		Or, $\DS \dd\left( \frac{1}{f} \right) \stm{=} - \frac{\dd{f}}{f^2}$~:
+		\tcblower
+		\begin{DispWithArrows*}[fleqn, mathindent=0pt]
+			\Lra
+			\int_{C_0}^{C(t)}
+			\dd{\left( \frac{1}{C(t)} \right)}
+			&=
+			k\ind{app} \cdot \int_{t=0}^{t} \dd{t}
+			\Arrow{$\DS\int_a^b \dd{(\cdot )} = [(\cdot )]_a^b$}
+			\\\Lra
+			\frac{1}{C} - \frac{1}{C_0} &=
+			k\ind{app} \cdot t
+			\\\Lra
+			\Aboxed{%
+				\frac{1}{C} &\stm{=}
+				\frac{1}{C_0} + k\ind{app}t
+			}
+		\end{DispWithArrows*}
+		On trace donc
+		\[
+			y\tikzmark{yn2} \stm{=}
+			a\tikzmark{an2}x\tikzmark{xn2} + b\tikzmark{bn2}
+		\]
+		\tikz[remember picture, overlay]
+		\draw[-stealth, transform canvas={xshift=-6pt, yshift=-6pt}]
+		(pic cs:yn2) --++ (-20pt,-10pt)
+		node[anchor=north] {$\frac{1}{C}$}
+		; \tikz[remember picture, overlay]
+		\draw[-stealth, transform canvas={xshift=-5pt, yshift=-6pt}]
+		(pic cs:an2) --++(-5pt,-10pt)
+		node[anchor=north] {$k\ind{app}$}
+		; \tikz[remember picture, overlay]
+		\draw[-stealth, transform canvas={xshift=0pt, yshift=-6pt}]
+		(pic cs:xn2) --++(10pt,-10pt)
+		node[anchor=north] {$t$}
+		; \tikz[remember picture, overlay]
+		\draw[-stealth, transform canvas={xshift=3pt, yshift=-6pt}]
+		(pic cs:bn2) --++(10pt,-10pt)
+		node[anchor=north] {$\frac{1}{C_0}$}
+		;
+		\vspace{20pt}
+	\end{isd}
+	\vspace{-15pt}
 }%
 
 \enonce{%
-	On donne les données suivantes (Tableau~\ref{tab:data}) de la concentration en
+	On a relevé les données suivantes (Tableau~\ref{tab:data}) de la concentration en
 	ions $\ce{BrO_3-}$, notée $C$ par commodité, en fonction du temps~:
 	\begin{table}[htbp!]
 		\centering
@@ -452,8 +458,8 @@ concentrations initiales suivantes~:
 }
 
 \QR[9]{%
-	Déterminer l'ordre partiel par rapport aux ions bromures et l'ordre partiel par rapport
-	aux ions \ce{H3O+}.
+	Déterminer l'ordre partiel par rapport aux ions bromures et l'ordre partiel
+	par rapport aux ions \ce{H3O+}.
 }{%
 	On pose le système d'équations~:
 	\begin{eqnarray}
@@ -470,68 +476,106 @@ concentrations initiales suivantes~:
 		k [\ce{BrO^-_3}]_0 \cdot [\ce{Br^-}]_{03}^q \cdot [\ce{H_3O^+}]_{03}^r
 		\label{eq:3}
 	\end{eqnarray}
-	\begin{itemize}
-		\item[m]
-		      \begin{align*}
-			      \eqref{eq:2} / \eqref{eq:1}
-			      \Ra
-			      \frac{v_{02}}{v_{01}} & \stm{=}
-			      \left( \frac{[\ce{Br^-}]_{02}}{[\ce{Br^-}]_{01}} \right)^q
-			      \qcar
-			      [\ce{H_3O^+}]_{02} \stm{=}{} [\ce{H_3O^+}]_{01}
-			      \\\Lra
-			      \Aboxed{%
-			      q                     & \stm{=}
-				      \frac{\ln (v_{02}/v_{01})}{\ln ([\ce{Br^-}]_{02}/[\ce{Br^-}]_{01})}
-			      }
-			      \qav
-			      \left\{
-			      \begin{array}{rcl}
-				      v_{01}           & = & \SI{4.1e-5}{mol.L.s^{-1}}
-				      \\
-				      v_{02}           & = & \SI{6.2e-5}{mol.L.s^{-1}}
-				      \\{}
-				      [\ce{Br^-}]_{01} & = & \SI{0.10}{mol.L^{-1}}
-				      \\{}
-				      [\ce{Br^-}]_{02} & = & \SI{0.15}{mol.L^{-1}}
-			      \end{array}
-			      \right.                         \\
-			      \AN
-			      \makebox[0pt][l]{$\xul{\phantom{q = 1}}$}
-			      q                     & = 1
-			      \quad \pt{1}
-		      \end{align*}
-		\item[m]
-		      \begin{align*}
-			      \eqref{eq:3} / \eqref{eq:1}
-			      \Ra
-			      \frac{v_{03}}{v_{01}} & \stm{=}
-			      \left( \frac{[\ce{H_3O^+}]_{03}}{[\ce{H_3O^+}]_{01}} \right)^r
-			      \qcar
-			      [\ce{Br^-}]_{03} \stm{=}{} [\ce{Br^-}]_{01}
-			      \\\Lra
-			      \Aboxed{%
-			      r                     & \stm{=}
-				      \frac{\ln (v_{03}/v_{01})}{\ln ([\ce{H_3O^+}]_{03}/[\ce{H_3O^+}]_{01})}
-			      }
-			      \qav
-			      \left\{
-			      \begin{array}{rcl}
-				      v_{01}             & = & \SI{4.1e-5}{mol.L.s^{-1}}
-				      \\
-				      v_{03}             & = & \SI{6.2e-5}{mol.L.s^{-1}}
-				      \\{}
-				      [\ce{H_3O^+}]_{01} & = & \SI{0.10}{mol.L^{-1}}
-				      \\{}
-				      [\ce{H_3O^+}]_{03} & = & \SI{0.15}{mol.L^{-1}}
-			      \end{array}
-			      \right.                         \\
-			      \AN
-			      \makebox[0pt][l]{$\xul{\phantom{b = 1}}$}
-			      r                     & = 1
-			      \quad \pt{1}
-		      \end{align*}
-	\end{itemize}
+	\begin{isd}
+		\begin{align*}
+			\eqref{eq:2} / \eqref{eq:1}
+			\Ra
+			\frac{v_{02}}{v_{01}} & \stm{=}
+			\left( \frac{[\ce{Br^-}]_{02}}{[\ce{Br^-}]_{01}} \right)^q
+			\\\qcar
+			[\ce{H_3O^+}]_{02}    & \stm{=}{} [\ce{H_3O^+}]_{01}
+			\\\Lra
+			\Aboxed{%
+			q                     & \stm{=}
+				\frac{\ln (v_{02}/v_{01})}{\ln ([\ce{Br^-}]_{02}/[\ce{Br^-}]_{01})}
+			}
+			\\\AN
+			\makebox[0pt][l]{$\xul{\phantom{q = 1}}$}
+			q                     & = 1
+			\quad \pt{1}
+		\end{align*}
+		\tcblower
+		\begin{align*}
+			\eqref{eq:3} / \eqref{eq:1}
+			\Ra
+			\frac{v_{03}}{v_{01}} & \stm{=}
+			\left( \frac{[\ce{H_3O^+}]_{03}}{[\ce{H_3O^+}]_{01}} \right)^r
+			\\\qcar
+			[\ce{Br^-}]_{03}      & \stm{=}{} [\ce{Br^-}]_{01}
+			\\\Lra
+			\Aboxed{%
+			r                     & \stm{=}
+				\frac{\ln (v_{03}/v_{01})}{\ln ([\ce{H_3O^+}]_{03}/[\ce{H_3O^+}]_{01})}
+			}
+			\\\AN
+			\makebox[0pt][l]{$\xul{\phantom{b = 1}}$}
+			r                     & = 1
+			\quad \pt{1}
+		\end{align*}
+	\end{isd}
+	% \begin{itemize}
+	% 	\item[m]
+	% 	      \begin{align*}
+	% 		      \eqref{eq:2} / \eqref{eq:1}
+	% 		      \Ra
+	% 		      \frac{v_{02}}{v_{01}} & \stm{=}
+	% 		      \left( \frac{[\ce{Br^-}]_{02}}{[\ce{Br^-}]_{01}} \right)^q
+	% 		      \qcar
+	% 		      [\ce{H_3O^+}]_{02} \stm{=}{} [\ce{H_3O^+}]_{01}
+	% 		      \\\Lra
+	% 		      \Aboxed{%
+	% 		      q                     & \stm{=}
+	% 			      \frac{\ln (v_{02}/v_{01})}{\ln ([\ce{Br^-}]_{02}/[\ce{Br^-}]_{01})}
+	% 		      }
+	% 		      \qav
+	% 		      \left\{
+	% 		      \begin{array}{rcl}
+	% 			      v_{01}           & = & \SI{4.1e-5}{mol.L.s^{-1}}
+	% 			      \\
+	% 			      v_{02}           & = & \SI{6.2e-5}{mol.L.s^{-1}}
+	% 			      \\{}
+	% 			      [\ce{Br^-}]_{01} & = & \SI{0.10}{mol.L^{-1}}
+	% 			      \\{}
+	% 			      [\ce{Br^-}]_{02} & = & \SI{0.15}{mol.L^{-1}}
+	% 		      \end{array}
+	% 		      \right.                         \\
+	% 		      \AN
+	% 		      \makebox[0pt][l]{$\xul{\phantom{q = 1}}$}
+	% 		      q                     & = 1
+	% 		      \quad \pt{1}
+	% 	      \end{align*}
+	% 	\item[m]
+	% 	      \begin{align*}
+	% 		      \eqref{eq:3} / \eqref{eq:1}
+	% 		      \Ra
+	% 		      \frac{v_{03}}{v_{01}} & \stm{=}
+	% 		      \left( \frac{[\ce{H_3O^+}]_{03}}{[\ce{H_3O^+}]_{01}} \right)^r
+	% 		      \qcar
+	% 		      [\ce{Br^-}]_{03} \stm{=}{} [\ce{Br^-}]_{01}
+	% 		      \\\Lra
+	% 		      \Aboxed{%
+	% 		      r                     & \stm{=}
+	% 			      \frac{\ln (v_{03}/v_{01})}{\ln ([\ce{H_3O^+}]_{03}/[\ce{H_3O^+}]_{01})}
+	% 		      }
+	% 		      \qav
+	% 		      \left\{
+	% 		      \begin{array}{rcl}
+	% 			      v_{01}             & = & \SI{4.1e-5}{mol.L.s^{-1}}
+	% 			      \\
+	% 			      v_{03}             & = & \SI{6.2e-5}{mol.L.s^{-1}}
+	% 			      \\{}
+	% 			      [\ce{H_3O^+}]_{01} & = & \SI{0.10}{mol.L^{-1}}
+	% 			      \\{}
+	% 			      [\ce{H_3O^+}]_{03} & = & \SI{0.15}{mol.L^{-1}}
+	% 		      \end{array}
+	% 		      \right.                         \\
+	% 		      \AN
+	% 		      \makebox[0pt][l]{$\xul{\phantom{b = 1}}$}
+	% 		      r                     & = 1
+	% 		      \quad \pt{1}
+	% 	      \end{align*}
+	% \end{itemize}
+	\vspace{-15pt}
 }
 
 \QR[3]{%
@@ -561,12 +605,3 @@ concentrations initiales suivantes~:
 }
 
 \end{document}
-
-
-
-
-
-
-
-
-

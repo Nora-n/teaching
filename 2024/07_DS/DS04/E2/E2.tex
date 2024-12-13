@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\section[30]"E"{Étude d'un circuit RLC parallèle}
+\section[65]"E"{Étude d'un circuit RLC parallèle}
 
 \enonce{%
 	\noindent
@@ -23,100 +23,261 @@
 
 \subsection{Étude de l'amplitude et de la phase}
 
-\QR{
+\QR[3]{%
 	Exprimer l'impédance équivalente $\Zu$ du dipôle $AB$.
-}{
-	Dans le cas d'une association de dipôle en parallèle, on additionne les admittances :
-	\eq{
-		\Yu=\frac{1}{\Zu}=\frac{1}{R}+\frac{1}{\jlw}+\jcw=\frac{R(1-LC\w^2)+\jlw}{\jrlw}
-	}
-	\eq{
-		\boxed{\Zu=\frac{\jrlw}{R(1-LC\w^2)+\jlw}}
-	}
+}{%
+	Dans le cas d'une association de dipôle en parallèle, on additionne les
+	admittances~:
+	\begin{gather*}
+		\Yu \stm{=}
+		\frac{1}{\Zu} \stm{=}
+		\frac{1}{R}+\frac{1}{\jlw}+\jcw =
+		\frac{R(1-LC\w^2)+\jlw}{\jrlw}
+		\Lra
+		\boxed{\Zu \stm{=} \frac{\jrlw}{R(1-LC\w^2)+\jlw}}
+	\end{gather*}
 }
 
-
-\QR{
-	Montrer que l'amplitude complexe de la tension $u$ se met sous la forme :
-	\eq{
-		\xul{U_0}=\frac{R\eta_0}{1+jQ\left (x-\cfrac{1}{x}  \right )}\quad \mbox{avec }x=\w/\w_0
-	}
-	Exprimer $Q$ et $\w_0$ en fonction de $R$, $L$ et $C$. Comment s'appellent ces deux constantes~?
-}{
-	On applique la loi d'Ohm généralisée sur le dipôle équivalent $\Zu$, en utilisant les amplitudes complexes du courant et de la tension :
-	\eq{
-		\xul{U_0}=\Zu\eta_0=\frac{\jrlw}{R(1-LC\w^2)+\jlw}\eta_0
-	}
-
-	On divise par $\jlw$ et on trouve : $\boxed{\displaystyle{\xul{U_0}=\frac{R\eta_0}{1+jR\left (C\w-\frac{1}{L\w}  \right )}}}$
-
-	Par identification on a $\displaystyle{RC=\frac{Q}{\w_0}\qquad \frac{R}{L}=Q\w_0}$.
-
-	On en déduit $\boxed{\displaystyle{\w_0=\frac{1}{\sqrt{LC}}\qquad Q=R\sqrt{\frac{C}{L}}}}$.
-
-	$\w_0$ est la pulsation propre du circuit et $Q$ le facteur de qualité.
-
+\QR[5]{%
+	Montrer que l'amplitude complexe de la tension $u$ se met sous la forme~:
+	\[
+		\xul{U_0} =
+		\frac{R\eta_0}{1+\jj Q \pa{x-\cfrac{1}{x}}}
+		\qav
+		x = \frac{\w}{\w_0}
+	\]
+	Exprimer $Q$ et $\w_0$ en fonction de $R$, $L$ et $C$. Comment s'appellent ces
+	deux constantes~?
+}{%
+	On applique la loi d'\textsc{Ohm} généralisée sur le dipôle équivalent $\Zu$,
+	en utilisant les amplitudes complexes du courant et de la tension~:
+	\smallbreak
+	\noindent
+	\begin{isd}
+		\vspace{-15pt}
+		\begin{DispWithArrows*}[fleqn, mathindent=0pt]
+			\xul{U_0} &\stm{=} \Zu\eta_0 = \frac{\jrlw}{R(1-LC\w^2)+\jlw}\eta_0
+			\Arrow{Factorise\\par $\jrlw$}
+			\\\Lra
+			\xul{U_0} &\stm{=} \frac{R\eta_0}{1+\jj R \pa{C\w-\frac{1}{L\w}} }
+		\end{DispWithArrows*}
+		\tcblower
+		\vspace{-15pt}
+		\begin{DispWithArrows*}
+			\\\text{Identification~:~}
+			RC = \frac{Q}{\w_0}
+			\quad &\stm{\text{et}} \quad
+			\frac{R}{L} = Q \w_0
+			\\\Lra
+			\Aboxed{
+				\w_0 = \frac{1}{\sqrt{LC}}
+				\quad & \stm{\text{et}} \quad
+				Q = R \sqrt{\frac{C}{L}}
+			}
+		\end{DispWithArrows*}
+	\end{isd}
+	avec $\w_0$ la pulsation propre du circuit et $Q$ le facteur de qualité. \pt{1}
 }
 
-\QR{
-	Exprimer l'amplitude réelle $U_0$ de la tension $u$ en fonction de $R$, $\eta_0$, $Q$ et $x$.
-}{
-	$\boxed{\displaystyle{U_0=|\xul{U_0}|=\frac{R\eta_0}{\sqrt{1+Q^2\left (x-\frac{1}{x} \right )^2}}}}$
+\QR[2]{%
+	Exprimer l'amplitude réelle $U_0$ de la tension $u$ en fonction de $R$,
+	$\eta_0$, $Q$ et $x$.
+}{%
+	\sswitch{%
+		\leavevmode\vspace*{-25pt}\relax
+	}{%
+		\leavevmode\vspace*{-15pt}\relax
+	}%
+	\[
+		\boxed{%
+			U_0 \stm{=}
+			\abs{\xul{U_0}} \stm{=}
+			\frac{R\eta_0}{\sqrt{1+Q^2\left (x-\frac{1}{x} \right )^2}}}
+	\]
 }
 
-\QR{
-	Y-a-t-il résonance en tension~? Si oui, préciser la valeur de $x$ à la résonance. En déduire la valeur de $\w$ à la résonance.
-}{
-	La résonance correspond à un maximum de la fonction $U_0$ à $x\neq 0$. $U_0$ est maximale si son dénominateur est minimal, soit quand $x-1/x=0$.
-
-	Il y a toujours résonance en tension pour $x=1$, soit $\w=\w_0$.
+\QR[8]{%
+	Définir ce qu'est la résonance. Peut-il toujours y avoir résonance en tension
+	ici~? Si oui, préciser la valeur de $x$ puis de $\w$ à la résonance. Quelle
+	est la valeur maximal $U\ind{max}$ de $U_0$~?
+}{%
+	La résonance correspond à un maximum de la fonction $U_0$ \pt{1} à $x\neq 0$
+	\pt{1}. Ici, comme $R\eta_0 = \cte$ \pt{1}, on a $U_0$ maximale si son
+	dénominateur est minimal \pt{1}, soit pour
+	\begin{gather*}
+		1 + \underbracket[1pt]{Q^2 \pa{x_r - \frac{1}{x_r}}^2}_{\geq 0} \quad
+		\text{minimal}
+		\Lra
+		Q^2 \pa{x_r - \frac{1}{x_r}}^2 \stm{=} 0
+		\Lra
+		\boxed{x_r = 1}
+		\stm{\Lra}
+		\boxed{\w_r = \w_0}
+	\end{gather*}
+	Ainsi, il peut toujours y avoir résonance en tension ici \pt{1}, et on obtient
+	$U\ind{max} = R \eta_0$. \pt{1}
 }
 
-\QR{
-Comment définit-on la bande passante $\Delta\w$~? Montrer que $\Delta\w=\w_0/Q$.
-}{
-La bande passante $\Delta \w$ est l'ensemble des pulsations $\w$ vérifiant ${U_{max}/\sqrt{2}\leq U_0(\w)\leq U_{max}}$.
-
-Soit $\Delta \w=[\w_1;\w_2]$, avec $\w_1$ et $\w_2$ solutions de l'équation $U_0(\w)=U_{max}/\sqrt{2}$, soit :
-\eq{
-	Q^2\left (x-\frac{1}{x}  \right )^2=1\quad\Leftrightarrow \quad x^2\pm\frac{x}{Q}-1=0
+\QR[8]{%
+Comment définit-on la bande passante $\Delta\w$~? Montrer que $\Delta\w =
+	\w_0/Q$.
+}{%
+La bande passante $\Delta \w$ est l'ensemble des pulsations $\w$ vérifiant
+${U\ind{max}/\sqrt{2}\leq U_0(\w)\leq U\ind{max}}$, \pt{1} soit
+$\Delta \w=[\w_1\,;\w_2]$, avec $\w_1$ et $\w_2$ solutions de l'équation
+$U_0(\w_k) = U\ind{max}/\sqrt{2}$. En travaillant en pulsations réduites~:
+\smallbreak
+\noindent
+\begin{isd}
+	\begin{DispWithArrows*}[groups, fleqn]%
+		U_0(x_k)
+		&=
+		\frac{U\ind{max}}{\sqrt{2}}
+		\Arrow{On remplace}
+		\\\Lra
+		\frac{R\eta_0}{\sqrt{1 + Q^2 \pa{x_k - \frac{1}{x_k}} ^2}}
+		&=
+		\frac{R\eta_0}{\sqrt{2}}
+		\Arrow{On isole}
+		\\\Lra
+		\Aboxed{
+			Q^2 \pa{x_k - \frac{1}{x_r}}^2
+			&\stm{=}
+			1
+		}
+		\CArrow{$\sqrt{\cdot}$}
+		\\\Lra
+		Q \pa{x_k - \frac{1}{x_k}}
+		&=
+		\pm 1
+		\Arrow{$\times x_k$}
+		\\\Lra
+		Qx_k{}^2 - Q
+		&=
+		\pm x_k
+		\Arrow{$-\pm = \mp$}
+		\\\Lra
+		Q x_k{}^{2} \mp x_k - Q
+		&\stm{=}
+		0
+	\end{DispWithArrows*}
+	On a alors \textbf{deux trinômes}, soit \textbf{quatre racines possibles},
+	avec
+	\[
+		\Delta
+		\stm{=}
+		1 + 4Q{}^{2}
+	\]
+	\tcblower
+	\begin{DispWithArrows*}[groups]%
+		\Ra
+		x_{k,\pm,\pm}
+		&\stm{=}
+		\frac{\pm 1 \pm \sqrt{1+4Q{}^{2}}}{2Q}
+	\end{DispWithArrows*}
+	On ne garde que les racines positives, sachant que
+	$\boxed{\sqrt{1+4Q{}^{2}} > 1}$~:
+	\begin{DispWithArrows*}[]
+		x_1 = x_{k,-,+} &= \frac{1}{2Q} \pa{-1 + \sqrt{1+4Q{}^{2}}}
+		\\\stm{\text{et}} \quad
+		x_2 = x_{k,+,+} &= \frac{1}{2Q} \pa{1 + \sqrt{1+4Q{}^{2}}}
+	\end{DispWithArrows*}
+	puis on obtient la bande passante en calculant la différence $\abs{x_2 -
+			x_1}$~:
+	\begin{align*}
+		\Delta{x}         & = x_2 - x_1 =
+		\frac{1+\cancel{\sqrt{1+4Q^2}} - \pa{-1 + \cancel{\sqrt{1+4Q^2}}}}{2Q}
+		\\\Lra
+		\Aboxed{\Delta{x} & \stm{=} \frac{1}{Q} \Lra \Delta{\w} \stm{=} \frac{\w_0}{Q}}
+		\qed
+	\end{align*}
+\end{isd}
+\vspace{-15pt}
 }
-Parmi les 4 solutions de ces 2 équations polynomiales de degré 2, seules 2 solutions sont acceptables car donnant $x>0$ :
-\eq{
-	x_1=-\frac{1}{2Q}+\frac{1}{2Q}\sqrt{1+4Q^2}\qquad x_2=\frac{1}{2Q}+\frac{1}{2Q}\sqrt{1+4Q^2}
+
+\QR[7]{%
+	Faire l'étude asymptotique de la fonction $U_0(x)$. Indiquer alors les limites
+	de $U_0(x)$ en basses et hautes fréquences. Indiquer la valeur de
+	$U_0(x = 1)$. Tracer l'allure de $U_0$ en fonction de $x$.
+}{%
+	~
+	\vspace{-15pt}
+	\smallbreak
+	\noindent
+	\begin{isd}[interior hidden, righthand ratio=.25]
+		\begin{align*}
+			U_0(x) & \stm{\Sim_{x \to 0}} \frac{R\eta_0}{Q}x \stm{\to} 0
+			\\
+			U_0(x) & \stm{\Sim_{x \to \infty}} \frac{R\eta_0}{Q} \frac{1}{x} \stm{\to} 0
+			\\
+			U_0(1) & \stm{=} R\eta_0
+		\end{align*}
+		\tcblower
+		\def\svgwidth{.9\linewidth}
+		\figsvg{u0.pdf_tex}
+		\vspace{-15pt}
+		\captionof{figure}{\protect\pt{1}+\protect\pt{1}}
+	\end{isd}
+	\vspace{-15pt}
 }
-On obtient $\Delta x=x_2-x_1=1/Q$, soit $\Delta \w=\w_0\Delta x=\w_0/Q$
+
+\QR[6]{%
+	Exprimer la phase $\phi$ en fonction de $Q$ et $x$. Préciser le domaine de
+	variation de $\phi$.
+}{%
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{gather*}
+		\phi \stm{=}
+		\arg*{\xul{U_0}} \stm{=}
+		\underbracket[1pt]{\cancel{\arg*{R\eta_0}}}_{=0}
+		- \arg*{1 + \jj Q \left( x - \frac{1}{x} \right)}
+		\\\Ra
+		\tan(\phi) \stm{=}
+		- \tan\/(%
+		\arg{%
+		\underbracket[1pt]{1}_{\mathclap{\Re > 0 \pt{1}}} +
+		\jj Q\left( x - \frac{1}{x} \right)
+		}
+		)
+		\Lra
+		\boxed{\phi \stm{=} -\arctan(Q \pa{x - \frac{1}{x}})}
+		\qavec
+		\boxed{\phi \stm{\in} \left] - \frac{\pi}{2}\,; \frac{\pi}{2} \right[}
+	\end{gather*}
 }
 
-\QR{
-	Faire l'étude asymptotique de la fonction $U_0(x)$. Tracer l'allure de $U_0$ en fonction de $x$.
-}{
-	\begin{itemize}
-		\item si $x\rightarrow 0$ : $\displaystyle{\lim_{x\rightarrow 0}U_0(x)=\lim_{x\rightarrow 0}\frac{R\eta_0}{Q}x=0}$
-		\item si $x\rightarrow +\infty$ : $\displaystyle{\lim_{x\rightarrow +\infty}U_0(x)=\lim_{x\rightarrow 0}\frac{R\eta_0}{Q}\frac{1}{x}=0}$
-		\item si $x=1$, $U_0(1)=R\eta_0$
-	\end{itemize}
-
-	\figsvg{u0.pdf_tex}
-
-}
-
-\QR{
-Exprimer la phase $\phi$ en fonction de $Q$ et $x$. Préciser le domaine de variation de $\phi$.
-}{
-$\displaystyle{\phi=-\arctan\left (Q(x-1/x))  \right )\in]-\pi/2;\pi/2[}$
-}
-
-\QR{
-	Faire l'étude asymptotique de la fonction $\phi (x)$. Tracer l'allure de $\phi$ en fonction de $x$.
-}{
-	\begin{itemize}
-		\item si $x\rightarrow 0$ : $\lim_{x\rightarrow 0}\phi(x)=\pi/2$
-		\item si $x\rightarrow +\infty$ : $\lim_{x\rightarrow +\infty}\phi(x)=-\pi/2$
-		\item si $x=1$ : $\phi(1)=0$
-	\end{itemize}
-
-	\figsvg{phase.pdf_tex}
+\QR[7]{%
+	Faire l'étude asymptotique de la fonction $\phi (x)$. Indiquer alors ses
+	limites en hautes et basses fréquences. Indiquer l'allure de $\phi(x = 1)$.
+	Tracer l'allure de $\phi$ en fonction de $x$.
+}{%
+	~
+	\vspace{-15pt}
+	\smallbreak
+	\noindent
+	\begin{isd}[interior hidden, righthand ratio=.25]
+		\begin{align*}
+			\phi(x) &
+			\stm{\Sim_{x \to 0}}
+			- \arctan(-\frac{Q}{x})
+			\stm{\to}
+			\frac{\pi}{2}
+			\\
+			\phi(x) &
+			\stm{\Sim_{x \to \infty}}
+			- \arctan(Qx)
+			\stm{\to}
+			- \frac{\pi}{2}
+			\\
+			\phi(1) & \stm{=} 0
+		\end{align*}
+		\tcblower
+		\def\svgwidth{.9\linewidth}
+		\figsvg{phase.pdf_tex}
+		\vspace{-15pt}
+		\captionof{figure}{\protect\pt{1}+\protect\pt{1}}
+	\end{isd}
+	\vspace{-15pt}
 }
 
 \subsection{Expérience}
@@ -124,88 +285,118 @@ $\displaystyle{\phi=-\arctan\left (Q(x-1/x))  \right )\in]-\pi/2;\pi/2[}$
 \enonce{
 	\noindent
 	\begin{minipage}{0.5\linewidth}
-		Pour tracer les graphiques $U_0$ et $\phi$ en fonction de $\w$, il faut pouvoir observer simultanément le courant $\eta(t)$ et la tension $u(t)$. On ajoute une résistance  $r$ en série avec le générateur de courant afin de visualiser le courant $\eta(t)$ par l'intermédiaire de la tension $u_r(t)$. On propose le montage ci-contre.
+		Pour tracer les graphiques $U_0$ et $\phi$ en fonction de $\w$, il faut
+		pouvoir observer simultanément le courant $\eta(t)$ et la tension $u(t)$. On
+		ajoute une résistance $r$ en série avec le générateur de courant afin de
+		visualiser le courant $\eta(t)$ par l'intermédiaire de la tension $u_r(t)$.
+		On propose le montage ci-contre.
 	\end{minipage}
 	\begin{minipage}{0.49\linewidth}
 		\figsvg{rlcparmes.pdf_tex}
 	\end{minipage}
 }
 
-\QR{
-	Le montage proposé est-il valable ? Si oui, à quelle condition~?
-}{
-	Le montage est valable si le générateur de courant n'impose pas de masse, c'est-à-dire avec un générateur à masse flottante.
+\QR[5]{%
+	À quelle condition le montage proposé est-il valable~? On suppose cette
+	condition vérifiée dans la suite. Quelle tension visualise-t-on sur la voie
+	$A$~? sur la voie $B$~? Que faut-il faire pour visualiser $\eta(t)$ et
+	$u(t)$~?
+}{%
+	Le montage est valable si le générateur de courant n'impose pas de masse,
+	c'est-à-dire avec un générateur à masse flottante. \pt{1}
+	\begin{itemize}
+		\item Sur la voie $A$, on visualise la tension $u_r(t)=r\eta(t)$. \pt{1}
+		      Donc il faut diviser par $r$ la voie $A$ pour visualiser $\eta(t)$. \pt{1}
+		\item Sur la voie $B$, on visualise $-u(t)$. \pt{1} Donc il faut inverser la
+		      voie $B$ pour visualiser $u(t)$. \pt{1}
+	\end{itemize}
 }
 
-\QR{
-	Quelle tension visualise-t-on sur la voie $A$~? sur la voie $B$~? Que faut-il faire pour visualiser $\eta(t)$ et $u(t)$~?
-}{
-	Sur la voie $A$, on visualise la tension $u_r(t)=r\eta(t)$. Donc il faut diviser par $r$ la voie $A$ pour visualiser $\eta(t)$.
-
-	Sur la voie $B$, on visualise $-u(t)$. Donc il faut inverser la voie $B$ pour visualiser $u(t)$.
-
-}
-
-
-\enonce{
+\enonce{%
 	La figure suivante montre une acquisition des tensions $u_r$ et $u$ faite pour
-	une pulsation $\w$ donnée. Le calibre est de $\SI{1}{\volt}$ sur les deux
-	voies.
-
+	une pulsation $\w$ donnée. Le calibre vertical est de $\SI{1}{\volt}$ sur les
+	deux voies. \textbf{On ne connaît pas l'échelle de temps}.
 	\figsvg{oscillo.pdf_tex}
-
 }
 
-
-\QR{
+\QR[4]{%
 	La tension $u$ est-elle en avance ou en retard par rapport au courant $\eta$~?
-}{
-	La tension $u$ est en retard par rapport au courant $\eta$ car son maximum arrive après celui de la tension $u_r$.
+	Justifier. En degrés, quel est la valeur de déphasage correspondant à un
+	décalage d'une période~? Déterminer alors, toujours en degrés, la valeur du
+	déphasage $\Delta{\f}_{u/i} = \phi$ de la tension $u$ par rapport au courant
+	$\eta$.
+}{%
+	La tension $u$ est en retard \pt{1} par rapport au courant $\eta$ car son
+	maximum arrive après celui de la tension $u_r$. \pt{1}
+	\smallbreak
+	Une période du signal $u_r$ (ou $u$) correspond à un déphasage de
+	$\ang{360;;}$. \pt{1} Or ici, une période correspond à 10 carreaux, donc un
+	retard de 1 carreau correspond à un déphasage de $\ang{-36;;}$, et on a 2
+	carreaux de déphasage entre $u$ et $u_r$~; ainsi, $\xul{\phi = -\ang{72;;}}$.
+	\pt{1}
 }
 
-\QR{
-	Déterminer la valeur de la phase $\phi$ de la tension $u$ par rapport au courant $\eta$. On donnera sa valeur en degré.
-}{
-	Une période du signal $u_r$ (ou $u$) correspond à 10 carreaux. Donc un retard de 1 carreau correspond à un déphasage de $\SI{-36}{\degree}$.
-
-	Ici, on a 2 carreaux de déphasage entre $u$ et $u_r$, donc $\boxed{\phi=-\SI{72}{\degree}}$
-}
-
-\QR{
+\QR[5]{%
 	Que vaut l'amplitude $U_0$ de la tension $u$~?
-}{
-	L'amplitude de $u(t)$ correspond à 2 carreaux, donc $\boxed{U_0=\SI{2}{\volt}}$.
+	Définir mathématiquement la valeur efficace $s\ind{eff}$ d'un signal $s(t)$
+	périodique de période $T$. Que représentent physiquement $s\ind{eff}^2$ et $s
+		\ind{eff}$~?
+}{%
+	L'amplitude de $u(t)$ correspond à 2 carreaux, donc $\xul{U_0 =
+			\SI{2}{\volt}}$. \pt{1}
+	\begin{gather*}
+		\beforetext{Mathématiquement,}
+		s \ind{eff} \stm{=}
+		\sqrt{\moy{s^{2}(t)}} \stm{=}
+		\sqrt{\frac{1}{T} \int_{0}^{T} s^2 (t) \dd{t}}
+	\end{gather*}
+	$s \ind{eff}^2$ représente l'énergie moyenne du signal \pt{1}~; ainsi, $s
+		\ind{eff}$ correspond à l'amplitude constante qui porterait la même énergie
+	moyenne que $s(t)$. \pt{1}
 }
 
-\QR{
-	Définir mathématiquement la valeur efficace $s\ind{eff}$ d'un signal $s(t)$ périodique de période $T$.
-}{
-	$\displaystyle{s\ind{eff}=\sqrt{\frac{1}{T}\int_0^Ts^2(t)dt}}$
-}
-
-\QR{
-	Soit un signal $s(t)$ sinusoïdal de période $T$, d'amplitude $S_0$ et de phase à l'origine nulle. Exprimer sa valeur efficace $s\ind{eff}$ en fonction de $S_0$. On étblira cette relation.
-}{
-
-	On écrit la fonction $s(t)$ : $s(t)=S_0\cos(2\pi t/T)$
-	\eq{
-		s^2\ind{eff}=\frac{1}{T}\int_0^T S_0^2\cos^2(2\pi t/T)dt
-	}
-	On linéarise le cosinus carré : $\displaystyle{\cos^2(2\pi t/T)=\frac{1+\cos(4\pi t/T)}{2}}$
-
-	Puis on intègre, et on obtient :
-	\eq{
-		s^2\ind{eff}=\frac{S_0^2}{2T}\left [\int_0^T dt+\int_0^T \cos(4\pi t/T)dt \right ]=\frac{S_0^2}{2}
-	}
-	Car $\int_0^T \cos(4\pi t/T)dt=0$. On en déduit $\boxed{s\ind{eff}=S_0/\sqrt{2}}$
-
-}
-
-
-\QR{
-	En déduire la valeur efficace de la tension $u(t)$. On donne $\sqrt{2}=1,4$.
-}{
-	$u\ind{eff}=2/\sqrt{2}=\sqrt{2}=\SI{1,4}{\volt}$
+\QR[5]{%
+	Soit un signal $s(t)$ sinusoïdal de période $T$, d'amplitude $S_0$ et de phase
+	à l'origine nulle. Établir l'expression de sa valeur efficace $s\ind{eff}$ en
+	fonction de $S_0$. En déduire la valeur efficace de la tension $u(t)$. On
+	donne $\sqrt{2} = \num{1.4}$.
+}{%
+	~
+	\vspace{-15pt}
+	\smallbreak
+	\begin{isd}[interior hidden]
+		\begin{DispWithArrows*}[groups, fleqn, mathindent=0pt]
+			s(t) &\stm{=} S_0\cos(\wt)
+			\\\Ra
+			\moy{s^{2}(t)} & =
+			\frac{1}{T} \int_{0}^{T} \left( S_0^{2}\cos^{2}(\wt) \right) \dd{t}
+			% \qor
+			% \cos^2(\th) \stm{=} \frac{1}{2}\pa{\cos(2\th) + 1}
+			% \Arrow{$\cos^2(\th) \stm{=} \frac{1}{2}\pa{\cos(2\th) + 1}$}
+			\Arrow{Linéarisa$^\circ$}
+			\\\Lra
+			\moy{s^{2}(t)} & \stm{=}
+			\frac{S_0^{2}}{2T}
+			\left( \int_{0}^{T} \dd{t} + \int_{0}^{T} \cos(2\wt) \dd{t}\right)
+		\end{DispWithArrows*}
+		\tcblower
+		\begin{DispWithArrows*}[groups]
+			\Lra
+			\moy{s^{2}(t)} & \stm{=}
+			\frac{S_0^{2}}{2T}
+			\Bigg(
+			\underbracket[1pt]{\left[ t \right]_0^{T}}_{=T} +
+			\underbracket[1pt]{\left[ \frac{S_0}{2\w} \sin(2\wt) \right]_0^{T}}_{=0}
+			\Bigg)
+			\\\Lra
+			\Aboxed{s \ind{eff} & \stm{=} \frac{S_0}{\sqrt{2}}}
+			\qMath{d'où}
+			\boxed{u\ind{eff} = \frac{U_0}{\sqrt{2}}}
+			\Ra
+			\xul{u\ind{eff} = \SI{1.4}{V}} \pt{1}
+		\end{DispWithArrows*}
+	\end{isd}
+	\vspace{-15pt}
 }
 
 \end{document}

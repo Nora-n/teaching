@@ -1531,7 +1531,7 @@ des résistances.
 
 \section{Mesure de déphasages}
 \subsection{Définition}
-\begin{tcb}(defi){Déphasage}
+\begin{tcb*}(defi){Déphasage}
 	Pour deux signaux sinusoïdaux \textbf{de mêmes fréquences} $s_1(t) =
 		S_1\cos(\wt+\f_1)$ et $s_2(t) = S_2\cos(\wt+\f_2)$, on définit le
 	\textbf{déphasage} entre $s_2$ et $s_1$ comme étant la \textbf{différence de
@@ -1544,7 +1544,7 @@ des résistances.
 		\]
 	}%
 	\vspace{-15pt}
-\end{tcb}
+\end{tcb*}
 % \begin{tcb}(rapp){}
 % 	Étant donné que les sorties en RSF ont la même pulsation que l'entrée, on ne
 % 	s'intéressera qu'à des signaux de même pulsation/fréquence.
@@ -1552,14 +1552,13 @@ des résistances.
 
 \subsection{Lecture d'un déphasage}
 
-\noindent
-\begin{minipage}{0.65\linewidth}
-	Le déphasage $\D\f_{2/1} = \f_2 - \f_1$ est lié au \textbf{retard temporel}
+\begin{tcb*}[sidebyside, righthand ratio=.3](prop){Lecture d'un déphasage}
+	Le déphasage $\D\f_{2/1}$ est lié au \textbf{retard temporel}
 	$\D{t}_{2/1} = t_2 - t_1$ du signal $s_2$ par rapport au signal $s_1$~: on a
 	\psw{%
-		\[\boxed{\abs{\D\f_{2/1}} = \w \abs{\D{t}_{2/1}}}\]
+		\[\boxed{\abs{\D\f_{2/1}} = \pm \w \abs{\D{t}_{2/1}}}\]
 	}%
-	Dans ce cas, le déphasage obtenu est entre $-\pi$ et $+\pi$. On définit~:
+	Le déphasage obtenu est entre $-\pi$ et $+\pi$. On définit~:
 	\begin{itemize}
 		\item \psw{%
 			      $\D\f_{2/1} > 0 \Rightarrow s_2$ est en avance sur $s_1$~;
@@ -1568,19 +1567,43 @@ des résistances.
 			      $\D\f_{2/1} < 0 \Rightarrow s_2$ est en retard sur $s_1$.
 		      }%
 	\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{0.30\linewidth}
-	\vspace{-15pt}
+	\tcblower
 	\begin{center}
-		\sswitch{%
-			\includegraphics[width=\linewidth, draft=true]{dfeqr}
-		}{%
-			\includegraphics[width=\linewidth]{dfeqr}
-		}%
-		\captionof{figure}{Déphasage}
+		\includegraphics[width=\linewidth]{dfeqr}
+		\captionsetup{justification=centering}
+		\captionof{figure}{\\Déphasage}
 	\end{center}
-\end{minipage}
+\end{tcb*}
+
+% \noindent
+% \begin{minipage}{0.65\linewidth}
+% 	Le déphasage $\D\f_{2/1} = \f_2 - \f_1$ est lié au \textbf{retard temporel}
+% 	$\D{t}_{2/1} = t_2 - t_1$ du signal $s_2$ par rapport au signal $s_1$~: on a
+% 	\psw{%
+% 		\[\boxed{\abs{\D\f_{2/1}} = \pm \w \abs{\D{t}_{2/1}}}\]
+% 	}%
+% 	Dans ce cas, le déphasage obtenu est entre $-\pi$ et $+\pi$. On définit~:
+% 	\begin{itemize}
+% 		\item \psw{%
+% 			      $\D\f_{2/1} > 0 \Rightarrow s_2$ est en avance sur $s_1$~;
+% 		      }%
+% 		\item \psw{%
+% 			      $\D\f_{2/1} < 0 \Rightarrow s_2$ est en retard sur $s_1$.
+% 		      }%
+% 	\end{itemize}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.30\linewidth}
+% 	\vspace{-15pt}
+% 	\begin{center}
+% 		\sswitch{%
+% 			\includegraphics[width=\linewidth, draft=true]{dfeqr}
+% 		}{%
+% 			\includegraphics[width=\linewidth]{dfeqr}
+% 		}%
+% 		\captionof{figure}{Déphasage}
+% 	\end{center}
+% \end{minipage}
 
 Le principe est de mesurer la différence de temps entre les deux moments les
 plus proches tels que les deux signaux s'annulent \textbf{avec la même pente}.
@@ -1659,6 +1682,71 @@ plus proches tels que les deux signaux s'annulent \textbf{avec la même pente}.
 		\vspace{-15pt}
 		\captionof{figure}{En opposition.}
 	\end{center}
+\end{tcb}
+
+% TODO: Replace par ON2 rapp plus rapide
+\begin{tcb}[breakable](rapp){Déphasages particuliers}
+	\vspace{-10pt}
+	\begin{isd}[righthand ratio=.3, interior hidden](rapp)
+		\tcbsubtitle{\fatbox{\textbf{En phase}}}
+		Deux signaux sont \textbf{en phase} si leur \textbf{déphasage est nul}
+		(modulo $2\pi$)~:
+		\[
+			\D\f \equiv 0\quad[2\pi]
+			\Lra
+			\boxed{\D\f = 2p\pi}
+			\quad p \in \Zb
+		\]
+		Les signaux passent par leurs valeurs maximales et minimales aux mêmes
+		instants, et s'annulent simultanément.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{dfeq0.pdf}
+			\captionsetup{justification=centering}
+			\captionof{figure}{\\En phase.}
+		\end{center}
+	\end{isd}
+	\vspace{-15pt}
+	\begin{isd}[righthand ratio=.3, interior hidden](rapp)
+		\tcbsubtitle{\fatbox{\textbf{En quadrature}}}
+		Deux signaux sont en \textbf{quadrature phase} si leur déphasage est de
+		$\mathbf{\pm\pi/2}$ (modulo $2\pi$)~:
+		\[
+			\D\f \equiv \pm\frac{\pi}{2} \quad[2\pi]
+			\Lra
+			\boxed{\D\f = \left( p+\frac{1}{2} \right)\pi}
+			\quad p \in \Zb
+		\]
+		Quand un signal s'annule, l'autre est à son maximum où à son minimum~:
+		c'est la relation entre un cosinus et un sinus.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{dfeqpi2.pdf}
+			\captionsetup{justification=centering}
+			\captionof{figure}{\\En quadrature.}
+		\end{center}
+	\end{isd}
+	\vspace{-15pt}
+	\begin{isd}[righthand ratio=.3, interior hidden](rapp)
+		\tcbsubtitle{\fatbox{\textbf{En opposition}}}
+		Deux signaux sont en \textbf{opposition de phase} si leur déphasage est de
+		$\mathbf{\pm\pi}$ (modulo $2\pi$)~:
+		\[
+			\D\f \equiv \pm\pi \quad[2\pi]
+			\Lra
+			\boxed{\D\f = (2p+1)\pi}
+			\quad p \in \Zb
+		\]
+		Lorsqu'un signal passe par sa valeur maximale, l'autre est à la valeur
+		minimale, mais ils s'annulent simultanément.
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{dfeqpi.pdf}
+			\captionsetup{justification=centering}
+			\captionof{figure}{\\En opposition.}
+		\end{center}
+	\end{isd}
+	\vspace{-10pt}
 \end{tcb}
 
 \subsection{Déphasage des impédances}

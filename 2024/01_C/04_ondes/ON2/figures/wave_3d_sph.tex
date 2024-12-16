@@ -1,0 +1,23 @@
+\documentclass[tikz,border=5]{standalone}
+\tikzset{cs/3d/.code args={#1:#2:#3}{%
+  \pgfpointxyz{(#1)*sin(#2)*cos(#3)}{(#1)*sin(#2)*sin(#3)}{(#1)*cos(#2)}}}
+\tikzdeclarecoordinatesystem{3d}{\tikzset{cs/3d={#1}}}%     
+\tikzset{spherical patch/.style args={#1:#2:#3:#4}{insert path={
+  [smooth, samples=20, line join=round]
+  plot [domain=0:#3] (3d cs:{#4}:{#1+\x}:{#2}) --
+  plot [domain=0:#3] (3d cs:{#4}:{#1+#3}:{#2+\x}) --
+  plot [domain=#3:0] (3d cs:{#4}:{#1+\x}:{#2+#3}) --
+  plot [domain=#3:0] (3d cs:{#4}:{#1}:{#2+\x}) -- cycle}}}
+\begin{document}
+\tikz[x=(225:0.707cm),y=(0:1cm),z=(90:1cm), >=stealth]{
+\foreach \i [evaluate={\z=30/(\i+1); \p=\i*2; \q=(\i+1)*2;}] in {0, 1, 2, 3}{
+  \foreach \j/\k in {80/65, 80/85, 90/65, 100/75}
+    \draw [red, -{\ifnum\i=3>\fi}] (3d cs:\p:\j:\k) -- (3d cs:\q:\j:\k);
+  \ifnum\i<3
+    \foreach \j/\k in {75/60, 75/90, 105/60, 105/90}
+      \draw (3d cs:\p:\j:\k) -- (3d cs:\q:\j:\k);
+    \foreach \t in {0,...,\i}\foreach \a in {0,...,\i}
+      \draw [gray, fill=gray!10, fill opacity=0.75, 
+        spherical patch={75+\t*\z:60+\a*\z:\z:\q}];
+  \fi}}
+\end{document}

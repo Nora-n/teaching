@@ -22,7 +22,7 @@ f = 1 / T  # Hz
 w = 2 * np.pi * f  # rad.s^-1
 A = 1  # V
 
-tlist = np.linspace(0, 3 * T, 1000)
+tlist = np.linspace(0, 1.5 * T, 1000)
 xmin, xmax = [min(tlist), max(tlist)]
 
 
@@ -44,10 +44,6 @@ for axe in ["top", "right"]:
 u_list = u(tlist)
 ymin, ymax = [min(u_list**2), max(u_list)]
 
-ax.plot(tlist, u_list**2, ls="-", color="firebrick", label="$s^2(t)$")
-ax.axhline(0.5, ls="--", lw=2, color="black")
-# ax.axvline(Vlim, c="k", ls="--", lw=1)
-
 # ax.legend(loc="upper right", fontsize=15, framealpha=1)
 
 ax.grid(visible=True, which="both")
@@ -60,10 +56,10 @@ ax.xaxis.set_label_coords(1.02, 0.20)
 ax.set_ylabel("$\\cos^2(\\omega t)$", fontsize=15, rotation=0, clip_on=False)
 ax.yaxis.set_label_coords(0, 1.05)
 
-# ax.set_xticks(np.arange(-4e-4, 1.2e-3, 1e-4))
+ax.set_xticks(np.arange(0, 1.6 * T, 0.5 * T))
 # plt.setp(ax.get_xticklabels(), ha="right", rotation=45)
 # lbls = ax.get_xticklabels()
-ax.set_xticklabels(["0"] + [f"{k}$T$" for k in np.arange(0.5, 4.6, 0.5)])
+ax.set_xticklabels(["0"] + [f"{k}$T$" for k in np.arange(0.5, 1.6, 0.5)])
 # ax.set_yticks(np.arange(-10, 10.1, 1))
 # ax.set_yticklabels(["$P_{\\mathrm{max}} = K^\\circ P^\\circ$"])
 # ax.set_yticklabels(["$P_{\\mathrm{max}}$"])
@@ -73,6 +69,11 @@ ax.set_xticklabels(["0"] + [f"{k}$T$" for k in np.arange(0.5, 4.6, 0.5)])
 ax.plot(0, 1, "^k", lw=2, ms=5, transform=ax.transAxes, clip_on=False)
 ax.plot(1, 0, ">k", lw=2, ms=5, transform=ax.transAxes, clip_on=False)
 
+fig.savefig("./cos2_stud.pdf", bbox_inches="tight")
+
+ax.plot(tlist, u_list**2, ls="-", color="firebrick", label="$s^2(t)$")
+ax.axhline(0.5, ls="--", lw=2, color="black")
+
 # plt.show()
 
-fig.savefig("./cos2.pdf", bbox_inches="tight")
+fig.savefig("./cos2_prof.pdf", bbox_inches="tight")

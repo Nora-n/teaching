@@ -19,7 +19,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{1}
@@ -204,12 +204,11 @@ généralité, et même sans atténuation, son amplitude dépend du point consid
 \vspace*{-10pt}
 \noindent
 avec $\vv{k}$ le vecteur d'onde et $\vv{r}$ le vecteur position en 3 dimensions.
-En effet, l'énergie totale d'une perturbation se répartie selon l'espace
-disponible. On différencie alors les ondes selon les «~vagues~» que forme
-l'onde~:
+En effet, l'énergie totale d'une perturbation se répartit selon l'espace
+disponible. On les différencie alors selon les «~vagues~» qu'elles forment~:
 
 \begin{tcb}[sidebyside, righthand ratio=.5](defi){Fronts d'ondes}
-	Si les fronts d'ondes que forme l'onde dessinent~:
+	Si les fronts d'ondes dessinent~:
 	\begin{itemize}
 		\item une \textbf{droite}, alors l'onde est \textbf{plane}~;
 		\item un \textbf{cercle}, alors l'onde est \textbf{circulaire}~;
@@ -217,7 +216,7 @@ l'onde~:
 	\end{itemize}
 	\tcblower
 	\begin{center}
-		\includegraphics[width=.75\linewidth]{wave_3d_sph}
+		\includegraphics[width=.65\linewidth]{wave_3d_sph}
 		\captionof{figure}{Front d'onde sphérique.}
 	\end{center}
 \end{tcb}
@@ -251,18 +250,51 @@ l'approximation suivante~:
 \begin{tcb*}[breakable](defi){Phase spatiale et déphasage}
 	Soit deux signaux sinusoïdaux, de \textbf{même fréquence}, \textbf{longueur
 		d'onde} et \textbf{nature}, provenant de 2 sources $\Sr_1$ et $\Sr_2$, se
-	superposant en un point $\Mr$~:
-	\[
-		\psw{s_1(\Mr, t) = A_1\cos(\wt -k\SaMr + \f_{01})}
-		\qet
-		\psw{s_2(\Mr, t) = A_2\cos(\wt -k\SbMr + \f_{02})}
-	\]
-	On introduit alors pour simplifier la \textbf{phase spatiale}~:
-	\[
-		\psw{\f_1(\Mr) = -k\SaMr + \f_{01}}
-		\qet
-		\psw{\f_2(\Mr) = -k\SbMr + \f_{02}}
-	\]
+	superposant en un point $\Mr$. Avec $n \in [1;2]$~:
+	\smallbreak
+	\begin{isd}[righthand ratio=.25]
+		\vspace{-20pt}
+		\psw{%
+			% \begin{align*}
+			%   s_1(\Mr, t) & = A_1\cos(\wt -k\SaMr + \f_{01})
+			%   \\\text{et} \quad
+			%   s_2(\Mr, t) & = A_2\cos(\wt -k\SbMr + \f_{02})
+			% \end{align*}
+			\begin{gather*}
+				s_n(\Mr, t) = A_n\cos(\wt -k \mathrm{S_nM} + \f_{0n})
+				% \\\text{et} \quad
+				% s_2(\Mr, t) & = A_2\cos(\wt -k\SbMr + \f_{02})
+			\end{gather*}
+		}%
+		On introduit alors pour simplifier la \textbf{phase spatiale}~:
+		% \begin{align*}
+		%   \f_1(\Mr) & = -k\SaMr + \f_{01}
+		%   \\\text{et} \quad
+		%   \f_2(\Mr) & = -k\SbMr + \f_{02}
+		% \end{align*}
+		\begin{gather*}
+			% \f_n(\Mr) = -k\mathrm{S_nM} + \f_{0n}
+			\psw{%
+				\f_1(\Mr) = -k\SaMr + \f_{01}
+			}%
+			\qet
+			\psw{%
+				\f_2(\Mr) = -k\SbMr + \f_{02}
+			}%
+		\end{gather*}
+		\vspace{-15pt}
+		\tcblower
+		\begin{center}
+			\sswitch{
+				\includegraphics[width=\linewidth, draft=true]{S12M}
+			}{
+				\includegraphics[width=\linewidth]{S12M}
+			}
+			\vspace{-15pt}
+			\captionsetup{justification=centering}
+			\captionof{figure}{}
+		\end{center}
+	\end{isd}
 	Ainsi, le \textbf{déphasage} entre $s_2$ et $s_1$ se réduit à leur
 	\textbf{différence de phase spatiale}~:
 	\psw{%
@@ -423,34 +455,43 @@ différence de distances.
 	Les déphasages particuliers se réécrivent alors en termes de différence de
 	marche, avec $p \in \Zb$~:
 	\smallbreak
-	\begin{isd}[righthand ratio=.33, interior hidden, sidebyside align=top](prop)
-		\begin{isd}[interior hidden, sidebyside align=top](prop)
-			\tcbsubtitle{\fatbox{\textbf{En phase}}}
-			\psw{%
-				\[
-					\boxed{\Delta{L}_{2/1}(M) = p\lambda}
-				\]
-			}%
-			\tcblower
-			\tcbsubtitle{\fatbox{\textbf{En quadrature}}}
-			\vspace{-15pt}
-			\psw{%
-				\[
-					\boxed{\Delta{L}_{2/1}(M) = \pa{p+\frac{1}{2}}\frac{\lambda}{2}}
-				\]
-			}%
-		\end{isd}
-		\tcblower
-		\vspace{7pt}
-		\tcbsubtitle{\fatbox{\textbf{En opposition}}}
+	\arrayrulecolor{prop}
+	\begin{tabularx}{\linewidth}{l:Y:Y:Y}
+		\textbf{Type}
+		 &
+		\textcolor{prop}{\fatbox{\textbf{En phase}}}
+		 &
+		\textcolor{prop}{\fatbox{\textbf{En quadrature}}}
+		 &
+		\textcolor{prop}{\fatbox{\textbf{En opposition}}}
+		\\
+		% \vspace{10pt}
+		$\Delta{L}(\Mr)$
+		 &
 		\vspace{-15pt}
 		\psw{%
 			\[
-				\boxed{\Delta{L}_{2/1}(M) = \pa{2p+1}\frac{\lambda}{2}}
+				\boxed{p\lambda}
 			\]
 		}%
 		\vspace{-15pt}
-	\end{isd}
+		 &
+		\vspace{-15pt}
+		\psw{%
+			\[
+				\boxed{\pa{p+\frac{1}{2}}\frac{\lambda}{2}}
+			\]
+		}%
+		\vspace{-15pt}
+		 &
+		\vspace{-15pt}
+		\psw{%
+			\[
+				\boxed{\pa{2p+1}\frac{\lambda}{2}}
+			\]
+		}%
+		\vspace{-15pt}
+	\end{tabularx}
 \end{tcb*}
 
 \begin{tcb*}(demo){$\Delta{L}$ particuliers}
@@ -458,9 +499,9 @@ différence de distances.
 		0$, et de la définition du vecteur d'onde~:
 	\psw{%
 		\begin{gather*}
-			\Delta{\f}_{2/1}(\Mr) = -k\Delta{L}_{2/1}(\Mr)
+			\Delta{\f}(\Mr) = -k\Delta{L}(\Mr)
 			\Lra
-			\Delta{L}_{2/1}(\Mr) = -\Delta{\f}_{2/1}(\Mr) \frac{\lambda}{2\pi}
+			\Delta{L}(\Mr) = -\Delta{\f}(\Mr) \frac{\lambda}{2\pi}
 		\end{gather*}
 	}%
 	Comme $p \in \Zb$, $-p \in \Zb$, donc le signe $-$ importe peu. Ainsi,
@@ -469,7 +510,7 @@ différence de distances.
 		      \vspace{-15pt}
 		      \psw{%
 			      \begin{gather*}
-				      \Delta{L}_{2/1}(\Mr) = 2p\pi \cdot \frac{\lambda}{2\pi} = p\lambda
+				      \Delta{L}(\Mr) = 2p\pi \cdot \frac{\lambda}{2\pi} = p\lambda
 			      \end{gather*}
 		      }%
 		      \vspace{-25pt}
@@ -477,7 +518,7 @@ différence de distances.
 		      \vspace{-15pt}
 		      \psw{%
 			      \begin{gather*}
-				      \Delta{L}_{2/1}(\Mr) =
+				      \Delta{L}(\Mr) =
 				      \pa{p+\frac{1}{2}}\pi \cdot \frac{\lambda}{2\pi} =
 				      \pa{p+\frac{1}{2}}\frac{\lambda}{2}
 			      \end{gather*}
@@ -487,7 +528,7 @@ différence de distances.
 		      \vspace{-15pt}
 		      \psw{%
 			      \begin{gather*}
-				      \Delta{L}_{2/1}(\Mr) =
+				      \Delta{L}(\Mr) =
 				      \pa{2p+1}\pi \cdot \frac{\lambda}{2\pi} =
 				      \pa{2p+1}\frac{\lambda}{2}
 			      \end{gather*}
@@ -1059,15 +1100,15 @@ On peut soit utiliser la trigonométrie classique, soit les complexes~:
 
 \subsection{Bilan}
 
-\begin{tcb}[breakable](ror){Interférences}
-	Lorsque deux OPPS \textbf{de même fréquence} et de \textbf{même nature} se
-	superposent en M~:
+\begin{tcb}[breakable](ror){Interférences (pour $\Delta{\f_0} = 0$)}
+	Pour deux OPPS \textbf{de même fréquence}, \textbf{nature} et \textbf{phase à
+		l'origine}$^*$ se superposant en M~:
 	\begin{isd}
 		L'amplitude de la somme est \textbf{maximale} si les signaux sont
 		\textbf{en phase}~:
 		\[
 			\boxed{\D\f_{2/1}(\Mr) = 2p\pi}
-			\Lra
+			\quad \stc{\Lra}{*} \quad
 			\boxed{\Delta{L}_{2/1}(\Mr) = p\lambda}
 		\]
 		On parle d'\textbf{interférences constructives}.
@@ -1076,14 +1117,17 @@ On peut soit utiliser la trigonométrie classique, soit les complexes~:
 		\textbf{en opposition de phase}~:
 		\[
 			\footnotesize
+			\hspace*{-15pt}
 			\boxed{\D\f_{2/1}(\Mr) = (2p+1)\pi}
-			\Lra
+			\quad  \stc{\Lra}{*} \quad
 			\boxed{\Delta{L}_{2/1}(\Mr) = (2p+1)\frac{\lambda}{2}}
 		\]
 		On parle d'\textbf{interférences destructives}.
 	\end{isd}
 	\centering$p\in\Zb$ est appelé l'\textbf{ordre d'interférence}\ftn{Pour une
-		animation et visualisation dans le plan, voir \href{https://phyanim.sciences.univ-nantes.fr/Ondes/cuve_ondes/interference_ondes_circulaires.php}{ce site}.}.
+		animation et visualisation dans le plan, voir
+		\href{https://phyanim.sciences.univ-nantes.fr/Ondes/cuve_ondes/interference_ondes_circulaires.php}{ce
+			site}.}.
 \end{tcb}
 
 \begin{tcb*}[breakable](appl)<lftt>{Interférences sonores}
@@ -1114,25 +1158,25 @@ On peut soit utiliser la trigonométrie classique, soit les complexes~:
 	\tcblower
 	\psw{
 		\begin{enumerate}[label=\sqenumi]
-			\item Si $d = 0$, alors la différence de marche $\D L_{2/1}(x_0) = 0$~; de
+			\item Si $d = 0$, alors la différence de marche $\D L_{1/2}(x_0) = 0$~; de
 			      plus, comme les phases à l'origine des temps de chaque source est la
 			      même, on a $\D\f_0 = 0$~: ainsi, on a
-			      \[\boxed{\D\f_{2/1}(x_0) = 0}\]
+			      \[\boxed{\D\f_{1/2}(x_0) = 0}\]
 			      Autrement dit, les signaux sont en phase. Comme ils ont la même
 			      amplitude, au microphone on enregistre un signal de la fréquence
 			      d'émission, avec une amplitude double de celle d'un émetteur.
-			\item On a toujours $\D\f_0 = 0$, donc $\D\f_{2/1}(x_0) = -k\D
-				      L_{2/1}(x_0)$. En augmentant la distance entre les sources, on
+			\item On a toujours $\D\f_0 = 0$, donc $\D\f_{1/2}(x_0) = -k\D
+				      L_{1/2}(x_0)$. En augmentant la distance entre les sources, on
 			      augmente le déphasage (en valeur absolue), en mettant la source 1 en
 			      retard par rapport à la 2. Ainsi, il y a une valeur de différence de
-			      marche telle que $\D\f_{2/1}(x_0) = -\pi$, c'est-à-dire que les
+			      marche telle que $\D\f_{1/2}(x_0) = -\pi$, c'est-à-dire que les
 			      signaux seront en opposition de phase et s'annuleront.
 			\item ~
 			      \vspace{-24pt}
 			      \begin{align*}
-				      \D L_{2/1}(x_0) & = \SaMr - \SbMr = d
+				      \D L_{1/2}(x_0) & = \SaMr - \SbMr = d
 				      \\ \Lra
-				      \D\f_{2/1}(x_0) & = -k\D L_{2/1} = -kd
+				      \D\f_{1/2}(x_0) & = -k\D L_{1/2} = -kd
 				      \\ \Lra
 				      -\pi            & = - \frac{2\pi}{\lambda}d \\
 				      \Leftrightarrow
@@ -1145,7 +1189,7 @@ On peut soit utiliser la trigonométrie classique, soit les complexes~:
 				      \lambda         & = \SI{12.0}{cm}
 			      \end{align*}
 			      Les émetteurs émettent dans les micro-ondes.
-			\item Si on double la distance, alors on aura $\D\f_{2/1}(x_0) = -2kd =
+			\item Si on double la distance, alors on aura $\D\f_{1/2}(x_0) = -2kd =
 				      -2\pi$~: ceci est congru à 0 modulo $2\pi$, donc les signaux
 			      seront de nouveau en phase, et on récupère le signal trouvé
 			      question
@@ -1257,9 +1301,9 @@ On peut soit utiliser la trigonométrie classique, soit les complexes~:
 		\tcblower
 		\begin{center}
 			\sswitch{%
-				\includegraphics[width=\linewidth, draft=true]{cos2}
+				\includegraphics[width=\linewidth]{cos2_stud}
 			}{%
-				\includegraphics[width=\linewidth]{cos2}
+				\includegraphics[width=\linewidth]{cos2_prof}
 			}%
 			\vspace{-15pt}
 			\captionsetup{justification=centering}
@@ -1341,8 +1385,8 @@ On définit ainsi le \textbf{chemin optique}~:
 	\vspace{-15pt}
 \end{tcb*}
 
-\begin{tcb}(demo)<lftt>{Chemin optique}
-	\psw{
+\begin{tcb}(demo)<lftt>{Chemin optique et $\de_{2/1}(\Mr)$}
+	\psw{%
 		En effet, si l'onde 1 parcourt la distance $\ABr$ dans le milieu $n$,
 		elle le fait à la vitesse $v = c/n$. Pour considérer qu'elle va à la
 		vitesse $c = nv$, il faut multiplier la distance par $n$~:
@@ -1352,11 +1396,19 @@ On définit ainsi le \textbf{chemin optique}~:
 			n\ABr = ct
 		\end{gather*}
 		Tout se passe comme si \textbf{l'onde allait à la vitesse $c$ mais
-			parcourait une distance $n$ fois plus grande}.}
+			parcourait une distance $n$ fois plus grande}~: on retrouve alors
+		Impl.O1.2~:
+		\begin{gather*}
+			\boxed{\lambda = \frac{\lambda_0}{n}}
+			\qqet
+			-k \SaMr =
+			- \frac{2\pi}{\lambda} \SaMr =
+			- \frac{2\pi}{\lambda_0} \cdot n \SaMr =
+			-\frac{2\pi}{\lambda_0} (\SaMr)
+		\end{gather*}
+	}%
+	\vspace{-15pt}
 \end{tcb}
-
-Ainsi, pour les interférences optiques, le déphasage prend en
-compte le ou les indice(s) rencontré(s)~:
 
 \begin{tcb}(prop){Différence de chemin optique}
 	Le déphasage entre 2 ondes \textit{lumineuses}, de même longueur d'onde
@@ -1405,7 +1457,7 @@ l'expérience dite des «~trous d'\textsc{Young}~» a permis de confirmer la nat
 ondulatoire de la lumière en réalisant une figure d'interférences
 lumineuses\ftn{Voir la vidéo \href{https://youtu.be/zPolTp0ddRg}{La plus belle
 		expérience de la Physique}}. Une version moderne de cette expérience
-consiste à pointer un unique laser de longueur d'onde $\lambda$ sur deux fentes
+consiste à pointer un unique laser de longueur d'onde $\lambda_0$ sur deux fentes
 fines horizontales et parallèles~: ces fentes diffractent la lumière est se
 comportent \textbf{comme deux sources cohérentes}.
 
@@ -1443,7 +1495,7 @@ comportent \textbf{comme deux sources cohérentes}.
 
 \begin{tcb*}[breakable](defi){Présentation trous d'\textsc{Young}}
 	Soit S une source lumineuse ponctuelle, monochromatique de longueur d'onde
-	$\lambda$, éclairant deux fentes fines horizontales et parallèles F$_1$ et
+	$\lambda_0$, éclairant deux fentes fines horizontales et parallèles F$_1$ et
 	F$_2$ distantes de $2a$, avec O au milieu. S est situé sur un axe optique
 	perpendiculaire à un écran placé à une distance $D$ très supérieure à $a$
 	(pour l'approximation en ondes planes). Le milieu de propagation est l'air,
@@ -1506,7 +1558,7 @@ successivement~:
 	décrivant des franges, espacées de
 	\[
 		\psw{%
-			i = x_{p+1} - x_p \Leftrightarrow \boxed{i = \frac{\lambda_0 D}{2a}}
+			\boxed{i = \frac{\lambda_0 D}{2a}}
 		}
 	\]
 	\tcblower
@@ -1543,7 +1595,9 @@ successivement~:
 		\psw{\Lra{\rm F_2M} = D \sqrt{1+ \left( \frac{x+a}{D} \right)^2}}
 		 & \qet
 		\psw{{\rm F_1M} = D \sqrt{1+ \left( \frac{x-a}{D} \right)^2}}
-		\intertext{Or, $\sqrt{1+x} \Sim_{x \to 0} 1 + \frac{x}{2}$ soit}
+		\intertext{Or, $\DS\sqrt{1+\ep} \Sim_{\ep \to 0} 1 + \frac{\ep}{2}$~; comme
+			$\DS D \gg (x~;~a) \Ra \frac{x\pm a}{D} \ll 1$, alors avec $\DS \ep =
+				\pa{\frac{x \pm a}{D}}^2$ on a~:}
 		\psw{%
 			{\rm F_2M} \approx D \pa{1 + \frac{1}{2} \left( \frac{x+a}{D} \right)^2}
 		}%
@@ -1617,13 +1671,12 @@ successivement~:
 \end{tcb*}
 
 \begin{tcb}(exem)<lftt>{Interfrange}
-	Avec deux fentes séparées de \SI{0.20}{mm}, $\lambda = \SI{632}{nm}$ et $D =
-		\SI{1.0}{m}$, on trouve
-	\[\xul{i = \SI{1.6}{mm}}\]
-
-	Une autre animation est disponible en
-	ligne\footnote{\url{https://phyanim.sciences.univ-nantes.fr/Ondes/lumiere/interference_lumiere.php}}.
+	Avec deux fentes séparées de \SI{0.20}{mm}, $\lambda_0 = \SI{632}{nm}$ et $D =
+		\SI{1.0}{m}$, on trouve\ftn{Voir une autre animation \href{https://phyanim.sciences.univ-nantes.fr/Ondes/lumiere/interference_lumiere.php}{ici}.}
+	\psw{%
+		\[\xul{i = \SI{1.6}{mm}}\]
+	}%
+	\vspace{-25pt}
 \end{tcb}
-\vspace{-15pt}
 
 \end{document}

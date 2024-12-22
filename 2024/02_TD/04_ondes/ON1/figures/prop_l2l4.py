@@ -34,7 +34,7 @@ ucls = ["firebrick", "limegreen", "cornflowerblue"]
 
 
 def ufunc(t, x):
-    return A * np.cos(w * t + k * x)
+    return A * np.sin(w * t + k * x)
 
 
 u = np.vectorize(ufunc, otypes=[np.float64])

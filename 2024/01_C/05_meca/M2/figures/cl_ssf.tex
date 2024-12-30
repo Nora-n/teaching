@@ -1,0 +1,117 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{0}{0}
+
+\def\g{9.81}
+\def\vo{4}
+\def\voc{7}
+\def\alf{50}
+
+\begin{tikzpicture}[scale=1]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north east] at (O) {O};
+	\node[anchor=south east] at (O) {$z$};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\sswitch{%
+		\path[very thick,-stealth,Violet] (0,0,0) -- (1,0,0)
+		node[anchor=north, white]{$\ux$};
+		\path[very thick,-stealth,Violet] (0,0,0) -- (0,1,0)
+		node[anchor=east, white]{$\uy$};
+	}{%
+		\draw[very thick,-stealth,Violet] (0,0,0) -- (1,0,0) node[anchor=north]{$\ux$};
+		\draw[very thick,-stealth,Violet] (0,0,0) -- (0,1,0) node[anchor=east]{$\uy$};
+	}%
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% draw v0
+	\sswitch{%
+		\path[canvas is xy plane at z=0, thick, -stealth, white]
+		(O)
+		% node[color=black]{$\bullet$}
+		--++
+		(\alf:1)
+		coordinate(T)
+		node[anchor=south] {$\vfo$};
+	}{%
+		\draw[canvas is xy plane at z=0, thick, -stealth, myblue]
+		(O)
+		% node[color=black]{$\bullet$}
+		--++
+		(\alf:1)
+		coordinate(T)
+		node[anchor=south] {$\vfo$};
+	}%
+	\coordinate(Tx) at (T|-O);
+	% Draw angles
+	\ifprof{%
+		\pic[angle radius=0.7cm, angle eccentricity=1.3,
+			draw, ->, brandeisblue,
+			"$\alpha$" alias=i]
+		{angle=Tx--O--T};
+	}%
+	% draw champ de pesanteur
+	\draw[canvas is xy plane at z=0, thick, -stealth, myred]
+	(5,3) --++ (0,-.5)
+	node[midway, right] {$\gf$};
+	% Plot trajectory
+	\path[canvas is xy plane at z=0, domain=0:4.95, thick,
+		tangentdrw=0.40,
+		mymark=0.40(M),
+	]
+	plot
+	({\x}, {-\g/(2*\voc^2*cos(\alf)^2)*\x*\x + \x*tan(\alf)});
+	% tangents
+	\sswitch{%
+		\path[thick, use tangentdrw, -stealth, white]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t)$};
+	}{%
+		\draw[myblue, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t)$};
+	}%
+	% point M
+	\node[anchor=south east] at (M) {$\Mr(t)$};
+	\node[] at (M) {$\bullet$};
+	% dashed coordinates
+	\coordinate(X) at (M|-O);
+	\coordinate(Y) at (M-|O);
+	\sswitch{%
+		\path[thick, dashed, white]
+		(M) -- (X)
+		node[below] {$x(t)$}
+		;
+		\path[thick, dashed, white]
+		(M) -- (Y)
+		node[left] {$y(t)$}
+		;
+	}{%
+		\draw[thick, dashed]
+		(M) -- (X)
+		node[below] {$x(t)$}
+		;
+		\draw[thick, dashed]
+		(M) -- (Y)
+		node[left] {$y(t)$}
+		;
+		% poids
+		\draw[myred, thick, -stealth]
+		(M) --++ (0,-0.7)
+		node[right] {$\Pf$};
+	}%
+	% odot au-dessus du reste
+	\node[odot] at (O) {};
+\end{tikzpicture}
+\end{document}

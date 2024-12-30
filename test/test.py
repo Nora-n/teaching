@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
 # TP 18
 # m = 10.4e-3    # kg
@@ -271,17 +272,43 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 # DS04 P1
-v01 = 4.1
-v02 = 6.2
-v03 = 16.4
-C01 = 0.10
-C02 = 0.15
-C03 = 0.10
-C11 = 0.10
-C12 = 0.10
-C13 = 0.20
+# v01 = 4.1
+# v02 = 6.2
+# v03 = 16.4
+# C01 = 0.10
+# C02 = 0.15
+# C03 = 0.10
+# C11 = 0.10
+# C12 = 0.10
+# C13 = 0.20
+#
+# q = (np.log(v02 / v01)) / (np.log(C02 / C01))
+# r = (np.log(v03 / v01)) / (np.log(C13 / C11))
+#
+# print(f"q = {q:.2f} et r = {r:.2f}")
 
-q = (np.log(v02 / v01)) / (np.log(C02 / C01))
-r = (np.log(v03 / v01)) / (np.log(C13 / C11))
+# M2 frottements quadratiques
+m = 60  # kg
+g = 9.81  # m.s^-2
+B = 0.25  # kg.m^-1
+vlim = np.sqrt(m * g / B)  # m.s^-1
+T = np.sqrt(m / (B * g))  # s
+print(f"vlim = {vlim:.1f} m.s^-1 = {vlim*3.6:.1f} km.h^-1")
+print(f"T = {T:.2f} s")
 
-print(f"q = {q:.2f} et r = {r:.2f}")
+t = np.arange(0, 10 * T, 0.1 * T)  # s
+
+
+def vquad(y, t):
+    return g - B / m * y**2
+
+
+y0 = 0
+sol = odeint(vquad, y0, t)
+
+plt.plot(t, sol, "r", label="odeint")
+plt.plot([T, T, 0], [0, sol[10][0], sol[10][0]], ls="--")
+print(f"v(T) = {sol[10][0] / vlim:.2f}*vlim")
+# plt.plot(t, vfunc(t), "b", label="GPT")
+plt.legend()
+plt.show()

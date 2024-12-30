@@ -1,0 +1,100 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{00}{000}
+\begin{tikzpicture}[scale=1]
+	\coordinate (O) at (0,0,0);
+	\def\N{1.2}
+	\def\T{1.7}
+	\def\v{1.5}
+	\def\tlg{2}
+	\def\hgt{1}
+	% boîte
+	\node[
+		draw,
+		thick,
+		minimum width=\hgt cm,
+		minimum height=\hgt cm,
+		fill=gray!40
+	]
+	(rect) at (0,\hgt/2) {};
+	% Table
+	\draw[very thick]
+	(-\tlg,0,0) -- (\tlg,0,0);
+	\sswitch{%
+		% draw vitesse
+		\path[very thick, white, -stealth]
+		(rect.east) --++
+		(\v,0)
+		node[right]
+		{$\vf$}
+		;
+		% draw forces
+		% N
+		\path[very thick, white, -stealth]
+		(O) --++
+		(0,\N,0)
+		coordinate(N)
+		node[anchor=south]
+			{$\Nf$};
+		% T
+		\path[very thick, white, -stealth]
+		(O) --++
+		(-\T,0,0)
+		coordinate(T)
+		node[anchor=north]
+			{$\Tf$};
+		% R
+		\path[very thick, white, -stealth]
+		(O) --++
+		(-\T,\N,0)
+		coordinate(R)
+		node[anchor=south east]
+			{$\Rf$};
+		% dashed
+		\path[very thick, dashed, white]
+		(T) |- (N);
+	}{%
+		% draw vitesse
+		\draw[very thick, myblue, -stealth]
+		(rect.east) --++
+		(\v,0)
+		node[right]
+		{$\vf$}
+		;
+		% draw forces
+		% N
+		\draw[very thick, myred, -stealth]
+		(O) --++
+		(0,\N,0)
+		coordinate(N)
+		node[anchor=south]
+			{$\Nf$};
+		% T
+		\draw[very thick, mygreen, -stealth]
+		(O) --++
+		(-\T,0,0)
+		coordinate(T)
+		node[anchor=north]
+			{$\Tf$};
+		% R
+		\draw[very thick, mypurple, -stealth]
+		(O) --++
+		(-\T,\N,0)
+		coordinate(R)
+		node[anchor=south east]
+			{$\Rf$};
+		% dashed
+		\draw[very thick, dashed]
+		(T) |- (N);
+	}%
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{0}{0}
+
+\begin{tikzpicture}[scale=1]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=east] at (O) {O};
+	\node[anchor=north west] at (O) {$\uz$};
+	% draw axes
+	% \draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=west]{$\ux$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,-1,0) node[anchor=west]{$\uy$};
+	% \draw[very thick,-stealth,Violet] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% odot au-dessus du reste
+	\node[otimes] at (O) {};
+	\sswitch{%
+		% draw poids
+		\path[canvas is xy plane at z=0, thick, -stealth, white]
+		(0,-2)
+		coordinate(M)
+		node[]{$\bullet$}
+		node[left]{$\Mr(t)$}
+		--++
+		(0,-1)
+		node[anchor=west] {$\Pf$};
+		% draw vitesse
+		\path[canvas is xy plane at z=0, thick, -stealth, white]
+		(M)
+		--++ (0,-0.5)
+		node[midway, anchor=west] {$\vf(t)$};
+		% draw frottements
+		\path[canvas is xy plane at z=0, thick, -stealth, white]
+		(M)
+		--++ (0,0.625)
+		node[anchor=north west] {$\Ff_f$};
+	}{%
+		% draw poids
+		\draw[canvas is xy plane at z=0, thick, -stealth, myred]
+		(0,-2)
+		coordinate(M)
+		node[black]{$\bullet$}
+		node[left, black]{$\Mr(t)$}
+		--++
+		(0,-1)
+		node[anchor=west] {$\Pf$};
+		% draw vitesse
+		\draw[canvas is xy plane at z=0, thick, -stealth, myblue]
+		(M)
+		--++ (0,-0.5)
+		node[midway, anchor=west] {$\vf(t)$};
+		% draw frottements
+		\draw[canvas is xy plane at z=0, thick, -stealth, mygreen]
+		(M)
+		--++ (0,0.625)
+		node[anchor=north west] {$\Ff$};
+	}%
+
+\end{tikzpicture}
+\end{document}

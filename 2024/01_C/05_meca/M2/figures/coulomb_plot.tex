@@ -1,0 +1,114 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+% \tdplotsetmaincoords{0}{0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1]
+
+	\def\xmax{7}
+	\def\ymax{3}
+	\def\Tlim{0.5*\xmax}
+	\def\fd{0.5*\ymax}
+	\def\fs{0.7*\ymax}
+
+	\coordinate (O) at (0,0,0);
+	% \node[anchor=north east] at (O) {0};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (\xmax,0,0)
+	node[anchor=north] (N) {$\norm{\Nf}$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,\ymax,0)
+	node[anchor=east]{$\norm{\Tf}$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=south]{$\ux$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uy$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	\sswitch{%
+		% limite
+		\path[thick, dashed]
+		(\Tlim,0) --
+		(\Tlim,\ymax)
+		;
+		% text
+		\path[stealth-stealth, thick, white]
+		(0,0.9*\ymax) --++
+		(\Tlim,0)
+		node[midway, above] {Adhérence}
+		node[midway, below] {Statique}
+		;
+		\path[stealth-stealth, thick, white]
+		(\Tlim,0.9*\ymax) --++
+		(\Tlim,0)
+		node[midway, above] {Glissement}
+		node[midway, below] {Dynamique}
+		;
+		% Adhérence
+		\path[very thick, white]
+		(O) --
+		(\Tlim,\fs) --
+		(\Tlim,\fd) --++
+		(\xmax-\Tlim,0)
+		;
+		% Y points
+		\path[thick, dashed, white]
+		(0, \fs)
+		node[left] {$T\ind{lim} = f_s N$}
+		--++
+		(\Tlim,0)
+		;
+		\path[thick, dashed, white]
+		(0, \fd)
+		node[left] {$T = f_d N$}
+		--++
+		(\Tlim,0)
+		;
+	}{%
+		% limite
+		\draw[thick, dashed]
+		(\Tlim,0) --
+		(\Tlim,\ymax)
+		;
+		% text
+		\draw[stealth-stealth, thick]
+		(0,0.9*\ymax) --++
+		(\Tlim,0)
+		node[midway, above] {Adhérence}
+		node[midway, below] {Statique}
+		;
+		\draw[stealth-stealth, thick]
+		(\Tlim,0.9*\ymax) --++
+		(\Tlim,0)
+		node[midway, above] {Glissement}
+		node[midway, below] {Dynamique}
+		;
+		% Adhérence
+		\draw[very thick]
+		(O) --
+		(\Tlim,\fs) --
+		(\Tlim,\fd) --++
+		(\xmax-\Tlim,0)
+		;
+		% Y points
+		\draw[thick, dashed]
+		(0, \fs)
+		node[left] {$T\ind{lim} = f_s N$}
+		--++
+		(\Tlim,0)
+		;
+		\draw[thick, dashed]
+		(0, \fd)
+		node[left] {$T = f_d N$}
+		--++
+		(\Tlim,0)
+		;
+	}%
+\end{tikzpicture}
+\end{document}

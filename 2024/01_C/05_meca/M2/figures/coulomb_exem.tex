@@ -1,0 +1,328 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{00}{000}
+\begin{tikzpicture}[scale=1]
+	\def\N{1.2}
+	\def\F{1.5}
+	\def\T{1}
+	\def\v{1}
+	\def\tlg{2}
+	\def\hgt{1}
+	\def\xsh{5cm}
+	\begin{scope}[xshift=0*\xsh]
+		\coordinate (O) at (0,0,0);
+		\node[anchor=south, draw, very thick]
+		at (0,1.5*\N,0) {\textbf{Au repos}};
+		% boîte
+		\node[
+			draw,
+			thick,
+			minimum width=\hgt cm,
+			minimum height=\hgt cm,
+			fill=gray!40
+		]
+		(rect) at (0,\hgt/2) {};
+		% Table
+		\draw[very thick]
+		(-\tlg,0,0) -- (\tlg,0,0);
+		\sswitch{%
+			% draw vitesse
+			\path[very thick, white, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(\v,0)
+			node[midway, above]
+			{$\vf > \of$}
+			;
+			% draw forces
+			% F
+			\path[very thick, white, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(\F,0,0)
+			coordinate(N)
+			node[midway, above]
+				{$\Ff > \Ff\ind{lim}$};
+			% N
+			\path[very thick, white, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,0,0)
+			coordinate(T)
+			node[anchor=north]
+				{$\Tf$};
+			% R
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,\N,0)
+			coordinate(R)
+			node[anchor=south east]
+				{$\Rf$};
+			% dashed
+			\path[very thick, dashed, white]
+			(T) |- (N);
+		}{%
+			% draw vitesse
+			\draw[very thick, myblue, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(0.1,0)
+			node[right]
+			{$\vf = \of$}
+			;
+			% draw forces
+			% F
+			\draw[very thick, myorange, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(0.1,0,0)
+			coordinate(N)
+			node[right]
+				{$\Ff = \of$};
+			% N
+			\draw[very thick, myred, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			% \draw[very thick, mygreen, -stealth]
+			% (O) --++
+			% (-.5*\T,0,0)
+			% coordinate(T)
+			% node[anchor=north]
+			% 	{$\Tf$};
+			% R
+			% \draw[very thick, mypurple, -stealth]
+			% (O) --++
+			% (-.5*\T,\N,0)
+			% coordinate(R)
+			% node[anchor=south east]
+			% 	{$\Rf$};
+			% dashed
+			% \draw[very thick, dashed]
+			% (T) |- (N);
+		}%
+	\end{scope}
+	\begin{scope}[xshift=1*\xsh]
+		\coordinate (O) at (0,0,0);
+		\node[anchor=south, draw, very thick]
+		at (0,1.5*\N,0) {\textbf{Adhérence/statique}};
+		% boîte
+		\node[
+			draw,
+			thick,
+			minimum width=\hgt cm,
+			minimum height=\hgt cm,
+			fill=gray!40
+		]
+		(rect) at (0,\hgt/2) {};
+		% Table
+		\draw[very thick]
+		(-\tlg,0,0) -- (\tlg,0,0);
+		\sswitch{%
+			% draw vitesse
+			\path[very thick, white, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(\v,0)
+			node[right]
+			{$\vf > \of$}
+			;
+			% draw forces
+			% F
+			\path[very thick, white, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(\F,0,0)
+			coordinate(N)
+			node[midway, above]
+				{$\Ff > \Ff\ind{lim}$};
+			% N
+			\path[very thick, white, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,0,0)
+			coordinate(T)
+			node[anchor=north]
+				{$\Tf$};
+			% R
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,\N,0)
+			coordinate(R)
+			node[anchor=south east]
+				{$\Rf$};
+			% dashed
+			\path[very thick, dashed, white]
+			(T) |- (N);
+		}{%
+			% draw vitesse
+			\draw[very thick, myblue, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(0.1,0)
+			node[right]
+			{$\vf = \of$}
+			;
+			% draw forces
+			% F
+			\draw[very thick, myorange, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(\T,0,0)
+			coordinate(N)
+			node[pos=.75, above]
+				{$\Ff < \Ff\ind{lim}$};
+			% N
+			\draw[very thick, myred, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			\draw[very thick, mygreen, -stealth]
+			(O) --++
+			(-\T,0,0)
+			coordinate(T)
+			node[anchor=north west]
+				{$\Tf = -\Ff$};
+			% R
+			\draw[very thick, mypurple, -stealth]
+			(O) --++
+			(-\T,\N,0)
+			coordinate(R)
+			node[anchor=south east]
+				{$\Rf$};
+			% dashed
+			\draw[very thick, dashed]
+			(T) |- (N);
+		}%
+	\end{scope}
+	\begin{scope}[xshift=2*\xsh]
+		\coordinate (O) at (0,0,0);
+		\node[anchor=south, draw, very thick]
+		at (0,1.5*\N,0) {\textbf{Glissement/dynamique}};
+		% boîte
+		\node[
+			draw,
+			thick,
+			minimum width=\hgt cm,
+			minimum height=\hgt cm,
+			fill=gray!40
+		]
+		(rect) at (0,\hgt/2) {};
+		% Table
+		\draw[very thick]
+		(-\tlg,0,0) -- (\tlg,0,0);
+		\sswitch{%
+			% draw vitesse
+			\path[very thick, white, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(\v,0)
+			node[midway, above]
+			{$\vf > \of$}
+			;
+			% draw forces
+			% F
+			\path[very thick, white, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(\F,0,0)
+			coordinate(N)
+			node[midway, above]
+				{$\Ff > \Ff\ind{lim}$};
+			% N
+			\path[very thick, white, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,0,0)
+			coordinate(T)
+			node[anchor=north]
+				{$\Tf = -f_d \Nf$};
+			% R
+			\path[very thick, white, -stealth]
+			(O) --++
+			(-\T,\N,0)
+			coordinate(R)
+			node[anchor=south east]
+				{$\Rf$};
+			% dashed
+			\path[very thick, dashed, white]
+			(T) |- (N);
+		}{%
+			% draw vitesse
+			\draw[very thick, myblue, -stealth]
+			([shift={(0,-0.25*\hgt)}]rect.east)
+			--++
+			(\v,0)
+			node[midway, above=-.05]
+			{$\vf > \of$}
+			;
+			% draw forces
+			% F
+			\draw[very thick, myorange, -stealth]
+			([shift={(0,+0.25*\hgt)}]rect.east)
+			--++
+			(\F,0,0)
+			coordinate(N)
+			node[midway, above]
+				{$\Ff > \Ff\ind{lim}$};
+			% N
+			\draw[very thick, myred, -stealth]
+			(O) --++
+			(0,\N,0)
+			coordinate(N)
+			node[anchor=south]
+				{$\Nf$};
+			% T
+			\draw[very thick, mygreen, -stealth]
+			(O) --++
+			(-.7*\T,0,0)
+			coordinate(T)
+			node[anchor=north]
+				{$\Tf = -f_d \Nf$};
+			% R
+			\draw[very thick, mypurple, -stealth]
+			(O) --++
+			(-.7*\T,\N,0)
+			coordinate(R)
+			node[anchor=south east]
+				{$\Rf$};
+			% dashed
+			\draw[very thick, dashed]
+			(T) |- (N);
+		}%
+	\end{scope}
+\end{tikzpicture}
+\end{document}

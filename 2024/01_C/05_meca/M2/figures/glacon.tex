@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1]
+	\def\g{9.81}
+	\def\vo{4}
+	\def\hgt{3}
+	\def\lgt{4}
+	\def\hmr{0.25}
+	\def\bsz{2}
+
+	\coordinate (O) at (0,0,0);
+	% \node[anchor=east] at (O) {O};
+	% draw axes
+	% \draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=south]{$\ux$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uy$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% draw glass
+	\draw[very thick]
+	(-\lgt/2,\hmr) --
+	(-\lgt/2,-\hgt) --
+	(\lgt/2,-\hgt) --
+	(\lgt/2,\hmr)
+	;
+	% water surface
+	\draw[thick]
+	(-\lgt/2,0) --
+	(\lgt/2,0)
+	;
+	% draw box
+	\draw[thick, fill=gray!40]
+	(-\bsz/2,\hmr/2)
+	rectangle
+	(\bsz/2,\hmr/2-\bsz)
+	node[midway, inner sep=0] (G) {$\bullet$}
+	node[midway, anchor=east] {G};
+	% poids
+	\draw[thick, -stealth, myred]
+	(G) --++ (0,-1.5)
+	node[anchor=west] {$\Pf$};
+	% archimède
+	\draw[thick, -stealth, myblue]
+	(G) --++ (0,+1.5)
+	node[anchor=west] {$\Pif$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+% \tdplotsetmaincoords{0}{0}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1]
+
+	\def\g{9.81}
+	\def\vo{4}
+	\def\to{.7}
+	\def\mut{.25}
+
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north east] at (O) {0};
+	% draw axes
+	\draw[very thick,-stealth] (-.5,0,0) -- (5,0,0) node[anchor=west] (T) {$t$};
+	\draw[very thick,-stealth] (0,-3,0) -- (0,0.5,0) node[anchor=west]{$v^*$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=south]{$\ux$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uy$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	\sswitch{%
+		% limite
+		\path[thick, dashed, white]
+		(0,-\g*\mut)
+		node[left] (L) {$-1$}
+		-- (L-|T)
+		;
+		% T
+		\path[thick, dashed, white]
+		(0, {\g*\mut*(exp(-1)-1)})
+		node[left] {$-\num{0.63}$}
+		-|
+		(\to,0)
+		node[above] {$T$}
+		;
+		% Plot trajectory on top
+		\path[canvas is xy plane at z=0, domain=0:5, thick, smooth, white]
+		plot
+		({\x}, {\g*\mut*(exp(-\x/\to) - 1)});
+	}{%
+		% limite
+		\draw[thick, dashed]
+		(0,-\g*\mut)
+		node[left] (L) {$-1$}
+		-- (L-|T)
+		;
+		% T
+		\draw[thick, dashed]
+		(0, {\g*\mut*(exp(-1)-1)})
+		node[left] {$-\num{0.63}$}
+		-|
+		(\to,0)
+		node[above] {$T$}
+		;
+		% Plot trajectory on top
+		\draw[canvas is xy plane at z=0, domain=0:5, thick, smooth, myred]
+		plot
+		({\x}, {\g*\mut*(exp(-\x/\to) - 1)});
+	}%
+\end{tikzpicture}
+\end{document}

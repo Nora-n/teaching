@@ -2,40 +2,47 @@
 \usepackage{mintikz}
 
 \begin{document}
-\tdplotsetmaincoords{70}{110}
-\begin{tikzpicture}[scale=3,tdplot_main_coords]
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
 	\coordinate (O) at (0,0,0);
-	\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
-	\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
-	\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
-	\tdplotsetcoord{P}{1.1}{40}{50}
-	%draw a vector from origin to point (P)
-	\draw[-stealth,color=red]
-	(O) -- (P)
+	\node[anchor=south east] at (O) {O};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (1,0,0) node[midway, anchor=south east]{$\ux$};
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% set point
+	\tdplotsetcoord{M}{4}{50}{50}
+	% draw a vector from origin to point (M)
+	\draw[thick, -stealth,color=red]
+	(O) -- (M)
 	node[anchor=south west]
 	{$\mathrm{M}$};
-	%draw projection on xy plane, and a connecting line
-	\draw[dashed, color=red]
-	(O) -- (Pxy) coordinate(H)
+	% draw projection on xy plane, and a connecting line
+	\draw[thick, dashed]
+	(O) -- (Mxy) coordinate(H)
 	node[anchor=north west]
 		{$\mathrm{H}$};
-	\draw[dashed, color=red]
-	(P) -- (Pxy);
-	\draw[dashed, color=red]
-	(P) -- (Pz)
+	\draw[thick, dashed]
+	(M) -- (Mxy);
+	\draw[thick, dashed]
+	(M) -- (Mz)
 	node[left] {$z$};
-	\draw[dashed]
-	(H) -- (Px)
-	node[anchor=east] {$x$};
-	\draw[dashed]
-	(H) -- (Py)
+	\draw[thick, dashed]
+	(H) -- (Mx)
+	node[anchor=south east] {$x$};
+	\draw[thick, dashed]
+	(H) -- (My)
 	node[anchor=south west] {$y$};
-	\tdplotsetthetaplanecoords{50}
-	\draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	-- (.2,0,0) node[anchor=east]{$x'$};
-	\draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	-- (0,.2,0) node[anchor=north]{$y'$};
-	\draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	-- (0,0,.2) node[anchor=west]{$z'$};
+	% \tdplotsetthetaplanecoords{50}
+	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
+	% -- (.2,0,0) node[anchor=east]{$x'$};
+	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
+	% -- (0,.2,0) node[anchor=north]{$y'$};
+	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
+	% -- (0,0,.2) node[anchor=west]{$z'$};
 \end{tikzpicture}
 \end{document}

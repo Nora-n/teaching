@@ -2,12 +2,20 @@
 \usepackage{mintikz}
 
 \begin{document}
-\begin{tikzpicture}[scale=1]  
-    % \helpgrid{3}{3}
-\draw [->,-latex] (0,0) --++ (-0.5,-1) node [left] {$\vv{u}_x$}	;   
-\draw [->,-latex] (0,0) --++ (1.5,0) node [below] {$\vv{u}_y$}	;
-\draw [->,-latex] (0,0) --++ (0,1.5) node [left] {$\vv{u}_z$}	; 
-\node at (0,0) [left]{O};
-\node at (0,-1.5) {\small $||\vv{u}_x||=1$ ; $||\vv{u}_y||=1$ ; $||\vv{u}_z||=1$};                      
-\end{tikzpicture}                                      
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=south east] at (O) {O};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (1,0,0) node[midway, anchor=south east]{$\ux$};
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
+	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+  % draw norms
+  \node[canvas is yz plane at x=0, align=left]
+    at (0, 1.5, 1.5) {$\norm{\ux} = 1$\\$\norm{\uy} = 1$\\$\norm{\uz} = 1$};
+\end{tikzpicture}
 \end{document}

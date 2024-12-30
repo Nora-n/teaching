@@ -1,0 +1,71 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{00}{000}
+\begin{tikzpicture}[scale=1]
+	\coordinate (O) at (0,0,0);
+	\node at (O) {$\bullet$};
+	\def\lgt{1.2}
+	\coordinate(T) at (0,\lgt,0);
+	% draw axes
+	\draw[thick] (O) -- (T);
+	% draw forces
+	\sswitch{%
+		\path[thick, myred, -stealth]
+		(O) --++ (0,-0.8*\lgt,0)
+		node[anchor=south west, white]
+		{$\Ff_{\text{balle}\to\text{fil}}$};
+		\path[thick, myblue, -stealth]
+		(O) --++ (0,+0.8*\lgt,0)
+		node[anchor=north west, white]
+		{$\Ff_{\text{fil}\to\text{balle}}$};
+	}{%
+		\draw[thick, myred, -stealth]
+		(O) --++ (0,-0.8*\lgt,0)
+		node[anchor=south west]
+		{$\Ff_{\text{balle}\to\text{fil}}$};
+		\draw[thick, myblue, -stealth]
+		(O) --++ (0,+0.8*\lgt,0)
+		node[anchor=north west]
+		{$\Ff_{\text{fil}\to\text{balle}}$};
+	}%
+	% Table
+	\begin{scope}[xshift=5cm]
+		\coordinate (O) at (0,0,0);
+		\draw[fill=gray!20, thick]
+		(-.25,0,0) rectangle (.25,.5,0);
+		\draw[very thick]
+		(-2,0,0) -- (2,0,0);
+		\sswitch{%
+			% draw forces
+			\path[thick, myred, -stealth]
+			(O) --++ (0,-0.8*\lgt,0)
+			node[anchor=south west, white]
+			{$\Ff_{\text{boîte}\to\text{table}}$};
+			\path[thick, myblue, -stealth]
+			(O) --++ (0,+0.8*\lgt,0)
+			node[anchor=north west, white]
+			{$\Ff_{\text{table}\to\text{boîte}}$};
+		}{%
+			% draw forces
+			\draw[thick, myred, -stealth]
+			(O) --++ (0,-0.8*\lgt,0)
+			node[anchor=south west]
+			{$\Ff_{\text{boîte}\to\text{table}}$};
+			\draw[thick, myblue, -stealth]
+			(O) --++ (0,+0.8*\lgt,0)
+			node[anchor=north west]
+			{$\Ff_{\text{table}\to\text{boîte}}$};
+		}%
+
+	\end{scope}
+\end{tikzpicture}
+\end{document}

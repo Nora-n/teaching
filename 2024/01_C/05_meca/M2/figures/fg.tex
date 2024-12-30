@@ -1,0 +1,71 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+% \tdplotsetmaincoords{00}{000}
+\begin{tikzpicture}[scale=2]
+	\coordinate (A) at (0,0,0);
+	\def\lgt{6}
+	\coordinate (B) at ($(A)+(\lgt,1,0)$);
+	% draw axes
+	% \draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth,] (0,0,0) -- (1,0,0) node[midway, anchor=south east]{$\ux$};
+	% \draw[very thick,-stealth,] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
+	% \draw[very thick,-stealth,] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% draw droite d'action
+	\def\posA{0.2}
+	\def\posB{0.7}
+	\draw[dashed, thick]
+	(A) --
+	node[anchor=north, pos=\posA] {A}
+	node[anchor=center, pos=\posA, inner sep=0] (An) {$\bullet$}
+	node[anchor=south, pos=\posA] {$m\ind{A}$}
+	node[anchor=north, pos=\posB] {B}
+	node[anchor=center, pos=\posB, inner sep=0, outer sep=0] (Bn) {$\bullet$}
+	node[anchor=south, pos=\posB] {$m\ind{B}$}
+	(B);
+	% draw ur
+	\draw[very thick,-stealth]
+	(An) --++ ($0.062*(\lgt,1,0)$)
+	node[midway, anchor=south]{$\ur$};
+	% draw forces
+	\def\mut{0.5}
+	\sswitch{%
+		\path[thick, -stealth, myred]
+		(Bn) --++
+		($\mut*(An)-\mut*(Bn)$)
+		node[midway, above, sloped, white] {$\Ff_{g,\Ar\to\Br}$}
+		% node[midway, below, sloped, white] {$q\ind{A}q\ind{B} < 0$}
+		;
+		% \path[thick, -stealth, myblue]
+		% (Bn) --++
+		% ($\mut*(Bn)-\mut*(An)$)
+		% node[midway, above, sloped, white] {$\Ff_{e,\Ar\to\Br}$}
+		% node[midway, below, sloped, white] {$q\ind{A}q\ind{B} > 0$}
+		% ;
+	}{%
+		\draw[thick, -stealth, myred]
+		(Bn) --++
+		($\mut*(An)-\mut*(Bn)$)
+		node[midway, above, sloped] {$\Ff_{g,\Ar\to\Br}$}
+		% node[midway, below, sloped] {$q\ind{A}q\ind{B} < 0$}
+		;
+		% \draw[thick, -stealth, myblue]
+		% (Bn) --++
+		% ($\mut*(Bn)-\mut*(An)$)
+		% node[midway, above, sloped] {$\Ff_{e,\Ar\to\Br}$}
+		% node[midway, below, sloped] {$q\ind{A}q\ind{B} > 0$}
+		% ;
+	}%
+\end{tikzpicture}
+\end{document}

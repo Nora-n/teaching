@@ -1,6 +1,12 @@
 \documentclass{standalone}
 \usepackage{mintikz}
 
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
 \begin{document}
 \tdplotsetmaincoords{70}{120}
 \begin{tikzpicture}[scale=1,tdplot_main_coords]
@@ -10,39 +16,88 @@
 	\draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
 	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
 	\draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
-	% draw ux uy uz
-	\draw[very thick,-stealth,Violet] (0,0,0) -- (1,0,0) node[midway, anchor=south east]{$\ux$};
-	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
-	\draw[very thick,-stealth,Violet] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
 	% set point
 	\tdplotsetcoord{M}{4}{50}{50}
 	% draw a vector from origin to point (M)
-	\draw[thick, -stealth,color=red]
-	(O) -- (M)
-	node[anchor=south west]
-	{$\mathrm{M}$};
-	% draw projection on xy plane, and a connecting line
-	\draw[thick, dashed]
-	(O) -- (Mxy) coordinate(H)
-	node[anchor=north west]
-		{$\mathrm{H}$};
-	\draw[thick, dashed]
-	(M) -- (Mxy);
-	\draw[thick, dashed]
-	(M) -- (Mz)
-	node[left] {$z$};
-	\draw[thick, dashed]
-	(H) -- (Mx)
-	node[anchor=south east] {$x$};
-	\draw[thick, dashed]
-	(H) -- (My)
-	node[anchor=south west] {$y$};
-	% \tdplotsetthetaplanecoords{50}
-	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	% -- (.2,0,0) node[anchor=east]{$x'$};
-	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	% -- (0,.2,0) node[anchor=north]{$y'$};
-	% \draw[tdplot_rotated_coords,color=blue,thick,->] (0,0,0)
-	% -- (0,0,.2) node[anchor=west]{$z'$};
+	\ifprof{%
+		\draw[very thick, -stealth, myred]
+		(O) -- (M)
+		node[anchor=south west]
+		{$\mathrm{M}(t)$};
+	}%
+	\sswitch{%
+		% draw sum on each axis
+		\path[thick, color=white, -stealth]
+		(O) --
+		(Mx)
+		node[anchor=south east] {$x(t)$}
+		;
+		\path[thick, color=white, -stealth]
+		(Mx)
+		--
+		(Mxy)
+		coordinate(H)
+		node[] {$\bullet$}
+		node[anchor=north west]
+			{$\mathrm{H}(t)$}
+		node[midway, anchor=north]
+			{$y(t)$}
+		;
+		\path[thick, color=white, -stealth]
+		(H)
+		--
+		(M)
+		node[pos=.75, anchor=west]
+		{$z(t)$}
+		;
+	}{%
+		% draw sum on each axis
+		\draw[thick, color=myblue, -stealth]
+		(O) --
+		(Mx)
+		node[anchor=south east] {$x(t)$}
+		;
+		\draw[thick, color=myblue, -stealth]
+		(Mx)
+		--
+		(Mxy)
+		coordinate(H)
+		node[] {$\bullet$}
+		node[anchor=north west]
+			{$\mathrm{H}(t)$}
+		node[midway, anchor=north]
+			{$y(t)$}
+		;
+		\draw[thick, color=myblue, -stealth]
+		(H)
+		--
+		(M)
+		node[pos=.75, anchor=west]
+		{$z(t)$}
+		;
+	}%
+
+	\ifprof{%
+		% draw projection on xy plane, and a connecting line
+		\draw[thick, dashed, -stealth, color=myblue]
+		(O) -- (My)
+		node[anchor=south west] {$y(t)$}
+		;
+		\draw[thick, dashed]
+		(M) -- (Mz)
+		% node[left] {$z$}
+		;
+		\draw[thick, dashed, -stealth, color=myblue]
+		(O) -- (Mz)
+		node[left] {$z(t)$}
+		;
+		\draw[thick, dashed]
+		(H) -- (My)
+		;
+	}%
+	% draw ux uy uz
+	\draw[very thick,-stealth,mypurple] (0,0,0) -- (1,0,0) node[midway, anchor=south east]{$\ux$};
+	\draw[very thick,-stealth,mypurple] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
+	\draw[very thick,-stealth,mypurple] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
 \end{tikzpicture}
 \end{document}

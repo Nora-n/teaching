@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+
+	\def\g{0.5}
+	\def\vo{0.5}
+	\def\xmax{4}
+
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north east] at (O) {O};
+	% draw axes
+	% \draw[very thick,-stealth] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth] (-0.5,0,0) -- (\xmax,0,0) node[anchor=north]{$t$};
+	\draw[very thick,-stealth] (0,-3,0) -- (0,1,0)
+    node[anchor=east]{$y(t)$}
+    node[anchor=west]{$x(t)$}
+    ;
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	\ifprof{%
+		% Plot trajectory
+		\draw[domain=0:.85*\xmax, thick, myred, mymark=0.80(A)]
+		plot
+		({\x}, {-0.5*\g*\x^2})
+		;
+		\node[left, myred] at (A) {$y(t)$}
+		;
+		\draw[domain=0:.85*\xmax, thick, myorange, mymark=0.80(A)]
+		plot
+		({\x}, {.5*\vo*\x})
+		;
+		\node[below, myorange] at (A) {$x(t)$}
+		;
+	}%
+\end{tikzpicture}
+\end{document}

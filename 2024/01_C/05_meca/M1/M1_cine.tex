@@ -15,18 +15,18 @@
 \makeatother
 
 % \toggletrue{student}
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{0}
 
-% \settype{book}
-% \settype{prof}
-% \settype{stud}
+\settype{book}
+\settype{prof}
+\settype{stud}
 
 \chapter{Cinématique du point en cartésiennes}
 
@@ -91,9 +91,9 @@
 	% \tce{nota}
 	% \tce{appl}
 	% \tce{rema}
-	\tce{exem}
-	\tce{ror}
-	\tce{impo}
+	% \tce{exem}
+	% \tce{ror}
+	% \tce{impo}
 	\tcblower
 	% \tce{defi}
 	% \tce{rapp}
@@ -108,29 +108,14 @@
 	% \tce{nota}
 	\tce{appl}
 	\tce{rema}
-	% \tce{exem}
-	% \tce{ror}
-	% \tce{impo}
+	\tce{exem}
+	\tce{ror}
+	\tce{impo}
 \end{tcn}
 
 \vspace*{\fill}
 
 \newpage
-
-% \begin{pycode}
-% 	import numpy as np
-% 	c = 299753458 # m.s^-1
-% 	v = 0.9997*c  # m.s^-1
-% 	tau = 2.197e-6 # s
-% 	d_nr = v*tau
-% 	gamma = 1/np.sqrt(1 - v**2/c**2)
-% 	tau_p = gamma*tau
-% 	d_r = v*tau_p
-% \end{pycode}
-%
-% La \textbf{cinématique} est l'étude du mouvement en soi. On ne s'intéresse pas
-% aux causes qui ont donné naissance au mouvement. Avant toute chose, introduisons
-% le vocabulaire autour de l'objet d'étude.
 
 \section{Description et paramétrage du mouvement}
 \subsection{Système et point matériel}
@@ -155,17 +140,6 @@ son centre de gravité. Celui-ci pourra être repéré dans l'espace et le temps
 3+1 coordonnées (3 d'espace, 1 de temps).
 
 \subsection{Notion de référentiel et relativité du mouvement}
-
-% Pour décrire le mouvement d'un objet, on doit forcément partir d'un autre objet
-% de référence
-% \begin{itemize}
-% 	\item dire par \underline{rapport à quoi} il se déplace~: on définit alors
-% 	      une \textbf{origine}~;
-% 	\item dire dans \underline{quelle direction} il se déplace~: on fixe alors
-% 	      un \textbf{repère} (système de coordonnées)~;
-% 	\item dire sur \underline{quel intervalle de temps} il se déplace~: on
-% 	      définit un repère de temps.
-% \end{itemize}
 
 Un \textbf{mouvement est toujours relatif}, et \textbf{la description
 	d'un mouvement dépend du référentiel}.
@@ -206,9 +180,10 @@ trois référentiels classiques~:
 		      % \end{itemize}
 		      % et dans d'autres cas~:
 		      \begin{itemize}
-			      \item[b]{Origine}~: \psw{O centre de la Terre}
+			      \item[b]{Origine}~: \psw{O centre de la Terre ou point fixe à sa
+              surface}
 			      \item[b]{Axes}~: \psw{3 axes vers des \textbf{points fixes} à sa
-				            surface}
+				            surface ou 2 horizontaux, 1 vertical}
 			      \item[b]{Utilisé}~: \psw{mouvements sur la surface terrestre}
 		      \end{itemize}
 		      \begin{center}
@@ -483,9 +458,9 @@ la base de projection.
 
 \begin{tcb}[sidebyside, righthand ratio=.25](defi){Position en cartésiennes}
 	On note la postion $\OM(t)$, \textbf{homogène à une distance}. Elle s'exprime
-	\[\boxed{\psw{\OM(t) = x(t)\ux + y(t)\uy + z(t)\uy}}\]
+	\[\psw{\boxed{\OM(t) = x(t)\ux + y(t)\uy + z(t)\uy}}\]
 	et sa \textbf{norme} se calcule avec~:
-	\[\boxed{\psw{\OMr(t) = \norm{\OM(t)} = \sqrt{x(t)^2 + y(t)^2 + z(t)^2}}}\]
+	\[\psw{\boxed{\OMr(t) = \norm{\OM(t)} = \sqrt{x(t)^2 + y(t)^2 + z(t)^2}}}\]
 	\tcblower
 	\begin{center}
 		\sswitch{
@@ -639,26 +614,50 @@ la base de projection.
 	Le vecteur vitesse est toujours tangent à la trajectoire.
 \end{tcb}
 
+\begin{tcb*}(prop){Vitesse en cartésiennes}
+	\psw{%
+		\[
+			\vf(t) = \xp(t)\ux + \yp(t)\uy + \zp(t)\uz
+		\]
+	}%
+	\vspace{-15pt}
+\end{tcb*}
 
-\begin{tcb*}(inte){Vecteur vitesse}
-	On peut donc voir la vitesse comme étant le rapport du déplacement élémentaire
-	par la durée infinitésimal $\dd{t}$, ou comme étant la dérivée du vecteur
-	position.
+\begin{tcb*}(demo){Vecteur vitesse}
+	On peut donc voir la vitesse comme étant le \textbf{rapport entre $\dd{\OM}$
+		et $\dd{t}$}, ou comme étant la \textbf{dérivée de $\OM(t)$}. Or, \textbf{les
+		vecteurs de la base cartésienne sont constants dans le temps}, soit~:
 	\smallbreak
-	Ainsi, si le vecteur position est
-	\[
-		\OM(t) = x(t)\ux + y(t)\uy + z(t)\uz
-		\Ra
-		\dd{\OM} = \dd{x}\ux + \dd{y}\uy + \dd{z}\uz
-	\]
-	alors dans la vision dérivative, on obtient
-	\[\vf(t) = \dv{t}\left(x(t)\ux + y(t)\uy + z(t)\uz\right)\]
-	Or, \textbf{en coordonnées cartésiennes}, les vecteurs de base ne varient pas
-	avec le temps~: il ne changent pas de direction et restent unitaires. On peut
-	donc les considérer comme des constantes multiplicatives, et ainsi
-	\[\psw{\vf(t) = \dv{x}{t}(t)\ux + \dv{y}{t}(t)\uy + \dv{z}{t}(t)\uz}\]
-	On obtient la même chose avec la vision rapport déplacement/temps.
-	Pour alléger l'écriture, on introduit une notation~:
+	\begin{isd}[interior hidden](demo)
+		\tcbsubtitle{\fatbox{\textbf{Rapport}}}
+		\psw{%
+			\begin{align*}
+				\vf(t) & =
+				\dv{\OM}{t} =
+				\frac{\dd{x}\ux + \dd{y}\uy + \dd{z}\uz}{\dd{t}}
+				\\\Lra
+				\Aboxed{%
+				\vf(t) & =
+					\dv{x}{t}\ux + \dv{y}{t}\uy + \dv{z}{t}\uz
+				}
+				\qed
+			\end{align*}
+		}%
+		\tcblower
+		\tcbsubtitle{\fatbox{\textbf{Dérivée}}}
+		\psw{%
+			\begin{align*}
+				\vf(t) & =
+				\dv{t} \pa{x(t)\ux + y(t)\uy + z(t)\uz}
+				\\\Lra
+				\Aboxed{%
+				\vf(t) & =
+					\dv{x}{t}\ux + \dv{y}{t}\uy + \dv{z}{t}\uz
+				}
+				\qed
+			\end{align*}
+		}%
+	\end{isd}
 \end{tcb*}
 
 % \begin{tcb}(nota)<lfnt>'l'{Dérivée temporelle en mécanique}
@@ -666,18 +665,16 @@ la base de projection.
 % 	point sur la fonction~:
 % 	\[\dv{x}{t}(t) = \xp(t)\]
 % \end{tcb}
-Ainsi, on trouve
-\[\psw{\boxed{\vf(t) = \xp(t)\ux + \yp(t)\uy + \zp(t)\uz}}\]
 
-\begin{tcb}(exem)<lfnt>'l'{Vitesse selon expérience}
+\begin{tcb}(exem)<lftt>{Vitesse selon expérience}
 	En reprenant les exemples précédents~:
 	\begin{itemize}
-		\item Pour la chute dans le glycérol, $\xp = 0$ et $\yp = \cte$. Ainsi,
-		      $\vf$ est constant, et dirigé vers le bas.
-		\item Pour la chute libre sans vitesse initiale, $\xp = 0$ et $\yp$
+		\item Pour la chute dans le glycérol, $\xp(t) = 0$ et $\yp(t) = \cte$. Ainsi,
+		      $\vf(t)$ est constant, et dirigé vers le bas.
+		\item Pour la chute libre sans vitesse initiale, $\xp(t) = 0$ et $\yp(t)$
 		      diminue linéairement~: le vecteur vitesse est variable, dirigé vers
 		      le bas.
-		\item Pour la chute libre avec vitesse initiale, $\xp = \cte$ et $\yp$
+		\item Pour la chute libre avec vitesse initiale, $\xp(t) = \cte$ et $\yp(t)$
 		      diminue linéairement~: le vecteur vitesse est variable et change de
 		      direction.
 	\end{itemize}
@@ -686,24 +683,26 @@ Ainsi, on trouve
 \begin{tcb}(impo){Différence vecteur/norme}
 	Selon le contexte, on fera particulièrement attention à ne pas confondre le
 	mot «~vitesse~» avec le \textbf{vecteur} ou avec sa \textbf{norme}. Une
-	vitesse, en norme, ne saurait être négative~; un vecteur vitesse peut être
-	négatif.
+	vitesse, en \textbf{norme}, \textbf{ne peut pas être négative}~; les
+	\textbf{composantes} du vecteur vitesse \textbf{peuvent être négatives}.
 \end{tcb}
 
 \subsection{Accélération}
-L'accélération est la grandeur physique qui mesure la variation de la vitesse.
-\begin{tcb}(defi){Accélérations}
-	On définit l'\textbf{accélération} comme le \textbf{taux d'accroissement} du
-	vecteur vitesse~:
-	\[\psw{\boxed{\af(t) = \frac{\vf(t+\Dt) - \vf(t)}{\Dt}}}
+% L'accélération est la grandeur physique qui mesure la variation de la vitesse.
+\begin{tcb}(defi){Accélération}
+	On définit l'\textbf{accélération} comme la \textbf{limite du taux d'accroissement} du vecteur vitesse~:
+	\[
+		\psw{%
+			\boxed{%
+				\af(t) =
+				\lim_{\Delta{t}\to 0} \frac{\vf(t+\Dt) - \vf(t)}{\Dt} =
+				\dv{\vf}{t} =
+				\dv[2]{\OM}{t}
+			}%
+		}%
 		\qdonc
-		[\af] = \si{m.s^{-2}}\]
-	Si on effectue des mesures très rapprochées, c'est-à-dire $\Dt \rightarrow
-		0$, on définit alors l'accélération \textit{instantanée} comme étant la
-	\textit{dérivée} du vecteur vitesse, et dérivée seconde de la position~:
-	\[\psw{\boxed{\af(t) = \dv{\vf(t)}{t}}}
-		\qet
-		\psw{\boxed{\af(t) = \dv[2]{\OM(t)}{t}}}\]
+		\psw{[\af] = \si{m.s^{-2}}}
+	\]
 \end{tcb}
 
 \begin{tcb}[cnt, bld](ror){Accélération et trajectoire}
@@ -711,330 +710,192 @@ L'accélération est la grandeur physique qui mesure la variation de la vitesse.
 	trajectoire (partie concave).
 \end{tcb}
 
-Par distribution de l'opérateur $\dv{t}$, on obtient en cartésiennes
-\[\psw{\boxed{\af(t) = \xpp(t)\ux + \ypp(t)\uy + \zpp(t)\uz}}\]
+\begin{tcb*}(prop){Accélération en cartésiennes}
+	Par distribution de l'opérateur $\dv{t}$, on obtient en cartésiennes
+	\[\psw{\boxed{\af(t) = \xpp(t)\ux + \ypp(t)\uy + \zpp(t)\uz}}\]
+\end{tcb*}
 
-\begin{tcb}(exem)<lfnt>'l'{Accélération selon expérience}
+\begin{tcb}(exem)<lftt>{Accélération selon expérience}
 	En reprenant les exemples précédents~:
 	\begin{itemize}
-		\item Pour la chute dans le glycérol, $\xpp$ et $\ypp$ sont nuls~: le
+		\item Pour la chute dans le glycérol, $\xpp(t)$ et $\ypp(t)$ sont nuls~: le
 		      vecteur accélération est nul.
-		\item Pour la chute libre sans vitesse initiale, $\xpp = 0$ et $\ypp$
+		\item Pour la chute libre sans vitesse initiale, $\xpp(t) = 0$ et $\ypp(t)$
 		      est constant~: le vecteur accélération est constant, dirigé vers le
 		      bas.
-		\item Pour la chute libre avec vitesse initiale, $\xpp = 0$ et $\ypp$
+		\item Pour la chute libre avec vitesse initiale, $\xpp(t) = 0$ et $\ypp(t)$
 		      est constant~: le vecteur accélération est constant, dirigé vers le
 		      bas.
 	\end{itemize}
 \end{tcb}
 
 \begin{tcb}(impo){Accélération}
-	Une accélération peut être négative ou nulle~:
+	Une accélération peut être négative et peut être nulle~:
 	\begin{itemize}
-		\item En physique l'accélération est liée à la \textbf{variation du
-			      vecteur vitesse}, souvent différent de l'utilisation courante de ce
-		      mot.
-		\item Pour que l'accélération soit nulle, il faut que toutes les
-		      composantes de la vitesse ne varient pas. Un mouvement peut être à
-		      vitesse constante en norme, mais d'accélération non nulle.
+		\item L'accélération étant liée à la \textbf{variation du
+			      vecteur vitesse}, si la vitesse diminue, l'accélération peut être
+		      négative.
+		\item Pour que l'accélération soit nulle, il faut que \textbf{toutes les
+			      composantes} de la vitesse soient constantes. Un mouvement peut
+		      être à vitesse constante en norme, mais d'accélération non nulle
+		      (mouvement circulaire, cf.\ chapitre M3).
 	\end{itemize}
 \end{tcb}
 
 \section{Exemples de mouvements}
-% \subsection{Rappel mathématique}
-% \begin{tcb}(rapp)<lft>'l'{Rappel}
-% 	\begin{itemize}
-% 		\item Si $\xp(t) = 0$, alors $x(t) = x_0$ avec $x_0 = \cte$.
-% 		\item Si $\xp(t) = v_0$, alors $x(t) = v_0t + x_0$ avec $x_0 = \cte$.
-% 		\item Si $\xp(t) = a_0t$, alors $x(t) = \DS \frac{1}{2}a_0t^2 +  x_0$
-% 		      avec $x_0 = \cte$.
-% 	\end{itemize}
-% \end{tcb}
 
 \subsection{Mouvement rectiligne uniforme}
-\begin{tcb}(defi)<lfnt>'l'{Mouvement rectiligne uniforme}
+\begin{tcb}(defi)<lftt>{Mouvement rectiligne uniforme}
 	Un mouvement est dit \textbf{uniforme} si la \textbf{norme du vecteur vitesse}
-	$\norm{\vf}$ est constante. Il est dit \xul{rectiligne} si la \xul{trajectoire
-		est une droite}.
+	$\norm{\vf}$ est constante ($\Lra \af = \of$). Il est dit \xul{rectiligne} si
+	la \xul{trajectoire est une droite}.
 \end{tcb}
-Par exemple,
-\[\vf = v_0\ux\]
-donne un mouvement rectiligne uniforme. C'est le cas de la chute dans le
-glycérol. Dans ce cas,
-\psw{%
-	\[
-		\left\{
-		\begin{array}{l}
-			\xp(t) = v_0 \\
-			\yp(t) = 0   \\
-			\zp(t) = 0
-		\end{array}
-		\right.
-		\Longrightarrow
-		\left\{
-		\begin{array}{l}
-			x(t) = v_0t + x_0 \\
-			y(t) = y_0        \\
-			z(t) = z_0
-		\end{array}
-		\right.
-	\]}
-avec $x_0$, $y_0$ et $z_0$ des constantes que l'on peut calculer à l'aide des
-conditions initiales.
+
+\begin{tcb*}(appl)<lftt>{Mouvement rectiligne uniforme}
+	Montrer qu'un mouvement caractérisé $\vf(t) = v_0\ux$ donne un mouvement
+	rectiligne uniforme.
+	\tcblower
+	\psw{%
+		On intègre pour avoir la position~:
+		\[
+			\OM(t) = v_0\,t \ux + \OM(0)
+		\]
+		ce qui décrit bien une droite dans l'espace. C'est le cas de la chute dans
+		le glycérol.
+	}%
+\end{tcb*}
 
 \subsection{Mouvement rectiligne uniformément accéléré}
-\begin{tcb}(defi)<lfnt>'l'{Uniformément accéléré}
-	Un mouvement est dit \textit{uniformément accéléré} si la \textbf{norme du
-		vecteur accélération} $\norm{\af}$ est constant.
+\begin{tcb}(defi)<lftt>{Uniformément accéléré}
+	Un mouvement est dit \textbf{uniformément accéléré} si la \textbf{norme du
+		vecteur accélération} $\norm{\af}$ est \textbf{constante}.
 \end{tcb}
-Par exemple,
-\[\af = -g\uy\]
-avec des conditions initiales nulles donne un mouvement rectiligne uniformément
-accéléré. C'est le cas de la chute libre sans vitesse initiale. Contextualisons
-l'étude~:
-\smallbreak
-\noindent
-\begin{minipage}{0.80\linewidth}
-	\begin{itemize}
-		\item[b]{Système}~: \psw{point matériel.}
-		\item[b]{Référentiel}~: \psw{celui du laboratoire, supposé galiléen.}
-		\item[b]{Repère}~: \psw{cartésien avec $\uy$ verticale
-			      ascendante.}
-		\item[b]{Origine des temps}~:
-		      \psw{le moment où la balle est lâchée, tel que $\vf(0) = \of$.}
-		\item[b]{Origine du repère}~:
-		      \psw{O tel que $\OM(0) = \of$.}
-	\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}{0.19\linewidth}
-	\begin{center}
-		\includegraphics[height=3cm]{nov_init}
-		\captionof{figure}{Situation initiale.}
-	\end{center}
-\end{minipage}
 
-Par définition,
-\[\psw{\af(t) = \xpp(t)\ux + \ypp(t)\uy + \zpp(t)\uz}\]
-Soit
-\[
-	\psw{%
-		\left\{
-		\begin{array}{l}
-			\xpp(t) = 0  \\
-			\ypp(t) = -g \\
-			\zpp(t) = 0
-		\end{array}
-		\right.
-		\Longrightarrow
-		\left\{
-		\begin{array}{l}
-			\xp(t) = v_{x,0}       \\
-			\yp(t) = -gt + v_{y,0} \\
-			\zp(t) = v_{z,0}
-		\end{array}
-		\right.
-	}\]
-Or,
-\[\psw{%
-		\vf(0) = \of
-		\qdonc
-		\left\{
-		\begin{array}{l}
-			\xp(0) = v_{x,0} = 0 \\
-			\yp(0) = v_{y,0} = 0 \\
-			\zp(0) = v_{z,0} = 0
-		\end{array}
-		\right.
-	}\]
-Ainsi
-\[
-	\psw{%
-		\left\{
-		\begin{array}{l}
-			\xp(t) = 0   \\
-			\yp(t) = -gt \\
-			\zp(t) = 0
-		\end{array}
-		\right.
-		\Longrightarrow
-		\left\{
-		\begin{array}{l}
-			x(t) = x_{0}                     \\
-			y(t) = -\dfrac{1}{2}gt^2 + y_{0} \\
-			z(t) = z_{0}
-		\end{array}
-		\right.
-	}\]
-Seulement,
-\[\psw{%
-		\OM(0) = \of
-		\qdonc
-		\left\{
-		\begin{array}{l}
-			x(0) = y_{0} = 0 \\
-			y(0) = y_{0} = 0 \\
-			z(0) = z_{0} = 0
-		\end{array}
-		\right.
-	}\]
-Autrement dit,
-\[\psw{%
-		\boxed{
-			\left\{
-			\begin{array}{l}
-				x(t) = 0                 \\
-				y(t) = -\dfrac{1}{2}gt^2 \\
+\begin{tcb*}(appl)<lftt>{Mvt. rect. uniformé\mnt\ accéléré}
+	Déterminer les équations horaires pour un mouvement uniformément accéléré
+	caractérisé par $\af(t) = -g \uy$ avec des conditions initiales nulles
+	($\OM(0) = \of$ et $\vf(0) = \of$).
+	\tcblower
+	\begin{isd}[righthand ratio=.15]
+		\psw{%
+			On intègre~:
+			\[
+				\vf(t) = -g\,t \uy + \underbracket[1pt]{\vfo}_{=\of}
+				\Ra
+				\OM(t) = -\frac{1}{2}gt^2 \uy + \underbracket[1pt]{\OM(0)}_{=\of}
+			\]
+			D'où les équations horaires~:
+			\[
+				x(t) = 0
+				\quad ; \quad
+				y(t) = -\frac{1}{2}gt^2
+				\quad ; \quad
 				z(t) = 0
-			\end{array}
-			\right.
-		}}\]
-Ce sont les équations horaires du mouvement, décrivant une droite dans l'espace.
-
-\hfill
-\begin{minipage}{0.45\linewidth}
-	\begin{center}
-		\includegraphics[width=6.5cm]{nov_vy}
-	\end{center}
-	\captionof{figure}{Évolution de $v_y$ avec le temps.}
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\linewidth}
-	\begin{center}
-		\includegraphics[width=6.5cm]{nov_y}
-	\end{center}
-	\captionof{figure}{Évolution de $y$ avec le temps.}
-\end{minipage}
-\hfill~
+			\]
+		}%
+		\vspace{-15pt}
+		\tcblower
+		\begin{center}
+			\includegraphics[width=\linewidth]{nov_init}
+			\captionsetup{justification=centering}
+			\captionof{figure}{}
+		\end{center}
+	\end{isd}
+	\begin{isd}
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=.8\linewidth]{nov_vy_stud}
+			}{%
+				\includegraphics[width=.8\linewidth]{nov_vy_prof}
+			}%
+			\captionof{figure}{Évolution de $v(t)$.}
+		\end{center}
+		\tcblower
+		\begin{center}
+			\sswitch{%
+				\includegraphics[width=.8\linewidth]{nov_y_stud}
+			}{%
+				\includegraphics[width=.8\linewidth]{nov_y_prof}
+			}%
+			\captionof{figure}{Évolution de $y(t)$.}
+		\end{center}
+	\end{isd}
+  \vspace{-25pt}
+\end{tcb*}
 
 \subsection{Mouvement courbe uniformément accéléré}
-\noindent
-\begin{minipage}{0.70\linewidth}
-	En reprenant la même situation que ci-dessus mais avec des conditions
-	initiales non nulles, on trouvera un mouvement courbe. Prenons
-	\[\vf(0) = v_0\ux\]
-	avec $v_0 \neq 0$. On garde $\af = -g \uy$, le même repère et la même
-	origine~: $\OM(0) = 0$. Par définition,
-\end{minipage}
-\hfill
-\begin{minipage}{0.23\linewidth}
-	\begin{center}
-		\includegraphics[width=\linewidth]{vo_init}
-		\captionof{figure}{Situation initiale.}
-	\end{center}
-\end{minipage}
-
-\[\psw{\af(t) = \xpp(t)\ux + \ypp(t)\uy + \zpp(t)\uz}\]
-Soit
-\[
-	\psw{%
-		\left\{
-		\begin{array}{l}
-			\xpp(t) = 0  \\
-			\ypp(t) = -g \\
-			\zpp(t) = 0
-		\end{array}
-		\right.
-		\Longrightarrow
-		\left\{
-		\begin{array}{l}
-			\xp(t) = v_{x,0}       \\
-			\yp(t) = -gt + v_{y,0} \\
-			\zp(t) = v_{z,0}
-		\end{array}
-		\right.
-	}\]
-Or,
-\[\psw{%
-		\vf(0) = v_0\ux
-		\qdonc
-		\left\{
-		\begin{array}{l}
-			\xp(0) = v_{x,0} = v_0 \\
-			\yp(0) = v_{y,0} = 0   \\
-			\zp(0) = v_{z,0} = 0
-		\end{array}
-		\right.
-	}\]
-Ainsi
-\[
-	\psw{%
-		\left\{
-		\begin{array}{l}
-			\xp(t) = v_0 \\
-			\yp(t) = -gt \\
-			\zp(t) = 0
-		\end{array}
-		\right.
-		\Longrightarrow
-		\left\{
-		\begin{array}{l}
-			x(t) = v_0t + x_{0}              \\
-			y(t) = -\dfrac{1}{2}gt^2 + y_{0} \\
-			z(t) = z_{0}
-		\end{array}
-		\right.
-	}\]
-Seulement,
-\[\psw{%
-		\OM(0) = \of
-		\qdonc
-		\left\{
-		\begin{array}{l}
-			x(0) = y_{0} = 0 \\
-			y(0) = y_{0} = 0 \\
-			z(0) = z_{0} = 0
-		\end{array}
-		\right.
-	}
-\]
-Autrement dit,
-\[\psw{%
-		\boxed{
-			\left\{
-			\begin{array}{l}
-				x(t) = v_0t              \\
-				y(t) = -\dfrac{1}{2}gt^2 \\
-				z(t) = 0
-			\end{array}
-			\right.
-		}
-	}
-\]
-
-\begin{minipage}{0.48\linewidth}
-	\begin{center}
-		\includegraphics[width=\linewidth]{vo_vv}
-	\end{center}
-	\captionof{figure}{Évolution des vitesses avec le temps.}
-\end{minipage}
-\hfill
-\begin{minipage}{0.48\linewidth}
-	\begin{center}
-		\includegraphics[width=\linewidth]{vo_xx}
-	\end{center}
-	\captionof{figure}{Évolution des positions avec le temps.}
-\end{minipage} \bigbreak
-
-\begin{minipage}{0.60\linewidth}
-	Pour obtenir la trajectoire, on veut déterminer la courbe $y(x)$ décrite dans le
-	plan $xy$. Pour cela, exprimons $t$ en fonction de $x$ et remplaçons $t$ dans
-	l'expression de $y$~:
-	\begin{gather*}
-		t = \frac{x}{v_0}\\
-		\Rightarrow
-		y(x) = - \frac{1}{2}g \left( \frac{x}{v_0} \right)^2
-		\Leftrightarrow
-		\boxed{y(x) = - \frac{g}{2v_0{}^2}x^2}
-	\end{gather*}
-	La trajectoire obtenue est alors une parabole.
-\end{minipage}
-\hfill
-\begin{minipage}{0.35\linewidth}
-	\begin{center}
-		\includegraphics[width=\linewidth]{vo_traj}
-		\captionof{figure}{Trajectoire parabolique.}
-	\end{center}
-\end{minipage}
+\begin{tcb*}(appl)<lftt>{Mvt. courbe uniformé\mnt\ accéléré}
+	Soit $\af(t) = -g\uy$ avec $\vf(0) = v_0\ux$ et $\OM(0) = \of$.
+	\begin{enumerate}[label=\sqenumi]
+		\item Déterminer les équations horaires.
+		\item Déterminer l'équation de la trajectoire.
+	\end{enumerate}
+	\tcblower
+		\begin{enumerate}[label=\sqenumi]
+			\item
+        \psw{%
+          On intègre~:
+            \begin{gather*}
+              \vf(t) = -gt\uy + \vf(0) = -gt\uy + v_0\ux \Ra
+              \OM(t) = -\frac{1}{2}gt^2\uy + v_0t \ux
+              \\\beforetext{Soit}
+              \boxed{%
+                x(t) = v_0t \quad ; \quad
+                y(t) = -\frac{1}{2}gt^2
+                \quad ; \quad z(t) = 0
+              }
+            \end{gather*}
+        }%
+        \vspace{-15pt}
+			      \begin{isd}
+				      \begin{center}
+					      \sswitch{%
+						      \includegraphics[width=\linewidth]{vo_vv_stud}
+					      }{%
+						      \includegraphics[width=\linewidth]{vo_vv_prof}
+					      }%
+					      \captionof{figure}{Composantes de la vitesse.}
+				      \end{center}
+				      \tcblower
+				      \begin{center}
+					      \sswitch{%
+						      \includegraphics[width=\linewidth]{vo_xx_stud}
+					      }{%
+						      \includegraphics[width=\linewidth]{vo_xx_prof}
+					      }%
+					      \captionof{figure}{Composantes de la position.}
+				      \end{center}
+			      \end{isd}
+			\item ~
+			      \vspace{-15pt}
+			      \smallbreak
+            \begin{isd}[interior hidden]
+              \psw{%
+                Pour obtenir la trajectoire, on veut déterminer la courbe $y(x)$
+                décrite dans le plan $xy$. Pour cela, exprimons $t$ en fonction de
+                $x$ et remplaçons $t$ dans l'expression de $y$~:
+                \begin{gather*}
+                  t = \frac{x}{v_0}\\
+                  \Rightarrow
+                  y(x) = - \frac{1}{2}g \left( \frac{x}{v_0} \right)^2
+                  \Leftrightarrow
+                  \boxed{y(x) = - \frac{g}{2v_0{}^2}x^2}
+                \end{gather*}
+                La trajectoire obtenue est alors une parabole.
+              }%
+              \vspace{-15pt}
+				      \tcblower
+				      \begin{center}
+                \sswitch{%
+                  \includegraphics[width=\linewidth]{vo_traj_stud}
+                }{%
+					        \includegraphics[width=\linewidth]{vo_traj_prof}
+                }%
+                \vspace{-15pt}
+					      \captionof{figure}{Trajectoire parabolique.}
+				      \end{center}
+			      \end{isd}
+		\end{enumerate}
+\end{tcb*}
 
 \end{document}

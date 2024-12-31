@@ -1,11 +1,20 @@
 \documentclass{standalone}
 \usepackage{mintikz}
 
-\begin{document}
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
 \tdplotsetmaincoords{0}{0}
-\def\g{9.81}
-\def\vo{4}
+
+\begin{document}
 \begin{tikzpicture}[scale=1,tdplot_main_coords]
+
+	\def\g{9.81}
+	\def\vo{4}
+
 	\coordinate (O) at (0,0,0);
 	\node[anchor=east] at (O) {O};
 	% draw axes
@@ -25,49 +34,93 @@
 	\draw[canvas is xy plane at z=0, thick, -stealth, myred]
 	(1.5,1.) --++ (0,-.5)
 	node[midway, right] {$\gf$};
-	% accélération
-	\draw[canvas is xy plane at z=0, thick, -stealth, myred]
-	(O) --++ (0,-.5)
-	node[below] {$\af$};
-	% Plot trajectory
-	\draw[canvas is xy plane at z=0, domain=0:3, thick,
-		tangentdrw=0.25,
-		mymark=0.25(A),
-	]
-	plot
-	({\x}, {-\g/(2*\vo*\vo)*\x*\x});
-	% tangents
-	\draw[myblue, thick, use tangentdrw, -stealth]
-	(0,0) -- (1,0)
-	node[anchor=west] {$\vf(t_1)$};
-	\draw[myred, thick, -stealth]
-	(A) --++ (0,-0.5)
-	node[below] {$\af$};
-	% Second tangent needs another plot?!
-	\path[canvas is xy plane at z=0, domain=0:3, thick,
-		tangentdrw=0.5,
-		mymark=0.5(B),
-	]
-	plot
-	({\x}, {-\g/(2*\vo*\vo)*\x*\x});
-	\draw[myblue, thick, use tangentdrw, -stealth]
-	(0,0) -- (1,0)
-	node[anchor=west] {$\vf(t_2)$};
-	\draw[myred, thick, -stealth]
-	(B) --++ (0,-0.5)
-	node[below] {$\af$};
-	% Third tangent needs another plot?!
-	\path[canvas is xy plane at z=0, domain=0:3, thick,
-		tangentdrw=0.75,
-		mymark=0.75(C),
-	]
-	plot
-	({\x}, {-\g/(2*\vo*\vo)*\x*\x});
-	\draw[myblue, thick, use tangentdrw, -stealth]
-	(0,0) -- (1,0)
-	node[anchor=west] {$\vf(t_3)$};
-	\draw[myred, thick, -stealth]
-	(C) --++ (0,-0.5)
-	node[below] {$\af$};
+	\sswitch{%
+		% Plot trajectory
+		\path[canvas is xy plane at z=0, domain=0:3, thick,
+			tangentdrw=0.25,
+			mymark=0.25(A),
+		]
+		plot
+		({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		% tangents
+		\path[white, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t_1)$};
+		\path[white, thick, -stealth]
+		(A) --++ (0,-0.5)
+		node[below] {$\af$};
+		% % Second tangent needs another plot?!
+		% \path[canvas is xy plane at z=0, domain=0:3, thick,
+		%   tangentdrw=0.5,
+		%   mymark=0.5(B),
+		% ]
+		% plot
+		% ({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		% \draw[myblue, thick, use tangentdrw, -stealth]
+		% (0,0) -- (1,0)
+		% node[anchor=west] {$\vf(t_2)$};
+		% \draw[myred, thick, -stealth]
+		% (B) --++ (0,-0.5)
+		% node[below] {$\af$};
+		% Third tangent needs another plot?!
+		\path[canvas is xy plane at z=0, domain=0:3, thick,
+			tangentdrw=0.75,
+			mymark=0.75(C),
+		]
+		plot
+		({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		\path[white, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t_3)$};
+		\path[white, thick, -stealth]
+		(C) --++ (0,-0.5)
+		node[below] {$\af$};
+	}{%
+		% accélération
+		\draw[canvas is xy plane at z=0, thick, -stealth, myred]
+		(O) --++ (0,-.5)
+		node[below] {$\af$};
+		% Plot trajectory
+		\draw[canvas is xy plane at z=0, domain=0:3, thick,
+			tangentdrw=0.25,
+			mymark=0.25(A),
+		]
+		plot
+		({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		% tangents
+		\draw[myblue, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t_1)$};
+		\draw[myred, thick, -stealth]
+		(A) --++ (0,-0.5)
+		node[below] {$\af$};
+		% Second tangent needs another plot?!
+		\path[canvas is xy plane at z=0, domain=0:3, thick,
+			tangentdrw=0.5,
+			mymark=0.5(B),
+		]
+		plot
+		({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		\draw[myblue, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t_2)$};
+		\draw[myred, thick, -stealth]
+		(B) --++ (0,-0.5)
+		node[below] {$\af$};
+		% Third tangent needs another plot?!
+		\path[canvas is xy plane at z=0, domain=0:3, thick,
+			tangentdrw=0.75,
+			mymark=0.75(C),
+		]
+		plot
+		({\x}, {-\g/(2*\vo*\vo)*\x*\x});
+		\draw[myblue, thick, use tangentdrw, -stealth]
+		(0,0) -- (1,0)
+		node[anchor=west] {$\vf(t_3)$};
+		\draw[myred, thick, -stealth]
+		(C) --++ (0,-0.5)
+		node[below] {$\af$};
+	}%
+
 \end{tikzpicture}
 \end{document}

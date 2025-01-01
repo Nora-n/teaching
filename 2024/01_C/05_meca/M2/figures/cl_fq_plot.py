@@ -98,6 +98,7 @@ ax.text(
 fig.savefig("./cl_fq_v_stud.pdf", bbox_inches="tight")
 
 ax.plot(t, sol, lw=2, c="firebrick")
+ax.axhline(vlim, ls="--", c="k")
 ax.plot([T, T, 0], [0, sol[10][0], sol[10][0]], ls="--", c="k")
 
 ax.text(
@@ -113,6 +114,15 @@ ax.text(
     -0.20,
     0.76 * vlim,
     "$\\num{0.76}\\,v_{\\mathrm{lim}}$",
+    ha="right",
+    va="center",
+    fontsize=15,
+    # transform=ax.transAxes,
+)
+ax.text(
+    -0.20,
+    vlim,
+    "$v_{\\mathrm{lim}}$",
     ha="right",
     va="center",
     fontsize=15,

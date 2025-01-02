@@ -4,16 +4,22 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
 \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.003pt
 
 \begin{document}
 \setcounter{chapter}{12}
+
+% \settype{enon}
+% \settype{solu_prof}
+% \settype{solu_stud}
 
 \chapter{\cswitch{Correction du TP}{\'Etude d'un filtre passe-bas du premier ordre}}
 
@@ -25,42 +31,39 @@ C = 0.1e-6        # Farad
 wc = 1/(R*C)      # rad.s^-1
 fc = wc/(2*np.pi) # Hz
 def H(f):
-    return (1/(1+1j*(f/fc)))
+  return (1/(1+1j*(f/fc)))
 def G(f):
-    return (20*np.log10(abs(H(f))))
+  return (20*np.log10(abs(H(f))))
 def F(f):
-    return (cmath.phase(H(f)))
+  return (cmath.phase(H(f)))
 def T(f):
-    return F(f)/(2*np.pi*f)
+  return F(f)/(2*np.pi*f)
 # fmin = 1e2        # Hz
 # fmax = 5e4        # Hz
 # plist = np.array(
 # [0, 0.05, 0.1, 0.12, 0.145, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 0.9, 1]
 # )
 flist = [100, 300, 600,
-				1000, 1200, 1600, 2000, 3000, 5000, 7000,
-				10000, 20000, 30000, 40000, 50000]
+1000, 1200, 1600, 2000, 3000, 5000, 7000,
+10000, 20000, 30000, 40000, 50000]
 \end{pycode}
 
-\enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"know"{Savoir}
-			\begin{itemize}
-				\item Décalage temporel/Déphasage à l'aide d'un oscilloscope numérique.
-				\item Reconnaître une avance ou un retard.
-			\end{itemize}
-		\end{tcb}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}
-				\item Mettre en œuvre un dispositif expérimental illustrant l’utilité
-				      des fonctions de transfert pour un système linéaire à un ou plusieurs
-				      étages.
-				\item Passer d'un décalage temporel à un déphasage et inversement.
-				\item Agir sur un signal électrique à l'aide des fonctions simples
-				      suivantes~: filtrage
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+\enonce{%
+	\begin{tcn}[sidebyside, sidebyside align=top](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Décalage temporel/Déphasage à l'aide d'un oscilloscope numérique.
+			\item Reconnaître une avance ou un retard.
+			\item Passer d'un décalage temporel à un déphasage et inversement.
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Mettre en œuvre un dispositif expérimental illustrant l'utilité
+			      des fonctions de transfert pour un système linéaire à un ou plusieurs
+			      étages.
+			\item Agir sur un signal électrique à l'aide des fonctions simples
+			      suivantes~: filtrage
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -70,52 +73,51 @@ flist = [100, 300, 600,
 		\item Apprendre à tracer un diagramme de \textsc{Bode} sur papier semi-log et
 		      papier millimétré.
 	\end{itemize}
-}
+}%
 
 \enonce{%
 	\section{S'approprier}
 
 	\subsection{Méthode pour mesurer un déphasage -- rappel de cours}
 
-	Supposons $e(t) = E_{m} \cos(\w t)$ sur la voie $Y_1$ et $s(t) = S_{m} \cos (\w
-		t + \f)$ sur la voie $Y_2$ de l'oscillogramme ci-contre.  Le déphasage $\f$
-	entre deux signaux est un nombre appartenant à l'intervalle $\left]-\pi~;
-		\pi\right]$. Il se mesure grâce à l'oscilloscope.
-	\smallbreak
-	\noindent
-	\begin{minipage}[c]{.60\linewidth}
-		\begin{enumerate}
-			\item \xul{Déterminer la valeur absolue de $\Delta\f_{s/e}$}~: pour cela, il
-			      faut placer les curseurs verticaux de manière à déterminer le
-			      décalage temporel $\Delta t$, puis $\abs{\Delta\f_{s/e}} =
-				      \w\Delta{t}$ (en rad).
-			\item \xul{Ensuite déterminer le signe de $\Delta\f_{s/e}$}~:
-			      pour cela, on cherche quelle courbe est en avance sur l'autre. Sur
-			      l'oscillogramme ci-contre, $s$ est en retard sur $e$ puisqu'il s'annule
-			      après $e$~: on en déduit $\Delta\f_{s/e} < 0$.
-		\end{enumerate}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{.40\linewidth}
-		\begin{center}
-			\includegraphics[width=\linewidth]{dephasage}
-			\captionof{figure}{Déphasage}
-			\label{fig:dephasage}
-		\end{center}
-	\end{minipage}
+	\begin{tcn}(rapp){Rappel mesure de déphasage}
+		Supposons $e(t) = E_{m} \cos(\w t)$ sur la voie $Y_1$ et $s(t) = S_{m} \cos
+			(\w t + \f)$ sur la voie $Y_2$ de l'oscillogramme ci-contre.  Le déphasage
+		$\f$ entre deux signaux est un nombre appartenant à l'intervalle
+		$\left]-\pi~; \pi\right]$. Il se mesure grâce à l'oscilloscope.
+		\smallbreak
+		\begin{isd}[righthand ratio=.4]
+			\begin{enumerate}
+				\item[b]{Déterminer $\abs{\Delta\f_{s/e}}$}~: pour cela, il
+				      faut placer les curseurs verticaux de manière à déterminer le
+				      décalage temporel $\Delta t$, puis $\abs{\Delta\f_{s/e}} =
+					      \w \abs{\Delta{t}}$ (en rad).
+				\item[b]{Déterminer le signe de $\Delta\f_{s/e}$}~:
+				      pour cela, on cherche quelle courbe est en avance sur l'autre. Sur
+				      l'oscillogramme ci-contre, $s$ est en retard sur $e$ puisqu'il
+				      s'annule après $e$~: on en déduit $\Delta\f_{s/e} < 0$.
+			\end{enumerate}
+			\tcblower
+			\begin{center}
+				\includegraphics[width=\linewidth]{dephasage}
+				\captionof{figure}{Déphasage}
+				\label{fig:dephasage}
+			\end{center}
+		\end{isd}
+	\end{tcn}
 
 	\subsection{Méthode pour mesurer un gain en dB}
 
 	Le gain se mesure grâce à un multimètre.
 	\begin{tcb}(expe)<itc>{Mesure de gain}
 		\begin{enumerate}
-      \item Appuyez sur la fonction Volt alternatif (symbole
-            \fbox{V$\sim$}), \textbf{puis} dBmètre (bouton \fbox{dB}) pour
-            activer la fonction dBmètre~;
+			\item Appuyez sur la fonction Volt alternatif (symbole
+			      \fbox{V$\sim$}), \textbf{puis} dBmètre (bouton \fbox{dB}) pour
+			      activer la fonction dBmètre~;
 			\item Brancher le multimètre sur l'entrée $e(t)$ du montage~;
 			\item Appuyer sur \fbox{\texttt{rel}} une ou deux fois jusqu'à ce que le
-			      multimètre affiche 0~: on indique alors au multimètre que c'est cette
-			      tension $e(t)$ qui sert de référence.
+			      multimètre affiche 0~: on indique alors au multimètre que c'est
+			      cette tension $e(t)$ qui sert de référence.
 			\item Brancher ensuite le multimètre sur la sortie $s(t)$. Il affiche
 			      directement le gain en dB.
 		\end{enumerate}
@@ -128,28 +130,32 @@ flist = [100, 300, 600,
 
 	\subsection{Méthode pour tracer un diagramme de \textsc{Bode}}
 
-	Pour tracer le diagramme de \textsc{Bode}, il est nécessaire pour chaque
-	fréquence de déterminer~:
-	\begin{enumerate}
-		\item le déphasage $\Delta\f_{s/e}$ de $s(t)$ par rapport à $e(t)$~;
-		\item Le gain en dB.
-	\end{enumerate}
-}
+	\begin{tcb}(tool){Tracer un diagramme de \textsc{Bode}}
+		Pour tracer le diagramme de \textsc{Bode}, il est nécessaire pour chaque
+		fréquence de déterminer~:
+		\begin{enumerate}
+			\item le déphasage $\Delta\f_{s/e}$ de $s(t)$ par rapport à $e(t)$~;
+			\item Le gain en dB.
+		\end{enumerate}
+	\end{tcb}
+}%
 
 \setcounter{section}{2}
 \section{Analyser}
 
-\begin{minipage}{0.60\linewidth}
-	Le montage étudié, schématisé ci-contre, est un circuit RC série alimenté
-	par la tension $e(t) = E_{m} \cos(\w t)$. On pose $s(t) = S_{m} \cos (\w t +
-		\f)$ la tension aux bornes du condensateur.
-\end{minipage}
-\hfill
-\begin{minipage}{0.35\linewidth}
-	\begin{center}
-		\includegraphics[width=\linewidth]{filtre_rc}
-	\end{center}
-\end{minipage}
+\enonce{%
+	\begin{minipage}{0.60\linewidth}
+		Le montage étudié, schématisé ci-contre, est un circuit RC série alimenté
+		par la tension $e(t) = E_{m} \cos(\w t)$. On pose $s(t) = S_{m} \cos (\w t +
+			\f)$ la tension aux bornes du condensateur.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.35\linewidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{filtre_rc}
+		\end{center}
+	\end{minipage}
+}%
 
 \setlist[blocQR,1]{leftmargin=10pt, label=\clenumi}
 
@@ -179,22 +185,22 @@ flist = [100, 300, 600,
 	déphasage.
 }{%
 	\begin{enumerate}
-		\mitem
-		\[
-			\boxed{
-				\Hu(x) \opto{}{x\to 0} \frac{1}{1 + 0} = 1
-				\qet
-				\Hu(x) \opto{}{x\to \infty} \frac{1}{\jx}
-			}
-		\]
-		\vspace{-15pt}
+		\item[m]
+		      \[
+			      \boxed{
+				      \Hu(x) \Sim_{x\to 0} \frac{1}{1 + 0} = 1
+				      \qet
+				      \Hu(x) \Sim_{x\to \infty} \frac{1}{\jx}
+			      }
+		      \]
+		      \vspace{-15pt}
 		\item
 		      \begin{itemize}
 			      \item Pour le gain~:
 			            \[
 				            G\ind{dB}(x) \opto{}{x\to 0} 20 \log (1) = 0
 				            \qet
-				            G\ind{dB}(x) \opto{}{x\to\infty}
+				            G\ind{dB}(x) \Sim_{x\to\infty}
 				            20 \log \abs{\frac{1}{\jx}} = -20 \log x
 			            \]
 			            %
@@ -206,7 +212,7 @@ flist = [100, 300, 600,
 			            \[
 				            \f(x) \opto{}{x\to 0} \arg*{1} = 0
 				            \qet
-				            \f(x) \opto{}{x\to \infty}
+				            \f(x) \Sim_{}{x\to \infty}
 				            \arg*{\frac{1}{\jx}} = -\frac{\pi}{2}
 			            \]
 			            \vspace{-15pt}
@@ -241,14 +247,13 @@ flist = [100, 300, 600,
 	Compléter le schéma avec les branchements de la carte Sysam permettant
 	de visualiser simultanément $e(t)$ sur la voie \texttt{EA0} et $s(t)$ sur la
 	voie \texttt{EA1} de l'oscilloscope.
-
 }{%
-	\begin{figure}[htbp!]
-		\centering
+	\leavevmode\vspace*{-15pt}\relax
+	\begin{center}
 		\includegraphics[width=.5\linewidth]{filtre_rc-sysam}
-		\caption{Schéma complété.}
+    \captionof{figure}{Schéma complété.}
 		\label{fig:rc-sysam}
-	\end{figure}
+	\end{center}
 }
 
 \QR{%
@@ -258,7 +263,6 @@ flist = [100, 300, 600,
 }{%
 	On choisit le mode \fbox{AC} (courant alternatif).
 }
-
 
 \QR{%
 Si l'amplitude $E_{m}$ du signal d'entrée est représentée par
@@ -306,20 +310,19 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 \enonce{%
 	Il s'agit maintenant de faire un relevé fréquence par fréquence pour apprendre
 	à le faire «~à la main~».
-
-	\begin{tcb}(expe)<itc>{À la main}
+	\begin{tcb}[breakable](expe)<itc>{À la main}
 		\begin{enumerate}
-      \item Choisir maintenant le mode \texttt{BALAYAGE}, pour utiliser
-            \texttt{Oscillo5} comme un oscilloscope~;
-      \item Dans le panneau de contrôle (boîte flottante en haut de l'écran),
-            cliquer sur \texttt{Voir GBF1} et appuyer sur \texttt{Marche}~;
-      \item Prendre comme amplitude du signal d'entrée environ $\SI{2}{V}$ (soit
-            $\SI{4}{Vpp}$). Pour des fréquences entre \SI{100}{Hz} et
-            \SI{50}{kHz}~:
+			\item Choisir maintenant le mode \texttt{BALAYAGE}, pour utiliser
+			      \texttt{Oscillo5} comme un oscilloscope~;
+			\item Dans le panneau de contrôle (boîte flottante en haut de l'écran),
+			      cliquer sur \texttt{Voir GBF1} et appuyer sur \texttt{Marche}~;
+			\item Prendre comme amplitude du signal d'entrée environ $\SI{2}{V}$ (soit
+			      $\SI{4}{Vpp}$). Pour des fréquences entre \SI{100}{Hz} et
+			      \SI{50}{kHz}~:
 			\item Mesurer le déphasage entre $s(t)$ et $e(t)$ à l'aide d'Oscillo5,
 			      comme indiqué dans S'approprier. Pour plus de facilité, utiliser
-            les curseurs (en bas à droite du menu d'Oscillo5) et les calibres
-            horizontaux (à droite) et verticaux (en bas).
+			      les curseurs (en bas à droite du menu d'Oscillo5) et les calibres
+			      horizontaux (à droite) et verticaux (en bas).
 			\item Mesurer le gain en dB à l'aide du dBmètre, comme indiqué dans
 			      S'approprier.
 			\item Une échelle logarithmique de variation de la fréquence est
@@ -333,9 +336,9 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR{%
 	Regrouper les valeurs dans un tableau~:
-	\begin{table}[htbp!]
-		\centering
-		\caption{Mesures pour diagramme de \textsc{Bode}.}
+  \vspace{-15pt}
+	\begin{center}
+    \captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
 		\begin{tabularx}{\linewidth}{YYYYY}
 			\toprule
 			$f$ (\si{Hz})                       &
@@ -360,105 +363,107 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 			\bottomrule
 		\end{tabularx}
 		\label{tab:ddb}
-	\end{table}
+	\end{center}
 }{%
-	\begin{table}[htbp!]
-		\centering
-		\caption{Mesures pour diagramme de \textsc{Bode}.}
+  ~
+  \leavevmode\vspace*{-15pt}\relax
+  \smallbreak
+	\begin{center}
+    \captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
 		\begin{tabularx}{\linewidth}{YYYYY}
 			\toprule
-			$f$ (\si{Hz})                             &
-			$G\ind{dB}$ (\si{dB})                     &
-			$\abs{\Delta{t}}$ (\si{s})                &
-			$\abs{\Delta{\f_{s/e}}}$ (\si{rad})       &
+			$f$ (\si{Hz})                              &
+			$G\ind{dB}$ (\si{dB})                      &
+			$\abs{\Delta{t}}$ (\si{s})                 &
+			$\abs{\Delta{\f_{s/e}}}$ (\si{rad})        &
 			$\Delta{\f_{s/e}}$ (rad)
 			\\
 			\midrule
-			$\py{fr'\num{{{flist[0]}}}'}$         &
-			$\py{fr'\num{{{G(flist[0]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[0]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[0])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[0]}}}'}$              &
+			$\py{fr'\num{{{G(flist[0]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[0]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[0])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[0]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[1]}}}'}$         &
-			$\py{fr'\num{{{G(flist[1]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[1]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[1])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[1]}}}'}$              &
+			$\py{fr'\num{{{G(flist[1]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[1]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[1])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[1]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[2]}}}'}$         &
-			$\py{fr'\num{{{G(flist[2]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[2]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[2])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[2]}}}'}$              &
+			$\py{fr'\num{{{G(flist[2]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[2]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[2])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[2]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[3]}}}'}$         &
-			$\py{fr'\num{{{G(flist[3]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[3]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[3])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[3]}}}'}$              &
+			$\py{fr'\num{{{G(flist[3]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[3]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[3])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[3]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[4]}}}'}$         &
-			$\py{fr'\num{{{G(flist[4]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[4]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[4])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[4]}}}'}$              &
+			$\py{fr'\num{{{G(flist[4]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[4]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[4])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[4]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[5]}}}'}$         &
-			$\py{fr'\num{{{G(flist[5]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[5]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[5])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[5]}}}'}$              &
+			$\py{fr'\num{{{G(flist[5]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[5]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[5])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[5]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[6]}}}'}$         &
-			$\py{fr'\num{{{G(flist[6]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[6]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[6])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[6]}}}'}$              &
+			$\py{fr'\num{{{G(flist[6]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[6]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[6])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[6]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[7]}}}'}$         &
-			$\py{fr'\num{{{G(flist[7]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[7]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[7])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[7]}}}'}$              &
+			$\py{fr'\num{{{G(flist[7]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[7]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[7])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[7]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[8]}}}'}$         &
-			$\py{fr'\num{{{G(flist[8]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[8]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[8])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[8]}}}'}$              &
+			$\py{fr'\num{{{G(flist[8]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[8]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[8])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[8]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[9]}}}'}$         &
-			$\py{fr'\num{{{G(flist[9]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[9]):.2e}}}'}$      &
-			$\py{fr'\num{{{abs(F(flist[9])):.2f}}}'}$ &
+			$\py{fr'\num{{{flist[9]}}}'}$              &
+			$\py{fr'\num{{{G(flist[9]):.2f}}}'}$       &
+			$\py{fr'\num{{{T(flist[9]):.2e}}}'}$       &
+			$\py{fr'\num{{{abs(F(flist[9])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[9]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[10]}}}'}$         &
+			$\py{fr'\num{{{flist[10]}}}'}$             &
 			$\py{fr'\num{{{G(flist[10]):.2f}}}'}$      &
 			$\py{fr'\num{{{T(flist[10]):.2e}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[10])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[10]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[11]}}}'}$         &
+			$\py{fr'\num{{{flist[11]}}}'}$             &
 			$\py{fr'\num{{{G(flist[11]):.2f}}}'}$      &
 			$\py{fr'\num{{{T(flist[11]):.2e}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[11])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[11]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[12]}}}'}$         &
+			$\py{fr'\num{{{flist[12]}}}'}$             &
 			$\py{fr'\num{{{G(flist[12]):.2f}}}'}$      &
 			$\py{fr'\num{{{T(flist[12]):.2e}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[12])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[12]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[13]}}}'}$         &
+			$\py{fr'\num{{{flist[13]}}}'}$             &
 			$\py{fr'\num{{{G(flist[13]):.2f}}}'}$      &
 			$\py{fr'\num{{{T(flist[13]):.2e}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[13])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[13]):.2f}}}'}$
 			\\
-			$\py{fr'\num{{{flist[14]}}}'}$         &
+			$\py{fr'\num{{{flist[14]}}}'}$             &
 			$\py{fr'\num{{{G(flist[14]):.2f}}}'}$      &
 			$\py{fr'\num{{{T(flist[14]):.2e}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[14])):.2f}}}'}$ &
@@ -467,27 +472,27 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 			\bottomrule
 		\end{tabularx}
 		\label{tab:ddb_corr}
-	\end{table}
+	\end{center}
 
-% 	\begin{table}[htbp!]
-% 		\centering
-% 		\caption{TESTTEST}
-% \begin{pycode}
-% print(r"\begin{tabularx}{\linewidth}{YYYYY}")
-% print(r"\toprule")
-% print(r"$f$ (\si{Hz})                             &")
-% print(r"$G\ind{dB}$ (\si{dB})                     &")
-% print(r"$\abs{\Delta{t}}$ (\si{s})                &")
-% print(r"$\abs{\Delta{\f_{s/e}}}$ (\si{rad})       &")
-% print(r"$\Delta{\f_{s/e}}$ (rad)")
-% print(r"\\"
-% print(r"\midrule")
-% for n in range(0,15):
-%     print(fr'\num{{{flist[{n}]}}} & \num{{{G(flist[{n}]):.2f}}} & \num{{{T(flist[{n}]):.2e}}} & \num{{{abs(F(flist[{n}])):.2f}}} & \num{{{F(flist[{n}]):.2f}}}\\')
-% print(r"\bottomrule")
-% print(r"\end{tabularx}")
-% \end{pycode}
-% 	\end{table}
+	% 	\begin{table}[htbp!]
+	% 		\centering
+	% 		\caption{TESTTEST}
+	% \begin{pycode}
+	% print(r"\begin{tabularx}{\linewidth}{YYYYY}")
+	% print(r"\toprule")
+	% print(r"$f$ (\si{Hz})                             &")
+	% print(r"$G\ind{dB}$ (\si{dB})                     &")
+	% print(r"$\abs{\Delta{t}}$ (\si{s})                &")
+	% print(r"$\abs{\Delta{\f_{s/e}}}$ (\si{rad})       &")
+	% print(r"$\Delta{\f_{s/e}}$ (rad)")
+	% print(r"\\"
+	% print(r"\midrule")
+	% for n in range(0,15):
+	%     print(fr'\num{{{flist[{n}]}}} & \num{{{G(flist[{n}]):.2f}}} & \num{{{T(flist[{n}]):.2e}}} & \num{{{abs(F(flist[{n}])):.2f}}} & \num{{{F(flist[{n}]):.2f}}}\\')
+	% print(r"\bottomrule")
+	% print(r"\end{tabularx}")
+	% \end{pycode}
+	% 	\end{table}
 }
 
 \section{Valider et conclure}
@@ -515,19 +520,19 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 		théorique en calculant l'écart \textbf{normalisé}.
 	}{%
 		On trouve $f_{c, \exp} = \SI{1.57\pm0.02}{kHz}$, d'où l'écart normalisé
-    \[
-      \boxed{E_n = \frac{\abs{f_{c, \exp} - f_{c, \rm theo}}}{u_{f_{c, \exp}}}}
-      \Ra 
-      \xul{E_n = 1} < 2
-      \quad \text{donc compatibles.}
-    \]
+		\[
+			\boxed{E_n = \frac{\abs{f_{c, \exp} - f_{c, \rm theo}}}{u_{f_{c, \exp}}}}
+			\Ra
+			\xul{E_n = 1} < 2
+			\quad \text{donc compatibles.}
+		\]
 	}
 
 	\QR{%
 	Le déphasage expérimental $\f_{c, \exp}$ pour $f=f_{c, \exp}$. Le comparer à
 	la valeur théorique en calculant l'écart \textbf{normalisé}.
 	}{%
-	 Calcul similaire.
+	Calcul similaire.
 	}
 
 	\QR{%
@@ -538,15 +543,15 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 
 \end{blocQR}
 
-\newpage
-
-\thispagestyle{empty}
-\cswitch{
-  \includepdf{semilog_solu}
-}{
-  \includepdf{semilog}
-}
-
-\let\clearpage\relax
+% \newpage
+%
+% \thispagestyle{empty}
+% \cswitch{%
+% 	\includepdf{semilog_solu}
+% }{%
+% 	\includepdf{semilog}
+% }%
+%
+% \let\clearpage\relax
 
 \end{document}

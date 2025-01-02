@@ -288,27 +288,51 @@ from scipy.integrate import odeint
 # print(f"q = {q:.2f} et r = {r:.2f}")
 
 # M2 frottements quadratiques
-m = 60  # kg
+# m = 60  # kg
+# g = 9.81  # m.s^-2
+# B = 0.25  # kg.m^-1
+# vlim = np.sqrt(m * g / B)  # m.s^-1
+# T = np.sqrt(m / (B * g))  # s
+# print(f"vlim = {vlim:.1f} m.s^-1 = {vlim*3.6:.1f} km.h^-1")
+# print(f"T = {T:.2f} s")
+#
+# t = np.arange(0, 10 * T, 0.1 * T)  # s
+#
+#
+# def vquad(y, t):
+#     return g - B / m * y**2
+#
+#
+# y0 = 0
+# sol = odeint(vquad, y0, t)
+#
+# plt.plot(t, sol, "r", label="odeint")
+# plt.plot([T, T, 0], [0, sol[10][0], sol[10][0]], ls="--")
+# print(f"v(T) = {sol[10][0] / vlim:.2f}*vlim")
+# # plt.plot(t, vfunc(t), "b", label="GPT")
+# plt.legend()
+# plt.show()
+
+# TDM1-2
 g = 9.81  # m.s^-2
-B = 0.25  # kg.m^-1
-vlim = np.sqrt(m * g / B)  # m.s^-1
-T = np.sqrt(m / (B * g))  # s
-print(f"vlim = {vlim:.1f} m.s^-1 = {vlim*3.6:.1f} km.h^-1")
-print(f"T = {T:.2f} s")
-
-t = np.arange(0, 10 * T, 0.1 * T)  # s
-
-
-def vquad(y, t):
-    return g - B / m * y**2
+alp = 20 * np.pi / 180  # rad
+v0 = 20  # m.s^-1
+m = 430e-3  # kg
+h = 5e-3  # kg.s^-1
+to = m / h  # s
+xmur = 9.15  # m
+xbut = 20  # m
 
 
-y0 = 0
-sol = odeint(vquad, y0, t)
+def y(x):
+    return (np.tan(alp) + (g * to) / (v0 * np.cos(alp))) * x + g * to**2 * np.log(
+        1 - x / (v0 * to * np.cos(alp))
+    )
 
-plt.plot(t, sol, "r", label="odeint")
-plt.plot([T, T, 0], [0, sol[10][0], sol[10][0]], ls="--")
-print(f"v(T) = {sol[10][0] / vlim:.2f}*vlim")
-# plt.plot(t, vfunc(t), "b", label="GPT")
-plt.legend()
-plt.show()
+
+xlist = np.linspace(0, xbut, 250)
+
+print(y(xmur))
+
+# plt.plot(xlist, y(xlist))
+# plt.show()

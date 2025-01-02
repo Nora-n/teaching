@@ -1,0 +1,150 @@
+\documentclass[../TDM1-M2.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Collision entre deux voitures}
+
+\enonce{%
+	Pendant le GP explorer organisé par Squeezie en octobre 2022, Pierre suit Xari
+	de près en vue de le dépasser. On considère ici que les deux voitures se
+	suivent sur une ligne droite à la vitesse de $v_0 = \SI{30}{m.s^{-1}}$ à une
+	distance $d = \SI{20}{m}$ l'une de l'autre. À la date $t=0$, la première
+	freine avec une décélération constante $a_1 = \SI{-20,0}{m.s^{-2}}$. Celle qui
+	suit commence son freinage $\tau = \SI{1}{s}$ plus tard (à cause du temps de
+	réaction du conducteur), avec une accélération de $a_2 =
+		\SI{-10,0}{m.s^{-2}}$ (décélération).
+}
+
+\QR{%
+	En prenant pour origine du repère spatial la position de la seconde
+	voiture à la date $t=0$, établir les équations horaires du mouvement des
+	deux véhicules.
+}{%
+	Notons M$_1$ et M$_2$ les points matériels représentant chacun une des
+	deux voitures. On se limite au mouvement unidimensionnel selon l'axe $x$
+	et on notera $x_1(t)$ et $x_2(t)$ les positions respectives de M$_1$ et
+	M$_2$ selon cet axe. Initialement, $x_1(t=0) = d = \SI{20}{m}$ et
+	$x_2(t=0) = 0$. \bigbreak
+
+	La voiture M$_1$ de Xari subit l'accélération (qui est négative donc
+	c'est une décélération) constante $a_1$. Ainsi, par intégration
+	successive,
+	\[
+		x_1(t) = \frac{1}{2}a_1 t^2 + \alpha t + \beta
+	\]
+	Avec $\alpha$ et $\beta$ deux constantes d'intégration. En considérant
+	par ailleurs une vitesse initiale $v_0$ et une position initiale $d$, on
+	obtient~:
+	\[
+		x_1(t) = \frac{1}{2}a_1 t^2 + v_0 t + d
+	\]
+	Pour le second véhicule, il faut décomposer le mouvement en deux étapes
+	successives~:
+	\begin{itemize}
+		\item pour $t\in \SIrange{0}{1}{s}$, $a = 0$. La position initiale
+		      étant par ailleurs nulle et la vitesse initiale étant égale à
+		      $v_0$, il vient, pour $t\in \SIrange{0}{1}{s}$~:
+		      \[
+			      x_2(t) = v_0t
+		      \]
+		\item
+		      pour $t>1$, l'accélération vaut $a_2$ constante. Notons par
+		      ailleurs $t_2 = \SI{1}{s}$. On a par intégration~:
+		      \[
+			      v_2(t) = a_2 t + \gamma
+		      \]
+		      Avec $\gamma$ une constante à déterminer. Or, par continuité de
+		      la vitesse, $v_2(t=t_2) = v_0$. Ainsi,
+		      \[
+			      v_2(t) = a_2 (t-t_2) + v_0
+		      \]
+		      Intégrons une nouvelle fois, avec $\delta$ une nouvelle
+		      constante d'intégration~:
+		      \[
+			      x_2(t) = \frac{1}{2} a_2 (t-t_2)^2 + v_0t + \delta
+		      \]
+		      En utilisant le fait que $x(t_2) = v_0t_2$, il vient finalement
+		      \[
+			      x_2(t) = \frac{1}{2} a_2 (t-t_2)^2 + v_0t
+		      \]
+	\end{itemize}
+}
+
+\QR{%
+	Déterminer la position $x_c$ et la date $t_c$ du contact. Pierre
+	avait-il le temps d'esquiver Xari~?
+}{%
+	Il y a contact à l'instant $t_c$ tel que
+	\[
+		x_1(t_c) = x_2(t_c)
+	\]
+	Supposons d'abord le contact sur l'intervalle $t\in\SIrange{0}{1}{s}$.
+	Il faut alors résoudre~:
+	\begin{gather*}
+		\frac{1}{2}a_1 {t_c}^2 + \cancel{v_0t_c} + d = \cancel{v_0t_c}
+		\\
+		\Leftrightarrow
+		\boxed{t_c = \sqrt{\frac{-2d}{a_1}}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			d   & = & \SI{20}{m}           \\
+			a_1 & = & -\SI{30.0}{m.s^{-2}}
+		\end{array}
+		\right.\\
+		\AN
+		\boxed{t_c = \SI{1.41}{s} > \SI{1}{s}}
+	\end{gather*}
+
+	Cette solution est donc exclue puisqu'elle n'est pas en accord avec
+	notre hypothèse initiale $t\in\SIrange{0}{1}{s}$. \bigbreak
+
+	Supposons maintenant $t_c>\SI{1}{s}$. Il faut résoudre :
+	\begin{align*}
+		\frac{1}{2}a_1 {t_c}^2 + \cancel{v_0t_c} + d
+		 & = \frac{1}{2} a_2 (t_c-t_2)^2 + \cancel{v_0t_c}
+		\\
+		\Leftrightarrow
+		\frac{1}{2}a_1t_c{}^2 + d
+		 & = \frac{1}{2}a_2 \left( t_c{}^2 - 2t_2t_c + t_2{}^2\right)
+		\\
+		\Leftrightarrow
+		\frac{1}{2} \left( a_1 - a_2 \right)t_c{}^2 + a_2t_2t_c + d -
+		\frac{1}{2}a_2t_2{}^2
+		 & = 0
+	\end{align*}
+
+	C'est un polynôme de degré 2 dont le discriminant $\Delta$ est tel que
+	\begin{gather*}
+		\boxed{\D = (a_2t_2)^2 - 2(a_1-a_2)\left(d -
+			\frac{1}{2}a_2t_2{}^2\right)}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			d   & = & \SI{20}{m}           \\
+			a_1 & = & -\SI{30.0}{m.s^{-2}} \\
+			a_2 & = & -\SI{20.0}{m.s^{-2}} \\
+			t_2 & = & \SI{1}{s}
+		\end{array}
+		\right.\\
+		\AN
+		\boxed{\D = \SI{600}{m.s^{-2}}}\\
+		\text{D'où}\quad
+		t_{c,\pm} = \frac{-a_2t_2 \pm \sqrt{\D}}{(a_1-a_2)}\\
+		\Leftrightarrow
+		t_{c,+} = \SI{-3.45}{s}
+		\qou
+		t_{c,-} = \SI{1.45}{s}
+	\end{gather*}
+	La solution négative étant exclue, on trouve finalement
+	\[
+		\boxed{t_c = \SI{1.45}{s}}
+		\qet
+		\boxed{x_1(t_c) = \SI{42.5}{m}}
+	\]
+	Il était donc pratiquement impossible que Pierre esquive Xari, étant
+	donné qu'en freinant au plus tôt il n'a eu que \SI{0.45}{s} avant de
+	rentrer en collision avec lui, laissant peu de marge à un autre temps de
+	réaction et à une autre manœuvre évasive.
+}
+
+\end{document}

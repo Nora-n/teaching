@@ -19,16 +19,16 @@
 }
 
 \QR{%
-	Montrer que la différence de marche $\delta(\Mr)$ en un point M de l'écran
-	s'écrit
-	\[\delta(\Mr) = \frac{ax}{D} + (n_v - 1)e\]
+	Montrer que la différence de chemin optique $\delta(\Mr)$ en un point M de
+	l'écran s'écrit
+	\[\delta(\Mr) = \frac{ax}{D} - (n_v - 1)e\]
 }{%
 	En notant $({\rm SM})$ le chemin optique de S à M, la différence de
-	marche en M est donnée par
+	chemin optique en M est donnée par
 	\begin{gather*}
-		\de_{1/2}(\Mr)
-		= \rm (ST_1M) - (ST_2M)
-		= \rm \cancel{\rm (ST_1)} + (T_1M) - \cancel{\rm (ST_2)} - (T_2M)
+		\de_{2/1}(\Mr)
+		= \rm (ST_2M) - (ST_1M)
+		= \rm \cancel{\rm (ST_2)} + (T_2M) - \cancel{\rm (ST_1)} - (T_1M)
 	\end{gather*}
 	La source étant sur l'axe optique et l'indice étant le même sur cette
 	portion, on a \fbox{$\rm (ST_1) = (ST_2)$}. On se retrouve donc à calculer le
@@ -46,17 +46,17 @@
 	\end{align*}
 	Avec $\rm T_1M = T_1F_1+F_1F_2+F_2M$. Autrement dit,
 	\begin{gather*}
-		\de_{1/2}(\Mr) = {\rm T_1M - T_2M} + (n_v-1)e
+		\de_{2/1}(\Mr) = {\rm T_2M - T_1M} - (n_v-1)e
 	\end{gather*}
 	et avec le résultat usuel de différence de marche des trous
-	d'\textsc{Young}, c'est-à-dire $\D L_{1/2}(\Mr) = ax/D$ (attention à la
+	d'\textsc{Young}, c'est-à-dire $\D L_{2/1}(\Mr) = ax/D$ (attention à la
 	notation de la distance entre les fentes~!), on trouve bien
-	\[\boxed{\de_{1/2}(\Mr) = \frac{ax}{D} + (n_v-1)e}\]
-	Autrement dit, la différence de chemin optique est celle sans la
-	lame à laquelle s'ajoute le retard pris par l'onde issue de T$_1$ qui
-	va moins vite/parcourt une plus grande distance (à la célérité $c$) à
-	cause du verre. On retrouve bien que si $n_v = 1$, la différence de
-	chemin optique est celle attendue sans lame de verre.
+	\[\boxed{\de_{2/1}(\Mr) = \frac{ax}{D} - (n_v-1)e}\]
+	Autrement dit, la différence de chemin optique est celle sans la lame à
+	laquelle s'ajoute le retard pris par l'onde issue de T$_1$ qui va moins
+	vite/parcourt une plus grande distance (à la célérité $c$) à cause du verre.
+	On retrouve bien que si $n_v = 1$, la différence de chemin optique est celle
+	attendue sans lame de verre.
 }
 
 \QR{%
@@ -64,6 +64,7 @@
 	correspondant à $\delta(\Mr) = 0$. De quelle distance s'est déplacée
 	cette frange par rapport au cas où la lame est absente~?
 }{%
+	\leavevmode\vspace*{-25pt}\relax
 	\begin{gather*}
 		\de_{1/2}(\Mr) = 0
 		\Lra
@@ -78,10 +79,12 @@
 
 \QR{%
 	Exprimer l'épaisseur $e$ de la lame en fonction de $x_c$ , $a$, $n_v$
-	et $D$.
+	et $D$, puis calculer $e$ pour $x_c = \SI{28.5}{cm}$.
 }{%
-	On isole~:
-	\[\boxed{e = \frac{ax_c}{D(n_v-1)}}
+	\leavevmode\vspace*{-25pt}\relax
+	\begin{gather*}
+		\beforetext{On isole~:}
+		\boxed{e = \frac{ax_c}{D(n_v-1)}}
 		\qavec
 		\left\{
 		\begin{array}{rcl}
@@ -90,14 +93,12 @@
 			n_v & = & \num{1.57}            \\
 			x_c & = & \SI{28.5e7}{\micro m}
 		\end{array}
-		\right.\]
-}
-
-\QR{%
-	Calculer $e$ pour $x_c = \SI{28.5}{cm}$.
-}{%
-	Application numérique~:
-	\[\boxed{e = \SI{50.0}{\micro m}}\]
+		\right.\\
+		\AN
+		\xul{%
+			e = \SI{50.0}{\micro m}
+		}%
+	\end{gather*}
 }
 
 \QR{%
@@ -116,5 +117,8 @@
 	$\lambda/(n_v-1) = \SI{0.9}{\micro m}$~: la mesure de la lame de verre
 	ne serait donc pas réalisable avec cette expérience, puisqu'elle est
 	plus grande que \SI{0.9}{\micro m}.
+	\smallbreak
+	Dans la pratique, la frange brillante principale est distinguable des autres
+	par atténuation de la luminosité sur les bords, donc l'expérience fonctionne.
 }
 \end{document}

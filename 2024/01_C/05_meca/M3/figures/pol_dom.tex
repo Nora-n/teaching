@@ -1,0 +1,94 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{00}{000}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north east] at (O) {O};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth,myblue] (0,0,0) -- (1,0,0) node[anchor=north]{$\ux$};
+	% \draw[very thick,-stealth,myblue] (0,0,0) -- (0,1,0) node[anchor=west]{$\uy$};
+	% \draw[very thick,-stealth,mypurple] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% set coords
+	\def\rM{3.5}
+	\def\tht{15}
+	% set point
+	\tdplotsetcoord{M}{\rM}{90}{\tht}
+	% set coords dt
+	\def\rMt{5.5}
+	\def\thtt{25}
+	% set point
+	\tdplotsetcoord{Mt}{\rMt}{90}{\thtt}
+	% draw a vector from origin to point (M)
+	\draw[very thick, dashed]
+	(O) -- (M)
+	node[pos=0.8, below, sloped]
+	{$r(t)$}
+	node[anchor=north west]
+	{$\mathrm{M}(t)$}
+	node {$\bullet$}
+	;
+	% M dt
+	\draw[very thick, dashed]
+	(O) -- (Mt)
+	node[midway, above, sloped]
+	{$r(t+\dd{t})$}
+	node[above]
+	{$\mathrm{M}(t+\dd{t})$}
+	node {$\bullet$}
+	;
+	% draw ur ut
+	\draw[very thick,-stealth,mypurple]
+	(O) --++ (\tht:1)
+	coordinate(R)
+	node[anchor=south east]{$\ur$};
+	\draw[very thick,-stealth,mypurple]
+	(O) --++ (\tht+90:1)
+	coordinate(T)
+	node[anchor=east]{$\ut$};
+	\ifprof{%
+		% draw dOM
+		\draw[very thick, -stealth, myred]
+		(M) -- (Mt)
+		node[midway, below, anchor=west]
+		{$\dd{\vv{\rm OM}}$}
+		;
+		% draw dr and rd0
+		\draw[very thick, -stealth, myblue]
+		(M) --++ (\tht:\rMt-\rM)
+		coordinate(Mdr)
+		node[below]
+			{$\dd{r}\ur$}
+		;
+		\draw[very thick, -stealth, mygreen]
+		(M) --++ ({\tht+90}:{\rMt*(\thtt-\tht)*pi/180})
+		coordinate(Mdt)
+		node[above]
+			{$r(t)\dd{\th}\ut$}
+		;
+		% dashed dr and rd0
+		\draw[very thick, -stealth, myblue, dashed]
+		(Mdt) --++ (\tht:\rMt-\rM)
+		;
+		\draw[very thick, -stealth, mygreen, dashed]
+		(Mdr) --++ ({\tht+90}:{\rMt*(\thtt-\tht)*pi/180})
+		;
+		% draw arc
+		\tdplotdrawarc[thick, -stealth]{(O)}{1.5}{0}{\tht}{anchor=west}{$\th(t)$}
+		\tdplotsetrotatedcoords{\tht}{0}{0}
+		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]{(O)}{2.5}{0}{\thtt-\tht}{anchor=west}{$\dd{\th}$}
+	}%
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{00}{000}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north east] at (O) {O};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth,myblue] (0,0,0) -- (1,0,0) node[anchor=north]{$\ux$};
+	\draw[very thick,-stealth,myblue] (0,0,0) -- (0,1,0) node[anchor=west]{$\uy$};
+	% \draw[very thick,-stealth,mypurple] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% theta
+	\def\tht{25}
+	% set point
+	\tdplotsetcoord{M}{5}{90}{\tht}
+	% draw a vector from origin to point (M)
+	\ifprof{%
+		\draw[very thick, -stealth, myred]
+		(O) -- (M)
+		node[midway, above, sloped]
+		{$r(t)$}
+		node[above]
+		{$\mathrm{M}(t)$};
+	}%
+	\sswitch{%
+		% draw ur ut
+		\draw[very thick,-stealth,white]
+		(0,0) -- (\tht:1)
+		coordinate(R)
+		node[anchor=south]{$\ur$};
+		\draw[very thick,-stealth,white]
+		(0,0) -- (\tht+90:1)
+		coordinate(T)
+		node[anchor=south]{$\ut$};
+		% draw projection on xy plane, and a connecting line
+		\draw[thick, dashed, white]
+		(M) -- (My)
+		node[left] {$y(t)$}
+		;
+		\draw[thick, dashed, white]
+		(M) -- (Mx)
+		node[below] {$x(t)$}
+		;
+	}{%
+		% draw ur ut
+		\draw[very thick,-stealth,mypurple]
+		(0,0) -- (\tht:1)
+		coordinate(R)
+		node[anchor=south]{$\ur$};
+		\draw[very thick,-stealth,mypurple]
+		(0,0) -- (\tht+90:1)
+		coordinate(T)
+		node[anchor=south]{$\ut$};
+		% draw rightangle
+		\draw
+		pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+			{right angle=R--O--T};
+		% draw projection on xy plane, and a connecting line
+		\draw[thick, dashed, color=myblue]
+		(M) -- (My)
+		node[left] {$y(t)$}
+		;
+		\draw[thick, dashed, color=myblue]
+		(M) -- (Mx)
+		node[below] {$x(t)$}
+		;
+	}%
+
+	\ifprof{%
+		% draw arc
+		\tdplotdrawarc[thick, -stealth, mygreen]{(O)}{3}{0}{\tht}{anchor=west}{$\th(t)$}
+	}%
+\end{tikzpicture}
+\end{document}

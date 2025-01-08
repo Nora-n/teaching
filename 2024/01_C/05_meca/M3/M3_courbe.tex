@@ -4,137 +4,123 @@
 \dominitoc
 \faketableofcontents
 
+% \renewcommand{\mtcSfont}{\small\bfseries}
+% \renewcommand{\mtcSSfont}{\footnotesize}
+\mtcsettitle{minitoc}{}
+\mtcsetrules{*}{off}
+
 \makeatletter
-\renewcommand{\@chapapp}{M\'ecanique -- chapitre}
+\renewcommand{\@chapapp}{Mécanique -- chapitre}
+\renewcommand{\chaplett}{M}
 \makeatother
 
-\toggletrue{student}
-% \HideSolutionstrue
-% \toggletrue{corrige}
+% \toggletrue{student}
+\toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{2}
 
+% \settype{book}
+% \settype{prof}
+% \settype{stud}
+
 \chapter{Mouvements courbes}
 
-\vfill
-
-\begin{prgm}
-	\begin{tcb}*(ror)"know"{Savoirs}
-		\begin{itemize}
-			\item Identifier les degrés de liberté d'un mouvement. Choisir un système
-			      de coordonnées adapté au problème.
-
-			\item Systèmes de coordonnées cartésiennes, cylindriques et sphériques.
-
-			\item Vitesse et accélération dans le repère de Frenet pour une
-			      trajectoire plane.
-		\end{itemize}
-	\end{tcb}
-	\begin{tcb}*(ror)"how"{Savoir-faire}
-		\begin{itemize}
-			\item Coordonnées cylindriques~: exprimer à partir d'un schéma le
-			      déplacement élémentaire, construire le trièdre local associé et en
-			      déduire géométriquement les composantes du vecteur vitesse.
-
-			\item Établir les expressions des composantes des vecteurs position,
-			      déplacement élémentaire, vitesse et accélération en coordonnées
-			      cylindriques.
-
-			\item Mouvement circulaire uniforme et non uniforme~: exprimer les
-			      composantes du vecteur position, du vecteur vitesse et du vecteur
-			      accélération en coordonnées polaires planes.
-
-			\item Exploiter les liens entre les composantes du vecteur accélération,
-			      la courbure de la trajectoire, la norme du vecteur vitesse et sa
-			      variation temporelle.
-
-			\item Établir l’équation du mouvement du pendule simple. Justifier
-			      l’analogie avec l'oscillateur harmonique dans le cadre de
-			      l'approximation linéaire.
-		\end{itemize}
-	\end{tcb}
-\end{prgm}
-
-\vfill
-\minitoc
-\vfill
-
-\newpage
-
-\vspace*{\fill}
-\begin{boxes}
-	\begin{tcb}(defi)<lftt>{Liste des définitions}
-		\tcblistof[\paragraph*]{defi}{\hspace*{6pt}}
-	\end{tcb}
-	% \begin{tcb}(rapp)<lftt>{Liste des rappels}
-	% 	\tcblistof[\paragraph*]{rapp}{\hspace*{6pt}}
-	% \end{tcb}
-	\begin{tcb}(prop)<lftt>{Liste des propriétés}
-		\tcblistof[\paragraph*]{prop}{\hspace*{6pt}}
-	\end{tcb}
-	% \begin{tcb}(coro)<lftt>{Liste des corollaires}
-	% 	\tcblistof[\paragraph*]{coro}{\hspace*{6pt}}
-	% \end{tcb}
-	\begin{tcb}(demo)<lftt>{Liste des démonstrations}
-		\tcblistof[\paragraph*]{demo}{\hspace*{6pt}}
-	\end{tcb}
-	% \begin{tcb}(inte)<lftt>{Liste des interprétations}
-	% 	\tcblistof[\paragraph*]{inte}{\hspace*{6pt}}
-	% \end{tcb}
-	% \begin{tcb}(tool)<lftt>{Liste des outils}
-	% 	\tcblistof[\paragraph*]{tool}{\hspace*{6pt}}
-	% \end{tcb}
-	% \begin{tcb}(nota)<lftt>{Liste des notations}
-	% 	\tcblistof[\paragraph*]{nota}{\hspace*{6pt}}
-	% \end{tcb}
-	\begin{tcb}(appl)<lftt>{Liste des applications}
-		\tcblistof[\paragraph*]{appl}{\hspace*{6pt}}
-	\end{tcb}
-	% \begin{tcb}(rema)<lftt>{Liste des remarques}
-	% 	\tcblistof[\paragraph*]{rema}{\hspace*{6pt}}
-	% \end{tcb}
-	% \begin{tcb}(exem)<lftt>{Liste des exemples}
-	% 	\tcblistof[\paragraph*]{exem}{\hspace*{6pt}}
-	% \end{tcb}
-	\begin{tcb}(ror)<lftt>{Liste des points importants}
-		\tcblistof[\paragraph*]{ror}{\hspace*{6pt}}
-	\end{tcb}
-	\begin{tcb}(impo)<lftt>{Liste des erreurs communes}
-		\tcblistof[\paragraph*]{impo}{\hspace*{6pt}}
-	\end{tcb}
-\end{boxes}
 \vspace*{\fill}
 
-\newpage
+\begin{tcn}(appl)<ctc>"somm"'t'{Sommaire}
+	\let\item\olditem
+	\vspace{-15pt}
+	\minitoc
+	\vspace{-25pt}
+\end{tcn}
 
-% \begin{tcb*}(defi)<lftt>{Mouvement plan}
-% 	Un mouvement plan est dit \textbf{circulaire uniforme} s'il est à vitesse
-% 	angulaire constante.
-% \end{tcb*}
-%
-% \begin{center}
-% 	\includegraphics[width=.5\linewidth]{circ_va}
-% \end{center}
-%
-% On observe sur cette figure que~: \bigbreak
-% \begin{itemize}
-% 	\item Le vecteur vitesse est de \underline{norme constante}, mais \textbf{sa
-% 		      direction change} en étant \textbf{tangentielle à la trajectoire}~;
-% 	\item Le vecteur accélération est de \underline{norme constante}, mais sa
-% 	      \textbf{direction change} et \textbf{pointe vers le centre de rotation}.
-% \end{itemize}
-%
-% \begin{tcb*}(ror){Direction vitesse et accélération}
-% 	\centering
-% 	Le vecteur vitesse est tangent à la trajectoire. Le vecteur accélération est
-% 	toujours dirigé vers l’intérieur des courbes.
-% \end{tcb*}
-%
-% Il ne paraît donc pas naturel d'utiliser les coordonnées cartésiennes dans ce
-% cas-là.
+\begin{tcn}[sidebyside]
+	(appl)<ctb>"how"'t'{Capacités exigibles}
+	\begin{itemize}[label=\rcheck]
+		\item Identifier les degrés de liberté d'un mouvement. Choisir un système
+		      de coordonnées adapté au problème.
+
+		\item Systèmes de coordonnées cartésiennes, cylindriques et sphériques.
+
+		\item Vitesse et accélération dans le repère de Frenet pour une
+		      trajectoire plane.
+	\end{itemize}
+	\tcblower
+	\begin{itemize}[label=\rcheck]
+		\item Coordonnées cylindriques~: exprimer à partir d'un schéma le
+		      déplacement élémentaire, construire le trièdre local associé et en
+		      déduire géométriquement les composantes du vecteur vitesse.
+
+		\item Établir les expressions des composantes des vecteurs position,
+		      déplacement élémentaire, vitesse et accélération en coordonnées
+		      cylindriques.
+
+		\item Mouvement circulaire uniforme et non uniforme~: exprimer les
+		      composantes du vecteur position, du vecteur vitesse et du vecteur
+		      accélération en coordonnées polaires planes.
+
+		\item Exploiter les liens entre les composantes du vecteur accélération,
+		      la courbure de la trajectoire, la norme du vecteur vitesse et sa
+		      variation temporelle.
+
+		\item Établir l’équation du mouvement du pendule simple. Justifier
+		      l’analogie avec l'oscillateur harmonique dans le cadre de
+		      l'approximation linéaire.
+	\end{itemize}
+\end{tcn}
+
+\vspace*{\fill}
+\newpage
+\vspace*{\fill}
+
+%\vspace{-15pt}
+\begin{tcn}[%
+		sidebyside, fontupper=\small, fontlower=\small
+	](appl)<ctb>"chek"'t'{L'essentiel}
+	\tce{defi}
+	% \tce{rapp}
+	% \tce{loi}
+	\tce{prop}
+	\tce{demo}
+	\tce{theo}
+	\tce{prev}
+	% \tce{coro}
+	% \tce{inte}
+	% \tce{impl}
+	% \tce{tool}
+	% \tce{nota}
+	% \tce{appl}
+	% \tce{rema}
+	% \tce{exem}
+	% \tce{ror}
+	% \tce{impo}
+	\tcblower
+	% \tce{defi}
+	\tce{rapp}
+	% \tce{prop}
+	% \tce{theo}
+	\tce"Lois de \textsc{Newton}"{loi}
+	% \tce{coro}
+	% \tce{demo}
+	% \tce{inte}
+	% \tce{impl}
+	% \tce{nota}
+	\tce{appl}
+	\tce{rema}
+	\tce{exem}
+	\tce{tool}
+	\tce{ror}
+	\tce{impo}
+\end{tcn}
+
+\vspace*{\fill}
+
+\newpage
 
 \section{Mouvement courbe dans un plan}
 \subsection{Position en coordonnées polaires}
@@ -174,14 +160,14 @@ cartésiennes et polaires par
 	\psw{r = \sqrt{x^2+y^2} = \norm{\OM}}
 \]
 On peut projeter les vecteurs de la base polaire sur la base cartésienne. Il
-suffit pour cela de prendre des valeurs particulières de $\tt$, comme 0 et
+suffit pour cela de prendre des valeurs particulières de $\th$, comme 0 et
 $\pi/2$, pour trouver les dépendances en $\cos$ et $\sin$ suivantes~:
 \[
-	\psw{\ur = \cos(\tt)\ux + \sin(\tt)\uy}
+	\psw{\ur = \cos(\th)\ux + \sin(\th)\uy}
 	\qet
-	\psw{\ur = -\sin(\tt)\ux + \cos(\tt)\uy}
+	\psw{\ur = -\sin(\th)\ux + \cos(\th)\uy}
 \]
-Ainsi, $r$, $\tt$ mais également $\ur$ et $\ut$ \textbf{dépendent du temps}.
+Ainsi, $r$, $\th$ mais également $\ur$ et $\ut$ \textbf{dépendent du temps}.
 
 \begin{tcb*}(prop){Position en polaires et projection cartésienne}
 	En coordonnées polaires et dans le plan d'une trajectoire, le vecteur
@@ -190,9 +176,9 @@ Ainsi, $r$, $\tt$ mais également $\ur$ et $\ut$ \textbf{dépendent du temps}.
 	et les vecteurs $\ur$ et $\ut$ variables se décomposent sur $\ux$ et $\uy$
 	fixes tels que
 	\[
-		\psw{\boxed{\ur = \cos(\tt)\ux + \sin(\tt)\uy}}
+		\psw{\boxed{\ur = \cos(\th)\ux + \sin(\th)\uy}}
 		\qet
-		\psw{\boxed{\ur = -\sin(\tt)\ux + \cos(\tt)\uy}}
+		\psw{\boxed{\ur = -\sin(\th)\ux + \cos(\th)\uy}}
 	\]
 \end{tcb*}
 
@@ -205,22 +191,22 @@ place au point $\Mr (t)$, et pour chaque axe $\ur$ et $\ut$ on \textbf{fixe
 % $\dt$ des dérivées temporelles~; on a donc
 % \begin{gather*}
 % 	\dd\OM = \left(\frac{\dd{r}}{\cancel{\dt}}\ur + r
-% 	\frac{\dd{\tt}}{\cancel{\dt}}\ut\right)\times\cancel{\dt}
+% 	\frac{\dd{\th}}{\cancel{\dt}}\ut\right)\times\cancel{\dt}
 % \end{gather*}
 
 \begin{tcb*}[sidebyside, righthand ratio=.25](demo)
 	{Déplacement élémentaire polaire}
-	Soit $\Mr$ repéré par la distance $r$ et l'angle $\tt$. On trouve
-	la composante de $\dd{\OM}$ sur $\ur$ en \textbf{fixant $\tt$} et on incrémente
+	Soit $\Mr$ repéré par la distance $r$ et l'angle $\th$. On trouve
+	la composante de $\dd{\OM}$ sur $\ur$ en \textbf{fixant $\th$} et on incrémente
 	la variable $r$ de $\dd{r}$.
 	\begin{center}
 		La distance ainsi obtenue est \psw{$\dd{r}$ sur $\ur$.}
 	\end{center}
 	\bigbreak
 	On trouve la composante de $\dd{\OM}$ sur $\ut$ en \textbf{fixant $r$} et on
-	incrémente la variable $\tt$ de $\dd{\tt}$.
+	incrémente la variable $\th$ de $\dd{\th}$.
 	\begin{center}
-		La distance ainsi obtenue est \psw{$r\dd{\tt}$ sur $\ut$.}
+		La distance ainsi obtenue est \psw{$r\dd{\th}$ sur $\ut$.}
 	\end{center}
 	\tcblower
 	\begin{center}
@@ -236,7 +222,7 @@ place au point $\Mr (t)$, et pour chaque axe $\ur$ et $\ut$ on \textbf{fixe
 
 \begin{tcb*}(prop){Déplacement élémentaire polaire}
 	En coordonnées polaires, le déplacement élémentaire s'exprime
-	\psw{\[\boxed{\dd\OM = \dd r\ur + r\dd\tt\ut}\]}
+	\psw{\[\boxed{\dd\OM = \dd r\ur + r\dd\th\ut}\]}
 	\vspace{-15pt}
 \end{tcb*}
 
@@ -269,26 +255,26 @@ fraction. Les deux résultats sont équivalents, et donnent
 		&
 		\psw{\ur}
 		& =
-		\psw{\cos(\tt)\ux + \sin(\tt)\uy}
+		\psw{\cos(\th)\ux + \sin(\th)\uy}
 		\CArrow{$\dv{t}\/(\cdot)$}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ur}{t}}
 		& =
-		\psw{\dv{\cos(\tt)}{t}\ux + \dv{\sin(\tt)}{t}\uy}
+		\psw{\dv{\cos(\th)}{t}\ux + \dv{\sin(\th)}{t}\uy}
 		\Arrow{Dérivée composée}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ur}{t}}
 		& =
-		\psw{-\tp\sin(\tt)\ux + \tp\cos(\tt)\uy}
+		\psw{-\tp\sin(\th)\ux + \tp\cos(\th)\uy}
 		\Arrow{Factorisation}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ur}{t}}
 		& =
 		\psw{
-			\tp \underbracket[1pt]{\left(-\sin(\tt)\ux + \cos(\tt)\uy\right)}_{= \ut}
+			\tp \underbracket[1pt]{\left(-\sin(\th)\ux + \cos(\th)\uy\right)}_{= \ut}
 		}
 		\Arrow{Identification}
 		\\\Lra
@@ -308,10 +294,10 @@ fraction. Les deux résultats sont équivalents, et donnent
 
 	\psw{
 		\begin{DispWithArrows*}
-			\dv{t}\/(\cos(\theta)) &= \dv{t} \dv{\tt}{\tt}\/ (\cos(\theta))
+			\dv{t}\/(\cos(\theta)) &= \dv{t} \dv{\th}{\th}\/ (\cos(\theta))
 			\Arrow{On réarrange}
 			\\\Lra
-			\dv{t}\/(\cos(\theta)) &= \dv{\tt}{t} \dv{\tt} (\cos(\theta))
+			\dv{t}\/(\cos(\theta)) &= \dv{\th}{t} \dv{\th} (\cos(\theta))
 			\Arrow{On applique les dérivées}
 			\\\Lra
 			\Aboxed{\dv{t}\/(\cos(\theta)) &= -\tp \sin(\theta)}
@@ -369,26 +355,26 @@ de $\dd{\vf}$~:
 		&
 		\psw{\ut}
 		& =
-		\psw{-\sin(\tt)\ux + \cos(\tt)\uy}
+		\psw{-\sin(\th)\ux + \cos(\th)\uy}
 		\CArrow{$\dv{t}\/(\cdot)$}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ut}{t}}
 		& =
-		\psw{\dv{(-\sin(\tt))}{t}\ux + \dv{\cos(\tt)}{t}\uy}
+		\psw{\dv{(-\sin(\th))}{t}\ux + \dv{\cos(\th)}{t}\uy}
 		\Arrow{Dérivée composée}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ut}{t}}
 		& =
-		\psw{-\tp\cos(\tt)\ux - \tp\sin(\tt)\uy}
+		\psw{-\tp\cos(\th)\ux - \tp\sin(\th)\uy}
 		\Arrow{Factorisation}
 		\\\Lra
 		& \qquad
 		\psw{\dv{\ut}{t}}
 		& =
 		\psw{
-			-\tp \underbracket[1pt]{\left(\cos(\tt)\ux + \sin(\tt)\uy\right)}_{= \ur}
+			-\tp \underbracket[1pt]{\left(\cos(\th)\ux + \sin(\th)\uy\right)}_{= \ur}
 		}
 		\Arrow{Identification}
 		\\\Lra
@@ -632,8 +618,8 @@ bout de ficelle et une masse~?
 			\item Origine~: point d'accroche du fil (centre de rotation
 			      pendule).
 			\item Repère~: $(O,\ur,\ut)$ avec base polaire (voir schéma).
-			\item $t$ initial~: moment du lâché, $\tt(0) = \tt_0$ et
-			      $\tt(0) = 0$.
+			\item $t$ initial~: moment du lâché, $\th(0) = \th_0$ et
+			      $\th(0) = 0$.
 		\end{itemize}
 	\end{enumerate}
 \end{minipage}
@@ -654,7 +640,7 @@ bout de ficelle et une masse~?
 	\psw{
 		\[
 			\begin{array}{ll}
-				\textbf{Poids}   & \Pf = m\gf = mg(\cos\tt \ur - \sin\tt \ut)
+				\textbf{Poids}   & \Pf = m\gf = mg(\cos\th \ur - \sin\th \ut)
 				\\
 				\textbf{Tension} & \Tf = -T\ur
 			\end{array}
@@ -673,8 +659,8 @@ bout de ficelle et une masse~?
 		\[
 			\left\{
 			\begin{array}{rcl}
-				-m\ell\tp^2 & = & mg\cos\tt - T \\
-				m\ell\tpp   & = & -mg\sin\tt
+				-m\ell\tp^2 & = & mg\cos\th - T \\
+				m\ell\tpp   & = & -mg\sin\th
 			\end{array}
 			\right.
 		\]
@@ -683,7 +669,7 @@ bout de ficelle et une masse~?
 	puisque $T$ n'est pas connue~; cependant la seconde donne une équation
 	différentielle homogène~:
 	\psw{
-		\[\boxed{\tpp + \frac{g}{\ell}\sin\tt = 0}\]
+		\[\boxed{\tpp + \frac{g}{\ell}\sin\th = 0}\]
 	}
 	qui constitue l'équation du mouvement du pendule. Sous cette forme, elle
 	est \textbf{non-linéaire} donc non résoluble analytiquement~; elle peut
@@ -691,10 +677,10 @@ bout de ficelle et une masse~?
 	\texttt{Capytale}\footnote{\url{
 			https://capytale2.ac-paris.fr/web/c/a7c5-1241282}}.
 \end{enumerate}
-En revanche, dans l'approximation des petits angles, on a $\sin\tt\approx\tt$,
+En revanche, dans l'approximation des petits angles, on a $\sin\th\approx\th$,
 et ainsi on obtient~:
 \psw{
-	\[\boxed{\tpp + \frac{g}{\ell}\tt = 0}\]
+	\[\boxed{\tpp + \frac{g}{\ell}\th = 0}\]
 }
 \textbf{C'est \psw{l'équation différentielle d'un oscillateur harmonique}~!} On
 met donc en évidence la pulsation propre
@@ -703,20 +689,20 @@ met donc en évidence la pulsation propre
 }
 et on a la solution générale homogène~:
 \psw{
-	\[\tt(t) = A\cos(\w_0t) + B\sin(\w_0t)\]
+	\[\th(t) = A\cos(\w_0t) + B\sin(\w_0t)\]
 }
 On obtient $A$ et $B$ avec les CI,
 \begin{gather*}
-	\tt(0) = \tt_0
-	\Lra A\times 1 + B\times 0 = \tt_0
+	\th(0) = \th_0
+	\Lra A\times 1 + B\times 0 = \th_0
 	\qdonc
-	\boxed{A = \tt_0}\\
+	\boxed{A = \th_0}\\
 	\tp(0) = 0
 	\Lra -A\w_0\times 0 + B\w_0\times 1 = 0
 	\qdonc
 	\boxed{B = 0}
 \end{gather*}
-\leftcenters{et finalement}{\psw{$\boxed{\tt(t) = \tt_0\cos(\w_0t)}$}}
+\leftcenters{et finalement}{\psw{$\boxed{\th(t) = \th_0\cos(\w_0t)}$}}
 Le pendule oscille à la pulsation $\w_0$ et à la période $T_0$ telles que
 \[
 	\w_0 = \sqrt{\frac{g}{\ell}}
@@ -735,14 +721,14 @@ ligne\footnote{\url{http://www.sciences.univ-nantes.fr/sites/genevieve_tulloue/M
 \begin{minipage}{0.45\linewidth}
 	\begin{center}
 		\includegraphics[width=\linewidth]{pendule_sol}
-		\captionof{figure}{$\tt (t)$ pour petits angles.}
+		\captionof{figure}{$\th (t)$ pour petits angles.}
 	\end{center}
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\linewidth}
 	\begin{center}
 		\includegraphics[width=\linewidth]{pendule_gdang}
-		\captionof{figure}{Évolution de $T$ selon $\tt_0$.}
+		\captionof{figure}{Évolution de $T$ selon $\th_0$.}
 	\end{center}
 \end{minipage}
 
@@ -798,7 +784,7 @@ Ainsi,
 \begin{tcb*}(ror){Bilan~: coordonnées cylindriques}
 	\begin{itemize}[itemsep=-10pt]
 		\item \leftcenters{\textbf{Coordonnées~:}}
-		      {\psw{$(r,\tt,z)$}}
+		      {\psw{$(r,\th,z)$}}
 		\item \leftcenters{\textbf{Vecteurs de base~:}}
 		      {\psw{$(\ur,\ut,\uz)$}}
 		\item \leftcenters{\textbf{Position~:}}
@@ -806,7 +792,7 @@ Ainsi,
 		\item \leftcenters{\textbf{Vitesse~:}}
 		      {\psw{$\vf = \rp\ur + r\tp\ut + \zp\uz$}}
 		\item \leftcenters{\textbf{Déplacement élém.~:}}
-		      {\psw{$\dd\OM = \dd{r}\ur + r\dd{\tt}\ut + \dd{z}\uz$}}
+		      {\psw{$\dd\OM = \dd{r}\ur + r\dd{\th}\ut + \dd{z}\uz$}}
 		\item \leftcenters{\textbf{Accélération~:}}
 		      {\psw{
 				      $\DS \af =
@@ -823,10 +809,10 @@ Ainsi,
 	une surface et un volume infinitésimaux suivant une variation infinitésimale
 	des trois coordonnées.
 	\smallbreak
-	En effet, pour une petite variation $(\dd{r}, \dd{\tt}, \dd{z})$,
+	En effet, pour une petite variation $(\dd{r}, \dd{\th}, \dd{z})$,
 	on se déplace de $\dd{r}$ dans la direction $\ur$, de $\dd{z}$ dans la
-	direction $\uz$ et l'arc de cercle formé par la variation d'angle $\dd{\tt}$
-	est de longueur $r\dd{\tt}$.
+	direction $\uz$ et l'arc de cercle formé par la variation d'angle $\dd{\th}$
+	est de longueur $r\dd{\th}$.
 \end{minipage}
 \hfill
 \begin{minipage}{0.25\linewidth}
@@ -851,14 +837,14 @@ Le volume élémentaire est alors le \textbf{produit de trois composantes de}
 $\dd{\OM}$~:
 \psw{
 	\[
-		\boxed{\dd{V} = r \dd{r} \dd{\tt} \dd{z}}
+		\boxed{\dd{V} = r \dd{r} \dd{\th} \dd{z}}
 	\]
 }
 On trouve le volume d'un cylindre de rayon $R$ et de hauteur $h$ en
 intégrant sur les trois coordonnées~:
-\[V\ind{cyl} = \iiint_{r,\tt,z} \dd{V} =
+\[V\ind{cyl} = \iiint_{r,\th,z} \dd{V} =
 	\int_{r'=0}^{R} r'\dd{r'}
-	\int_{\tt'=0}^{2\pi} \dd{\tt'}
+	\int_{\th'=0}^{2\pi} \dd{\th'}
 	\int_{z'=0}^{h} \dd{z'} =
 	\psw{
 		\frac{1}{2}R^2\times 2\pi \times h = \boxed{h\pi R^2}
@@ -883,13 +869,13 @@ sur un dernier système de coordonnées, les coordonnées \textbf{sphériques}.
 		définis trois vecteurs, $(\ur, \ut, \uf)$, tels que
 		\[\boxed{\OM = r\ur}
 			\qavec
-			\boxed{\tt = \widehat{(\uz,\OM)}}
+			\boxed{\th = \widehat{(\uz,\OM)}}
 			\qet
 			\boxed{\f = \widehat{(\ux,\vv{\rm OP})}}
 		\]
 		où $\widehat{(\cdot, \cdot)}$ est l'\textbf{angle orienté}, et P le
 		projeté orthogonal de M sur le plan polaire. \textbf{$\mathbf{\f}$
-			correspond à $\tt$ des coordonnées polaires.}
+			correspond à $\th$ des coordonnées polaires.}
 		\tcblower
 		\begin{center}
 			\includegraphics[width=\linewidth]{sph_rep}
@@ -898,11 +884,11 @@ sur un dernier système de coordonnées, les coordonnées \textbf{sphériques}.
 		\end{center}
 	\end{isd}
 	\begin{itemize}[itemsep=-5pt]
-		\item $\tt \in [0~;~\pi]$ est nommé \textbf{colatitude} ($\lb =
-		      \abs{\pi/2 - \tt}$ la latitude)~, et respecte
-		      \[  \tan\tt
+		\item $\th \in [0~;~\pi]$ est nommé \textbf{colatitude} ($\lb =
+		      \abs{\pi/2 - \th}$ la latitude)~, et respecte
+		      \[  \tan\th
 			      = \frac{\rm OP}{z}
-			      \Lra \tt
+			      \Lra \th
 			      = \arctan(\frac{\sqrt{x^2 + y^2}}{z})
 		      \]
 		\item $\f \in [0~;~2\pi]$ est nommé \textbf{longitude}, et respecte $\DS
@@ -911,8 +897,8 @@ sur un dernier système de coordonnées, les coordonnées \textbf{sphériques}.
 \end{tcb*}
 
 \begin{itemize}
-	\item Une courbe $\tt = \cte$ est appelée \textbf{parallèle}~; le
-	      \textbf{rayon} d'un parallèle est \fbox{$r\sin\tt$}.
+	\item Une courbe $\th = \cte$ est appelée \textbf{parallèle}~; le
+	      \textbf{rayon} d'un parallèle est \fbox{$r\sin\th$}.
 	\item Une courbe $\f = \cte$ est appelée \textbf{méridien}~; le
 	      \textbf{rayon} d'un méridien est \fbox{$r$}.
 \end{itemize}
@@ -920,11 +906,11 @@ sur un dernier système de coordonnées, les coordonnées \textbf{sphériques}.
 On peut inverser les définitions en prenant $x = {\rm OP}\cos\f$ et $y = {\rm
 	OP}\sin\f$, pour avoir
 \[
-	\boxed{x = r\sin\tt\cos\f}
+	\boxed{x = r\sin\th\cos\f}
 	\quad,\quad
-	\boxed{y = r\sin\tt\sin\f}
+	\boxed{y = r\sin\th\sin\f}
 	\qet
-	\boxed{z = r\cos\tt}
+	\boxed{z = r\cos\th}
 \]
 
 \begin{tcb*}(exem)<lftt>{Repérage sphérique sur Terre}
@@ -933,7 +919,7 @@ On peut inverser les définitions en prenant $x = {\rm OP}\cos\f$ et $y = {\rm
 		exemple, le lycée \textsc{Pothier} se situe à \ang{47.90}N,
 		\ang{1.90;;}E~; on a donc
 		\[
-			\tt\ind{\textsc{Pothier}} = \ang{42.1}
+			\th\ind{\textsc{Pothier}} = \ang{42.1}
 			\qet
 			\f\ind{\textsc{Pothier}} = \ang{1.90}
 		\]
@@ -951,10 +937,10 @@ On peut inverser les définitions en prenant $x = {\rm OP}\cos\f$ et $y = {\rm
 	{Déplacement élémentaire sphérique}
 	\begin{itemize}
 		\item Variation $\dd{r}$ $\Ra$ déplace\mnt\ $\dd{r}\ur$~;
-		\item Variation $\dd{\tt}$ $\Ra$ déplace\mnt\ $r\dd{\tt}\ut$~;
-		\item Variation $\dd{\f}$ $\Ra$ déplace\mnt\ $r\sin\tt\dd{\f}\uf$.
+		\item Variation $\dd{\th}$ $\Ra$ déplace\mnt\ $r\dd{\th}\ut$~;
+		\item Variation $\dd{\f}$ $\Ra$ déplace\mnt\ $r\sin\th\dd{\f}\uf$.
 	\end{itemize}
-	\[\boxed{\dd\OM = \dd{r}\ur + r\dd{\tt}\ut + r\sin\tt\dd{\f}\uf}\]
+	\[\boxed{\dd\OM = \dd{r}\ur + r\dd{\th}\ut + r\sin\th\dd{\f}\uf}\]
 	\tcblower
 	\noindent
 	\begin{minipage}{.59\linewidth}
@@ -979,15 +965,15 @@ On peut inverser les définitions en prenant $x = {\rm OP}\cos\f$ et $y = {\rm
 On trouve de la même manière le volume élémentaire~:
 \psw{
 	\[
-		\boxed{\dd{V} = r^{2}\sin(\theta)\dd{r}\dd{\tt}\dd{\f}}
+		\boxed{\dd{V} = r^{2}\sin(\theta)\dd{r}\dd{\th}\dd{\f}}
 	\]
 }
 Il permet de déterminer le volume d'une boule~:
 \[
 	V\ind{boule}
-	= \iiint_{r,\tt,\f}
+	= \iiint_{r,\th,\f}
 	= \int_{r'=0}^{R} r'^2\dd{r'}
-	\int_{\tt' = 0}^{\pi} \sin\tt'\dd{\tt'}
+	\int_{\th' = 0}^{\pi} \sin\th'\dd{\th'}
 	\int_{\f'=0}^{2\pi} \dd{\f}
 	= \int_{r'=0}^{R} 4\pi r'^2 \dd{r}
 	\psw{

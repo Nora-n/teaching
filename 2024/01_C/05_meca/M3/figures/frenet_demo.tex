@@ -1,0 +1,94 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{00}{000}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=east] at (O) {O};
+	\node[scale=1.5] at (O) {$+$};
+	% First osculateur
+	\def\R1{2}
+	\coordinate(R1) at (3,-.5,0);
+	\node at (R1) {$\bullet$};
+	\draw[thick, dashed, gray] (R1) circle (\R1);
+	% First point M
+	\coordinate(M1) at ($(R1)+(0,-\R1,0)$);
+	\node[scale=1.5]  at (M1) {$\times$};
+	\node[below left] at (M1) {$\Mr(t)$};
+	% Draw first rayon osculateur
+	\draw[thick]
+	(M1) -- (R1)
+	node[midway, above, sloped] {$R(t)$};
+	% Point Mt
+	\def\tht{-60}
+	\coordinate(Mt) at ($(R1)+(\tht:\R1)$);
+	% \node[scale=1.5]  at (Mt) {$\times$};
+	% \node[right=.25] at (Mt) {$\Mr(t+\dd{t})$};
+	% Draw second rayon osculateur
+	\draw[thick]
+	(Mt) -- (R1)
+	node[midway, above, sloped] {$R(t+\dd{t})$};
+	% \draw[thick, dotted, gray] (M1)--(R1);
+	% Second point M
+	\coordinate(M2) at ($(O)+(5.5,0,0)$);
+	% Trajectory
+	\draw[very thick, postaction={decorate},
+		arrowmark={0.1}{Stealth},
+		arrowmark={0.95}{Stealth},
+	]
+	(O)
+	to[out=-50,in=180]
+	(M1)
+	to[out=0,in=245]
+	(M2)
+	;
+	\ifprof{%
+		% First T and N
+		\def\rT{1.5}
+		\draw[very thick, -stealth, myblue]
+		(M1) --++ (\rT,0,0)
+		coordinate(Ut)
+		node[anchor=north]
+			{$\vv{u_T}$};
+		\draw[very thick, -stealth, myblue]
+		(M1) --++ (0,\rT,0)
+		node[anchor=south, fill=white, fill opacity=.6, text opacity=1]
+		{$\vv{u_N}$};
+		% draw ur ut dt
+		\def\thtt{90+\tht}
+		\draw[very thick, -stealth, myblue, opacity=.5]
+		(M1) --++ (\thtt:\rT)
+		coordinate(Utt)
+		;
+		\draw[very thick, -stealth, myblue, opacity=.5]
+		(M1) --++ (\thtt+90:\rT)
+		;
+		% draw dut
+		\draw[very thick, -stealth, myblue]
+		(Ut) --++ (90:{\rT*(\thtt)*pi/180})
+		node[midway, right]
+		{$\dd{\vv{u_T}}$}
+		;
+		% Draw ds
+		\draw[very thick, |-|, myred, mymark={0.50(Mrm)}]
+		(M1)
+		to[out=0,in=180+\thtt]
+		(Mt)
+		;
+		\node[below, myred] at (Mrm) {$\dd{s}$};
+		% Draw arc
+		\tdplotdrawarc[thick, -stealth, mygreen]{(M1)}{1.25}{0}{\thtt}{}{}
+		\tdplotsetrotatedcoords{-90}{0}{0}
+		\tdplotsetrotatedcoordsorigin{(R1)}
+		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]{(R1)}{1.25}{0}{90+\tht}{anchor=north}{$\dd{\th}$}
+	}%
+\end{tikzpicture}
+\end{document}

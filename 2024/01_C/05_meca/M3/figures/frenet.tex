@@ -1,0 +1,117 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{00}{000}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=east] at (O) {O};
+	\node[scale=1.5] at (O) {$+$};
+	% First osculateur
+	\def\R1{2}
+	\coordinate(R1) at (3,-.5,0);
+	\node[gray] at (R1) {$\bullet$};
+	\draw[thick, dashed, gray] (R1) circle (\R1);
+	% Draw first rayon osculateur
+	\node (R1N) at (R1) {};
+	\node (R1T) at ($(R1)+(30:\R1)$) {};
+	\draw[stealth-stealth, thick, gray]
+	(R1N) -- (R1T)
+	node[midway, above, sloped] {$R(t_1)$};
+	% First point M
+	\coordinate(M1) at ($(R1)+(0,-\R1,0)$);
+	\node[scale=1.5]  at (M1) {$\times$};
+	\node[below right] at (M1) {$\Mr(t_1)$};
+	\draw[thick, dotted, gray] (M1)--(R1);
+	% Second osculateur
+	\def\R2{1.5}
+	\coordinate(R2) at (8,1,0);
+	\node[gray] at (R2) {$\bullet$};
+	\draw[thick, dashed, gray] (R2) circle (\R2);
+	% Draw second rayon osculateur
+	\node (R2N) at (R2) {};
+	\node (R2T) at ($(R2)+(-30:\R2)$) {};
+	\draw[stealth-stealth, thick, gray]
+	(R2N) -- (R2T)
+	node[midway, below, sloped] {$R(t_2)$};
+	% Second point M
+	\coordinate(M2) at ($(R2)+(0,\R2,0)$);
+	\node[scale=1.5] at (M2) {$\times$};
+	\node[above] at (M2) {$\Mr(t_2)$};
+	\draw[thick, dotted, gray] (M2)--(R2);
+	% Point E
+	\coordinate (E) at (10,0.5,0);
+	% Trajectory
+	\draw[very thick, postaction={decorate},
+		mycoord={0.05}{Mr1},
+		mycoord={0.25}{Mrm},
+		arrowmark={0.1}{Stealth},
+		mycoord={0.55}{Mr2},
+		arrowmark={0.6}{Stealth},
+		arrowmark={0.95}{Stealth},
+	]
+	(O)
+	to[out=-50,in=180]
+	(M1)
+	to[out=0,in=180]
+	(M2)
+	to[out=0,in=110]
+	(E)
+	;
+	\ifprof{%
+		% Begin T and N
+		\def\tht{-53}
+		\draw[very thick, -stealth, mypurple]
+		(Mr1) --++ (\tht:1)
+		node[anchor=south west]
+		{$\vv{u_T}$};
+		\draw[very thick, -stealth, mypurple]
+		(Mr1) --++ (\tht+90:1)
+		node[anchor=west]
+		{$\vv{u_N}$};
+		% First T and N
+		\draw[very thick, -stealth, mypurple]
+		(M1) --++ (1,0,0)
+		node[anchor=west]
+		{$\vv{u_T}$};
+		\draw[very thick, -stealth, mypurple]
+		(M1) --++ (0,1,0)
+		node[anchor=west]
+		{$\vv{u_N}$};
+		% Middle T and N
+		\def\tht{65}
+		\draw[very thick, -stealth, mypurple]
+		(Mr2) --++ (\tht:1)
+		node[anchor=east]
+		{$\vv{u_T}$};
+		\draw[very thick, -stealth, mypurple]
+		(Mr2) --++ (\tht+90:1)
+		node[anchor=south]
+		{$\vv{u_N}$};
+		% Second T and N
+		\draw[very thick, -stealth, mypurple]
+		(M2) --++ (1,0,0)
+		node[anchor=west]
+		{$\vv{u_T}$};
+		\draw[very thick, -stealth, mypurple]
+		(M2) --++ (0,-1,0)
+		node[anchor=west]
+		{$\vv{u_N}$};
+		\draw[very thick, |-|, myred, mymark={0.70(Mrm)}]
+		% (O)
+		($(O)+(0,-.3)$)
+		to[out=-50,in=180]
+		% (M1)
+		($(M1)+(0,-.3)$)
+		;
+		\node[below, myred] at (Mrm) {$s(t_1)$};
+	}%
+\end{tikzpicture}
+\end{document}

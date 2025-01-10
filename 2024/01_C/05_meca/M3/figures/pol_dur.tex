@@ -1,0 +1,79 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{00}{000}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=north] at (O) {O};
+	% draw axes
+	% \draw[very thick,-stealth] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+	% \draw[very thick,-stealth] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+	% draw ux uy uz
+	% \draw[very thick,-stealth,myblue] (0,0,0) -- (1,0,0) node[anchor=north]{$\ux$};
+	% \draw[very thick,-stealth,myblue] (0,0,0) -- (0,1,0) node[anchor=west]{$\uy$};
+	% \draw[very thick,-stealth,myblue] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% set coords
+	\def\rM{2}
+	\def\tht{15}
+	% set point
+	\tdplotsetcoord{R}{\rM}{90}{\tht}
+	\tdplotsetcoord{T}{\rM}{90}{\tht+90}
+	% set coords dt
+	\def\rMt{2}
+	\def\thtt{35}
+	% set point
+	\tdplotsetcoord{Rt}{\rMt}{90}{\thtt}
+	\tdplotsetcoord{Tt}{\rMt}{90}{\thtt+90}
+	% draw ur ut initial
+	\draw[very thick,-stealth]
+	(O) -- (R)
+	node[anchor=north]{$\ur$};
+	\draw[very thick,-stealth]
+	(O) -- (T)
+	node[anchor=west]{$\ut$};
+	% draw ur ut dt
+	\draw[very thick,-stealth,opacity=\sswitch{.0}{.5}]
+	(O) -- (Rt)
+	;
+	\draw[very thick,-stealth,opacity=\sswitch{.0}{.5}]
+	(O) -- (Tt)
+	;
+	% draw dur dt
+	\draw[very thick, -stealth, \sswitch{white}{myred}]
+	(R) --++ ({\tht+90}:{\rMt*(\thtt-\tht)*pi/180})
+	% (R) -- (Rt)
+	node[midway, below, anchor=west]
+	{$\dd{\ur}$}
+	;
+	\draw[very thick, -stealth, \sswitch{white}{myred}]
+	(T) --++ ({\tht+180}:{\rMt*(\thtt-\tht)*pi/180})
+	% (T) -- (Tt)
+	node[midway, below, anchor=south]
+	{$\dd{\ut}$}
+	;
+	\ifprof{%
+		% draw dur dt on main axes
+		\draw[very thick, -stealth, myred, dashed]
+		(O) --++ ({\tht+90}:{\rMt*(\thtt-\tht)*pi/180})
+		;
+		\draw[very thick, -stealth, myred, dashed]
+		(O) --++ ({\tht+180}:{\rMt*(\thtt-\tht)*pi/180})
+		;
+		% draw arc
+		% \tdplotdrawarc[thick, -stealth]{(O)}{1.5}{0}{\tht}{anchor=west}{$\th(t)$}
+		\tdplotsetrotatedcoords{\tht}{0}{0}
+		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]{(O)}{1}{0}{\thtt-\tht}{anchor=west,below=.1}{$\dd{\th}$}
+		\tdplotsetrotatedcoords{\tht+90}{0}{0}
+		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]{(O)}{1}{0}{\thtt-\tht}{anchor=west,right=-.1}{$\dd{\th}$}
+	}%
+\end{tikzpicture}
+\end{document}

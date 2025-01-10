@@ -1,0 +1,112 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\def\M{3}
+	\def\hgt{3}
+	\def\bsz{1}
+	\def\lgt{2}
+	% origin
+	\coordinate (O) at (0,0);
+	% Point M
+	\node[
+		draw,
+		thick,
+		minimum width=\bsz cm,
+		minimum height=\bsz cm,
+		fill=gray!40,
+		rounded corners=4pt,
+	]
+	(rect) at (0,-\hgt) {};
+	\node[anchor=west] at (rect.east) {$\Mr$};
+	\coordinate(M) at (rect.center);
+	\node at (M) {$\bullet$};
+	% support
+	\draw[thick,gray]
+	(-\lgt,0) -- (\lgt,0);
+	\fill[pattern=north east lines]
+	(-\lgt,0) rectangle (\lgt,0.3);
+	%ressort
+	\draw[
+		ressort,
+		decorate,
+		decoration={
+				coil,
+				aspect=0.5,
+				segment length=3mm, amplitude=3mm}
+	]
+	(O)
+	--
+	(rect.north)
+	;
+	% O point above ressort
+	\node[anchor=north east] at (O) {O};
+	% draw ux uy uk
+	\draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=north]{$\ux$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uz$};
+	\ifprof{%
+		\draw[very thick,-stealth, mypurple]
+		(0,0,0) -- (0,-1,0)
+		node[anchor=west, right=.3]{$\uk$};
+	}%
+	% Forces
+	\sswitch{%
+		% Poids
+		\path[-stealth, thick, white]
+		(M) --++
+		(0,-1)
+		node [right] {$\vv{P}$};
+	}{%
+		% Poids
+		\draw[-stealth, thick, myred]
+		(M) --++
+		(0,-1)
+		node [right] {$\vv{P}$};
+	}%
+	\ifprof{%
+		% Hooke
+		\draw[-stealth, thick, myblue]
+		(M) --++
+		(0,+1.5)
+		node [right=.3] {$\vv{F_r}$};
+	}%
+	\sswitch{%
+		% ell0
+		\path[stealth-stealth, white]
+		($(O)+(-1.5,0)$) --++
+		(0,-\hgt/2)
+		node[midway, left]
+		{$\ell_0$};
+	}{%
+		% ell0
+		\draw[stealth-stealth]
+		($(O)+(-1.5,0)$) --++
+		(0,-\hgt/2)
+		node[midway, left]
+		{$\ell_0$};
+	}%
+	\ifprof{%
+		% elleq
+		\draw[stealth-stealth]
+		($(O)+(-1,0)$) --++
+		(0,-2*\hgt/3)
+		node[pos=.90, left]
+		{$\ell\ind{eq}$};
+		% ell
+		\draw[stealth-stealth]
+		($(O)+(-.5,0)$) --
+		($(rect.north)+(-.5,0)$)
+		node[pos=.95, left]
+		{$\ell(t)$};
+	}%
+\end{tikzpicture}
+
+\end{document}

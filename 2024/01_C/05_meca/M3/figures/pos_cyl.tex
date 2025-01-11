@@ -1,0 +1,100 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,tdplot_main_coords]
+	\coordinate (O) at (0,0,0);
+	\node[anchor=south east] at (O) {O};
+	% draw axes
+	\draw[very thick,-stealth] (0,0,0) -- (4,0,0) node[anchor=north east]{$x$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,4,0) node[anchor=north west]{$y$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,0,4) node[anchor=south]{$z$};
+	% draw ux uy uz
+	\draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=east]{$\ux$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uy$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
+	% theta
+	\def\tht{50}
+	\def\pht{50}
+	% set point
+	\tdplotsetcoord{M}{5}{\pht}{\tht}
+	% draw a vector from origin to point (M)
+	\draw[very thick, -stealth, myred]
+	(O) -- (M)
+	% node[midway, above, sloped]
+	% {$r(t)$}
+	node[above]
+	{$\mathrm{M}(t)$};
+	% xy projection
+	\coordinate(H) at (Mxy);
+	\node[below left, myblue] at (H) {$\mathrm{H}(t)$};
+	\draw[thick, dashed]
+	(M) -- (H)
+	;
+	% z projection
+	\draw[thick, dashed]
+	(M) -- (Mz)
+	node[left, \sswitch{white}{black}] {$z(t)$}
+	;
+	% x projection
+	\draw[thick, dashed]
+	(H) -- (Mx)
+	node[left, \sswitch{white}{black}] {$x(t)$}
+	;
+	% y projection
+	\draw[thick, dashed]
+	(H) -- (My)
+	node[above right, \sswitch{white}{black}] {$y(t)$}
+	;
+	\ifprof{%
+		% Link to M
+		\draw[very thick, -stealth, myblue]
+		(H) -- (M)
+		node[pos=.75, right] {$z(t)$}
+		;
+	}%
+	% rayon
+	\draw[very thick, -stealth, \sswitch{white}{myblue},
+		canvas is xy plane at z=0]
+	(O) -- (H)
+	node[pos=0.75, above]
+	{$r(t)$};
+	% draw ur ut uz
+	\draw[very thick,-stealth,\sswitch{white}{mypurple},
+		canvas is xy plane at z=0]
+	(H) --++ (\tht:1)
+	coordinate(R)
+	node[anchor=north west]{$\ur$};
+	\draw[very thick,-stealth,\sswitch{white}{mypurple},
+		canvas is xy plane at z=0]
+	(H) --++ (\tht+90:1)
+	coordinate(T)
+	node[anchor=west]{$\ut$};
+	\ifprof{%
+		% uz
+		\draw[very thick,-stealth,mypurple]
+		(H) --++ (0,0,1)
+		coordinate(Z)
+		node[anchor=north west]{$\uz$};
+		% draw rightangle
+		\draw
+		pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+			{right angle=R--H--T};
+		\draw
+		pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+			{right angle=Z--H--T};
+		% draw arc
+		\tdplotdrawarc[thick, -stealth, mygreen]{(O)}{2.5}{0}{\tht}{anchor=north}{$\th(t)$}
+	}%
+	% bullet above all
+	\node[myblue] at (H) {$\bullet$};
+\end{tikzpicture}
+\end{document}

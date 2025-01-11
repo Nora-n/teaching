@@ -1,0 +1,77 @@
+\documentclass{standalone}
+\usepackage{mintikz}
+
+% \toggletrue{student}
+% \toggletrue{corrige}
+
+\settype{prof}
+\settype{stud}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\def\M{3}
+	\def\hgt{3}
+	\def\bsz{1}
+	\def\lgt{1}
+	\def\tht{30}
+	% origin
+	\coordinate (O) at (0,0);
+	% Point M
+	\coordinate (M) at (-90+\tht:\hgt);
+	\node[left] at (M) {$\Mr$};
+	% support
+	\draw[thick,gray]
+	(-\lgt,0) -- (\lgt,0);
+	\fill[pattern=north east lines]
+	(-\lgt,0) rectangle (\lgt,0.3);
+	% fil
+	\draw[thick] (O) -- (M) ;
+	% O point above ressort
+	\node[anchor=north east] at (O) {O};
+	% draw ux uy uk
+	\draw[very thick,-stealth] (0,0,0) -- (0,-1,0) node[anchor=east]{$\ux$};
+	\draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=west]{$\uy$};
+	\draw[dashed, -stealth] (O) -- (0,-\hgt) node[below] {$x$};
+	\sswitch{%
+		\draw[very thick,-stealth, white]
+		(M) --++ (-90+\tht:\lgt)
+		node[anchor=north west]{$\ur$};
+		\draw[very thick,-stealth, white]
+		(M) --++ (\tht:\lgt)
+		node[anchor=south west]{$\ut$};
+	}{%
+		\draw[very thick,-stealth, mypurple]
+		(M) --++ (-90+\tht:\lgt)
+		node[anchor=north west]{$\ur$};
+		\draw[very thick,-stealth, mypurple]
+		(M) --++ (\tht:\lgt)
+		node[anchor=south west]{$\ut$};
+	}%
+	% Forces
+	\ifprof{%
+		% Poids
+		\draw[-stealth, thick, myred]
+		(M) --++
+		(0,-1)
+		node [right] {$\vv{P}$};
+		% Hooke
+		\draw[-stealth, thick, myblue]
+		(M) --++
+		(90+\tht:1.5)
+		node [below=.2] {$\vv{T}$};
+		\tdplotdrawarc[thick, -stealth,
+			mygreen]{(O)}{1.25}{-90}{-90+\tht}{anchor=north}{$\th$}
+		\tdplotdrawarc[thick, -stealth,
+			mygreen]{(M)}{0.5}{-90}{-90+\tht}{anchor=north}{}
+		% longueur
+		\node (On) at (O) {};
+		\node (Mn) at (M) {};
+		\draw[|<->|, thick] ($(Mn)+(.25,.25)$) --++ (90+\tht:0.9*\hgt)
+		node[midway, above] {$\ell$};
+	}%
+	% bullet over all
+	\node at (M) {$\bullet$};
+\end{tikzpicture}
+
+\end{document}

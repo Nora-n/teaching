@@ -31,104 +31,104 @@
 
 \begin{tikzpicture}[tdplot_main_coords]
 
-%Coordinates
-\coordinate (O) at (0,0,0);
-%%
-\cylindricalcoordinate{\rvec}{\thetavec}{\zvec}{A}
-\cylindricalcoordinate{\rvec}{\thetavec}{(\zvec+\dzvec)}{B}
-\cylindricalcoordinate{\rvec}{(\thetavec+\dthetavec)}{\zvec}{C}
-\cylindricalcoordinate{\rvec}{(\thetavec+\dthetavec)}{(\zvec+\dzvec)}{D}
-%%
-\cylindricalcoordinate{(\rvec+\drvec)}{\thetavec}{\zvec}{A'}
-\cylindricalcoordinate{(\rvec+\drvec)}{\thetavec}{(\zvec+\dzvec)}{B'}
-\cylindricalcoordinate{(\rvec+\drvec)}{(\thetavec+\dthetavec)}{\zvec}{C'}
-\cylindricalcoordinate{(\rvec+\drvec)}{(\thetavec+\dthetavec)}{(\zvec+\dzvec)}{D'}
-%%%Nodes
-%\node at (A) {A};
-%\node at (B) {B};
-%\node at (C) {C};
-%\node at (D) {D};
-%\node at (A') {A'};
-%\node at (B') {B'};
-%\node at (C') {C'};
-%\node at (D') {D'};
+	%Coordinates
+	\coordinate (O) at (0,0,0);
+	%%
+	\cylindricalcoordinate{\rvec}{\thetavec}{\zvec}{A}
+	\cylindricalcoordinate{\rvec}{\thetavec}{(\zvec+\dzvec)}{B}
+	\cylindricalcoordinate{\rvec}{(\thetavec+\dthetavec)}{\zvec}{C}
+	\cylindricalcoordinate{\rvec}{(\thetavec+\dthetavec)}{(\zvec+\dzvec)}{D}
+	%%
+	\cylindricalcoordinate{(\rvec+\drvec)}{\thetavec}{\zvec}{A'}
+	\cylindricalcoordinate{(\rvec+\drvec)}{\thetavec}{(\zvec+\dzvec)}{B'}
+	\cylindricalcoordinate{(\rvec+\drvec)}{(\thetavec+\dthetavec)}{\zvec}{C'}
+	\cylindricalcoordinate{(\rvec+\drvec)}{(\thetavec+\dthetavec)}{(\zvec+\dzvec)}{D'}
+	%%%Nodes
+	%\node at (A) {A};
+	%\node at (B) {B};
+	%\node at (C) {C};
+	%\node at (D) {D};
+	%\node at (A') {A'};
+	%\node at (B') {B'};
+	%\node at (C') {C'};
+	%\node at (D') {D'};
 
-%Axis
-\begin{pgfonlayer}{background}
-	\draw[thick,-latex] (0,0,0) -- (6,0,0) node[pos=1.1]{$x$};
-	\draw[thick,-latex] (0,0,0) -- (0,6,0) node[pos=1.05]{$y$};
-	\draw[thick,-latex] (0,0,0) -- (0,0,7) node[pos=1.05]{$z$};
-\end{pgfonlayer}
+	%Axis
+	\begin{pgfonlayer}{background}
+		\draw[ultra thick,-latex] (0,0,0) -- (6,0,0) node[pos=1.1]{$x$};
+		\draw[ultra thick,-latex] (0,0,0) -- (0,6,0) node[pos=1.05]{$y$};
+		\draw[ultra thick,-latex] (0,0,0) -- (0,0,7) node[pos=1.05]{$z$};
+	\end{pgfonlayer}
 
-%Vectors
-\begin{pgfonlayer}{main}
-	\draw[blue, thick] (O) -- (A);
-	\draw[thick] (O) -- (Axy) node [pos=0.6, below left] {$r$};
-	\draw (A) -- ($(A)-(Axy)$) node [left] {$z$};
-	\draw (B) -- ($(A)-(Axy)+(0,0,\dzvec)$) node [left] {$z+\mathrm{d}z$};
-	\draw (D) -- ($(A)-(Axy)+(0,0,\dzvec)$);
-\end{pgfonlayer}
-\begin{pgfonlayer}{background}
-	\draw[dashed] (C) -- ($(A)-(Axy)$) node [left] {$z$};
-\end{pgfonlayer}
+	%Vectors
+	\begin{pgfonlayer}{main}
+		\draw[blue, very thick, -stealth] (O) -- (A);
+		\draw[thick] (O) -- (Axy) node [pos=0.6, below left] {$r$};
+		\draw[thick] (A) -- ($(A)-(Axy)$) node [left] {$z$};
+		\draw[thick] (B) -- ($(A)-(Axy)+(0,0,\dzvec)$) node [left] {$z+\mathrm{d}z$};
+		\draw[thick] (D) -- ($(A)-(Axy)+(0,0,\dzvec)$);
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{background}
+		\draw[thick, dashed] (C) -- ($(A)-(Axy)$) node [left] {$z$};
+	\end{pgfonlayer}
 
-%Help Lines
-\begin{pgfonlayer}{background}
-	\draw (A) -- (Axy);
-	\draw (A') -- (A'xy);
-	\draw[thick] (Axy) -- (A'xy) node [pos=0.6, below left] {$\mathrm{d}r$};
-	%
-	\draw (O) -- (D'xy);
-	\draw[dashed] (C) -- (Dxy);	
-	\draw (C') -- (C'xy);
-	%%Arcs
-	\tdplotdrawarc{(0,0,0)}{\rvec}{\thetavec}{\thetavec+\dthetavec}{}{}
-	\tdplotdrawarc{(0,0,0)}{\rvec+\drvec}{\thetavec}{\thetavec+\dthetavec}{}{}
-\end{pgfonlayer}
+	%Help Lines
+	\begin{pgfonlayer}{background}
+		\draw[thick] (A) -- (Axy);
+		\draw[thick] (A') -- (A'xy);
+		\draw[thick] (Axy) -- (A'xy) node [pos=0.6, below left] {$\mathrm{d}r$};
+		%
+		\draw[thick] (O) -- (D'xy);
+		\draw[thick, dashed] (C) -- (Dxy);
+		\draw[thick] (C') -- (C'xy);
+		%%Arcs
+		\tdplotdrawarc{(0,0,0)}{\rvec}{\thetavec}{\thetavec+\dthetavec}{}{}
+		\tdplotdrawarc{(0,0,0)}{\rvec+\drvec}{\thetavec}{\thetavec+\dthetavec}{}{}
+	\end{pgfonlayer}
 
-%Angles
-\begin{pgfonlayer}{foreground}
-	%theta, dtheta
-	\tdplotdrawarc[-stealth]{(O)}{0.9}{0}{\thetavec}{anchor=north}{$\theta$}
-	\tdplotdrawarc[-stealth]{(O)}{1.5}{\thetavec}{\thetavec + \dthetavec}{}{}
-	\node at (1.4,1.9,0) {$\mathrm{d}\theta$};	
-\end{pgfonlayer}
+	%Angles
+	\begin{pgfonlayer}{foreground}
+		%theta, dtheta
+		\tdplotdrawarc[thick, -stealth]{(O)}{0.9}{0}{\thetavec}{anchor=north}{$\theta$}
+		\tdplotdrawarc[thick, -stealth]{(O)}{1.5}{\thetavec}{\thetavec + \dthetavec}{}{}
+		\node at (1.4,1.9,0) {$\mathrm{d}\theta$};
+	\end{pgfonlayer}
 
-%Differential Volume
+	%Differential Volume
 
-%%Lines
-\begin{pgfonlayer}{foreground}
-	\draw[thick] (A) -- (B) -- (B') -- (A') -- cycle node [midway, below] {$\mathrm{d}r$};
-	\draw[thick] (D) -- (D') -- (C') node [midway, right] {$\mathrm{d}z$};
-\end{pgfonlayer}
-\begin{pgfonlayer}{background}
-	\draw[thick, dashed] (C') -- (C) -- (D);
-\end{pgfonlayer}
+	%%Lines
+	\begin{pgfonlayer}{foreground}
+		\draw[thick] (A) -- (B) -- (B') -- (A') -- cycle node [midway, below] {$\mathrm{d}r$};
+		\draw[thick] (D) -- (D') -- (C') node [midway, right] {$\mathrm{d}z$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{background}
+		\draw[thick, dashed] (C') -- (C) -- (D);
+	\end{pgfonlayer}
 
-%%Curved
-\begin{pgfonlayer}{background}
-	\tdplotdrawarc[thick, dashed]{(0,0,\zvec)}{\rvec} {\thetavec}{\thetavec+\dthetavec}{}{}
-\end{pgfonlayer}
-\begin{pgfonlayer}{foreground}
-	\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec} {\thetavec}{\thetavec+\dthetavec}{}{}
-	\node at (2.4,3.4,\zvec+\dzvec) {$r\mathrm{d}\theta$};
-	\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec+\drvec} {\thetavec}{\thetavec+\dthetavec}{}{}
-	\tdplotdrawarc[thick]{(0,0,\zvec)}{\rvec+\drvec} {\thetavec}{\thetavec+\dthetavec}{}{}
-\end{pgfonlayer}
+	%%Curved
+	\begin{pgfonlayer}{background}
+		\tdplotdrawarc[thick, dashed]{(0,0,\zvec)}{\rvec} {\thetavec}{\thetavec+\dthetavec}{}{}
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{foreground}
+		\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec} {\thetavec}{\thetavec+\dthetavec}{}{}
+		\node at (2.4,3.4,\zvec+\dzvec) {$r\mathrm{d}\theta$};
+		\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec+\drvec} {\thetavec}{\thetavec+\dthetavec}{}{}
+		\tdplotdrawarc[thick]{(0,0,\zvec)}{\rvec+\drvec} {\thetavec}{\thetavec+\dthetavec}{}{}
+	\end{pgfonlayer}
 
-%%Fill Color
-\begin{pgfonlayer}{main}
-	%Front
-	\fill[black, opacity=0.15] (B) to (B') to[bend right=4] (D') to (D) to[bend left=4] cycle;
-	\fill[black, opacity=0.6] (B') to[bend right=4] (D') to (C') to[bend left=4] (A') to cycle;
-	\fill[black, opacity=0.4] (B) to (B')  to (A') to (A) to cycle;
-\end{pgfonlayer}
-\begin{pgfonlayer}{background}
-	%Back
-	\fill[black!50, opacity=0.5] (D) to (D') to (C') to (C) to cycle;
-	\fill[black!50, opacity=0.5] (B) to[bend right=4] (D) to (C) to[bend left=4] (A) to cycle;
-	\fill[black!50, opacity=0.5] (A) to (A') to[bend right=4] (C') to (C) to[bend left=4] cycle;
-\end{pgfonlayer}
+	%%Fill Color
+	\begin{pgfonlayer}{main}
+		%Front
+		\fill[black, opacity=0.15] (B) to (B') to[bend right=4] (D') to (D) to[bend left=4] cycle;
+		\fill[black, opacity=0.6] (B') to[bend right=4] (D') to (C') to[bend left=4] (A') to cycle;
+		\fill[black, opacity=0.4] (B) to (B')  to (A') to (A) to cycle;
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{background}
+		%Back
+		\fill[black!50, opacity=0.5] (D) to (D') to (C') to (C) to cycle;
+		\fill[black!50, opacity=0.5] (B) to[bend right=4] (D) to (C) to[bend left=4] (A) to cycle;
+		\fill[black!50, opacity=0.5] (A) to (A') to[bend right=4] (C') to (C) to[bend left=4] cycle;
+	\end{pgfonlayer}
 
 
 \end{tikzpicture}

@@ -45,13 +45,11 @@
 		\item Identifier les degrés de liberté d'un mouvement. Choisir un système
 		      de coordonnées adapté au problème.
 
-		\item Systèmes de coordonnées cartésiennes, cylindriques et sphériques.
-
+		      % \item Systèmes de coordonnées cartésiennes, cylindriques et sphériques.
+		      %
 		\item Vitesse et accélération dans le repère de Frenet pour une
 		      trajectoire plane.
-	\end{itemize}
-	\tcblower
-	\begin{itemize}[label=\rcheck]
+
 		\item Coordonnées cylindriques~: exprimer à partir d'un schéma le
 		      déplacement élémentaire, construire le trièdre local associé et en
 		      déduire géométriquement les composantes du vecteur vitesse.
@@ -59,7 +57,9 @@
 		\item Établir les expressions des composantes des vecteurs position,
 		      déplacement élémentaire, vitesse et accélération en coordonnées
 		      cylindriques.
-
+	\end{itemize}
+	\tcblower
+	\begin{itemize}[label=\rcheck]
 		\item Mouvement circulaire uniforme et non uniforme~: exprimer les
 		      composantes du vecteur position, du vecteur vitesse et du vecteur
 		      accélération en coordonnées polaires planes.
@@ -104,7 +104,7 @@
 	\tce{rapp}
 	% \tce{prop}
 	% \tce{theo}
-	\tce"Lois de \textsc{Newton}"{loi}
+	% \tce{loi}
 	% \tce{coro}
 	% \tce{demo}
 	% \tce{inte}
@@ -128,205 +128,335 @@
 \begin{tcb*}[sidebyside, righthand ratio=.35](defi)
 	{Repère polaire et vecteur position}
 	Le repère polaire est constitué d'une origine O autour de laquelle sont
-	définis deux vecteurs $\ur$ et $\ut$ de \textbf{direction
-		variable dans le temps}, avec $\ur$ dans la direction $\OM$ et $\ut
-		\perp \ur$ dans le sens direct tels que~:
-	\psw{
-		\[
-			\boxed{\OM = r\ur}
-			\qet
-			\boxed{\norm{\OM} = r}
-		\]
-	}
+	définis deux vecteurs $\ur$ et $\ut$ tels que~:
+	\begin{itemize}
+		\item \psw{$\ur$ dans la direction $\OM$}
+		\item \psw{$\ut \perp \ur$ dans le sens direct}
+		\item[m][15] \psw{%
+			      \[
+				      \boxed{\OM(t) = r(t)\ur}
+				      \qet
+				      \boxed{\norm{\OM}(t) = r(t)}
+			      \]
+		      }%
+		      \vspace{-15pt}
+	\end{itemize}
+	\begin{center}
+		\fatbox{\textbf{$\ur$ et $\ut$ dépendent de $\th(t)$ donc du temps}}
+	\end{center}
 	\tcblower
 	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{polaires}
-		}{
-			\includegraphics[width=\linewidth]{polaires}
-		}
+		\sswitch{%
+			\includegraphics[width=\linewidth]{pos_pol_stud}
+		}{%
+			\includegraphics[width=\linewidth]{pos_pol_prof}
+		}%
 		\vspace{-15pt}
 		\captionof{figure}{Polaires}
 	\end{center}
 \end{tcb*}
 
-Soit un point matériel M dans l'espace~: il se repère en coordonnées
-cartésiennes et polaires par
-\[
-	\psw{\OM = x\ux + y\uy}
-	\qet
-	\psw{\OM = r\ur}
-	\qavec
-	\psw{r = \sqrt{x^2+y^2} = \norm{\OM}}
-\]
-On peut projeter les vecteurs de la base polaire sur la base cartésienne. Il
-suffit pour cela de prendre des valeurs particulières de $\th$, comme 0 et
-$\pi/2$, pour trouver les dépendances en $\cos$ et $\sin$ suivantes~:
-\[
-	\psw{\ur = \cos(\th)\ux + \sin(\th)\uy}
-	\qet
-	\psw{\ur = -\sin(\th)\ux + \cos(\th)\uy}
-\]
-Ainsi, $r$, $\th$ mais également $\ur$ et $\ut$ \textbf{dépendent du temps}.
+\begin{tcb*}(impo)<lftt>{Variables vs.\ coordonnées}
+	Il faut opérer la distinction entre les \textbf{variables} servant à repérer
+	le point et les \textbf{coordonnées} dans la base de projection. Ici, les
+	variables sont $r(t)$ et $\th(t)$, mais dans la base $(\ur,\ut)$, on a
+	\[
+		\OM(t) = \mqty(r(t)\\0) = r(t)\ur
+		\qMath{\textbf{ET PAS}}
+		\dcancel{%
+		\OM(t) = \mqty(r(t)\\\th(t)) = r(t)\ur +
+		\underbracket[1pt]{\th(t)\ut}_{\mathclap{\text{pas homogène~!}}}
+		}
+	\]
+	\vspace{-15pt}
+\end{tcb*}
 
-\begin{tcb*}(prop){Position en polaires et projection cartésienne}
-	En coordonnées polaires et dans le plan d'une trajectoire, le vecteur
-	position s'écrit
-	\psw{\[\boxed{\OM = r\ur}\]}
-	et les vecteurs $\ur$ et $\ut$ variables se décomposent sur $\ux$ et $\uy$
+\begin{tcb*}(prop){Lien polaires/cartésiennes}
+	Les vecteurs $\ur$ et $\ut$ variables se décomposent sur $\ux$ et $\uy$
 	fixes tels que
 	\[
-		\psw{\boxed{\ur = \cos(\th)\ux + \sin(\th)\uy}}
+		\psw{\boxed{\ur = \cos(\th(t))\ux + \sin(\th(t))\uy}}
 		\qet
-		\psw{\boxed{\ur = -\sin(\th)\ux + \cos(\th)\uy}}
+		\psw{\boxed{\ur = -\sin(\th(t))\ux + \cos(\th(t))\uy}}
+	\]
+	d'où en cartésiennes pour un point M~:
+	\[
+		\psw{%
+			x(t) = r(t)\cos(\th(t))
+		}%
+		\qet
+		\psw{%
+			y(t) = r(t)\sin(\th(t))
+		}%
+		\qso
+		\psw{%
+			\norm{\OM}(t) = r(t) = \sqrt{x(t)^2 + y(t)^2}
+		}%
 	\]
 \end{tcb*}
 
-\subsection{Déplacement élémentaire en polaires}
-On a toujours $\dd\OM = \OM(t+\dt) - \OM(t)$. Pour trouver son expression, on se
-place au point $\Mr (t)$, et pour chaque axe $\ur$ et $\ut$ on \textbf{fixe
-	l'autre coordonnée et on fait varier la variable d'intérêt}.
-% , autrement dit $\dd\OM = \vf\dt$.
-% Ainsi, il suffit de prendre l'expression de la vitesse et de simplifier les
-% $\dt$ des dérivées temporelles~; on a donc
-% \begin{gather*}
-% 	\dd\OM = \left(\frac{\dd{r}}{\cancel{\dt}}\ur + r
-% 	\frac{\dd{\th}}{\cancel{\dt}}\ut\right)\times\cancel{\dt}
-% \end{gather*}
-
-\begin{tcb*}[sidebyside, righthand ratio=.25](demo)
-	{Déplacement élémentaire polaire}
-	Soit $\Mr$ repéré par la distance $r$ et l'angle $\th$. On trouve
-	la composante de $\dd{\OM}$ sur $\ur$ en \textbf{fixant $\th$} et on incrémente
-	la variable $r$ de $\dd{r}$.
-	\begin{center}
-		La distance ainsi obtenue est \psw{$\dd{r}$ sur $\ur$.}
-	\end{center}
-	\bigbreak
-	On trouve la composante de $\dd{\OM}$ sur $\ut$ en \textbf{fixant $r$} et on
-	incrémente la variable $\th$ de $\dd{\th}$.
-	\begin{center}
-		La distance ainsi obtenue est \psw{$r\dd{\th}$ sur $\ut$.}
-	\end{center}
-	\tcblower
-	\begin{center}
-		\sswitch{
-			\includegraphics[width=\linewidth, draft=true]{pol_dom}
-		}{
-			\includegraphics[width=\linewidth]{pol_dom}
-		}
-		\captionsetup{justification=centering}
-		\captionof{figure}{\smallbreak$\dd{\protect\OM}$ polaire}
-	\end{center}
+\begin{tcb*}(demo){Lien polaires/cartésiennes}
+  On projette les vecteurs de la base polaire sur la base cartésienne en
+  appliquer la méthode de vraisemblance ou par définition du produit
+  scalaire, d'où la propriété. On a alors~:
+  \psw{%
+    \begin{gather*}
+      \OM(t) = r(t)\ur
+      \Lra
+      \OM(t) =
+      \underbracket[1pt]{r(t)\cos(\th(t))}_{=x(t)}\ux +
+      \underbracket[1pt]{r(t)\sin(\th(t))}_{=y(t)}\uy
+      \\\Ra
+      \norm{\OM}(t) =
+      \sqrt{x(t)^2 + y(t)^2} =
+      \sqrt{r(t)^2\underbracket[1pt]{\pa{\cos^2(\th(t)) + \sin^2(\th(t))}}_{=1}}
+      = r(t) \qed
+    \end{gather*}
+  }%
+  \vspace{-15pt}
 \end{tcb*}
 
-\begin{tcb*}(prop){Déplacement élémentaire polaire}
-	En coordonnées polaires, le déplacement élémentaire s'exprime
-	\psw{\[\boxed{\dd\OM = \dd r\ur + r\dd\th\ut}\]}
-	\vspace{-15pt}
-\end{tcb*}
-
-\subsection{Vitesse en coordonnées polaires}
-Ici aussi, il y a deux manières d'obtenir l'expression de la vitesse. Soit on
-applique $\dv{t}$ sur $r\ur$, soit on prend $\frac{\dd{\OM}}{\dd{t}}$ comme une
-fraction. Les deux résultats sont équivalents, et donnent
-
-\begin{tcb*}(prop){Vitesse en coordonnées polaires}
-	Ainsi, la vitesse en coordonnées polaires s'écrit
-	\psw{\[\boxed{\vf = \rp\ur + r\tp\ut}\]}
-	\vspace{-15pt}
-\end{tcb*}
-
-\begin{tcb*}(demo)<lftt>{Vitesse en polaires par dérivation}
-	\begin{gather*}
-		\beforetext{Par définition,}
-		\psw{
-			\vf = \dv{\OM}{t}
-			\Lra
-			\vf = \dv{(r\ur)}{t}
-			\Lra
-			\vf = \rp\ur + r\dv{\ur}{t}
-		}
-	\end{gather*}
-	Pour déterminer la vitesse il faut donc déterminer la variation dans le temps du
-	vecteur $\ur$. Pour cela, on décompose $\ur$ dans la base cartésienne qui, elle,
-	a des vecteurs de base fixes dans le temps~:
-	\begin{DispWithArrows*}[format=LrL, xoffset=1.5cm]
-		&
-		\psw{\ur}
-		& =
-		\psw{\cos(\th)\ux + \sin(\th)\uy}
-		\CArrow{$\dv{t}\/(\cdot)$}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ur}{t}}
-		& =
-		\psw{\dv{\cos(\th)}{t}\ux + \dv{\sin(\th)}{t}\uy}
-		\Arrow{Dérivée composée}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ur}{t}}
-		& =
-		\psw{-\tp\sin(\th)\ux + \tp\cos(\th)\uy}
-		\Arrow{Factorisation}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ur}{t}}
-		& =
-		\psw{
-			\tp \underbracket[1pt]{\left(-\sin(\th)\ux + \cos(\th)\uy\right)}_{= \ut}
-		}
-		\Arrow{Identification}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ur}{t}}
-		& =
-		\psw{\tp\ut}
-		\qed
-	\end{DispWithArrows*}
-\end{tcb*}
-
-\begin{tcb*}[breakable](rema){Dérivée composée en physique}
+\vspace{-15pt}
+\subsection{Variation temporelle des vecteurs de base}
+\begin{tcb*}[breakable](tool){Dérivée composée en physique}
 	En physique, on a l'habitude (mathématiquement valable) de penser les dérivées
 	comme des fractions. Ainsi, on peut traiter la dérivée d'une composition en
 	faisant intervenir d'autres dérivée par une écriture fractionnaire. Par
 	exemple~:
+	\psw{%
+		\begin{gather*}
+			\dv{t}\/(\cos(\theta(t))) =
+      \dv{\th}{t} \dv{\th} (\cos(\theta(t))) =
+      -\tp(t) \sin(\theta(t))
+		\end{gather*}
+	}%
+  \vspace{-15pt}
+\end{tcb*}
 
-	\psw{
-		\begin{DispWithArrows*}
-			\dv{t}\/(\cos(\theta)) &= \dv{t} \dv{\th}{\th}\/ (\cos(\theta))
-			\Arrow{On réarrange}
-			\\\Lra
-			\dv{t}\/(\cos(\theta)) &= \dv{\th}{t} \dv{\th} (\cos(\theta))
-			\Arrow{On applique les dérivées}
-			\\\Lra
-			\Aboxed{\dv{t}\/(\cos(\theta)) &= -\tp \sin(\theta)}
-		\end{DispWithArrows*}
-	}
+\begin{tcb*}(prop){Dérivées de $\protect\ur$ et $\protect\ut$}
+  La variation temporelle des vecteurs de la base polaire est~:
+  \[
+    \psw{%
+      \boxed{\dv{\ur}{t} = \tp(t)\ut}
+    }%
+    \qet
+    \psw{%
+      \boxed{\dv{\ut}{t} = -\tp(t)\ur}
+    }%
+  \]
+  \vspace{-15pt}
+\end{tcb*}
+
+\begin{tcb*}[breakable](demo){Dérivées de $\protect\ur$ et $\protect\ut$}
+  % On peut travailler géométriquement ou par le calcul, en repassant en
+  % coordonnées cartésiennes.
+  \tcbsubtitle{\fatbox{\textbf{Géométriquement}}}
+  \begin{isd}[interior hidden, righthand ratio=.3](demo)
+  On représente les deux vecteurs après un petit temps $\dd{t}$, c'est-à-dire
+  augmentés d'un angle $\dd{\th}$~:
+      \begin{align*}
+        \psw{%
+          \dd{\ur} = \underbracket[1pt]{\norm{\ur}}_{=1}\cdot \dd{\th} \ut
+        }%
+        \qeta
+        \psw{%
+          \dd{\ut} = \underbracket[1pt]{\norm{\ut}}_{=1}\cdot \dd{\th} (-\ur)
+        }%
+        \\\beforetext{Soit}
+        \psw{%
+          \dv{\ur}{t} = \dv{\th}{t}\ut
+        }%
+        \qeta
+        \psw{%
+          \dv{\ut}{t} = -\dv{\th}{t}\ur
+        }%
+        \qed
+      \end{align*}
+    \tcblower
+    \begin{center}
+      \sswitch{%
+        \includegraphics[width=\linewidth]{pol_dur_stud}
+      }{%
+        \includegraphics[width=\linewidth]{pol_dur_prof}
+      }%
+      \vspace{-15pt}
+      \captionsetup{justification=centering}
+      \captionof{figure}{\\$\dd\protect\ur$ et $\dd\protect\ut$}
+    \end{center}
+  \end{isd}
+  \tcblower
+  \tcbsubtitle{\fatbox{\textbf{Mathématiquement}}}
+  On part des décompositions dans la base cartésienne et on dérive~:
+  \smallbreak
+  \begin{isd}[interior hidden](demo)
+    \tcbsubtitle{\fatbox{\!$\ur$}}
+    \vspace{-15pt}
+    \psw{%
+      \small
+      \begin{DispWithArrows*}[fleqn, mathindent=0pt]
+        \ur
+        & =
+        \cos(\th)\ux + \sin(\th)\uy
+        \CArrow{$\dv{t}\/(\cdot)$}
+        \\\Lra
+        \dv{\ur}{t}
+        & =
+        \dv{\cos(\th)}{t}\ux + \dv{\sin(\th)}{t}\uy
+        \Arrow{Composée}
+        \\\Lra
+        \dv{\ur}{t}
+        & =
+        -\tp\sin(\th)\ux + \tp\cos(\th)\uy
+        \Arrow{Factorisa$^\circ$}
+        \\\Lra
+        \dv{\ur}{t}
+        & =
+          \tp \underbracket[1pt]{\left(-\sin(\th)\ux + \cos(\th)\uy\right)}_{= \ut}
+        \Arrow{Identifica$^\circ$}
+        \\\Lra
+        \dv{\ur}{t}
+        & =
+        \tp\ut
+        \qed
+      \end{DispWithArrows*}
+    }%
+    \vspace{-15pt}
+    \tcblower
+    \tcbsubtitle{\fatbox{\!$\ut$}}
+    \vspace{-15pt}
+    \psw{%
+      \small
+      \begin{DispWithArrows*}[fleqn, mathindent=0pt]
+        \ut
+        & =
+        -\sin(\th)\ux + \cos(\th)\uy
+        \CArrow{$\dv{t}\/(\cdot)$}
+        \\\Lra
+        \dv{\ut}{t}
+        & =
+        \dv{(-\sin(\th))}{t}\ux + \dv{\cos(\th)}{t}\uy
+        \Arrow{Composée}
+        \\\Lra
+        \dv{\ut}{t}
+        & =
+        -\tp\cos(\th)\ux - \tp\sin(\th)\uy
+        \Arrow{Facto.}
+        \\\Lra
+        \psw{\dv{\ut}{t}}
+        & =
+          -\tp \underbracket[1pt]{\left(\cos(\th)\ux + \sin(\th)\uy\right)}_{= \ur}
+        \Arrow{Identif.}
+        \\\Lra
+        \dv{\ut}{t}
+        & =
+        -\tp\ur
+        \qed
+      \end{DispWithArrows*}
+    }%
+    \vspace{-15pt}
+  \end{isd}
+\end{tcb*}
+
+
+\subsection{Déplacement élémentaire en polaires}
+\begin{tcb*}(prop){Déplacement élémentaire polaire}
+	En coordonnées polaires, le déplacement élémentaire s'exprime
+	\psw{\[\boxed{\dd\OM = \dd r\ur + r(t)\dd\th\ut}\]}
+	\vspace{-15pt}
+\end{tcb*}
+
+% On a toujours $\dd\OM = \OM(t+\dt) - \OM(t)$. On trouve son expression
+% géométriquement~:
+
+\begin{tcb*}[sidebyside, righthand ratio=.40](demo)
+  {Déplacement élémentaire polaire}
+  On trouve la composante de $\dd{\OM}$ sur $\ur$ en \xul{fixant $\th$} et on
+  \xul{incrémente la variable $r$ de $\dd{r}$}.
+  \begin{center}
+    La distance ainsi obtenue est \xul{\psw{$\dd{r}$ sur $\ur$.}}
+  \end{center}
+  \bigbreak
+  On trouve la composante de $\dd{\OM}$ sur $\ut$ en \xul{fixant $r$} et on
+  \xul{incrémente la variable $\th$ de $\dd{\th}$}.
+  \begin{center}
+    La distance ainsi obtenue est \xul{\psw{$r(t)\dd{\th}$ sur $\ut$.}}
+  \end{center}
+  \tcblower
+  \begin{center}
+    \sswitch{%
+      \includegraphics[width=\linewidth]{pol_dom_stud}
+    }{%
+      \includegraphics[width=\linewidth]{pol_dom_prof}
+    }%
+    \vspace{-15pt}
+    % \captionsetup{justification=centering}
+    \captionof{figure}{$\dd{\protect\OM}$ polaire}
+  \end{center}
+\end{tcb*}
+
+\subsection{Vitesse en coordonnées polaires}
+
+\begin{tcb*}(prop){Vitesse en coordonnées polaires}
+	La vitesse en coordonnées polaires s'écrit
+	\psw{\[\boxed{\vf(t) = \rp(t)\ur + r(t)\tp(t)\ut}\]}
+	\vspace{-15pt}
+\end{tcb*}
+
+\begin{tcb*}(demo)<lftt>{Vitesse en polaires}
+Ici aussi, il y a deux manières d'obtenir l'expression de la vitesse.
+\tcbsubtitle{\fatbox{\textbf{Dérivée}}}
+\vspace{-15pt}
+		\psw{%
+	\begin{gather*}
+			\vf(t) =
+      \dv{\OM}{t} =
+      \dv{(r(t)\ur)}{t}
+			\Lra
+			\vf(t) = \rp(t)\ur + r(t)\dv{\ur}{t}
+			\Lra
+			\vf(t) = \rp(t)\ur + r(t)\tp(t)\ut
+      \qed
+	\end{gather*}
+		}%
+  \vspace{-15pt}
+  \tcblower
+  \tcbsubtitle{\fatbox{\textbf{Rapport}}}
+  \psw{%
+    \[
+      \vf(t) =
+      \dv{\OM}{t} =
+      \frac{\dd{r}\ur + r(t) \dd{\th}\ut}{\dd{t}} =
+      \dv{r}{t} \ur + r(t) \dv{\th}{t}\ut
+      \qed
+    \]
+  }%
+  \vspace{-15pt}
 \end{tcb*}
 
 \subsection{Accélération}
-Pour l'accélération, on doit appliquer la dérivée puisqu'on n'a pas l'expression
-de $\dd{\vf}$~:
 \begin{tcb*}*(demo)<lftt>"ror"{Accélération en polaires}
-	Par définition,
-	\psw{
-		\begin{gather*}
-			\af = \dv{\vf}{t} =
-			\dv{\tikzmark{DV}}{t}
-			\left(
-			\rp\tikzmark{RP}\ur\tikzmark{UR} +
-			r\tikzmark{R}\tp\tikzmark{TP}\ut\tikzmark{UT}
-			\right)
-			\\\Lra
-			\af =
-			\lsw{orchid}{\rpp}\ur +
-			\rp \lsw{cornflowerblue}{\dv{\ur}{t}} +
-			\lsw{limegreen}{\rp}\tp\ut +
-			r\lsw{orange}{\tpp}\ut +
-			r\tp \lsw{firebrick}{\dv{\ut}{t}}
-		\end{gather*}
-	}
+Par définition,
+\psw{%
+      \begin{gather*}
+      \af = \dv{\vf}{t} =
+      \dv{\tikzmark{DV}}{t}
+      \left(
+      \rp\tikzmark{RP}(t)\ur\tikzmark{UR} +
+      r\tikzmark{R}(t)\tp\tikzmark{TP}(t)\ut\tikzmark{UT}
+      \right)
+      \\
+      \Lra
+      \af =
+      \psw[orchid]{\rpp(t)}\ur +
+      \rp(t) \underbracket[1pt]{\psw[cornflowerblue]{\dv{\ur}{t}}}_{= \tp(t)\ut} +
+      \psw[limegreen]{\rp(t)}\tp(t)\ut +
+      r(t)\psw[orange]{\tpp(t)}\ut +
+      r(t)\tp(t) \underbracket[1pt]{\psw[firebrick]{\dv{\ut}{t}}}_{= -\tp(t)\ur}
+  \qed
+    \end{gather*}
+}%
+  \vspace{-35pt}
+
 	\tikz[remember picture, overlay]
 	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{orchid}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-3pt,3pt)}]pic cs:RP)
@@ -348,44 +478,6 @@ de $\dd{\vf}$~:
 	(pic cs:DV) to [out=90, in=90] ([shift={(-6pt,6pt)}]pic cs:UT)
 	;
 
-	Pour déterminer l'accélération, il faut donc déterminer la variation dans le
-	temps du vecteur $\ut$. Pour cela, on décompose $\ut$ dans la base cartésienne
-	qui a des vecteurs de base fixes dans le temps~:
-	\begin{DispWithArrows*}[format=LrL, xoffset=1.5cm]
-		&
-		\psw{\ut}
-		& =
-		\psw{-\sin(\th)\ux + \cos(\th)\uy}
-		\CArrow{$\dv{t}\/(\cdot)$}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ut}{t}}
-		& =
-		\psw{\dv{(-\sin(\th))}{t}\ux + \dv{\cos(\th)}{t}\uy}
-		\Arrow{Dérivée composée}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ut}{t}}
-		& =
-		\psw{-\tp\cos(\th)\ux - \tp\sin(\th)\uy}
-		\Arrow{Factorisation}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ut}{t}}
-		& =
-		\psw{
-			-\tp \underbracket[1pt]{\left(\cos(\th)\ux + \sin(\th)\uy\right)}_{= \ur}
-		}
-		\Arrow{Identification}
-		\\\Lra
-		& \qquad
-		\psw{\dv{\ut}{t}}
-		& =
-		\psw{-\tp\ur}
-		\qed
-	\end{DispWithArrows*}
-	\leftcenters{Ainsi,}
-	{\psw{$\af = \rpp\ur + \rp\tp\ut + \rp\tp\ut+r\tpp\ut - r\tp^2\ur$}}
 \end{tcb*}
 
 \begin{tcb*}(prop){Accélération en coordonnées polaires}
@@ -406,142 +498,195 @@ de $\dd{\vf}$~:
 \begin{tcb*}(defi)<lftt>{Mouvement circulaire}
 	Un mouvement est dit \textbf{circulaire} s'il se fait dans un plan, à une
 	distance de l'axe de rotation $r$ constante, soit
-	\psw{
+	\psw{%
 		\[
-			r(t) = R
+			r(t) = \cte = R
 		\]
-	}
-	\vspace{-15pt}
+	}%
+	\vspace{-25pt}
 \end{tcb*}
 
-Dans ce cas-là, on a
+\begin{tcb}(impl)<lftt>{Mouvement circulaire}
+  Dans ce cas-là, on a
 \[
-	\psw{\OM = R\ur}
-	\qet
-	\psw{\rp = 0 = \rpp}
+  \psw{\OM(t) = R\ur}
+  \qet
+  \psw{\rp(t) = 0 = \rpp(t)}
 \]
-
-En notant $\w = \tp$ la vitesse angulaire, la vitesse et l'accélération donnent
+En notant $\w(t) = \tp(t)$ la vitesse angulaire, la vitesse et l'accélération
+donnent
 \[
-	\psw{\vf = R\w\ut}
-	\qet
-	\psw{\af = -R\w^2\ur + R\wp\ut}
+  \psw{\boxed{\vf(t) = R\w(t)\ut}}
+  \qet
+  \psw{\boxed{\af(t) = -R\w^2(t)\ur + R\wp(t)\ut}}
 \]
+\vspace{-35pt}
+\end{tcb}
 
-\begin{tcb*}(impo){$\w$ en mécanique vs.\ $\w$ en filtrage}
-	Bien que les symboles des variables soient les mêmes, les deux grandeurs
-	décrites n'ont \textbf{rien à avoir} entre elles~:
-	\begin{itemize}
-		\item $\w$ en filtrage est la \textit{pulsation}~;
-		\item $\w$ en mécanique est la \textit{vitesse angulaire}.
-	\end{itemize}
-	Cependant, les deux ont la \textbf{même unité}, les $\si{rad.s^{-1}}$,
-	puisqu'elles décrivent bien la variation d'un angle/d'une phase dans le temps.
-\end{tcb*}
+% \begin{tcb*}(impo){$\w$ en mécanique vs.\ $\w$ en filtrage}
+% 	Bien que les symboles des variables soient les mêmes, les deux grandeurs
+% 	décrites n'ont \textbf{rien à avoir} entre elles~:
+% 	\begin{itemize}
+% 		\item $\w$ en filtrage est la \textit{pulsation}~;
+% 		\item $\w$ en mécanique est la \textit{vitesse angulaire}.
+% 	\end{itemize}
+% 	Cependant, les deux ont la \textbf{même unité}, les $\si{rad.s^{-1}}$,
+% 	puisqu'elles décrivent bien la variation d'un angle/d'une phase dans le temps.
+% \end{tcb*}
+
+\vspace{-15pt}
 
 \subsection{Mouvement circulaire uniforme}
 \begin{tcb*}(defi)<lftt>{Mouvement circulaire uniforme}
 	Un mouvement est dit \textbf{circulaire \textit{uniforme}} si c'est un
 	mouvement circulaire ($r(t) = \cte$) à \textit{vitesse angulaire
 		constante}, soit
-	\psw{
+	\psw{%
 		\[
-			\left\{
-			\begin{array}{rcl}
-				r(t)   & = & R  \\
-				\tp(t) & = & \w
-			\end{array}
-			\right.
+				r(t) = R
+        \qet
+				\tp(t) = \w_0
 		\]
-	}
+	}%
+  \vspace{-25pt}
 \end{tcb*}
 
-Dans ce cas, $\rp = 0 = \rpp$ mais également $\tpp = 0$, donc la vitesse et
-l'accélération donnent
+\begin{tcb}(impl)<lftt>{Mouvement circulaire uniforme}
+  Dans ce cas, $\rp = 0 = \rpp$ mais également $\tpp = 0$, donc la vitesse et
+  l'accélération donnent
 \[
-	\psw{\vf = R\w\ut}
-	\qet
-	\psw{\af = -R\w^2\ur}
+  \psw{\boxed{\vf(t) = R\w_0\ut}}
+  \qet
+  \psw{\boxed{\af(t) = -R\w_0{}^2\ur}}
 \]
-
-\begin{tcb*}(ror){Observations mouvement circulaire}
-	Dans le cas du mouvement circulaire uniforme,
-	\begin{itemize}
-		\item Le vecteur vitesse est selon $\ut$ et est de norme constante,
-		      égale à $R\w$~;
-		\item Le vecteur accélération pointe vers le centre et est de norme
-		      constance, égale à $\DS R\w^2 = \frac{v^2}{R}$.
-	\end{itemize}
-\end{tcb*}
-
-\begin{tcb}*(expe)<itc>"trans"{Transition}
-	Si la trajectoire d'un objet change de courbure, il peut être fastidieux de
-	travailler avec les coordonnées polaires~: on utilisera alors un repère
-	attaché à l'objet.
+\vspace{-25pt}
 \end{tcb}
+
+% \begin{tcb*}(ror){Mouvement circulaire uniforme}
+% 	Dans le cas du mouvement circulaire uniforme,
+% 	\begin{itemize}
+% 		\item Le vecteur vitesse est selon $\ut$ et est de norme constante,
+% 		      égale à $R\w_0$~;
+% 		\item Le vecteur accélération pointe vers le centre et est de norme
+%       constance, égale à $\DS R\w_0{}^2 = \frac{v^2}{R}$.
+% 	\end{itemize}
+% \end{tcb*}
+
+% \begin{tcb}*(expe)<itc>"trans"{Transition}
+% 	Si la trajectoire d'un objet change de courbure, il peut être fastidieux de
+% 	travailler avec les coordonnées polaires~: on utilisera alors un repère
+% 	attaché à l'objet.
+% \end{tcb}
+
+\vspace*{-25pt}
 
 \subsection{Repère de \textsc{Frenet}}
 
-\begin{tcb*}(defi){Repère de \textsc{Frenet}}
-	\begin{isd}[righthand ratio=.25]
-		Pour un point M sur une trajectoire courbe, on peut approximer la
-		trajectoire à un instant $t$ comme étant celle d'un cercle, appelé
-		\textbf{cercle osculateur}, localement tangent à la trajectoire et de
-		rayon $R$. On définit alors le repère de \textsc{Frenet} avec~:
-		\begin{itemize}
-			\item \psw{$\vv{u_T}$ tangent à la trajectoire en M~;}
-			\item
-			      \psw{
-				      $\vv{u_N} \perp \vv{u_T}$ et dirigé vers l'intérieur de la courbe,
-				      vers le centre du cercle osculateur.
-			      }
-		\end{itemize}
-		\tcblower
-		\begin{center}
-			\sswitch{
-				\includegraphics[width=\linewidth, draft=true]{frenet}
-			}{
-				\includegraphics[width=\linewidth]{frenet}
-			}
-			\vspace{-15pt}
-			\captionof{figure}{\textsc{Frenet}}
-		\end{center}
-	\end{isd}
-	\smallbreak
-	Le rayon $R$ est appelé \textbf{rayon de courbure}, et son inverse $\gamma =
-		1/R$ est appelé \textbf{courbure} de la trajectoire.
+\begin{tcb*}[sidebyside, righthand ratio=.4](defi){Repère de \textsc{Frenet}}
+  Soit un point M sur une trajectoire courbe d'origine O. On approxime sa
+  trajectoire à un instant $t$ par son \textbf{cercle osculateur}, de \textbf{rayon
+  de courbure} $R(t)$. D'où le repère de \textsc{Frenet}~:
+    \begin{itemize}
+      \item \psw{$\vv{u_T}$ tangent à la trajectoire en M~;}
+      \item \psw{%
+              $\vv{u_N} \perp \vv{u_T}$ dirigé vers le centre.
+            }%
+    \end{itemize}
+    $\gamma(t) = 1/R(t)$ s'appelle la \textbf{courbure} de
+  la trajectoire.
+    \tcblower
+    \begin{center}
+      \sswitch{%
+        \includegraphics[width=\linewidth]{frenet_stud}
+      }{%
+        \includegraphics[width=\linewidth]{frenet_prof}
+      }%
+      \vspace{-15pt}
+      \captionof{figure}{\textsc{Frenet}}
+    \end{center}
 \end{tcb*}
 
-On peut alors exprimer la vitesse et l'accélération dans ce repère~; pour la
-vitesse, on repart de la définition~:
-\psw{
-	\begin{gather*}
-		\vf
-		= \frac{\OM(t+\dt)-\OM(t)}{\dd{t}}
-		= \frac{\OM(t+\dt)+\vv{\Mr(t)\Or}}{\dd{t}}
-		= \frac{\vv{\Mr(t)\Mr(t+\dt)}}{\dd{t}}
-	\end{gather*}
-}
-Or, par définition, la trajectoire est l'ensemble des positions du point M dans
-le temps, donc le vecteur $\vv{\Mr(t)\Mr(t+\dt)}$ définit la trajectoire et la
-direction du vecteur $\vv{u_T}$~; ainsi, \textbf{la vitesse est tangente à la
-	trajectoire} et on a
-\psw{
-	\[
-		\boxed{\vf = v\vv{u_T}}
-	\]
-}
-Concernant l'accélération, avec la définition du rayon de courbure on admet
-\begin{gather*}
-	\dv{\vv{u_T}}{t} = \frac{v}{R}\vv{u_N}
-	\\
-	\beforetext{et ainsi}
-	\psw{
-		\boxed{\af = \dv{v}{t}\vv{u_T} + \frac{v^2}{R}\vv{u_N}}
-	}
-\end{gather*}
+\begin{tcb*}(prop){Vitesse et accélération \textsc{Frenet}}
+  La vitesse et l'accélération dans le repère mobile de \textsc{Frenet}
+  s'expriment~:
+  \[
+    \psw{\boxed{\vf(t) = v(t) \vv{u_T}}}
+    \qet
+    \psw{\boxed{\af(t) = \vp(t) \vv{u_T} + \frac{v(t)^2}{R(t)}\vv{u_N}}}
+  \]
+\end{tcb*}
 
-\begin{tcb*}(rema){Cas limites repère de \textsc{Frenet}}
+\begin{tcb*}(demo)<lftt>{Vitesse et accélération \textsc{Frenet}}
+    Soit $s(t)$ la distance parcourue sur la courbe de la trajectoire $\Cc$
+    depuis l'origine O. On l'appelle \textbf{abscisse curviligne}, telle que
+    \[
+      s(t) = \int_{\Cc} \dd{s}
+    \]
+    \tcbsubtitle{\fatbox{\textbf{Vitesse}}}
+    \vspace{-15pt}
+    \psw{%
+          \begin{gather*}
+          \dd{\OM} =
+          \OM (t + \dd{t}) - \OM(t) =
+          \OM(t+\dd{t}) + \vv{\Mr(t)\Or} =
+          \vv{\Mr(t)\Mr(t+\dd{t})} = \dd{s} \vv{u_T}
+          \\\Lra
+          \vv{u_T} = \dv{\OM}{s}
+          \Ra 
+          \vf(t) =
+          \dv{\OM}{t} =
+          \underbracket[1pt]{\dv{s}{t}}_{= v(t)}
+          \underbracket[1pt]{\dv{\OM}{s}}_{= \vv{u_T}}
+          \qed
+        \end{gather*}
+    }%
+    \vspace{-15pt}
+    \tcbsubtitle{\fatbox{\textbf{Accélération}}}
+    \vspace{-15pt}
+    \begin{isd}[interior hidden, righthand ratio=.3](demo)
+      \begin{gather*}
+            \beforetext{De plus,}
+    \psw{%
+            \af(t) = \dv{\vf}{t} = \vp(t)\vv{u_T} + v(t) \dv{\vv{u_T}}{t}
+    }%
+    \\
+        \beforetext{Or,}
+        \psw{%
+                  \dd{\vv{u_T}} =
+                \dd{\th} \vv{u_N}
+                \qet
+                \dd{s} = R(t) \dd{\th}
+                \qso
+                \frac{\dd{s}}{R(t)}\vv{u_N}
+        }%
+        \\
+        \psw{%
+          \Lra
+          \dv{\vv{u_T}}{t} = \frac{1}{R(t)} \dv{s}{t} \vv{u_N}
+          \Lra
+          \boxed{\dv{\vv{u_T}}{t} = \frac{v(t)}{R(t)}\vv{u_N}} 
+        }%
+        \\
+        \beforetext{D'où}
+        \psw{%
+                        \boxed{\af(t) = \vp(t)\vv{u_T} + \frac{v(t)^2}{R(t)}\vv{u_N}}
+                      \qed
+        }%
+      \end{gather*}
+      \tcblower
+      \begin{center}
+        \sswitch{%
+                  \includegraphics[width=\linewidth]{frenet_demo_stud}
+        }{%
+        \includegraphics[width=\linewidth]{frenet_demo_prof}
+        }%
+        \vspace{-15pt}
+        \captionof{figure}{$\dd{\protect\vv{u_T}}$}
+      \end{center}
+    \end{isd}
+\end{tcb*}
+
+\begin{tcb*}(rema)<lftt>{Cas limites repère de \textsc{Frenet}}
 	\begin{itemize}
 		\item On retrouve le mouvement rectiligne uniforme avec $R = +\infty \Lra
 			      \gamma = 0$, puisqu'on a alors
@@ -553,7 +698,6 @@ Concernant l'accélération, avec la définition du rayon de courbure on admet
 		      $\vv{u_N} = -\ur$.
 	\end{itemize}
 \end{tcb*}
-
 
 \section{Application~: pendule simple}
 
@@ -607,20 +751,20 @@ bout de ficelle et une masse~?
 \hspace*{-0.75cm}
 \begin{minipage}{0.70\linewidth}
 	\begin{enumerate}[label=\sqenumi]
-		\bitem{De quoi parle-t-on~?} On étudie le mouvement d'une masse de
-		\SI{20}{g} suspendue à un fil, dans le référentiel du laboratoire
-		supposé galiléen. La masse est écartée de sa position d'équilibre et
-		lâchée sans vitesse initiale.
-		\bitem{Schéma}.
-		\bitem{Modélisation.} On choisit d'utiliser des coordonnées polaires.
-		\begin{itemize}
-			\item La masse est assimilée à un point matériel M.
-			\item Origine~: point d'accroche du fil (centre de rotation
-			      pendule).
-			\item Repère~: $(O,\ur,\ut)$ avec base polaire (voir schéma).
-			\item $t$ initial~: moment du lâché, $\th(0) = \th_0$ et
-			      $\th(0) = 0$.
-		\end{itemize}
+		\item[b]{De quoi parle-t-on~?} On étudie le mouvement d'une masse de
+		      \SI{20}{g} suspendue à un fil, dans le référentiel du laboratoire
+		      supposé galiléen. La masse est écartée de sa position d'équilibre et
+		      lâchée sans vitesse initiale.
+		\item[b]{Schéma}.
+		\item[b]{Modélisation.} On choisit d'utiliser des coordonnées polaires.
+		      \begin{itemize}
+			      \item La masse est assimilée à un point matériel M.
+			      \item Origine~: point d'accroche du fil (centre de rotation
+			            pendule).
+			      \item Repère~: $(O,\ur,\ut)$ avec base polaire (voir schéma).
+			      \item $t$ initial~: moment du lâché, $\th(0) = \th_0$ et
+			            $\th(0) = 0$.
+		      \end{itemize}
 	\end{enumerate}
 \end{minipage}
 \hfill
@@ -636,46 +780,46 @@ bout de ficelle et une masse~?
 	\end{center}
 \end{minipage}
 \begin{enumerate}[label=\sqenumi, start=4]
-	\bitem{Bilan des forces.}
-	\psw{
-		\[
-			\begin{array}{ll}
-				\textbf{Poids}   & \Pf = m\gf = mg(\cos\th \ur - \sin\th \ut)
-				\\
-				\textbf{Tension} & \Tf = -T\ur
-			\end{array}
-		\]
-	}
-	\bitem{PFD.}
-	\psw{
-		\[m\af = \Pf + \Tf\]
-	}
-	Le mouvement étant circulaire (mais pas uniforme), on a
-	\psw{
-		\[\af = -\ell\tp^2 \ur + \ell\tpp \ut\]
-	}
-	\bitem{Équations scalaires.} On projette le PFD sur les axes~:
-	\psw{
-		\[
-			\left\{
-			\begin{array}{rcl}
-				-m\ell\tp^2 & = & mg\cos\th - T \\
-				m\ell\tpp   & = & -mg\sin\th
-			\end{array}
-			\right.
-		\]
-	}
-	\bitem{Résolution.} La première équation n'est pas utilisable telle qu'elle,
-	puisque $T$ n'est pas connue~; cependant la seconde donne une équation
-	différentielle homogène~:
-	\psw{
-		\[\boxed{\tpp + \frac{g}{\ell}\sin\th = 0}\]
-	}
-	qui constitue l'équation du mouvement du pendule. Sous cette forme, elle
-	est \textbf{non-linéaire} donc non résoluble analytiquement~; elle peut
-	l'être numériquement, voir
-	\texttt{Capytale}\footnote{\url{
-			https://capytale2.ac-paris.fr/web/c/a7c5-1241282}}.
+	\item[b]{Bilan des forces.}
+	      \psw{
+		      \[
+			      \begin{array}{ll}
+				      \textbf{Poids}   & \Pf = m\gf = mg(\cos\th \ur - \sin\th \ut)
+				      \\
+				      \textbf{Tension} & \Tf = -T\ur
+			      \end{array}
+		      \]
+	      }
+	\item[b]{PFD.}
+	      \psw{
+		      \[m\af = \Pf + \Tf\]
+	      }
+	      Le mouvement étant circulaire (mais pas uniforme), on a
+	      \psw{
+		      \[\af = -\ell\tp^2 \ur + \ell\tpp \ut\]
+	      }
+	\item[b]{Équations scalaires.} On projette le PFD sur les axes~:
+	      \psw{
+		      \[
+			      \left\{
+			      \begin{array}{rcl}
+				      -m\ell\tp^2 & = & mg\cos\th - T \\
+				      m\ell\tpp   & = & -mg\sin\th
+			      \end{array}
+			      \right.
+		      \]
+	      }
+	\item[b]{Résolution.} La première équation n'est pas utilisable telle qu'elle,
+	      puisque $T$ n'est pas connue~; cependant la seconde donne une équation
+	      différentielle homogène~:
+	      \psw{
+		      \[\boxed{\tpp + \frac{g}{\ell}\sin\th = 0}\]
+	      }
+	      qui constitue l'équation du mouvement du pendule. Sous cette forme, elle
+	      est \textbf{non-linéaire} donc non résoluble analytiquement~; elle peut
+	      l'être numériquement, voir
+	      \texttt{Capytale}\footnote{\url{
+			      https://capytale2.ac-paris.fr/web/c/a7c5-1241282}}.
 \end{enumerate}
 En revanche, dans l'approximation des petits angles, on a $\sin\th\approx\th$,
 et ainsi on obtient~:
@@ -945,7 +1089,7 @@ On peut inverser les définitions en prenant $x = {\rm OP}\cos\f$ et $y = {\rm
 	\noindent
 	\begin{minipage}{.59\linewidth}
 		\begin{center}
-			\includegraphics[width=\linewidth]{sph_vol}
+			\includegraphics[width=\linewidth]{sphe_vol}
 			\captionsetup{justification=centering}
 			\captionof{figure}{\\$\dd{\protect\OM}$ sphériques}
 		\end{center}

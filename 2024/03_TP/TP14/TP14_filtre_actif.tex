@@ -4,32 +4,39 @@
 
 \makeatletter
 \renewcommand{\@chapapp}{Travaux pratiques -- TP}
+\renewcommand{\chaplett}{TP}
 \makeatother
 
 % \toggletrue{student}
-\HideSolutionstrue
-\toggletrue{corrige}
+% \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
-\renewcommand{\mycol}{gray}
+% \renewcommand{\mycol}{gray}
+
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{13}
 
+\settype{enon}
+\settype{solu_prof}
+\settype{solu_stud}
+
 \chapter{\cswitch{Correction du TP}{\'Etude d'un filtre actif du second ordre}}
 
-\enonce{
-	\begin{prgm}
-		\begin{tcb}*(ror)"how"{Savoir-faire}
-			\begin{itemize}
-				\item Mettre en œuvre un dispositif expérimental illustrant l’utilité
-				      des fonctions de transfert pour un système linéaire à un ou plusieurs
-				      étages.
-				\item Utiliser une fonction de transfert donnée d’ordre 1 ou 2 (ou ses
-				      représentations graphiques) pour étudier la réponse d’un système
-				      linéaire à une excitation sinusoïdale
-			\end{itemize}
-		\end{tcb}
-	\end{prgm}
+\enonce{%
+	\begin{tcn}[sidebyside, sidebyside align=top](appl)<ctb>"how"'t'{Capacités exigibles}
+		\begin{itemize}[label=\rcheck]
+			\item Mettre en œuvre un dispositif expérimental illustrant l’utilité
+			      des fonctions de transfert pour un système linéaire à un ou plusieurs
+			      étages.
+		\end{itemize}
+		\tcblower
+		\begin{itemize}[label=\rcheck]
+			\item Utiliser une fonction de transfert donnée d’ordre 1 ou 2 (ou ses
+			      représentations graphiques) pour étudier la réponse d’un système
+			      linéaire à une excitation sinusoïdale
+		\end{itemize}
+	\end{tcn}
 	\vspace{-10pt}
 	\section{Objectifs}
 	\begin{itemize}
@@ -47,7 +54,7 @@
 
 	\section{Méthode pour mesurer un gain en dB (rappel)}
 
-	\begin{tcb}(rapp)<itc>{Rappel~: mesure de gain}
+	\begin{tcb}(rapp){Mesure de gain}
 		\begin{enumerate}
 			\item Appuyez sur la fonction Volt alternatif (symbole
 			      \fbox{V$\sim$}), \textbf{puis} dBmètre (bouton \fbox{dB}) pour
@@ -59,12 +66,13 @@
 			\item Brancher ensuite le multimètre sur la sortie $s(t)$. Il affiche
 			      directement le gain en dB.
 		\end{enumerate}
+		\begin{center}
+			\begin{tcb}[cnt, bld, width=.8\linewidth](impo){}
+				Il faut refaire le zéro relatif pour chaque fréquence.
+			\end{tcb}
+		\end{center}
 	\end{tcb}
-
-	\begin{tcb}[cnt,bld](impo){Attention~!}
-		Il faut refaire le zéro relatif pour chaque fréquence.
-	\end{tcb}
-}
+}%
 
 \setcounter{section}{2}
 \section{Analyser}
@@ -242,7 +250,7 @@ $x_2 - x_1 = 1/Q$ soit au final $\boxed{\Delta \w = \frac{\w_0}{Q} =
 			\includegraphics[width=\linewidth]{selec_filtre}
 		\end{center}
 	\end{minipage}
-  \smallbreak
+	\smallbreak
 	Il faut donc avoir $\alpha$ petit pour avoir $Q$ grand et sélectionner
 	précisément des fréquences.
 }
@@ -264,7 +272,7 @@ Les asymptotes se croisent si
 	\log (x) &= 0
 	\Arrow{On inverse le log}
 	\\\Lra
-  \Aboxed{x &= 1}
+	\Aboxed{x &= 1}
 \end{DispWithArrows*}
 \[
 	\boxed{
@@ -290,45 +298,45 @@ Les asymptotes se croisent si
 \section{Réaliser}
 
 \enonce{%
-  On étudie ce montage pour deux valeurs de $\alpha$. On prendra successivement
-\[
-  \boxed{\alpha=\num{e-2}} \qqMath{puis} \boxed{\alpha=1}
-\]
+	On étudie ce montage pour deux valeurs de $\alpha$. On prendra successivement
+	\[
+		\boxed{\alpha=\num{e-2}} \qqMath{puis} \boxed{\alpha=1}
+	\]
 
-Le filtre schématisé ci-dessus est une «~boite noire~» dans laquelle on trouve
-un amplificateur opérationnel. Pour s'en servir, il faut au préalable polariser
-l'amplificateur opérationnel, c'est-à-dire~:
-\begin{tcb}(expe)<itc>{Manipulation amplificateur}
-  \begin{enumerate}
-    \item Connecter la borne \SI{+15}{V} du boitier à la sortie \SI{+15}{V} d'un
-          générateur de tension continue,
-    \item Connecter la borne \SI{-15}{V} du boitier à la sortie
-          \SI{-15}{V} du générateur
-    \item Connecter le point milieu du boitier à la masse du
-          générateur.
-          \begin{center}
-            \begin{tcb}[cnt,bld,width=.9\linewidth](impo){Attention}
-              À la fin de la séance, on coupe le signal du GBF avant les
-              alimentations de l'amplificateur opérationnel qui doivent être
-              coupées en dernier.
-            \end{tcb}
-          \end{center}
-    \item Réalisez ensuite le montage en prenant $C=\SI{1}{nF}$ (cavalier prêt à
-          être connecté sur la boite) et $\alpha R$ avec une boite de résistances
-          variables.
-  \end{enumerate}
-\end{tcb}
+	Le filtre schématisé ci-dessus est une «~boite noire~» dans laquelle on trouve
+	un amplificateur opérationnel. Pour s'en servir, il faut au préalable polariser
+	l'amplificateur opérationnel, c'est-à-dire~:
+	\begin{tcb}(expe)<itc>{Manipulation amplificateur}
+		\begin{enumerate}
+			\item Connecter la borne \SI{+15}{V} du boitier à la sortie \SI{+15}{V} d'un
+			      générateur de tension continue,
+			\item Connecter la borne \SI{-15}{V} du boitier à la sortie
+			      \SI{-15}{V} du générateur
+			\item Connecter le point milieu du boitier à la masse du
+			      générateur.
+			      \begin{center}
+				      \begin{tcb}[cnt,bld,width=.9\linewidth](impo){}
+					      À la fin de la séance, on coupe le signal du GBF avant les
+					      alimentations de l'amplificateur opérationnel qui doivent être
+					      coupées en dernier.
+				      \end{tcb}
+			      \end{center}
+			\item Réalisez ensuite le montage en prenant $C=\SI{1}{nF}$ (cavalier prêt à
+			      être connecté sur la boite) et $\alpha R$ avec une boite de résistances
+			      variables.
+		\end{enumerate}
+	\end{tcb}
 
-On alimente le filtre avec un GBF en tension sinusoïdale et on souhaite
-visualiser simultanément $e(t)$ sur la voie 1 et $s(t)$ sur la voie 2 de
-l'oscilloscope. On utilisera le voltmètre pour mesurer le gain en dB.
+	On alimente le filtre avec un GBF en tension sinusoïdale et on souhaite
+	visualiser simultanément $e(t)$ sur la voie 1 et $s(t)$ sur la voie 2 de
+	l'oscilloscope. On utilisera le voltmètre pour mesurer le gain en dB.
 }
 \QR{%
 	La «~boite noire~» a été fabriquée avec $R= \SI{100}{k\Omega}$.
 	Déterminer la valeur à donner à $\alpha R$ pour $\alpha=\num{e-2}$.
 }{%
-  \centers{$\boxed{\alpha R = \SI{1}{k\Omega}}$}
-  \vspace{-15pt}
+	\centers{$\boxed{\alpha R = \SI{1}{k\Omega}}$}
+	\vspace{-15pt}
 }
 
 \resetQ
@@ -399,8 +407,8 @@ l'oscilloscope. On utilisera le voltmètre pour mesurer le gain en dB.
 
 \newpage
 \enonce{%
-  ~
-\newpage
+	~
+	\newpage
 }
 
 \thispagestyle{empty}

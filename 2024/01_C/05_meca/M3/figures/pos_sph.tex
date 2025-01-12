@@ -19,7 +19,7 @@
 	\draw[very thick,-stealth] (0,0,0) -- (0,0,6) node[anchor=south]{$z$};
 	% draw ux uy uz
 	\draw[very thick,-stealth] (0,0,0) -- (1,0,0) node[anchor=east]{$\ux$};
-	\draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south]{$\uy$};
+	\draw[very thick,-stealth] (0,0,0) -- (0,1,0) node[anchor=south east]{$\uy$};
 	\draw[very thick,-stealth] (0,0,0) -- (0,0,1) node[anchor=east]{$\uz$};
 	% theta
 	\def\tht{50}
@@ -47,8 +47,9 @@
 	% xy projection
 	\coordinate(H) at (Mxy);
 	\node[below left, myred] at (H) {$\mathrm{H}(t)$};
-	\draw[thick, dashed]
-	(M) -- (H)
+	\draw[thick, dashed, myblue]
+	(H) -- (M)
+	node[midway, below, sloped, \sswitch{white}{myblue}] {$r \cos(\th)$}
 	;
 	% z projection
 	\draw[thick, dashed, myblue]
@@ -69,6 +70,20 @@
 	% rayon
 	\draw[thick, dashed, myred, -stealth, canvas is xy plane at z=0]
 	(O) -- (H);
+	% right angle of theta
+	\draw
+	pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+		{right angle=O--Mz--M};
+	\draw
+	pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+		{right angle=M--H--O};
+	% right angle of phi
+	\draw
+	pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+		{right angle=O--Mx--H};
+	\draw
+	pic[draw, thick, angle radius=5, angle eccentricity=1.3]
+		{right angle=O--My--H};
 	% draw ur ut uz
 	\tdplotsetrotatedcoords{\pht}{\tht}{0}
 	\draw[very thick, -stealth, mypurple,tdplot_rotated_coords] (M) --++
@@ -81,9 +96,6 @@
 	(0,0,1) coordinate (R)
 	node[anchor=south]{$\ur$};
 	% draw rightangle
-	% \draw
-	% pic[draw, thick, angle radius=5, angle eccentricity=1.3]
-	% 	{right angle=R--M--T};
 	\draw
 	pic[draw, thick, angle radius=5, angle eccentricity=1.3]
 		{right angle=F--M--T};
@@ -95,6 +107,8 @@
 		\tdplotsetthetaplanecoords{\pht}
 		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]
 		{(O)}{1.5}{0}{\tht}{anchor=west}{$\th(t)$}
+		\tdplotdrawarc[thick, -stealth, mygreen, tdplot_rotated_coords]
+		{(O)}{2.5}{90}{\tht}{anchor=west}{$\lambda(t)$}
 		\tdplotdrawarc[thick, -stealth, mygreen]
 		{(O)}{2.5}{0}{\pht}{anchor=north}{$\f(t)$}
 	}%

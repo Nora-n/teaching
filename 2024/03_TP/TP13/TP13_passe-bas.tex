@@ -7,7 +7,7 @@
 \renewcommand{\chaplett}{TP}
 \makeatother
 
-\toggletrue{student}
+% \toggletrue{student}
 % \toggletrue{corrige}
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
@@ -31,13 +31,13 @@ C = 0.1e-6        # Farad
 wc = 1/(R*C)      # rad.s^-1
 fc = wc/(2*np.pi) # Hz
 def H(f):
-  return (1/(1+1j*(f/fc)))
+    return (1/(1+1j*(f/fc)))
 def G(f):
-  return (20*np.log10(abs(H(f))))
+    return (20*np.log10(abs(H(f))))
 def F(f):
-  return (cmath.phase(H(f)))
+    return (cmath.phase(H(f)))
 def T(f):
-  return F(f)/(2*np.pi*f)
+    return abs(F(f)/(2*np.pi*f))*1e6
 # fmin = 1e2        # Hz
 # fmax = 5e4        # Hz
 # plist = np.array(
@@ -212,7 +212,7 @@ flist = [100, 300, 600,
 			            \[
 				            \f(x) \opto{}{x\to 0} \arg*{1} = 0
 				            \qet
-				            \f(x) \Sim_{}{x\to \infty}
+				            \f(x) \Sim_{x\to \infty}
 				            \arg*{\frac{1}{\jx}} = -\frac{\pi}{2}
 			            \]
 			            \vspace{-15pt}
@@ -238,7 +238,7 @@ flist = [100, 300, 600,
 		\right.\\
 		\AN
 		\xul{
-			f_c = \py{fr'\SI{{{fc:.2e}}}{{Hz}}'}
+			f_c = \py{fr'\SI{{{fc:.1e}}}{{Hz}}'}
 		}
 	\end{gather*}
 }
@@ -251,7 +251,7 @@ flist = [100, 300, 600,
 	\leavevmode\vspace*{-15pt}\relax
 	\begin{center}
 		\includegraphics[width=.5\linewidth]{filtre_rc-sysam}
-    \captionof{figure}{Schéma complété.}
+		\captionof{figure}{Schéma complété.}
 		\label{fig:rc-sysam}
 	\end{center}
 }
@@ -336,14 +336,14 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 \setlist[blocQR,1]{leftmargin=10pt, label=\sqenumi}
 \QR{%
 	Regrouper les valeurs dans un tableau~:
-  \vspace{-15pt}
+	\vspace{-15pt}
 	\begin{center}
-    \captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
+		\captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
 		\begin{tabularx}{\linewidth}{YYYYY}
 			\toprule
 			$f$ (\si{Hz})                       &
 			$G\ind{dB}$ (\si{dB})               &
-			$\abs{\Delta{t}}$ (\si{s})          &
+			$\abs{\Delta{t}}$ (\si{\micro s})   &
 			$\abs{\Delta{\f_{s/e}}}$ (\si{rad}) &
 			$\Delta{\f_{s/e}}$ (rad)
 			\\
@@ -365,107 +365,107 @@ L'application numérique donne bien $\xul{S_m(f_c) \approx \SI{2}{carreaux}}$.
 		\label{tab:ddb}
 	\end{center}
 }{%
-  ~
-  \leavevmode\vspace*{-15pt}\relax
-  \smallbreak
+	~
+	\leavevmode\vspace*{-15pt}\relax
+	\smallbreak
 	\begin{center}
-    \captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
+		\captionof{table}{Mesures pour diagramme de \textsc{Bode}.}
 		\begin{tabularx}{\linewidth}{YYYYY}
 			\toprule
 			$f$ (\si{Hz})                              &
 			$G\ind{dB}$ (\si{dB})                      &
-			$\abs{\Delta{t}}$ (\si{s})                 &
+			$\abs{\Delta{t}}$ (\si{\micro s})          &
 			$\abs{\Delta{\f_{s/e}}}$ (\si{rad})        &
 			$\Delta{\f_{s/e}}$ (rad)
 			\\
 			\midrule
 			$\py{fr'\num{{{flist[0]}}}'}$              &
 			$\py{fr'\num{{{G(flist[0]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[0]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[0]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[0])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[0]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[1]}}}'}$              &
 			$\py{fr'\num{{{G(flist[1]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[1]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[1]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[1])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[1]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[2]}}}'}$              &
 			$\py{fr'\num{{{G(flist[2]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[2]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[2]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[2])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[2]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[3]}}}'}$              &
 			$\py{fr'\num{{{G(flist[3]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[3]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[3]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[3])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[3]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[4]}}}'}$              &
 			$\py{fr'\num{{{G(flist[4]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[4]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[4]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[4])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[4]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[5]}}}'}$              &
 			$\py{fr'\num{{{G(flist[5]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[5]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[5]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[5])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[5]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[6]}}}'}$              &
 			$\py{fr'\num{{{G(flist[6]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[6]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[6]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[6])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[6]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[7]}}}'}$              &
 			$\py{fr'\num{{{G(flist[7]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[7]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[7]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[7])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[7]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[8]}}}'}$              &
 			$\py{fr'\num{{{G(flist[8]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[8]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[8]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[8])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[8]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[9]}}}'}$              &
 			$\py{fr'\num{{{G(flist[9]):.2f}}}'}$       &
-			$\py{fr'\num{{{T(flist[9]):.2e}}}'}$       &
+			$\py{fr'\num{{{T(flist[9]):.1f}}}'}$       &
 			$\py{fr'\num{{{abs(F(flist[9])):.2f}}}'}$  &
 			$\py{fr'\num{{{F(flist[9]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[10]}}}'}$             &
 			$\py{fr'\num{{{G(flist[10]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[10]):.2e}}}'}$      &
+			$\py{fr'\num{{{T(flist[10]):.1f}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[10])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[10]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[11]}}}'}$             &
 			$\py{fr'\num{{{G(flist[11]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[11]):.2e}}}'}$      &
+			$\py{fr'\num{{{T(flist[11]):.1f}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[11])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[11]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[12]}}}'}$             &
 			$\py{fr'\num{{{G(flist[12]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[12]):.2e}}}'}$      &
+			$\py{fr'\num{{{T(flist[12]):.1f}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[12])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[12]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[13]}}}'}$             &
 			$\py{fr'\num{{{G(flist[13]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[13]):.2e}}}'}$      &
+			$\py{fr'\num{{{T(flist[13]):.1f}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[13])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[13]):.2f}}}'}$
 			\\
 			$\py{fr'\num{{{flist[14]}}}'}$             &
 			$\py{fr'\num{{{G(flist[14]):.2f}}}'}$      &
-			$\py{fr'\num{{{T(flist[14]):.2e}}}'}$      &
+			$\py{fr'\num{{{T(flist[14]):.1f}}}'}$      &
 			$\py{fr'\num{{{abs(F(flist[14])):.2f}}}'}$ &
 			$\py{fr'\num{{{F(flist[14]):.2f}}}'}$
 			\\

@@ -1,0 +1,54 @@
+\documentclass[../TDM3_courbe_app.tex]{subfiles}%
+
+\begin{document}
+\section[s]"1"{Masse du Soleil}
+\enonce{%
+	La Terre subit de la part du Soleil la force d'attraction gravitationnelle~:
+	\[
+		\Ff_g = -\Gc \frac{M_TM_S}{R^2}\ur
+		\qMath{où}
+		\Gc = \SI{6.67e-11}{SI}
+	\]
+	avec $\ur$ le vecteur unitaire allant du Soleil vers la Terre. La Terre tourne
+	autour du Soleil en décrivant un cercle de rayon $R = \SI{149.6e6}{km}$.
+}
+\QR{%
+	Déterminer la masse du Soleil.
+}{%
+	On étudie le système \{Terre\} dans le référentiel héliocentrique. La Terre
+	étant sur une orbite circulaire, on utilise un repère polaire $({\rm
+				S},\ur,\ut)$ en appelant S le centre de gravité du
+	Soleil et T le centre de gravité de la Terre. On a~:
+	\begin{gather*}
+		\vv{\rm ST} = R\ur\\
+		\vf = R\tp\ut\\
+		\af = \underbrace{\cancel{R\tpp\ut}}_{\tpp=0} -R\tp^2\ur
+	\end{gather*}
+	étant donné que la distance Terre-Soleil est fixe, et que la vitesse angulaire
+	de la Terre autour du Soleil est constante. On a d'ailleurs, en appelant $\w =
+		\tp$ cette vitesse angulaire,
+	\[\w = \frac{2\pi}{T_0}\]
+	avec $T_0$ la période de révolution de la Terre autour du Soleil, telle que $T_0
+		= \num{365.26}\times\num{24}\times{3600}\si{s} = \SI{3.16e7}{s}$. Ainsi, la
+	seule force s'exerçant sur la Terre étant l'attraction gravitationnelle du
+	Soleil, on a avec le PFD~:
+	\begin{gather*}
+		M_{T}\af = \Ff_g
+		\Lra
+		-\cancel{M_T}R\w^2 = -\Gc \frac{\cancel{M_T}M_S}{R^2}\\
+		\Lra
+		\boxed{M_S = \frac{R^3\w^2}{\Gc} = \frac{4\pi^2R^3}{\Gc T_0{}^2}}
+		\qavec
+		\left\{
+		\begin{array}{rcl}
+			R   & = & \SI{1.496e11}{m}  \\
+			\Gc & = & \SI{6.67e-11}{SI} \\
+			T_0 & = & \SI{3.16e7}{s}
+		\end{array}
+		\right.
+		\Ra
+		\boxed{M_S = \SI{1.99e30}{kg}}
+	\end{gather*}
+}
+
+\end{document}

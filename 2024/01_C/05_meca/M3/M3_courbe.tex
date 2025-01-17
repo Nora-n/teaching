@@ -19,7 +19,7 @@
 % \renewcommand{\mycol}{black}
 % \renewcommand{\mycol}{gray}
 
-\hfuzz=5.003pt
+\hfuzz=5.002pt
 
 \begin{document}
 \setcounter{chapter}{2}
@@ -39,7 +39,7 @@
 	\vspace{-25pt}
 \end{tcn}
 
-\begin{tcn}[sidebyside]
+\begin{tcn}[sidebyside, fontupper=\small, fontlower=\small]
 	(appl)<ctb>"how"'t'{Capacités exigibles}
 	\begin{itemize}[label=\rcheck]
 		\item Identifier les degrés de liberté d'un mouvement. Choisir un système
@@ -212,23 +212,36 @@
 			= r(t) \qed
 		\end{gather*}
 	}%
-	\vspace{-15pt}
+	\vspace{-25pt}
 \end{tcb}
 
 \vspace{-15pt}
 \subsection{Variation temporelle des vecteurs de base}
 \begin{tcb*}[breakable](tool){Dérivée composée en physique}
-	En physique, on a l'habitude (mathématiquement valable) de penser les dérivées
-	comme des fractions. Ainsi, on peut traiter la dérivée d'une composition en
-	faisant intervenir d'autres dérivée par une écriture fractionnaire. Par
-	exemple~:
+	En physique, on pense les dérivées comme des fractions. Ainsi, on peut traiter
+	la dérivée d'une composition en faisant intervenir d'autres dérivées par une
+	écriture fractionnaire. Par exemple~:
+
 	\psw{%
 		\begin{gather*}
 			\dv{t}\/(\cos(\theta(t))) =
-			\dv{\th}{t} \dv{\th} (\cos(\theta(t))) =
-			-\tp(t) \sin(\theta(t))
+			\psw[orchid]{\overbracket[1pt]{\psw{\dv{\th}{t}}}^{\tikzmark{MT}}}
+			\psw[cornflowerblue]{\overbracket[1pt]{\psw{\dv{\th}(\cos(\theta(t)))}}^{\tikzmark{MC}}}
+			=
+			\psw[orchid]{\overbracket[1pt]{\psw{\tp(t)}}^{\tikzmark{NT}}}
+			\psw[cornflowerblue]{\overbracket[1pt]{\psw{(-\sin(\theta(t)))}}^{\tikzmark{NC}}}
+			= - \tp(t) \sin(\th(t))
 		\end{gather*}
 	}%
+	\tikz[remember picture, overlay]
+	\draw[-stealth, thick, color=\sswitch{white}{orchid}]
+	(pic cs:MT) --++ (0,6pt) -|
+	(pic cs:NT)
+	; \tikz[remember picture, overlay]
+	\draw[-stealth, thick, color=\sswitch{white}{cornflowerblue}]
+	(pic cs:MC) --++ (0,3pt) -|
+	(pic cs:NC)
+	;
 	\vspace{-15pt}
 \end{tcb*}
 
@@ -455,23 +468,23 @@
 	\vspace{-35pt}
 
 	\tikz[remember picture, overlay]
-	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{orchid}]
+	\draw[-stealth, thick, transform canvas={yshift=6pt}, color=\sswitch{white}{orchid}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-3pt,3pt)}]pic cs:RP)
 	;
 	\tikz[remember picture, overlay]
-	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{cornflowerblue}]
+	\draw[-stealth, thick, transform canvas={yshift=6pt}, color=\sswitch{white}{cornflowerblue}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-6pt,6pt)}]pic cs:UR)
 	;
 	\tikz[remember picture, overlay]
-	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{limegreen}]
+	\draw[-stealth, thick, transform canvas={yshift=6pt}, color=\sswitch{white}{limegreen}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-3pt,3pt)}]pic cs:R)
 	;
 	\tikz[remember picture, overlay]
-	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{orange}]
+	\draw[-stealth, thick, transform canvas={yshift=6pt}, color=\sswitch{white}{orange}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-3pt,6pt)}]pic cs:TP)
 	;
 	\tikz[remember picture, overlay]
-	\draw[-stealth, transform canvas={yshift=6pt}, color=\sswitch{white}{firebrick}]
+	\draw[-stealth, thick, transform canvas={yshift=6pt}, color=\sswitch{white}{firebrick}]
 	(pic cs:DV) to [out=90, in=90] ([shift={(-6pt,6pt)}]pic cs:UT)
 	;
 
@@ -602,7 +615,8 @@
 \begin{tcb*}[sidebyside, righthand ratio=.4](defi){Repère de \textsc{Frenet}}
 	Soit un point M sur une trajectoire courbe d'origine O. On approxime sa
 	trajectoire à un instant $t$ par son \textbf{cercle osculateur}, de
-	\textbf{rayon de courbure} $R(t)$. D'où le repère de \textsc{Frenet}~:
+	\textbf{rayon de courbure} $R(t)$. D'où le repère mobile de \textsc{Frenet}
+	attaché à M~:
 	\begin{itemize}
 		\item \psw{$\vv{u_T}$ tangent à la trajectoire en M~;}
 		\item \psw{%
@@ -723,7 +737,7 @@
 	Un point matériel M accroché à un fil tendu subit de la part de ce fil une
 	force appelée \textbf{tension du fil} et notée $\Tf$ telle que
 	\psw{%
-		\[\boxed{\Tf = -\norm{\Tf}\ur}\]
+		\[\boxed{\Tf = -T \,\ur}\]
 	}%
 	avec $\ur$ un vecteur unitaire dirigé \textbf{du point d'accroche vers M}.
 	\tcblower
@@ -928,8 +942,6 @@
 \begin{tcb*}(appl)<lftt>{Mesure de $g$ par un pendule}
 	Déterminer l'accélération de la pesanteur $g$ par l'expérience du pendule
 	simple.
-	Ainsi, avec un fil de longueur $\ell = \SI{0.84\pm0.06}{cm}$, on mesure une
-	période de $T_0 = \psw{\SI{1.84\pm0.1}{s}}$.
 	\tcblower
 	\psw{%
 	Le pendule oscille à la pulsation $\w_0$ et à la période $T_0$ telles que
